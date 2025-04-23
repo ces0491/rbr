@@ -1,0 +1,328 @@
+---
+title: "Web Development for Data Scientists"
+---
+
+## Web Development Fundamentals for Data Scientists
+
+As a data scientist, you'll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products.
+
+### Why Web Development for Data Scientists?
+
+Web development skills are increasingly important for data scientists because:
+
+1. **Sharing Results**: Web interfaces make your analysis accessible to non-technical stakeholders
+2. **Interactive Visualizations**: Web technologies enable rich, interactive data exploration
+3. **Model Deployment**: Web APIs allow your models to be integrated into larger systems
+4. **Data Collection**: Web applications can facilitate data gathering and annotation
+5. **Career Advancement**: Full-stack data scientists who can deploy their own solutions are in high demand
+
+According to a 2023 Kaggle survey, over 60% of data scientists report that web development skills have been valuable in their careers, with the percentage increasing for more senior roles [^12].
+
+### HTML, CSS, and JavaScript Basics
+
+These three technologies form the foundation of web development:
+
+- **HTML**: Structures the content of web pages
+- **CSS**: Controls the appearance and layout
+- **JavaScript**: Adds interactivity and dynamic behavior
+
+Let's create a simple web page that displays a data visualization:
+
+1. Create a file named `index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Sales Data Analysis</h1>
+        <div class="chart-container">
+            <canvas id="salesChart"></canvas>
+        </div>
+        <div class="summary">
+            <h2>Key Findings</h2>
+            <ul>
+                <li>Q4 had the highest sales, driven by holiday promotions</li>
+                <li>Product A consistently outperformed other products</li>
+                <li>Year-over-year growth was 15.3%</li>
+            </ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+2. Create a file named `styles.css`:
+
+```css
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.chart-container {
+    margin-bottom: 30px;
+    height: 400px;
+}
+
+.summary {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+h2 {
+    color: #2c3e50;
+}
+
+ul {
+    padding-left: 20px;
+}
+```
+
+3. Create a file named `script.js`:
+
+```javascript
+// Sample data
+const salesData = {
+    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+    datasets: [
+        {
+            label: 'Product A',
+            data: [12, 19, 15, 28],
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        },
+        {
+            label: 'Product B',
+            data: [10, 15, 12, 25],
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        },
+        {
+            label: 'Product C',
+            data: [8, 10, 14, 20],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }
+    ]
+};
+
+// Get the canvas element
+const ctx = document.getElementById('salesChart').getContext('2d');
+
+// Create the chart
+const salesChart = new Chart(ctx, {
+    type: 'bar',
+    data: salesData,
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Sales (millions)'
+                }
+            }
+        }
+    }
+});
+```
+
+4. Open `index.html` in a web browser
+
+This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualization library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart.
+
+### Web Frameworks for Data Scientists
+
+While you can build websites from scratch, frameworks simplify the process. Here are some popular options for data scientists:
+
+#### Flask (Python)
+
+Flask is a lightweight web framework that's easy to learn and works well for data science applications:
+
+```python
+from flask import Flask, render_template
+import pandas as pd
+import json
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    # Load and process data
+    df = pd.read_csv('sales_data.csv')
+    
+    # Convert data to JSON for JavaScript
+    chart_data = {
+        'labels': df['quarter'].tolist(),
+        'datasets': [
+            {
+                'label': 'Product A',
+                'data': df['product_a'].tolist(),
+                'backgroundColor': 'rgba(54, 162, 235, 0.2)',
+                'borderColor': 'rgba(54, 162, 235, 1)',
+                'borderWidth': 1
+            },
+            # Other products...
+        ]
+    }
+    
+    return render_template('index.html', chart_data=json.dumps(chart_data))
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+Flask is particularly well-suited for data scientists because it allows you to use your Python data processing code alongside a web server. It's lightweight, which means there's not a lot of overhead to learn, and it integrates easily with data science libraries like pandas, scikit-learn, and more.
+
+#### Shiny (R)
+
+We covered Shiny earlier in the data visualization section. It's worth noting again as a complete web framework for R users:
+
+```r
+library(shiny)
+library(ggplot2)
+library(dplyr)
+
+# Load data
+sales_data <- read.csv("sales_data.csv")
+
+# Define UI
+ui <- fluidPage(
+  titlePanel("Sales Data Analysis"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("product", "Select Product:",
+                  choices = c("All", "Product A", "Product B", "Product C"))
+    ),
+    
+    mainPanel(
+      plotOutput("salesPlot"),
+      h3("Key Findings"),
+      verbatimTextOutput("summary")
+    )
+  )
+)
+
+# Define server logic
+server <- function(input, output) {
+  
+  # Filter data based on input
+  filtered_data <- reactive({
+    if (input$product == "All") {
+      return(sales_data)
+    } else {
+      return(sales_data %>% filter(product == input$product))
+    }
+  })
+  
+  # Create plot
+  output$salesPlot <- renderPlot({
+    ggplot(filtered_data(), aes(x = quarter, y = sales, fill = product)) +
+      geom_bar(stat = "identity", position = "dodge") +
+      theme_minimal() +
+      labs(title = "Quarterly Sales", y = "Sales (millions)")
+  })
+  
+  # Generate summary
+  output$summary <- renderText({
+    data <- filtered_data()
+    paste(
+      "Total Sales:", sum(data$sales), "million\n",
+      "Average per Quarter:", round(mean(data$sales), 2), "million\n",
+      "Growth Rate:", paste0(round((data$sales[4] / data$sales[1] - 1) * 100, 1), "%")
+    )
+  })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+```
+
+Shiny is notable for how little web development knowledge it requires. You can create interactive web applications using almost entirely R code, without needing to learn HTML, CSS, or JavaScript.
+
+### Deploying Web Applications
+
+Once you've built your application, you'll need to deploy it for others to access:
+
+#### Deployment Options for Flask
+
+1. **Heroku**: Platform as a Service with a free tier
+   ```bash
+   # Install the Heroku CLI
+   # Create a requirements.txt file
+   pip freeze > requirements.txt
+   
+   # Create a Procfile
+   echo "web: gunicorn app:app" > Procfile
+   
+   # Deploy
+   git init
+   git add .
+   git commit -m "Initial commit"
+   heroku create
+   git push heroku main
+   ```
+
+2. **PythonAnywhere**: Python-specific hosting
+   - Sign up for an account
+   - Upload your files
+   - Set up a web app with Flask
+
+3. **AWS, GCP, or Azure**: More complex but scalable
+
+#### Deployment Options for Shiny
+
+1. **shinyapps.io**: RStudio's hosting service
+   ```r
+   # Install the rsconnect package
+   install.packages("rsconnect")
+   
+   # Configure your account
+   rsconnect::setAccountInfo(name="youraccount", token="TOKEN", secret="SECRET")
+   
+   # Deploy the app
+   rsconnect::deployApp(appDir = "path/to/app")
+   ```
+
+2. **Shiny Server**: Self-hosted option (can be installed on cloud VMs)
+
+These deployment options range from simple services designed specifically for data science applications to more general-purpose cloud platforms. The best choice depends on your specific needs, including factors like:
+
+- Expected traffic volume
+- Security requirements
+- Budget constraints
+- Integration with other systems
+- Need for custom domains or SSL
