@@ -17,6 +17,7 @@ book:
     - chapters/workflows.qmd
     - chapters/summary.qmd
     - chapters/references.qmd
+    - chapters/appendix_troubleshooting.qmd
   cover-image: assets/cover.png
   favicon: assets/cover.png
   repo-url: "https://github.com/ces0491/rbr"

@@ -4,7 +4,7 @@ title: "Setting Up for Success: Infrastructure for the Modern Data Scientist"
 
 ## Introduction
 
-Welcome to the world of data science! If you're coming from economics, statistics, engineering, or another technical field, you already have many of the analytical skills needed to excel. However, the technical infrastructure that supports modern data science work can seem overwhelming at first.
+Welcome! If you're coming from economics, statistics, engineering, or another technical field, you already have many of the analytical skills needed to make productive use of data. However, since you're reading this, you'd like some help setting up the technical infrastructure that supports modern data science work. For those without a computer science background, all of this may seem overwhelming at first, but soon you'll have the tools to supercharge your data workflows.
 
 This guide focuses on getting you set up with the tools you need to practice data science, rather than teaching you how to code. Think of it as preparing your workshop before you begin crafting. We'll cover installing and configuring the essential software, platforms, and tools that data scientists use daily.
 
@@ -28,7 +28,7 @@ The command line (also called terminal, shell, or console) is a text-based inter
 
 Why use the command line when we have modern GUIs?:
 
-1.  **Many data science tools are designed to be used this way**: A Stack Overflow Developer Survey, about 70% of data scientists and developers regularly use command-line tools in their workflow [^1]. Tools like Git, Docker, and many Python/R package management utilities primarily use command-line interfaces.
+1.  **Many data science tools are designed to be used this way**: A Stack Overflow Developer Survey indicates that about 70% of data scientists and developers regularly use command-line tools in their workflow [^1]. Tools like Git, Docker, and many Python and R package management utilities primarily use command-line interfaces.
 
 2.  **It allows for reproducibility through scripts**: Command-line operations can be saved in script files and run again later, ensuring that the exact same steps are followed each time. This reproducibility is essential for reliable data analysis.
 
