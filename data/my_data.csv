@@ -1,0 +1,8 @@
+Date,Product,Region,Sales,Units
+2025/01/01,Widget A,North,1200.5,15
+2025/01/02,Widget B,South,950,10
+2025/01/03,Widget A,East,1430.75,20
+2025/01/04,Widget C,West,875.25,8
+2025/01/05,Widget B,North,1020,11
+2025/01/06,Widget C,South,910.5,9
+2025/01/07,Widget A,East,1500,21

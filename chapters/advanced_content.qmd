@@ -83,11 +83,11 @@ A typical R Markdown document consists of three components:
 
 For example:
 
-```markdown
+````markdown
 ---
 title: "My First Data Analysis"
 author: "Your Name"
-date: "2025-04-22"
+date: "2025-04-30"
 output: html_document
 ---
 
@@ -97,17 +97,17 @@ This analysis explores the relationship between variables X and Y.
 
 ## Data Import and Cleaning
 
-```{r setup}
+```{r setup, eval=FALSE}
 # load the diamonds dataset from ggplot2
 data(diamonds, package = "ggplot2")
 
 # Create a smaller sample of the diamonds dataset
 set.seed(123)  # For reproducibility
 my_data <- diamonds %>% 
-  sample_n(1000) %>%
+  dplyr::sample_n(1000) %>%
   # Rename columns to match the expected structure in the rest of the document
   # This ensures existing code using the my_data object will work
-  select(
+  dplyr::select(
     X = carat,
     Y = price,
     cut = cut,
@@ -121,13 +121,19 @@ head(my_data)
 
 ## Data Visualization
 
-```{r visualization}
-ggplot(data, aes(x = X, y = Y)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
-  labs(title = "Relationship between X and Y")
+```{r visualization, eval=FALSE}
+ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm") +
+  ggplot2::labs(title = "Relationship between X and Y")
 ```
-```
+
+````
+*Note that we've used the namespace convention to call our functions in the markdown code above, rather than making using of `Library(function_name)`. This is not strictly necessary and is a matter of preference, but benefits of using this convention include:*
+
+- Avoids loading the full package with library()
+- Prevents naming conflicts (e.g., filter() from dplyr vs stats)
+- Keeps dependencies explicit and localized
 
 When you click the "Knit" button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. The reason this is so powerful is that it combines your code, results, and narrative explanation in a single, reproducible document. If your data changes, you simply re-knit the document to update all results automatically.
 

@@ -2,6 +2,10 @@ project:
   type: book
   output-dir: output
 
+execute:
+  freeze: auto
+  timeout: 300  # Increase timeout to 300 seconds
+
 book:
   title: "Ready Before Run()"
   subtitle: "A Practical Guide to Gear Up for Data Science"
@@ -27,6 +31,8 @@ book:
 format:
   html:
     theme: cosmo
+    mermaid:
+      engine: mermaid
   pdf:
     documentclass: scrbook
   epub:
