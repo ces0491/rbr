@@ -2,6 +2,13 @@ project:
   type: book
   output-dir: output
 
+execute:
+  freeze: auto    # Prevents re-execution of code chunks
+  echo: true      # Shows code chunks in output
+  eval: true     # Evaluation of code chunks
+  warning: false  # Don't show warnings
+  timeout: 300    # Increase timeout to 300 seconds
+  
 book:
   title: "Ready Before Run()"
   subtitle: "A Practical Guide to Gear Up for Data Science"
@@ -23,12 +30,6 @@ book:
   repo-url: "https://github.com/ces0491/rbr"
   search: true
   downloads: [pdf, epub]
-
-execute:
-  freeze: auto    # Prevents re-execution of code chunks
-  echo: true      # Shows code chunks in output
-  eval: false     # Disables evaluation of code chunks by default
-  timeout: 300    # Increase timeout to 300 seconds
 
 format:
   html:

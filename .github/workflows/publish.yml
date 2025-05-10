@@ -28,6 +28,10 @@ jobs:
             any::knitr
             any::rmarkdown
             any::reticulate
+            any::tidyverse  # This includes magrittr, dplyr, ggplot2, etc.
+            any::shiny
+            any::plotly
+            any::lubridate
 
       - name: Install Chrome
         run: |
