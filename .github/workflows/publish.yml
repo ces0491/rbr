@@ -28,7 +28,7 @@ jobs:
             any::knitr
             any::rmarkdown
             any::reticulate
-            any::tidyverse  # This includes magrittr, dplyr, ggplot2, etc.
+            any::tidyverse
             any::shiny
             any::plotly
             any::lubridate
