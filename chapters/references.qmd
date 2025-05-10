@@ -68,6 +68,9 @@ To deepen your understanding of data science concepts and tools, here are some e
    
 2. **Docker for Data Science** by Joshua Cook  
    Specifically focused on containerization for data science workflows.
+   
+3. **LaTeX Cookbook** by Stefan Kottwitz  
+   Recipes for solving common document formatting challenges in LaTeX.
 
 ### Online Learning Platforms
 
@@ -93,12 +96,14 @@ To deepen your understanding of data science concepts and tools, here are some e
    
 4. **GitHub** (https://github.com/)  
    For finding open-source projects to learn from or contribute to.
+   
+5. **TeX Stack Exchange** (https://tex.stackexchange.com/)  
+   For questions about LaTeX and document preparation.
 
 Remember that the field of data science is constantly evolving, so part of your learning journey should include staying current through blogs, podcasts, and online communities. The infrastructure you've set up in this book provides the foundation - these resources will help you build upon that foundation to develop expertise in specific areas of data science.
 
 ## Image Credits
-*Cover illustration generated using OpenAI’s DALL·E model via ChatGPT (April 2025).*
-
+*Cover illustration generated using OpenAI's DALL·E model via ChatGPT (April 2025).*
 
 ## References
 
@@ -108,7 +113,7 @@ Remember that the field of data science is constantly evolving, so part of your 
 
 [^3]: Muenchen, R.A. (2023). "The Popularity of Data Science Software." http://r4stats.com/articles/popularity/
 
-[^4]: Datacamp. (2023). "The State of Data Science Skills." https://www.datacamp.com/blog/the-state-of-data-science-skills-in-2023
+[^4]: DataCamp. (2023). "The State of Data Science Skills." https://www.datacamp.com/blog/the-state-of-data-science-skills-in-2023
 
 [^5]: JetBrains. (2023). "Python Developers Survey 2023 Results." https://www.jetbrains.com/lp/python-developers-survey-2023/
 
@@ -127,3 +132,7 @@ Remember that the field of data science is constantly evolving, so part of your 
 [^12]: Kaggle. (2023). "State of Data Science and Machine Learning 2023." https://www.kaggle.com/kaggle-survey-2023
 
 [^13]: DataCamp. (2024). "Impact of AI Tools on Data Science Productivity." https://www.datacamp.com/reports/ai-productivity-2024
+
+[^14]: Lamport, L. (1994). "LaTeX: A Document Preparation System." Addison-Wesley Professional, 2nd Edition.
+
+[^15]: Overleaf. (2024). "LaTeX Survey: Usage in Academic and Research Communities." https://www.overleaf.com/latex-survey-2024

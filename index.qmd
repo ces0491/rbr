@@ -20,7 +20,7 @@ I've intentionally focused on open-source and freely available tools to ensure a
 
 My hope is that this book serves as the resource to remove any technical barriers so that you can concentrate on developing your analytical expertise and making meaningful contributions in your field.
 
-Ready? Let's gear up for your next data science project!
+Ready? Let's gear up for data science!
 
 Cesaire Tobias  
 [LinkedIn](https://www.linkedin.com/in/cesaire-tobias-5555a274/)

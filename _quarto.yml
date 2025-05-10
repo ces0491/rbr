@@ -21,6 +21,7 @@ book:
     - chapters/cloud_and_containers.qmd
     - chapters/ai.qmd
     - chapters/web_dev.qmd
+    - chapters/deployment.qmd
     - chapters/workflows.qmd
     - chapters/summary.qmd
     - chapters/references.qmd

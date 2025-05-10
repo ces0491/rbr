@@ -4,7 +4,7 @@ title: "Evaluating AI Tools for Data Science"
 
 ## Evaluating and Selecting AI Tools for Data Science
 
-AI tools for data science are evolving rapidly, with new offerings appearing monthly. Rather than focusing solely on specific tool recommendations that may quickly become outdated, this section provides a framework for evaluating AI tools and integrating them into your data science workflow.
+Given the rapidly evolving landscape of AI tools for data science, It would be remiss of me not to include a section on AI as part of the modern data scientists toolkit. This section provides a framework for evaluating AI tools and integrating them into your data science workflow.
 
 ### Framework for Evaluating AI Tools
 
@@ -199,7 +199,7 @@ Rather than treating AI tools as replacements for existing processes, consider s
    - Identifying potential quality issues
    - Creating consistent documentation
 
-3. **Analysis and Modeling**
+3. **Analysis and Modelling**
    - Implementing statistical tests
    - Suggesting model architectures
    - Generating evaluation metrics
