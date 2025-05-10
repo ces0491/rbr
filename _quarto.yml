@@ -36,8 +36,8 @@ format:
   html:
     theme: cosmo
     toc: true
-      depth: 3
-      location: left
+    toc-depth: 3
+    toc-location: left
     embed-resources: true
     link-external-icon: false
     link-external-newwindow: true
