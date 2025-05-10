@@ -2,10 +2,6 @@ project:
   type: book
   output-dir: output
 
-execute:
-  freeze: auto
-  timeout: 300  # Increase timeout to 300 seconds
-
 book:
   title: "Ready Before Run()"
   subtitle: "A Practical Guide to Gear Up for Data Science"
@@ -32,7 +28,12 @@ format:
   html:
     theme: cosmo
     mermaid:
-      engine: mermaid
+      engine: mermaid # Uses JavaScript rendering instead of pre-rendering
+    execute:
+      freeze: auto    # Prevents re-execution of code chunks
+      echo: true      # Shows code chunks in output
+      eval: false     # Disables evaluation of code chunks by default
+      timeout: 300    # Increase timeout to 300 seconds
   pdf:
     documentclass: scrbook
   epub:
