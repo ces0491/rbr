@@ -27,6 +27,7 @@ jobs:
           packages:
             any::knitr
             any::rmarkdown
+            any::reticulate
 
       - name: Install Chrome
         run: |
