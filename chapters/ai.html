@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Evaluating AI Tools for Data Science – Ready Before Run()</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/web_dev.html" rel="next">
+<link href="../chapters/cloud_and_containers.html" rel="prev">
+<link href="../assets/cover.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-09ce80c0277fc360936e517f68e5459d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/ai.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Evaluating AI Tools for Data Science</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Ready Before Run()</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/ces0491/rbr" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../Ready-Before-Run--.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="../Ready-Before-Run--.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Ready Before Run()</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting Up for Success: Infrastructure for the Modern Data Scientist</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/advanced_content.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Advanced Data Science Tools</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cloud_and_containers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing and Containerization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/ai.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Evaluating AI Tools for Data Science</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/workflows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Optimizing Workflows and Next Steps</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#evaluating-and-selecting-ai-tools-for-data-science" id="toc-evaluating-and-selecting-ai-tools-for-data-science" class="nav-link active" data-scroll-target="#evaluating-and-selecting-ai-tools-for-data-science"><span class="header-section-number">5.1</span> Evaluating and Selecting AI Tools for Data Science</a>
+  <ul class="collapse">
+  <li><a href="#framework-for-evaluating-ai-tools" id="toc-framework-for-evaluating-ai-tools" class="nav-link" data-scroll-target="#framework-for-evaluating-ai-tools"><span class="header-section-number">5.1.1</span> Framework for Evaluating AI Tools</a></li>
+  <li><a href="#creating-an-evaluation-scorecard" id="toc-creating-an-evaluation-scorecard" class="nav-link" data-scroll-target="#creating-an-evaluation-scorecard"><span class="header-section-number">5.1.2</span> Creating an Evaluation Scorecard</a></li>
+  <li><a href="#effective-prompt-engineering-for-data-science" id="toc-effective-prompt-engineering-for-data-science" class="nav-link" data-scroll-target="#effective-prompt-engineering-for-data-science"><span class="header-section-number">5.1.3</span> Effective Prompt Engineering for Data Science</a></li>
+  <li><a href="#integrating-ai-tools-into-your-workflow" id="toc-integrating-ai-tools-into-your-workflow" class="nav-link" data-scroll-target="#integrating-ai-tools-into-your-workflow"><span class="header-section-number">5.1.4</span> Integrating AI Tools Into Your Workflow</a></li>
+  <li><a href="#ai-as-a-learning-tool-not-just-a-task-solver" id="toc-ai-as-a-learning-tool-not-just-a-task-solver" class="nav-link" data-scroll-target="#ai-as-a-learning-tool-not-just-a-task-solver"><span class="header-section-number">5.1.5</span> AI As a Learning Tool, Not Just a Task Solver</a></li>
+  <li><a href="#case-study-evaluating-an-ai-assistant-for-time-series-analysis" id="toc-case-study-evaluating-an-ai-assistant-for-time-series-analysis" class="nav-link" data-scroll-target="#case-study-evaluating-an-ai-assistant-for-time-series-analysis"><span class="header-section-number">5.1.6</span> Case Study: Evaluating an AI Assistant for Time Series Analysis</a></li>
+  <li><a href="#the-future-of-ai-in-data-science" id="toc-the-future-of-ai-in-data-science" class="nav-link" data-scroll-target="#the-future-of-ai-in-data-science"><span class="header-section-number">5.1.7</span> The Future of AI in Data Science</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.1.8</span> Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Evaluating AI Tools for Data Science</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="evaluating-and-selecting-ai-tools-for-data-science" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="evaluating-and-selecting-ai-tools-for-data-science"><span class="header-section-number">5.1</span> Evaluating and Selecting AI Tools for Data Science</h2>
+<p>AI tools for data science are evolving rapidly, with new offerings appearing monthly. Rather than focusing solely on specific tool recommendations that may quickly become outdated, this section provides a framework for evaluating AI tools and integrating them into your data science workflow.</p>
+<section id="framework-for-evaluating-ai-tools" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="framework-for-evaluating-ai-tools"><span class="header-section-number">5.1.1</span> Framework for Evaluating AI Tools</h3>
+<p>When considering a new AI tool for your data science workflow, assess it across these key dimensions:</p>
+<section id="capability-assessment" class="level4" data-number="5.1.1.1">
+<h4 data-number="5.1.1.1" class="anchored" data-anchor-id="capability-assessment"><span class="header-section-number">5.1.1.1</span> 1. Capability Assessment</h4>
+<p><strong>Key Questions</strong>: - What specific data science tasks can this tool assist with? - How well does it handle domain-specific terminology and concepts? - What are the limitations in terms of context window, knowledge cutoff, or specialized tasks?</p>
+<p><strong>Evaluation Method</strong>: - Create a standardized set of prompts covering common data science tasks - Test the tool against these prompts and score its responses - Compare results with your current tools or workflows</p>
+<p>For example, test the tool with these types of tasks: - Code generation for data cleaning - Statistical analysis suggestions - Debugging code with errors - Explaining complex concepts - Creating documentation for existing code</p>
+</section>
+<section id="technical-integration" class="level4" data-number="5.1.1.2">
+<h4 data-number="5.1.1.2" class="anchored" data-anchor-id="technical-integration"><span class="header-section-number">5.1.1.2</span> 2. Technical Integration</h4>
+<p><strong>Key Questions</strong>: - How does the tool integrate with your existing workflow? - Does it offer API access for automation? - Is it available within your preferred development environment? - What are the technical requirements and dependencies?</p>
+<p><strong>Evaluation Method</strong>: - Test the tool in your actual working environment - Assess if it works seamlessly with your existing tools - Measure any performance impacts or additional overhead</p>
+<p>Important factors to consider: - IDE integrations (VS Code, PyCharm, RStudio) - Operating system compatibility - Authentication methods - Network requirements (online-only vs.&nbsp;offline capability)</p>
+</section>
+<section id="security-and-privacy" class="level4" data-number="5.1.1.3">
+<h4 data-number="5.1.1.3" class="anchored" data-anchor-id="security-and-privacy"><span class="header-section-number">5.1.1.3</span> 3. Security and Privacy</h4>
+<p><strong>Key Questions</strong>: - How does the tool handle sensitive data? - Where is data processed (cloud vs.&nbsp;local)? - What is the provider’s data retention policy? - Does it comply with relevant regulations (GDPR, HIPAA, etc.)?</p>
+<p><strong>Evaluation Method</strong>: - Review the tool’s privacy policy and terms of service - Understand the data flow when using the tool - Consider compliance requirements for your specific context</p>
+<p>Pay special attention to: - Data sharing policies - Whether your prompts/queries are used for training - Options for private or air-gapped deployment - Authentication and access controls</p>
+</section>
+<section id="cost-and-licensing" class="level4" data-number="5.1.1.4">
+<h4 data-number="5.1.1.4" class="anchored" data-anchor-id="cost-and-licensing"><span class="header-section-number">5.1.1.4</span> 4. Cost and Licensing</h4>
+<p><strong>Key Questions</strong>: - What is the pricing model (subscription, usage-based, freemium)? - Are there usage limits that might affect your workflow? - What happens to your work if you stop using the service? - Are there academic or non-profit options available?</p>
+<p><strong>Evaluation Method</strong>: - Calculate the estimated cost based on your expected usage patterns - Compare with alternatives, including the “build vs.&nbsp;buy” consideration - Assess whether pricing scales reasonably with your needs</p>
+<p>Consider both direct and indirect costs: - Subscription or API fees - Required infrastructure changes - Training time for team adoption - Potential productivity gains</p>
+</section>
+<section id="learning-curve-and-documentation" class="level4" data-number="5.1.1.5">
+<h4 data-number="5.1.1.5" class="anchored" data-anchor-id="learning-curve-and-documentation"><span class="header-section-number">5.1.1.5</span> 5. Learning Curve and Documentation</h4>
+<p><strong>Key Questions</strong>: - How intuitive is the tool for new users? - Is there comprehensive documentation available? - Are there tutorials specific to data science use cases? - Is there an active community for support?</p>
+<p><strong>Evaluation Method</strong>: - Have team members with different experience levels test the tool - Assess the quality and comprehensiveness of documentation - Check community forums for recurring issues or limitations</p>
+<p>Look for resources such as: - Official documentation and tutorials - Community forums or discussion boards - Third-party tutorials or courses - Example projects relevant to your domain</p>
+</section>
+</section>
+<section id="creating-an-evaluation-scorecard" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="creating-an-evaluation-scorecard"><span class="header-section-number">5.1.2</span> Creating an Evaluation Scorecard</h3>
+<p>To systematically compare AI tools, create a standardized scorecard with categories that matter most for your context. Here’s a template to adapt:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Weight</th>
+<th>Tool A</th>
+<th>Tool B</th>
+<th>Tool C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Code quality</td>
+<td>20%</td>
+<td>4/5</td>
+<td>3/5</td>
+<td>5/5</td>
+</tr>
+<tr class="even">
+<td>Domain knowledge</td>
+<td>15%</td>
+<td>3/5</td>
+<td>5/5</td>
+<td>4/5</td>
+</tr>
+<tr class="odd">
+<td>Technical integration</td>
+<td>15%</td>
+<td>5/5</td>
+<td>4/5</td>
+<td>2/5</td>
+</tr>
+<tr class="even">
+<td>Security &amp; privacy</td>
+<td>20%</td>
+<td>5/5</td>
+<td>2/5</td>
+<td>4/5</td>
+</tr>
+<tr class="odd">
+<td>Cost effectiveness</td>
+<td>15%</td>
+<td>3/5</td>
+<td>5/5</td>
+<td>2/5</td>
+</tr>
+<tr class="even">
+<td>Documentation &amp; support</td>
+<td>15%</td>
+<td>4/5</td>
+<td>3/5</td>
+<td>4/5</td>
+</tr>
+<tr class="odd">
+<td><strong>Weighted score</strong></td>
+<td><strong>100%</strong></td>
+<td><strong>4.0</strong></td>
+<td><strong>3.6</strong></td>
+<td><strong>3.65</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Adjust the weights based on your specific priorities and constraints.</p>
+</section>
+<section id="effective-prompt-engineering-for-data-science" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="effective-prompt-engineering-for-data-science"><span class="header-section-number">5.1.3</span> Effective Prompt Engineering for Data Science</h3>
+<p>Regardless of which AI tool you select, effective prompt engineering is critical for getting the best results. Here are data science-specific strategies:</p>
+<section id="specifying-context-and-goals" class="level4" data-number="5.1.3.1">
+<h4 data-number="5.1.3.1" class="anchored" data-anchor-id="specifying-context-and-goals"><span class="header-section-number">5.1.3.1</span> Specifying Context and Goals</h4>
+<p>Always provide:</p>
+<ol type="1">
+<li><strong>The overall goal</strong> of your data science task</li>
+<li><strong>The specific stage</strong> in your workflow</li>
+<li><strong>Relevant context</strong> about your data and domain</li>
+<li><strong>Expected output format</strong> or requirements</li>
+</ol>
+<p>For example, instead of:</p>
+<pre><code>How do I handle missing values in my dataset?</code></pre>
+<p>Try:</p>
+<pre><code>I'm working on a healthcare dataset with patient readmission information. 
+The dataset has 20% missing values in the 'length_of_stay' column which is 
+numeric and represents days in hospital. Other columns have less than 5% 
+missing values. This is for a logistic regression model predicting 30-day 
+readmission. What are appropriate strategies for handling these missing values, 
+considering I need to maintain the statistical validity of the model?</code></pre>
+</section>
+<section id="using-clear-inputoutput-examples" class="level4" data-number="5.1.3.2">
+<h4 data-number="5.1.3.2" class="anchored" data-anchor-id="using-clear-inputoutput-examples"><span class="header-section-number">5.1.3.2</span> Using Clear Input/Output Examples</h4>
+<p>Provide examples of your expected format to guide the AI tool:</p>
+<pre><code>Generate a function to clean categorical variables in a pandas DataFrame.
+The function should handle:
+1. Missing values
+2. Case normalization
+3. Removal of extra whitespace
+4. Consolidation of similar categories
+
+Example input:
+categories = ['High  ', 'high', 'HIGH', 'Medium', 'med', 'Low', np.nan, 'Unknown']
+
+Expected output after processing:
+['high', 'high', 'high', 'medium', 'medium', 'low', 'unknown', 'unknown']</code></pre>
+<p>This approach is particularly effective for code generation tasks.</p>
+</section>
+<section id="breaking-down-complex-problems" class="level4" data-number="5.1.3.3">
+<h4 data-number="5.1.3.3" class="anchored" data-anchor-id="breaking-down-complex-problems"><span class="header-section-number">5.1.3.3</span> Breaking Down Complex Problems</h4>
+<p>For complex data science tasks, use a step-by-step approach:</p>
+<ol type="1">
+<li>Ask the AI to outline an approach first</li>
+<li>Review and refine the outline</li>
+<li>Request implementation details for each step</li>
+<li>Integrate the components into a complete solution</li>
+</ol>
+<p>This creates a collaborative problem-solving process that leverages both AI suggestions and your domain expertise.</p>
+</section>
+</section>
+<section id="integrating-ai-tools-into-your-workflow" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="integrating-ai-tools-into-your-workflow"><span class="header-section-number">5.1.4</span> Integrating AI Tools Into Your Workflow</h3>
+<p>Rather than treating AI tools as replacements for existing processes, consider strategic integration points:</p>
+<section id="workflow-integration-points" class="level4" data-number="5.1.4.1">
+<h4 data-number="5.1.4.1" class="anchored" data-anchor-id="workflow-integration-points"><span class="header-section-number">5.1.4.1</span> Workflow Integration Points</h4>
+<ol type="1">
+<li><strong>Ideation and Planning</strong>
+<ul>
+<li>Brainstorming analysis approaches</li>
+<li>Suggesting features to engineer</li>
+<li>Identifying potential data sources</li>
+<li>Creating project templates</li>
+</ul></li>
+<li><strong>Data Preparation</strong>
+<ul>
+<li>Generating data cleaning code</li>
+<li>Suggesting validation checks</li>
+<li>Identifying potential quality issues</li>
+<li>Creating consistent documentation</li>
+</ul></li>
+<li><strong>Analysis and Modeling</strong>
+<ul>
+<li>Implementing statistical tests</li>
+<li>Suggesting model architectures</li>
+<li>Generating evaluation metrics</li>
+<li>Improving model performance</li>
+</ul></li>
+<li><strong>Communication and Deployment</strong>
+<ul>
+<li>Creating visualization code</li>
+<li>Generating documentation</li>
+<li>Improving technical writing</li>
+<li>Converting analyses to presentations</li>
+</ul></li>
+<li><strong>Learning and Development</strong>
+<ul>
+<li>Explaining complex concepts</li>
+<li>Reviewing and improving code</li>
+<li>Suggesting best practices</li>
+<li>Curating learning resources</li>
+</ul></li>
+</ol>
+</section>
+<section id="creating-a-systematic-prompt-library" class="level4" data-number="5.1.4.2">
+<h4 data-number="5.1.4.2" class="anchored" data-anchor-id="creating-a-systematic-prompt-library"><span class="header-section-number">5.1.4.2</span> Creating a Systematic Prompt Library</h4>
+<p>Organize a personal or team library of effective prompts for common data science tasks:</p>
+<pre><code># Prompt Template: Data Cleaning
+
+## Task Description
+Generate code to clean the [Dataset Type] dataset focusing on [Specific Issues].
+
+## Context
+- Dataset has [Number] rows and [Number] columns
+- Primary analysis goal is [Goal]
+- Key columns: [List Important Columns with Types]
+- Known issues: [List Issues]
+
+## Requirements
+- Use [Language/Library] for implementation
+- Handle missing values by [Strategy]
+- Preserve data provenance with comments
+- Include validation checks
+
+## Expected Output Format
+```[Language]
+# Function documentation
+def clean_dataset(...):
+    ...</code></pre>
+<p>```</p>
+<p>Customizing templates like this for different data science tasks creates a valuable resource that improves over time.</p>
+</section>
+</section>
+<section id="ai-as-a-learning-tool-not-just-a-task-solver" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="ai-as-a-learning-tool-not-just-a-task-solver"><span class="header-section-number">5.1.5</span> AI As a Learning Tool, Not Just a Task Solver</h3>
+<p>Beyond solving immediate problems, AI tools can accelerate your learning as a data scientist:</p>
+<section id="learning-strategies-with-ai" class="level4" data-number="5.1.5.1">
+<h4 data-number="5.1.5.1" class="anchored" data-anchor-id="learning-strategies-with-ai"><span class="header-section-number">5.1.5.1</span> Learning Strategies with AI</h4>
+<ol type="1">
+<li><strong>Concept Explanation</strong>
+<ul>
+<li>Ask for multiple metaphors or analogies for complex concepts</li>
+<li>Request explanations at different levels of technical depth</li>
+<li>Have the AI identify connections between concepts you’re learning</li>
+</ul></li>
+<li><strong>Code Understanding</strong>
+<ul>
+<li>Ask the AI to explain unfamiliar code line by line</li>
+<li>Request descriptions of why certain approaches were chosen</li>
+<li>Have the AI suggest alternative implementations</li>
+</ul></li>
+<li><strong>Guided Exploration</strong>
+<ul>
+<li>Ask the AI to suggest questions you should be asking about your data</li>
+<li>Use it to recommend relevant academic papers or resources</li>
+<li>Have it point out limitations in your current approach</li>
+</ul></li>
+<li><strong>Skill Gap Analysis</strong>
+<ul>
+<li>Describe your current skills and have the AI suggest logical next topics</li>
+<li>Ask it to create customized learning plans for specific data science roles</li>
+<li>Use it to identify industry-specific knowledge you might need</li>
+</ul></li>
+</ol>
+<p>The most effective data scientists use AI tools not just to complete tasks faster, but to continuously expand their understanding and capabilities.</p>
+</section>
+</section>
+<section id="case-study-evaluating-an-ai-assistant-for-time-series-analysis" class="level3" data-number="5.1.6">
+<h3 data-number="5.1.6" class="anchored" data-anchor-id="case-study-evaluating-an-ai-assistant-for-time-series-analysis"><span class="header-section-number">5.1.6</span> Case Study: Evaluating an AI Assistant for Time Series Analysis</h3>
+<p>To illustrate the evaluation framework, let’s walk through a hypothetical assessment of an AI assistant for time series forecasting tasks:</p>
+<section id="capability-assessment-1" class="level4" data-number="5.1.6.1">
+<h4 data-number="5.1.6.1" class="anchored" data-anchor-id="capability-assessment-1"><span class="header-section-number">5.1.6.1</span> 1. Capability Assessment</h4>
+<p><strong>Approach</strong>: - Created a test suite with time series forecasting tasks of varying complexity - Included both code generation and conceptual questions - Tested with real-world datasets (energy consumption, stock prices, weather)</p>
+<p><strong>Findings</strong>: - Strong performance on ARIMA and exponential smoothing implementations - Good explanations of stationarity concepts - Limited understanding of more advanced methods (Prophet, LSTM) - Inconsistent handling of seasonal data - Strong performance on diagnostic test suggestions</p>
+<p><strong>Score</strong>: 4/5 for capability</p>
+</section>
+<section id="technical-integration-1" class="level4" data-number="5.1.6.2">
+<h4 data-number="5.1.6.2" class="anchored" data-anchor-id="technical-integration-1"><span class="header-section-number">5.1.6.2</span> 2. Technical Integration</h4>
+<p><strong>Approach</strong>: - Tested integration with primary IDE (VS Code) - Assessed API access for batch processing - Evaluated performance with large datasets</p>
+<p><strong>Findings</strong>: - Good VS Code extension with context-aware suggestions - API rate limits might affect batch processing needs - Local processing option available for sensitive data - Some latency issues with larger contexts</p>
+<p><strong>Score</strong>: 3/5 for technical integration</p>
+</section>
+<section id="security-and-privacy-1" class="level4" data-number="5.1.6.3">
+<h4 data-number="5.1.6.3" class="anchored" data-anchor-id="security-and-privacy-1"><span class="header-section-number">5.1.6.3</span> 3. Security and Privacy</h4>
+<p><strong>Approach</strong>: - Reviewed privacy policy and data handling practices - Consulted with IT security team - Tested with synthetic but structurally similar data</p>
+<p><strong>Findings</strong>: - Data not retained beyond session by default - Option for on-premises deployment available - Compliant with relevant regulations - Enterprise plan includes audit logs and access controls</p>
+<p><strong>Score</strong>: 5/5 for security and privacy</p>
+</section>
+<section id="cost-and-licensing-1" class="level4" data-number="5.1.6.4">
+<h4 data-number="5.1.6.4" class="anchored" data-anchor-id="cost-and-licensing-1"><span class="header-section-number">5.1.6.4</span> 4. Cost and Licensing</h4>
+<p><strong>Approach</strong>: - Calculated costs based on expected team usage - Compared with alternatives - Identified hidden costs</p>
+<p><strong>Findings</strong>: - Subscription model with tiered pricing - Academic discount available - Higher cost than general-purpose alternatives - ROI analysis suggests 15-20% time savings justifies cost</p>
+<p><strong>Score</strong>: 3/5 for cost and licensing</p>
+</section>
+<section id="learning-curve-and-documentation-1" class="level4" data-number="5.1.6.5">
+<h4 data-number="5.1.6.5" class="anchored" data-anchor-id="learning-curve-and-documentation-1"><span class="header-section-number">5.1.6.5</span> 5. Learning Curve and Documentation</h4>
+<p><strong>Approach</strong>: - Had team members test without prior training - Assessed quality of documentation - Evaluated community resources</p>
+<p><strong>Findings</strong>: - Intuitive interface with minimal training needed - Excellent time series-specific documentation - Growing but limited community - Regular webinars for users</p>
+<p><strong>Score</strong>: 4/5 for learning curve and documentation</p>
+<p><strong>Overall Weighted Score</strong>: 3.9/5</p>
+<p><strong>Decision</strong>: Approved for a 3-month trial period with 5 team members, focusing on time series forecasting projects. Will reassess based on measurable productivity gains.</p>
+</section>
+</section>
+<section id="the-future-of-ai-in-data-science" class="level3" data-number="5.1.7">
+<h3 data-number="5.1.7" class="anchored" data-anchor-id="the-future-of-ai-in-data-science"><span class="header-section-number">5.1.7</span> The Future of AI in Data Science</h3>
+<p>As you evaluate and integrate AI tools into your workflow, keep these trends in mind:</p>
+<ol type="1">
+<li><strong>Specialized vs.&nbsp;General-Purpose Tools</strong>
+<ul>
+<li>The field is moving toward both more specialized tools for specific domains and more capable general-purpose assistants</li>
+<li>Consider using a combination of both types of tools</li>
+</ul></li>
+<li><strong>Local vs.&nbsp;Cloud Processing</strong>
+<ul>
+<li>Smaller, domain-specific models are becoming viable to run locally</li>
+<li>This enables work with sensitive data and in air-gapped environments</li>
+</ul></li>
+<li><strong>Collaborative Intelligence</strong>
+<ul>
+<li>The most effective approaches combine human expertise with AI capabilities</li>
+<li>Tools that facilitate this collaboration rather than just automating tasks will likely provide the most value</li>
+</ul></li>
+<li><strong>Ethical Considerations</strong>
+<ul>
+<li>As models improve, questions about appropriate use, bias, and transparency become more important</li>
+<li>Develop organizational guidelines for appropriate AI use in data science projects</li>
+</ul></li>
+<li><strong>Continuous Learning Required</strong>
+<ul>
+<li>The landscape will continue to evolve rapidly</li>
+<li>Build time into your workflow to evaluate new tools and approaches</li>
+</ul></li>
+</ol>
+</section>
+<section id="conclusion" class="level3" data-number="5.1.8">
+<h3 data-number="5.1.8" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.1.8</span> Conclusion</h3>
+<p>Rather than becoming dependent on specific AI tools that may change or disappear, focus on developing a framework for evaluating and integrating AI capabilities into your data science practice. By understanding how to effectively communicate with these systems and where they provide the most value in your workflow, you can adapt to the rapidly changing landscape while maintaining control over your analysis process.</p>
+<p>Remember that AI tools are most valuable when they enhance rather than replace human judgment. The most successful data scientists will be those who learn to collaborate effectively with AI—using it to handle routine tasks, suggest approaches, and provide information, while applying their own expertise to problem formulation, critical evaluation of results, and communication of insights in context.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/cloud_and_containers.html" class="pagination-link" aria-label="Cloud Computing and Containerization">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Cloud Computing and Containerization</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/web_dev.html" class="pagination-link" aria-label="Web Development for Data Scientists">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
