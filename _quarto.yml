@@ -17,7 +17,7 @@ book:
   chapters:
     - index.qmd
     - chapters/intro.qmd
-    - chapters/advanced_content.qmd
+    - chapters/reporting.qmd
     - chapters/cloud_and_containers.qmd
     - chapters/ai.qmd
     - chapters/web_dev.qmd
@@ -34,10 +34,20 @@ book:
 format:
   html:
     theme: cosmo
+    toc: true
+      depth: 3
+      location: left
+    embed-resources: true
+    link-external-icon: false
+    link-external-newwindow: true
+    code-fold: true
+    code-summary: "Show code"
     mermaid:
       engine: mermaid # Uses JavaScript rendering instead of pre-rendering
     
   pdf:
     documentclass: scrbook
+    code-overflow: wrap
   epub:
     cover-image: assets/cover.png
+    code-overflow: wrap

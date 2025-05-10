@@ -1,9 +1,3 @@
----
-title: "Ready Before Run()"
-subtitle: "A Practical Guide to Gear Up for Data Science"
-author: "Cesaire Tobias"
----
-
 # Welcome
 
 Welcome to "Ready Before Run(): A Practical Guide to Gear Up for Data Science." This guide is designed for readers from diverse backgrounds - economists, statisticians, engineers, and beyond - who are interested in the data scientists' toolkit but don't necessarily have any computer science foundations. 

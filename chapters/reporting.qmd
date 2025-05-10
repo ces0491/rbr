@@ -1,10 +1,10 @@
 ---
-title: "Advanced Data Science Tools"
+title: "Data Science Tools for Reporting"
 ---
 
 ## Documentation and Reporting Tools
 
-As a data scientist, sharing your findings clearly is just as important as the analysis itself. Let's explore tools for creating reports, documentation, and presentations.
+As a data scientist, sharing your findings clearly is just as important as the analysis itself. Now that we have our analytics platforms setup, let's explore tools for creating reports, documentation, and presentations.
 
 ### Markdown: The Foundation of Documentation
 
@@ -83,7 +83,7 @@ A typical R Markdown document consists of three components:
 
 For example:
 
-````markdown
+```markdown
 ---
 title: "My First Data Analysis"
 author: "Your Name"
@@ -128,8 +128,10 @@ ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
   ggplot2::labs(title = "Relationship between X and Y")
 ```
 
-````
+```
+::: {.callout-note}
 *Note that we've used the namespace convention to call our functions in the markdown code above, rather than making using of `Library(function_name)`. This is not strictly necessary and is a matter of preference, but benefits of using this convention include:*
+:::
 
 - Avoids loading the full package with library()
 - Prevents naming conflicts (e.g., filter() from dplyr vs stats)
