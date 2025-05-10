@@ -44,8 +44,8 @@ jobs:
       run: |
         quarto install tinytex
     
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+    - name: Render and Publish
+      uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
         env:
