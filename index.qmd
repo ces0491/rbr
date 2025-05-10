@@ -8,7 +8,7 @@ author: "Cesaire Tobias"
 
 Welcome to "Ready Before Run(): A Practical Guide to Gear Up for Data Science." This guide is designed for readers from diverse backgrounds - economists, statisticians, engineers, and beyond - who are interested in the data scientists' toolkit but don't necessarily have any computer science foundations. 
 
-If you've made it this far, you likely already possess strong analytical skills from your domain. What you may lack is familiarity with the technical infrastructure that supports modern data science work. Just as a chef needs a well-equipped kitchen before creating culinary masterpieces, data scientists need properly configured tools before they can transform data into insights.
+If you've made it this far, you likely already possess strong analytical skills from your domain. What you may lack is familiarity with the technical infrastructure that supports modern data science work. Just as a chef needs a well-equipped kitchen before creating a culinary masterpiece, data scientists need properly configured tools before they can transform data into insights.
 
 This guide will walk you through setting up the essential components of a data science environment—from programming languages and version control to visualization tools and cloud platforms. By the end of this journey, you'll have a robust technical foundation that will allow you to spend less time battling your infrastructure and more time materialising your ideas.
 
@@ -24,9 +24,9 @@ The book is structured as a step-by-step guide, beginning with basic command lin
 
 I've intentionally focused on open-source and freely available tools to ensure accessibility for all readers. The skills you'll develop are platform-agnostic and transferable across different operating systems and work environments.
 
-My hope is that this book serves as the resource I wish I'd had when starting my own path into data science—eliminating technical barriers so you can concentrate on developing your analytical expertise and making meaningful contributions in your field.
+My hope is that this book serves as the resource to remove any technical barriers so that you can concentrate on developing your analytical expertise and making meaningful contributions in your field.
 
-So, let's gear up for your next data science project!
+Ready? Let's gear up for your next data science project!
 
 Cesaire Tobias  
 [LinkedIn](https://www.linkedin.com/in/cesaire-tobias-5555a274/)
