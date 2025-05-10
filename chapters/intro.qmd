@@ -16,7 +16,9 @@ By the end of this guide, you'll have:
 -   Knowledge of how to deploy your work for others to see and use
 -   A foundation in the command line and other developer tools
 
-Everything we'll use is freely available, so you can get started without any financial investment. Let's begin building your data science infrastructure!
+While this guide is written to provide a natural progression from fundamental concepts to more involved material that builds on prior knowledge; each chapter is designed to be a standalone reference - you don't need to read `Understanding the Command Line` if all you need is help with app deployment.
+
+The resources presented in this guide are largely freely available (except for the Cloud platforms which are free to setup but incur usage costs), so you can get started without any financial investment.
 
 ## Understanding the Command Line
 

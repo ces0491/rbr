@@ -513,9 +513,10 @@ This example shows how to deploy an R Shiny dashboard:
 library(shiny)
 library(ggplot2)
 library(dplyr)
+library(here)
 
 # Load data
-sales <- read.csv("sales_data.csv")
+sales <- read.csv(here("data", "my_data.csv"))
 
 # UI
 ui <- fluidPage(
@@ -523,13 +524,13 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      selectInput("year", "Select Year:",
-                  choices = unique(sales$year),
-                  selected = max(sales$year)),
+      selectInput("Date", "Select Date:",
+                  choices = unique(sales$Date),
+                  selected = max(sales$Date)),
       
-      checkboxGroupInput("products", "Select Products:",
-                         choices = unique(sales$product),
-                         selected = unique(sales$product)[1])
+      checkboxGroupInput("Products", "Select Products:",
+                         choices = unique(sales$Product),
+                         selected = unique(salesPproduct)[1])
     ),
     
     mainPanel(
@@ -544,22 +545,22 @@ server <- function(input, output) {
   
   filtered_data <- reactive({
     sales %>%
-      filter(year == input$year,
-             product %in% input$products)
+      filter(Date == input$Date,
+             Product %in% input$Products)
   })
   
   output$salesPlot <- renderPlot({
-    ggplot(filtered_data(), aes(x = quarter, y = sales, fill = product)) +
+    ggplot(filtered_data(), aes(x = Date, y = Sales, fill = Product)) +
       geom_bar(stat = "identity", position = "dodge") +
       theme_minimal() +
-      labs(title = paste("Quarterly Sales for", input$year))
+      labs(title = paste("Sales for", input$Date))
   })
   
   output$salesTable <- renderDataTable({
     filtered_data() %>%
-      group_by(product) %>%
-      summarize(Total = sum(sales),
-                Average = mean(sales))
+      group_by(Product) %>%
+      summarize(Total = sum(Sales),
+                Average = mean(Sales))
   })
 }
 

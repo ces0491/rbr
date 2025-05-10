@@ -18,12 +18,14 @@ book:
     - index.qmd
     - chapters/intro.qmd
     - chapters/reporting.qmd
-    - chapters/cloud_and_containers.qmd
-    - chapters/ai.qmd
+    - chapters/cloud.qmd
     - chapters/web_dev.qmd
     - chapters/deployment.qmd
+    - chapters/containers.qmd
     - chapters/workflows.qmd
     - chapters/summary.qmd
+    - chapters/utility_tools.qmd
+    - chapters/ai.qmd
     - chapters/references.qmd
     - chapters/appendix_troubleshooting.qmd
   cover-image: assets/cover.png

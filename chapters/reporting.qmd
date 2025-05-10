@@ -1986,10 +1986,6 @@ ui <- fluidPage(
 # Define server logic
 server <- function(input, output) {
   
-  # Use built-in dataset for reproducibility
-  # Instead of:
-  # data <- read_csv("my_data.csv")
-  
   # Filter data based on inputs
   filtered_data <- reactive({
     data <- diamonds
