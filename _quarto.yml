@@ -40,7 +40,8 @@ format:
     toc: true
     toc-depth: 3
     toc-location: left
-    embed-resources: true
+    embed-resources: false # reference external resources rather than embedding them
+    self-contained: false
     link-external-icon: false
     link-external-newwindow: true
     code-fold: true
