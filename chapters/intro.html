@@ -243,7 +243,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
     </ul>
     </div>
-    <nav id="TOC" role="doc-toc" class="toc-active">
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -300,10 +304,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   </ul>
 </nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -329,8 +329,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
-<p>Welcome! If you’re coming from economics, statistics, engineering, or another technical field, you already have many of the analytical skills needed to make productive use of data. However, since you’re reading this, you’d like some help setting up the technical infrastructure that supports modern data science work. For those without a computer science background, all of this may seem overwhelming at first, but soon you’ll have the tools to supercharge your data workflows.</p>
-<p>This guide focuses on getting you set up with the tools you need to practice data science, rather than teaching you how to code. Think of it as preparing your workshop before you begin crafting. We’ll cover installing and configuring the essential software, platforms, and tools that data scientists use daily.</p>
+<p>If you’re coming from economics, statistics, engineering, or another technical field, you already have many of the analytical skills needed to make productive use of data. However, since you’re reading this, you’d like some help setting up the technical infrastructure that supports modern data science work. For those without a computer science background, all of this may seem overwhelming at first, but soon you’ll have the tools to make your workflows even more productive.</p>
+<p>This guide focuses on getting you set up with the tools you need to practice data science, rather than teaching you how to code. Think of it as preparing your workshop before you begin crafting. We’ll cover installing and configuring the essential software, platforms, and tools that data scientists use regularly.</p>
 <p>By the end of this guide, you’ll have:</p>
 <ul>
 <li>A fully configured development environment for Python, R, and SQL</li>
@@ -340,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A foundation in the command line and other developer tools</li>
 </ul>
 <p>While this guide is written to provide a natural progression from fundamental concepts to more involved material that builds on prior knowledge; each chapter is designed to be a standalone reference - you don’t need to read <code>Understanding the Command Line</code> if all you need is help with app deployment.</p>
-<p>The resources presented in this guide are largely freely available (except for the Cloud platforms which are free to setup but incur usage costs), so you can get started without any financial investment.</p>
+<p>The resources presented in this guide are largely freely available up to some tier (except for the Cloud platforms which are free to setup but incur usage costs), so you can get started without needing to make decisions based on costs.</p>
 </section>
 <section id="understanding-the-command-line" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="understanding-the-command-line"><span class="header-section-number">2.2</span> Understanding the Command Line</h2>
@@ -394,10 +394,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List files and directories</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Change directory</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Change directory [to Documents]</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Documents</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Go up one directory level</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Go up one directory level (like clicking the back button in your browser)</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new directory</span></span>
@@ -431,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>apt</strong> (Ubuntu/Debian Linux)</li>
 <li><strong>brew</strong> (macOS)</li>
-<li><strong>chocolatey</strong> or <strong>winget</strong> (Windows)</li>
+<li><strong>winget</strong> (Windows)</li>
 </ul>
 <p>For example, on Ubuntu you might install Python using:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
@@ -458,7 +458,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Strong community support and documentation</li>
 <li>Integration with various data sources and visualization tools</li>
 </ol>
-<p>According to surveys, Python has consistently ranked among the top programming languages, and a recent Kaggle Machine Learning &amp; Data Science Survey found that 87% of data scientists use Python in their work [^2].</p>
+<p>Surveys consistently indicate Python ranking among the top programming languages, and a recent Kaggle Machine Learning &amp; Data Science Survey found that 87% of data scientists use Python in their work [^2].</p>
 </section>
 <section id="installing-python" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">2.3.2</span> Installing Python</h3>
@@ -877,6 +877,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>On macOS/Linux: Usually in <code>/home/&lt;username&gt;/anaconda3/envs/datasci/bin/python</code></li>
 </ul></li>
 </ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note: In file paths, forward slashes (/) are primarily used in Unix-like systems like Linux and macOS, while backslashes (`) are commonly used in Windows.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="working-with-jupyter-notebooks" class="level3" data-number="2.6.4">
