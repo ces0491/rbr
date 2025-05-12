@@ -4,9 +4,9 @@ title: "Setting Up for Success: Infrastructure for the Modern Data Scientist"
 
 ## Introduction
 
-Welcome! If you're coming from economics, statistics, engineering, or another technical field, you already have many of the analytical skills needed to make productive use of data. However, since you're reading this, you'd like some help setting up the technical infrastructure that supports modern data science work. For those without a computer science background, all of this may seem overwhelming at first, but soon you'll have the tools to supercharge your data workflows.
+If you're coming from economics, statistics, engineering, or another technical field, you already have many of the analytical skills needed to make productive use of data. However, since you're reading this, you'd like some help setting up the technical infrastructure that supports modern data science work. For those without a computer science background, all of this may seem overwhelming at first, but soon you'll have the tools to make your workflows even more productive.
 
-This guide focuses on getting you set up with the tools you need to practice data science, rather than teaching you how to code. Think of it as preparing your workshop before you begin crafting. We'll cover installing and configuring the essential software, platforms, and tools that data scientists use daily.
+This guide focuses on getting you set up with the tools you need to practice data science, rather than teaching you how to code. Think of it as preparing your workshop before you begin crafting. We'll cover installing and configuring the essential software, platforms, and tools that data scientists use regularly.
 
 By the end of this guide, you'll have:
 
@@ -18,7 +18,7 @@ By the end of this guide, you'll have:
 
 While this guide is written to provide a natural progression from fundamental concepts to more involved material that builds on prior knowledge; each chapter is designed to be a standalone reference - you don't need to read `Understanding the Command Line` if all you need is help with app deployment.
 
-The resources presented in this guide are largely freely available (except for the Cloud platforms which are free to setup but incur usage costs), so you can get started without any financial investment.
+The resources presented in this guide are largely freely available up to some tier (except for the Cloud platforms which are free to setup but incur usage costs), so you can get started without needing to make decisions based on costs.
 
 ## Understanding the Command Line
 
@@ -80,10 +80,10 @@ pwd
 # List files and directories
 ls
 
-# Change directory
+# Change directory [to Documents]
 cd Documents
 
-# Go up one directory level
+# Go up one directory level (like clicking the back button in your browser)
 cd ..
 
 # Create a new directory
@@ -123,7 +123,7 @@ Most command line environments include package managers, which help install and 
 
 -   **apt** (Ubuntu/Debian Linux)
 -   **brew** (macOS)
--   **chocolatey** or **winget** (Windows)
+-   **winget** (Windows)
 
 For example, on Ubuntu you might install Python using:
 
@@ -159,7 +159,7 @@ Python offers several advantages for data science:
 3.  Strong community support and documentation
 4.  Integration with various data sources and visualization tools
 
-According to surveys, Python has consistently ranked among the top programming languages, and a recent Kaggle Machine Learning & Data Science Survey found that 87% of data scientists use Python in their work [^2].
+Surveys consistently indicate Python ranking among the top programming languages, and a recent Kaggle Machine Learning & Data Science Survey found that 87% of data scientists use Python in their work [^2].
 
 ### Installing Python
 
@@ -595,6 +595,10 @@ PyCharm is an IDE specifically designed for Python development, with excellent d
 6.  Browse to your conda environment's Python executable
     -   On Windows: Usually in `C:\Users\<username>\anaconda3\envs\datasci\python.exe`
     -   On macOS/Linux: Usually in `/home/<username>/anaconda3/envs/datasci/bin/python`
+
+:::{.callout-note}
+Note: In file paths, forward slashes (/) are primarily used in Unix-like systems like Linux and macOS, while backslashes (\`) are commonly used in Windows.
+:::
 
 ### Working with Jupyter Notebooks
 

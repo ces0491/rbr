@@ -39,7 +39,7 @@ format:
     theme: cosmo
     toc: true
     toc-depth: 3
-    toc-location: left
+    toc-location: right
     embed-resources: false # reference external resources rather than embedding them
     self-contained: false
     link-external-icon: false

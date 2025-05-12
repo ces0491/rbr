@@ -32,19 +32,20 @@ Markdown is among the top five most used markup languages by developers and data
 1. Numbered item 1
 2. Numbered item 2
 
-> This is a blockquote
-
-`Inline code`
-
-```python
-# Code block
-print("Hello, world!")
-```
-
 Table:
 | Column 1 | Column 2 |
 |----------|----------|
 | Cell 1   | Cell 2   |
+
+> This is a blockquote
+
+`Inline code`
+
+```{python}
+# Code block
+print("Hello, world!")
+```
+
 ```
 
 Markdown is designed to be readable even in its raw form. The syntax is intuitive—for example, surrounding text with asterisks makes it italic, and using hash symbols creates headings of different levels.
@@ -131,11 +132,11 @@ ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
 ```
 ::: {.callout-note}
 *Note that we've used the namespace convention to call our functions in the markdown code above, rather than making using of `Library(function_name)`. This is not strictly necessary and is a matter of preference, but benefits of using this convention include:*
-:::
 
 - Avoids loading the full package with library()
 - Prevents naming conflicts (e.g., filter() from dplyr vs stats)
 - Keeps dependencies explicit and localized
+:::
 
 When you click the "Knit" button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. The reason this is so powerful is that it combines your code, results, and narrative explanation in a single, reproducible document. If your data changes, you simply re-knit the document to update all results automatically.
 
@@ -260,7 +261,7 @@ Another reproducible approach is to generate sample data within your code:
 #| label: synthetic-data
 
 # Create synthetic data
-set.seed(123)  # For reproducibility
+set.seed(0491)  # For reproducibility
 synthetic_data <- tibble(
   id = 1:20,
   value_x = rnorm(20),
