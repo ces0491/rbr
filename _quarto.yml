@@ -13,7 +13,7 @@ book:
   title: "Ready Before Run()"
   subtitle: "A Practical Guide to Gear Up for Data Science"
   author: "Cesaire Tobias"
-  date: "2025-04-22"
+  date: "2025-06-05"
   chapters:
     - index.qmd
     - chapters/intro.qmd
@@ -53,5 +53,5 @@ format:
     documentclass: scrbook
     code-overflow: wrap
   epub:
-    cover-image: assets/cover.png
+    cover-image: assets/cover_no_auth.png
     code-overflow: wrap

@@ -1,5 +1,5 @@
 ---
-title: "Containerization with Docker"
+title: "Containerization"
 ---
 
 ## Containerization with Docker
@@ -432,6 +432,6 @@ Understanding these commands will help you manage your Docker workflow efficient
 
 ### Conclusion
 
-Containerization with Docker provides a powerful way to create reproducible, portable environments for data science. By packaging your code, dependencies, and configuration into a standardized unit, you can ensure consistent behavior across different systems and simplify collaboration with colleagues.
+Containerization provides a powerful way to create reproducible, portable environments for data science. By packaging your code, dependencies, and configuration into a standardized unit, you can ensure consistent behavior across different systems and simplify collaboration with colleagues.
 
-As you grow more comfortable with Docker, you can explore advanced topics like custom image optimization, orchestration with Kubernetes, and CI/CD integration. The investment in learning containerization pays dividends in reproducibility, efficiency, and deployment simplicity throughout your data science career.
+We've covered Docker for containerization but there are several good quality alternatives such as Podman and Rancher. As you grow more comfortable with Docker, you can explore advanced topics like custom image optimization, orchestration with Kubernetes, and CI/CD integration. The investment in learning containerization pays dividends in reproducibility, efficiency, and deployment simplicity throughout your data science career.

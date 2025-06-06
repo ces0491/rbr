@@ -22,7 +22,7 @@ The resources presented in this guide are largely freely available up to some ti
 
 ## Understanding the Command Line
 
-Before diving into specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface.
+Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface.
 
 ### What is the Command Line?
 
@@ -194,8 +194,8 @@ conda --version
 Environments let you isolate projects with specific dependencies. Think of environments as separate workspaces for different projects—like having different toolboxes for different types of jobs. Here's how to create one:
 
 ```bash
-# Create an environment named 'datasci' with Python 3.9
-conda create -n datasci python=3.9
+# Create an environment named 'datasci' with Python 3.11
+conda create -n datasci python=3.11
 
 # Activate the environment
 conda activate datasci
@@ -309,7 +309,11 @@ Open RStudio and enter this command in the console (lower-left pane):
 R.version.string
 ```
 
-You should see the R version information displayed.
+You should see the R version information displayed. You can verify this as the version is the first printed output you will see in the console at the start of a new session. It should look something like this:
+
+`R version 4.5.0 (2025-04-11 ucrt) -- "How About a Twenty-Six"`
+`Copyright (C) 2025 The R Foundation for Statistical Computing`
+`Platform: x86_64-w64-mingw32/x64`
 
 ### Essential R Packages for Data Science
 
@@ -318,7 +322,7 @@ Let's install some core packages that you'll likely need:
 ```{r}
 #| eval: false
 # Install essential packages
-install.packages(c("tidyverse", "rmarkdown", "shiny", "knitr", "plotly", "lubridate"))
+install.packages(c("tidyverse", "rmarkdown", "shiny", "knitr", "plotly"))
 ```
 
 This installs:
@@ -328,7 +332,6 @@ This installs:
 -   **shiny**: For building interactive web applications
 -   **knitr**: For dynamic report generation
 -   **plotly**: For interactive visualizations
--   **lubridate**: For working with dates and times
 
 These packages are like specialized toolkits that expand what you can do with R. The tidyverse, for example, makes data manipulation much more intuitive than it would be using just base R.
 

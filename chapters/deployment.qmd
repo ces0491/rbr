@@ -55,7 +55,7 @@ Different data science projects have specific deployment requirements:
 
 | Project Type | Interactivity | Computation | Data Access | Suitable Platforms |
 |--------------|---------------|-------------|-------------|-------------------|
-| Analysis reports | None | None | None | GitHub Pages, Netlify, Quarto Pub |
+| Analysis reports | None | None | None | GitHub Pages, Netlify, Vercel, Quarto Pub |
 | Interactive visualizations | Medium | Low | Static | GitHub Pages (with JavaScript), Netlify |
 | Dashboards | High | Medium | Often dynamic | Heroku, Render, shinyapps.io |
 | ML model APIs | Low | High | May need database | Cloud platforms (AWS, GCP, Azure) |
@@ -145,6 +145,67 @@ Netlify provides more advanced features for static sites:
    - Publish directory (e.g., `_site` or `output`)
 
 Netlify automatically rebuilds your site when you push changes to your repository.
+
+#### Vercel
+
+Vercel is a cloud platform that specializes in frontend frameworks and static sites, with excellent support for modern web technologies and serverless functions. Originally created by the makers of Next.js, Vercel has become popular for its speed and developer experience.
+
+**Best for**: Static sites with interactive elements, data visualizations with JavaScript, projects using modern web frameworks
+**Setup complexity**: Low to medium
+**Cost**: Generous free tier, paid plans start at $20/month per team member
+**Limitations**: Optimized for frontend applications, limited backend capabilities compared to full cloud platforms
+
+Vercel excels at deploying static content that includes interactive JavaScript components, making it ideal for data science projects that combine static analysis with interactive visualizations. Unlike traditional static hosts, Vercel can also run serverless functions, allowing you to add dynamic capabilities without managing servers.
+
+**Quick setup**:
+
+The simplest way to deploy to Vercel is through their web interface:
+
+1. Sign up at [vercel.com](https://vercel.com/)
+2. Connect your GitHub, GitLab, or Bitbucket repository
+3. Vercel automatically detects your project type and configures build settings
+4. Click "Deploy" - your site will be live in minutes
+
+For command-line deployment, install the Vercel CLI:
+
+```bash
+# Install Vercel CLI globally
+npm install -g vercel
+
+# From your project directory
+vercel
+
+# Follow the prompts to link your project
+# Your site will be deployed and you'll get a URL
+```
+
+**Configuration for data science projects**:
+
+Create a `vercel.json` file in your project root to customize the build process:
+
+```json
+{
+  "buildCommand": "quarto render",
+  "outputDirectory": "_site",
+  "installCommand": "npm install",
+  "functions": {
+    "api/*.py": {
+      "runtime": "python3.9"
+    }
+  }
+}
+```
+
+This configuration tells Vercel to use Quarto to build your site (common for data science documentation), specifies where the built files are located, and enables Python serverless functions for any dynamic features you might need.
+
+**Example use case**: Vercel is particularly well-suited for deploying interactive data visualizations created with modern JavaScript libraries. For instance, if you create visualizations using Observable Plot or D3.js alongside your static analysis, Vercel can host both the static content and any serverless functions needed for data processing.
+
+**Why choose Vercel over alternatives**:
+- **Speed**: Vercel's global CDN ensures fast loading times worldwide
+- **Automatic optimization**: Images and assets are automatically optimized
+- **Preview deployments**: Every pull request gets its own preview URL for testing
+- **Serverless functions**: Add dynamic capabilities without complex backend setup
+- **Analytics**: Built-in web analytics to understand how users interact with your deployed projects
 
 #### Quarto Pub
 
@@ -321,7 +382,7 @@ This example shows how to publish an analysis report created with Quarto:
 
 1. Create your Quarto document:
 
-```markdown
+````{verbatim}
 ---
 title: "Sales Analysis Report"
 author: "Your Name"
@@ -348,7 +409,7 @@ ggplot(sales, aes(x = Product, y = Sales, fill = Product)) +
   theme_minimal() +
   labs(title = "Product Comparison")
 ```
-```
+````
 
 2. Set up a GitHub repository for your project
 

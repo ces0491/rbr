@@ -14,7 +14,7 @@ Markdown is among the top five most used markup languages by developers and data
 
 #### Basic Markdown Syntax
 
-```markdown
+````{verbatim}
 # Heading 1
 ## Heading 2
 ### Heading 3
@@ -45,8 +45,7 @@ Table:
 # Code block
 print("Hello, world!")
 ```
-
-```
+````
 
 Markdown is designed to be readable even in its raw form. The syntax is intuitive—for example, surrounding text with asterisks makes it italic, and using hash symbols creates headings of different levels.
 
@@ -84,7 +83,7 @@ A typical R Markdown document consists of three components:
 
 For example:
 
-```markdown
+````{verbatim}
 ---
 title: "My First Data Analysis"
 author: "Your Name"
@@ -94,7 +93,7 @@ output: html_document
 
 # Introduction
 
-This analysis explores the relationship between variables X and Y.
+This analysis explores the relationship between variables X (carat) and Y (price).
 
 ## Data Import and Cleaning
 
@@ -106,8 +105,6 @@ data(diamonds, package = "ggplot2")
 set.seed(123)  # For reproducibility
 my_data <- diamonds %>% 
   dplyr::sample_n(1000) %>%
-  # Rename columns to match the expected structure in the rest of the document
-  # This ensures existing code using the my_data object will work
   dplyr::select(
     X = carat,
     Y = price,
@@ -128,9 +125,9 @@ ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
   ggplot2::geom_smooth(method = "lm") +
   ggplot2::labs(title = "Relationship between X and Y")
 ```
+````
 
-```
-::: {.callout-note}
+:::{.callout-note}
 *Note that we've used the namespace convention to call our functions in the markdown code above, rather than making using of `Library(function_name)`. This is not strictly necessary and is a matter of preference, but benefits of using this convention include:*
 
 - Avoids loading the full package with library()
@@ -196,111 +193,11 @@ Quarto represents an evolution in documentation tools because it provides a unif
 
 The key advantage of Quarto is its language-agnostic design—you can mix Python, R, Julia, and other languages in a single document, which reflects the reality of many data science workflows where different tools are used for different tasks.
 
-### Working with External Data in Quarto
-
-When using external data files in Quarto projects, it's important to understand how to handle file paths properly to ensure reproducibility across different environments.
-
-#### Common Issues with File Paths
-
-The error you encountered (`'my_data.csv' does not exist in current working directory`) is a common issue when transitioning between different editing environments like VS Code and RStudio. This happens because:
-
-1. Different IDEs may have different default working directories
-2. Quarto's rendering process often sets the working directory to the chapter's location
-3. Absolute file paths won't work when others try to run your code
-
-#### Project-Relative Paths with the `here` Package
-
-The `here` package provides an elegant solution by creating paths relative to your project root:
-
-```{r}
-#| label: data-loading
-#| message: false
-#| warning: false
-
-library(tidyverse)
-library(here)
-
-# Load data using project-relative path
-data <- read_csv(here("data", "my_data.csv"))
-head(data)
-```
-
-The `here()` function automatically detects your project root (usually where your `.Rproj` file is located) and constructs paths relative to that location. This ensures consistent file access regardless of:
-
-- Which IDE you're using
-- Where the current chapter file is located
-- The current working directory during rendering
-
-To implement this approach:
-
-1. Create a `data` folder in your project root
-2. Store all your datasets in this folder
-3. Use `here("data", "filename.csv")` to reference them
-
-#### Alternative: Built-in Datasets
-
-For maximum reproducibility, especially in a book context, consider using built-in datasets that come with R packages:
-
-```{r}
-#| label: builtin-data
-
-# Load a dataset from a package
-data(diamonds, package = "ggplot2")
-
-# Display the first few rows
-head(diamonds)
-```
-
-Using built-in datasets eliminates file path issues entirely, as these datasets are available to anyone who has the package installed. This is ideal for examples and tutorials where the specific data isn't crucial.
-
-#### Creating Sample Data Programmatically
-
-Another reproducible approach is to generate sample data within your code:
-
-```{r}
-#| label: synthetic-data
-
-# Create synthetic data
-set.seed(0491)  # For reproducibility
-synthetic_data <- tibble(
-  id = 1:20,
-  value_x = rnorm(20),
-  value_y = value_x * 2 + rnorm(20, sd = 0.5),
-  category = sample(LETTERS[1:4], 20, replace = TRUE)
-)
-
-# Display the data
-head(synthetic_data)
-```
-
-This approach works well for illustrative examples and ensures anyone can run your code without any external files.
-
-#### Remote Data with Caching
-
-For real-world datasets that are too large to include in packages, you can fetch them from reliable URLs:
-
-```{r}
-#| label: remote-data
-#| cache: true
-#| message: false
-
-# URL to a stable dataset
-url <- "https://raw.githubusercontent.com/tidyverse/ggplot2/master/data-raw/diamonds.csv"
-
-# Download and read the data
-remote_data <- read_csv(url)
-
-# Display the data
-head(remote_data)
-```
-
-The `cache: true` option tells Quarto to save the results and only re-execute this chunk when the code changes, which prevents unnecessary downloads.
-
-## LaTeX for Professional Document Creation
+### LaTeX for Professional Document Creation
 
 When creating data science reports that require a professional appearance, particularly for academic or formal business contexts, LaTeX provides powerful typesetting capabilities. While Markdown is excellent for simple documents, LaTeX excels at complex formatting, mathematical equations, and producing publication-quality PDFs.
 
-### Why LaTeX for Data Scientists?
+#### Why LaTeX for Data Scientists?
 
 LaTeX offers several advantages for data science documentation:
 
@@ -312,7 +209,7 @@ LaTeX offers several advantages for data science documentation:
 
 A 2018 study of research reproducibility found that papers using LaTeX with programmatically generated figures were 37% more likely to be successfully reproduced than those using proprietary document formats [^9].
 
-### Getting Started with LaTeX
+#### Getting Started with LaTeX
 
 LaTeX works differently from word processors—you write plain text with special commands, then compile it to produce a PDF. For data science, you don't need to install a full LaTeX distribution, as Quarto and R Markdown can handle the compilation process.
 
@@ -333,7 +230,7 @@ quarto install tinytex
 
 TinyTeX is designed specifically for R Markdown and Quarto users. It installs only the essential LaTeX packages (around 150MB) compared to full distributions (several GB), and it automatically installs additional packages as needed when you render documents.
 
-### LaTeX Basics for Data Scientists
+#### LaTeX Basics for Data Scientists
 
 Let's explore the essential LaTeX elements you'll need for data science documentation:
 
@@ -448,11 +345,11 @@ To include figures with proper captioning and referencing:
 As shown in Figure \ref{fig:spending-dist}, the distribution is right-skewed.
 ```
 
-### Using LaTeX with Quarto
+#### Using LaTeX with Quarto
 
 Quarto makes it easy to incorporate LaTeX features while keeping your document source readable. Here's how to configure Quarto for PDF output using LaTeX:
 
-#### YAML Configuration
+##### YAML Configuration
 
 In your Quarto YAML header, specify PDF output with LaTeX options:
 
@@ -475,7 +372,7 @@ format:
 ---
 ```
 
-#### Customizing PDF Output
+##### Customizing PDF Output
 
 You can further customize the LaTeX template by:
 
@@ -505,7 +402,7 @@ You can further customize the LaTeX template by:
        template: custom-template.tex
    ```
 
-#### Equations in Quarto
+##### Equations in Quarto
 
 Quarto supports LaTeX math syntax directly:
 
@@ -519,7 +416,7 @@ $$
 where $\epsilon_i \sim N(0, \sigma^2)$.
 ```
 
-#### Citations and Bibliography
+##### Citations and Bibliography
 
 For managing citations, create a BibTeX file (e.g., `references.bib`):
 
@@ -719,9 +616,73 @@ tinytex::pdflatex('document.tex', pdflatex_args = c('-interaction=nonstopmode'))
 
 ### Conclusion
 
-LaTeX provides powerful capabilities for creating professional data science documents, especially when mathematical notation is involved. While there is a learning curve, the integration with Quarto and R Markdown makes it accessible without needing to learn all LaTeX details at once.
+LaTeX has been the de facto gold standard for scientific documentation for decades, and for good reason. Most PDF rendering systems still use LaTeX under the hood, making it the backbone of academic publishing, technical reports, and mathematical documentation. When you generate a PDF from Quarto or R Markdown, you're ultimately leveraging LaTeX's sophisticated typesetting engine.
 
-As you progress in your data science career, investing time in learning LaTeX will pay dividends when creating reports, papers, or presentations that require precise typesetting and mathematical expressions. Start with the basics and gradually incorporate more advanced features as needed.
+While LaTeX provides unmatched power and precision for creating professional data science documents, especially when mathematical notation is involved, there is undeniably a learning curve. The integration with Quarto and R Markdown has made LaTeX more accessible by handling much of the complexity behind the scenes, allowing you to focus on content rather than typesetting commands.
+
+#### The Rise of Modern Alternatives: Typst
+
+However, the document preparation landscape is evolving. Newer tools like **Typst** are emerging as modern alternatives that aim to simplify the traditional LaTeX workflow while maintaining high-quality output. Typst offers several advantages:
+
+**Simpler Syntax**: Where LaTeX might require complex commands, Typst uses more intuitive markup:
+
+```typst
+// Typst syntax
+= Introduction
+== Subsection
+
+$x = (a + b) / c$  // Math notation
+
+#figure(
+  image("plot.png"),
+  caption: "Sample Plot"
+)
+```
+
+Compare this to equivalent LaTeX:
+
+```latex
+% LaTeX syntax
+\section{Introduction}
+\subsection{Subsection}
+
+$x = \frac{a + b}{c}$
+
+\begin{figure}
+  \includegraphics{plot.png}
+  \caption{Sample Plot}
+\end{figure}
+```
+
+**Faster Compilation**: Typst compiles documents significantly faster than LaTeX, making it more suitable for iterative document development.
+
+**Better Error Messages**: When something goes wrong, Typst provides clearer, more actionable error messages compared to LaTeX's often cryptic feedback.
+
+**Modern Design**: Built from the ground up with modern document needs in mind, including better handling of digital-first workflows.
+
+#### Choosing Your Path Forward
+
+For data scientists starting their journey, here's how to think about these tools:
+
+**Choose LaTeX when:**
+- Working in academic environments where LaTeX is expected
+- Creating documents with complex mathematical notation
+- Collaborating with teams already using LaTeX workflows
+- You need the ecosystem of specialized packages LaTeX offers
+
+**Consider Typst when:**
+- You want faster iteration cycles during document development
+- You prefer more modern, readable syntax
+- You're starting fresh and don't have legacy LaTeX requirements
+- You want to avoid LaTeX's steep learning curve
+
+**The Quarto Advantage**: One of Quarto's strengths is that it abstracts away many of these decisions. You can often switch between PDF engines (including future Typst support) without changing your content, giving you flexibility as the ecosystem evolves.
+
+#### Looking Ahead
+
+As you progress in your data science career, investing time in understanding document preparation will pay dividends when creating reports, papers, or presentations that require precise typesetting and mathematical expressions. Whether you choose the established power of LaTeX or explore newer alternatives like Typst, start with the basics and gradually incorporate more advanced features as your needs grow.
+
+The key is to pick the tool that best fits your current workflow and requirements, knowing that the fundamental principles of good document structure and clear communication remain constant regardless of the underlying technology.
 
 ### Creating Technical Documentation
 
@@ -765,6 +726,106 @@ Sphinx offers advanced features like automatic API documentation generation, cro
 
 The reason Sphinx has become the standard for Python documentation is its powerful extension system and its ability to generate API documentation automatically from docstrings in your code. This means you can document your functions and classes directly in your code, and Sphinx will extract and format that information into comprehensive documentation.
 
+## Reproducible Reports - Working with Data
+
+When using external data files in Quarto projects, it's important to understand how to handle file paths properly to ensure reproducibility across different environments.
+
+#### Common Issues with File Paths
+
+The error `'my_data.csv' does not exist in current working directory` is a common issue when transitioning between different editing environments like VS Code and RStudio. This happens because:
+
+1. Different IDEs may have different default working directories
+2. Quarto's rendering process often sets the working directory to the chapter's location
+3. Absolute file paths won't work when others try to run your code
+
+#### Project-Relative Paths with the `here` Package
+
+The `here` package provides an elegant solution by creating paths relative to your project root:
+
+```{r}
+#| label: data-loading
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(here)
+
+# Load data using project-relative path
+data <- read_csv(here("data", "my_data.csv"))
+head(data)
+```
+
+The `here()` function automatically detects your project root (usually where your `.Rproj` file is located) and constructs paths relative to that location. This ensures consistent file access regardless of:
+
+- Which IDE you're using
+- Where the current chapter file is located
+- The current working directory during rendering
+
+To implement this approach:
+
+1. Create a `data` folder in your project root
+2. Store all your datasets in this folder
+3. Use `here("data", "filename.csv")` to reference them
+
+#### Alternative: Built-in Datasets
+
+For maximum reproducibility, consider using built-in datasets that come with R packages:
+
+```{r}
+#| label: builtin-data
+
+# Load a dataset from a package
+data(diamonds, package = "ggplot2")
+
+# Display the first few rows
+head(diamonds)
+```
+
+Using built-in datasets eliminates file path issues entirely, as these datasets are available to anyone who has the package installed. This is ideal for examples and tutorials where the specific data isn't crucial.
+
+#### Creating Sample Data Programmatically
+
+Another reproducible approach is to generate sample data within your code:
+
+```{r}
+#| label: synthetic-data
+
+# Create synthetic data
+set.seed(0491)  # For reproducibility
+synthetic_data <- tibble(
+  id = 1:20,
+  value_x = rnorm(20),
+  value_y = value_x * 2 + rnorm(20, sd = 0.5),
+  category = sample(LETTERS[1:4], 20, replace = TRUE)
+)
+
+# Display the data
+head(synthetic_data)
+```
+
+This approach works well for illustrative examples and ensures anyone can run your code without any external files.
+
+#### Remote Data with Caching
+
+For real-world datasets that are too large to include in packages, you can fetch them from reliable URLs:
+
+```{r}
+#| label: remote-data
+#| cache: true
+#| message: false
+
+# URL to a stable dataset
+url <- "https://raw.githubusercontent.com/tidyverse/ggplot2/master/data-raw/diamonds.csv"
+
+# Download and read the data
+remote_data <- readr::read_csv(url)
+
+# Display the data
+head(remote_data)
+```
+
+The `cache: true` option tells Quarto to save the results and only re-execute this chunk when the code changes, which prevents unnecessary downloads.
+
 ### Best Practices for Documentation
 
 Effective documentation follows certain principles:
@@ -794,7 +855,7 @@ Data visualization serves multiple purposes in the data science workflow:
 
 Analysts who regularly use visualization tools identify insights up to 70% faster than those who rely primarily on tabular data [^10]. Visualization has been called "the new language of science and business intelligence," highlighting its importance in modern decision-making processes.
 
-The power of visualization comes from leveraging human visual processing capabilities. Our brains can process visual information much faster than text or numbers. A well-designed chart can instantly convey relationships that would take paragraphs to explain in words.
+The power of visualization comes from leveraging human visual processing capabilities. Our brains can process visual information much faster than text or numbers. A well-designed chart can instantly convey relationships that would take paragraphs to explain in words. Most importantly, visualizations get to the point!
 
 ### Python Visualization Libraries
 
@@ -894,7 +955,7 @@ fig.update_layout(
 fig.show()
 ```
 
-Plotly's interactive features include zooming, panning, hovering for details, and the ability to export plots as images. These features make exploration more intuitive and presentations more engaging.
+Plotly's interactive features include zooming, panning, hovering for details, and the ability to export plots as images. These features make exploration more intuitive and presentations more engaging. The example above uses Python but Plotly can just as easily be used in R.
 
 ### R Visualization Libraries
 
@@ -1007,7 +1068,7 @@ The R version of plotly can convert ggplot2 visualizations to interactive versio
 ggplotly(p)
 ```
 
-This capability to transform static ggplot2 charts into interactive visualizations with a single function call is extremely convenient. It allows you to develop visualizations using the familiar ggplot2 syntax, then add interactivity with minimal effort.
+This capability to transform static ggplot2 charts into interactive visualizations with a single function call is extremely convenient. It allows you to develop visualizations using the familiar ggplot2 syntax, then add interactivity with minimal effort. This is very powerful when you need to create reports in both PDF and HTML formats - use ggplot2 for static PDFs and Plotly for dynamic HTML.
 
 ## Code-Based Diagramming with Mermaid
 
@@ -1249,687 +1310,6 @@ This R code generates a Mermaid flowchart based on a list of steps. This approac
 5. **Update diagrams with code**: Treat diagrams as living documents that evolve with your project
 
 Diagrams should clarify your explanations, not complicate them. A well-designed diagram can make complex processes or relationships immediately understandable.
-
-## Leveraging AI Tools in Data Science
-
-Artificial intelligence tools are transforming how data scientists work. These powerful assistants can help with coding, data analysis, visualization, and documentation. Let's explore how to effectively integrate them into your data science workflow.
-
-### Types of AI Tools for Data Scientists
-
-Several categories of AI tools are particularly valuable for data science:
-
-1. **Code assistants**: Help write, debug, and optimize code
-2. **Data analysis assistants**: Provide insights and suggest visualizations
-3. **Documentation generators**: Create reports and technical documentation
-4. **Model explanation tools**: Help understand complex model behavior
-5. **Creative problem solvers**: Offer novel approaches to complex challenges
-
-### Getting Started with AI Coding Assistants
-
-AI coding assistants like GitHub Copilot, ChatGPT, and Claude can dramatically accelerate your coding workflow. Here's how to use them effectively:
-
-#### Writing Code with AI Assistance
-
-AI assistants excel at helping you write boilerplate code, complex functions, and even entire data analysis pipelines. For example, you could prompt:
-
-```
-Write a Python function to clean a pandas DataFrame by:
-1. Removing rows with more than 50% missing values
-2. Filling numeric columns with their median
-3. Filling categorical columns with their mode
-4. Converting date columns to datetime format
-```
-
-The AI would then generate code like:
-
-```python
-def clean_dataframe(df, date_columns=None):
-    """
-    Clean a pandas DataFrame by handling missing values and converting date columns.
-    
-    Parameters:
-    -----------
-    df : pandas.DataFrame
-        The DataFrame to clean
-    date_columns : list, optional
-        List of column names to convert to datetime format
-        
-    Returns:
-    --------
-    pandas.DataFrame
-        The cleaned DataFrame
-    """
-    import pandas as pd
-    import numpy as np
-    
-    # Create a copy to avoid modifying the original
-    cleaned_df = df.copy()
-    
-    # Remove rows with more than 50% missing values
-    threshold = len(cleaned_df.columns) * 0.5
-    cleaned_df = cleaned_df.dropna(thresh=threshold)
-    
-    # Separate numeric and categorical columns
-    numeric_cols = cleaned_df.select_dtypes(include=np.number).columns
-    categorical_cols = cleaned_df.select_dtypes(include=['object', 'category']).columns
-    
-    # Fill numeric columns with median
-    for col in numeric_cols:
-        cleaned_df[col] = cleaned_df[col].fillna(cleaned_df[col].median())
-    
-    # Fill categorical columns with mode
-    for col in categorical_cols:
-        # Get the mode (most frequent value)
-        mode_value = cleaned_df[col].mode()[0]
-        cleaned_df[col] = cleaned_df[col].fillna(mode_value)
-    
-    # Convert date columns to datetime
-    if date_columns:
-        for col in date_columns:
-            if col in cleaned_df.columns:
-                cleaned_df[col] = pd.to_datetime(cleaned_df[col], errors='coerce')
-    
-    return cleaned_df
-```
-
-### Effective Prompting Techniques
-
-The quality of AI-generated code and solutions depends significantly on how you formulate your prompts. Here are strategies for crafting effective prompts:
-
-#### Be Specific and Contextual
-
-Provide sufficient context for the AI to understand your task:
-
-```
-INEFFECTIVE: "Generate code to analyze my data."
-
-EFFECTIVE: "Generate R code using tidyverse to analyze a CSV dataset of customer transactions with columns 'date', 'customer_id', 'product', and 'amount'. Calculate monthly revenue trends and identify the top 5 products by sales volume."
-```
-
-The effective prompt specifies:
-- Programming language and libraries
-- Data structure and available columns
-- Specific analysis objectives
-
-#### Use a Structured Format
-
-Structure your prompts to guide the AI's response:
-
-```
-TASK: Create a data cleaning function for a CSV file
-INPUT: A dataframe with potential missing values, outliers, and inconsistent date formats
-REQUIREMENTS:
-- Handle NA values through imputation
-- Remove statistical outliers (beyond 3 standard deviations)
-- Standardize date format to YYYY-MM-DD
-- Return a clean dataframe with a summary of changes made
-CONSTRAINTS: Use only base R and tidyverse functions
-```
-
-#### Ask for Explanations
-
-When requesting complex code, ask the AI to explain its approach:
-
-```
-Write R code to perform k-means clustering on my dataset. For each step, explain:
-1. What the code is doing
-2. Why this approach was chosen
-3. How to interpret the results
-```
-
-This helps you understand the generated code and learn from it, rather than just copying solutions.
-
-#### Iterate and Refine
-
-Treat AI interactions as a conversation, refining your requests based on initial responses:
-
-```
-INITIAL: "Help me visualize my sales data."
-
-FOLLOW-UP: "Thanks. Now modify the visualization to show year-over-year comparison and highlight seasonal trends."
-
-REFINEMENT: "Perfect. Can you add annotations for major marketing campaigns that occurred on these dates: 2024-03-15, 2024-06-01, 2024-11-20?"
-```
-
-This iterative approach leads to better results than trying to get everything perfect in a single prompt.
-
-### Practical Applications of AI in Data Science
-
-#### Exploratory Data Analysis
-
-AI tools can help generate the code for comprehensive EDA:
-
-```r
-# Example of AI-generated EDA code
-library(tidyverse)
-library(skimr)
-library(GGally)
-
-# Load the data
-data <- read_csv(here("data", "customer_data.csv"))
-
-# Generate a comprehensive EDA report
-explore_data <- function(df) {
-  # Basic summary
-  cat("Dataset dimensions:", dim(df)[1], "rows,", dim(df)[2], "columns\n\n")
-  
-  # Column types
-  cat("Column types:\n")
-  print(sapply(df, class))
-  cat("\n")
-  
-  # Summary statistics
-  cat("Summary statistics:\n")
-  print(skim(df))
-  
-  # Distribution of numeric variables
-  num_vars <- df %>% select(where(is.numeric)) %>% names()
-  if (length(num_vars) > 0) {
-    df %>%
-      select(all_of(num_vars)) %>%
-      pivot_longer(everything(), names_to = "variable", values_to = "value") %>%
-      ggplot(aes(x = value)) +
-      geom_histogram(bins = 30, fill = "steelblue", alpha = 0.7) +
-      facet_wrap(~variable, scales = "free") +
-      theme_minimal() +
-      labs(title = "Distribution of Numeric Variables")
-    
-    # Correlation matrix for numeric variables
-    if (length(num_vars) >= 2) {
-      cat("\nCorrelation matrix:\n")
-      df %>%
-        select(all_of(num_vars)) %>%
-        cor(use = "pairwise.complete.obs") %>%
-        round(2) %>%
-        print()
-      
-      # Correlation plot
-      df %>%
-        select(all_of(num_vars)) %>%
-        ggcorr(label = TRUE, label_size = 3, label_color = "black")
-    }
-  }
-  
-  # Distribution of categorical variables
-  cat_vars <- df %>% select(where(is.character) | where(is.factor)) %>% names()
-  if (length(cat_vars) > 0) {
-    for (var in cat_vars) {
-      cat("\nDistribution of", var, ":\n")
-      dist_table <- df %>%
-        count(!!sym(var), sort = TRUE) %>%
-        mutate(percentage = n / sum(n) * 100)
-      print(dist_table)
-      
-      # Bar chart
-      df %>%
-        count(!!sym(var), sort = TRUE) %>%
-        mutate(
-          percentage = n / sum(n) * 100,
-          !!sym(var) := fct_reorder(!!sym(var), n)
-        ) %>%
-        head(10) %>%  # Top 10 categories if there are many
-        ggplot(aes(x = !!sym(var), y = n)) +
-        geom_bar(stat = "identity", fill = "steelblue", alpha = 0.7) +
-        theme_minimal() +
-        theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-        labs(title = paste("Distribution of", var), 
-             subtitle = "Top 10 categories by frequency")
-    }
-  }
-  
-  # Missing values analysis
-  cat("\nMissing values per column:\n")
-  missing <- df %>%
-    summarise(across(everything(), ~sum(is.na(.)))) %>%
-    pivot_longer(everything(), 
-                 names_to = "column", 
-                 values_to = "missing_count") %>%
-    mutate(missing_percent = missing_count / nrow(df) * 100) %>%
-    arrange(desc(missing_count))
-  print(missing)
-  
-  # Visualize missing values
-  if (sum(missing$missing_count) > 0) {
-    missing %>%
-      filter(missing_count > 0) %>%
-      mutate(column = fct_reorder(column, missing_percent)) %>%
-      ggplot(aes(x = column, y = missing_percent)) +
-      geom_bar(stat = "identity", fill = "coral", alpha = 0.7) +
-      theme_minimal() +
-      theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-      labs(title = "Percentage of Missing Values by Column",
-           y = "Missing Values (%)")
-  }
-}
-
-# Run the EDA
-explore_data(data)
-```
-
-#### Automated Documentation
-
-AI can help generate well-structured documentation for your code, projects, and reports:
-
-```python
-# Example of AI-generated function documentation
-def preprocess_text_data(text_df, text_column, min_word_length=3, max_features=5000, stop_words='english'):
-    """
-    Preprocess text data for natural language processing tasks.
-    
-    This function performs several text cleaning and vectorization steps:
-    1. Removes special characters, numbers, and punctuation
-    2. Converts text to lowercase
-    3. Tokenizes the text
-    4. Removes stopwords
-    5. Applies stemming or lemmatization
-    6. Vectorizes the text using TF-IDF
-    
-    Parameters
-    ----------
-    text_df : pandas.DataFrame
-        DataFrame containing the text data
-    text_column : str
-        Name of the column containing text to process
-    min_word_length : int, default=3
-        Minimum length of words to keep after tokenization
-    max_features : int, default=5000
-        Maximum number of features (terms) to include in the vectorization
-    stop_words : str or list, default='english'
-        Stopwords to remove. Can be 'english' to use NLTK's English stopwords
-        or a custom list of stopwords
-        
-    Returns
-    -------
-    pandas.DataFrame
-        The original DataFrame with additional columns for processed text
-    scipy.sparse.csr_matrix
-        Sparse matrix of TF-IDF features
-    list
-        List of feature names (terms) corresponding to the TF-IDF matrix columns
-    
-    Examples
-    --------
-    >>> df = pd.DataFrame({'text': ['This is a sample document.', 
-                                   'Another example text for processing.']})
-    >>> processed_df, tfidf_matrix, feature_names = preprocess_text_data(df, 'text')
-    >>> print(f"Matrix shape: {tfidf_matrix.shape}")
-    Matrix shape: (2, 7)
-    """
-    import pandas as pd
-    import re
-    import nltk
-    from nltk.corpus import stopwords
-    from nltk.stem import PorterStemmer
-    from nltk.tokenize import word_tokenize
-    from sklearn.feature_extraction.text import TfidfVectorizer
-    
-    # Download necessary NLTK resources
-    try:
-        nltk.data.find('tokenizers/punkt')
-    except LookupError:
-        nltk.download('punkt')
-    
-    try:
-        nltk.data.find('corpora/stopwords')
-    except LookupError:
-        nltk.download('stopwords')
-    
-    # Make a copy to avoid modifying the original
-    df = text_df.copy()
-    
-    # Initialize stemmer
-    stemmer = PorterStemmer()
-    
-    # Get stopwords
-    if stop_words == 'english':
-        stop_words = set(stopwords.words('english'))
-    
-    # Define preprocessing function
-    def clean_text(text):
-        if pd.isna(text):
-            return ""
-        
-        # Convert to lowercase
-        text = text.lower()
-        
-        # Remove special characters, numbers, and punctuation
-        text = re.sub(r'[^\w\s]', '', text)
-        text = re.sub(r'\d+', '', text)
-        
-        # Tokenize
-        tokens = word_tokenize(text)
-        
-        # Remove stopwords and apply stemming
-        cleaned_tokens = [stemmer.stem(word) for word in tokens 
-                         if word not in stop_words and len(word) >= min_word_length]
-        
-        return ' '.join(cleaned_tokens)
-    
-    # Apply preprocessing
-    df['processed_text'] = df[text_column].apply(clean_text)
-    
-    # Vectorize using TF-IDF
-    vectorizer = TfidfVectorizer(max_features=max_features)
-    tfidf_matrix = vectorizer.fit_transform(df['processed_text'])
-    feature_names = vectorizer.get_feature_names_out()
-    
-    return df, tfidf_matrix, feature_names
-```
-
-#### Model Selection and Evaluation
-
-AI can help you choose appropriate models and evaluation metrics:
-
-```r
-# Example of AI-generated model evaluation code
-library(tidyverse)
-library(tidymodels)
-library(vip)  # Variable importance
-
-# Function to evaluate multiple models on a dataset
-evaluate_models <- function(df, target_col, feature_cols, 
-                           models = c("linear_reg", "random_forest", "xgboost"),
-                           metrics = c("rmse", "rsq", "mae"),
-                           cv_folds = 5,
-                           seed = 123) {
-  
-  # Set seed for reproducibility
-  set.seed(seed)
-  
-  # Create dataframe for modeling
-  model_df <- df %>%
-    select(all_of(c(target_col, feature_cols))) %>%
-    drop_na()
-  
-  # Create CV folds
-  cv_splits <- vfold_cv(model_df, v = cv_folds)
-  
-  # Create recipe
-  model_recipe <- recipe(formula = as.formula(paste(target_col, "~ .")), 
-                         data = model_df) %>%
-    step_normalize(all_predictors(), -all_nominal()) %>%
-    step_dummy(all_nominal()) %>%
-    step_zv(all_predictors())
-  
-  # Initialize results dataframe
-  results <- tibble()
-  
-  # Linear Regression
-  if ("linear_reg" %in% models) {
-    cat("Evaluating Linear Regression...\n")
-    
-    lm_spec <- linear_reg() %>%
-      set_engine("lm") %>%
-      set_mode("regression")
-    
-    lm_wf <- workflow() %>%
-      add_recipe(model_recipe) %>%
-      add_model(lm_spec)
-    
-    lm_results <- lm_wf %>%
-      fit_resamples(
-        resamples = cv_splits,
-        metrics = metric_set(rmse, rsq, mae),
-        control = control_resamples(save_pred = TRUE)
-      )
-    
-    lm_metrics <- lm_results %>%
-      collect_metrics() %>%
-      mutate(model = "Linear Regression")
-    
-    results <- bind_rows(results, lm_metrics)
-    
-    # Fit on full dataset for variable importance
-    lm_fit <- lm_wf %>% fit(model_df)
-    
-    cat("Variable Importance for Linear Regression:\n")
-    print(lm_fit %>% 
-            extract_fit_parsnip() %>% 
-            vip(num_features = 10))
-  }
-  
-  # Random Forest
-  if ("random_forest" %in% models) {
-    cat("\nEvaluating Random Forest...\n")
-    
-    rf_spec <- rand_forest(
-      mtry = floor(sqrt(length(feature_cols))),
-      trees = 500
-    ) %>%
-      set_engine("ranger", importance = "impurity") %>%
-      set_mode("regression")
-    
-    rf_wf <- workflow() %>%
-      add_recipe(model_recipe) %>%
-      add_model(rf_spec)
-    
-    rf_results <- rf_wf %>%
-      fit_resamples(
-        resamples = cv_splits,
-        metrics = metric_set(rmse, rsq, mae),
-        control = control_resamples(save_pred = TRUE)
-      )
-    
-    rf_metrics <- rf_results %>%
-      collect_metrics() %>%
-      mutate(model = "Random Forest")
-    
-    results <- bind_rows(results, rf_metrics)
-    
-    # Fit on full dataset for variable importance
-    rf_fit <- rf_wf %>% fit(model_df)
-    
-    cat("Variable Importance for Random Forest:\n")
-    print(rf_fit %>% 
-            extract_fit_parsnip() %>% 
-            vip(num_features = 10))
-  }
-  
-  # XGBoost
-  if ("xgboost" %in% models) {
-    cat("\nEvaluating XGBoost...\n")
-    
-    xgb_spec <- boost_tree(
-      trees = 500,
-      min_n = 3,
-      tree_depth = 6,
-      learn_rate = 0.01,
-      loss_reduction = 0.01
-    ) %>%
-      set_engine("xgboost") %>%
-      set_mode("regression")
-    
-    xgb_wf <- workflow() %>%
-      add_recipe(model_recipe) %>%
-      add_model(xgb_spec)
-    
-    xgb_results <- xgb_wf %>%
-      fit_resamples(
-        resamples = cv_splits,
-        metrics = metric_set(rmse, rsq, mae),
-        control = control_resamples(save_pred = TRUE)
-      )
-    
-    xgb_metrics <- xgb_results %>%
-      collect_metrics() %>%
-      mutate(model = "XGBoost")
-    
-    results <- bind_rows(results, xgb_metrics)
-    
-    # Fit on full dataset for variable importance
-    xgb_fit <- xgb_wf %>% fit(model_df)
-    
-    cat("Variable Importance for XGBoost:\n")
-    print(xgb_fit %>% 
-            extract_fit_parsnip() %>% 
-            vip(num_features = 10))
-  }
-  
-  # Compare models
-  cat("\nModel Comparison:\n")
-  comparison <- results %>%
-    filter(.metric %in% metrics) %>%
-    select(model, .metric, mean, std_err) %>%
-    arrange(.metric, desc(mean))
-  
-  print(comparison)
-  
-  # Create comparison plot
-  comparison_plot <- comparison %>%
-    mutate(model = fct_reorder(model, mean, .desc = TRUE)) %>%
-    ggplot(aes(x = model, y = mean, fill = model)) +
-    geom_col() +
-    geom_errorbar(aes(ymin = mean - std_err, ymax = mean + std_err), width = 0.2) +
-    facet_wrap(~ .metric, scales = "free_y") +
-    theme_minimal() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1),
-          legend.position = "none") +
-    labs(title = "Model Comparison",
-         x = "Model",
-         y = "Performance")
-  
-  print(comparison_plot)
-  
-  # Return results
-  return(list(
-    metrics = results,
-    comparison_plot = comparison_plot
-  ))
-}
-
-# Example usage:
-# results <- evaluate_models(
-#   df = my_data,
-#   target_col = "price", 
-#   feature_cols = c("size", "bedrooms", "bathrooms", "age", "location"),
-#   models = c("linear_reg", "random_forest", "xgboost")
-# )
-```
-
-### Best Practices for Working with AI Tools
-
-#### Verify and Validate
-
-Always verify AI-generated code before using it in critical applications:
-
-1. Test the code with simple examples first
-2. Check for edge cases and error handling
-3. Validate results against known benchmarks or alternative methods
-4. Understand the logic behind the suggested solution
-
-This verification is essential because AI models can sometimes generate plausible-looking but incorrect code, or misunderstand nuances of your specific problem.
-
-#### Understand Generated Code
-
-Don't just copy-paste AI-generated code without understanding it:
-
-1. Review the code line by line
-2. Ask the AI to explain unclear sections
-3. Modify the code to match your specific needs
-4. Document what you've learned for future reference
-
-Understanding the generated code helps you grow as a data scientist and builds your intuition for solving similar problems in the future.
-
-#### Use AI as a Learning Tool
-
-AI assistants can be powerful learning aids:
-
-1. Ask for explanations of complex concepts
-2. Request step-by-step solutions to challenging problems
-3. Have the AI review and critique your own code
-4. Ask about alternative approaches to the same problem
-
-By engaging with AI tools as a learning partner rather than just a code generator, you can accelerate your growth as a data scientist.
-
-#### Document AI Usage
-
-When using AI-generated code in projects, document this appropriately:
-
-1. Note which parts of the code were AI-assisted
-2. Document any modifications you made to the generated code
-3. Acknowledge AI assistance in project documentation or papers
-4. Include the prompts used to generate critical components
-
-This transparency helps others understand how the code was developed and can aid in troubleshooting or extension.
-
-### Building a Prompt Library
-
-Create a personal library of effective prompts for common data science tasks:
-
-```
-# EDA Template
-Generate exploratory data analysis code in {language} for a dataset with the following columns:
-{list of columns with data types}
-
-The analysis should include:
-1. Summary statistics for each column
-2. Distribution visualizations for key variables
-3. Correlation analysis for numeric columns
-4. Missing value analysis and visualization
-5. Outlier detection
-6. Key insights section
-
-# Data Cleaning Template
-Write a {language} function to clean a dataset with the following issues:
-- Missing values in columns: {list columns}
-- Outliers in columns: {list columns}
-- Inconsistent date formats in columns: {list columns}
-- Duplicate rows based on columns: {list columns}
-
-Include detailed comments explaining each cleaning step.
-
-# Visualization Template
-Create {language} code to generate a {chart type} to show the relationship between {variables}.
-The visualization should:
-- Use an appropriate color scheme
-- Include clear labels and a title
-- Handle missing values appropriately
-- Be accessible (colorblind-friendly)
-- Include annotations for key insights
-```
-
-### AI Tools for Data Science Reports and Documentation
-
-AI assistants can help create comprehensive data science reports and documentation:
-
-1. **Summarizing findings**: Generate concise summaries of analysis results
-2. **Explaining visualizations**: Create clear explanations of what graphs show
-3. **Technical writing**: Polish documentation and make it more readable
-4. **Code documentation**: Generate docstrings and comments for your code
-
-For example, to create a report section:
-
-```
-Generate a technical results section for my report based on these findings:
-- Model accuracy: 87.3% (95% CI: 85.1% - 89.5%)
-- Feature importance: age (0.32), income (0.28), education (0.15)
-- Cross-validation showed consistent performance across all 5 folds
-- Performance on minority class improved by 23% with SMOTE
-
-The section should be written for data scientists but avoid unnecessary jargon.
-Include a brief interpretation of what these results mean in practice.
-```
-
-### Ethical Considerations for AI in Data Science
-
-When using AI tools in your data science workflow, consider these ethical dimensions:
-
-1. **Attribution**: Properly acknowledge AI assistance in your work
-2. **Responsibility**: You remain responsible for validating AI-generated solutions
-3. **Transparency**: Be open about which parts of your work used AI assistance
-4. **Privacy**: Avoid sharing sensitive data with AI tools
-5. **Bias awareness**: Review AI suggestions for potential biases
-
-### Conclusion: AI as a Data Science Force Multiplier
-
-AI tools are not replacements for data scientists but rather force multipliers that can help you:
-
-1. Work more efficiently by automating routine coding tasks
-2. Explore more approaches by quickly prototyping different solutions
-3. Learn new techniques by observing AI-generated code and explanations
-4. Communicate more effectively through better documentation and reporting
-
-By thoughtfully integrating AI tools into your workflow while maintaining critical thinking and domain expertise, you can achieve more ambitious data science goals and focus your energy on the most creative and high-value aspects of your work.
 
 ### Interactive Dashboard Tools
 
@@ -2319,9 +1699,8 @@ In this chapter, we explored advanced tools for data science that enhance docume
 1. Proper data loading strategies with the `here` package ensure reproducibility across environments
 2. Various visualization libraries in both Python and R offer different approaches to data exploration
 3. Code-based diagramming with Mermaid provides a seamless way to include architecture and process diagrams
-4. AI tools can accelerate development and provide learning opportunities
-5. Interactive dashboards make data accessible to stakeholders with varying technical backgrounds
+4. Interactive dashboards make data accessible to stakeholders with varying technical backgrounds
 
 As you continue your data science journey, integrating these tools into your workflow will help you create more professional, reproducible, and impactful projects. The key is to select the right tool for each specific task, while maintaining a cohesive overall approach that prioritizes reproducibility and clear communication.
 
-Remember that the ultimate goal of these tools is not just to make your work easier, but to make your insights more accessible and actionable for others. By investing time in proper documentation, visualization, and interactivity, you amplify the impact of your data science work.
+Remember that the ultimate goal of these tools is not just to make your work easier, but to make your insights more accessible and actionable for others. By investing time in proper documentation, visualization, and interactivity, you amplify the impact of your data science work. At this point, I'd like to interject with a note on AI - if you don't know these tools and how they work, you can't hope to ask AI what to produce for you. While building a Shiny app from scratch is no longer necessary, you need to know what Shiny is capable of and how it's best applied. You also need the correct environment setup so that you can run your app. Please continue to bear-in-mind that your understanding of data science tools and processes is going to become increasingly more important than being able to write code from scratch.
