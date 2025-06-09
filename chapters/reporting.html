@@ -67,7 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <link href="../chapters/cloud.html" rel="next">
 <link href="../chapters/intro.html" rel="prev">
-<link href="../assets/cover.png" rel="icon" type="image/png">
+<link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -258,20 +258,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/ai.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Evaluating AI Tools for Data Science</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
     </ul>
@@ -2032,131 +2026,121 @@ Note
 </section>
 <section id="streamlit-rapid-application-development" class="level4" data-number="3.4.7.3">
 <h4 data-number="3.4.7.3" class="anchored" data-anchor-id="streamlit-rapid-application-development"><span class="header-section-number">3.4.7.3</span> Streamlit: Rapid Application Development</h4>
-<p>Streamlit simplifies interactive app creation even further with a minimal, straightforward API:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Streamlit</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>pip install streamlit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>Here’s a simple Streamlit app:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Set page title</span></span>
-<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>st.set_page_config(page_title<span class="op">=</span><span class="st">"Data Explorer"</span>, page_icon<span class="op">=</span><span class="st">"📊"</span>)</span>
-<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a title</span></span>
-<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>st.title(<span class="st">"Interactive Data Explorer"</span>)</span>
-<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add sidebar with dataset options</span></span>
-<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>st.sidebar.header(<span class="st">"Settings"</span>)</span>
-<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>dataset_name <span class="op">=</span> st.sidebar.selectbox(</span>
-<span id="cb66-17"><a href="#cb66-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Select Dataset"</span>, </span>
-<span id="cb66-18"><a href="#cb66-18" aria-hidden="true" tabindex="-1"></a>    options<span class="op">=</span>[<span class="st">"Iris"</span>, <span class="st">"Diamonds"</span>, <span class="st">"Gapminder"</span>]</span>
-<span id="cb66-19"><a href="#cb66-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb66-20"><a href="#cb66-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-21"><a href="#cb66-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data based on selection - using built-in datasets for reproducibility</span></span>
-<span id="cb66-22"><a href="#cb66-22" aria-hidden="true" tabindex="-1"></a><span class="at">@st.cache_data</span></span>
-<span id="cb66-23"><a href="#cb66-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> load_data(dataset):</span>
-<span id="cb66-24"><a href="#cb66-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dataset <span class="op">==</span> <span class="st">"Iris"</span>:</span>
-<span id="cb66-25"><a href="#cb66-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> sns.load_dataset(<span class="st">"iris"</span>)</span>
-<span id="cb66-26"><a href="#cb66-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> dataset <span class="op">==</span> <span class="st">"Diamonds"</span>:</span>
-<span id="cb66-27"><a href="#cb66-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> sns.load_dataset(<span class="st">"diamonds"</span>).sample(<span class="dv">1000</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb66-28"><a href="#cb66-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># Gapminder</span></span>
-<span id="cb66-29"><a href="#cb66-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> px.data.gapminder()</span>
-<span id="cb66-30"><a href="#cb66-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-31"><a href="#cb66-31" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> load_data(dataset_name)</span>
-<span id="cb66-32"><a href="#cb66-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-33"><a href="#cb66-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Display basic dataset information</span></span>
-<span id="cb66-34"><a href="#cb66-34" aria-hidden="true" tabindex="-1"></a>st.header(<span class="ss">f"</span><span class="sc">{</span>dataset_name<span class="sc">}</span><span class="ss"> Dataset"</span>)</span>
-<span id="cb66-35"><a href="#cb66-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-36"><a href="#cb66-36" aria-hidden="true" tabindex="-1"></a>tab1, tab2, tab3 <span class="op">=</span> st.tabs([<span class="st">"📋 Data"</span>, <span class="st">"📈 Visualization"</span>, <span class="st">"📊 Summary"</span>])</span>
-<span id="cb66-37"><a href="#cb66-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-38"><a href="#cb66-38" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tab1:</span>
-<span id="cb66-39"><a href="#cb66-39" aria-hidden="true" tabindex="-1"></a>    st.subheader(<span class="st">"Raw Data"</span>)</span>
-<span id="cb66-40"><a href="#cb66-40" aria-hidden="true" tabindex="-1"></a>    st.dataframe(df.head(<span class="dv">100</span>))</span>
-<span id="cb66-41"><a href="#cb66-41" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb66-42"><a href="#cb66-42" aria-hidden="true" tabindex="-1"></a>    st.subheader(<span class="st">"Data Types"</span>)</span>
-<span id="cb66-43"><a href="#cb66-43" aria-hidden="true" tabindex="-1"></a>    types_df <span class="op">=</span> pd.DataFrame(df.dtypes, columns<span class="op">=</span>[<span class="st">"Data Type"</span>])</span>
-<span id="cb66-44"><a href="#cb66-44" aria-hidden="true" tabindex="-1"></a>    types_df.index.name <span class="op">=</span> <span class="st">"Column"</span></span>
-<span id="cb66-45"><a href="#cb66-45" aria-hidden="true" tabindex="-1"></a>    st.dataframe(types_df)</span>
-<span id="cb66-46"><a href="#cb66-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-47"><a href="#cb66-47" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tab2:</span>
-<span id="cb66-48"><a href="#cb66-48" aria-hidden="true" tabindex="-1"></a>    st.subheader(<span class="st">"Data Visualization"</span>)</span>
-<span id="cb66-49"><a href="#cb66-49" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb66-50"><a href="#cb66-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dataset_name <span class="op">==</span> <span class="st">"Iris"</span>:</span>
-<span id="cb66-51"><a href="#cb66-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># For Iris dataset</span></span>
-<span id="cb66-52"><a href="#cb66-52" aria-hidden="true" tabindex="-1"></a>        x_var <span class="op">=</span> st.selectbox(<span class="st">"X variable"</span>, options<span class="op">=</span>df.select_dtypes(<span class="st">"number"</span>).columns)</span>
-<span id="cb66-53"><a href="#cb66-53" aria-hidden="true" tabindex="-1"></a>        y_var <span class="op">=</span> st.selectbox(<span class="st">"Y variable"</span>, options<span class="op">=</span>df.select_dtypes(<span class="st">"number"</span>).columns, index<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb66-54"><a href="#cb66-54" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb66-55"><a href="#cb66-55" aria-hidden="true" tabindex="-1"></a>        fig <span class="op">=</span> px.scatter(</span>
-<span id="cb66-56"><a href="#cb66-56" aria-hidden="true" tabindex="-1"></a>            df, x<span class="op">=</span>x_var, y<span class="op">=</span>y_var, color<span class="op">=</span><span class="st">"species"</span>,</span>
-<span id="cb66-57"><a href="#cb66-57" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>x_var<span class="sc">}</span><span class="ss"> vs </span><span class="sc">{</span>y_var<span class="sc">}</span><span class="ss"> by Species"</span></span>
-<span id="cb66-58"><a href="#cb66-58" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb66-59"><a href="#cb66-59" aria-hidden="true" tabindex="-1"></a>        st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb66-60"><a href="#cb66-60" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb66-61"><a href="#cb66-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> dataset_name <span class="op">==</span> <span class="st">"Diamonds"</span>:</span>
-<span id="cb66-62"><a href="#cb66-62" aria-hidden="true" tabindex="-1"></a>        <span class="co"># For Diamonds dataset</span></span>
-<span id="cb66-63"><a href="#cb66-63" aria-hidden="true" tabindex="-1"></a>        chart_type <span class="op">=</span> st.radio(<span class="st">"Chart Type"</span>, [<span class="st">"Scatter"</span>, <span class="st">"Histogram"</span>, <span class="st">"Box"</span>])</span>
-<span id="cb66-64"><a href="#cb66-64" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb66-65"><a href="#cb66-65" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> chart_type <span class="op">==</span> <span class="st">"Scatter"</span>:</span>
-<span id="cb66-66"><a href="#cb66-66" aria-hidden="true" tabindex="-1"></a>            fig <span class="op">=</span> px.scatter(</span>
-<span id="cb66-67"><a href="#cb66-67" aria-hidden="true" tabindex="-1"></a>                df, x<span class="op">=</span><span class="st">"carat"</span>, y<span class="op">=</span><span class="st">"price"</span>, color<span class="op">=</span><span class="st">"cut"</span>,</span>
-<span id="cb66-68"><a href="#cb66-68" aria-hidden="true" tabindex="-1"></a>                title<span class="op">=</span><span class="st">"Diamond Price vs Carat by Cut Quality"</span></span>
-<span id="cb66-69"><a href="#cb66-69" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb66-70"><a href="#cb66-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> chart_type <span class="op">==</span> <span class="st">"Histogram"</span>:</span>
-<span id="cb66-71"><a href="#cb66-71" aria-hidden="true" tabindex="-1"></a>            fig <span class="op">=</span> px.histogram(</span>
-<span id="cb66-72"><a href="#cb66-72" aria-hidden="true" tabindex="-1"></a>                df, x<span class="op">=</span><span class="st">"price"</span>, color<span class="op">=</span><span class="st">"cut"</span>, nbins<span class="op">=</span><span class="dv">50</span>,</span>
-<span id="cb66-73"><a href="#cb66-73" aria-hidden="true" tabindex="-1"></a>                title<span class="op">=</span><span class="st">"Distribution of Diamond Prices by Cut"</span></span>
-<span id="cb66-74"><a href="#cb66-74" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb66-75"><a href="#cb66-75" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># Box plot</span></span>
-<span id="cb66-76"><a href="#cb66-76" aria-hidden="true" tabindex="-1"></a>            fig <span class="op">=</span> px.box(</span>
-<span id="cb66-77"><a href="#cb66-77" aria-hidden="true" tabindex="-1"></a>                df, x<span class="op">=</span><span class="st">"cut"</span>, y<span class="op">=</span><span class="st">"price"</span>,</span>
-<span id="cb66-78"><a href="#cb66-78" aria-hidden="true" tabindex="-1"></a>                title<span class="op">=</span><span class="st">"Diamond Price Distribution by Cut"</span></span>
-<span id="cb66-79"><a href="#cb66-79" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb66-80"><a href="#cb66-80" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb66-81"><a href="#cb66-81" aria-hidden="true" tabindex="-1"></a>        st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb66-82"><a href="#cb66-82" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb66-83"><a href="#cb66-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:  <span class="co"># Gapminder</span></span>
-<span id="cb66-84"><a href="#cb66-84" aria-hidden="true" tabindex="-1"></a>        year <span class="op">=</span> st.slider(<span class="st">"Select Year"</span>, min_value<span class="op">=</span><span class="dv">1952</span>, max_value<span class="op">=</span><span class="dv">2007</span>, step<span class="op">=</span><span class="dv">5</span>, value<span class="op">=</span><span class="dv">2007</span>)</span>
-<span id="cb66-85"><a href="#cb66-85" aria-hidden="true" tabindex="-1"></a>        filtered_df <span class="op">=</span> df[df[<span class="st">"year"</span>] <span class="op">==</span> year]</span>
-<span id="cb66-86"><a href="#cb66-86" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb66-87"><a href="#cb66-87" aria-hidden="true" tabindex="-1"></a>        fig <span class="op">=</span> px.scatter(</span>
-<span id="cb66-88"><a href="#cb66-88" aria-hidden="true" tabindex="-1"></a>            filtered_df, x<span class="op">=</span><span class="st">"gdpPercap"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, size<span class="op">=</span><span class="st">"pop"</span>, color<span class="op">=</span><span class="st">"continent"</span>,</span>
-<span id="cb66-89"><a href="#cb66-89" aria-hidden="true" tabindex="-1"></a>            log_x<span class="op">=</span><span class="va">True</span>, size_max<span class="op">=</span><span class="dv">60</span>, hover_name<span class="op">=</span><span class="st">"country"</span>,</span>
-<span id="cb66-90"><a href="#cb66-90" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="ss">f"GDP per Capita vs Life Expectancy (</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">)"</span></span>
-<span id="cb66-91"><a href="#cb66-91" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb66-92"><a href="#cb66-92" aria-hidden="true" tabindex="-1"></a>        st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb66-93"><a href="#cb66-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-94"><a href="#cb66-94" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tab3:</span>
-<span id="cb66-95"><a href="#cb66-95" aria-hidden="true" tabindex="-1"></a>    st.subheader(<span class="st">"Statistical Summary"</span>)</span>
-<span id="cb66-96"><a href="#cb66-96" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb66-97"><a href="#cb66-97" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> df.select_dtypes(<span class="st">"number"</span>).shape[<span class="dv">1</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb66-98"><a href="#cb66-98" aria-hidden="true" tabindex="-1"></a>        st.dataframe(df.describe())</span>
-<span id="cb66-99"><a href="#cb66-99" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb66-100"><a href="#cb66-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show counts for categorical variables</span></span>
-<span id="cb66-101"><a href="#cb66-101" aria-hidden="true" tabindex="-1"></a>    categorical_cols <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>[<span class="st">"object"</span>, <span class="st">"category"</span>]).columns</span>
-<span id="cb66-102"><a href="#cb66-102" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(categorical_cols) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb66-103"><a href="#cb66-103" aria-hidden="true" tabindex="-1"></a>        cat_col <span class="op">=</span> st.selectbox(<span class="st">"Select Categorical Variable"</span>, options<span class="op">=</span>categorical_cols)</span>
-<span id="cb66-104"><a href="#cb66-104" aria-hidden="true" tabindex="-1"></a>        cat_counts <span class="op">=</span> df[cat_col].value_counts().reset_index()</span>
-<span id="cb66-105"><a href="#cb66-105" aria-hidden="true" tabindex="-1"></a>        cat_counts.columns <span class="op">=</span> [cat_col, <span class="st">"Count"</span>]</span>
-<span id="cb66-106"><a href="#cb66-106" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb66-107"><a href="#cb66-107" aria-hidden="true" tabindex="-1"></a>        fig <span class="op">=</span> px.bar(</span>
-<span id="cb66-108"><a href="#cb66-108" aria-hidden="true" tabindex="-1"></a>            cat_counts, x<span class="op">=</span>cat_col, y<span class="op">=</span><span class="st">"Count"</span>,</span>
-<span id="cb66-109"><a href="#cb66-109" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="ss">f"Counts of </span><span class="sc">{</span>cat_col<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb66-110"><a href="#cb66-110" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb66-111"><a href="#cb66-111" aria-hidden="true" tabindex="-1"></a>        st.plotly_chart(fig, use_container_width<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<p>Streamlit simplifies interactive app creation even further with a minimal, straightforward API. Here’s a simple Streamlit app:</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>```{python}</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>#| eval: false</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>import streamlit as st</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>import pandas as pd</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>import numpy as np</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>import plotly.express as px</span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>import matplotlib.pyplot as plt</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>import seaborn as sns</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a># Set page title</span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>st.set_page_config(page_title="Data Explorer", page_icon="📊")</span>
+<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a># Add a title</span>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>st.title("Interactive Data Explorer")</span>
+<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a># Add sidebar with dataset options</span>
+<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a>st.sidebar.header("Settings")</span>
+<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a>dataset_name = st.sidebar.selectbox(</span>
+<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a>    "Select Dataset", </span>
+<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>    options=["Iris", "Diamonds", "Gapminder"]</span>
+<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a># Load data based on selection - using built-in datasets for reproducibility</span>
+<span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a>@st.cache_data</span>
+<span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a>def load_data(dataset):</span>
+<span id="cb65-26"><a href="#cb65-26" aria-hidden="true" tabindex="-1"></a>    if dataset == "Iris":</span>
+<span id="cb65-27"><a href="#cb65-27" aria-hidden="true" tabindex="-1"></a>        return sns.load_dataset("iris")</span>
+<span id="cb65-28"><a href="#cb65-28" aria-hidden="true" tabindex="-1"></a>    elif dataset == "Diamonds":</span>
+<span id="cb65-29"><a href="#cb65-29" aria-hidden="true" tabindex="-1"></a>        return sns.load_dataset("diamonds").sample(1000, random_state=42)</span>
+<span id="cb65-30"><a href="#cb65-30" aria-hidden="true" tabindex="-1"></a>    else:  # Gapminder</span>
+<span id="cb65-31"><a href="#cb65-31" aria-hidden="true" tabindex="-1"></a>        return px.data.gapminder()</span>
+<span id="cb65-32"><a href="#cb65-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-33"><a href="#cb65-33" aria-hidden="true" tabindex="-1"></a>df = load_data(dataset_name)</span>
+<span id="cb65-34"><a href="#cb65-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-35"><a href="#cb65-35" aria-hidden="true" tabindex="-1"></a># Display basic dataset information</span>
+<span id="cb65-36"><a href="#cb65-36" aria-hidden="true" tabindex="-1"></a>st.header(f"{dataset_name} Dataset")</span>
+<span id="cb65-37"><a href="#cb65-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-38"><a href="#cb65-38" aria-hidden="true" tabindex="-1"></a>tab1, tab2, tab3 = st.tabs(["📋 Data", "📈 Visualization", "📊 Summary"])</span>
+<span id="cb65-39"><a href="#cb65-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-40"><a href="#cb65-40" aria-hidden="true" tabindex="-1"></a>with tab1:</span>
+<span id="cb65-41"><a href="#cb65-41" aria-hidden="true" tabindex="-1"></a>    st.subheader("Raw Data")</span>
+<span id="cb65-42"><a href="#cb65-42" aria-hidden="true" tabindex="-1"></a>    st.dataframe(df.head(100))</span>
+<span id="cb65-43"><a href="#cb65-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb65-44"><a href="#cb65-44" aria-hidden="true" tabindex="-1"></a>    st.subheader("Data Types")</span>
+<span id="cb65-45"><a href="#cb65-45" aria-hidden="true" tabindex="-1"></a>    types_df = pd.DataFrame(df.dtypes, columns=["Data Type"])</span>
+<span id="cb65-46"><a href="#cb65-46" aria-hidden="true" tabindex="-1"></a>    types_df.index.name = "Column"</span>
+<span id="cb65-47"><a href="#cb65-47" aria-hidden="true" tabindex="-1"></a>    st.dataframe(types_df)</span>
+<span id="cb65-48"><a href="#cb65-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-49"><a href="#cb65-49" aria-hidden="true" tabindex="-1"></a>with tab2:</span>
+<span id="cb65-50"><a href="#cb65-50" aria-hidden="true" tabindex="-1"></a>    st.subheader("Data Visualization")</span>
+<span id="cb65-51"><a href="#cb65-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb65-52"><a href="#cb65-52" aria-hidden="true" tabindex="-1"></a>    if dataset_name == "Iris":</span>
+<span id="cb65-53"><a href="#cb65-53" aria-hidden="true" tabindex="-1"></a>        # For Iris dataset</span>
+<span id="cb65-54"><a href="#cb65-54" aria-hidden="true" tabindex="-1"></a>        x_var = st.selectbox("X variable", options=df.select_dtypes("number").columns)</span>
+<span id="cb65-55"><a href="#cb65-55" aria-hidden="true" tabindex="-1"></a>        y_var = st.selectbox("Y variable", options=df.select_dtypes("number").columns, index=1)</span>
+<span id="cb65-56"><a href="#cb65-56" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb65-57"><a href="#cb65-57" aria-hidden="true" tabindex="-1"></a>        fig = px.scatter(</span>
+<span id="cb65-58"><a href="#cb65-58" aria-hidden="true" tabindex="-1"></a>            df, x=x_var, y=y_var, color="species",</span>
+<span id="cb65-59"><a href="#cb65-59" aria-hidden="true" tabindex="-1"></a>            title=f"{x_var} vs {y_var} by Species"</span>
+<span id="cb65-60"><a href="#cb65-60" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb65-61"><a href="#cb65-61" aria-hidden="true" tabindex="-1"></a>        st.plotly_chart(fig, use_container_width=True)</span>
+<span id="cb65-62"><a href="#cb65-62" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb65-63"><a href="#cb65-63" aria-hidden="true" tabindex="-1"></a>    elif dataset_name == "Diamonds":</span>
+<span id="cb65-64"><a href="#cb65-64" aria-hidden="true" tabindex="-1"></a>        # For Diamonds dataset</span>
+<span id="cb65-65"><a href="#cb65-65" aria-hidden="true" tabindex="-1"></a>        chart_type = st.radio("Chart Type", ["Scatter", "Histogram", "Box"])</span>
+<span id="cb65-66"><a href="#cb65-66" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb65-67"><a href="#cb65-67" aria-hidden="true" tabindex="-1"></a>        if chart_type == "Scatter":</span>
+<span id="cb65-68"><a href="#cb65-68" aria-hidden="true" tabindex="-1"></a>            fig = px.scatter(</span>
+<span id="cb65-69"><a href="#cb65-69" aria-hidden="true" tabindex="-1"></a>                df, x="carat", y="price", color="cut",</span>
+<span id="cb65-70"><a href="#cb65-70" aria-hidden="true" tabindex="-1"></a>                title="Diamond Price vs Carat by Cut Quality"</span>
+<span id="cb65-71"><a href="#cb65-71" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb65-72"><a href="#cb65-72" aria-hidden="true" tabindex="-1"></a>        elif chart_type == "Histogram":</span>
+<span id="cb65-73"><a href="#cb65-73" aria-hidden="true" tabindex="-1"></a>            fig = px.histogram(</span>
+<span id="cb65-74"><a href="#cb65-74" aria-hidden="true" tabindex="-1"></a>                df, x="price", color="cut", nbins=50,</span>
+<span id="cb65-75"><a href="#cb65-75" aria-hidden="true" tabindex="-1"></a>                title="Distribution of Diamond Prices by Cut"</span>
+<span id="cb65-76"><a href="#cb65-76" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb65-77"><a href="#cb65-77" aria-hidden="true" tabindex="-1"></a>        else:  # Box plot</span>
+<span id="cb65-78"><a href="#cb65-78" aria-hidden="true" tabindex="-1"></a>            fig = px.box(</span>
+<span id="cb65-79"><a href="#cb65-79" aria-hidden="true" tabindex="-1"></a>                df, x="cut", y="price",</span>
+<span id="cb65-80"><a href="#cb65-80" aria-hidden="true" tabindex="-1"></a>                title="Diamond Price Distribution by Cut"</span>
+<span id="cb65-81"><a href="#cb65-81" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb65-82"><a href="#cb65-82" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb65-83"><a href="#cb65-83" aria-hidden="true" tabindex="-1"></a>        st.plotly_chart(fig, use_container_width=True)</span>
+<span id="cb65-84"><a href="#cb65-84" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb65-85"><a href="#cb65-85" aria-hidden="true" tabindex="-1"></a>    else:  # Gapminder</span>
+<span id="cb65-86"><a href="#cb65-86" aria-hidden="true" tabindex="-1"></a>        year = st.slider("Select Year", min_value=1952, max_value=2007, step=5, value=2007)</span>
+<span id="cb65-87"><a href="#cb65-87" aria-hidden="true" tabindex="-1"></a>        filtered_df = df[df["year"] == year]</span>
+<span id="cb65-88"><a href="#cb65-88" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb65-89"><a href="#cb65-89" aria-hidden="true" tabindex="-1"></a>        fig = px.scatter(</span>
+<span id="cb65-90"><a href="#cb65-90" aria-hidden="true" tabindex="-1"></a>            filtered_df, x="gdpPercap", y="lifeExp", size="pop", color="continent",</span>
+<span id="cb65-91"><a href="#cb65-91" aria-hidden="true" tabindex="-1"></a>            log_x=True, size_max=60, hover_name="country",</span>
+<span id="cb65-92"><a href="#cb65-92" aria-hidden="true" tabindex="-1"></a>            title=f"GDP per Capita vs Life Expectancy ({year})"</span>
+<span id="cb65-93"><a href="#cb65-93" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb65-94"><a href="#cb65-94" aria-hidden="true" tabindex="-1"></a>        st.plotly_chart(fig, use_container_width=True)</span>
+<span id="cb65-95"><a href="#cb65-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-96"><a href="#cb65-96" aria-hidden="true" tabindex="-1"></a>with tab3:</span>
+<span id="cb65-97"><a href="#cb65-97" aria-hidden="true" tabindex="-1"></a>    st.subheader("Statistical Summary")</span>
+<span id="cb65-98"><a href="#cb65-98" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb65-99"><a href="#cb65-99" aria-hidden="true" tabindex="-1"></a>    if df.select_dtypes("number").shape[1] &gt; 0:</span>
+<span id="cb65-100"><a href="#cb65-100" aria-hidden="true" tabindex="-1"></a>        st.dataframe(df.describe())</span>
+<span id="cb65-101"><a href="#cb65-101" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb65-102"><a href="#cb65-102" aria-hidden="true" tabindex="-1"></a>    # Show counts for categorical variables</span>
+<span id="cb65-103"><a href="#cb65-103" aria-hidden="true" tabindex="-1"></a>    categorical_cols = df.select_dtypes(include=["object", "category"]).columns</span>
+<span id="cb65-104"><a href="#cb65-104" aria-hidden="true" tabindex="-1"></a>    if len(categorical_cols) &gt; 0:</span>
+<span id="cb65-105"><a href="#cb65-105" aria-hidden="true" tabindex="-1"></a>        cat_col = st.selectbox("Select Categorical Variable", options=categorical_cols)</span>
+<span id="cb65-106"><a href="#cb65-106" aria-hidden="true" tabindex="-1"></a>        cat_counts = df[cat_col].value_counts().reset_index()</span>
+<span id="cb65-107"><a href="#cb65-107" aria-hidden="true" tabindex="-1"></a>        cat_counts.columns = [cat_col, "Count"]</span>
+<span id="cb65-108"><a href="#cb65-108" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb65-109"><a href="#cb65-109" aria-hidden="true" tabindex="-1"></a>        fig = px.bar(</span>
+<span id="cb65-110"><a href="#cb65-110" aria-hidden="true" tabindex="-1"></a>            cat_counts, x=cat_col, y="Count",</span>
+<span id="cb65-111"><a href="#cb65-111" aria-hidden="true" tabindex="-1"></a>            title=f"Counts of {cat_col}"</span>
+<span id="cb65-112"><a href="#cb65-112" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb65-113"><a href="#cb65-113" aria-hidden="true" tabindex="-1"></a>        st.plotly_chart(fig, use_container_width=True)</span>
+<span id="cb65-114"><a href="#cb65-114" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Streamlit’s appeal lies in its simplicity. Instead of defining callbacks between inputs and outputs (as in Dash and Shiny), the entire script runs from top to bottom when any input changes. This makes it exceptionally easy to prototype applications quickly.</p>
 <p>The Streamlit approach is radically different from both Shiny and Dash. Rather than defining a layout and then wiring up callbacks or reactive expressions, you write a straightforward Python script that builds the UI from top to bottom. When any input changes, Streamlit simply reruns your script. This procedural approach is very intuitive for beginners and allows for rapid prototyping, though it can become less efficient for complex applications.</p>
 </section>
