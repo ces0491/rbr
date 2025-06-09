@@ -4,7 +4,7 @@ title: "Cloud Computing for Data Science"
 
 ## Cloud Platforms for Data Science
 
-As your projects grow in size and complexity, you may need more computing power than your local machine can provide. Cloud platforms offer scalable resources and specialized tools for data science.
+As your projects grow in size and complexity, you may need more computing power than your local machine can provide. You may require secure, centralized storage solutions that scale seamlessly. Cloud platforms offer scalable resources and specialized tools for data science.
 
 ### Why Use Cloud Platforms?
 

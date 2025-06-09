@@ -238,3 +238,6 @@ The field evolves rapidly, so it's important to stay updated:
    - Coursera, edX, Udacity
    - YouTube tutorials
    - Official documentation and tutorials
+   
+5. **Consider becoming a Data Carpentries instructor**
+   - https://carpentries.github.io/instructor-training/

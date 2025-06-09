@@ -3,9 +3,9 @@ project:
   output-dir: output
 
 execute:
-  freeze: auto    # Prevents re-execution of code chunks
-  echo: true      # Shows code chunks in output
-  eval: true     # Evaluation of code chunks
+  freeze: auto    # Prevent re-execution of code chunks
+  echo: true      # Show code chunks in output
+  eval: true      # Evaluate code chunks
   warning: false  # Don't show warnings
   timeout: 300    # Increase timeout to 300 seconds
   
@@ -25,11 +25,10 @@ book:
     - chapters/workflows.qmd
     - chapters/summary.qmd
     - chapters/utility_tools.qmd
-    - chapters/ai.qmd
     - chapters/references.qmd
     - chapters/appendix_troubleshooting.qmd
-  cover-image: assets/cover.png
-  favicon: assets/cover.png
+  cover-image: assets/cover_no_auth.png
+  favicon: assets/cover_no_auth.png
   repo-url: "https://github.com/ces0491/rbr"
   search: true
   downloads: [pdf, epub]
@@ -40,14 +39,14 @@ format:
     toc: true
     toc-depth: 3
     toc-location: right
-    embed-resources: false # reference external resources rather than embedding them
+    embed-resources: false
     self-contained: false
     link-external-icon: false
     link-external-newwindow: true
     code-fold: true
     code-summary: "Show code"
     mermaid:
-      engine: mermaid # Uses JavaScript rendering instead of pre-rendering
+      engine: mermaid
     
   pdf:
     documentclass: scrbook

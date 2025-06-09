@@ -1253,6 +1253,7 @@ This diagram shows a typical e-commerce database schema with relationships betwe
 
 You can customize the appearance of your diagrams:
 
+::: {.content-visible when-format="html"}
 ```{mermaid}
 flowchart LR
     A[Data Collection] --> B[Data Cleaning]
@@ -1262,6 +1263,7 @@ flowchart LR
     style B fill:#bbf,stroke:#33f,stroke-width:2px
     style C fill:#bfb,stroke:#3f3,stroke-width:2px
 ```
+:::
 
 This diagram uses custom colors and border styles for each node to highlight different stages of the process.
 
@@ -1535,16 +1537,10 @@ Unlike Shiny's reactive programming model, Dash uses a callback-based approach. 
 
 #### Streamlit: Rapid Application Development
 
-Streamlit simplifies interactive app creation even further with a minimal, straightforward API:
-
-```{python}
-#| eval: false
-# Install Streamlit
-pip install streamlit
-```
-
+Streamlit simplifies interactive app creation even further with a minimal, straightforward API.
 Here's a simple Streamlit app:
 
+````{verbatim}
 ```{python}
 #| eval: false
 import streamlit as st
@@ -1659,6 +1655,7 @@ with tab3:
         )
         st.plotly_chart(fig, use_container_width=True)
 ```
+````
 
 Streamlit's appeal lies in its simplicity. Instead of defining callbacks between inputs and outputs (as in Dash and Shiny), the entire script runs from top to bottom when any input changes. This makes it exceptionally easy to prototype applications quickly.
 

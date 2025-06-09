@@ -20,7 +20,7 @@ Notepad++ is a free, open-source text editor for Windows that's more powerful th
 2. **Column editing**: Edit multiple lines simultaneously (useful for cleaning data)
 3. **Regex search and replace**: Powerful pattern matching for text manipulation
 4. **Macro recording**: Automate repetitive text edits
-5. **Plugins**: Extend functionality with additional tools
+5. **Plugins**: Extend functionality with additional tools that facilitate more expeditious exploration and development such as JSON, HTML and markdown viewers.
 
 **Installation:**
 1. Download from [notepad-plus-plus.org](https://notepad-plus-plus.org/downloads/)
@@ -245,24 +245,6 @@ plugins=(git python pip conda docker jupyter)
 ```
 
 Oh My Zsh makes the command line more user-friendly and efficient, which is valuable when working with data processing tools, running scripts, or managing environments.
-
-#### Windows Terminal
-
-Windows Terminal is a modern terminal application for Windows that improves the command line experience.
-
-**Key features:**
-
-1. **Multiple tabs**: Run different shells in tabs
-2. **Split panes**: View multiple terminals side by side
-3. **GPU acceleration**: Smooth rendering and performance
-4. **Customizable**: Themes, fonts, and keybindings
-5. **Unicode support**: Properly display special characters
-
-**Installation:**
-1. Install from the [Microsoft Store](https://aka.ms/terminal)
-2. Alternatively, download from [GitHub](https://github.com/microsoft/terminal/releases)
-
-Windows Terminal significantly enhances the command line experience on Windows, especially for data scientists who frequently use command line tools for data processing, environment management, or running scripts.
 
 ### Data Wrangling Tools
 
@@ -564,6 +546,6 @@ While the core programming languages and frameworks form the foundation of data 
 
 Start by incorporating a few tools that address your immediate needs—perhaps a better text editor, an API testing tool, or a database management interface. Over time, expand your toolkit as you encounter new challenges. Remember that the goal is not to use every tool available, but to find the combination that helps you work most effectively.
 
-Many of these tools have free versions or trials, so you can experiment without financial commitment. Pay attention to which tools save you time or reduce friction in your workflow, and invest in learning those more deeply.
+Many of these tools have free versions or trials, so you can experiment without financial commitment. You'll soon discover your favourites and find which tools save you time or reduce friction in your workflow.
 
 By thoughtfully building your utility toolkit alongside your core data science skills, you'll be better equipped to handle the varied challenges of real-world data science projects.

@@ -4,7 +4,7 @@ title: "Web Development for Data Scientists"
 
 ## Web Development Fundamentals for Data Scientists
 
-As a data scientist, you'll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products.
+As a data scientist, you'll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. The deployment tools discussed earlier (such as Shiny or Quarto) are largely wrappers to lower level code for web technologies like HTML and CSS. These tools handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? This becomes possible with a basic understanding of web development.
 
 ### Why Web Development for Data Scientists?
 
@@ -14,7 +14,7 @@ Web development skills are increasingly important for data scientists because:
 2. **Interactive Visualizations**: Web technologies enable rich, interactive data exploration
 3. **Model Deployment**: Web APIs allow your models to be integrated into larger systems
 4. **Data Collection**: Web applications can facilitate data gathering and annotation
-5. **Career Advancement**: Full-stack data scientists who can deploy their own solutions are in high demand
+5. **Professional Completeness**: Being able to deploy your analysis closes the loop in being able to deliver a complete end-to-end solution.
 
 According to a 2023 Kaggle survey, over 60% of data scientists report that web development skills have been valuable in their careers, with the percentage increasing for more senior roles [^12].
 
@@ -161,7 +161,7 @@ const salesChart = new Chart(ctx, {
 
 4. Open `index.html` in a web browser
 
-This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualization library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart.
+This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualization library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart. I would stress that, as a data scientist, you do not need to be able to write the above web page from scratch. Rather, become familiar with the structure and language. That way, when you're presented with raw output, you can find the things that are useful for you and be able to make changes effectively.
 
 ### Web Frameworks for Data Scientists
 
