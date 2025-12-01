@@ -59,7 +59,7 @@ cookiecutter https://github.com/drivendata/cookiecutter-data-science
 
 ### Data Version Control
 
-While Git works well for code, it's not designed for large data files. Data Version Control (DVC) extends Git to handle data:
+While Git works well for code (as we covered in the introductory chapter), it's not designed for large data files. Data Version Control (DVC) extends Git to handle data:
 
 ```bash
 # Install DVC
@@ -96,25 +96,25 @@ Make is a build tool that can automate repetitive tasks in your data science wor
 
 # Download raw data
 data:
-	python src/data/download_data.py
+ python src/data/download_data.py
 
 # Process data and create features
 features: data
-	python src/features/build_features.py
+ python src/features/build_features.py
 
 # Train model
 model: features
-	python src/models/train_model.py
+ python src/models/train_model.py
 
 # Generate report
 report: model
-	jupyter nbconvert --execute notebooks/final_report.ipynb --to html
+ jupyter nbconvert --execute notebooks/final_report.ipynb --to html
 
 # Clean generated files
 clean:
-	rm -rf data/processed/*
-	rm -rf models/*
-	rm -rf reports/*
+ rm -rf data/processed/*
+ rm -rf models/*
+ rm -rf reports/*
 ```
 
 2. Run tasks with simple commands:
@@ -238,6 +238,6 @@ The field evolves rapidly, so it's important to stay updated:
    - Coursera, edX, Udacity
    - YouTube tutorials
    - Official documentation and tutorials
-   
+
 5. **Consider becoming a Data Carpentries instructor**
-   - https://carpentries.github.io/instructor-training/
+   - <https://carpentries.github.io/instructor-training/>

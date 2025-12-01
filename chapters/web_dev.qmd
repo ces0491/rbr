@@ -4,7 +4,7 @@ title: "Web Development for Data Scientists"
 
 ## Web Development Fundamentals for Data Scientists
 
-As a data scientist, you'll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. The deployment tools discussed earlier (such as Shiny or Quarto) are largely wrappers to lower level code for web technologies like HTML and CSS. These tools handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? This becomes possible with a basic understanding of web development.
+As a data scientist, you'll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. The deployment tools discussed earlier (such as Shiny or Quarto) are largely wrappers for lower-level web technologies like HTML and CSS. These tools handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? This becomes possible with a basic understanding of web development.
 
 ### Why Web Development for Data Scientists?
 
@@ -16,7 +16,7 @@ Web development skills are increasingly important for data scientists because:
 4. **Data Collection**: Web applications can facilitate data gathering and annotation
 5. **Professional Completeness**: Being able to deploy your analysis closes the loop in being able to deliver a complete end-to-end solution.
 
-According to a 2023 Kaggle survey, over 60% of data scientists report that web development skills have been valuable in their careers, with the percentage increasing for more senior roles [^12].
+Web development skills become increasingly valuable as you advance in your data science career, particularly when you need to deliver complete end-to-end solutions.
 
 ### HTML, CSS, and JavaScript Basics
 
@@ -280,6 +280,7 @@ Once you've built your application, you'll need to deploy it for others to acces
 #### Deployment Options for Flask
 
 1. **Heroku**: Platform as a Service with a free tier
+
    ```bash
    # Install the Heroku CLI
    # Create a requirements.txt file
@@ -306,6 +307,7 @@ Once you've built your application, you'll need to deploy it for others to acces
 #### Deployment Options for Shiny
 
 1. **shinyapps.io**: RStudio's hosting service
+
    ```r
    # Install the rsconnect package
    install.packages("rsconnect")
@@ -326,3 +328,11 @@ These deployment options range from simple services designed specifically for da
 - Budget constraints
 - Integration with other systems
 - Need for custom domains or SSL
+
+## Conclusion
+
+Web development skills complement your data science toolkit by enabling you to share your work more effectively. While you don't need to become a full-stack developer, understanding the basics of HTML, CSS, and JavaScript helps you customize reports, debug rendering issues, and create more polished data products.
+
+The frameworks we've covered—Flask for Python and Shiny for R—abstract away much of the complexity, allowing you to focus on your analysis rather than web infrastructure. As you grow more comfortable with these tools, you'll find that the ability to deploy interactive applications significantly increases the impact of your data science work.
+
+In the next chapter, we'll explore deployment in more depth, covering various platforms and strategies for making your applications accessible to stakeholders.

@@ -77,10 +77,12 @@ Setting up a data science environment can sometimes be challenging, especially w
 1. **Update RStudio** to the latest version
 2. **Reset user preferences**: Go to Tools → Global Options → Reset
 3. **For PDF rendering issues**: Install LaTeX (TinyTeX is recommended):
+
    ```r
    install.packages('tinytex')
    tinytex::install_tinytex()
    ```
+
 4. **For plot display issues**: Try a different graphics device or check your graphics drivers
 
 **Why this happens**: RStudio relies on several external components for rendering that may conflict with system settings or require additional software.
@@ -122,6 +124,7 @@ Setting up a data science environment can sometimes be challenging, especially w
 5. **Complete the merge**: `git commit`
 
 **Visual merge tools can help**:
+
 - VS Code has built-in merge conflict resolution
 - Use `git mergetool` with tools like KDiff3, Meld, or P4Merge
 
@@ -195,6 +198,7 @@ Setting up a data science environment can sometimes be challenging, especially w
 **Solution**:
 
 1. **Use the `renv` package** for project-specific package management:
+
    ```r
    install.packages("renv")
    renv::init()      # Initialize for a project
@@ -203,6 +207,7 @@ Setting up a data science environment can sometimes be challenging, especially w
    ```
 
 2. **Install specific versions when needed**:
+
    ```r
    remotes::install_version("ggplot2", version = "3.3.3")
    ```

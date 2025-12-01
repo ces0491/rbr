@@ -4,7 +4,7 @@ title: "Containerization"
 
 ## Containerization with Docker
 
-As your data science projects grow more complex, you may encounter the "it works on my machine" problem—where code runs differently in different environments. Containerization solves this by packaging your code and its dependencies into a standardized unit called a container.
+As your data science projects grow more complex, you may encounter the "it works on my machine" problem—where code runs differently in different environments. Containerization solves this by packaging your code and its dependencies into a standardized unit called a container. Building on the environment management concepts we covered in the introductory chapter (conda environments for Python, renv for R), containers take isolation to the next level by packaging the entire runtime environment.
 
 ### Why Containerization for Data Science?
 
@@ -18,24 +18,24 @@ Containerization offers several advantages for data science:
 
 Think of containers as lightweight, portable virtual machines that package everything your code needs to run. Unlike virtual machines, containers share the host operating system's kernel, making them more efficient.
 
-A 2021 survey by the Cloud Native Computing Foundation found that over 84% of organizations are using containers in production, highlighting their importance in modern software development and data science [^11].
+Containers have become widely adopted in production environments across the software industry, and their importance continues to grow in data science workflows.
 
 ### Installing Docker
 
 Docker is the most popular containerization platform. Let's install it:
 
-#### On Windows:
+#### On Windows
 
 1. Download [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop)
 2. Run the installer and follow the prompts
 3. Windows 10 Home users should ensure WSL 2 is installed first
 
-#### On macOS:
+#### On macOS
 
 1. Download [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop)
 2. Run the installer and follow the prompts
 
-#### On Linux:
+#### On Linux
 
 ```bash
 # For Ubuntu/Debian
@@ -136,6 +136,7 @@ docker run -p 8888:8888 -v $(pwd):/app data-science-env
 ```
 
 This command does two important things:
+
 - Maps port 8888 in the container to port 8888 on your host machine, allowing you to access Jupyter Lab in your browser
 - Mounts your current directory to `/app` in the container, so changes to files are saved on your computer
 
@@ -151,6 +152,7 @@ Let's break down the Dockerfile we just created:
 # Use a base image with Python installed
 FROM python:3.9-slim
 ```
+
 The `FROM` statement specifies the base image to use. We're starting with a lightweight Python 3.9 image.
 
 ```dockerfile
@@ -159,36 +161,42 @@ RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 ```
+
 The `RUN` statement executes commands during the build process. Here, we're updating the package list and installing gcc, which is required for building some Python packages.
 
 ```dockerfile
 # Set working directory
 WORKDIR /app
 ```
+
 The `WORKDIR` statement sets the working directory within the container.
 
 ```dockerfile
 # Copy requirements file
 COPY requirements.txt .
 ```
+
 The `COPY` statement copies files from the host to the container. We copy the requirements file separately to take advantage of Docker's caching mechanism.
 
 ```dockerfile
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 ```
+
 Another `RUN` statement to install the Python dependencies listed in requirements.txt.
 
 ```dockerfile
 # Copy the rest of the code
 COPY . .
 ```
+
 Copy all files from the current directory on the host to the working directory in the container.
 
 ```dockerfile
 # Command to run when the container starts
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
 ```
+
 The `CMD` statement specifies the command to run when the container starts. In this case, we're starting Jupyter Lab.
 
 ### Using Pre-built Data Science Images
@@ -220,7 +228,7 @@ For R users, there are RStudio Server images:
 docker run -p 8787:8787 -e PASSWORD=yourpassword rocker/rstudio
 ```
 
-Access RStudio at http://localhost:8787 with username "rstudio" and your chosen password.
+Access RStudio at <http://localhost:8787> with username "rstudio" and your chosen password.
 
 ### Docker Compose for Multiple Containers
 
@@ -263,7 +271,7 @@ services:
 docker-compose up
 ```
 
-3. Access Jupyter at http://localhost:8888 and RStudio at http://localhost:8787
+3. Access Jupyter at <http://localhost:8888> and RStudio at <http://localhost:8787>
 
 Docker Compose creates a separate container for each service in your configuration while allowing them to communicate with each other. This approach makes it easy to run complex data science environments with multiple tools.
 
@@ -337,11 +345,13 @@ This creates a containerized API service for your machine learning model that ca
 To get the most out of Docker for data science, follow these best practices:
 
 1. **Keep images lean**: Use slim or alpine base images when possible
+
    ```dockerfile
    FROM python:3.9-slim  # Better than the full python:3.9 image
    ```
 
 2. **Use multi-stage builds for production**: Separate building dependencies from runtime
+
    ```dockerfile
    # Build stage
    FROM python:3.9 AS builder
@@ -358,6 +368,7 @@ To get the most out of Docker for data science, follow these best practices:
    ```
 
 3. **Layer your Dockerfile logically**: Order commands from least to most likely to change
+
    ```dockerfile
    # System dependencies change rarely
    RUN apt-get update && apt-get install -y gcc
@@ -371,16 +382,19 @@ To get the most out of Docker for data science, follow these best practices:
    ```
 
 4. **Use volume mounts for data**: Keep data outside the container
+
    ```bash
    docker run -v /path/to/local/data:/app/data my-data-science-image
    ```
 
 5. **Implement proper versioning**: Tag images meaningfully
+
    ```bash
    docker build -t mymodel:1.0.0 .
    ```
 
 6. **Create a .dockerignore file**: Exclude unnecessary files
+
    ```
    # .dockerignore
    .git
@@ -391,6 +405,7 @@ To get the most out of Docker for data science, follow these best practices:
    ```
 
 7. **Use environment variables for configuration**:
+
    ```dockerfile
    ENV MODEL_PATH=/app/models/model.pkl
    ```

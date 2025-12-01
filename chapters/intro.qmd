@@ -10,43 +10,43 @@ This guide focuses on getting you set up with the tools you need to practice dat
 
 By the end of this guide, you'll have:
 
--   A fully configured development environment for Python, R, and SQL
--   Experience with version control through Git and GitHub
--   The ability to create interactive reports and visualizations
--   Knowledge of how to deploy your work for others to see and use
--   A foundation in the command line and other developer tools
+- A fully configured development environment for Python, R, and SQL
+- Experience with version control through Git and GitHub
+- The ability to create interactive reports and visualizations
+- Knowledge of how to deploy your work for others to see and use
+- A foundation in the command line and other developer tools
 
-While this guide is written to provide a natural progression from fundamental concepts to more involved material that builds on prior knowledge; each chapter is designed to be a standalone reference - you don't need to read `Understanding the Command Line` if all you need is help with app deployment.
+While this guide is written to provide a natural progression from fundamental concepts to more involved material that builds on prior knowledge, each chapter is designed to be a standalone reference—you don't need to read "Understanding the Command Line" if all you need is help with app deployment.
 
-The resources presented in this guide are largely freely available up to some tier (except for some of the Cloud platforms which are free to setup but incur usage costs), so you can get started without needing to make decisions based on costs.
+The resources presented in this guide are largely freely available up to some tier (except for some of the cloud platforms, which are free to set up but incur usage costs), so you can get started without needing to make decisions based on costs.
 
 ## Understanding the Command Line
 
-Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface. Further, when we later discuss Integrated Development Environments (IDEs) such as Visual Studio Code, R Studio and many others, you'll find that they provide dedicated functionality to allow you to interact directly with the command line, so understanding its purpose is globally useful across workflows.
+Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface. Further, when we later discuss Integrated Development Environments (IDEs) such as Visual Studio Code, RStudio, and many others, you'll find that they provide dedicated functionality to allow you to interact directly with the command line, so understanding its purpose is globally useful across workflows.
 
 ### What is the Command Line?
 
 The command line (also called terminal, shell, or console) is a text-based interface where you type commands for the computer to execute. While graphical user interfaces (GUIs) let you point and click, the command line gives you more precise control through text commands.
 
-Why use the command line when we have modern GUIs?:
+Why use the command line when we have modern GUIs?
 
-1.  **Many data science tools are designed to be used this way**: A Stack Overflow Developer Survey indicates that about 70% of data scientists and developers regularly use command-line tools in their workflow [^1]. Tools like Git, Docker, and many Python and R package management utilities primarily use command-line interfaces.
+1. **Many data science tools are designed to be used this way**: Tools like Git, Docker, and many Python and R package management utilities primarily use command-line interfaces.
 
-2.  **It allows for reproducibility through scripts**: Command-line operations can be saved in script files and run again later, ensuring that the exact same steps are followed each time. This reproducibility is essential for reliable data analysis.
+2. **It allows for reproducibility through scripts**: Command-line operations can be saved in script files and run again later, ensuring that the exact same steps are followed each time. This reproducibility is essential for reliable data analysis.
 
-3.  **It often provides more flexibility and power**: Command-line tools typically offer more options and configurations than their graphical counterparts. For example, when installing Python packages, the command-line tool `pip` offers dozens of options to handle dependencies, versions, and installation locations that aren't available in most graphical installers.
+3. **It often provides more flexibility and power**: Command-line tools typically offer more options and configurations than their graphical counterparts. For example, when installing Python packages, the command-line tool `pip` offers dozens of options to handle dependencies, versions, and installation locations that aren't available in most graphical installers.
 
-4.  **It's faster for many operations once you learn the commands**: After becoming familiar with the commands, many operations can be performed more quickly than navigating through multiple screens in a GUI. For instance, you can install multiple Python packages with a single command line rather than clicking through installation wizards for each one.
+4. **It's faster for many operations once you learn the commands**: After becoming familiar with the commands, many operations can be performed more quickly than navigating through multiple screens in a GUI. For instance, you can install multiple Python packages with a single command line rather than clicking through installation wizards for each one.
 
 ### Getting Started with the Command Line
 
-#### On Windows:
+#### On Windows
 
 Windows offers several options for command line interfaces:
 
-1.  **Command Prompt**: Built into Windows, but limited in functionality
-2.  **PowerShell**: A more powerful alternative built into Windows
-3.  **Windows Subsystem for Linux (WSL)**: Provides a Linux environment within Windows (recommended)
+1. **Command Prompt**: Built into Windows, but limited in functionality
+2. **PowerShell**: A more powerful alternative built into Windows
+3. **Windows Subsystem for Linux (WSL)**: Provides a Linux environment within Windows (recommended)
 
 To install WSL, open PowerShell as administrator and run:
 
@@ -56,14 +56,14 @@ wsl --install
 
 This installs Ubuntu Linux by default. After installation, restart your computer and follow the setup prompts.
 
-#### On macOS:
+#### On macOS
 
 The Terminal application comes pre-installed:
 
-1.  Press Cmd+Space to open Spotlight search
-2.  Type "Terminal" and press Enter
+1. Press Cmd+Space to open Spotlight search
+2. Type "Terminal" and press Enter
 
-#### On Linux:
+#### On Linux
 
 Most Linux distributions come with a terminal emulator. Look for "Terminal" in your applications menu.
 
@@ -121,9 +121,9 @@ Think of these commands as ways to create and look at the contents of notes or d
 
 Most command line environments include package managers, which help install and update software. Think of package managers as app stores for your command line. Common ones include:
 
--   **apt** (Ubuntu/Debian Linux)
--   **brew** (macOS)
--   **winget** (Windows)
+- **apt** (Ubuntu/Debian Linux)
+- **brew** (macOS)
+- **winget** (Windows)
 
 For example, on Ubuntu you might install Python using:
 
@@ -154,12 +154,12 @@ Python has become a cornerstone language in data science due to its readability,
 
 Python offers several advantages for data science:
 
-1.  Rich ecosystem of specialized libraries (NumPy, pandas, scikit-learn, etc.)
-2.  Readable syntax that makes complex analyses more accessible
-3.  Strong community support and documentation
-4.  Integration with various data sources and visualization tools
+1. Rich ecosystem of specialized libraries (NumPy, pandas, scikit-learn, etc.)
+2. Readable syntax that makes complex analyses more accessible
+3. Strong community support and documentation
+4. Integration with various data sources and visualization tools
 
-Surveys consistently indicate Python ranking among the top programming languages, and a recent Kaggle Machine Learning & Data Science Survey found that 87% of data scientists use Python in their work [^2].
+Python consistently ranks among the top programming languages for data science and is widely used across the industry.
 
 ### Installing Python
 
@@ -167,9 +167,9 @@ We'll install Python using a distribution called Anaconda, which includes Python
 
 #### Installing Anaconda
 
-1.  Visit the [Anaconda download page](https://www.anaconda.com/products/distribution)
-2.  Download the appropriate installer for your operating system
-3.  Run the installer and follow the prompts
+1. Visit the [Anaconda download page](https://www.anaconda.com/products/distribution)
+2. Download the appropriate installer for your operating system
+3. Run the installer and follow the prompts
 
 During installation on Windows, you may be asked whether to add Anaconda to your PATH environment variable. While checking this box can make commands available from any terminal, it might interfere with other Python installations. The safer choice is to leave it unchecked and use the Anaconda Prompt specifically.
 
@@ -220,8 +220,8 @@ jupyter notebook
 
 This opens a web browser where you can create and work with notebooks. Let's create a simple notebook to verify everything works:
 
-1.  Click "New" → "Python 3"
-2.  In the first cell, type:
+1. Click "New" → "Python 3"
+2. In the first cell, type:
 
 ```{python}
 #| eval: false
@@ -247,7 +247,7 @@ plt.show()
 print("Python environment is working correctly!")
 ```
 
-3.  Press Shift+Enter to run the cell
+3. Press Shift+Enter to run the cell
 
 If you see a plot and the success message, your Python setup is complete!
 
@@ -273,12 +273,12 @@ R is a powerful language and environment specifically designed for statistical c
 
 R offers several advantages:
 
-1.  Built specifically for statistical analysis
-2.  Excellent for data visualization with ggplot2
-3.  A rich ecosystem of packages for specialized statistical methods
-4.  Strong in reproducible research through R Markdown
+1. Built specifically for statistical analysis
+2. Excellent for data visualization with ggplot2
+3. A rich ecosystem of packages for specialized statistical methods
+4. Strong in reproducible research through R Markdown
 
-R has over 19,000 packages available for various statistical and data analysis tasks and is used by a significant percentage of data scientists worldwide [^3].
+R has thousands of packages available on CRAN for various statistical and data analysis tasks, with active development from the statistics and research communities.
 
 ### Installing R
 
@@ -286,17 +286,17 @@ Let's install both R itself and RStudio, a popular integrated development enviro
 
 #### Installing Base R
 
-1.  Visit the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/)
-2.  Click on the link for your operating system
-3.  Follow the installation instructions
+1. Visit the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/)
+2. Click on the link for your operating system
+3. Follow the installation instructions
 
 #### Installing RStudio Desktop
 
 RStudio provides a user-friendly interface for working with R.
 
-1.  Visit the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
-2.  Download the free RStudio Desktop version for your operating system
-3.  Run the installer and follow the prompts
+1. Visit the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
+2. Download the free RStudio Desktop version for your operating system
+3. Run the installer and follow the prompts
 
 Think of R as the engine and RStudio as the dashboard that makes it easier to control that engine. You could use R without RStudio, but RStudio makes many tasks more convenient.
 
@@ -327,11 +327,11 @@ install.packages(c("tidyverse", "rmarkdown", "shiny", "knitr", "plotly"))
 
 This installs:
 
--   **tidyverse**: A collection of packages for data manipulation and visualization
--   **rmarkdown**: For creating documents that mix code and text
--   **shiny**: For building interactive web applications
--   **knitr**: For dynamic report generation
--   **plotly**: For interactive visualizations
+- **tidyverse**: A collection of packages for data manipulation and visualization
+- **rmarkdown**: For creating documents that mix code and text
+- **shiny**: For building interactive web applications
+- **knitr**: For dynamic report generation
+- **plotly**: For interactive visualizations
 
 These packages are like specialized toolkits that expand what you can do with R. The tidyverse, for example, makes data manipulation much more intuitive than it would be using just base R.
 
@@ -339,8 +339,8 @@ These packages are like specialized toolkits that expand what you can do with R.
 
 Let's verify our setup with a simple R script:
 
-1.  In RStudio, go to File → New File → R Script
-2.  Enter the following code:
+1. In RStudio, go to File → New File → R Script
+2. Enter the following code:
 
 ```{r}
 #| eval: false
@@ -365,7 +365,7 @@ ggplot(data, aes(x = x, y = y)) +
 print("R environment is working correctly!")
 ```
 
-3.  Click the "Run" button or press Ctrl+Enter (Cmd+Enter on Mac) to execute the code
+3. Click the "Run" button or press Ctrl+Enter (Cmd+Enter on Mac) to execute the code
 
 If you see a plot in the lower-right pane and the success message in the console, your R setup is complete!
 
@@ -391,12 +391,12 @@ SQL (Structured Query Language) is essential for data scientists to interact wit
 
 SQL is crucial for data science because:
 
-1.  Most organizational data resides in databases
-2.  It provides a standard way to query and manipulate data
-3.  It's often more efficient than Python or R for large data operations
-4.  Data transformation often happens in databases before analysis
+1. Most organizational data resides in databases
+2. It provides a standard way to query and manipulate data
+3. It's often more efficient than Python or R for large data operations
+4. Data transformation often happens in databases before analysis
 
-SQL ranks as one of the most important skills for data scientists, and job listings for data scientists typically require SQL proficiency [^4].
+SQL is one of the most important skills for data scientists, as most organizational data resides in relational databases.
 
 ### Installing SQLite
 
@@ -404,13 +404,13 @@ SQLite is a lightweight, file-based database that requires no server setup, maki
 
 Think of SQLite as a simple filing cabinet for your data that you can easily carry around, unlike larger database systems that require dedicated servers.
 
-#### On Windows:
+#### On Windows
 
-1.  Download the SQLite command-line tools from the [SQLite download page](https://www.sqlite.org/download.html)
-2.  Extract the files to a folder (e.g., C:\\sqlite)
-3.  Add this folder to your PATH environment variable
+1. Download the SQLite command-line tools from the [SQLite download page](https://www.sqlite.org/download.html)
+2. Extract the files to a folder (e.g., C:\\sqlite)
+3. Add this folder to your PATH environment variable
 
-#### On macOS:
+#### On macOS
 
 SQLite comes pre-installed, but you can install a newer version with Homebrew:
 
@@ -419,7 +419,7 @@ SQLite comes pre-installed, but you can install a newer version with Homebrew:
 brew install sqlite
 ```
 
-#### On Linux:
+#### On Linux
 
 ```bash
 sudo apt update
@@ -474,10 +474,10 @@ While the command line is powerful, graphical interfaces can make working with d
 
 This free, open-source tool provides a user-friendly interface for SQLite databases.
 
-1.  Visit the [DB Browser for SQLite download page](https://sqlitebrowser.org/dl/)
-2.  Download the appropriate version for your operating system
-3.  Install and open it
-4.  Open the sample.db file you created earlier
+1. Visit the [DB Browser for SQLite download page](https://sqlitebrowser.org/dl/)
+2. Download the appropriate version for your operating system
+3. Install and open it
+4. Open the sample.db file you created earlier
 
 DB Browser for SQLite acts like a spreadsheet program for your database, making it easier to view and edit data without typing SQL commands.
 
@@ -485,7 +485,7 @@ DB Browser for SQLite acts like a spreadsheet program for your database, making 
 
 You can also interact with SQLite databases from Python and R:
 
-##### Python:
+##### Python
 
 ```{python}
 #| eval: false
@@ -505,7 +505,7 @@ print(df)
 conn.close()
 ```
 
-##### R:
+##### R
 
 ```{r}
 #| eval: false
@@ -535,12 +535,12 @@ An Integrated Development Environment (IDE) combines the tools needed for softwa
 
 IDEs help data scientists by:
 
-1.  Providing syntax highlighting and code completion
-2.  Catching errors before execution
-3.  Offering integrated documentation
-4.  Simplifying project organization and version control
+1. Providing syntax highlighting and code completion
+2. Catching errors before execution
+3. Offering integrated documentation
+4. Simplifying project organization and version control
 
-Over 80% of professional Python developers use a specialized IDE rather than a basic text editor [^5]. Using an IDE can increase productivity by 25-50% compared to basic text editors.
+Most professional developers use a specialized IDE rather than a basic text editor, as the additional features significantly improve productivity.
 
 Think of an IDE as a fully equipped workshop rather than just having a single tool. It has everything arranged conveniently in one place.
 
@@ -552,29 +552,29 @@ Visual Studio Code (VS Code) is a free, open-source editor that supports multipl
 
 #### Installing VS Code
 
-1.  Visit the [VS Code download page](https://code.visualstudio.com/download)
-2.  Download the appropriate version for your operating system
-3.  Run the installer and follow the prompts
+1. Visit the [VS Code download page](https://code.visualstudio.com/download)
+2. Download the appropriate version for your operating system
+3. Run the installer and follow the prompts
 
 #### Essential VS Code Extensions for Data Science
 
 After installing VS Code, add these extensions by clicking on the Extensions icon in the sidebar (or pressing Ctrl+Shift+X):
 
--   **Python** by Microsoft: Python language support
--   **Jupyter**: Support for Jupyter notebooks
--   **Rainbow CSV**: Makes CSV files easier to read
--   **SQLite**: SQLite database support
--   **R**: R language support (if you plan to use R in VS Code)
--   **GitLens**: Enhanced Git capabilities
+- **Python** by Microsoft: Python language support
+- **Jupyter**: Support for Jupyter notebooks
+- **Rainbow CSV**: Makes CSV files easier to read
+- **SQLite**: SQLite database support
+- **R**: R language support (if you plan to use R in VS Code)
+- **GitLens**: Enhanced Git capabilities
 
 Extensions in VS Code are like add-ons or plugins that enhance its functionality for specific tasks or languages, similar to how you might install apps on your phone to give it new capabilities.
 
 #### Configuring VS Code for Python
 
-1.  Open VS Code
-2.  Press Ctrl+Shift+P (Cmd+Shift+P on Mac) to open the command palette
-3.  Type "Python: Select Interpreter" and select it
-4.  Choose your conda environment (e.g., datasci)
+1. Open VS Code
+2. Press Ctrl+Shift+P (Cmd+Shift+P on Mac) to open the command palette
+3. Type "Python: Select Interpreter" and select it
+4. Choose your conda environment (e.g., datasci)
 
 This step tells VS Code which Python installation to use when running your code. It's like telling a multilingual person which language to speak when communicating with you.
 
@@ -584,23 +584,23 @@ PyCharm is an IDE specifically designed for Python development, with excellent d
 
 #### Installing PyCharm Community Edition
 
-1.  Visit the [PyCharm download page](https://www.jetbrains.com/pycharm/download/)
-2.  Download the free Community Edition
-3.  Run the installer and follow the prompts
+1. Visit the [PyCharm download page](https://www.jetbrains.com/pycharm/download/)
+2. Download the free Community Edition
+3. Run the installer and follow the prompts
 
 #### Configuring PyCharm for Your Conda Environment
 
-1.  Open PyCharm
-2.  Create a new project
-3.  Click on "Previously configured interpreter"
-4.  Click on the gear icon and select "Add..."
-5.  Choose "Conda Environment" → "Existing environment"
-6.  Browse to your conda environment's Python executable
-    -   On Windows: Usually in `C:\Users\<username>\anaconda3\envs\datasci\python.exe`
-    -   On macOS/Linux: Usually in `/home/<username>/anaconda3/envs/datasci/bin/python`
+1. Open PyCharm
+2. Create a new project
+3. Click on "Previously configured interpreter"
+4. Click on the gear icon and select "Add..."
+5. Choose "Conda Environment" → "Existing environment"
+6. Browse to your conda environment's Python executable
+    - On Windows: Usually in `C:\Users\<username>\anaconda3\envs\datasci\python.exe`
+    - On macOS/Linux: Usually in `/home/<username>/anaconda3/envs/datasci/bin/python`
 
 :::{.callout-note}
-Note: In file paths, forward slashes (/) are primarily used in Unix-like systems like Linux and macOS, while backslashes (\`) are commonly used in Windows.
+Note: In file paths, forward slashes (/) are primarily used in Unix-like systems like Linux and macOS, while backslashes (\\) are commonly used in Windows.
 :::
 
 ### Working with Jupyter Notebooks
@@ -626,16 +626,16 @@ JupyterLab provides a more IDE-like experience than classic Jupyter notebooks, w
 
 Each IDE has strengths and weaknesses:
 
--   **VS Code**: Versatile, lightweight, supports multiple languages
--   **PyCharm**: Robust Python-specific features, excellent for large projects
--   **RStudio**: Optimized for R development
--   **JupyterLab**: Excellent for exploratory data analysis and sharing results
+- **VS Code**: Versatile, lightweight, supports multiple languages
+- **PyCharm**: Robust Python-specific features, excellent for large projects
+- **RStudio**: Optimized for R development
+- **JupyterLab**: Excellent for exploratory data analysis and sharing results
 
 Many data scientists use multiple IDEs depending on the task. For example, you might use:
 
--   JupyterLab for exploration and visualization
--   VS Code for script development and Git integration
--   RStudio for statistical analysis and report generation
+- JupyterLab for exploration and visualization
+- VS Code for script development and Git integration
+- RStudio for statistical analysis and report generation
 
 Choose the tools that best fit your workflow and preferences. It's perfectly fine to start with one and add others as you grow more comfortable.
 
@@ -647,24 +647,24 @@ Version control is a system that records changes to files over time, allowing yo
 
 Version control is essential for data science because it:
 
-1.  Tracks changes to code and documentation
-2.  Facilitates collaboration with others
-3.  Provides a backup of your work
-4.  Documents the evolution of your analysis
-5.  Enables reproducibility by capturing the state of code at specific points
+1. Tracks changes to code and documentation
+2. Facilitates collaboration with others
+3. Provides a backup of your work
+4. Documents the evolution of your analysis
+5. Enables reproducibility by capturing the state of code at specific points
 
-Proper version control significantly improves reproducibility and collaboration in research [^6].
+Proper version control is essential for reproducibility and collaboration in data science work.
 
 Think of Git as a time machine for your code. It allows you to save snapshots of your project at different points in time and revisit or restore those snapshots if needed.
 
 ### Installing Git
 
-#### On Windows:
+#### On Windows
 
-1.  Download the installer from [Git for Windows](https://gitforwindows.org/)
-2.  Run the installer, accepting the default options (though you may want to choose VS Code as your default editor if you installed it)
+1. Download the installer from [Git for Windows](https://gitforwindows.org/)
+2. Run the installer, accepting the default options (though you may want to choose VS Code as your default editor if you installed it)
 
-#### On macOS:
+#### On macOS
 
 Git may already be installed. Check by typing `git --version` in the terminal. If not:
 
@@ -673,7 +673,7 @@ Git may already be installed. Check by typing `git --version` in the terminal. I
 brew install git
 ```
 
-#### On Linux:
+#### On Linux
 
 ```bash
 sudo apt update
@@ -695,9 +695,9 @@ This is like putting your name and address on a letter. When you make changes to
 
 GitHub provides free hosting for Git repositories, making it easy to share code and collaborate.
 
-1.  Visit [GitHub](https://github.com/)
-2.  Click "Sign up" and follow the instructions
-3.  Verify your email address
+1. Visit [GitHub](https://github.com/)
+2. Click "Sign up" and follow the instructions
+3. Verify your email address
 
 GitHub is to Git what social media is to your photos—a place to share your work with others and collaborate on projects.
 
@@ -722,13 +722,13 @@ SSH keys are like a special lock and key system. Instead of typing your password
 
 #### Adding Your SSH Key to GitHub
 
-1.  Copy your public key to the clipboard:
-    -   On Windows (in Git Bash): `cat ~/.ssh/id_ed25519.pub | clip`
-    -   On macOS: `pbcopy < ~/.ssh/id_ed25519.pub`
-    -   On Linux: `cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard`
+1. Copy your public key to the clipboard:
+    - On Windows (in Git Bash): `cat ~/.ssh/id_ed25519.pub | clip`
+    - On macOS: `pbcopy < ~/.ssh/id_ed25519.pub`
+    - On Linux: `cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard`
 
-2.  Go to GitHub → Settings → SSH and GPG keys → New SSH key
-3.  Paste your key and save
+2. Go to GitHub → Settings → SSH and GPG keys → New SSH key
+3. Paste your key and save
 
 ### Basic Git Workflow
 
@@ -754,22 +754,22 @@ git commit -m "Initial commit"
 
 Think of this process as:
 
-1.  Creating a new folder for your project
-2.  Telling Git to start tracking changes in this folder
-3.  Creating a simple text file
-4.  Telling Git you want to include this file in your next snapshot
-5.  Taking the snapshot with a brief description
+1. Creating a new folder for your project
+2. Telling Git to start tracking changes in this folder
+3. Creating a simple text file
+4. Telling Git you want to include this file in your next snapshot
+5. Taking the snapshot with a brief description
 
 ### Connecting to GitHub
 
 Now let's push this local repository to GitHub:
 
-1.  On GitHub, click "+" in the top-right corner and select "New repository"
-2.  Name it "my_first_repo"
-3.  Leave it as a public repository
-4.  Don't initialize with a README (we already created one)
-5.  Click "Create repository"
-6.  Follow the instructions for "push an existing repository from the command line":
+1. On GitHub, click "+" in the top-right corner and select "New repository"
+2. Name it "my_first_repo"
+3. Leave it as a public repository
+4. Don't initialize with a README (we already created one)
+5. Click "Create repository"
+6. Follow the instructions for "push an existing repository from the command line":
 
 ```bash
 git remote add origin git@github.com:yourusername/my_first_repo.git
@@ -815,20 +815,20 @@ Think of branches as parallel versions of your project. The main branch is like 
 
 Most modern IDEs integrate with Git, making version control easier:
 
-#### VS Code:
+#### VS Code
 
--   Click the Source Control icon in the sidebar
--   Use the interface to stage, commit, and push changes
+- Click the Source Control icon in the sidebar
+- Use the interface to stage, commit, and push changes
 
-#### PyCharm:
+#### PyCharm
 
--   Go to VCS → Git in the menu
--   Use the interface for Git operations
+- Go to VCS → Git in the menu
+- Use the interface for Git operations
 
-#### RStudio:
+#### RStudio
 
--   Click the Git tab in the upper-right panel
--   Use the interface for Git operations
+- Click the Git tab in the upper-right panel
+- Use the interface for Git operations
 
 These integrations mean you don't have to use the command line for every Git operation—you can manage version control without leaving your coding environment.
 
@@ -836,26 +836,26 @@ These integrations mean you don't have to use the command line for every Git ope
 
 GitHub facilitates collaboration through pull requests:
 
-1.  Fork someone's repository by clicking the "Fork" button on GitHub
-2.  Clone your fork locally:
+1. Fork someone's repository by clicking the "Fork" button on GitHub
+2. Clone your fork locally:
 
     ```bash
     git clone git@github.com:yourusername/their-repo.git
     ```
 
-3.  Create a branch for your changes:
+3. Create a branch for your changes:
 
     ```bash
     git checkout -b my-feature
     ```
 
-4.  Make changes, commit them, and push to your fork:
+4. Make changes, commit them, and push to your fork:
 
     ```bash
     git push origin my-feature
     ```
 
-5.  On GitHub, navigate to your fork and click "New pull request"
+5. On GitHub, navigate to your fork and click "New pull request"
 
 Pull requests allow project maintainers to review your changes before incorporating them. It's like submitting a draft for review before it gets published.
 

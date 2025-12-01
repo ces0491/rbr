@@ -4,7 +4,7 @@ title: "Deploying Data Science Projects"
 
 ## Understanding Deployment for Data Science
 
-After developing your data science project, the next crucial step is deployment—making your work accessible to others. Deployment can mean different things depending on your project: publishing an analysis report, sharing an interactive dashboard, or creating an API for a machine learning model.
+After developing your data science project, the next crucial step is deployment—making your work accessible to others. Deployment can mean different things depending on your project: publishing an analysis report (using the documentation tools from the Reporting chapter), sharing an interactive dashboard (like the Shiny and Dash applications we explored in previous chapters), or creating an API for a machine learning model.
 
 ### Why Deployment Matters
 
@@ -15,7 +15,7 @@ Deployment is often overlooked in data science education, but it's critical for 
 3. **Reproducibility**: Properly deployed projects document the environment and dependencies
 4. **Professional growth**: Deployment skills significantly enhance your value as a data scientist
 
-According to a DataCamp survey, data scientists who can effectively deploy their work are 32% more likely to report their projects led to business value [^13].
+Data scientists who can effectively deploy their work are more likely to see their projects create real business value.
 
 ### Static vs. Dynamic Deployment
 
@@ -30,6 +30,7 @@ Static content doesn't change based on user input and is pre-generated:
 - Fixed visualizations and dashboards
 
 **Advantages**:
+
 - Simpler to deploy
 - More secure
 - Lower hosting costs
@@ -44,6 +45,7 @@ Dynamic applications respond to user input and may perform calculations:
 - Data exploration tools
 
 **Advantages**:
+
 - Interactive user experience
 - Real-time calculations
 - Ability to handle user-specific data
@@ -201,6 +203,7 @@ This configuration tells Vercel to use Quarto to build your site (common for dat
 **Example use case**: Vercel is particularly well-suited for deploying interactive data visualizations created with modern JavaScript libraries. For instance, if you create visualizations using Observable Plot or D3.js alongside your static analysis, Vercel can host both the static content and any serverless functions needed for data processing.
 
 **Why choose Vercel over alternatives**:
+
 - **Speed**: Vercel's global CDN ensures fast loading times worldwide
 - **Automatic optimization**: Images and assets are automatically optimized
 - **Preview deployments**: Every pull request gets its own preview URL for testing
@@ -592,7 +595,7 @@ ui <- fluidPage(
       
       checkboxGroupInput("Products", "Select Products:",
                          choices = unique(sales$Product),
-                         selected = unique(salesPproduct)[1])
+                         selected = unique(sales$Product)[1])
     ),
     
     mainPanel(

@@ -4,13 +4,13 @@ title: "Data Science Tools for Reporting"
 
 ## Documentation and Reporting Tools
 
-As a data scientist, sharing your findings clearly is just as important as the analysis itself. Now that we have our analytics platforms setup, let's explore tools for creating reports, documentation, and presentations.
+As a data scientist, sharing your findings clearly is just as important as the analysis itself. Now that we have our analytics platforms set up, let's explore tools for creating reports, documentation, and presentations.
 
 ### Markdown: The Foundation of Documentation
 
 Markdown is a lightweight markup language that's easy to read and write. It forms the basis of many documentation systems.
 
-Markdown is among the top five most used markup languages by developers and data scientists [^7]. Its simplicity and widespread support have made it the de facto standard for documentation in data science projects.
+Markdown's simplicity and widespread support have made it the de facto standard for documentation in data science projects.
 
 #### Basic Markdown Syntax
 
@@ -55,7 +55,7 @@ Many platforms interpret Markdown, including GitHub, Jupyter notebooks, and the 
 
 R Markdown combines R code, output, and narrative text in a single document that can be rendered to HTML, PDF, Word, and other formats.
 
-The concept of "literate programming" behind R Markdown was first proposed by computer scientist Donald Knuth in 1984, and it has become a cornerstone of reproducible research in data science [^8].
+The concept of "literate programming" behind R Markdown was first proposed by computer scientist Donald Knuth in 1984, and it has become a cornerstone of reproducible research in data science.
 
 #### Installing and Using R Markdown
 
@@ -68,18 +68,18 @@ install.packages("rmarkdown")
 
 To create your first R Markdown document:
 
-1.  In RStudio, go to File → New File → R Markdown
-2.  Fill in the title and author information
-3.  Choose an output format (HTML, PDF, or Word)
-4.  Click "OK"
+1. In RStudio, go to File → New File → R Markdown
+2. Fill in the title and author information
+3. Choose an output format (HTML, PDF, or Word)
+4. Click "OK"
 
 RStudio creates a template document with examples of text, code chunks, and plots. This template is extremely helpful because it shows you the basic structure of an R Markdown document right away—you don't have to start from scratch.
 
 A typical R Markdown document consists of three components:
 
-1.  **YAML Header**: Contains metadata like title, author, and output format
-2.  **Text**: Written in Markdown for narratives, explanations, and interpretations
-3.  **Code Chunks**: R code that can be executed to perform analysis and create outputs
+1. **YAML Header**: Contains metadata like title, author, and output format
+2. **Text**: Written in Markdown for narratives, explanations, and interpretations
+3. **Code Chunks**: R code that can be executed to perform analysis and create outputs
 
 For example:
 
@@ -147,8 +147,8 @@ We've already covered Jupyter notebooks for Python development, but they're also
 
 Jupyter notebooks can be exported to various formats:
 
-1.  In a notebook, go to File → Download as
-2.  Choose from options like HTML, PDF, Markdown, etc.
+1. In a notebook, go to File → Download as
+2. Choose from options like HTML, PDF, Markdown, etc.
 
 Alternatively, you can use `nbconvert` from the command line:
 
@@ -207,7 +207,7 @@ LaTeX offers several advantages for data science documentation:
 4. **Bibliography management**: Integrates with citation systems like BibTeX
 5. **Reproducibility**: Separates content from presentation in a plain text format that works with version control
 
-A 2018 study of research reproducibility found that papers using LaTeX with programmatically generated figures were 37% more likely to be successfully reproduced than those using proprietary document formats [^9].
+LaTeX documents, particularly those with programmatically generated figures, tend to be more reproducible than those created with proprietary document formats.
 
 #### Getting Started with LaTeX
 
@@ -218,12 +218,14 @@ LaTeX works differently from word processors—you write plain text with special
 The easiest way to install LaTeX for use with Quarto or R Markdown is to use TinyTeX, a lightweight LaTeX distribution:
 
 **In R**:
+
 ```r
 install.packages("tinytex")
 tinytex::install_tinytex()
 ```
 
 **In the command line with Quarto**:
+
 ```bash
 quarto install tinytex
 ```
@@ -276,11 +278,13 @@ When using Quarto or R Markdown, you won't write this structure directly. Instea
 LaTeX shines when it comes to mathematical notation. Here are examples of common equation formats:
 
 **Inline equations** use single dollar signs:
+
 ```latex
 The model accuracy is $\alpha = 0.95$, which exceeds our threshold.
 ```
 
 **Display equations** use double dollar signs:
+
 ```latex
 $$
 \bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i
@@ -288,6 +292,7 @@ $$
 ```
 
 **Equation arrays** for multi-line equations:
+
 ```latex
 \begin{align}
 Y &= \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \epsilon \\
@@ -377,6 +382,7 @@ format:
 You can further customize the LaTeX template by:
 
 1. **Including raw LaTeX**: Use the `raw` attribute to include LaTeX commands
+
    ````
    ```{=latex}
    \begin{center}
@@ -386,6 +392,7 @@ You can further customize the LaTeX template by:
    ````
 
 2. **Adding LaTeX packages**: Include additional packages in the YAML
+
    ```yaml
    format:
      pdf:
@@ -396,6 +403,7 @@ You can further customize the LaTeX template by:
    ```
 
 3. **Using a custom template**: Create your own template for full control
+
    ```yaml
    format:
      pdf:
@@ -665,12 +673,14 @@ $x = \frac{a + b}{c}$
 For data scientists starting their journey, here's how to think about these tools:
 
 **Choose LaTeX when:**
+
 - Working in academic environments where LaTeX is expected
 - Creating documents with complex mathematical notation
 - Collaborating with teams already using LaTeX workflows
 - You need the ecosystem of specialized packages LaTeX offers
 
 **Consider Typst when:**
+
 - You want faster iteration cycles during document development
 - You prefer more modern, readable syntax
 - You're starting fresh and don't have legacy LaTeX requirements
@@ -830,13 +840,13 @@ The `cache: true` option tells Quarto to save the results and only re-execute th
 
 Effective documentation follows certain principles:
 
-1.  **Start early**: Document as you go rather than treating it as an afterthought
-2.  **Be consistent**: Use the same style and terminology throughout
-3.  **Include examples**: Show how to use your code or analysis
-4.  **Consider your audience**: Technical details for peers, higher-level explanations for stakeholders
-5.  **Update regularly**: Keep documentation in sync with your code
+1. **Start early**: Document as you go rather than treating it as an afterthought
+2. **Be consistent**: Use the same style and terminology throughout
+3. **Include examples**: Show how to use your code or analysis
+4. **Consider your audience**: Technical details for peers, higher-level explanations for stakeholders
+5. **Update regularly**: Keep documentation in sync with your code
 
-Projects with comprehensive documentation have fewer defects and require less maintenance effort. Well-documented data science projects are significantly more likely to be reproducible and reusable by other researchers [^9].
+Projects with comprehensive documentation tend to have fewer defects and require less maintenance effort. Well-documented data science projects are also more likely to be reproducible and reusable by others.
 
 The practice of documenting your work isn't just about helping others understand what you've done—it also helps you think more clearly about your own process. By explaining your choices and methods in writing, you often gain new insights and identify potential improvements in your approach.
 
@@ -848,14 +858,12 @@ Effective visualization is crucial for data science as it helps communicate find
 
 Data visualization serves multiple purposes in the data science workflow:
 
-1.  **Exploratory Data Analysis (EDA)**: Discovering patterns, outliers, and relationships
-2.  **Communication**: Sharing insights with stakeholders
-3.  **Decision Support**: Helping decision-makers understand complex data
-4.  **Monitoring**: Tracking metrics and performance over time
+1. **Exploratory Data Analysis (EDA)**: Discovering patterns, outliers, and relationships
+2. **Communication**: Sharing insights with stakeholders
+3. **Decision Support**: Helping decision-makers understand complex data
+4. **Monitoring**: Tracking metrics and performance over time
 
-Analysts who regularly use visualization tools identify insights up to 70% faster than those who rely primarily on tabular data [^10]. Visualization has been called "the new language of science and business intelligence," highlighting its importance in modern decision-making processes.
-
-The power of visualization comes from leveraging human visual processing capabilities. Our brains can process visual information much faster than text or numbers. A well-designed chart can instantly convey relationships that would take paragraphs to explain in words. Most importantly, visualizations get to the point!
+The power of visualization comes from leveraging human visual processing capabilities. Our brains can process visual information much faster than text or numbers. A well-designed chart can instantly convey relationships that would take paragraphs to explain in words.
 
 ### Python Visualization Libraries
 
@@ -1254,6 +1262,7 @@ This diagram shows a typical e-commerce database schema with relationships betwe
 You can customize the appearance of your diagrams:
 
 ::: {.content-visible when-format="html"}
+
 ```{mermaid}
 flowchart LR
     A[Data Collection] --> B[Data Cleaning]
@@ -1263,6 +1272,7 @@ flowchart LR
     style B fill:#bbf,stroke:#33f,stroke-width:2px
     style C fill:#bfb,stroke:#3f3,stroke-width:2px
 ```
+
 :::
 
 This diagram uses custom colors and border styles for each node to highlight different stages of the process.
@@ -1329,8 +1339,8 @@ install.packages("shiny")
 
 A simple Shiny app consists of two components:
 
-1.  **UI (User Interface)**: Defines what the user sees
-2.  **Server**: Contains the logic that responds to user input
+1. **UI (User Interface)**: Defines what the user sees
+2. **Server**: Contains the logic that responds to user input
 
 Here's a basic example:
 
@@ -1698,6 +1708,6 @@ In this chapter, we explored advanced tools for data science that enhance docume
 3. Code-based diagramming with Mermaid provides a seamless way to include architecture and process diagrams
 4. Interactive dashboards make data accessible to stakeholders with varying technical backgrounds
 
-As you continue your data science journey, integrating these tools into your workflow will help you create more professional, reproducible, and impactful projects. The key is to select the right tool for each specific task, while maintaining a cohesive overall approach that prioritizes reproducibility and clear communication.
+As you continue your data science journey, integrating these tools into your workflow will help you create more professional, reproducible, and impactful projects. The key is to select the right tool for each specific task, while maintaining a cohesive overall approach that prioritizes reproducibility and clear communication. In the Deployment chapter, we'll explore how to share these reports and dashboards with stakeholders through various hosting platforms.
 
 Remember that the ultimate goal of these tools is not just to make your work easier, but to make your insights more accessible and actionable for others. By investing time in proper documentation, visualization, and interactivity, you amplify the impact of your data science work. At this point, I'd like to interject with a note on AI - if you don't know these tools and how they work, you can't hope to ask AI what to produce for you. While building a Shiny app from scratch is no longer necessary, you need to know what Shiny is capable of and how it's best applied. You also need the correct environment setup so that you can run your app. Please continue to bear-in-mind that your understanding of data science tools and processes is going to become increasingly more important than being able to write code from scratch.

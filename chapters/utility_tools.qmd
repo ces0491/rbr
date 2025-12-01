@@ -20,13 +20,15 @@ Notepad++ is a free, open-source text editor for Windows that's more powerful th
 2. **Column editing**: Edit multiple lines simultaneously (useful for cleaning data)
 3. **Regex search and replace**: Powerful pattern matching for text manipulation
 4. **Macro recording**: Automate repetitive text edits
-5. **Plugins**: Extend functionality with additional tools that facilitate more expeditious exploration and development such as JSON, HTML and markdown viewers.
+5. **Plugins**: Extend functionality with additional tools that facilitate more expeditious exploration and development, such as JSON, HTML, and Markdown viewers.
 
 **Installation:**
+
 1. Download from [notepad-plus-plus.org](https://notepad-plus-plus.org/downloads/)
 2. Run the installer and follow the prompts
 
 **Useful shortcuts:**
+
 - `Ctrl+H`: Find and replace
 - `Alt+Shift+Arrow`: Column selection mode
 - `Ctrl+D`: Duplicate current line
@@ -34,7 +36,7 @@ Notepad++ is a free, open-source text editor for Windows that's more powerful th
 
 Notepad++ is particularly useful for quickly viewing and editing large text files, CSV data, or configuration files without launching a full IDE. Its ability to handle multi-gigabyte files makes it valuable for inspecting large datasets.
 
-Notepad++ (as of writing) is not available on Mac but the following alternative is.
+Notepad++ (as of writing) is not available on Mac, but the following alternative is.
 
 #### Sublime Text
 
@@ -49,6 +51,7 @@ Sublime Text is a sophisticated cross-platform text editor with powerful feature
 5. **Customizable key bindings**: Create shortcuts tailored to your workflow
 
 **Installation:**
+
 1. Download from [sublimetext.com](https://www.sublimetext.com/download)
 2. Install and activate (free evaluation with occasional purchase reminder)
 
@@ -71,18 +74,24 @@ Postman is the industry standard for API development and testing.
 5. **Mock servers**: Simulate API responses without a backend
 
 **Installation:**
+
 1. Download from [postman.com](https://www.postman.com/downloads/)
 2. Create a free account to sync across devices
 
 **Example workflow:**
+
 1. Create a new request to a data API:
+
    ```
    GET https://api.example.com/data?limit=100
    ```
+
 2. Add authentication (if required):
+
    ```
    Authorization: Bearer your_token_here
    ```
+
 3. Send the request and analyze the JSON response
 4. Save the request to a collection for future use
 
@@ -101,6 +110,7 @@ Insomnia is a lightweight alternative to Postman with an intuitive interface.
 5. **Open source**: Free core version available
 
 **Installation:**
+
 1. Download from [insomnia.rest](https://insomnia.rest/download)
 2. Run the installer
 
@@ -123,13 +133,16 @@ DBeaver is a universal database tool that works with almost any database system.
 5. **SQL editor**: Write and execute queries with syntax highlighting
 
 **Installation:**
+
 1. Download from [dbeaver.io](https://dbeaver.io/download/)
 2. Run the installer
 
 **Example workflow:**
+
 1. Connect to a database with connection parameters
 2. Browse tables and view structure
 3. Use the SQL editor to write a query:
+
    ```sql
    SELECT 
        product_category,
@@ -139,6 +152,7 @@ DBeaver is a universal database tool that works with almost any database system.
    GROUP BY product_category
    ORDER BY count DESC;
    ```
+
 4. Export results to CSV for analysis in Python or R
 
 DBeaver streamlines database interactions, allowing you to explore data structures, write queries, and export results without writing code to establish database connections.
@@ -156,6 +170,7 @@ pgAdmin is a specialized tool for PostgreSQL databases.
 5. **Procedural language debugging**: Test stored procedures
 
 **Installation:**
+
 1. Download from [pgadmin.org](https://www.pgadmin.org/download/)
 2. Run the installer
 
@@ -178,11 +193,13 @@ Beyond Compare is a powerful file and directory comparison tool.
 5. **Byte-level comparison**: Analyze binary files
 
 **Installation:**
+
 1. Download from [scootersoftware.com](https://www.scootersoftware.com/download.php)
 2. Install (trial version available)
 
 **Example data science use case:**
 Comparing two versions of a dataset to identify changes:
+
 1. Open two CSV files in Table Compare mode
 2. Automatically align columns by name
 3. Identify added, removed, or modified rows
@@ -203,6 +220,7 @@ WinMerge is a free, open-source alternative for file and folder comparison.
 5. **Integration**: Works with source control systems
 
 **Installation:**
+
 1. Download from [winmerge.org](https://winmerge.org/downloads/)
 2. Run the installer
 
@@ -225,6 +243,7 @@ Oh My Zsh is a framework for managing your Zsh configuration, providing themes a
 5. **Customizable themes**: Visual enhancements for the terminal
 
 **Installation (macOS or Linux):**
+
 ```bash
 # Install Zsh first if needed
 # Ubuntu/Debian:
@@ -239,6 +258,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 ```
 
 **Useful plugins for data scientists:**
+
 ```bash
 # Edit ~/.zshrc to activate plugins
 plugins=(git python pip conda docker jupyter)
@@ -263,11 +283,13 @@ CSVKit is a suite of command-line tools for working with CSV files.
 5. **csvjoin**: SQL-like join operations between CSV files
 
 **Installation:**
+
 ```bash
 pip install csvkit
 ```
 
 **Example commands:**
+
 ```bash
 # View basic statistics of a CSV file
 csvstat data.csv
@@ -297,6 +319,7 @@ jq is a lightweight command-line JSON processor that helps manipulate JSON data.
 5. **Formatting**: Pretty-print and compact JSON
 
 **Installation:**
+
 ```bash
 # macOS
 brew install jq
@@ -309,6 +332,7 @@ choco install jq
 ```
 
 **Example commands:**
+
 ```bash
 # Pretty-print JSON
 cat data.json | jq '.'
@@ -342,11 +366,13 @@ Diagram.net is a free online diagramming tool that works with various diagram ty
 5. **Integration**: Works with Google Drive, Dropbox, etc.
 
 **Access:**
+
 1. Go to [diagram.net](https://www.diagrams.net/) in your browser
 2. Choose where to save your diagrams (local, Google Drive, etc.)
 
 **Example data science use case:**
 Creating a data flow diagram to document an ETL process:
+
 1. Select the flowchart template
 2. Add data sources, transformation steps, and outputs
 3. Connect components with arrows showing data flow
@@ -368,6 +394,7 @@ Graphviz is a command-line tool for creating structured diagrams from text descr
 5. **Scriptable**: Automate diagram generation
 
 **Installation:**
+
 ```bash
 # macOS
 brew install graphviz
@@ -380,6 +407,7 @@ choco install graphviz
 ```
 
 **Example DOT file (graph.dot):**
+
 ```dot
 digraph DataPipeline {
   rankdir=LR;
@@ -401,6 +429,7 @@ digraph DataPipeline {
 ```
 
 **Generate the diagram:**
+
 ```bash
 dot -Tpng graph.dot -o pipeline.png
 ```
@@ -424,10 +453,12 @@ Greenshot is a lightweight screenshot tool with annotation features.
 5. **Integration**: Send to image editor, clipboard, or file
 
 **Installation:**
+
 1. Download from [getgreenshot.org](https://getgreenshot.org/downloads/)
 2. Run the installer
 
 **Default shortcuts:**
+
 - `Print Screen`: Capture region
 - `Alt+Print Screen`: Capture active window
 - `Ctrl+Print Screen`: Capture full screen
@@ -447,6 +478,7 @@ OBS (Open Broadcaster Software) Studio is a powerful tool for screen recording a
 5. **Cross-platform**: Available for Windows, macOS, and Linux
 
 **Installation:**
+
 1. Download from [obsproject.com](https://obsproject.com/download)
 2. Run the installer
 
@@ -469,11 +501,13 @@ Obsidian is a knowledge base and note-taking application that works on Markdown 
 5. **Extensible**: Plugins for additional functionality
 
 **Installation:**
+
 1. Download from [obsidian.md](https://obsidian.md/download)
 2. Run the installer
 
 **Example data science use case:**
 Creating a personal knowledge base for your data science projects:
+
 1. Create notes for each project with objectives and findings
 2. Link to related techniques and concepts
 3. Embed code snippets and results
@@ -495,6 +529,7 @@ Notion is an all-in-one workspace that combines notes, tasks, databases, and mor
 5. **Integration**: Connect with other tools and services
 
 **Installation:**
+
 1. Sign up at [notion.so](https://www.notion.so/)
 2. Download desktop and mobile apps if desired
 
@@ -517,6 +552,7 @@ Total Commander is a comprehensive file manager with advanced features.
 5. **FTP/SFTP client**: Transfer files to and from servers
 
 **Installation:**
+
 1. Download from [ghisler.com](https://www.ghisler.com/download.htm)
 2. Run the installer (shareware with unlimited trial)
 
@@ -535,6 +571,7 @@ Agent Ransack is a powerful file search tool that can find text within files.
 5. **Boolean operators**: Combine multiple search terms
 
 **Installation:**
+
 1. Download from [mythicsoft.com](https://www.mythicsoft.com/agentransack/download/)
 2. Run the installer
 

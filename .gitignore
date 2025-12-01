@@ -1,2 +1,58 @@
+# Quarto
 /.quarto/
-.Rproj.user
+_book/
+_freeze/
+*_files/
+*_cache/
+
+# R/RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj.user/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.so
+.ipynb_checkpoints/
+venv/
+.venv/
+ENV/
+.env
+
+# Build outputs
+output/
+_site/
+docs/
+*.html
+*.pdf
+*.epub
+!index.html
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+.claude/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Data files
+# data/
+# *.csv
+# *.xlsx
+# *.parquet

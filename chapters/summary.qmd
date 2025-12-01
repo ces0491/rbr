@@ -4,7 +4,7 @@ title: "Conclusion"
 
 ## Conclusion
 
-At this point, it is my hope that you have the tools to be able to make informed decisions about your data science infrastructure. Workflows will vary dramatically from industries, to teams, to individuals, so spend time experimenting with what works best for you. Technology is inherently a rapidly changing space and even while writing this, tools have come and gone. I've tried to balance covering modern, relevant technologies with core material to provide you with a more classical means of thinking about your infrastructure, rather than prescribing specific tools. Let's recap what we've covered:
+At this point, it is my hope that you have the tools to be able to make informed decisions about your data science infrastructure. Workflows will vary dramatically across industries, teams, and individuals, so spend time experimenting with what works best for you. Technology is inherently a rapidly changing space, and even while writing this, tools have come and gone. I've tried to balance covering modern, relevant technologies with core material to provide you with a more classical means of thinking about your infrastructure, rather than prescribing specific tools. Let's recap what we've covered:
 
 1. **Command Line Basics**: The fundamental interface for many data science tools
 2. **Python and R Setup**: Core programming languages for data analysis
