@@ -88,6 +88,7 @@ jobs:
 
       - name: Install LaTeX packages
         run: |
+          export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
           tlmgr install fontawesome5 || true
 
       - name: Render and Publish
@@ -97,4 +98,3 @@ jobs:
           path: .
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          QUARTO_DENO_EXTRA_OPTIONS: "--v8-flags=--max-old-space-size=4096"
