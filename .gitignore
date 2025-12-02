@@ -6,11 +6,11 @@ _freeze/
 *_cache/
 
 # R/RStudio
-.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
-*.Rproj.user/
+*.Rproj
+.Rproj.user
 
 # Python
 __pycache__/
