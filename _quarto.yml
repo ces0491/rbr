@@ -47,7 +47,7 @@ format:
     code-summary: "Show code"
     mermaid:
       engine: mermaid
-    
+
   pdf:
     documentclass: scrbook
     code-overflow: wrap

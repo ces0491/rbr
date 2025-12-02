@@ -56,3 +56,5 @@ desktop.ini
 # *.csv
 # *.xlsx
 # *.parquet
+
+**/*.quarto_ipynb
