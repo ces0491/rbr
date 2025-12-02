@@ -754,6 +754,7 @@ The `here` package provides an elegant solution by creating paths relative to yo
 
 ```{r}
 #| label: data-loading
+#| eval: false
 #| message: false
 #| warning: false
 
@@ -783,6 +784,7 @@ For maximum reproducibility, consider using built-in datasets that come with R p
 
 ```{r}
 #| label: builtin-data
+#| eval: false
 
 # Load a dataset from a package
 data(diamonds, package = "ggplot2")
@@ -799,6 +801,7 @@ Another reproducible approach is to generate sample data within your code:
 
 ```{r}
 #| label: synthetic-data
+#| eval: false
 
 # Create synthetic data
 set.seed(0491)  # For reproducibility
@@ -821,6 +824,7 @@ For real-world datasets that are too large to include in packages, you can fetch
 
 ```{r}
 #| label: remote-data
+#| eval: false
 #| cache: true
 #| message: false
 
@@ -1283,6 +1287,7 @@ For complex or dynamic diagrams, you can generate Mermaid code programmatically:
 
 ```{r}
 #| label: dynamic-mermaid
+#| eval: false
 #| output: asis
 
 # Define the steps in a data pipeline
