@@ -1,7 +1,7 @@
 # Quarto
 /.quarto/
 _book/
-_freeze/
+# _freeze/ - Keep freeze cache to speed up CI builds
 *_files/
 *_cache/
 
