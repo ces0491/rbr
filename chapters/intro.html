@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -333,18 +334,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Knowledge of how to deploy your work for others to see and use</li>
 <li>A foundation in the command line and other developer tools</li>
 </ul>
-<p>While this guide is written to provide a natural progression from fundamental concepts to more involved material that builds on prior knowledge; each chapter is designed to be a standalone reference - you don’t need to read <code>Understanding the Command Line</code> if all you need is help with app deployment.</p>
-<p>The resources presented in this guide are largely freely available up to some tier (except for some of the Cloud platforms which are free to setup but incur usage costs), so you can get started without needing to make decisions based on costs.</p>
+<p>While this guide is written to provide a natural progression from fundamental concepts to more involved material that builds on prior knowledge, each chapter is designed to be a standalone reference—you don’t need to read “Understanding the Command Line” if all you need is help with app deployment.</p>
+<p>The resources presented in this guide are largely freely available up to some tier (except for some of the cloud platforms, which are free to set up but incur usage costs), so you can get started without needing to make decisions based on costs.</p>
 </section>
 <section id="understanding-the-command-line" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="understanding-the-command-line"><span class="header-section-number">2.2</span> Understanding the Command Line</h2>
-<p>Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface. Further, when we later discuss Integrated Development Environments (IDEs) such as Visual Studio Code, R Studio and many others, you’ll find that they provide dedicated functionality to allow you to interact directly with the command line, so understanding its purpose is globally useful across workflows.</p>
+<p>Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface. Further, when we later discuss Integrated Development Environments (IDEs) such as Visual Studio Code, RStudio, and many others, you’ll find that they provide dedicated functionality to allow you to interact directly with the command line, so understanding its purpose is globally useful across workflows.</p>
 <section id="what-is-the-command-line" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="what-is-the-command-line"><span class="header-section-number">2.2.1</span> What is the Command Line?</h3>
 <p>The command line (also called terminal, shell, or console) is a text-based interface where you type commands for the computer to execute. While graphical user interfaces (GUIs) let you point and click, the command line gives you more precise control through text commands.</p>
-<p>Why use the command line when we have modern GUIs?:</p>
+<p>Why use the command line when we have modern GUIs?</p>
 <ol type="1">
-<li><p><strong>Many data science tools are designed to be used this way</strong>: A Stack Overflow Developer Survey indicates that about 70% of data scientists and developers regularly use command-line tools in their workflow [^1]. Tools like Git, Docker, and many Python and R package management utilities primarily use command-line interfaces.</p></li>
+<li><p><strong>Many data science tools are designed to be used this way</strong>: Tools like Git, Docker, and many Python and R package management utilities primarily use command-line interfaces.</p></li>
 <li><p><strong>It allows for reproducibility through scripts</strong>: Command-line operations can be saved in script files and run again later, ensuring that the exact same steps are followed each time. This reproducibility is essential for reliable data analysis.</p></li>
 <li><p><strong>It often provides more flexibility and power</strong>: Command-line tools typically offer more options and configurations than their graphical counterparts. For example, when installing Python packages, the command-line tool <code>pip</code> offers dozens of options to handle dependencies, versions, and installation locations that aren’t available in most graphical installers.</p></li>
 <li><p><strong>It’s faster for many operations once you learn the commands</strong>: After becoming familiar with the commands, many operations can be performed more quickly than navigating through multiple screens in a GUI. For instance, you can install multiple Python packages with a single command line rather than clicking through installation wizards for each one.</p></li>
@@ -353,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="getting-started-with-the-command-line" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="getting-started-with-the-command-line"><span class="header-section-number">2.2.2</span> Getting Started with the Command Line</h3>
 <section id="on-windows" class="level4" data-number="2.2.2.1">
-<h4 data-number="2.2.2.1" class="anchored" data-anchor-id="on-windows"><span class="header-section-number">2.2.2.1</span> On Windows:</h4>
+<h4 data-number="2.2.2.1" class="anchored" data-anchor-id="on-windows"><span class="header-section-number">2.2.2.1</span> On Windows</h4>
 <p>Windows offers several options for command line interfaces:</p>
 <ol type="1">
 <li><strong>Command Prompt</strong>: Built into Windows, but limited in functionality</li>
@@ -361,11 +362,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Windows Subsystem for Linux (WSL)</strong>: Provides a Linux environment within Windows (recommended)</li>
 </ol>
 <p>To install WSL, open PowerShell as administrator and run:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This installs Ubuntu Linux by default. After installation, restart your computer and follow the setup prompts.</p>
 </section>
 <section id="on-macos" class="level4" data-number="2.2.2.2">
-<h4 data-number="2.2.2.2" class="anchored" data-anchor-id="on-macos"><span class="header-section-number">2.2.2.2</span> On macOS:</h4>
+<h4 data-number="2.2.2.2" class="anchored" data-anchor-id="on-macos"><span class="header-section-number">2.2.2.2</span> On macOS</h4>
 <p>The Terminal application comes pre-installed:</p>
 <ol type="1">
 <li>Press Cmd+Space to open Spotlight search</li>
@@ -373,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 <section id="on-linux" class="level4" data-number="2.2.2.3">
-<h4 data-number="2.2.2.3" class="anchored" data-anchor-id="on-linux"><span class="header-section-number">2.2.2.3</span> On Linux:</h4>
+<h4 data-number="2.2.2.3" class="anchored" data-anchor-id="on-linux"><span class="header-section-number">2.2.2.3</span> On Linux</h4>
 <p>Most Linux distributions come with a terminal emulator. Look for “Terminal” in your applications menu.</p>
 </section>
 </section>
@@ -382,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s practice some basic commands. Open your terminal and try these:</p>
 <section id="navigating-the-file-system" class="level4" data-number="2.2.3.1">
 <h4 data-number="2.2.3.1" class="anchored" data-anchor-id="navigating-the-file-system"><span class="header-section-number">2.2.3.1</span> Navigating the File System</h4>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print working directory (shows where you are)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print working directory (shows where you are)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List files and directories</span></span>
@@ -401,21 +402,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> filename.txt</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a directory</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">rmdir</span> directory_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">rmdir</span> directory_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These commands form the foundation of file navigation and manipulation. As you work with data science tools, you’ll find yourself using them frequently.</p>
 <p>The commands above are like giving directions to your computer. Just as you might tell someone “Go down this street, then turn left at the second intersection,” these commands tell your computer “Show me where I am,” “Show me what’s here,” “Go into this folder,” and so on.</p>
 </section>
 <section id="creating-and-editing-files" class="level4" data-number="2.2.3.2">
 <h4 data-number="2.2.3.2" class="anchored" data-anchor-id="creating-and-editing-files"><span class="header-section-number">2.2.3.2</span> Creating and Editing Files</h4>
 <p>While you can create files through the command line, it’s often easier to use a text editor. However, it’s good to know these commands:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty file</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty file</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> newfile.txt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display file contents</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> filename.txt</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple editor (press i to insert, Esc then :wq to save and quit)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> filename.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> filename.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Think of these commands as ways to create and look at the contents of notes or documents on your computer, all without opening a word processor or text editor application.</p>
 </section>
 </section>
@@ -428,14 +429,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>winget</strong> (Windows)</li>
 </ul>
 <p>For example, on Ubuntu you might install Python using:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install python3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install python3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>On macOS with Homebrew:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Homebrew first if you don't have it</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Homebrew first if you don't have it</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then install Python</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install python</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install python</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The term “sudo” gives you temporary administrator-level privileges, similar to when Windows asks “Do you want to allow this app to make changes to your device?”</p>
 <p>Understanding these basics will help tremendously as we set up our data science tools. The command line might seem intimidating at first, but it becomes an invaluable ally as you grow more comfortable with it.</p>
 </section>
@@ -452,7 +453,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Strong community support and documentation</li>
 <li>Integration with various data sources and visualization tools</li>
 </ol>
-<p>Surveys consistently indicate Python ranking among the top programming languages, and a recent Kaggle Machine Learning &amp; Data Science Survey found that 87% of data scientists use Python in their work [^2].</p>
+<p>Python consistently ranks among the top programming languages for data science and is widely used across the industry.</p>
 </section>
 <section id="installing-python" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">2.3.2</span> Installing Python</h3>
@@ -470,32 +471,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="verifying-installation" class="level4" data-number="2.3.2.2">
 <h4 data-number="2.3.2.2" class="anchored" data-anchor-id="verifying-installation"><span class="header-section-number">2.3.2.2</span> Verifying Installation</h4>
 <p>Open a new terminal (or Anaconda Prompt on Windows) and type:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see the Python version number. Also, check that conda is installed:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="creating-a-python-environment" class="level3" data-number="2.3.3">
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="creating-a-python-environment"><span class="header-section-number">2.3.3</span> Creating a Python Environment</h3>
 <p>Environments let you isolate projects with specific dependencies. Think of environments as separate workspaces for different projects—like having different toolboxes for different types of jobs. Here’s how to create one:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment named 'datasci' with Python 3.11</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment named 'datasci' with Python 3.11</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> datasci python=3.11</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate the environment</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install common data science packages</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install numpy pandas matplotlib scikit-learn jupyter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install numpy pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Whenever you work on your data science projects, activate this environment first.</p>
 </section>
 <section id="using-jupyter-notebooks" class="level3" data-number="2.3.4">
 <h3 data-number="2.3.4" class="anchored" data-anchor-id="using-jupyter-notebooks"><span class="header-section-number">2.3.4</span> Using Jupyter Notebooks</h3>
 <p>Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualizations, and narrative text. They’re like digital lab notebooks where you can document your analysis process along with the code and results.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure your environment is activated</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure your environment is activated</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch Jupyter Notebook</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This opens a web browser where you can create and work with notebooks. Let’s create a simple notebook to verify everything works:</p>
 <ol type="1">
 <li>Click “New” → “Python 3”</li>
@@ -504,7 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -523,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Python environment is working correctly!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Python environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <ol start="3" type="1">
@@ -534,11 +535,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installing-additional-packages" class="level3" data-number="2.3.5">
 <h3 data-number="2.3.5" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">2.3.5</span> Installing Additional Packages</h3>
 <p>As your data science journey progresses, you’ll need additional packages. Use either:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using conda (preferred when available)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using conda (preferred when available)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install package_name</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pip (when packages aren't available in conda)</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install package_name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install package_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Conda is often preferred for data science packages because it handles complex dependencies better, especially for packages with C/C++ components. This is particularly important for libraries that have parts written in lower-level programming languages to make them run faster.</p>
 </section>
 </section>
@@ -554,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A rich ecosystem of packages for specialized statistical methods</li>
 <li>Strong in reproducible research through R Markdown</li>
 </ol>
-<p>R has over 19,000 packages available for various statistical and data analysis tasks and is used by a significant percentage of data scientists worldwide [^3].</p>
+<p>R has thousands of packages available on CRAN for various statistical and data analysis tasks, with active development from the statistics and research communities.</p>
 </section>
 <section id="installing-r" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">2.4.2</span> Installing R</h3>
@@ -583,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>You should see the R version information displayed. You can verify this as the version is the first printed output you will see in the console at the start of a new session. It should look something like this:</p>
@@ -596,8 +597,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install essential packages</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"shiny"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install essential packages</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"shiny"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>This installs:</p>
@@ -620,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sample data</span></span>
@@ -638,7 +639,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Y-axis"</span>) <span class="sc">+</span></span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
 <span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"R environment is working correctly!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"R environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <ol start="3" type="1">
@@ -653,8 +654,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"username/package"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"username/package"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>Think of CRAN as the official app store for R packages, while GitHub is like getting apps directly from developers. Both are useful, but packages on CRAN have gone through more quality checks.</p>
@@ -672,14 +673,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It’s often more efficient than Python or R for large data operations</li>
 <li>Data transformation often happens in databases before analysis</li>
 </ol>
-<p>SQL ranks as one of the most important skills for data scientists, and job listings for data scientists typically require SQL proficiency [^4].</p>
+<p>SQL is one of the most important skills for data scientists, as most organizational data resides in relational databases.</p>
 </section>
 <section id="installing-sqlite" class="level3" data-number="2.5.2">
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="installing-sqlite"><span class="header-section-number">2.5.2</span> Installing SQLite</h3>
 <p>SQLite is a lightweight, file-based database that requires no server setup, making it perfect for learning.</p>
 <p>Think of SQLite as a simple filing cabinet for your data that you can easily carry around, unlike larger database systems that require dedicated servers.</p>
 <section id="on-windows-1" class="level4" data-number="2.5.2.1">
-<h4 data-number="2.5.2.1" class="anchored" data-anchor-id="on-windows-1"><span class="header-section-number">2.5.2.1</span> On Windows:</h4>
+<h4 data-number="2.5.2.1" class="anchored" data-anchor-id="on-windows-1"><span class="header-section-number">2.5.2.1</span> On Windows</h4>
 <ol type="1">
 <li>Download the SQLite command-line tools from the <a href="https://www.sqlite.org/download.html">SQLite download page</a></li>
 <li>Extract the files to a folder (e.g., C:\sqlite)</li>
@@ -687,27 +688,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 <section id="on-macos-1" class="level4" data-number="2.5.2.2">
-<h4 data-number="2.5.2.2" class="anchored" data-anchor-id="on-macos-1"><span class="header-section-number">2.5.2.2</span> On macOS:</h4>
+<h4 data-number="2.5.2.2" class="anchored" data-anchor-id="on-macos-1"><span class="header-section-number">2.5.2.2</span> On macOS</h4>
 <p>SQLite comes pre-installed, but you can install a newer version with Homebrew:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install SQLite</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sqlite</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install SQLite</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sqlite</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="on-linux-1" class="level4" data-number="2.5.2.3">
-<h4 data-number="2.5.2.3" class="anchored" data-anchor-id="on-linux-1"><span class="header-section-number">2.5.2.3</span> On Linux:</h4>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install sqlite3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 data-number="2.5.2.3" class="anchored" data-anchor-id="on-linux-1"><span class="header-section-number">2.5.2.3</span> On Linux</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install sqlite3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="verifying-installation-2" class="level4" data-number="2.5.2.4">
 <h4 data-number="2.5.2.4" class="anchored" data-anchor-id="verifying-installation-2"><span class="header-section-number">2.5.2.4</span> Verifying Installation</h4>
 <p>Open a terminal or command prompt and type:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see the version information displayed.</p>
 </section>
 </section>
 <section id="creating-your-first-database" class="level3" data-number="2.5.3">
 <h3 data-number="2.5.3" class="anchored" data-anchor-id="creating-your-first-database"><span class="header-section-number">2.5.3</span> Creating Your First Database</h3>
 <p>Let’s create a simple database to verify our setup:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new database file</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new database file</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> sample.db</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In the SQLite prompt, create a table</span></span>
@@ -727,7 +728,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="ex">SELECT</span> <span class="pp">*</span> FROM people<span class="kw">;</span></span>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Exit SQLite</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="ex">.exit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="ex">.exit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Think of this process as creating a spreadsheet (the table) within a file (the database), then adding some rows of data, and finally viewing all the data.</p>
 </section>
 <section id="sql-guis-for-easier-database-management" class="level3" data-number="2.5.4">
@@ -748,11 +749,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="2.5.4.2" class="anchored" data-anchor-id="using-sql-from-python-and-r"><span class="header-section-number">2.5.4.2</span> Using SQL from Python and R</h4>
 <p>You can also interact with SQLite databases from Python and R:</p>
 <section id="python" class="level5" data-number="2.5.4.2.1">
-<h5 data-number="2.5.4.2.1" class="anchored" data-anchor-id="python"><span class="header-section-number">2.5.4.2.1</span> Python:</h5>
+<h5 data-number="2.5.4.2.1" class="anchored" data-anchor-id="python"><span class="header-section-number">2.5.4.2.1</span> Python</h5>
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the database</span></span>
@@ -765,16 +766,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the connection</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="r" class="level5" data-number="2.5.4.2.2">
-<h5 data-number="2.5.4.2.2" class="anchored" data-anchor-id="r"><span class="header-section-number">2.5.4.2.2</span> R:</h5>
+<h5 data-number="2.5.4.2.2" class="anchored" data-anchor-id="r"><span class="header-section-number">2.5.4.2.2</span> R</h5>
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the database</span></span>
@@ -787,7 +788,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df)</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the connection</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(conn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyze it with Python or R—all within the same workflow.</p>
@@ -807,7 +808,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Offering integrated documentation</li>
 <li>Simplifying project organization and version control</li>
 </ol>
-<p>Over 80% of professional Python developers use a specialized IDE rather than a basic text editor [^5]. Using an IDE can increase productivity by 25-50% compared to basic text editors.</p>
+<p>Most professional developers use a specialized IDE rather than a basic text editor, as the additional features significantly improve productivity.</p>
 <p>Think of an IDE as a fully equipped workshop rather than just having a single tool. It has everything arranged conveniently in one place.</p>
 <p>We’ve already installed RStudio for R development. Now let’s look at options for Python and SQL.</p>
 </section>
@@ -881,7 +882,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note: In file paths, forward slashes (/) are primarily used in Unix-like systems like Linux and macOS, while backslashes (`) are commonly used in Windows.</p>
+<p>Note: In file paths, forward slashes (/) are primarily used in Unix-like systems like Linux and macOS, while backslashes (\) are commonly used in Windows.</p>
 </div>
 </div>
 </section>
@@ -892,12 +893,12 @@ Note
 <section id="jupyterlab-the-next-generation-of-jupyter" class="level4" data-number="2.6.4.1">
 <h4 data-number="2.6.4.1" class="anchored" data-anchor-id="jupyterlab-the-next-generation-of-jupyter"><span class="header-section-number">2.6.4.1</span> JupyterLab: The Next Generation of Jupyter</h4>
 <p>JupyterLab is a web-based interactive development environment that extends the notebook interface with a file browser, consoles, terminals, and more.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install JupyterLab</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install JupyterLab</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge jupyterlab</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch JupyterLab</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>JupyterLab provides a more IDE-like experience than classic Jupyter notebooks, with the ability to open multiple notebooks, view data frames, and edit other file types in a single interface. It’s like upgrading from having separate tools to having a comprehensive workbench.</p>
 </section>
 </section>
@@ -932,34 +933,34 @@ Note
 <li>Documents the evolution of your analysis</li>
 <li>Enables reproducibility by capturing the state of code at specific points</li>
 </ol>
-<p>Proper version control significantly improves reproducibility and collaboration in research [^6].</p>
+<p>Proper version control is essential for reproducibility and collaboration in data science work.</p>
 <p>Think of Git as a time machine for your code. It allows you to save snapshots of your project at different points in time and revisit or restore those snapshots if needed.</p>
 </section>
 <section id="installing-git" class="level3" data-number="2.7.2">
 <h3 data-number="2.7.2" class="anchored" data-anchor-id="installing-git"><span class="header-section-number">2.7.2</span> Installing Git</h3>
 <section id="on-windows-2" class="level4" data-number="2.7.2.1">
-<h4 data-number="2.7.2.1" class="anchored" data-anchor-id="on-windows-2"><span class="header-section-number">2.7.2.1</span> On Windows:</h4>
+<h4 data-number="2.7.2.1" class="anchored" data-anchor-id="on-windows-2"><span class="header-section-number">2.7.2.1</span> On Windows</h4>
 <ol type="1">
 <li>Download the installer from <a href="https://gitforwindows.org/">Git for Windows</a></li>
 <li>Run the installer, accepting the default options (though you may want to choose VS Code as your default editor if you installed it)</li>
 </ol>
 </section>
 <section id="on-macos-2" class="level4" data-number="2.7.2.2">
-<h4 data-number="2.7.2.2" class="anchored" data-anchor-id="on-macos-2"><span class="header-section-number">2.7.2.2</span> On macOS:</h4>
+<h4 data-number="2.7.2.2" class="anchored" data-anchor-id="on-macos-2"><span class="header-section-number">2.7.2.2</span> On macOS</h4>
 <p>Git may already be installed. Check by typing <code>git --version</code> in the terminal. If not:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Git using Homebrew</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Git using Homebrew</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="on-linux-2" class="level4" data-number="2.7.2.3">
-<h4 data-number="2.7.2.3" class="anchored" data-anchor-id="on-linux-2"><span class="header-section-number">2.7.2.3</span> On Linux:</h4>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h4 data-number="2.7.2.3" class="anchored" data-anchor-id="on-linux-2"><span class="header-section-number">2.7.2.3</span> On Linux</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="configuring-git" class="level4" data-number="2.7.2.4">
 <h4 data-number="2.7.2.4" class="anchored" data-anchor-id="configuring-git"><span class="header-section-number">2.7.2.4</span> Configuring Git</h4>
 <p>After installation, open a terminal and configure your identity:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your.email@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your.email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is like putting your name and address on a letter. When you make changes to a project, Git will know who made them.</p>
 </section>
 </section>
@@ -978,14 +979,14 @@ Note
 <p>Using SSH keys makes it more secure and convenient to interact with GitHub:</p>
 <section id="generating-ssh-keys" class="level4" data-number="2.7.4.1">
 <h4 data-number="2.7.4.1" class="anchored" data-anchor-id="generating-ssh-keys"><span class="header-section-number">2.7.4.1</span> Generating SSH Keys</h4>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a new SSH key</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a new SSH key</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your.email@example.com"</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the SSH agent</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your key to the agent</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>SSH keys are like a special lock and key system. Instead of typing your password every time you interact with GitHub, your computer uses these keys to prove it’s really you.</p>
 </section>
 <section id="adding-your-ssh-key-to-github" class="level4" data-number="2.7.4.2">
@@ -1005,7 +1006,7 @@ Note
 <section id="basic-git-workflow" class="level3" data-number="2.7.5">
 <h3 data-number="2.7.5" class="anchored" data-anchor-id="basic-git-workflow"><span class="header-section-number">2.7.5</span> Basic Git Workflow</h3>
 <p>Let’s create a repository and learn the essential Git commands:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new directory</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new directory</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my_first_repo</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my_first_repo</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1019,7 +1020,7 @@ Note
 <span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
 <span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit the changes</span></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial commit"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial commit"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Think of this process as:</p>
 <ol type="1">
 <li>Creating a new folder for your project</li>
@@ -1040,15 +1041,15 @@ Note
 <li>Click “Create repository”</li>
 <li>Follow the instructions for “push an existing repository from the command line”:</li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:yourusername/my_first_repo.git</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:yourusername/my_first_repo.git</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This process connects your local repository to GitHub (like linking your local folder to a cloud storage service) and uploads your code.</p>
 </section>
 <section id="basic-git-commands-for-daily-use" class="level3" data-number="2.7.7">
 <h3 data-number="2.7.7" class="anchored" data-anchor-id="basic-git-commands-for-daily-use"><span class="header-section-number">2.7.7</span> Basic Git Commands for Daily Use</h3>
 <p>These commands form the core of day-to-day Git usage:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check status of your repository</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check status of your repository</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View commit history</span></span>
@@ -1070,28 +1071,28 @@ Note
 <span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Description of changes"</span></span>
 <span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Push commits to remote repository</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Think of branches as parallel versions of your project. The main branch is like the trunk of a tree, and other branches are like branches growing out from it. You can work on different features in different branches without affecting the main branch, then combine them when they’re ready.</p>
 </section>
 <section id="using-git-in-ides" class="level3" data-number="2.7.8">
 <h3 data-number="2.7.8" class="anchored" data-anchor-id="using-git-in-ides"><span class="header-section-number">2.7.8</span> Using Git in IDEs</h3>
 <p>Most modern IDEs integrate with Git, making version control easier:</p>
 <section id="vs-code" class="level4" data-number="2.7.8.1">
-<h4 data-number="2.7.8.1" class="anchored" data-anchor-id="vs-code"><span class="header-section-number">2.7.8.1</span> VS Code:</h4>
+<h4 data-number="2.7.8.1" class="anchored" data-anchor-id="vs-code"><span class="header-section-number">2.7.8.1</span> VS Code</h4>
 <ul>
 <li>Click the Source Control icon in the sidebar</li>
 <li>Use the interface to stage, commit, and push changes</li>
 </ul>
 </section>
 <section id="pycharm" class="level4" data-number="2.7.8.2">
-<h4 data-number="2.7.8.2" class="anchored" data-anchor-id="pycharm"><span class="header-section-number">2.7.8.2</span> PyCharm:</h4>
+<h4 data-number="2.7.8.2" class="anchored" data-anchor-id="pycharm"><span class="header-section-number">2.7.8.2</span> PyCharm</h4>
 <ul>
 <li>Go to VCS → Git in the menu</li>
 <li>Use the interface for Git operations</li>
 </ul>
 </section>
 <section id="rstudio" class="level4" data-number="2.7.8.3">
-<h4 data-number="2.7.8.3" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">2.7.8.3</span> RStudio:</h4>
+<h4 data-number="2.7.8.3" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">2.7.8.3</span> RStudio</h4>
 <ul>
 <li>Click the Git tab in the upper-right panel</li>
 <li>Use the interface for Git operations</li>
@@ -1105,11 +1106,11 @@ Note
 <ol type="1">
 <li><p>Fork someone’s repository by clicking the “Fork” button on GitHub</p></li>
 <li><p>Clone your fork locally:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:yourusername/their-repo.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:yourusername/their-repo.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Create a branch for your changes:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> my-feature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> my-feature</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Make changes, commit them, and push to your fork:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin my-feature</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin my-feature</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>On GitHub, navigate to your fork and click “New pull request”</p></li>
 </ol>
 <p>Pull requests allow project maintainers to review your changes before incorporating them. It’s like submitting a draft for review before it gets published.</p>
@@ -1171,13 +1172,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

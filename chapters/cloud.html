@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6e4858b4921ffe5a9c7d897cee0e5447.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -255,6 +256,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#getting-started-with-a-cloud-platform" id="toc-getting-started-with-a-cloud-platform" class="nav-link" data-scroll-target="#getting-started-with-a-cloud-platform"><span class="header-section-number">4.1.6</span> Getting Started with a Cloud Platform</a></li>
   <li><a href="#managing-cloud-costs" id="toc-managing-cloud-costs" class="nav-link" data-scroll-target="#managing-cloud-costs"><span class="header-section-number">4.1.7</span> Managing Cloud Costs</a></li>
   <li><a href="#security-best-practices-in-the-cloud" id="toc-security-best-practices-in-the-cloud" class="nav-link" data-scroll-target="#security-best-practices-in-the-cloud"><span class="header-section-number">4.1.8</span> Security Best Practices in the Cloud</a></li>
+  <li><a href="#hands-on-exercise-your-first-cloud-analysis-with-google-colab" id="toc-hands-on-exercise-your-first-cloud-analysis-with-google-colab" class="nav-link" data-scroll-target="#hands-on-exercise-your-first-cloud-analysis-with-google-colab"><span class="header-section-number">4.1.9</span> Hands-On Exercise: Your First Cloud Analysis with Google Colab</a></li>
+  <li><a href="#connecting-cloud-storage-to-your-analysis" id="toc-connecting-cloud-storage-to-your-analysis" class="nav-link" data-scroll-target="#connecting-cloud-storage-to-your-analysis"><span class="header-section-number">4.1.10</span> Connecting Cloud Storage to Your Analysis</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.2</span> Conclusion</a></li>
   </ul>
@@ -426,7 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Regular security audits</strong>: Review permissions and access regularly</li>
 </ol>
 <p>For example, when setting up a SageMaker notebook:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access data securely from S3</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access data securely from S3</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> botocore.exceptions <span class="im">import</span> ClientError</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -443,14 +446,140 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> response[<span class="st">'Body'</span>].read()</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> ClientError <span class="im">as</span> e:</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Error accessing data: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Remember that security is a shared responsibility between you and the cloud provider. The provider secures the infrastructure, but you’re responsible for securing your data and applications.</p>
+</section>
+<section id="hands-on-exercise-your-first-cloud-analysis-with-google-colab" class="level3" data-number="4.1.9">
+<h3 data-number="4.1.9" class="anchored" data-anchor-id="hands-on-exercise-your-first-cloud-analysis-with-google-colab"><span class="header-section-number">4.1.9</span> Hands-On Exercise: Your First Cloud Analysis with Google Colab</h3>
+<p>Let’s walk through a complete example of using Google Colab for a data science task. This exercise demonstrates the practical workflow of cloud-based analysis.</p>
+<section id="step-1-create-a-new-notebook" class="level4" data-number="4.1.9.1">
+<h4 data-number="4.1.9.1" class="anchored" data-anchor-id="step-1-create-a-new-notebook"><span class="header-section-number">4.1.9.1</span> Step 1: Create a New Notebook</h4>
+<ol type="1">
+<li>Go to <a href="https://colab.research.google.com/">colab.research.google.com</a></li>
+<li>Click “New Notebook”</li>
+<li>Rename it by clicking on “Untitled0.ipynb” at the top</li>
+</ol>
+</section>
+<section id="step-2-load-and-explore-data" class="level4" data-number="4.1.9.2">
+<h4 data-number="4.1.9.2" class="anchored" data-anchor-id="step-2-load-and-explore-data"><span class="header-section-number">4.1.9.2</span> Step 2: Load and Explore Data</h4>
+<p>In the first cell, load a dataset directly from a URL:</p>
+<div id="70164e5a" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a sample dataset directly from the web</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/mwaskom/seaborn-data/master/penguins.csv"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Display basic information</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Dataset shape: </span><span class="sc">{</span>df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Column types:</span><span class="ch">\n</span><span class="sc">{</span>df<span class="sc">.</span>dtypes<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">First few rows:"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="step-3-perform-analysis" class="level4" data-number="4.1.9.3">
+<h4 data-number="4.1.9.3" class="anchored" data-anchor-id="step-3-perform-analysis"><span class="header-section-number">4.1.9.3</span> Step 3: Perform Analysis</h4>
+<p>In subsequent cells, perform your analysis:</p>
+<div id="0c42edcc" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="d43d7228" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a visualization</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                hue<span class="op">=</span><span class="st">'species'</span>, style<span class="op">=</span><span class="st">'island'</span>, s<span class="op">=</span><span class="dv">100</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Penguin Bill Dimensions by Species and Island'</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Bill Length (mm)'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Bill Depth (mm)'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="step-4-enable-gpu-acceleration-optional" class="level4" data-number="4.1.9.4">
+<h4 data-number="4.1.9.4" class="anchored" data-anchor-id="step-4-enable-gpu-acceleration-optional"><span class="header-section-number">4.1.9.4</span> Step 4: Enable GPU Acceleration (Optional)</h4>
+<p>For machine learning tasks, you can enable GPU acceleration:</p>
+<ol type="1">
+<li>Go to Runtime → Change runtime type</li>
+<li>Select “T4 GPU” from the Hardware accelerator dropdown</li>
+<li>Click Save</li>
+</ol>
+<p>Then verify GPU availability:</p>
+<div id="ac066216" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> torch.cuda.is_available():</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"GPU available: </span><span class="sc">{</span>torch<span class="sc">.</span>cuda<span class="sc">.</span>get_device_name(<span class="dv">0</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"GPU memory: </span><span class="sc">{</span>torch<span class="sc">.</span>cuda<span class="sc">.</span>get_device_properties(<span class="dv">0</span>)<span class="sc">.</span>total_memory <span class="op">/</span> <span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> GB"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No GPU available - using CPU"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="step-5-save-your-work" class="level4" data-number="4.1.9.5">
+<h4 data-number="4.1.9.5" class="anchored" data-anchor-id="step-5-save-your-work"><span class="header-section-number">4.1.9.5</span> Step 5: Save Your Work</h4>
+<p>Colab notebooks are automatically saved to your Google Drive. You can also:</p>
+<ul>
+<li>Download the notebook: File → Download → Download .ipynb</li>
+<li>Save to GitHub: File → Save a copy in GitHub</li>
+<li>Share with collaborators: Click the Share button in the top right</li>
+</ul>
+<p>This exercise demonstrates the core workflow of cloud-based data science: loading data, performing analysis, creating visualizations, and optionally leveraging specialized hardware—all without installing anything on your local machine.</p>
+</section>
+</section>
+<section id="connecting-cloud-storage-to-your-analysis" class="level3" data-number="4.1.10">
+<h3 data-number="4.1.10" class="anchored" data-anchor-id="connecting-cloud-storage-to-your-analysis"><span class="header-section-number">4.1.10</span> Connecting Cloud Storage to Your Analysis</h3>
+<p>When working with larger datasets, you’ll want to connect cloud storage to your notebooks. Here’s how to mount Google Drive in Colab:</p>
+<div id="c1dadf9a" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mount Google Drive</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>drive.mount(<span class="st">'/content/drive'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Now you can access files in your Drive</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'/content/drive/MyDrive/data/my_dataset.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>For AWS S3, you can use the boto3 library (as shown in the security section) or install the AWS CLI:</p>
+<div id="881b4863" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install AWS CLI in Colab</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install awscli</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure credentials (use environment variables in production)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>aws configure <span class="bu">set</span> aws_access_key_id YOUR_ACCESS_KEY</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>aws configure <span class="bu">set</span> aws_secret_access_key YOUR_SECRET_KEY</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Download data from S3</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>aws s3 cp s3:<span class="op">//</span>your<span class="op">-</span>bucket<span class="op">/</span>data.csv .<span class="op">/</span>data.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>These patterns allow you to work with data stored in various cloud locations while leveraging the computational resources of your cloud notebook environment.</p>
 </section>
 </section>
 <section id="conclusion" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.2</span> Conclusion</h2>
 <p>Cloud platforms provide powerful resources for data science, allowing you to scale beyond the limitations of your local machine. Whether you’re using free services like Google Colab or comprehensive platforms like AWS, GCP, or Azure, the cloud offers flexibility, scalability, and specialized tools that can significantly enhance your data science capabilities.</p>
 <p>As you grow more comfortable with cloud services, you can explore more advanced features like automated machine learning pipelines, distributed computing, and real-time data processing. The cloud is continuously evolving, with new services and features being added regularly to support data science workflows.</p>
+<p>In the upcoming chapters, we’ll explore how to deploy your data science projects to make them accessible to others (Deployment chapter) and how to use containerization with Docker to ensure your environments are reproducible across local and cloud platforms (Containerization chapter).</p>
 
 
 </section>
@@ -507,13 +636,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
