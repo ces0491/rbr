@@ -137,23 +137,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="../">Ready Before Run()</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ces0491/rbr" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../Ready-Before-Run--.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="../Ready-Before-Run--.epub">
-              <i class="bi bi-journal pe-1"></i>
-            Download ePub
-            </a>
-          </li>
-      </ul>
-    </div>
 </div>
     </div>
       </div>
@@ -463,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-2-load-and-explore-data" class="level4" data-number="4.1.9.2">
 <h4 data-number="4.1.9.2" class="anchored" data-anchor-id="step-2-load-and-explore-data"><span class="header-section-number">4.1.9.2</span> Step 2: Load and Explore Data</h4>
 <p>In the first cell, load a dataset directly from a URL:</p>
-<div id="70164e5a" class="cell" data-execution_count="1">
+<div id="a01576dc" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -485,14 +468,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-3-perform-analysis" class="level4" data-number="4.1.9.3">
 <h4 data-number="4.1.9.3" class="anchored" data-anchor-id="step-3-perform-analysis"><span class="header-section-number">4.1.9.3</span> Step 3: Perform Analysis</h4>
 <p>In subsequent cells, perform your analysis:</p>
-<div id="0c42edcc" class="cell" data-execution_count="2">
+<div id="20a963b6" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="d43d7228" class="cell" data-execution_count="3">
+<div id="289cb3c9" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a visualization</span></span>
@@ -517,7 +500,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Click Save</li>
 </ol>
 <p>Then verify GPU availability:</p>
-<div id="ac066216" class="cell" data-execution_count="4">
+<div id="92c8da33" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
@@ -544,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="connecting-cloud-storage-to-your-analysis" class="level3" data-number="4.1.10">
 <h3 data-number="4.1.10" class="anchored" data-anchor-id="connecting-cloud-storage-to-your-analysis"><span class="header-section-number">4.1.10</span> Connecting Cloud Storage to Your Analysis</h3>
 <p>When working with larger datasets, you’ll want to connect cloud storage to your notebooks. Here’s how to mount Google Drive in Colab:</p>
-<div id="c1dadf9a" class="cell" data-execution_count="5">
+<div id="f20afd93" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
@@ -558,7 +541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 </div>
 <p>For AWS S3, you can use the boto3 library (as shown in the security section) or install the AWS CLI:</p>
-<div id="881b4863" class="cell" data-execution_count="6">
+<div id="27499e69" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install AWS CLI in Colab</span></span>
