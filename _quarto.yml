@@ -31,7 +31,7 @@ book:
   favicon: assets/cover_no_auth.png
   repo-url: "https://github.com/ces0491/rbr"
   search: true
-  # downloads: [pdf, epub]  # Temporarily disabled - PDF rendering times out in CI
+  downloads: [pdf, epub]
 
 format:
   html:
@@ -48,12 +48,9 @@ format:
     mermaid:
       engine: mermaid
 
-# PDF and EPUB temporarily disabled - rendering times out in CI due to Mermaid/Chromium
-#  pdf:
-#    documentclass: scrbook
-#    code-overflow: wrap
-#    mermaid:
-#      theme: neutral
-#  epub:
-#    cover-image: assets/cover_no_auth.png
-#    code-overflow: wrap
+  pdf:
+    documentclass: scrbook
+    code-overflow: wrap
+  epub:
+    cover-image: assets/cover_no_auth.png
+    code-overflow: wrap
