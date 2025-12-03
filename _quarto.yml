@@ -3,7 +3,7 @@ project:
   output-dir: output
 
 execute:
-  freeze: auto    # Prevent re-execution of code chunks
+  freeze: true    # Always use frozen results - render locally to update
   echo: true      # Show code chunks in output
   eval: true      # Evaluate code chunks
   warning: false  # Don't show warnings
