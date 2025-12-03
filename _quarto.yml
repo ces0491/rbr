@@ -31,7 +31,7 @@ book:
   favicon: assets/cover_no_auth.png
   repo-url: "https://github.com/ces0491/rbr"
   search: true
-  downloads: [pdf, epub]
+  # downloads: [pdf, epub]  # Disabled - Mermaid rendering times out in CI
 
 format:
   html:
@@ -48,9 +48,11 @@ format:
     mermaid:
       engine: mermaid
 
-  pdf:
-    documentclass: scrbook
-    code-overflow: wrap
-  epub:
-    cover-image: assets/cover_no_auth.png
-    code-overflow: wrap
+# PDF/EPUB disabled - Mermaid diagrams require Chromium which times out in CI
+# To generate PDF/EPUB, run `quarto render` locally and upload manually
+#  pdf:
+#    documentclass: scrbook
+#    code-overflow: wrap
+#  epub:
+#    cover-image: assets/cover_no_auth.png
+#    code-overflow: wrap
