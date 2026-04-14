@@ -1,14 +1,14 @@
 ---
-title: "Containerization"
+title: "Containerisation"
 ---
 
-## Containerization with Docker
+## Containerisation with Docker
 
-As your data science projects grow more complex, you may encounter the "it works on my machine" problem—where code runs differently in different environments. Containerization solves this by packaging your code and its dependencies into a standardized unit called a container. Building on the environment management concepts we covered in the introductory chapter (conda environments for Python, renv for R), containers take isolation to the next level by packaging the entire runtime environment.
+As your data science projects grow more complex, you may encounter the "it works on my machine" problem—where code runs differently in different environments. Containerisation solves this by packaging your code and its dependencies into a standardised unit called a container. Building on the environment management concepts we covered in the introductory chapter (conda environments for Python, renv for R), containers take isolation to the next level by packaging the entire runtime environment.
 
-### Why Containerization for Data Science?
+### Why Containerisation for Data Science?
 
-Containerization offers several advantages for data science:
+Containerisation offers several advantages for data science:
 
 1. **Reproducibility**: Ensures your analysis runs the same way everywhere
 2. **Portability**: Move your environment between computers or cloud platforms
@@ -16,23 +16,35 @@ Containerization offers several advantages for data science:
 4. **Collaboration**: Easier sharing of complex environments with colleagues
 5. **Deployment**: Simplifies deploying models to production environments
 
-Think of containers as lightweight, portable virtual machines that package everything your code needs to run. Unlike virtual machines, containers share the host operating system's kernel, making them more efficient.
+Think of containers as lightweight, portable units that package everything your code needs to run. Unlike virtual machines, containers don't boot their own operating system; they share the host's kernel and isolate themselves using OS-level features. That makes them much faster to start and much cheaper in memory than a VM, while still giving you a reproducible, isolated environment.
 
 Containers have become widely adopted in production environments across the software industry, and their importance continues to grow in data science workflows.
 
 ### Installing Docker
 
-Docker is the most popular containerization platform. Let's install it:
+Docker is the most widely used containerisation platform, and its command-line tool (`docker`) is effectively the lingua franca of containers. Even the alternative tools below aim to be drop-in replacements for it. We'll use Docker Desktop in this chapter, but note the following licensing caveat before installing:
+
+:::{.callout-note}
+## Docker Desktop licensing
+
+Since 2021, **Docker Desktop requires a paid subscription for commercial use at companies with more than 250 employees or over $10 million in annual revenue**. It remains free for personal use, education, small businesses, and open-source projects. If your workplace falls above that threshold, the free alternatives below are excellent and all provide the same `docker` command:
+
+- **[Rancher Desktop](https://rancherdesktop.io/)**: open source, works on Windows/macOS/Linux, bundles Kubernetes
+- **[Podman Desktop](https://podman-desktop.io/)**: open source, daemonless, Red Hat–maintained, the most drop-in replacement for Docker CLI
+- **[OrbStack](https://orbstack.dev/)** (macOS only): very fast, polished; free for personal use, paid for commercial
+
+All the Dockerfiles and `docker` commands in this chapter work identically on each of these tools.
+:::
 
 #### On Windows
 
-1. Download [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop)
+1. Download [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop) (or one of the alternatives above)
 2. Run the installer and follow the prompts
 3. Windows 10 Home users should ensure WSL 2 is installed first
 
 #### On macOS
 
-1. Download [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop)
+1. Download [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop) (or OrbStack / Rancher Desktop)
 2. Run the installer and follow the prompts
 
 #### On Linux
@@ -86,7 +98,7 @@ cd docker-data-science
 
 ```dockerfile
 # Use a base image with Python installed
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -102,11 +114,18 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the code
-COPY . .
+# Create a non-root user (before copying files so we can set ownership)
+RUN useradd --create-home --shell /bin/bash jovyan
+
+# Copy the rest of the code, owned by the non-root user so Jupyter
+# can write notebooks back to /app
+COPY --chown=jovyan:jovyan . .
+RUN chown -R jovyan:jovyan /app
+
+USER jovyan
 
 # Command to run when the container starts
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
 ```
 
 3. Create a `requirements.txt` file with your Python dependencies:
@@ -142,7 +161,7 @@ This command does two important things:
 
 6. Open the Jupyter Lab URL shown in the terminal output
 
-You now have a containerized data science environment that can be easily shared with others and deployed to different systems!
+You now have a containerised data science environment that can be easily shared with others and deployed to different systems!
 
 ### Understanding the Dockerfile
 
@@ -150,10 +169,10 @@ Let's break down the Dockerfile we just created:
 
 ```dockerfile
 # Use a base image with Python installed
-FROM python:3.9-slim
+FROM python:3.12-slim
 ```
 
-The `FROM` statement specifies the base image to use. We're starting with a lightweight Python 3.9 image.
+The `FROM` statement specifies the base image to use. We're starting with a lightweight Python 3.12 image. Always pick a currently-supported Python version; consult the [official release schedule](https://devguide.python.org/versions/) before pinning in production, since each version's support window eventually ends.
 
 ```dockerfile
 # Install system dependencies
@@ -194,10 +213,10 @@ Copy all files from the current directory on the host to the working directory i
 
 ```dockerfile
 # Command to run when the container starts
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
 ```
 
-The `CMD` statement specifies the command to run when the container starts. In this case, we're starting Jupyter Lab.
+The `CMD` statement specifies the command to run when the container starts. In this case, we're starting Jupyter Lab. We bind to `0.0.0.0` so the server accepts connections from outside the container (otherwise the port mapping from the host wouldn't reach it).
 
 ### Using Pre-built Data Science Images
 
@@ -208,67 +227,85 @@ Instead of building your own Docker image, you can use popular pre-built images:
 The Jupyter team maintains several ready-to-use Docker images:
 
 ```bash
-# Basic Jupyter Notebook
-docker run -p 8888:8888 jupyter/minimal-notebook
+# Basic Jupyter Notebook. Pin a specific dated tag for reproducibility
+docker run -p 8888:8888 quay.io/jupyter/minimal-notebook:2025-10-13
 
 # Data science-focused image with pandas, matplotlib, etc.
-docker run -p 8888:8888 jupyter/datascience-notebook
+docker run -p 8888:8888 quay.io/jupyter/datascience-notebook:2025-10-13
 
-# All the above plus TensorFlow and PyTorch
-docker run -p 8888:8888 jupyter/tensorflow-notebook
+# All the above plus TensorFlow
+docker run -p 8888:8888 quay.io/jupyter/tensorflow-notebook:2025-10-13
 ```
 
 These pre-built images offer a convenient way to get started without creating your own Dockerfile. The Jupyter Docker Stacks project provides a range of images for different needs, from minimal environments to comprehensive data science setups.
 
+Two small but important habits:
+
+- **Pull from `quay.io/jupyter/*`**: the project moved off Docker Hub, and `quay.io` is now the canonical location.
+- **Pin a specific dated tag** (e.g. `2025-10-13`) rather than `latest`. Using `latest` means the image can silently change under you between runs, which defeats the whole point of containers for reproducibility. Check the [jupyter/docker-stacks releases](https://github.com/jupyter/docker-stacks/wiki) page for current tags.
+
 #### RStudio
 
-For R users, there are RStudio Server images:
+For R users, the Rocker project maintains RStudio Server images. Keep the password out of your shell history by reading it from an environment variable or `.env` file rather than typing it on the command line:
 
 ```bash
-docker run -p 8787:8787 -e PASSWORD=yourpassword rocker/rstudio
+# Set the password once for your shell session (choose a strong one):
+export RSTUDIO_PASSWORD='a-strong-password-you-chose'
+
+docker run -p 8787:8787 \
+  -e PASSWORD="$RSTUDIO_PASSWORD" \
+  rocker/rstudio:4.4
 ```
 
-Access RStudio at <http://localhost:8787> with username "rstudio" and your chosen password.
+Access RStudio at <http://localhost:8787> with username `rstudio` and the password you set. Pin to a specific Rocker tag (e.g. `rocker/rstudio:4.4`) rather than using `latest`, for the same reproducibility reasons as above. Rocker publishes tags on [Docker Hub](https://hub.docker.com/r/rocker/rstudio/tags): browse there to pick a specific patch version if you need one.
 
 ### Docker Compose for Multiple Containers
 
 For more complex setups with multiple services (e.g., Python, R, and a database), Docker Compose allows you to define and run multi-container applications:
 
-1. Create a file named `docker-compose.yml`:
+1. Create a `.env` file alongside your compose file with the secrets, and add `.env` to your `.gitignore` so it never reaches a repository:
+
+```
+RSTUDIO_PASSWORD=a-strong-password-you-chose
+POSTGRES_PASSWORD=another-strong-password
+```
+
+2. Create a file named `compose.yaml` (the newer Compose V2 name; `docker-compose.yml` still works):
 
 ```yaml
-version: '3'
 services:
   jupyter:
-    image: jupyter/datascience-notebook
+    image: quay.io/jupyter/datascience-notebook:2025-10-13
     ports:
       - "8888:8888"
     volumes:
       - ./jupyter_data:/home/jovyan/work
-  
+
   rstudio:
-    image: rocker/rstudio
+    image: rocker/rstudio:4.4
     ports:
       - "8787:8787"
     environment:
-      - PASSWORD=yourpassword
+      - PASSWORD=${RSTUDIO_PASSWORD}
     volumes:
       - ./r_data:/home/rstudio
-  
+
   postgres:
-    image: postgres:13
+    image: postgres:16
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
 ```
 
-2. Start all services:
+The `${RSTUDIO_PASSWORD}` and `${POSTGRES_PASSWORD}` placeholders are filled in from your `.env` file at runtime, so the secrets never live in the file you commit.
+
+3. Start all services (Compose V2 uses `docker compose`, a space, not a hyphen):
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 3. Access Jupyter at <http://localhost:8888> and RStudio at <http://localhost:8787>
@@ -282,7 +319,7 @@ For machine learning projects, containers are particularly valuable for ensuring
 1. Create a project-specific Dockerfile:
 
 ```dockerfile
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -338,34 +375,38 @@ docker build -t ml-model-api .
 docker run -p 5000:5000 ml-model-api
 ```
 
-This creates a containerized API service for your machine learning model that can be deployed to any environment that supports Docker.
+This creates a containerised API service for your machine learning model that can be deployed to any environment that supports Docker.
 
 ### Best Practices for Docker in Data Science
 
 To get the most out of Docker for data science, follow these best practices:
 
-1. **Keep images lean**: Use slim or alpine base images when possible
+1. **Keep images lean**: Smaller images pull faster, deploy faster, and expose less attack surface. Use `-slim` (or `-alpine` for pure-Python workloads) base images when you can.
 
    ```dockerfile
-   FROM python:3.9-slim  # Better than the full python:3.9 image
+   FROM python:3.12-slim  # ~150 MB; the full python:3.12 image is ~1 GB
    ```
+
+   Note that Alpine-based images use `musl` instead of `glibc`, which occasionally breaks scientific Python packages that ship precompiled wheels for `glibc` only. When in doubt, start with `-slim`.
 
 2. **Use multi-stage builds for production**: Separate building dependencies from runtime
 
    ```dockerfile
    # Build stage
-   FROM python:3.9 AS builder
+   FROM python:3.12 AS builder
    WORKDIR /app
    COPY requirements.txt .
    RUN pip install --no-cache-dir -r requirements.txt
-   
+
    # Runtime stage
-   FROM python:3.9-slim
+   FROM python:3.12-slim
    WORKDIR /app
-   COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+   COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
    COPY . .
    CMD ["python", "app.py"]
    ```
+
+   The benefit: your final image doesn't carry compilers, header files, or build tools, only the installed Python packages and your application code. For typical data science containers this can cut image size by 30–50% and reduce the attack surface.
 
 3. **Layer your Dockerfile logically**: Order commands from least to most likely to change
 
@@ -404,11 +445,29 @@ To get the most out of Docker for data science, follow these best practices:
    data/
    ```
 
-7. **Use environment variables for configuration**:
+7. **Use environment variables for configuration** (not secrets):
 
    ```dockerfile
    ENV MODEL_PATH=/app/models/model.pkl
    ```
+
+   `ENV` values are baked into the image and visible to anyone who can pull it, so they are fine for non-sensitive defaults like file paths or log levels. Pass actual secrets at runtime via `docker run -e`, `--env-file`, or your platform's secret store. Never hard-code them in a Dockerfile.
+
+8. **Add a `HEALTHCHECK`** so the runtime can detect and restart broken containers:
+
+   ```dockerfile
+   HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+     CMD curl -fsS http://localhost:8080/health || exit 1
+   ```
+
+9. **Run as a non-root user** in production images. Most official base images provide one (e.g. the Jupyter stacks use `jovyan`, Rocker uses `rstudio`). For your own images, add a user near the end of the Dockerfile:
+
+   ```dockerfile
+   RUN useradd --create-home appuser
+   USER appuser
+   ```
+
+   Running as root inside the container isn't catastrophic on its own, but combined with volume mounts or a container escape it makes things much worse than they need to be.
 
 ### Common Docker Commands for Data Scientists
 
@@ -447,6 +506,6 @@ Understanding these commands will help you manage your Docker workflow efficient
 
 ### Conclusion
 
-Containerization provides a powerful way to create reproducible, portable environments for data science. By packaging your code, dependencies, and configuration into a standardized unit, you can ensure consistent behavior across different systems and simplify collaboration with colleagues.
+Containerisation provides a powerful way to create reproducible, portable environments for data science. By packaging your code, dependencies, and configuration into a standardised unit, you can ensure consistent behaviour across different systems and simplify collaboration with colleagues.
 
-We've covered Docker for containerization but there are several good quality alternatives such as Podman and Rancher. As you grow more comfortable with Docker, you can explore advanced topics like custom image optimization, orchestration with Kubernetes, and CI/CD integration. The investment in learning containerization pays dividends in reproducibility, efficiency, and deployment simplicity throughout your data science career.
+We've covered Docker for containerisation but there are several good quality alternatives such as Podman and Rancher. As you grow more comfortable with Docker, you can explore advanced topics like custom image optimisation, orchestration with Kubernetes, and CI/CD integration. The investment in learning containerisation pays dividends in reproducibility, efficiency, and deployment simplicity throughout your data science career.

@@ -13,8 +13,6 @@ jobs:
       contents: write
       pages: write
       id-token: write
-    env:
-      RENV_PATHS_ROOT: ~/.cache/R/renv
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -45,17 +43,6 @@ jobs:
         with:
           r-version: '4.4.1'
 
-      - name: Cache R packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/R/renv
-            ~/.local/share/renv
-            /usr/local/lib/R/site-library
-          key: ${{ runner.os }}-r-${{ hashFiles('.github/workflows/publish.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-r-
-
       - name: Install R Dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
@@ -67,29 +54,6 @@ jobs:
             any::shiny
             any::plotly
             any::lubridate
-
-      - name: Install Chromium
-        run: |
-          quarto install chromium --no-prompt
-
-      - name: Cache TinyTeX
-        uses: actions/cache@v4
-        with:
-          path: ~/.TinyTeX
-          key: ${{ runner.os }}-tinytex-${{ hashFiles('.github/workflows/publish.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-tinytex-
-
-      - name: Install TinyTeX
-        run: |
-          if [ ! -d ~/.TinyTeX ]; then
-            quarto install tinytex
-          fi
-
-      - name: Install LaTeX packages
-        run: |
-          export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
-          tlmgr install fontawesome5 || true
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2

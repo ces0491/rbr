@@ -6,7 +6,7 @@ execute:
 
 ## Cloud Platforms for Data Science
 
-As your projects grow in size and complexity, you may need more computing power than your local machine can provide. You may require secure, centralized storage solutions that scale seamlessly. Cloud platforms offer scalable resources and specialized tools for data science.
+As your projects grow in size and complexity, you may need more computing power than your local machine can provide. You may require secure, centralised storage solutions that scale seamlessly. Cloud platforms offer scalable resources and specialised tools for data science.
 
 ### Why Use Cloud Platforms?
 
@@ -14,7 +14,7 @@ Cloud platforms offer several advantages for data science:
 
 1. **Scalability**: Access to more storage and computing power when needed
 2. **Collaboration**: Easier sharing of resources and results with team members
-3. **Specialized Hardware**: Access to GPUs and TPUs for deep learning
+3. **Specialised Hardware**: Access to GPUs and TPUs for deep learning
 4. **Managed Services**: Pre-configured tools and infrastructure
 5. **Cost Efficiency**: Pay only for what you use
 
@@ -28,7 +28,7 @@ Google Colab provides free access to Python notebooks with GPU and TPU accelerat
 2. Sign in with your Google account
 3. Click "New Notebook" to create a new notebook
 
-Google Colab is essentially Jupyter notebooks running on Google's servers, with a few additional features. You can run Python code, create visualizations, and even access GPU and TPU accelerators for free (with usage limits).
+Google Colab is essentially Jupyter notebooks running on Google's servers, with a few additional features. You can run Python code, create visualisations, and even access GPU and TPU accelerators for free (with usage limits).
 
 The key advantages of Colab include:
 
@@ -49,7 +49,7 @@ Cloud storage services provide an easy way to store and share data:
 
 These services can be used to store datasets, notebooks, and results. They also facilitate collaboration, as you can easily share files with colleagues.
 
-For larger datasets or specialized needs, you'll want to look at dedicated cloud storage solutions like Amazon S3, Google Cloud Storage, or Azure Blob Storage. These services are designed for scalability and can handle terabytes or even petabytes of data.
+For larger datasets or specialised needs, you'll want to look at dedicated cloud storage solutions like Amazon S3, Google Cloud Storage, or Azure Blob Storage. These services are designed for scalability and can handle terabytes or even petabytes of data.
 
 ### Comprehensive Cloud Platforms
 
@@ -60,7 +60,7 @@ For more advanced needs, consider these major cloud platforms:
 AWS offers a comprehensive suite of data science tools:
 
 - **SageMaker**: Managed Jupyter notebooks with integrated ML tools
-- **EC2**: Virtual machines for customized environments
+- **EC2**: Virtual machines for customised environments
 - **S3**: Scalable storage for datasets
 - **Redshift**: Data warehousing
 - **Lambda**: Serverless computing for data processing
@@ -85,9 +85,9 @@ Azure is particularly well-integrated with Microsoft's other tools:
 - **Azure Databricks**: Spark-based analytics
 - **Azure Storage**: Various storage options
 - **Azure SQL Database**: Managed SQL
-- **Power BI**: Business intelligence and visualization
+- **Power BI**: Business intelligence and visualisation
 
-Each platform has its strengths, and many organizations use multiple clouds for different purposes. AWS has the broadest range of services, GCP excels in machine learning tools, and Azure integrates well with Microsoft's enterprise ecosystem.
+Each platform has its strengths, and many organisations use multiple clouds for different purposes. AWS has the broadest range of services, GCP excels in machine learning tools, and Azure integrates well with Microsoft's enterprise ecosystem.
 
 ### Choosing the Right Cloud Services
 
@@ -98,6 +98,7 @@ When selecting cloud services for data science, consider these factors:
 3. **Technical expertise**: Some platforms have steeper learning curves
 4. **Integration needs**: Consider existing tools in your workflow
 5. **Security requirements**: Review compliance certifications and features
+6. **Data residency and regulation**: Where your data physically lives matters legally. Personal data about EU residents falls under GDPR; South African personal data falls under POPIA; similar laws exist in most jurisdictions. Pick a region in the right country or economic area for your data subjects, and check whether your employer or client has contractual restrictions on where data can be stored or processed. All three major clouds (AWS, GCP, Azure) have regions in both South Africa and Europe.
 
 A strategic approach is to start with a small project on your chosen platform. This allows you to gain familiarity with the environment before committing to larger workloads.
 
@@ -106,26 +107,36 @@ A strategic approach is to start with a small project on your chosen platform. T
 Let's create a basic starter project on AWS as an example:
 
 1. Sign up for an [AWS account](https://aws.amazon.com/)
-2. Navigate to SageMaker in the AWS console
-3. Create a new notebook instance:
-    - Choose a name (e.g., "data-science-starter")
-    - Select an instance type (e.g., "ml.t2.medium" for the free tier)
-    - Create or select an IAM role with SageMaker access
-    - Launch the instance
-4. When the instance is running, click "Open JupyterLab"
-5. Create a new notebook and start working
+2. Navigate to SageMaker AI → Studio in the AWS console
+3. Create a Studio domain (for personal use, pick "Quick setup")
+4. Open Studio and launch a JupyterLab space, choosing a small instance type such as `ml.t3.medium` (covered by the SageMaker free tier for new accounts)
+5. Start the space, open JupyterLab, create a notebook, and start working
 
-This gives you a fully configured Jupyter environment with access to more computational resources than your local machine likely has. SageMaker notebooks come pre-installed with popular data science libraries and integrate seamlessly with other AWS services like S3 for storage.
+This gives you a fully configured Jupyter environment with access to more computational resources than your local machine likely has. SageMaker comes pre-installed with popular data science libraries and integrates with other AWS services like S3 for storage.
+
+:::{.callout-warning}
+## Shut it down when you're done
+
+Studio spaces and notebook instances bill by the minute they're running, not by how much you use them. A notebook you forgot to stop over the weekend is the single most common surprise bill for beginners. Stop the space from the Studio UI when you finish a session.
+:::
 
 ### Managing Cloud Costs
 
-One of the most important aspects of using cloud platforms is managing costs effectively:
+One of the most important aspects of using cloud platforms is managing costs effectively. A few traps catch almost every beginner:
+
+- **Idle notebook and VM instances**: Cloud notebooks bill by wall-clock time, not usage. An instance left running overnight can cost more than a whole week of active work.
+- **Data egress**: Moving data *out* of a cloud provider (to your laptop, to another region, to another cloud) is almost always charged. Moving it *in* is usually free. Pulling a 500 GB dataset to your machine "just to look at it" is a classic expensive mistake.
+- **NAT gateways and load balancers**: On AWS especially, these run 24/7 and bill by the hour even if nothing is using them. Delete them when the project ends.
+- **Storage classes**: Object storage has cheap long-term tiers (S3 Glacier, GCS Coldline, Azure Archive) for data you rarely read. Use them for raw archives.
+- **Free tier expiry**: Most "free tier" offers last 12 months from signup, after which the same resources begin charging at normal rates.
+
+Practical habits that help:
 
 1. **Set up billing alerts**: Configure notifications when spending reaches certain thresholds
-2. **Use spot instances**: Take advantage of discounted pricing for interruptible workloads
+2. **Use spot / preemptible instances**: Steep discounts for interruptible workloads such as batch training jobs
 3. **Right-size resources**: Choose appropriate instance types for your workloads
 4. **Schedule shutdowns**: Automatically stop instances when not in use
-5. **Clean up resources**: Delete unused storage, instances, and services
+5. **Clean up resources**: Delete unused storage, instances, load balancers, and services when the project ends
 
 For example, in AWS you can create a budget with alerts:
 
@@ -146,28 +157,29 @@ Data security is critical when working in cloud environments:
 4. **Use private networks**: Isolate your resources when possible
 5. **Regular security audits**: Review permissions and access regularly
 
-For example, when setting up a SageMaker notebook:
+In practice, the cleanest approach for most data science work is to enable **default encryption on the S3 bucket itself** (AWS console → Bucket → Properties → Default encryption → SSE-S3 or SSE-KMS). Once that's set, every object written to the bucket is encrypted at rest automatically, and your notebook code doesn't need to pass keys at all:
 
 ```python
-# Access data securely from S3
 import boto3
 from botocore.exceptions import ClientError
 
-def get_secured_data(bucket, key):
+def get_data(bucket, key):
+    # Credentials come from the instance IAM role, not from code.
+    # Encryption is handled by the bucket's default policy.
     s3 = boto3.client('s3')
     try:
-        # Ensure server-side encryption
-        response = s3.get_object(
-            Bucket=bucket,
-            Key=key,
-            SSECustomerAlgorithm='AES256',
-            SSECustomerKey='your-secret-key'
-        )
+        response = s3.get_object(Bucket=bucket, Key=key)
         return response['Body'].read()
     except ClientError as e:
         print(f"Error accessing data: {e}")
         return None
 ```
+
+A few principles to notice:
+
+- **No access keys in code**. When running on an EC2 instance, SageMaker notebook, or Lambda, attach an IAM role with the minimum required permissions; boto3 picks up credentials automatically. For local development, use `aws configure` to store credentials in `~/.aws/credentials` (which is already outside your git repository).
+- **Let the bucket policy enforce encryption**, not the client. This avoids the trap of one script forgetting to encrypt.
+- **Avoid SSE-C** (customer-provided keys) unless you have a specific compliance reason. With SSE-C, *you* are responsible for the encryption key, and losing it means losing the data. SSE-KMS is almost always the better choice.
 
 Remember that security is a shared responsibility between you and the cloud provider. The provider secures the infrastructure, but you're responsible for securing your data and applications.
 
@@ -214,7 +226,7 @@ df.describe()
 
 ```{python}
 #| eval: false
-# Create a visualization
+# Create a visualisation
 plt.figure(figsize=(10, 6))
 sns.scatterplot(data=df, x='bill_length_mm', y='bill_depth_mm',
                 hue='species', style='island', s=100)
@@ -255,7 +267,7 @@ Colab notebooks are automatically saved to your Google Drive. You can also:
 - Save to GitHub: File → Save a copy in GitHub
 - Share with collaborators: Click the Share button in the top right
 
-This exercise demonstrates the core workflow of cloud-based data science: loading data, performing analysis, creating visualizations, and optionally leveraging specialized hardware—all without installing anything on your local machine.
+This exercise demonstrates the core workflow of cloud-based data science: loading data, performing analysis, creating visualisations, and optionally leveraging specialised hardware—all without installing anything on your local machine.
 
 ### Connecting Cloud Storage to Your Analysis
 
@@ -273,27 +285,33 @@ import pandas as pd
 df = pd.read_csv('/content/drive/MyDrive/data/my_dataset.csv')
 ```
 
-For AWS S3, you can use the boto3 library (as shown in the security section) or install the AWS CLI:
+For AWS S3 from a Colab notebook, use the boto3 library with credentials supplied through Colab's secret manager rather than typing them into cells:
 
 ```{python}
 #| eval: false
-# Install AWS CLI in Colab
-!pip install awscli
+# In Colab: click the 🔑 key icon in the left sidebar and add two secrets
+# named AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Then:
+import os
+from google.colab import userdata
+import boto3
 
-# Configure credentials (use environment variables in production)
-!aws configure set aws_access_key_id YOUR_ACCESS_KEY
-!aws configure set aws_secret_access_key YOUR_SECRET_KEY
+os.environ["AWS_ACCESS_KEY_ID"] = userdata.get("AWS_ACCESS_KEY_ID")
+os.environ["AWS_SECRET_ACCESS_KEY"] = userdata.get("AWS_SECRET_ACCESS_KEY")
 
-# Download data from S3
-!aws s3 cp s3://your-bucket/data.csv ./data.csv
+s3 = boto3.client("s3", region_name="us-east-1")
+s3.download_file("your-bucket", "data.csv", "data.csv")
 ```
+
+**Never paste access keys directly into notebook cells or commit them to a repository.** Anything written in a cell gets saved to the `.ipynb` file and is trivially recoverable. Use Colab secrets, environment variables, or (better) IAM roles for service-to-service access.
+
+If a key does leak, rotate it in the AWS console immediately. Don't try to scrub the notebook history.
 
 These patterns allow you to work with data stored in various cloud locations while leveraging the computational resources of your cloud notebook environment.
 
 ## Conclusion
 
-Cloud platforms provide powerful resources for data science, allowing you to scale beyond the limitations of your local machine. Whether you're using free services like Google Colab or comprehensive platforms like AWS, GCP, or Azure, the cloud offers flexibility, scalability, and specialized tools that can significantly enhance your data science capabilities.
+Cloud platforms provide powerful resources for data science, allowing you to scale beyond the limitations of your local machine. Whether you're using free services like Google Colab or comprehensive platforms like AWS, GCP, or Azure, the cloud offers flexibility, scalability, and specialised tools that can significantly enhance your data science capabilities.
 
 As you grow more comfortable with cloud services, you can explore more advanced features like automated machine learning pipelines, distributed computing, and real-time data processing. The cloud is continuously evolving, with new services and features being added regularly to support data science workflows.
 
-In the upcoming chapters, we'll explore how to deploy your data science projects to make them accessible to others (Deployment chapter) and how to use containerization with Docker to ensure your environments are reproducible across local and cloud platforms (Containerization chapter).
+In the upcoming chapters, we'll explore how to deploy your data science projects to make them accessible to others (Deployment chapter) and how to use containerisation with Docker to ensure your environments are reproducible across local and cloud platforms (Containerisation chapter).

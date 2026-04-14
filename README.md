@@ -1,19 +1,20 @@
 # Ready Before Run()
 
-A Practical Guide to Gear Up for Data Science — by [Cesaire Tobias](https://www.linkedin.com/in/cesaire-tobias-5555a274/)
+A Practical Guide to Gear Up for Data Science, by [Cesaire Tobias](https://www.linkedin.com/in/cesaire-tobias-5555a274/)
 
-This book is for readers from diverse backgrounds — economists, statisticians, engineers, and beyond — who want to produce advanced analytics workflows but don't necessarily have computer science foundations. Rather than teaching you how to code, it focuses on setting up the technical infrastructure that supports modern data science work.
+This book is for readers from diverse backgrounds (economists, statisticians, engineers, and beyond) who want to produce advanced analytics workflows but don't necessarily have computer science foundations. Rather than teaching you how to code, it focuses on setting up the technical infrastructure that supports modern data science work.
 
 ## Chapters
 
-1. **Setting Up for Success** — Command line, Python, R, SQL, IDEs, and Git
-2. **Data Science Tools for Reporting** — R Markdown, Quarto, and interactive reports
-3. **Cloud Computing for Data Science** — Cloud platforms and services
-4. **Web Development for Data Scientists** — Building web apps to share your work
-5. **Deploying Data Science Projects** — Getting your projects into production
-6. **Containerization** — Docker and reproducible environments
-7. **Optimizing Workflows and Next Steps** — CI/CD and workflow automation
-8. **Utility Tools for Data Scientists** — Handy tools for day-to-day work
+1. **Setting Up for Success**: command line, Python, R, SQL, IDEs, and Git
+2. **Data Science Tools for Reporting**: Markdown, Quarto, R Markdown, LaTeX, and parameterised reports
+3. **Data Visualisation**: matplotlib, seaborn, plotly, ggplot2, and Mermaid diagrams
+4. **Cloud Computing for Data Science**: cloud platforms, costs, and data residency
+5. **Web Development for Data Scientists**: Shiny, Dash, Streamlit, and Flask for interactive apps
+6. **Deploying Data Science Projects**: Render, Fly.io, Cloud Run, shinyapps.io, and CI-driven deploys
+7. **Containerisation**: Docker, Compose, and reproducible environments
+8. **Optimising Workflows and Next Steps**: project layout, Make, DVC, and CI/CD
+9. **Utility Tools for Data Scientists**: AI coding assistants, modern CLI tooling, and day-to-day productivity aids
 
 Plus a troubleshooting appendix and curated references.
 

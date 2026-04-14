@@ -10,12 +10,12 @@ Setting up a data science environment can sometimes be challenging, especially w
 
 #### Conda Environment Activation Problems
 
-**Issue**: Unable to activate conda environments or "conda not recognized" errors.
+**Issue**: Unable to activate conda environments or "conda not recognised" errors.
 
 **Solution**:
 
 1. **Windows**:
-   - Ensure Conda is properly initialized by running `conda init` in the Anaconda Prompt
+   - Ensure Conda is properly initialised by running `conda init` in the Anaconda Prompt
    - If using PowerShell, you may need to run: `Set-ExecutionPolicy RemoteSigned` as administrator
    - Verify PATH variable includes Conda directories: check `C:\Users\<username>\anaconda3\Scripts` and `C:\Users\<username>\anaconda3`
 
@@ -35,7 +35,7 @@ Setting up a data science environment can sometimes be challenging, especially w
 1. **For conda**:
    - Try specifying a channel: `conda install -c conda-forge package_name`
    - Update conda first: `conda update -n base conda`
-   - Create a fresh environment if existing one is corrupted: `conda create -n fresh_env python=3.9`
+   - Create a fresh environment if existing one is corrupted: `conda create -n fresh_env python=3.12`
 
 2. **For pip**:
    - Ensure pip is updated: `python -m pip install --upgrade pip`
@@ -142,10 +142,11 @@ Setting up a data science environment can sometimes be challenging, especially w
    - Add your user to the docker group: `sudo usermod -aG docker $USER`
    - Log out and back in for changes to take effect
    - Alternatively, use `sudo` before docker commands
+   - **Security note**: membership in the `docker` group is effectively equivalent to root access on the host, because anyone in the group can mount the host filesystem into a privileged container. Only add trusted users, and on multi-user machines consider running [rootless Docker](https://docs.docker.com/engine/security/rootless/) or [Podman](https://podman.io/) instead.
 
 2. **Windows/macOS**:
    - Ensure Docker Desktop is running
-   - Check that virtualization is enabled in BIOS (Windows)
+   - Check that virtualisation is enabled in BIOS (Windows)
    - Restart Docker Desktop
 
 **Why this happens**: Docker daemon runs with root privileges, so users need proper permissions to interact with it.
@@ -161,7 +162,7 @@ Setting up a data science environment can sometimes be challenging, especially w
    - Increase CPU, memory, or swap allocations
    - Apply changes and restart Docker
 
-2. **Optimize Docker images**:
+2. **Optimise Docker images**:
    - Use smaller base images (Alpine versions when possible)
    - Clean up unnecessary files in your Dockerfile
    - Properly layer your Docker instructions to leverage caching
@@ -201,7 +202,7 @@ Setting up a data science environment can sometimes be challenging, especially w
 
    ```r
    install.packages("renv")
-   renv::init()      # Initialize for a project
+   renv::init()      # Initialise for a project
    renv::snapshot()  # Save current state
    renv::restore()   # Restore saved state
    ```
@@ -265,7 +266,7 @@ Setting up a data science environment can sometimes be challenging, especially w
 
 2. **Line Ending Differences**:
    - Configure Git to handle line endings: `git config --global core.autocrlf true`
-   - Use `.gitattributes` files to specify line ending behavior per project
+   - Use `.gitattributes` files to specify line ending behaviour per project
 
 3. **PowerShell Execution Policy**:
    - If scripts won't run: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`

@@ -32,7 +32,7 @@ To deepen your understanding of data science concepts and tools, here are some e
    A curated collection of free R resources across various domains and specialties.
 
 4. **[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)** by Hadley Wickham  
-   The authoritative resource on creating stunning visualizations in R.
+   The authoritative resource on creating stunning visualisations in R.
 
 ### SQL and Databases
 
@@ -40,7 +40,7 @@ To deepen your understanding of data science concepts and tools, here are some e
    A practical guide to using SQL for data science tasks.
 
 2. **[Database Design for Mere Mortals](https://www.informit.com/store/database-design-for-mere-mortals-a-hands-on-guide-to-9780136788041)** by Michael J. Hernandez  
-   Helps understand database design principles for more effective data modeling.
+   Helps understand database design principles for more effective data modelling.
 
 ### Version Control and Collaboration
 
@@ -50,16 +50,16 @@ To deepen your understanding of data science concepts and tools, here are some e
 2. **[GitHub for Dummies](https://www.wiley.com/en-us/GitHub+For+Dummies-p-9781119572671)** by Sarah Guthals and Phil Haack  
    A beginner-friendly introduction to GitHub.
 
-### Data Visualization
+### Data Visualisation
 
-1. **[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)** by Claus O. Wilke  
-   Principles for creating effective visualizations based on perception science.
+1. **[Fundamentals of Data Visualisation](https://clauswilke.com/dataviz/)** by Claus O. Wilke  
+   Principles for creating effective visualisations based on perception science.
 
 2. **[Storytelling with Data](https://www.storytellingwithdata.com/books)** by Cole Nussbaumer Knaflic  
-   Focuses on the narrative aspects of data visualization.
+   Focuses on the narrative aspects of data visualisation.
 
-3. **[Interactive Data Visualization for the Web](https://alignedleft.com/work/d3-book-2e)** by Scott Murray  
-   For those interested in web-based visualization with D3.js.
+3. **[Interactive Data Visualisation for the Web](https://alignedleft.com/work/d3-book-2e)** by Scott Murray  
+   For those interested in web-based visualisation with D3.js.
 
 ### Cloud Computing and DevOps
 
@@ -67,7 +67,7 @@ To deepen your understanding of data science concepts and tools, here are some e
    Practical guidance on using cloud platforms for data science.
 
 2. **[Docker for Data Science](https://www.oreilly.com/library/view/docker-for-data/9781484230114/)** by Joshua Cook  
-   Specifically focused on containerization for data science workflows.
+   Specifically focused on containerisation for data science workflows.
 
 3. **[LaTeX Cookbook](https://www.packtpub.com/product/latex-cookbook/9781784395148)** by Stefan Kottwitz  
    Recipes for solving common document formatting challenges in LaTeX.
@@ -78,7 +78,7 @@ To deepen your understanding of data science concepts and tools, here are some e
    Interactive courses on Python, R, SQL, and more.
 
 2. **[Coursera](https://www.coursera.org/)**  
-   Offers specializations in data science from top universities.
+   Offers specialisations in data science from top universities.
 
 3. **[Kaggle Learn](https://www.kaggle.com/learn)**  
    Free mini-courses on data science topics with practical exercises.
@@ -105,5 +105,3 @@ Remember that the field of data science is constantly evolving, so part of your 
 ## Image Credits
 
 *Cover illustration generated using OpenAI's DALL·E model via ChatGPT (April 2025).*
-
-## References

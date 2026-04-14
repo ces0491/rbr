@@ -1,14 +1,14 @@
 ---
-title: "Optimizing Workflows and Next Steps"
+title: "Optimising Workflows and Next Steps"
 ---
 
-## Optimizing Your Data Science Workflow
+## Optimising Your Data Science Workflow
 
-With all the tools and infrastructure in place, let's explore how to optimize your data science workflow for productivity and effectiveness.
+With all the tools and infrastructure in place, let's explore how to optimise your data science workflow for productivity and effectiveness.
 
-### Project Organization Best Practices
+### Project Organisation Best Practices
 
-A well-organized project makes collaboration easier and helps maintain reproducibility:
+A well-organised project makes collaboration easier and helps maintain reproducibility:
 
 #### The Cookiecutter Data Science Structure
 
@@ -38,9 +38,9 @@ project_name/
 └── README.md               # Project description
 ```
 
-This structure separates raw data (which should never be modified) from processed data and keeps code organized by purpose. It also makes it clear where to find notebooks for exploration versus production-ready code.
+This structure separates raw data (which should never be modified) from processed data and keeps code organised by purpose. It also makes it clear where to find notebooks for exploration versus production-ready code.
 
-Organizing your projects this way provides several benefits:
+Organising your projects this way provides several benefits:
 
 1. Clear separation of concerns between data, code, and outputs
 2. Easier collaboration as team members know where to find things
@@ -96,26 +96,32 @@ Make is a build tool that can automate repetitive tasks in your data science wor
 
 # Download raw data
 data:
- python src/data/download_data.py
+	python src/data/download_data.py
 
 # Process data and create features
 features: data
- python src/features/build_features.py
+	python src/features/build_features.py
 
 # Train model
 model: features
- python src/models/train_model.py
+	python src/models/train_model.py
 
 # Generate report
 report: model
- jupyter nbconvert --execute notebooks/final_report.ipynb --to html
+	quarto render reports/final_report.qmd --to html
 
 # Clean generated files
 clean:
- rm -rf data/processed/*
- rm -rf models/*
- rm -rf reports/*
+	rm -rf data/processed/*
+	rm -rf models/*
+	rm -rf reports/*
 ```
+
+:::{.callout-warning}
+## Makefile recipes MUST be indented with a literal TAB
+
+Make is notoriously picky: the commands under each target (the lines like `python src/data/download_data.py`) must start with a real tab character, **not spaces**. If your editor auto-converts tabs to spaces, you'll get a cryptic `missing separator` error when you run `make`. Most editors (VS Code, Vim, RStudio) can be told to leave tabs alone in `Makefile` specifically, and VS Code does this automatically. If in doubt, run `cat -A Makefile` and make sure each recipe line starts with `^I` (a tab).
+:::
 
 2. Run tasks with simple commands:
 
@@ -154,19 +160,19 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
-    
+    - uses: actions/checkout@v4
+
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.9'
-    
+        python-version: '3.12'
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pytest pytest-cov
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    
+
     - name: Test with pytest
       run: |
         pytest --cov=src tests/
@@ -193,8 +199,8 @@ MLOps combines DevOps practices with machine learning to streamline model deploy
 
 - **Model Serving**: Tools like TensorFlow Serving, TorchServe, or MLflow for deploying models
 - **Model Monitoring**: Tracking performance and detecting drift
-- **Feature Stores**: Centralized repositories for feature storage and serving
-- **Experiment Tracking**: Recording parameters, metrics, and artifacts from experiments
+- **Feature Stores**: Centralised repositories for feature storage and serving
+- **Experiment Tracking**: Recording parameters, metrics, and artefacts from experiments
 
 ### Distributed Computing
 

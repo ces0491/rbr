@@ -11,7 +11,7 @@ As a data scientist, you'll often need to share your work through web applicatio
 Web development skills are increasingly important for data scientists because:
 
 1. **Sharing Results**: Web interfaces make your analysis accessible to non-technical stakeholders
-2. **Interactive Visualizations**: Web technologies enable rich, interactive data exploration
+2. **Interactive Visualisations**: Web technologies enable rich, interactive data exploration
 3. **Model Deployment**: Web APIs allow your models to be integrated into larger systems
 4. **Data Collection**: Web applications can facilitate data gathering and annotation
 5. **Professional Completeness**: Being able to deploy your analysis closes the loop in being able to deliver a complete end-to-end solution.
@@ -24,9 +24,9 @@ These three technologies form the foundation of web development:
 
 - **HTML**: Structures the content of web pages
 - **CSS**: Controls the appearance and layout
-- **JavaScript**: Adds interactivity and dynamic behavior
+- **JavaScript**: Adds interactivity and dynamic behaviour
 
-Let's create a simple web page that displays a data visualization:
+Let's create a simple web page that displays a data visualisation:
 
 1. Create a file named `index.html`:
 
@@ -161,17 +161,306 @@ const salesChart = new Chart(ctx, {
 
 4. Open `index.html` in a web browser
 
-This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualization library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart. I would stress that, as a data scientist, you do not need to be able to write the above web page from scratch. Rather, become familiar with the structure and language. That way, when you're presented with raw output, you can find the things that are useful for you and be able to make changes effectively.
+This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualisation library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart. I would stress that, as a data scientist, you do not need to be able to write the above web page from scratch. Rather, become familiar with the structure and language. That way, when you're presented with raw output, you can find the things that are useful for you and be able to make changes effectively.
 
-### Web Frameworks for Data Scientists
+### Interactive Dashboards and Web Frameworks
 
-While you can build websites from scratch, frameworks simplify the process. Here are some popular options for data scientists:
+Most data scientists don't build web apps from raw HTML/CSS/JavaScript. They use a framework that wraps the web machinery and lets them stay in Python or R. There are four tools worth knowing, each optimised for a different situation:
 
-#### Flask (Python)
+- **Shiny** (R, also available for Python): reactive dashboards, strongest when you live in R and need server-side reactivity
+- **Dash** (Python): Plotly's callback-based framework, good when you want explicit wiring between inputs and outputs
+- **Streamlit** (Python): script-based, fastest path from analysis to a demo
+- **Flask** / **FastAPI** (Python): lower-level web frameworks, for when you're building a custom API or a page with specific backend logic rather than a dashboard
 
-Flask is a lightweight web framework that's easy to learn and works well for data science applications:
+If your problem is "give stakeholders a dashboard where they can filter this chart," pick Shiny, Dash, or Streamlit. If it's "expose this trained model as a JSON endpoint that another service can call," Flask or FastAPI is the right level. We cover all four below.
+
+The examples in this section reference placeholder files like `sales_data.csv`. These aren't shipped with the book; substitute your own file, a built-in dataset (`ggplot2::diamonds`, `sns.load_dataset("tips")`, or similar), or a stable public CSV. The framework mechanics don't depend on which data you use.
+
+#### Shiny: Interactive Web Applications with R
+
+Shiny allows you to build interactive web applications entirely in R, without requiring knowledge of HTML, CSS, or JavaScript.
+
+```{r}
+#| eval: false
+# Install Shiny if needed
+install.packages("shiny")
+```
+
+A simple Shiny app consists of two components:
+
+1. **UI (User Interface)**: Defines what the user sees
+2. **Server**: Contains the logic that responds to user input
+
+Here's a basic example:
+
+```{r}
+#| eval: false
+library(shiny)
+library(ggplot2)
+library(dplyr)
+
+# Define UI
+ui <- fluidPage(
+  titlePanel("Diamond Explorer"),
+
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("carat_range",
+                  "Carat Range:",
+                  min = 0.2,
+                  max = 5.0,
+                  value = c(0.5, 3.0)),
+
+      selectInput("cut",
+                  "Cut Quality:",
+                  choices = c("All", unique(as.character(diamonds$cut))),
+                  selected = "All")
+    ),
+
+    mainPanel(
+      plotOutput("scatterplot"),
+      tableOutput("summary_table")
+    )
+  )
+)
+
+# Define server logic
+server <- function(input, output) {
+
+  # Filter data based on inputs
+  filtered_data <- reactive({
+    data <- diamonds
+
+    # Filter by carat
+    data <- data %>%
+      filter(carat >= input$carat_range[1] & carat <= input$carat_range[2])
+
+    # Filter by cut if not "All"
+    if (input$cut != "All") {
+      data <- data %>% filter(cut == input$cut)
+    }
+
+    data
+  })
+
+  # Create scatter plot
+  output$scatterplot <- renderPlot({
+    ggplot(filtered_data(), aes(x = carat, y = price, color = cut)) +
+      geom_point(alpha = 0.5) +
+      theme_minimal() +
+      labs(title = "Diamond Price vs. Carat",
+           x = "Carat",
+           y = "Price (USD)")
+  })
+
+  # Create summary table
+  output$summary_table <- renderTable({
+    filtered_data() %>%
+      group_by(cut) %>%
+      summarize(
+        Count = n(),
+        `Avg Price` = round(mean(price), 2),
+        `Avg Carat` = round(mean(carat), 2)
+      )
+  })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+```
+
+What makes Shiny powerful is its reactivity system, which automatically updates outputs when inputs change. You specify *relationships* between inputs and outputs, and the framework figures out what to recompute when something changes. It's similar to how a spreadsheet automatically recalculates formulas when a cell's value changes: you don't write "when the dropdown changes, rerun the plot", you say "the plot depends on the filtered data, which depends on the dropdown", and Shiny does the rest.
+
+Shiny is also now available for Python via [Shiny for Python](https://shiny.posit.co/py/), which offers the same reactive model with Python syntax. A useful option if you like the Shiny mental model but your team uses Python.
+
+#### Dash: Interactive Web Applications with Python
+
+Dash is Python's equivalent to Shiny, created by the makers of Plotly:
+
+```{python}
+#| eval: false
+# Install Dash
+pip install dash dash-bootstrap-components
+```
+
+A simple Dash app follows a similar structure to Shiny:
+
+```{python}
+#| eval: false
+import dash
+from dash import dcc, html, dash_table
+from dash.dependencies import Input, Output
+import plotly.express as px
+import pandas as pd
+
+# Load data - using built-in dataset for reproducibility
+df = px.data.iris()
+
+# Initialize app
+app = dash.Dash(__name__)
+
+# Define layout
+app.layout = html.Div([
+    html.H1("Iris Dataset Explorer"),
+
+    html.Div([
+        html.Div([
+            html.Label("Select Species:"),
+            dcc.Dropdown(
+                id='species-dropdown',
+                options=[{'label': 'All', 'value': 'all'}] +
+                        [{'label': i, 'value': i} for i in df['species'].unique()],
+                value='all'
+            ),
+
+            html.Label("Select Y-axis:"),
+            dcc.RadioItems(
+                id='y-axis',
+                options=[
+                    {'label': 'Sepal Width', 'value': 'sepal_width'},
+                    {'label': 'Petal Length', 'value': 'petal_length'},
+                    {'label': 'Petal Width', 'value': 'petal_width'}
+                ],
+                value='sepal_width'
+            )
+        ], style={'width': '25%', 'padding': '20px'}),
+
+        html.Div([
+            dcc.Graph(id='scatter-plot')
+        ], style={'width': '75%'})
+    ], style={'display': 'flex'}),
+
+    html.Div([
+        html.H3("Data Summary"),
+        dash_table.DataTable(
+            id='summary-table',
+            style_cell={'textAlign': 'left'},
+            style_header={
+                'backgroundColor': 'lightgrey',
+                'fontWeight': 'bold'
+            }
+        )
+    ])
+])
+
+# Define callbacks
+@app.callback(
+    [Output('scatter-plot', 'figure'),
+     Output('summary-table', 'data'),
+     Output('summary-table', 'columns')],
+    [Input('species-dropdown', 'value'),
+     Input('y-axis', 'value')]
+)
+def update_graph_and_table(selected_species, y_axis):
+    # Filter data
+    if selected_species == 'all':
+        filtered_df = df
+    else:
+        filtered_df = df[df['species'] == selected_species]
+
+    # Create figure
+    fig = px.scatter(
+        filtered_df,
+        x='sepal_length',
+        y=y_axis,
+        color='species',
+        title=f'Sepal Length vs {y_axis.replace("_", " ").title()}'
+    )
+
+    # Create summary table
+    summary_df = filtered_df.groupby('species').agg({
+        'sepal_length': ['mean', 'std'],
+        'sepal_width': ['mean', 'std'],
+        'petal_length': ['mean', 'std'],
+        'petal_width': ['mean', 'std']
+    }).reset_index()
+
+    # Flatten the multi-index
+    summary_df.columns = ['_'.join(col).strip('_') for col in summary_df.columns.values]
+
+    # Format table
+    table_data = summary_df.to_dict('records')
+    columns = [{"name": col.replace('_', ' ').title(), "id": col} for col in summary_df.columns]
+
+    return fig, table_data, columns
+
+# Run app
+if __name__ == '__main__':
+    # debug=True must NEVER be used in production.
+    app.run(debug=False)
+```
+
+Dash uses Plotly for visualisations and React.js for the UI, resulting in modern, responsive applications without requiring front-end experience.
+
+Unlike Shiny's reactive programming model, Dash uses an explicit callback-based approach. You define functions that take specific inputs and produce specific outputs, with the Dash framework wiring them together. This approach may feel more familiar to Python programmers used to callback-based frameworks.
+
+#### Streamlit: Rapid Application Development
+
+Streamlit simplifies interactive app creation even further with a minimal, straightforward API. Here's a simple Streamlit app:
+
+```{python}
+#| eval: false
+import streamlit as st
+import pandas as pd
+import plotly.express as px
+import seaborn as sns
+
+# Set page title
+st.set_page_config(page_title="Data Explorer", page_icon="📊")
+
+# Add a title
+st.title("Interactive Data Explorer")
+
+# Add sidebar with dataset options
+st.sidebar.header("Settings")
+dataset_name = st.sidebar.selectbox(
+    "Select Dataset",
+    options=["Iris", "Diamonds", "Gapminder"]
+)
+
+# Load data based on selection - using built-in datasets for reproducibility
+@st.cache_data
+def load_data(dataset):
+    if dataset == "Iris":
+        return sns.load_dataset("iris")
+    elif dataset == "Diamonds":
+        return sns.load_dataset("diamonds").sample(n=1000, random_state=42)
+    else:  # Gapminder
+        return px.data.gapminder()
+
+df = load_data(dataset_name)
+
+# Display basic dataset information
+st.header(f"{dataset_name} Dataset")
+
+tab1, tab2, tab3 = st.tabs(["📋 Data", "📈 Visualization", "📊 Summary"])
+
+with tab1:
+    st.subheader("Raw Data")
+    st.dataframe(df.head(100))
+
+with tab2:
+    st.subheader("Data Visualization")
+    numeric_cols = df.select_dtypes("number").columns.tolist()
+    if numeric_cols:
+        x_var = st.selectbox("X variable", options=numeric_cols)
+        y_var = st.selectbox("Y variable", options=numeric_cols, index=min(1, len(numeric_cols) - 1))
+        fig = px.scatter(df, x=x_var, y=y_var, title=f"{x_var} vs {y_var}")
+        st.plotly_chart(fig, use_container_width=True)
+
+with tab3:
+    st.subheader("Statistical Summary")
+    st.dataframe(df.describe())
+```
+
+Streamlit's appeal lies in its simplicity. Instead of defining callbacks between inputs and outputs (as in Dash and Shiny), the entire script runs from top to bottom whenever any input changes. You write a straightforward Python script that builds the UI linearly, and Streamlit reruns it on every interaction. This procedural approach is very intuitive for beginners and allows for rapid prototyping, though it can become less efficient for complex applications where you don't want to recompute everything on every keystroke.
+
+#### Flask: A Lightweight Framework for Custom Backends
+
+Shiny, Dash, and Streamlit are great for dashboards, but sometimes you need a plain web endpoint: for example, exposing a trained model as a JSON API that other applications can call, or serving a custom HTML page that mixes pandas-generated content with JavaScript on the front end. Flask is the most common lightweight choice for that role. ([FastAPI](https://fastapi.tiangolo.com/) is a modern alternative with built-in data validation via Pydantic and automatic OpenAPI documentation; worth considering for any new API project in 2026.)
 
 ```python
+import os
 from flask import Flask, render_template
 import pandas as pd
 import json
@@ -182,7 +471,7 @@ app = Flask(__name__)
 def index():
     # Load and process data
     df = pd.read_csv('sales_data.csv')
-    
+
     # Convert data to JSON for JavaScript
     chart_data = {
         'labels': df['quarter'].tolist(),
@@ -197,131 +486,35 @@ def index():
             # Other products...
         ]
     }
-    
+
     return render_template('index.html', chart_data=json.dumps(chart_data))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Only enable debug mode when a FLASK_DEBUG env var is set.
+    # Never run with debug=True in production: it exposes an
+    # interactive Python console to anyone who can reach the app.
+    app.run(debug=os.environ.get("FLASK_DEBUG") == "1")
 ```
 
-Flask is particularly well-suited for data scientists because it allows you to use your Python data processing code alongside a web server. It's lightweight, which means there's not a lot of overhead to learn, and it integrates easily with data science libraries like pandas, scikit-learn, and more.
+Flask is well-suited for data scientists because it lets you use your Python data-processing code alongside a web server with very little overhead. The deployment chapter shows a full Flask-based ML model API example.
 
-#### Shiny (R)
+#### Which one should you pick?
 
-We covered Shiny earlier in the data visualization section. It's worth noting again as a complete web framework for R users:
+| You want to… | Pick |
+|---|---|
+| Build a dashboard in R | **Shiny** |
+| Build a dashboard in Python with explicit input→output wiring | **Dash** |
+| Build a dashboard in Python as fast as possible | **Streamlit** |
+| Expose a model or dataset as a JSON API | **Flask** or **FastAPI** |
+| Render a static report with a few interactive elements | **Quarto dashboards** (see the Reporting chapter) |
 
-```r
-library(shiny)
-library(ggplot2)
-library(dplyr)
-
-# Load data
-sales_data <- read.csv("sales_data.csv")
-
-# Define UI
-ui <- fluidPage(
-  titlePanel("Sales Data Analysis"),
-  
-  sidebarLayout(
-    sidebarPanel(
-      selectInput("product", "Select Product:",
-                  choices = c("All", "Product A", "Product B", "Product C"))
-    ),
-    
-    mainPanel(
-      plotOutput("salesPlot"),
-      h3("Key Findings"),
-      verbatimTextOutput("summary")
-    )
-  )
-)
-
-# Define server logic
-server <- function(input, output) {
-  
-  # Filter data based on input
-  filtered_data <- reactive({
-    if (input$product == "All") {
-      return(sales_data)
-    } else {
-      return(sales_data %>% filter(product == input$product))
-    }
-  })
-  
-  # Create plot
-  output$salesPlot <- renderPlot({
-    ggplot(filtered_data(), aes(x = quarter, y = sales, fill = product)) +
-      geom_bar(stat = "identity", position = "dodge") +
-      theme_minimal() +
-      labs(title = "Quarterly Sales", y = "Sales (millions)")
-  })
-  
-  # Generate summary
-  output$summary <- renderText({
-    data <- filtered_data()
-    paste(
-      "Total Sales:", sum(data$sales), "million\n",
-      "Average per Quarter:", round(mean(data$sales), 2), "million\n",
-      "Growth Rate:", paste0(round((data$sales[4] / data$sales[1] - 1) * 100, 1), "%")
-    )
-  })
-}
-
-# Run the application
-shinyApp(ui = ui, server = server)
-```
-
-Shiny is notable for how little web development knowledge it requires. You can create interactive web applications using almost entirely R code, without needing to learn HTML, CSS, or JavaScript.
+Don't get paralysed by the choice. Any of the first three will produce a working dashboard in an afternoon; the right answer is usually "whichever one your team already uses."
 
 ### Deploying Web Applications
 
-Once you've built your application, you'll need to deploy it for others to access:
+Once you've built your application, you'll need to deploy it for others to access. Rather than duplicating the material here, the next chapter (Deploying Data Science Projects) walks through full deployment workflows for Flask, Dash, and Shiny applications on modern platforms like Render, Google Cloud Run, Posit Connect Cloud, and shinyapps.io.
 
-#### Deployment Options for Flask
-
-1. **Heroku**: Platform as a Service with a free tier
-
-   ```bash
-   # Install the Heroku CLI
-   # Create a requirements.txt file
-   pip freeze > requirements.txt
-   
-   # Create a Procfile
-   echo "web: gunicorn app:app" > Procfile
-   
-   # Deploy
-   git init
-   git add .
-   git commit -m "Initial commit"
-   heroku create
-   git push heroku main
-   ```
-
-2. **PythonAnywhere**: Python-specific hosting
-   - Sign up for an account
-   - Upload your files
-   - Set up a web app with Flask
-
-3. **AWS, GCP, or Azure**: More complex but scalable
-
-#### Deployment Options for Shiny
-
-1. **shinyapps.io**: RStudio's hosting service
-
-   ```r
-   # Install the rsconnect package
-   install.packages("rsconnect")
-   
-   # Configure your account
-   rsconnect::setAccountInfo(name="youraccount", token="TOKEN", secret="SECRET")
-   
-   # Deploy the app
-   rsconnect::deployApp(appDir = "path/to/app")
-   ```
-
-2. **Shiny Server**: Self-hosted option (can be installed on cloud VMs)
-
-These deployment options range from simple services designed specifically for data science applications to more general-purpose cloud platforms. The best choice depends on your specific needs, including factors like:
+The short version: Flask apps are typically deployed by containerising them with Docker and pushing the image to a platform-as-a-service provider; Shiny apps are most easily deployed via shinyapps.io or Posit Connect Cloud directly from RStudio. The best choice depends on your specific needs, including factors like:
 
 - Expected traffic volume
 - Security requirements
@@ -331,8 +524,6 @@ These deployment options range from simple services designed specifically for da
 
 ## Conclusion
 
-Web development skills complement your data science toolkit by enabling you to share your work more effectively. While you don't need to become a full-stack developer, understanding the basics of HTML, CSS, and JavaScript helps you customize reports, debug rendering issues, and create more polished data products.
+Web development skills complement your data science toolkit by enabling you to share your work more effectively. A light understanding of HTML, CSS, and JavaScript lets you customise reports and debug rendering issues. The frameworks in this chapter (Shiny, Dash, Streamlit, and Flask) abstract away most of the rest so you can focus on the analysis rather than the plumbing.
 
-The frameworks we've covered—Flask for Python and Shiny for R—abstract away much of the complexity, allowing you to focus on your analysis rather than web infrastructure. As you grow more comfortable with these tools, you'll find that the ability to deploy interactive applications significantly increases the impact of your data science work.
-
-In the next chapter, we'll explore deployment in more depth, covering various platforms and strategies for making your applications accessible to stakeholders.
+The ability to put an interactive application in front of a stakeholder is what turns a clever notebook into something the business actually uses. In the next chapter, we'll explore deployment in more depth, covering various platforms and strategies for making your applications accessible to stakeholders.

@@ -4,7 +4,7 @@ Welcome to "Ready Before Run(): A Practical Guide to Gear Up for Data Science." 
 
 If you've found this resource, you likely already possess strong analytical skills from your domain. What you may lack is familiarity with the technical infrastructure that supports modern data science work. Just as a chef needs a well-equipped kitchen before creating a culinary masterpiece, data scientists need properly configured tools before they can transform data into insights.
 
-This guide will walk you through setting up the essential components of a data science environment—from programming languages and version control to visualization tools and cloud platforms. By the end of this journey, you'll have a robust technical foundation that will allow you to spend less time battling your infrastructure and more time materializing your ideas.
+This guide will walk you through setting up the essential components of a data science environment—from programming languages and version control to visualisation tools and cloud platforms. By the end of this journey, you'll have a robust technical foundation that will allow you to spend less time battling your infrastructure and more time materializing your ideas.
 
 # Preface
 
@@ -14,7 +14,7 @@ This book grew out of my experience as an analyst and the recognition that many 
 
 "Ready Before Run()" fills this gap by providing clear, practical guidance for establishing your data science workspace. Rather than diving immediately into coding, we'll first ensure you have the proper environment configured—allowing you to build technical confidence before tackling analytical challenges.
 
-The book is structured as a step-by-step guide, beginning with basic command line operations and progressing through programming language setup, version control, visualization tools, and more advanced topics like containerization and cloud computing. While each chapter builds on the previous one, they are written to be referenced independently if needed.
+The book is structured as a step-by-step guide, beginning with basic command line operations and progressing through programming language setup, version control, visualisation tools, and more advanced topics like containerisation and cloud computing. While each chapter builds on the previous one, they are written to be referenced independently if needed.
 
 My hope is that this book serves as your resource to lower any technical barriers you may face and provide a comprehensive foundation for your data science journey. Let's free you from your infrastructure burdens, allowing you time to concentrate on developing your analytical expertise and making meaningful contributions in your field.
 

@@ -1,0 +1,497 @@
+---
+title: "Data Visualisation"
+---
+
+## Why Visualisation Matters in Data Science
+
+Effective visualisation is crucial for data science: it helps you communicate findings and enables pattern discovery. A well-designed chart can convey relationships instantly that would take paragraphs to explain in words. The reporting chapter covered the *document* that wraps your analysis; this chapter covers the charts and diagrams that go inside it.
+
+Data visualisation serves multiple purposes in the data science workflow:
+
+1. **Exploratory Data Analysis (EDA)**: Discovering patterns, outliers, and relationships
+2. **Communication**: Sharing insights with stakeholders
+3. **Decision Support**: Helping decision-makers understand complex data
+4. **Monitoring**: Tracking metrics and performance over time
+
+The power of visualisation comes from leveraging human visual processing capabilities. Our brains process visual information much faster than text or numbers, so a good chart earns its place by saving the reader effort.
+
+This chapter focuses on three practical categories:
+
+- **Python visualisation libraries**: matplotlib, seaborn, plotly
+- **R visualisation libraries**: ggplot2 and interactive wrappers
+- **Code-based diagramming** with Mermaid for flowcharts, ER diagrams, and architecture sketches
+
+Interactive web dashboards built on top of these libraries (Shiny, Dash, Streamlit) are covered in the [Web Development for Data Scientists](web_dev.qmd) chapter, since they're fundamentally running web applications rather than visualisations embedded in a document.
+
+## Python Visualisation Libraries
+
+Python offers several powerful libraries for data visualisation, each with different strengths and use cases.
+
+### Matplotlib: The Foundation
+
+Matplotlib is the original Python visualisation library and serves as the foundation for many others. It provides precise control over every element of a plot.
+
+```{python}
+#| eval: false
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate data
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# Create a figure and axis
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Plot data
+ax.plot(x, y, 'b-', linewidth=2, label='sin(x)')
+
+# Add labels and title
+ax.set_xlabel('X-axis', fontsize=14)
+ax.set_ylabel('Y-axis', fontsize=14)
+ax.set_title('Sine Wave', fontsize=16)
+
+# Add grid and legend
+ax.grid(True, linestyle='--', alpha=0.7)
+ax.legend(fontsize=12)
+
+# Save and show the figure
+plt.savefig('sine_wave.png', dpi=300, bbox_inches='tight')
+plt.show()
+```
+
+Matplotlib provides a blank canvas approach where you explicitly define every element. This gives you complete control but requires more code for complex visualisations. It's the right tool when you need exact control over every line, tick, and label, for example when preparing a figure for a journal submission.
+
+### Seaborn: Statistical Visualisation
+
+Seaborn builds on Matplotlib to provide high-level functions for common statistical visualisations.
+
+```{python}
+#| eval: false
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Set the theme
+sns.set_theme(style="whitegrid")
+
+# Load example data
+tips = sns.load_dataset("tips")
+
+# Create a visualisation
+plt.figure(figsize=(12, 6))
+sns.boxplot(x="day", y="total_bill", hue="smoker", data=tips, palette="Set3")
+plt.title("Total Bill by Day and Smoker Status", fontsize=16)
+plt.xlabel("Day", fontsize=14)
+plt.ylabel("Total Bill ($)", fontsize=14)
+plt.tight_layout()
+plt.show()
+```
+
+Seaborn simplifies the creation of statistical visualisations like box plots, violin plots, and regression plots. It also comes with built-in themes that improve the default appearance of plots. Reach for Seaborn when the chart you want is a standard statistical view of a pandas DataFrame: it will usually be a single function call, where the equivalent matplotlib code would be a dozen lines.
+
+### Plotly: Interactive Visualisations
+
+Plotly creates interactive visualisations that can be embedded in web applications or Jupyter notebooks.
+
+```{python}
+#| eval: false
+import plotly.express as px
+import pandas as pd
+
+# Load example data
+df = px.data.gapminder().query("year == 2007")
+
+# Create an interactive scatter plot
+fig = px.scatter(
+    df, x="gdpPercap", y="lifeExp", size="pop", color="continent",
+    log_x=True, size_max=60,
+    title="GDP per Capita vs Life Expectancy (2007)",
+    labels={"gdpPercap": "GDP per Capita", "lifeExp": "Life Expectancy (years)"}
+)
+
+# Update layout
+fig.update_layout(
+    width=900, height=600,
+    legend_title="Continent",
+    font=dict(family="Arial", size=14)
+)
+
+# Show the figure
+fig.show()
+```
+
+Plotly's interactive features include zooming, panning, hovering for details, and the ability to export plots as images. These features make exploration more intuitive and presentations more engaging. Plotly is available in both Python and R, so you can use the same underlying library across languages.
+
+### Choosing Between Python Libraries
+
+A pragmatic decision tree for the non-CS reader:
+
+- **Need absolute control or a publication-quality static figure?** Matplotlib.
+- **Want a standard statistical plot from a DataFrame with one function call?** Seaborn.
+- **Producing an HTML report or notebook where hover, zoom, and tooltips add value?** Plotly.
+
+You'll usually end up with all three in your toolkit: seaborn for quick EDA, plotly for HTML-bound output, and matplotlib when one of the other two can't quite render what you want.
+
+## R Visualisation Libraries
+
+R also provides powerful tools for data visualisation, with ggplot2 being the most widely used library.
+
+### ggplot2: Grammar of Graphics
+
+ggplot2 is the gold standard for data visualisation in R, based on the Grammar of Graphics concept.
+
+```{r}
+#| eval: false
+library(ggplot2)
+library(dplyr)
+
+# Load dataset
+data(diamonds, package = "ggplot2")
+
+# Create a sample of the data
+set.seed(42)
+diamonds_sample <- diamonds %>%
+  sample_n(1000)
+
+# Create basic plot
+p <- ggplot(diamonds_sample, aes(x = carat, y = price, color = cut)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_brewer(palette = "Set1") +
+  labs(
+    title = "Diamond Price vs. Carat by Cut Quality",
+    subtitle = "Sample of 1,000 diamonds",
+    x = "Carat (weight)",
+    y = "Price (USD)",
+    color = "Cut Quality"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12, color = "gray50"),
+    axis.title = element_text(size = 12),
+    legend.position = "bottom"
+  )
+
+# Display the plot
+print(p)
+
+# Save the plot
+ggsave("diamond_price_carat.png", p, width = 10, height = 6, dpi = 300)
+```
+
+The philosophy behind ggplot2 is that you build a visualisation layer by layer, which corresponds to how we think about visualisations conceptually. First, you define your data and aesthetic mappings (which variables map to which visual properties), then add geometric objects (points, lines, bars), then statistical transformations, scales, coordinate systems, and finally visual themes. This layered approach makes it possible to create complex visualisations by combining simple, understandable components.
+
+### Interactive R Visualisations
+
+R also offers interactive visualisation libraries:
+
+```{r}
+#| eval: false
+library(plotly)
+library(dplyr)
+
+# Load and prepare data
+data(gapminder, package = "gapminder")
+data_2007 <- gapminder %>%
+  filter(year == 2007)
+
+# Create interactive plot
+p <- plot_ly(
+  data = data_2007,
+  x = ~gdpPercap,
+  y = ~lifeExp,
+  size = ~pop,
+  color = ~continent,
+  type = "scatter",
+  mode = "markers",
+  sizes = c(5, 70),
+  marker = list(opacity = 0.7, sizemode = "diameter"),
+  hoverinfo = "text",
+  text = ~paste(
+    "Country:", country, "<br>",
+    "Population:", format(pop, big.mark = ","), "<br>",
+    "Life Expectancy:", round(lifeExp, 1), "years<br>",
+    "GDP per Capita:", format(round(gdpPercap), big.mark = ","), "USD"
+  )
+) %>%
+  layout(
+    title = "GDP per Capita vs. Life Expectancy (2007)",
+    xaxis = list(
+      title = "GDP per Capita (USD)",
+      type = "log",
+      gridcolor = "#EEEEEE"
+    ),
+    yaxis = list(
+      title = "Life Expectancy (years)",
+      gridcolor = "#EEEEEE"
+    ),
+    legend = list(title = list(text = "Continent"))
+  )
+
+# Display the plot
+p
+```
+
+The R version of plotly can convert ggplot2 visualisations to interactive versions with a single function call:
+
+```{r}
+#| eval: false
+# Convert a ggplot to an interactive plotly visualisation
+ggplotly(p)
+```
+
+This ability to transform static ggplot2 charts into interactive visualisations with one function call is extremely convenient. It lets you develop visualisations using the familiar ggplot2 syntax, then add interactivity with minimal effort. This is especially powerful when you need to produce reports in both PDF and HTML formats: use ggplot2 for static PDFs and Plotly for dynamic HTML.
+
+## Code-Based Diagramming with Mermaid
+
+Diagrams are essential for data science documentation, helping to explain workflows, architectures, and relationships. Rather than creating images with external tools, you can write diagrams as code directly in your Quarto documents using Mermaid.
+
+### Why Use Mermaid for Data Science?
+
+Code-based diagramming offers several advantages:
+
+1. **Reproducibility**: Diagrams are defined as code and rendered during document compilation
+2. **Version control**: Diagram definitions can be tracked in git alongside your code
+3. **Consistency**: Apply the same styling across all diagrams in your project
+4. **Editability**: Easily update diagrams without specialised software
+5. **Integration**: Diagrams are rendered directly within your documents
+
+For data scientists, this means your entire workflow (code, analysis, explanations, and diagrams) can all be maintained in the same reproducible environment.
+
+### Creating Mermaid Diagrams in Quarto
+
+Quarto has built-in support for Mermaid diagrams. To create a diagram, use a code block with the `mermaid` engine:
+
+```{mermaid}
+flowchart LR
+    A[Raw Data] --> B[Data Cleaning]
+    B --> C[Exploratory Analysis]
+    C --> D[Feature Engineering]
+    D --> E[Model Training]
+    E --> F[Evaluation]
+    F --> G[Deployment]
+```
+
+The syntax starts with the diagram type (`flowchart`), followed by the direction (`LR` for left-to-right), and then the definition of nodes and connections.
+
+### Diagram Types for Data Science
+
+Mermaid supports several diagram types that are particularly useful for data science:
+
+#### Flowcharts
+
+Flowcharts are perfect for documenting data pipelines and analysis workflows:
+
+```{mermaid}
+flowchart TD
+    A[Raw Data] --> B{Missing Values?}
+    B -->|Yes| C[Imputation]
+    B -->|No| D[Feature Engineering]
+    C --> D
+    D --> E[Train Test Split]
+    E --> F[Model Training]
+    F --> G[Evaluation]
+    G --> H{Performance<br>Acceptable?}
+    H -->|Yes| I[Deploy Model]
+    H -->|No| J[Tune Parameters]
+    J --> F
+```
+
+This top-down (TD) flowchart illustrates a complete machine learning workflow with decision points. Notice how you can use different node shapes (rectangles, diamonds) and add text to connections.
+
+#### Class Diagrams
+
+Class diagrams help explain data structures and relationships:
+
+```{mermaid}
+classDiagram
+    class Dataset {
+        +DataFrame data
+        +load_from_csv(filename)
+        +split_train_test(test_size)
+        +normalize()
+    }
+
+    class Model {
+        +train(X, y)
+        +predict(X)
+        +evaluate(X, y)
+        +save(filename)
+    }
+
+    class Pipeline {
+        +steps
+        +add_step(transformer)
+        +fit_transform(data)
+    }
+
+    Dataset --> Model: provides data to
+    Pipeline --> Dataset: processes
+    Pipeline --> Model: feeds into
+```
+
+This diagram shows the relationships between key classes in a machine learning system. It's useful for documenting the architecture of your data science projects.
+
+#### Sequence Diagrams
+
+Sequence diagrams show interactions between components over time:
+
+```{mermaid}
+sequenceDiagram
+    participant U as User
+    participant API as REST API
+    participant ML as ML Model
+    participant DB as Database
+
+    U->>API: Request prediction
+    API->>DB: Fetch features
+    DB-->>API: Return features
+    API->>ML: Send features for prediction
+    ML-->>API: Return prediction
+    API->>DB: Log prediction
+    API-->>U: Return results
+```
+
+This diagram illustrates the sequence of interactions in a model deployment scenario, showing how data flows between the user, API, model, and database.
+
+#### Gantt Charts
+
+Gantt charts are useful for project planning and timelines:
+
+```{mermaid}
+gantt
+    title Data Science Project Timeline
+    dateFormat YYYY-MM-DD
+
+    section Data Preparation
+    Collect raw data       :a1, 2025-01-01, 10d
+    Clean and validate     :a2, after a1, 5d
+    Exploratory analysis   :a3, after a2, 7d
+    Feature engineering    :a4, after a3, 8d
+
+    section Modeling
+    Split train/test       :b1, after a4, 1d
+    Train baseline models  :b2, after b1, 5d
+    Hyperparameter tuning  :b3, after b2, 7d
+    Model evaluation       :b4, after b3, 4d
+
+    section Deployment
+    Create API            :c1, after b4, 6d
+    Documentation         :c2, after b4, 8d
+    Testing               :c3, after c1, 5d
+    Production release    :milestone, after c2 c3, 0d
+```
+
+This Gantt chart shows the timeline of a data science project, with tasks grouped into sections and dependencies between them clearly indicated.
+
+#### Entity-Relationship Diagrams
+
+ER diagrams are valuable for database schema design:
+
+```{mermaid}
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ ORDER_ITEM : contains
+    PRODUCT ||--o{ ORDER_ITEM : "ordered in"
+    CUSTOMER {
+        int customer_id PK
+        string name
+        string email
+        date join_date
+    }
+    ORDER {
+        int order_id PK
+        int customer_id FK
+        date order_date
+        float total_amount
+    }
+    ORDER_ITEM {
+        int order_id PK,FK
+        int product_id PK,FK
+        int quantity
+        float price
+    }
+    PRODUCT {
+        int product_id PK
+        string name
+        string category
+        float unit_price
+    }
+```
+
+This diagram shows a typical e-commerce database schema with relationships between tables and their attributes.
+
+### Styling Mermaid Diagrams
+
+You can customise the appearance of your diagrams:
+
+::: {.content-visible when-format="html"}
+
+```{mermaid}
+flowchart LR
+    A[Data Collection] --> B[Data Cleaning]
+    B --> C[Analysis]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#33f,stroke-width:2px
+    style C fill:#bfb,stroke:#3f3,stroke-width:2px
+```
+
+:::
+
+This diagram uses custom colours and border styles for each node to highlight different stages of the process.
+
+### Generating Diagrams Programmatically
+
+For complex or dynamic diagrams, you can generate Mermaid code programmatically:
+
+```{r}
+#| label: dynamic-mermaid
+#| eval: false
+#| output: asis
+
+# Define the steps in a data pipeline
+steps <- c("Import Data", "Clean Data", "Feature Engineering",
+           "Split Dataset", "Train Model", "Evaluate", "Deploy")
+
+# Generate Mermaid flowchart code
+mermaid_code <- c(
+  "```{mermaid}",
+  "flowchart LR"
+)
+
+# Add connections between steps
+for (i in 1:(length(steps)-1)) {
+  mermaid_code <- c(
+    mermaid_code,
+    sprintf("    %s[\"%s\"] --> %s[\"%s\"]",
+            LETTERS[i], steps[i],
+            LETTERS[i+1], steps[i+1])
+  )
+}
+
+mermaid_code <- c(mermaid_code, "```")
+
+# Output the Mermaid code
+cat(paste(mermaid_code, collapse = "\n"))
+```
+
+This R code generates a Mermaid flowchart based on a list of steps. The approach is particularly useful when you want to create diagrams based on data or configuration.
+
+### Best Practices for Diagrams in Data Science
+
+1. **Keep it simple**: Focus on clarity over complexity
+2. **Maintain consistency**: Use similar styles and conventions across diagrams
+3. **Align with text**: Ensure your diagrams complement your written explanations
+4. **Consider the audience**: Technical diagrams for peers, simplified ones for stakeholders
+5. **Update diagrams with code**: Treat diagrams as living documents that evolve with your project
+
+Diagrams should clarify your explanations, not complicate them. A well-designed diagram can make complex processes or relationships immediately understandable.
+
+## Conclusion
+
+Visualisation is the layer where your analysis meets its audience. The libraries covered here (matplotlib, seaborn, plotly, ggplot2) are the workhorses of static and lightly-interactive charts you embed in reports. Mermaid handles the architecture and workflow diagrams that explain *how* your system fits together rather than *what* the data looks like.
+
+As your datasets and models grow, you'll eventually hit the limits of what your laptop can render or compute. The next chapter steps away from the document and visualisation layer to look at cloud platforms: where to run notebooks and training jobs when local hardware isn't enough, and how to do so without accidentally running up a bill. After that, we return to the "how do I put this in front of a stakeholder" question with web development and interactive dashboards.

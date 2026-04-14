@@ -4,11 +4,33 @@ title: "Utility Tools for Data Scientists"
 
 ## Utility Tools for Data Scientists
 
-While programming languages, libraries, and frameworks form the core of your data science toolkit, a collection of utility tools can significantly enhance your productivity and effectiveness. This chapter covers specialized tools that address specific needs in the data science workflow.
+While programming languages, libraries, and frameworks form the core of your data science toolkit, a collection of utility tools can significantly enhance your productivity and effectiveness. This chapter covers specialised tools that address specific needs in the data science workflow.
+
+### AI Coding Assistants
+
+Large-language-model-based coding assistants are probably the single biggest productivity change in data science tooling since this book was first drafted. For readers without a CS background they're especially useful: they can scaffold boilerplate, explain unfamiliar code, translate between Python and R, suggest fixes for cryptic error messages, and draft regex patterns or SQL queries on request. The caveat is universal: they confidently produce wrong answers too, so treat suggestions as a fast draft to be reviewed, not an oracle.
+
+A few options worth knowing, all with free tiers for individuals:
+
+- **[GitHub Copilot](https://github.com/features/copilot)**: In-editor completion and chat inside VS Code, JetBrains IDEs, Neovim, and the web. The most mature and widely used option; free for verified students, educators, and maintainers of popular open-source projects.
+- **[Claude for VS Code](https://docs.claude.com/en/docs/claude-code/ide-integrations) and [Claude Code](https://www.claude.com/product/claude-code)**: Anthropic's CLI and IDE integrations. Claude Code runs in a terminal and can read, edit, and run code in a project with your supervision. Particularly good for multi-file refactors.
+- **[Cursor](https://cursor.com/)**: A fork of VS Code with deep LLM integration throughout the editor. Popular with developers who want a single tool rather than an extension.
+- **[Aider](https://aider.chat/)**: An open-source terminal-based pair-programmer that uses git commits as its unit of work. A great fit if you already live in the terminal.
+
+For genuinely throwaway tasks, the web chat interfaces to [Claude](https://claude.ai/) and [ChatGPT](https://chat.openai.com/) are fine. For anything you'll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.
+
+A few habits that make these tools more useful and less dangerous:
+
+1. **Read the diff**. Never accept an edit without skimming what changed.
+2. **Don't paste secrets**. Anything you put into a prompt may end up in provider logs. Strip API keys, connection strings, and personal data before sharing code.
+3. **Ask for explanations alongside code**. "Write this function and explain why you chose this approach" is a much better prompt than "write this function", because you learn something and can spot mistakes faster.
+4. **Run the code**. LLMs hallucinate function signatures, flag names, and library behaviours. Trust the interpreter over the chatbot.
 
 ### Text Editors and IDE Enhancements
 
-Text editors offer lightweight alternatives to full IDEs for quick edits and specialized text processing tasks.
+The intro chapter covers **Visual Studio Code** (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It's free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in the intro chapter will cover 90% of your needs.
+
+The editors below are lightweight alternatives for quick edits, very large files, or platform-specific situations.
 
 #### Notepad++
 
@@ -20,7 +42,7 @@ Notepad++ is a free, open-source text editor for Windows that's more powerful th
 2. **Column editing**: Edit multiple lines simultaneously (useful for cleaning data)
 3. **Regex search and replace**: Powerful pattern matching for text manipulation
 4. **Macro recording**: Automate repetitive text edits
-5. **Plugins**: Extend functionality with additional tools that facilitate more expeditious exploration and development, such as JSON, HTML, and Markdown viewers.
+5. **Plugins**: Extend functionality with viewers for JSON, HTML, Markdown, and other common data-science file formats.
 
 **Installation:**
 
@@ -68,7 +90,7 @@ Postman is the industry standard for API development and testing.
 **Key features for data scientists:**
 
 1. **Request building**: Create and save HTTP requests
-2. **Collections**: Organize and share API requests
+2. **Collections**: Organise and share API requests
 3. **Environment variables**: Manage different settings (dev/prod)
 4. **Automated testing**: Create test scripts to validate responses
 5. **Mock servers**: Simulate API responses without a backend
@@ -92,7 +114,7 @@ Postman is the industry standard for API development and testing.
    Authorization: Bearer your_token_here
    ```
 
-3. Send the request and analyze the JSON response
+3. Send the request and analyse the JSON response
 4. Save the request to a collection for future use
 
 Postman is invaluable when working with data APIs, whether you're fetching data from public sources like financial markets, weather services, or social media platforms, or interacting with internal company APIs.
@@ -129,7 +151,7 @@ DBeaver is a universal database tool that works with almost any database system.
 1. **Multi-database support**: Works with PostgreSQL, MySQL, SQLite, Oracle, and more
 2. **Visual query builder**: Create SQL queries without writing code
 3. **Data export/import**: Move data between different formats and databases
-4. **ER diagrams**: Visualize database structure
+4. **ER diagrams**: Visualise database structure
 5. **SQL editor**: Write and execute queries with syntax highlighting
 
 **Installation:**
@@ -159,11 +181,11 @@ DBeaver streamlines database interactions, allowing you to explore data structur
 
 #### pgAdmin
 
-pgAdmin is a specialized tool for PostgreSQL databases.
+pgAdmin is a specialised tool for PostgreSQL databases.
 
 **Key features:**
 
-1. **PostgreSQL-specific features**: Optimized for PostgreSQL
+1. **PostgreSQL-specific features**: Optimised for PostgreSQL
 2. **Server monitoring**: View database performance
 3. **Backup and restore**: Manage database backups
 4. **User management**: Control access to databases
@@ -174,7 +196,7 @@ pgAdmin is a specialized tool for PostgreSQL databases.
 1. Download from [pgadmin.org](https://www.pgadmin.org/download/)
 2. Run the installer
 
-For data scientists working specifically with PostgreSQL databases, pgAdmin provides specialized features that generic tools may lack.
+For data scientists working specifically with PostgreSQL databases, pgAdmin provides specialised features that generic tools may lack.
 
 ### File Comparison and Merging Tools
 
@@ -188,9 +210,9 @@ Beyond Compare is a powerful file and directory comparison tool.
 
 1. **Text comparison**: View differences between text files line by line
 2. **Table comparison**: Compare CSV and Excel files with data-aware features
-3. **Directory sync**: Compare and synchronize folders
+3. **Directory sync**: Compare and synchronise folders
 4. **3-way merge**: Resolve conflicts between different versions
-5. **Byte-level comparison**: Analyze binary files
+5. **Byte-level comparison**: Analyse binary files
 
 **Installation:**
 
@@ -238,7 +260,7 @@ Oh My Zsh is a framework for managing your Zsh configuration, providing themes a
 
 1. **Tab completion**: Intelligent completion for commands and paths
 2. **Git integration**: Visual indicators of repository status
-3. **Syntax highlighting**: Color-coded command syntax
+3. **Syntax highlighting**: Colour-coded command syntax
 4. **Command history**: Improved search through previous commands
 5. **Customizable themes**: Visual enhancements for the terminal
 
@@ -253,9 +275,14 @@ Oh My Zsh is a framework for managing your Zsh configuration, providing themes a
 # Set Zsh as default shell
 chsh -s $(which zsh)
 
-# Install Oh My Zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Install Oh My Zsh. It's good practice to review the installer script
+# before executing anything you download from the internet:
+curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o install-ohmyzsh.sh
+less install-ohmyzsh.sh   # read it, check for anything suspicious
+sh install-ohmyzsh.sh
 ```
+
+Many sites still show a one-liner `sh -c "$(curl ... install.sh)"`, which downloads and immediately executes code from a third-party server. The two-step version above takes five extra seconds and lets you actually see what's about to run on your machine.
 
 **Useful plugins for data scientists:**
 
@@ -266,9 +293,35 @@ plugins=(git python pip conda docker jupyter)
 
 Oh My Zsh makes the command line more user-friendly and efficient, which is valuable when working with data processing tools, running scripts, or managing environments.
 
+#### Windows Terminal and PowerShell 7
+
+On Windows, **Windows Terminal** (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) is a huge upgrade over the legacy `cmd.exe` and the old PowerShell window: tabs, split panes, GPU-accelerated rendering, and sensible keyboard shortcuts. Pair it with **PowerShell 7** (`winget install Microsoft.PowerShell`), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in the intro chapter) from inside Windows Terminal, which handles both worlds side-by-side.
+
+#### Modern Rust-based CLI replacements
+
+A family of newer command-line tools, mostly written in Rust, have become the de-facto replacements for the standard Unix utilities. They're all faster than the originals and, more importantly for this book's audience, tend to have friendlier defaults and output. Every one is installable with Homebrew, apt, `winget`, `choco`, or `cargo`:
+
+| Instead of | Use | What you get |
+|---|---|---|
+| `grep` | **[ripgrep](https://github.com/BurntSushi/ripgrep)** (`rg`) | Much faster recursive search; respects `.gitignore` by default |
+| `find` | **[fd](https://github.com/sharkdp/fd)** | Saner syntax, colour output, ignores VCS noise |
+| `cat` | **[bat](https://github.com/sharkdp/bat)** | Syntax highlighting and line numbers |
+| `ls` | **[eza](https://github.com/eza-community/eza)** | Git status, icons, tree view |
+| `cd` | **[zoxide](https://github.com/ajeetdsouza/zoxide)** | `z projectname` jumps to any directory you've visited |
+| `htop` | **[btop](https://github.com/aristocratos/btop)** | Prettier resource monitor |
+| Bash/Zsh prompt | **[starship](https://starship.rs/)** | Fast, configurable, works in any shell including PowerShell |
+
+For Python and R tooling specifically, three newer tools are now standard enough to mention:
+
+- **[uv](https://docs.astral.sh/uv/)**: an extremely fast Python package manager and virtual-environment tool written in Rust. It's a drop-in replacement for `pip`, `pip-tools`, `virtualenv`, and `pyenv`. Create an environment with `uv venv`, install from a `requirements.txt` with `uv pip install -r requirements.txt`, and run project scripts with `uv run`.
+- **[ruff](https://docs.astral.sh/ruff/)**: a Python linter and formatter, also from Astral, 10–100× faster than the tools it replaces (flake8, isort, black). Modern Python projects almost always use it.
+- **[pixi](https://pixi.sh/)**: a project-based package manager built on the conda ecosystem. Think of it as "uv for conda": fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.
+
+None of these are required to follow this book. The classic `pip`/`conda`/`grep`/`find` commands still work fine. But once you've tried them it's hard to go back.
+
 ### Data Wrangling Tools
 
-These specialized tools help with specific data manipulation tasks that complement programming languages.
+These specialised tools help with specific data manipulation tasks that complement programming languages.
 
 #### CSVKit
 
@@ -347,27 +400,27 @@ cat data.json | jq '.results[] | select(.value > 100)'
 cat data.json | jq '[.results[].value] | {count: length, sum: add, average: add/length}'
 ```
 
-jq is invaluable when working with APIs that return JSON data or when preparing JSON data for visualization or further analysis.
+jq is invaluable when working with APIs that return JSON data or when preparing JSON data for visualisation or further analysis.
 
-### Diagramming and Visualization Tools
+### Diagramming and Visualisation Tools
 
-While code-based visualization is powerful, sometimes you need standalone tools for creating diagrams and flowcharts.
+While code-based visualisation is powerful, sometimes you need standalone tools for creating diagrams and flowcharts.
 
-#### Diagram.net (formerly draw.io)
+#### diagrams.net (formerly draw.io)
 
-Diagram.net is a free online diagramming tool that works with various diagram types.
+diagrams.net is a free, open-source online diagramming tool that works with various diagram types.
 
 **Key features for data scientists:**
 
 1. **Flowcharts**: Document data pipelines and workflows
 2. **ER diagrams**: Model database relationships
-3. **Network diagrams**: Visualize system architecture
+3. **Network diagrams**: Visualise system architecture
 4. **Multiple export formats**: PNG, SVG, PDF, etc.
 5. **Integration**: Works with Google Drive, Dropbox, etc.
 
 **Access:**
 
-1. Go to [diagram.net](https://www.diagrams.net/) in your browser
+1. Go to [app.diagrams.net](https://app.diagrams.net/) in your browser
 2. Choose where to save your diagrams (local, Google Drive, etc.)
 
 **Example data science use case:**
@@ -434,7 +487,7 @@ digraph DataPipeline {
 dot -Tpng graph.dot -o pipeline.png
 ```
 
-Graphviz is particularly useful for generating diagrams programmatically as part of automated documentation processes or for visualizing complex relationships that would be tedious to draw manually.
+Graphviz is particularly useful for generating diagrams programmatically as part of automated documentation processes or for visualising complex relationships that would be tedious to draw manually.
 
 ### Screenshot and Recording Tools
 
@@ -463,7 +516,7 @@ Greenshot is a lightweight screenshot tool with annotation features.
 - `Alt+Print Screen`: Capture active window
 - `Ctrl+Print Screen`: Capture full screen
 
-Greenshot is useful for capturing visualizations, error messages, or UI elements for documentation or troubleshooting.
+Greenshot is useful for capturing visualisations, error messages, or UI elements for documentation or troubleshooting.
 
 #### OBS Studio
 
@@ -486,7 +539,7 @@ OBS is excellent for creating tutorial videos, recording presentations, or docum
 
 ### Productivity and Note-Taking Tools
 
-These tools help organize your thinking, document your work, and manage your projects.
+These tools help organise your thinking, document your work, and manage your projects.
 
 #### Obsidian
 
@@ -496,7 +549,7 @@ Obsidian is a knowledge base and note-taking application that works on Markdown 
 
 1. **Markdown format**: Write notes with the same syntax used in Jupyter notebooks
 2. **Bidirectional linking**: Connect related notes
-3. **Graph view**: Visualize relationships between notes
+3. **Graph view**: Visualise relationships between notes
 4. **Local storage**: Files stored on your computer, not in the cloud
 5. **Extensible**: Plugins for additional functionality
 
@@ -511,8 +564,8 @@ Creating a personal knowledge base for your data science projects:
 1. Create notes for each project with objectives and findings
 2. Link to related techniques and concepts
 3. Embed code snippets and results
-4. Use tags to categorize by domain or technology
-5. Visualize the connections in your knowledge with the graph view
+4. Use tags to categorise by domain or technology
+5. Visualise the connections in your knowledge with the graph view
 
 Obsidian helps capture the thought process behind your data science work, creating a valuable reference for future projects.
 
@@ -537,7 +590,7 @@ Notion is particularly useful for team-based data science projects, where you ne
 
 ### File Management Tools
 
-Managing, finding, and organizing files is an essential but often overlooked part of data science work.
+Managing, finding, and organising files is an essential but often overlooked part of data science work.
 
 #### Total Commander
 
@@ -556,7 +609,7 @@ Total Commander is a comprehensive file manager with advanced features.
 1. Download from [ghisler.com](https://www.ghisler.com/download.htm)
 2. Run the installer (shareware with unlimited trial)
 
-Total Commander streamlines file operations that are common in data science work, such as organizing datasets, managing project files, or transferring data to and from remote servers.
+Total Commander streamlines file operations that are common in data science work, such as organising datasets, managing project files, or transferring data to and from remote servers.
 
 #### Agent Ransack
 
@@ -579,7 +632,7 @@ Agent Ransack is invaluable when you need to find specific data or code across m
 
 ### Conclusion: Building Your Utility Toolkit
 
-While the core programming languages and frameworks form the foundation of data science work, these utility tools provide specialized capabilities that can significantly enhance your productivity. As you progress in your data science journey, you'll likely discover which tools best complement your workflow.
+While the core programming languages and frameworks form the foundation of data science work, these utility tools provide specialised capabilities that can significantly enhance your productivity. As you progress in your data science journey, you'll likely discover which tools best complement your workflow.
 
 Start by incorporating a few tools that address your immediate needs—perhaps a better text editor, an API testing tool, or a database management interface. Over time, expand your toolkit as you encounter new challenges. Remember that the goal is not to use every tool available, but to find the combination that helps you work most effectively.
 

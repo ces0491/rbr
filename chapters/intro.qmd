@@ -6,13 +6,13 @@ title: "Setting Up for Success: Infrastructure for the Modern Data Scientist"
 
 If you're coming from economics, statistics, engineering, or another technical field, you already have many of the analytical skills needed to make productive use of data. However, since you're reading this, you'd like some help setting up the technical infrastructure that supports modern data science work. For those without a computer science background, all of this may seem overwhelming at first, but soon you'll have the tools to make your workflows even more productive.
 
-This guide focuses on getting you set up with the tools you need to practice data science, rather than teaching you how to code. Think of it as preparing your workshop before you begin crafting. We'll cover installing and configuring the essential software, platforms, and tools that data scientists use regularly.
+This guide focuses on getting you set up with the tools you need to practise data science, rather than teaching you how to code. Think of it as preparing your workshop before you begin crafting. We'll cover installing and configuring the essential software, platforms, and tools that data scientists use regularly.
 
 By the end of this guide, you'll have:
 
 - A fully configured development environment for Python, R, and SQL
 - Experience with version control through Git and GitHub
-- The ability to create interactive reports and visualizations
+- The ability to create interactive reports and visualisations
 - Knowledge of how to deploy your work for others to see and use
 - A foundation in the command line and other developer tools
 
@@ -69,7 +69,7 @@ Most Linux distributions come with a terminal emulator. Look for "Terminal" in y
 
 ### Essential Command Line Operations
 
-Let's practice some basic commands. Open your terminal and try these:
+Let's practise some basic commands. Open your terminal and try these:
 
 #### Navigating the File System
 
@@ -154,30 +154,37 @@ Python has become a cornerstone language in data science due to its readability,
 
 Python offers several advantages for data science:
 
-1. Rich ecosystem of specialized libraries (NumPy, pandas, scikit-learn, etc.)
+1. Rich ecosystem of specialised libraries (NumPy, pandas, scikit-learn, etc.)
 2. Readable syntax that makes complex analyses more accessible
 3. Strong community support and documentation
-4. Integration with various data sources and visualization tools
+4. Integration with various data sources and visualisation tools
 
 Python consistently ranks among the top programming languages for data science and is widely used across the industry.
 
 ### Installing Python
 
-We'll install Python using a distribution called Anaconda, which includes Python itself plus many data science packages. Anaconda provides a package manager called conda that creates isolated environments, helping you manage different projects with different dependencies.
+You have a few reasonable ways to install Python for data science. Each has trade-offs:
 
-#### Installing Anaconda
+- **Miniforge** (recommended for most readers): a minimal, community-maintained conda distribution that defaults to the free `conda-forge` channel. Gives you `conda` for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.
+- **Anaconda**: the "batteries-included" distribution. Convenient but note that since 2024 its Terms of Service restrict free commercial use for organisations with more than ~200 employees. Fine for learning and personal projects.
+- **`uv`** (the modern, fast option): a single binary that installs Python versions and manages virtual environments and packages. Much faster than conda or pip and rapidly becoming the default for pure-Python projects. A great choice once you're comfortable, especially if you don't need conda's scientific package ecosystem.
+- **System Python** (`python.org` installer, `brew install python`, or `apt install python3`): simple, but you'll still want to create isolated environments per project with `venv` or `uv venv`.
 
-1. Visit the [Anaconda download page](https://www.anaconda.com/products/distribution)
+For this book we'll use conda-based instructions since they work uniformly across Windows, macOS, and Linux and handle tricky scientific packages well. Everything shown below works with either Miniforge or Anaconda.
+
+#### Installing Miniforge (or Anaconda)
+
+1. Visit the [Miniforge releases page](https://github.com/conda-forge/miniforge/releases/latest) (or the [Anaconda download page](https://www.anaconda.com/download) if you prefer)
 2. Download the appropriate installer for your operating system
 3. Run the installer and follow the prompts
 
-During installation on Windows, you may be asked whether to add Anaconda to your PATH environment variable. While checking this box can make commands available from any terminal, it might interfere with other Python installations. The safer choice is to leave it unchecked and use the Anaconda Prompt specifically.
+During installation on Windows, you may be asked whether to add the installation to your PATH environment variable. Leave this unchecked and use the Miniforge Prompt (or Anaconda Prompt) from the Start menu, which avoids conflicts with other Python installations on your system.
 
-The "PATH" is like an address book that tells your computer where to find programs when you type their names. Adding Anaconda to your PATH means you can use Python from any command prompt, but it could cause conflicts with other versions of Python on your system.
+The "PATH" is like an address book that tells your computer where to find programs when you type their names. Adding your conda install to PATH means you can use Python from any command prompt, but it could cause conflicts with other versions of Python on your system.
 
 #### Verifying Installation
 
-Open a new terminal (or Anaconda Prompt on Windows) and type:
+Open a new terminal (or Miniforge/Anaconda Prompt on Windows) and type:
 
 ```bash
 python --version
@@ -194,8 +201,8 @@ conda --version
 Environments let you isolate projects with specific dependencies. Think of environments as separate workspaces for different projects—like having different toolboxes for different types of jobs. Here's how to create one:
 
 ```bash
-# Create an environment named 'datasci' with Python 3.11
-conda create -n datasci python=3.11
+# Create an environment named 'datasci' with Python 3.12
+conda create -n datasci python=3.12
 
 # Activate the environment
 conda activate datasci
@@ -206,9 +213,51 @@ conda install numpy pandas matplotlib scikit-learn jupyter
 
 Whenever you work on your data science projects, activate this environment first.
 
+:::{.callout-tip}
+## Lighter alternative: `venv` or `uv`
+
+If you don't need conda's broader scientific ecosystem, Python's built-in `venv` module is a lighter alternative:
+
+```bash
+python -m venv .venv
+# Windows:
+.venv\Scripts\activate
+# macOS/Linux:
+source .venv/bin/activate
+pip install numpy pandas matplotlib scikit-learn jupyter
+```
+
+Or with `uv` (much faster, installs Python for you if needed):
+
+```bash
+uv venv --python 3.12
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+uv pip install numpy pandas matplotlib scikit-learn jupyter
+```
+
+A good rule of thumb: use conda environments when you need packages with heavy C/C++/Fortran components (GDAL, PyTorch with CUDA, bioinformatics tools). Use `venv`/`uv` for everything else.
+:::
+
+### Recording Your Environment
+
+Whichever tool you pick, write down what's in your environment so someone else (including future you) can reproduce it:
+
+```bash
+# conda
+conda env export --from-history > environment.yml
+
+# pip / venv
+pip freeze > requirements.txt
+
+# uv
+uv pip freeze > requirements.txt
+```
+
+Commit this file alongside your code. We'll come back to reproducibility when we discuss containers and workflows.
+
 ### Using Jupyter Notebooks
 
-Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualizations, and narrative text. They're like digital lab notebooks where you can document your analysis process along with the code and results.
+Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualisations, and narrative text. They're like digital lab notebooks where you can document your analysis process along with the code and results.
 
 ```bash
 # Make sure your environment is activated
@@ -267,15 +316,15 @@ Conda is often preferred for data science packages because it handles complex de
 
 ## Setting Up R
 
-R is a powerful language and environment specifically designed for statistical computing and graphics. Many statisticians and data scientists prefer R for statistical analysis and visualization.
+R is a powerful language and environment specifically designed for statistical computing and graphics. Many statisticians and data scientists prefer R for statistical analysis and visualisation.
 
 ### Why R for Data Science?
 
 R offers several advantages:
 
 1. Built specifically for statistical analysis
-2. Excellent for data visualization with ggplot2
-3. A rich ecosystem of packages for specialized statistical methods
+2. Excellent for data visualisation with ggplot2
+3. A rich ecosystem of packages for specialised statistical methods
 4. Strong in reproducible research through R Markdown
 
 R has thousands of packages available on CRAN for various statistical and data analysis tasks, with active development from the statistics and research communities.
@@ -294,7 +343,7 @@ Let's install both R itself and RStudio, a popular integrated development enviro
 
 RStudio provides a user-friendly interface for working with R.
 
-1. Visit the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
+1. Visit the [Posit RStudio download page](https://posit.co/download/rstudio-desktop/) (RStudio's parent company rebranded to Posit in 2022)
 2. Download the free RStudio Desktop version for your operating system
 3. Run the installer and follow the prompts
 
@@ -327,13 +376,13 @@ install.packages(c("tidyverse", "rmarkdown", "shiny", "knitr", "plotly"))
 
 This installs:
 
-- **tidyverse**: A collection of packages for data manipulation and visualization
+- **tidyverse**: A collection of packages for data manipulation and visualisation
 - **rmarkdown**: For creating documents that mix code and text
 - **shiny**: For building interactive web applications
 - **knitr**: For dynamic report generation
-- **plotly**: For interactive visualizations
+- **plotly**: For interactive visualisations
 
-These packages are like specialized toolkits that expand what you can do with R. The tidyverse, for example, makes data manipulation much more intuitive than it would be using just base R.
+These packages are like specialised toolkits that expand what you can do with R. The tidyverse, for example, makes data manipulation much more intuitive than it would be using just base R.
 
 ### Creating Your First R Script
 
@@ -385,18 +434,18 @@ Think of CRAN as the official app store for R packages, while GitHub is like get
 
 ## SQL Fundamentals and Setup
 
-SQL (Structured Query Language) is essential for data scientists to interact with databases. We'll set up a lightweight database system so you can practice SQL queries locally.
+SQL (Structured Query Language) is essential for data scientists to interact with databases. We'll set up a lightweight database system so you can practise SQL queries locally.
 
 ### Why SQL for Data Science?
 
 SQL is crucial for data science because:
 
-1. Most organizational data resides in databases
+1. Most organisational data resides in databases
 2. It provides a standard way to query and manipulate data
 3. It's often more efficient than Python or R for large data operations
 4. Data transformation often happens in databases before analysis
 
-SQL is one of the most important skills for data scientists, as most organizational data resides in relational databases.
+SQL is one of the most important skills for data scientists, as most organisational data resides in relational databases.
 
 ### Installing SQLite
 
@@ -406,9 +455,14 @@ Think of SQLite as a simple filing cabinet for your data that you can easily car
 
 #### On Windows
 
-1. Download the SQLite command-line tools from the [SQLite download page](https://www.sqlite.org/download.html)
-2. Extract the files to a folder (e.g., C:\\sqlite)
-3. Add this folder to your PATH environment variable
+1. Download the SQLite command-line tools (look for the "Precompiled Binaries for Windows" section) from the [SQLite download page](https://www.sqlite.org/download.html)
+2. Extract the ZIP to a folder (e.g., `C:\sqlite`)
+3. Add this folder to your PATH environment variable so you can run `sqlite3` from any terminal:
+    - Press the Windows key, type "environment variables", and open "Edit the system environment variables"
+    - Click "Environment Variables…"
+    - Under **User variables**, select `Path` and click "Edit…"
+    - Click "New" and paste `C:\sqlite` (or wherever you extracted the files)
+    - Click OK on every dialogue, then open a **new** terminal window for the change to take effect
 
 #### On macOS
 
@@ -525,7 +579,7 @@ print(df)
 dbDisconnect(conn)
 ```
 
-This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyze it with Python or R—all within the same workflow.
+This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyse it with Python or R—all within the same workflow.
 
 ## Integrated Development Environments (IDEs)
 
@@ -538,9 +592,9 @@ IDEs help data scientists by:
 1. Providing syntax highlighting and code completion
 2. Catching errors before execution
 3. Offering integrated documentation
-4. Simplifying project organization and version control
+4. Simplifying project organisation and version control
 
-Most professional developers use a specialized IDE rather than a basic text editor, as the additional features significantly improve productivity.
+Most professional developers use a specialised IDE rather than a basic text editor, as the additional features significantly improve productivity.
 
 Think of an IDE as a fully equipped workshop rather than just having a single tool. It has everything arranged conveniently in one place.
 
@@ -566,6 +620,7 @@ After installing VS Code, add these extensions by clicking on the Extensions ico
 - **SQLite**: SQLite database support
 - **R**: R language support (if you plan to use R in VS Code)
 - **GitLens**: Enhanced Git capabilities
+- **GitHub Copilot** or **Claude for VS Code**: LLM-assisted code completion and chat. These have become nearly standard for professional development since 2024 and are particularly useful for readers without a CS background: they're excellent at scaffolding boilerplate, explaining unfamiliar code, and suggesting fixes to error messages. Both offer free tiers for individuals. Treat them as a fast pair-programmer, not an oracle: always read the suggestions before accepting them.
 
 Extensions in VS Code are like add-ons or plugins that enhance its functionality for specific tasks or languages, similar to how you might install apps on your phone to give it new capabilities.
 
@@ -628,12 +683,12 @@ Each IDE has strengths and weaknesses:
 
 - **VS Code**: Versatile, lightweight, supports multiple languages
 - **PyCharm**: Robust Python-specific features, excellent for large projects
-- **RStudio**: Optimized for R development
+- **RStudio**: Optimised for R development
 - **JupyterLab**: Excellent for exploratory data analysis and sharing results
 
 Many data scientists use multiple IDEs depending on the task. For example, you might use:
 
-- JupyterLab for exploration and visualization
+- JupyterLab for exploration and visualisation
 - VS Code for script development and Git integration
 - RStudio for statistical analysis and report generation
 
@@ -718,6 +773,8 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 ```
 
+When `ssh-keygen` prompts you for a passphrase, **set one**. It's tempting to press Enter for a blank passphrase, but an unprotected private key on a compromised laptop gives an attacker your full GitHub access. The SSH agent will remember the passphrase for your session so you only type it once after login.
+
 SSH keys are like a special lock and key system. Instead of typing your password every time you interact with GitHub, your computer uses these keys to prove it's really you.
 
 #### Adding Your SSH Key to GitHub
@@ -760,6 +817,49 @@ Think of this process as:
 4. Telling Git you want to include this file in your next snapshot
 5. Taking the snapshot with a brief description
 
+### Telling Git What to Ignore: `.gitignore`
+
+Before you commit anything else, create a `.gitignore` file in the root of your repository. This tells Git which files and folders it should never track: things like local virtual environments, cached files, large data dumps, and, critically, secrets like API keys. Getting this right from day one prevents the single most common beginner mistake: accidentally pushing credentials to a public repository.
+
+Create a file named `.gitignore` (note the leading dot) with content like this as a starting point for a data science project:
+
+```gitignore
+# Secrets: never commit these
+.env
+.env.local
+*.pem
+credentials.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+
+# Data: keep raw data out of Git, use DVC or cloud storage
+data/raw/
+data/processed/
+*.parquet
+*.db
+
+# OS and editor clutter
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+```
+
+Adjust the patterns to fit your project. If you do need to store small reference datasets in Git, remove the relevant `data/` lines. If you find yourself wanting to commit something you've already ignored, you can force it with `git add -f <file>`.
+
+If you ever accidentally commit a secret, rotating the credential is faster and safer than trying to scrub it from Git history. Assume anything that reached a public repository is compromised and generate a new key.
+
 ### Connecting to GitHub
 
 Now let's push this local repository to GitHub:
@@ -767,7 +867,7 @@ Now let's push this local repository to GitHub:
 1. On GitHub, click "+" in the top-right corner and select "New repository"
 2. Name it "my_first_repo"
 3. Leave it as a public repository
-4. Don't initialize with a README (we already created one)
+4. Don't initialise with a README (we already created one)
 5. Click "Create repository"
 6. Follow the instructions for "push an existing repository from the command line":
 
@@ -791,10 +891,10 @@ git status
 git log
 
 # Create and switch to a new branch
-git checkout -b new-feature
+git switch -c new-feature      # older syntax: git checkout -b new-feature
 
 # Switch between existing branches
-git checkout main
+git switch main                # older syntax: git checkout main
 
 # Pull latest changes from remote repository
 git pull
@@ -846,7 +946,7 @@ GitHub facilitates collaboration through pull requests:
 3. Create a branch for your changes:
 
     ```bash
-    git checkout -b my-feature
+    git switch -c my-feature
     ```
 
 4. Make changes, commit them, and push to your fork:

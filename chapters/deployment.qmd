@@ -27,7 +27,7 @@ Static content doesn't change based on user input and is pre-generated:
 
 - HTML reports from R Markdown, Jupyter notebooks, or Quarto
 - Documentation sites
-- Fixed visualizations and dashboards
+- Fixed visualisations and dashboards
 
 **Advantages**:
 
@@ -58,9 +58,9 @@ Different data science projects have specific deployment requirements:
 | Project Type | Interactivity | Computation | Data Access | Suitable Platforms |
 |--------------|---------------|-------------|-------------|-------------------|
 | Analysis reports | None | None | None | GitHub Pages, Netlify, Vercel, Quarto Pub |
-| Interactive visualizations | Medium | Low | Static | GitHub Pages (with JavaScript), Netlify |
-| Dashboards | High | Medium | Often dynamic | Heroku, Render, shinyapps.io |
-| ML model APIs | Low | High | May need database | Cloud platforms (AWS, GCP, Azure) |
+| Interactive visualisations | Medium | Low | Static | GitHub Pages (with JavaScript), Netlify |
+| Dashboards | High | Medium | Often dynamic | Render, Fly.io, Railway, shinyapps.io, Posit Connect Cloud |
+| ML model APIs | Low | High | May need database | Google Cloud Run, AWS App Runner, Azure Container Apps |
 
 Understanding these requirements helps you choose the most appropriate deployment strategy.
 
@@ -74,7 +74,7 @@ Let's examine the most relevant deployment options for data scientists, focusing
 
 GitHub Pages offers free hosting for static content directly from your GitHub repository:
 
-**Best for**: HTML reports, documentation, simple visualizations
+**Best for**: HTML reports, documentation, simple visualisations
 **Setup complexity**: Low
 **Cost**: Free
 **Limitations**: Only static content, 1GB repository limit
@@ -110,24 +110,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@v4
+
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
-          
+          node-version: '20'
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Build
         run: npm run build
-        
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: build
 ```
+
+GitHub Actions publishes new versions of its `actions/*` building blocks regularly. Check [github.com/actions](https://github.com/actions) and pin to the current major version at the time you set up the workflow.
 
 #### Netlify
 
@@ -150,14 +152,14 @@ Netlify automatically rebuilds your site when you push changes to your repositor
 
 #### Vercel
 
-Vercel is a cloud platform that specializes in frontend frameworks and static sites, with excellent support for modern web technologies and serverless functions. Originally created by the makers of Next.js, Vercel has become popular for its speed and developer experience.
+Vercel is a cloud platform that specialises in frontend frameworks and static sites, with excellent support for modern web technologies and serverless functions. Originally created by the makers of Next.js, Vercel has become popular for its speed and developer experience.
 
-**Best for**: Static sites with interactive elements, data visualizations with JavaScript, projects using modern web frameworks
+**Best for**: Static sites with interactive elements, data visualisations with JavaScript, projects using modern web frameworks
 **Setup complexity**: Low to medium
 **Cost**: Generous free tier, paid plans start at $20/month per team member
-**Limitations**: Optimized for frontend applications, limited backend capabilities compared to full cloud platforms
+**Limitations**: Optimised for frontend applications, limited backend capabilities compared to full cloud platforms
 
-Vercel excels at deploying static content that includes interactive JavaScript components, making it ideal for data science projects that combine static analysis with interactive visualizations. Unlike traditional static hosts, Vercel can also run serverless functions, allowing you to add dynamic capabilities without managing servers.
+Vercel excels at deploying static content that includes interactive JavaScript components, making it ideal for data science projects that combine static analysis with interactive visualisations. Unlike traditional static hosts, Vercel can also run serverless functions, allowing you to add dynamic capabilities without managing servers.
 
 **Quick setup**:
 
@@ -183,7 +185,7 @@ vercel
 
 **Configuration for data science projects**:
 
-Create a `vercel.json` file in your project root to customize the build process:
+Create a `vercel.json` file in your project root to customise the build process:
 
 ```json
 {
@@ -192,7 +194,7 @@ Create a `vercel.json` file in your project root to customize the build process:
   "installCommand": "npm install",
   "functions": {
     "api/*.py": {
-      "runtime": "python3.9"
+      "runtime": "python3.12"
     }
   }
 }
@@ -200,12 +202,12 @@ Create a `vercel.json` file in your project root to customize the build process:
 
 This configuration tells Vercel to use Quarto to build your site (common for data science documentation), specifies where the built files are located, and enables Python serverless functions for any dynamic features you might need.
 
-**Example use case**: Vercel is particularly well-suited for deploying interactive data visualizations created with modern JavaScript libraries. For instance, if you create visualizations using Observable Plot or D3.js alongside your static analysis, Vercel can host both the static content and any serverless functions needed for data processing.
+**Example use case**: Vercel is particularly well-suited for deploying interactive data visualisations created with modern JavaScript libraries. For instance, if you create visualisations using Observable Plot or D3.js alongside your static analysis, Vercel can host both the static content and any serverless functions needed for data processing.
 
 **Why choose Vercel over alternatives**:
 
 - **Speed**: Vercel's global CDN ensures fast loading times worldwide
-- **Automatic optimization**: Images and assets are automatically optimized
+- **Automatic optimisation**: Images and assets are automatically optimised
 - **Preview deployments**: Every pull request gets its own preview URL for testing
 - **Serverless functions**: Add dynamic capabilities without complex backend setup
 - **Analytics**: Built-in web analytics to understand how users interact with your deployed projects
@@ -229,69 +231,51 @@ quarto publish
 
 ### Dynamic Application Deployment
 
-#### Heroku
+:::{.callout-note}
+## A note on Heroku
 
-Heroku is a platform-as-a-service that supports multiple languages:
+Heroku used to be the default recommendation for deploying small Python and R web apps, and many older tutorials still mention its free tier. Heroku **discontinued its free product tiers in November 2022** and now charges for all dynos. It's still a perfectly good platform, but for readers looking for a free starting point the recommendations below (Render, Fly.io, Railway) are better aligned with that goal.
+:::
 
-**Best for**: Python and R web applications
+#### Render
+
+Render is the most direct successor to old-Heroku for data science workloads, with a generous free tier for experimentation:
+
+**Best for**: Python and R web applications, Dockerised dashboards
 **Setup complexity**: Medium
-**Cost**: Free tier with limitations, paid plans start at $7/month
-**Limitations**: Free apps sleep after 30 minutes of inactivity
+**Cost**: Free tier for experimentation (services sleep after inactivity); paid plans from $7/month
+**Limitations**: Free-tier services sleep when idle and have limited compute hours
 
-**Setup for a Flask application**:
+**Setup for a Python web application**:
 
 1. Create a `requirements.txt` file:
 
 ```
-flask==2.2.3
-pandas==1.5.3
-matplotlib==3.7.1
-gunicorn==20.1.0
+flask==3.0.3
+pandas==2.2.3
+matplotlib==3.9.2
+gunicorn==23.0.0
 ```
 
-2. Create a `Procfile` (no file extension):
-
-```
-web: gunicorn app:app
-```
-
-3. Deploy using Heroku CLI:
-
-```bash
-# Install Heroku CLI
-# Initialize Git repository if not already done
-git init
-git add .
-git commit -m "Initial commit"
-
-# Create Heroku app
-heroku create my-data-science-app
-
-# Deploy
-git push heroku main
-
-# Open the app
-heroku open
-```
-
-#### Render
-
-Render is a newer alternative to Heroku with a generous free tier:
-
-**Best for**: Python and R web applications
-**Setup complexity**: Medium
-**Cost**: Free tier available, paid plans start at $7/month
-**Limitations**: Free tier has limited compute hours
-
-**Setup for a Python web application**:
-
-1. Sign up at [render.com](https://render.com/)
-2. Connect your GitHub repository
-3. Create a new Web Service
-4. Configure settings:
-   - Environment: Python
+2. Push your project to a GitHub repository
+3. Sign up at [render.com](https://render.com/)
+4. Connect your GitHub repository
+5. Create a new Web Service and configure it:
+   - Environment: **Python**
    - Build Command: `pip install -r requirements.txt`
    - Start Command: `gunicorn app:app`
+6. Add any required environment variables (API keys, database URLs) in the **Environment** tab. Never commit secrets to your repo.
+
+Render builds and deploys your app on every push to the configured branch, so there's no separate `git push render main` step.
+
+#### Fly.io and Railway
+
+Two other platforms worth knowing for small to mid-sized Python/R deployments:
+
+- **[Fly.io](https://fly.io/)**: Deploys Docker containers globally on a pay-as-you-go basis. Good fit once you're comfortable with Docker (covered in the next chapter); the `flyctl` command-line tool handles the build, push, and deploy steps with one command.
+- **[Railway](https://railway.com/)**: Similar developer experience to Render, with generous trial credits. Good Postgres and cron support out of the box.
+
+All three platforms use essentially the same mental model: connect a Git repo, describe how to build the app (either `requirements.txt` + a start command or a `Dockerfile`), and let the platform handle HTTPS, logging, and redeploys on push.
 
 #### shinyapps.io
 
@@ -304,24 +288,35 @@ For R Shiny applications, shinyapps.io offers the simplest deployment option:
 
 **Deployment from RStudio**:
 
+The easiest path is to use the Publish button in RStudio (the blue arrow next to the Run button in the editor for `app.R`). RStudio walks you through linking your shinyapps.io account and deploys the app with one click, with no token handling in code.
+
+If you prefer to do it from the console, install `rsconnect` and keep your credentials out of the script. Read them from environment variables that you set in your OS or in a `.Renviron` file that's listed in `.gitignore`:
+
 ```r
-# Install the rsconnect package
 install.packages("rsconnect")
 
 # Configure your account (one-time setup)
+# Set SHINYAPPS_TOKEN and SHINYAPPS_SECRET in your environment first,
+# e.g. in ~/.Renviron (which should NOT be committed to git).
 rsconnect::setAccountInfo(
-  name = "your-account-name",
-  token = "YOUR_TOKEN",
-  secret = "YOUR_SECRET"
+  name   = "your-account-name",
+  token  = Sys.getenv("SHINYAPPS_TOKEN"),
+  secret = Sys.getenv("SHINYAPPS_SECRET")
 )
 
 # Deploy your app
 rsconnect::deployApp(
-  appDir = "path/to/your/app",
+  appDir  = "path/to/your/app",
   appName = "my-shiny-app",
   account = "your-account-name"
 )
 ```
+
+:::{.callout-note}
+## shinyapps.io alternatives
+
+Since 2024, [**Posit Connect Cloud**](https://connect.posit.cloud/) offers a modern free tier for deploying Shiny, Quarto, Streamlit, and Dash content directly from a Git repository, and is worth a look if shinyapps.io feels dated. For fully client-side Shiny apps (no server required), [**Shinylive**](https://shinylive.io/) runs R or Python Shiny apps entirely in the browser via WebAssembly and can be hosted on any static host like GitHub Pages.
+:::
 
 ### Cloud Platform Deployment
 
@@ -329,9 +324,9 @@ For more complex or production-level deployments, cloud platforms offer greater 
 
 #### Google Cloud Run
 
-Cloud Run is ideal for containerized applications:
+Cloud Run is ideal for containerised applications:
 
-**Best for**: Containerized applications that need to scale
+**Best for**: Containerised applications that need to scale
 **Setup complexity**: Medium to high
 **Cost**: Pay-per-use with generous free tier
 **Limitations**: Requires Docker knowledge
@@ -366,7 +361,7 @@ Elastic Beanstalk handles the infrastructure for your applications:
 
 ```bash
 # Initialize Elastic Beanstalk in your project
-eb init -p python-3.8 my-app --region us-west-2
+eb init -p python-3.12 my-app --region us-west-2
 
 # Create an environment
 eb create my-app-env
@@ -378,6 +373,12 @@ eb deploy
 ## Step-by-Step Deployment Guides
 
 Let's walk through complete deployment workflows for common data science scenarios.
+
+:::{.callout-note}
+## A note on the example data and model files
+
+The examples below reference placeholder files like `sales_data.csv`, `my_data.csv`, and `model.pkl`. These aren't shipped with the book — they stand in for your own data or trained model. When you follow along, either point the code at one of your own files, substitute a built-in dataset (e.g. `ggplot2::diamonds` for R, `sns.load_dataset("tips")` for Python), or pull a stable public CSV from a URL as shown in the Reporting and Visualisation chapters. The deployment mechanics don't depend on which file you use.
+:::
 
 ### Deploying a Data Science Report to GitHub Pages
 
@@ -406,7 +407,7 @@ library(here)
 # Load data
 sales <- read.csv(here("data", "my_data.csv"))
 
-# Create visualization
+# Create visualisation
 ggplot(sales, aes(x = Product, y = Sales, fill = Product)) +
   geom_bar(stat = "identity", position = "dodge") +
   theme_minimal() +
@@ -432,7 +433,7 @@ jobs:
       contents: write
     steps:
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -440,7 +441,7 @@ jobs:
       - name: Install R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: '4.2.0'
+          r-version: '4.4.0'
 
       - name: Install R Dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
@@ -529,22 +530,26 @@ def update_graph(selected_year):
     return fig
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    # debug=True must NEVER be used in production. It exposes
+    # an interactive Python console to anyone who can reach the app.
+    # Render runs `gunicorn` directly in production, so this block
+    # is only used when you run `python app.py` locally.
+    app.run(debug=False)
 ```
 
 2. Create a `requirements.txt` file:
 
 ```
-dash==2.9.3
-pandas==1.5.3
-plotly==5.14.1
-gunicorn==20.1.0
+dash==2.18.2
+pandas==2.2.3
+plotly==5.24.1
+gunicorn==23.0.0
 ```
 
 3. Create a minimal `Dockerfile`:
 
 ```dockerfile
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
@@ -667,10 +672,11 @@ This example demonstrates deploying a machine learning model as an API:
 1. Create a Flask API for your model (`app.py`):
 
 ```python
+import os
+import pickle
+
 from flask import Flask, request, jsonify
 import pandas as pd
-import pickle
-import numpy as np
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -683,25 +689,30 @@ with open('model.pkl', 'rb') as file:
 def predict():
     try:
         # Get JSON data from request
-        data = request.get_json()
-        
+        data = request.get_json(force=True)
+        if not isinstance(data, dict):
+            return jsonify({
+                'status': 'error',
+                'message': 'Request body must be a JSON object of feature: value pairs',
+            }), 400
+
         # Convert to DataFrame
         input_data = pd.DataFrame(data, index=[0])
-        
+
         # Make prediction
         prediction = model.predict(input_data)[0]
-        
+
         # Return prediction as JSON
         return jsonify({
             'status': 'success',
             'prediction': float(prediction),
-            'input_data': data
+            'input_data': data,
         })
-    
+
     except Exception as e:
         return jsonify({
             'status': 'error',
-            'message': str(e)
+            'message': str(e),
         }), 400
 
 @app.route('/health', methods=['GET'])
@@ -709,22 +720,26 @@ def health():
     return jsonify({'status': 'healthy'})
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    # In production, gunicorn runs the app directly. This block is
+    # only used for local development.
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
 ```
+
+For production use you would want stricter input validation (for example with Pydantic or Marshmallow) and authentication. The `try/except` above only catches shape errors, not adversarial input.
 
 2. Create a `requirements.txt` file:
 
 ```
-flask==2.2.3
-pandas==1.5.3
-scikit-learn==1.2.2
-gunicorn==20.1.0
+flask==3.0.3
+pandas==2.2.3
+scikit-learn==1.5.2
+gunicorn==23.0.0
 ```
 
 3. Create a `Dockerfile`:
 
 ```dockerfile
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
@@ -750,6 +765,12 @@ gcloud run deploy model-api \
   --allow-unauthenticated
 ```
 
+:::{.callout-warning}
+## `--allow-unauthenticated` exposes the endpoint to the public internet
+
+For a quick demo this is fine, but don't leave a model API wide open to the internet without rate limiting and authentication. For production use, drop `--allow-unauthenticated` and require callers to present an identity token (`gcloud auth print-identity-token`), or put an API gateway in front of the service. At minimum, monitor the Cloud Run request count and set budget alerts so you notice unexpected traffic early.
+:::
+
 5. Test your API:
 
 ```bash
@@ -769,22 +790,38 @@ Regardless of the platform you choose, these best practices will help ensure suc
 
 1. **Use environment files**: Include `requirements.txt` for Python or `renv.lock` for R
 2. **Specify exact versions**: Use `pandas==1.5.3` rather than `pandas>=1.5.0`
-3. **Minimize dependencies**: Include only what you need to reduce deployment size
+3. **Minimise dependencies**: Include only what you need to reduce deployment size
 4. **Test in a clean environment**: Verify your environment files are complete
 
 ### Security Considerations
 
-1. **Never commit secrets**: Use environment variables for API keys and passwords
-2. **Set up proper authentication**: Restrict access to sensitive applications
-3. **Implement input validation**: Protect against malicious inputs
-4. **Use HTTPS**: Ensure your deployed applications use secure connections
-5. **Regularly update dependencies**: Address security vulnerabilities
+1. **Never commit secrets**: Keep API keys, database passwords, and access tokens in environment variables, platform-managed secret stores (Render Environment, Fly.io secrets, GCP Secret Manager, AWS Secrets Manager), or a local `.env` file that is listed in `.gitignore`. If a secret ever reaches a repository, whether public *or* private, treat it as compromised and rotate it immediately rather than trying to scrub git history.
+2. **Set up proper authentication**: Restrict access to sensitive applications. Don't leave `--allow-unauthenticated` endpoints, default passwords, or `debug=True` enabled in anything publicly reachable.
+3. **Implement input validation**: Protect against malicious inputs, especially for any endpoint that touches a database or a machine learning model.
+4. **Use HTTPS**: Every modern platform-as-a-service (Render, Fly, Railway, Vercel, Cloud Run) issues free TLS certificates automatically; use them. Custom domains should always be served over HTTPS.
+5. **Regularly update dependencies**: Address security vulnerabilities. Tools like GitHub Dependabot or `pip-audit` can flag known CVEs in your `requirements.txt`.
 
-### Performance Optimization
+### Observability: Logging, Health Checks, and Monitoring
 
-1. **Optimize data loading**: Load data efficiently or use databases for large datasets
+Once your application is deployed, you need to know when it breaks:
+
+1. **Emit structured logs to stdout/stderr**: Modern platforms capture anything your app prints and surface it in their dashboards. Use Python's `logging` module (or `lgr` / `futile.logger` in R) rather than `print`, and log in JSON where possible so the logs are searchable.
+2. **Expose a `/health` endpoint**: A simple route that returns HTTP 200 when the app is alive lets the platform (and uptime monitors like UptimeRobot or BetterStack) restart unhealthy instances automatically. The ML API example in this chapter already does this.
+3. **Add a Docker `HEALTHCHECK`** in your Dockerfile so the container itself reports its status:
+
+    ```dockerfile
+    HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+      CMD curl -fsS http://localhost:${PORT:-8080}/health || exit 1
+    ```
+
+4. **Track errors separately**: Services like Sentry or Better Stack give you grouped stack traces and notifications when something goes wrong. Both have generous free tiers for small projects.
+5. **Set budget alerts**: On pay-per-use platforms (Cloud Run, AWS, GCP) configure a monthly budget with email alerts before you deploy anything that autoscales.
+
+### Performance Optimisation
+
+1. **Optimise data loading**: Load data efficiently or use databases for large datasets
 2. **Implement caching**: Cache results of expensive computations
-3. **Monitor resource usage**: Keep track of memory and CPU utilization
+3. **Monitor resource usage**: Keep track of memory and CPU utilisation
 4. **Implement pagination**: For large datasets, display data in manageable chunks
 5. **Consider asynchronous processing**: Use background tasks for long-running computations
 
@@ -808,20 +845,20 @@ Regardless of the platform you choose, these best practices will help ensure suc
 | Build failures | Review the GitHub Actions logs for errors |
 | Custom domain not working | Verify DNS settings and CNAME file |
 
-#### Heroku
+#### Render / Fly.io
 
 | Issue | Solution |
 |-------|----------|
-| Application crash | Check logs with `heroku logs --tail` |
-| Build failures | Ensure dependencies are specified correctly |
-| Application sleeping | Upgrade to a paid dyno or use periodic pings |
+| Application crash | Check the service's **Logs** tab in the dashboard (`flyctl logs` on Fly.io) |
+| Build failures | Ensure dependencies are pinned in `requirements.txt` and that the build command is correct |
+| Free service sleeping when idle | Use periodic health-check pings, or upgrade to a paid tier that stays warm |
 
 #### shinyapps.io
 
 | Issue | Solution |
 |-------|----------|
 | Package installation failures | Use `packrat` or `renv` to manage dependencies |
-| Application timeout | Optimize data loading and computation |
+| Application timeout | Optimise data loading and computation |
 | Deployment failures | Check rsconnect logs in RStudio |
 
 ### General Deployment Issues
@@ -847,7 +884,7 @@ Regardless of the platform you choose, these best practices will help ensure suc
    - Use platform-specific storage solutions for persistent data
 
 5. **Memory limitations**:
-   - Optimize data loading to reduce memory usage
+   - Optimise data loading to reduce memory usage
    - Use streaming approaches for large datasets
    - Upgrade to a plan with more resources if necessary
 
@@ -857,4 +894,4 @@ Effective deployment is crucial for sharing your data science work with stakehol
 
 Remember that deployment is not a one-time task but an ongoing process. As your projects evolve, you'll need to update your deployed applications, monitor their performance, and address any issues that arise.
 
-In the next chapter, we'll explore how to optimize your entire data science workflow, from development to deployment, to maximize your productivity and impact.
+In the next chapter, we'll explore how to optimise your entire data science workflow, from development to deployment, to maximise your productivity and impact.
