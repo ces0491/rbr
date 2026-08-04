@@ -1,0 +1,437 @@
+---
+title: "Editors and Version Control"
+---
+
+## Integrated Development Environments (IDEs)
+
+An Integrated Development Environment (IDE) combines the tools needed for software development into a single application. A good IDE dramatically improves productivity by providing code editing, debugging, execution, and project management in one place.
+
+### Why IDEs Matter for Data Science
+
+IDEs help data scientists by:
+
+1. Providing syntax highlighting and code completion
+2. Catching errors before execution
+3. Offering integrated documentation
+4. Simplifying project organisation and version control
+
+Most professional developers use a specialised IDE rather than a basic text editor, as the additional features significantly improve productivity.
+
+Think of an IDE as a fully equipped workshop rather than just having a single tool. It has everything arranged conveniently in one place.
+
+We've already installed RStudio for R development. Now let's look at options for Python and SQL.
+
+### VS Code: A Universal IDE
+
+Visual Studio Code (VS Code) is a free, open-source editor that supports multiple languages through extensions. Its flexibility makes it an excellent choice for data scientists.
+
+#### Installing VS Code
+
+1. Visit the [VS Code download page](https://code.visualstudio.com/download)
+2. Download the appropriate version for your operating system
+3. Run the installer and follow the prompts
+
+#### Essential VS Code Extensions for Data Science
+
+After installing VS Code, add these extensions by clicking on the Extensions icon in the sidebar (or pressing Ctrl+Shift+X):
+
+- **Python** by Microsoft: Python language support
+- **Jupyter**: Support for Jupyter notebooks
+- **Rainbow CSV**: Makes CSV files easier to read
+- **SQLite**: SQLite database support
+- **R**: R language support (if you plan to use R in VS Code)
+- **GitLens**: Enhanced Git capabilities
+- **GitHub Copilot** or **Claude Code**: LLM-assisted code completion and chat, both available as VS Code extensions. These have become close to standard for professional development and are particularly useful for readers without a CS background: they scaffold boilerplate, explain unfamiliar code, and suggest fixes for error messages. Copilot has a free tier for individuals with a monthly completion allowance; Claude Code requires a paid Claude subscription or API credits. Treat either one as a fast pair-programmer, not an oracle: read the suggestions before accepting them.
+
+Extensions in VS Code are like add-ons or plugins that enhance its functionality for specific tasks or languages, similar to how you might install apps on your phone to give it new capabilities.
+
+#### Configuring VS Code for Python
+
+1. Open VS Code
+2. Press Ctrl+Shift+P (Cmd+Shift+P on Mac) to open the command palette
+3. Type "Python: Select Interpreter" and select it
+4. Choose your conda environment (e.g., datasci)
+
+This step tells VS Code which Python installation to use when running your code. It's like telling a multilingual person which language to speak when communicating with you.
+
+### PyCharm Community Edition
+
+PyCharm is an IDE specifically designed for Python development, with excellent data science support.
+
+#### Installing PyCharm Community Edition
+
+1. Visit the [PyCharm download page](https://www.jetbrains.com/pycharm/download/)
+2. Download the free Community Edition
+3. Run the installer and follow the prompts
+
+#### Configuring PyCharm for Your Conda Environment
+
+1. Open PyCharm
+2. Create a new project
+3. Click on "Previously configured interpreter"
+4. Click on the gear icon and select "Add..."
+5. Choose "Conda Environment" → "Existing environment"
+6. Browse to your conda environment's Python executable. If you followed the Miniforge instructions earlier, that is:
+    - On Windows: `C:\Users\<username>\miniforge3\envs\datasci\python.exe`
+    - On macOS: `/Users/<username>/miniforge3/envs/datasci/bin/python`
+    - On Linux: `/home/<username>/miniforge3/envs/datasci/bin/python`
+
+    If you installed Anaconda rather than Miniforge, substitute `anaconda3` for `miniforge3`. When in doubt, activate the environment and run `python -c "import sys; print(sys.executable)"` — that prints the exact path PyCharm wants.
+
+:::{.callout-note}
+Note: In file paths, forward slashes (/) are primarily used in Unix-like systems like Linux and macOS, while backslashes (\\) are commonly used in Windows.
+:::
+
+### Working with Jupyter Notebooks
+
+While we already mentioned Jupyter notebooks in the Python section, they deserve more attention as a popular IDE-like interface for data science.
+
+#### JupyterLab: The Next Generation of Jupyter
+
+JupyterLab is a web-based interactive development environment that extends the notebook interface with a file browser, consoles, terminals, and more.
+
+```bash
+# Install JupyterLab
+conda activate datasci
+conda install -c conda-forge jupyterlab
+
+# Launch JupyterLab
+jupyter lab
+```
+
+JupyterLab provides a more IDE-like experience than classic Jupyter notebooks, with the ability to open multiple notebooks, view data frames, and edit other file types in a single interface. It's like upgrading from having separate tools to having a comprehensive workbench.
+
+### Choosing the Right IDE
+
+Each IDE has strengths and weaknesses:
+
+- **VS Code**: Versatile, lightweight, supports multiple languages
+- **PyCharm**: Robust Python-specific features, excellent for large projects
+- **RStudio**: Optimised for R development
+- **JupyterLab**: Excellent for exploratory data analysis and sharing results
+
+Many data scientists use multiple IDEs depending on the task. For example, you might use:
+
+- JupyterLab for exploration and visualisation
+- VS Code for script development and Git integration
+- RStudio for statistical analysis and report generation
+
+Choose the tools that best fit your workflow and preferences. It's perfectly fine to start with one and add others as you grow more comfortable.
+
+## Version Control with Git and GitHub
+
+Version control is a system that records changes to files over time, allowing you to recall specific versions later. Git is the most widely used version control system, and GitHub is a popular platform for hosting Git repositories.
+
+### Why Version Control for Data Science?
+
+Version control is essential for data science because it:
+
+1. Tracks changes to code and documentation
+2. Facilitates collaboration with others
+3. Provides a backup of your work
+4. Documents the evolution of your analysis
+5. Enables reproducibility by capturing the state of code at specific points
+
+Proper version control is essential for reproducibility and collaboration in data science work.
+
+Think of Git as a time machine for your code. It allows you to save snapshots of your project at different points in time and revisit or restore those snapshots if needed.
+
+### Installing Git
+
+#### On Windows
+
+1. Download the installer from [Git for Windows](https://gitforwindows.org/)
+2. Run the installer, accepting the default options (though you may want to choose VS Code as your default editor if you installed it)
+
+#### On macOS
+
+Git may already be installed. Check by typing `git --version` in the terminal. If not:
+
+```bash
+# Install Git using Homebrew
+brew install git
+```
+
+#### On Linux
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
+#### Configuring Git
+
+After installation, open a terminal and configure your identity:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+This is like putting your name and address on a letter. When you make changes to a project, Git will know who made them.
+
+### Creating a GitHub Account
+
+GitHub provides free hosting for Git repositories, making it easy to share code and collaborate.
+
+1. Visit [GitHub](https://github.com/)
+2. Click "Sign up" and follow the instructions
+3. Verify your email address
+
+GitHub is to Git what social media is to your photos—a place to share your work with others and collaborate on projects.
+
+### Setting Up SSH Authentication for GitHub
+
+Using SSH keys makes it more secure and convenient to interact with GitHub:
+
+#### Generating SSH Keys
+
+```bash
+# Generate a new SSH key
+ssh-keygen -t ed25519 -C "your.email@example.com"
+
+# Start the SSH agent
+eval "$(ssh-agent -s)"
+
+# Add your key to the agent
+ssh-add ~/.ssh/id_ed25519
+```
+
+When `ssh-keygen` prompts you for a passphrase, **set one**. It's tempting to press Enter for a blank passphrase, but an unprotected private key on a compromised laptop gives an attacker your full GitHub access. The SSH agent will remember the passphrase for your session so you only type it once after login.
+
+SSH keys are like a special lock and key system. Instead of typing your password every time you interact with GitHub, your computer uses these keys to prove it's really you.
+
+#### Adding Your SSH Key to GitHub
+
+1. Copy your public key to the clipboard:
+    - On Windows (in Git Bash): `cat ~/.ssh/id_ed25519.pub | clip`
+    - On macOS: `pbcopy < ~/.ssh/id_ed25519.pub`
+    - On Linux: `cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard` (install it first with `sudo apt install xclip`; on Wayland desktops use `wl-copy` instead). Failing that, `cat ~/.ssh/id_ed25519.pub` and copy the output by hand — it's one line.
+
+2. Go to GitHub → Settings → SSH and GPG keys → New SSH key
+3. Paste your key and save
+
+### Basic Git Workflow
+
+Let's create a repository and learn the essential Git commands:
+
+```bash
+# Create a new directory
+mkdir my_first_repo
+cd my_first_repo
+
+# Initialize a Git repository
+git init
+
+# Create a README file
+echo "# My First Repository" > README.md
+
+# Add the file to the staging area
+git add README.md
+
+# Commit the changes
+git commit -m "Initial commit"
+```
+
+Think of this process as:
+
+1. Creating a new folder for your project
+2. Telling Git to start tracking changes in this folder
+3. Creating a simple text file
+4. Telling Git you want to include this file in your next snapshot
+5. Taking the snapshot with a brief description
+
+### Telling Git What to Ignore: `.gitignore`
+
+Before you commit anything else, create a `.gitignore` file in the root of your repository. This tells Git which files and folders it should never track: things like local virtual environments, cached files, large data dumps, and, critically, secrets like API keys. Getting this right from day one prevents the single most common beginner mistake: accidentally pushing credentials to a public repository.
+
+Create a file named `.gitignore` (note the leading dot) with content like this as a starting point for a data science project:
+
+```gitignore
+# Secrets: never commit these
+.env
+.env.local
+*.pem
+credentials.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+
+# Data: keep raw data out of Git, use DVC or cloud storage
+data/raw/
+data/processed/
+*.parquet
+*.db
+
+# OS and editor clutter
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+```
+
+Adjust the patterns to fit your project. If you do need to store small reference datasets in Git, remove the relevant `data/` lines. If you find yourself wanting to commit something you've already ignored, you can force it with `git add -f <file>`.
+
+If you ever accidentally commit a secret, rotating the credential is faster and safer than trying to scrub it from Git history. Assume anything that reached a public repository is compromised and generate a new key.
+
+### Connecting to GitHub
+
+Now let's push this local repository to GitHub:
+
+1. On GitHub, click "+" in the top-right corner and select "New repository"
+2. Name it "my_first_repo"
+3. Leave it as a public repository
+4. Don't initialise with a README (we already created one)
+5. Click "Create repository"
+6. Follow the instructions for "push an existing repository from the command line":
+
+```bash
+git remote add origin git@github.com:yourusername/my_first_repo.git
+git branch -M main
+git push -u origin main
+```
+
+This process connects your local repository to GitHub (like linking your local folder to a cloud storage service) and uploads your code.
+
+### Basic Git Commands for Daily Use
+
+These commands form the core of day-to-day Git usage:
+
+```bash
+# Check status of your repository
+git status
+
+# View commit history
+git log
+
+# Create and switch to a new branch
+git switch -c new-feature      # older syntax: git checkout -b new-feature
+
+# Switch between existing branches
+git switch main                # older syntax: git checkout main
+
+# Pull latest changes from remote repository
+git pull
+
+# Add all changed files to staging
+git add .
+
+# Commit staged changes
+git commit -m "Description of changes"
+
+# Push commits to remote repository
+git push
+```
+
+Think of branches as parallel versions of your project. The main branch is like the trunk of a tree, and other branches are like branches growing out from it. You can work on different features in different branches without affecting the main branch, then combine them when they're ready.
+
+### Using Git in IDEs
+
+Most modern IDEs integrate with Git, making version control easier:
+
+#### VS Code
+
+- Click the Source Control icon in the sidebar
+- Use the interface to stage, commit, and push changes
+
+#### PyCharm
+
+- Go to VCS → Git in the menu
+- Use the interface for Git operations
+
+#### RStudio
+
+- Click the Git tab in the upper-right panel
+- Use the interface for Git operations
+
+These integrations mean you don't have to use the command line for every Git operation—you can manage version control without leaving your coding environment.
+
+### Collaborating with Others on GitHub
+
+GitHub facilitates collaboration through pull requests:
+
+1. Fork someone's repository by clicking the "Fork" button on GitHub
+2. Clone your fork locally:
+
+    ```bash
+    git clone git@github.com:yourusername/their-repo.git
+    ```
+
+3. Create a branch for your changes:
+
+    ```bash
+    git switch -c my-feature
+    ```
+
+4. Make changes, commit them, and push to your fork:
+
+    ```bash
+    git push origin my-feature
+    ```
+
+5. On GitHub, navigate to your fork and click "New pull request"
+
+Pull requests allow project maintainers to review your changes before incorporating them. It's like submitting a draft for review before it gets published.
+
+The "fork and pull request" workflow is used by nearly all open-source projects, from small libraries to major platforms like TensorFlow and pandas. It's considered a best practice for collaborative development.
+
+## Git for Analysts: What Actually Matters
+
+Git has a large surface area and most of it is irrelevant to analytical work. If you learn four things, you have covered the overwhelming majority of what you'll do:
+
+1. **`git add` / `git commit` / `git push`** — the daily loop. Commit when you finish a coherent piece of work, not at the end of the day.
+2. **Branches** — one per piece of work, merged back when it's done. Keeps half-finished changes off `main`.
+3. **`.gitignore`** — what never goes in. Data, credentials, environments, rendered output.
+4. **How to undo the last thing you did** — `git restore <file>` to discard uncommitted changes, `git revert <commit>` to undo a commit that's already pushed.
+
+Rebasing, cherry-picking, reflog, and submodules are real tools you may eventually need. You do not need them to get value from Git, and reaching for them early is how people end up in states they can't get out of.
+
+:::{.callout-tip}
+## When Git goes wrong
+
+Almost everyone eventually lands in a Git state they don't understand. Two things help:
+
+- **Your work is probably not lost.** Committed work is very hard to actually destroy — `git reflog` shows where every branch has been, including commits you think you deleted.
+- **The nuclear option is fine.** Clone the repository fresh into a new directory, copy your changed files across, and commit. It feels like cheating; it takes five minutes and always works. Do that rather than spending an afternoon on a merge you don't understand.
+
+[Happy Git and GitHub for the useR](https://happygitwithr.com/) has the best troubleshooting material for exactly this situation.
+:::
+
+## Commit Messages
+
+A commit message written for the person reading it in six months — usually you — should say *why*, since the diff already says *what*.
+
+```
+Bad:   updated script
+Bad:   fixes
+Good:  Exclude Q4 outliers from revenue model
+
+       The three flagged transactions are internal test orders,
+       confirmed with finance. They were skewing the regional averages.
+```
+
+The first line is a summary under about 50 characters. If there's a reason worth recording, leave a blank line and write it underneath. Nobody will mind if you don't do this on a personal project; everyone will be grateful when you do it on a shared one.
+
+## Conclusion
+
+**By the end of this chapter you should have:**
+
+- An IDE installed and configured for your language — VS Code, PyCharm, or RStudio
+- Git installed, with `user.name` and `user.email` set
+- A GitHub account with SSH authentication working (`ssh -T git@github.com` succeeds)
+- At least one project initialised as a repository, committed, and pushed to a GitHub remote
+- A `.gitignore` in that project covering credentials, data, and environments — added *before* your first commit rather than after
+
+That last point is worth repeating because it's the one people get wrong once and remember forever. A file that has never been committed is easy to exclude. A file that has been committed is in the history permanently, and if it was a credential, the only real fix is to rotate it.
+
+With version control in place, the foundations are done. The next section turns to producing output someone else can read.

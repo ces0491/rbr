@@ -1,0 +1,431 @@
+---
+title: "Data Stores: SQL and Beyond"
+---
+
+## SQL Fundamentals and Setup
+
+SQL (Structured Query Language) is essential for data scientists to interact with databases. We'll set up a lightweight database system so you can practise SQL queries locally.
+
+### Why SQL for Data Science?
+
+SQL is crucial for data science because:
+
+1. Most organisational data resides in databases
+2. It provides a standard way to query and manipulate data
+3. It's often more efficient than Python or R for large data operations
+4. Data transformation often happens in databases before analysis
+
+SQL is one of the most important skills for data scientists, as most organisational data resides in relational databases.
+
+### Installing SQLite
+
+SQLite is a lightweight, file-based database that requires no server setup, making it perfect for learning.
+
+Think of SQLite as a simple filing cabinet for your data that you can easily carry around, unlike larger database systems that require dedicated servers.
+
+#### On Windows
+
+1. Download the SQLite command-line tools (look for the "Precompiled Binaries for Windows" section) from the [SQLite download page](https://www.sqlite.org/download.html)
+2. Extract the ZIP to a folder (e.g., `C:\sqlite`)
+3. Add this folder to your PATH environment variable so you can run `sqlite3` from any terminal:
+    - Press the Windows key, type "environment variables", and open "Edit the system environment variables"
+    - Click "Environment Variables…"
+    - Under **User variables**, select `Path` and click "Edit…"
+    - Click "New" and paste `C:\sqlite` (or wherever you extracted the files)
+    - Click OK on every dialogue, then open a **new** terminal window for the change to take effect
+
+#### On macOS
+
+SQLite comes pre-installed, but you can install a newer version with Homebrew:
+
+```bash
+# Install SQLite
+brew install sqlite
+```
+
+#### On Linux
+
+```bash
+sudo apt update
+sudo apt install sqlite3
+```
+
+#### Verifying Installation
+
+Open a terminal or command prompt and type:
+
+```bash
+sqlite3 --version
+```
+
+You should see the version information displayed.
+
+### Creating Your First Database
+
+Let's create a simple database to verify our setup:
+
+First, in your terminal, create the database file and open a prompt on it:
+
+```bash
+sqlite3 sample.db
+```
+
+Your prompt changes to `sqlite>`. You are no longer talking to the shell — everything from here is SQL, terminated by a semicolon:
+
+```sql
+-- Create a table
+CREATE TABLE people (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    age INTEGER,
+    city TEXT
+);
+
+-- Insert some data
+INSERT INTO people (name, age, city) VALUES ('Alice', 28, 'New York');
+INSERT INTO people (name, age, city) VALUES ('Bob', 35, 'Chicago');
+INSERT INTO people (name, age, city) VALUES ('Charlie', 42, 'San Francisco');
+
+-- Query the data
+SELECT * FROM people;
+
+-- Exit SQLite. Commands starting with a dot are instructions to the
+-- sqlite3 program itself rather than SQL, and take no semicolon.
+.exit
+```
+
+Note the comment syntax. SQL uses `--`, not the `#` that shells use; paste a `#` comment at the `sqlite>` prompt and you'll get a syntax error.
+
+This creates a spreadsheet-like table inside a file, adds some rows, and views them.
+
+### SQL GUIs for Easier Database Management
+
+While the command line is powerful, graphical interfaces can make working with databases more intuitive:
+
+#### DB Browser for SQLite
+
+This free, open-source tool provides a user-friendly interface for SQLite databases.
+
+1. Visit the [DB Browser for SQLite download page](https://sqlitebrowser.org/dl/)
+2. Download the appropriate version for your operating system
+3. Install and open it
+4. Open the sample.db file you created earlier
+
+DB Browser for SQLite acts like a spreadsheet program for your database, making it easier to view and edit data without typing SQL commands.
+
+#### Using SQL from Python and R
+
+You can also interact with SQLite databases from Python and R:
+
+##### Python
+
+```{python}
+#| eval: false
+import sqlite3
+import pandas as pd
+
+# Connect to the database
+conn = sqlite3.connect('sample.db')
+
+# Query data into a pandas DataFrame
+df = pd.read_sql_query("SELECT * FROM people", conn)
+
+# Display the data
+print(df)
+
+# Close the connection
+conn.close()
+```
+
+##### R
+
+```{r}
+#| eval: false
+library(RSQLite)
+library(DBI)
+
+# Connect to the database
+conn <- dbConnect(SQLite(), "sample.db")
+
+# Query data into a data frame
+df <- dbGetQuery(conn, "SELECT * FROM people")
+
+# Display the data
+print(df)
+
+# Close the connection
+dbDisconnect(conn)
+```
+
+This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyse it with Python or R—all within the same workflow.
+
+
+## File Formats: Stop Using CSV for Everything
+
+CSV is the universal interchange format and it will never go away, but it is a poor working format. It has no types (every column is text until something guesses), no compression, no column selection (reading one column means parsing all of them), and no schema.
+
+**Parquet** fixes all four. It is a columnar, compressed, typed binary format, and it is the default choice for any dataset you'll read more than once.
+
+```{python}
+#| eval: false
+import pandas as pd
+
+df = pd.read_csv("large_dataset.csv")
+
+# Write once
+df.to_parquet("large_dataset.parquet")
+
+# Read back - types preserved, no parsing, typically 5-10x faster
+df = pd.read_parquet("large_dataset.parquet")
+
+# Read only the columns you need - the rest is never touched on disk
+df = pd.read_parquet("large_dataset.parquet", columns=["date", "revenue"])
+```
+
+In R, `arrow::write_parquet()` and `arrow::read_parquet()` do the same job.
+
+The file is usually a fraction of the CSV's size, loads far faster, and — the part that matters most for reproducibility — remembers that your date column was a date. Keep the CSV if you need to hand it to someone in Excel. Work from the Parquet.
+
+## DuckDB: SQL Without a Database Server
+
+SQLite gave you a database in a file. **DuckDB** gives you an analytical query engine in a file — or in no file at all — and it is probably the most useful single tool added to this space in the last five years.
+
+The pitch: DuckDB runs SQL directly against CSV and Parquet files on disk, at speeds that make a laptop competitive with a small cluster, with no server to install, configure, or keep running.
+
+```bash
+pip install duckdb        # Python
+```
+
+```r
+install.packages("duckdb")   # R
+```
+
+### Querying files directly
+
+No import step, no schema definition, no server:
+
+```{python}
+#| eval: false
+import duckdb
+
+# Query a CSV as if it were a table
+duckdb.sql("SELECT COUNT(*) FROM 'sales_2026.csv'").show()
+
+# Query every Parquet file matching a glob, as one table
+duckdb.sql("""
+    SELECT region, SUM(revenue) AS total
+    FROM 'data/sales_*.parquet'
+    GROUP BY region
+    ORDER BY total DESC
+""").show()
+```
+
+That second query reads a directory of files, treats them as a single table, and aggregates — on files larger than your available memory, because DuckDB streams rather than loading everything first. Doing the same thing in pandas means reading each file, concatenating, and hoping it fits in RAM.
+
+### Working with pandas and R data frames
+
+DuckDB reads data frames in the calling session directly, by name:
+
+```{python}
+#| eval: false
+import duckdb
+import pandas as pd
+
+sales = pd.read_parquet("sales.parquet")
+
+# `sales` is visible to the query without any registration step
+result = duckdb.sql("""
+    SELECT region, AVG(revenue) AS avg_revenue
+    FROM sales
+    WHERE quarter = 'Q4'
+    GROUP BY region
+""").df()          # .df() returns a pandas DataFrame
+```
+
+This makes DuckDB useful even when your data comfortably fits in memory: a `GROUP BY` with three joins is easier to read as SQL than as chained pandas operations, and you can move between the two freely within a single script.
+
+In R, the same pattern works through DBI:
+
+```{r}
+#| eval: false
+library(duckdb)
+library(DBI)
+
+con <- dbConnect(duckdb())
+duckdb_register(con, "sales", sales_df)
+
+result <- dbGetQuery(con, "
+  SELECT region, AVG(revenue) AS avg_revenue
+  FROM sales GROUP BY region
+")
+
+dbDisconnect(con, shutdown = TRUE)
+```
+
+### When to use which
+
+| Situation | Reach for |
+|---|---|
+| Small structured data you need to persist and update | SQLite |
+| Analytical queries over files — CSV, Parquet, or a folder of them | DuckDB |
+| Data too large for memory but on one machine | DuckDB |
+| Multiple people or applications writing concurrently | PostgreSQL |
+| Data already in a company database | Whatever that is — connect, don't copy |
+
+SQLite and DuckDB are complements, not competitors: SQLite is optimised for transactions (many small reads and writes), DuckDB for analytics (scanning and aggregating large volumes). For the work in this book, DuckDB is the one you'll reach for more often.
+
+## Polars: An Alternative to pandas
+
+**Polars** is a data frame library with a different design from pandas: it's written in Rust, parallelises across cores by default, and offers a *lazy* API that optimises a whole chain of operations before executing any of it.
+
+```{python}
+#| eval: false
+import polars as pl
+
+# Eager - executes immediately, like pandas
+df = pl.read_parquet("sales.parquet")
+result = (
+    df.filter(pl.col("quarter") == "Q4")
+      .group_by("region")
+      .agg(pl.col("revenue").sum())
+)
+
+# Lazy - builds a plan, optimises it, then runs. Note scan_ rather than read_
+result = (
+    pl.scan_parquet("sales.parquet")
+      .filter(pl.col("quarter") == "Q4")
+      .group_by("region")
+      .agg(pl.col("revenue").sum())
+      .collect()
+)
+```
+
+In the lazy version, Polars sees the filter before reading anything and pushes it down into the file scan — so rows for other quarters are never read off disk at all. On large files the difference is substantial.
+
+Should you switch? Not urgently. pandas has twenty years of ecosystem behind it, and almost every tutorial, Stack Overflow answer, and library integration assumes it. Polars is worth learning when pandas becomes the bottleneck — jobs that take minutes, or datasets that don't fit comfortably in memory — and worth knowing about now so you recognise it when you meet it.
+
+For most readers of this book, the ordering is: pandas by default, DuckDB when the query is more naturally SQL or the data is large, Polars when you've measured pandas being too slow.
+
+## PostgreSQL: When You Need a Real Server
+
+SQLite and DuckDB are files. At some point you'll need a database that multiple people or applications can write to at once, with user accounts and permissions. That is almost always PostgreSQL.
+
+You are unlikely to install one from scratch as an analyst — more often you'll be given connection details to an existing one. Connecting is the same shape in both languages:
+
+```{python}
+#| eval: false
+import os
+import pandas as pd
+from sqlalchemy import create_engine
+
+# Read credentials from the environment, never from the source file
+engine = create_engine(
+    f"postgresql+psycopg://{os.environ['DB_USER']}:{os.environ['DB_PASSWORD']}"
+    f"@{os.environ['DB_HOST']}:5432/{os.environ['DB_NAME']}"
+)
+
+df = pd.read_sql("SELECT * FROM transactions WHERE date >= '2026-01-01'", engine)
+```
+
+```{r}
+#| eval: false
+library(DBI)
+library(RPostgres)
+
+con <- dbConnect(
+  Postgres(),
+  host     = Sys.getenv("DB_HOST"),
+  dbname   = Sys.getenv("DB_NAME"),
+  user     = Sys.getenv("DB_USER"),
+  password = Sys.getenv("DB_PASSWORD")
+)
+
+df <- dbGetQuery(con, "SELECT * FROM transactions WHERE date >= '2026-01-01'")
+dbDisconnect(con)
+```
+
+:::{.callout-warning}
+## Two rules for database credentials
+
+**Read them from the environment, never write them in the script.** Every example above uses `os.environ` / `Sys.getenv` for exactly this reason. A connection string with a password in it, committed once, is in your Git history permanently — deleting the line in a later commit does not remove it.
+
+**Never build a query by string-concatenating user input.** Use the parameter binding your library provides:
+
+```python
+# Wrong - a value containing a quote character can rewrite your query
+pd.read_sql(f"SELECT * FROM users WHERE region = '{region}'", engine)
+
+# Right - the driver escapes the value
+pd.read_sql("SELECT * FROM users WHERE region = %(region)s", engine,
+            params={"region": region})
+```
+
+This matters even for internal tools with trusted users. The failure isn't always malicious — a region named `O'Brien` breaks the first version too.
+:::
+
+If you do want a local PostgreSQL for development, the least painful route is a container rather than an installer — see the Docker Compose example in [Containerisation](containers.qmd), which brings up Postgres alongside Jupyter in one command.
+
+## Where to Put Credentials
+
+Since this chapter is where credentials first become unavoidable, here is the whole answer in one place. It applies equally to database passwords, API keys, and cloud access tokens.
+
+**The rule: secrets live in the environment or a secret store; the code reads them by name; the file holding them is never committed.**
+
+### Local development: a `.env` file
+
+Create a `.env` file in your project root:
+
+```
+DB_HOST=localhost
+DB_NAME=analytics
+DB_USER=analyst
+DB_PASSWORD=the-actual-password
+WEATHER_API_KEY=abc123
+```
+
+Add `.env` to `.gitignore` **before** you put anything real in it. Then load it:
+
+```{python}
+#| eval: false
+from dotenv import load_dotenv   # pip install python-dotenv
+import os
+
+load_dotenv()
+api_key = os.environ["WEATHER_API_KEY"]
+```
+
+R's equivalent is `.Renviron`, which R reads automatically at startup — no library needed:
+
+```
+DB_PASSWORD=the-actual-password
+WEATHER_API_KEY=abc123
+```
+
+```{r}
+#| eval: false
+api_key <- Sys.getenv("WEATHER_API_KEY")
+```
+
+`.Renviron` also belongs in `.gitignore`. Commit a `.env.example` listing the *names* with dummy values, so a colleague knows what to fill in.
+
+### Deployed applications: the platform's secret store
+
+Every hosting platform has one, and it is always the right answer in production: Render's Environment tab, GitHub Actions secrets, Fly.io secrets, GCP Secret Manager, AWS Secrets Manager. Your code doesn't change — it still reads `os.environ[...]` — only the source of the value does. The [Deploying Data Science Projects](deployment.qmd) chapter covers the specifics per platform.
+
+### If a secret does leak
+
+Assume it's compromised and **rotate it** — issue a new one and revoke the old. Do not try to scrub it from Git history: rewriting history is disruptive, easy to get wrong, and doesn't help if anyone has already cloned or if the repository was ever public. Rotation is fast, certain, and the only thing that actually works.
+
+This applies to private repositories too. "It's private" is an access-control assumption, not a guarantee, and repositories change visibility more often than people expect.
+
+## Conclusion
+
+**By the end of this chapter you should have:**
+
+- SQLite installed, with a `sample.db` you created and queried from the command line
+- Queried that database from both Python and R
+- DuckDB installed, and run at least one query directly against a CSV or Parquet file
+- Written one dataset to Parquet and noticed the size and load-time difference
+- A `.env` or `.Renviron` file holding any credentials you use, listed in `.gitignore`
+
+The next chapter covers making your working environment reproducible, so the packages these examples depend on are still there — and still the same versions — when you come back to them.

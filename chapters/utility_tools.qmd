@@ -4,7 +4,7 @@ title: "Utility Tools for Data Scientists"
 
 ## Utility Tools for Data Scientists
 
-While programming languages, libraries, and frameworks form the core of your data science toolkit, a collection of utility tools can significantly enhance your productivity and effectiveness. This chapter covers specialised tools that address specific needs in the data science workflow.
+While programming languages, libraries, and frameworks form the core of your data science toolkit, a handful of smaller utilities remove real friction from day-to-day work. This appendix is a catalogue rather than a curriculum: nothing in the main chapters depends on any of it, and you should adopt items from it when you notice a problem they solve, not because they're listed here.
 
 ### AI Coding Assistants
 
@@ -17,7 +17,7 @@ A few options worth knowing, all with free tiers for individuals:
 - **[Cursor](https://cursor.com/)**: A fork of VS Code with deep LLM integration throughout the editor. Popular with developers who want a single tool rather than an extension.
 - **[Aider](https://aider.chat/)**: An open-source terminal-based pair-programmer that uses git commits as its unit of work. A great fit if you already live in the terminal.
 
-For genuinely throwaway tasks, the web chat interfaces to [Claude](https://claude.ai/) and [ChatGPT](https://chat.openai.com/) are fine. For anything you'll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.
+For genuinely throwaway tasks, the web chat interfaces to [Claude](https://claude.ai/) and [ChatGPT](https://chatgpt.com/) are fine. For anything you'll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.
 
 A few habits that make these tools more useful and less dangerous:
 
@@ -56,7 +56,7 @@ Notepad++ is a free, open-source text editor for Windows that's more powerful th
 - `Ctrl+D`: Duplicate current line
 - `Ctrl+Shift+Up/Down`: Move current line up/down
 
-Notepad++ is particularly useful for quickly viewing and editing large text files, CSV data, or configuration files without launching a full IDE. Its ability to handle multi-gigabyte files makes it valuable for inspecting large datasets.
+Notepad++ is useful for quickly viewing and editing text files, CSV extracts, or configuration files without launching a full IDE. It is not a large-file tool: it has a hard limit around 2 GB and becomes sluggish well before that. For a genuinely large CSV, read a sample in pandas or query it in place with DuckDB rather than trying to open it.
 
 Notepad++ (as of writing) is not available on Mac, but the following alternative is.
 
@@ -70,7 +70,7 @@ Sublime Text is a sophisticated cross-platform text editor with powerful feature
 2. **Command palette**: Quickly access commands without menus
 3. **Distraction-free mode**: Focus on your text without UI elements
 4. **Splits and grids**: View multiple files or parts of files simultaneously
-5. **Customizable key bindings**: Create shortcuts tailored to your workflow
+5. **Customisable key bindings**: Create shortcuts tailored to your workflow
 
 **Installation:**
 
@@ -85,7 +85,7 @@ APIs (Application Programming Interfaces) are crucial for accessing web services
 
 #### Postman
 
-Postman is the industry standard for API development and testing.
+Postman is the most widely used tool for API development and testing, and the one whose interface most tutorials assume.
 
 **Key features for data scientists:**
 
@@ -117,26 +117,18 @@ Postman is the industry standard for API development and testing.
 3. Send the request and analyse the JSON response
 4. Save the request to a collection for future use
 
-Postman is invaluable when working with data APIs, whether you're fetching data from public sources like financial markets, weather services, or social media platforms, or interacting with internal company APIs.
+Postman earns its place when you're working with data APIs — financial markets, weather services, or an internal company endpoint — and want to poke at the response before writing any code against it.
 
-#### Insomnia
+One caveat worth knowing before you commit: Postman now requires an account and syncs your collections to its cloud by default. For work under a client NDA, or anywhere requests carry credentials you'd rather not upload, check what your organisation's policy says about that.
 
-Insomnia is a lightweight alternative to Postman with an intuitive interface.
+#### Bruno and Insomnia
 
-**Key features:**
+Two alternatives, both a response to the same concern:
 
-1. **Clean, focused UI**: Less complex than Postman
-2. **GraphQL support**: Built-in tools for GraphQL queries
-3. **Request chaining**: Use data from one request in another
-4. **Environment management**: Switch between configurations easily
-5. **Open source**: Free core version available
+- **[Bruno](https://www.usebruno.com/)** stores collections as plain text files in a folder you choose, which means they live in Git alongside the code that calls the API and diff like any other source file. Offline by default, no account required. If the cloud-sync caveat above matters to you, this is the one to look at.
+- **[Insomnia](https://insomnia.rest/)** is lighter than Postman with good GraphQL support. Note that since Kong's 2023 changes, using it without an account means working in Scratch Pad mode, which limits what you can save — check the current terms before assuming the free tier fits your workflow.
 
-**Installation:**
-
-1. Download from [insomnia.rest](https://insomnia.rest/download)
-2. Run the installer
-
-For data scientists who occasionally work with APIs but don't need Postman's full feature set, Insomnia offers a streamlined alternative.
+For occasional API work, any of the three is fine. The choice matters when collections need to be shared, version-controlled, or kept off someone else's servers.
 
 ### Database Management Tools
 
@@ -262,7 +254,7 @@ Oh My Zsh is a framework for managing your Zsh configuration, providing themes a
 2. **Git integration**: Visual indicators of repository status
 3. **Syntax highlighting**: Colour-coded command syntax
 4. **Command history**: Improved search through previous commands
-5. **Customizable themes**: Visual enhancements for the terminal
+5. **Customisable themes**: Visual enhancements for the terminal
 
 **Installation (macOS or Linux):**
 
@@ -493,30 +485,17 @@ Graphviz is particularly useful for generating diagrams programmatically as part
 
 These tools help create visual documentation and tutorials.
 
-#### Greenshot
+#### Your operating system's built-in tool
 
-Greenshot is a lightweight screenshot tool with annotation features.
+Screenshot utilities were once worth installing separately. They mostly aren't any more — every current OS ships one that annotates:
 
-**Key features for data scientists:**
+- **Windows**: Snipping Tool (`Win+Shift+S` for a region capture straight to the clipboard). Annotates, and records short screen videos.
+- **macOS**: `Cmd+Shift+4` for a region, `Cmd+Shift+5` for the capture-and-record panel. Markup opens from the thumbnail that appears after a capture.
+- **Linux**: varies by desktop — GNOME's Screenshot and KDE's Spectacle both cover region capture and annotation.
 
-1. **Region selection**: Capture specific areas of the screen
-2. **Window capture**: Automatically capture a window
-3. **Annotation**: Add text, highlights, and arrows
-4. **Auto-save**: Configure automatic saving patterns
-5. **Integration**: Send to image editor, clipboard, or file
+You'll still see older guides recommending Greenshot for this on Windows. It works, but its last stable release was in 2017 and the built-in tool now does the same job.
 
-**Installation:**
-
-1. Download from [getgreenshot.org](https://getgreenshot.org/downloads/)
-2. Run the installer
-
-**Default shortcuts:**
-
-- `Print Screen`: Capture region
-- `Alt+Print Screen`: Capture active window
-- `Ctrl+Print Screen`: Capture full screen
-
-Greenshot is useful for capturing visualisations, error messages, or UI elements for documentation or troubleshooting.
+For anything beyond a static image — a bug you can only demonstrate by reproducing it — record a short clip instead. Screenshots of error messages are a common source of confusion in bug reports: paste the text.
 
 #### OBS Studio
 
@@ -588,54 +567,36 @@ Notion is an all-in-one workspace that combines notes, tasks, databases, and mor
 
 Notion is particularly useful for team-based data science projects, where you need to coordinate tasks, share documentation, and track progress in one place.
 
-### File Management Tools
+### Finding Things
 
-Managing, finding, and organising files is an essential but often overlooked part of data science work.
+Searching across files is common enough in analytical work — where is this variable used, which script produced this column — that it's worth having a fast tool for it.
 
-#### Total Commander
+**`ripgrep` (`rg`)** is the answer on every platform. It's already listed in the command-line tools section above; this is just to say that it also replaces the category of dedicated desktop search applications you may have used on Windows. It respects `.gitignore` by default, so it won't waste time searching your `.venv` or your raw data.
 
-Total Commander is a comprehensive file manager with advanced features.
+```bash
+# Every occurrence of a column name across a project
+rg "customer_lifetime_value"
 
-**Key features for data scientists:**
+# Only in Python files, showing three lines of context
+rg -t py -C 3 "def build_features"
 
-1. **Dual-pane interface**: Compare and move files efficiently
-2. **Built-in viewers**: View text, images, and other files without opening separate programs
-3. **Advanced search**: Find files by content, name, size, or date
-4. **Batch rename**: Rename multiple files with patterns
-5. **FTP/SFTP client**: Transfer files to and from servers
+# Files that mention it, without the matching lines
+rg -l "POPIA"
+```
 
-**Installation:**
+VS Code's search panel (`Ctrl+Shift+F`) uses ripgrep underneath, so if you prefer a graphical interface you already have one with the same speed and the same `.gitignore` behaviour.
 
-1. Download from [ghisler.com](https://www.ghisler.com/download.htm)
-2. Run the installer (shareware with unlimited trial)
+For finding *files* rather than text inside them, `fd` is the equivalent — also listed above.
 
-Total Commander streamlines file operations that are common in data science work, such as organising datasets, managing project files, or transferring data to and from remote servers.
+## Conclusion
 
-#### Agent Ransack
+The tools in this appendix are optional by definition. Nothing in the main chapters depends on any of them, and adopting all of them at once would be a poor use of a week.
 
-Agent Ransack is a powerful file search tool that can find text within files.
+The productive approach is to add one when you notice friction. If you keep opening a CSV in Excel to look at it, install a better editor. If you're testing an API by writing throwaway scripts, install Bruno. If you're taking notes on projects in a text file you can't search, try Obsidian.
 
-**Key features:**
+Two of these are worth adopting sooner rather than later regardless of whether you've noticed the friction:
 
-1. **Content search**: Find files containing specific text
-2. **Regular expressions**: Use patterns for advanced searching
-3. **Search filters**: Limit by file type, size, or date
-4. **Result preview**: See matching text without opening files
-5. **Boolean operators**: Combine multiple search terms
+- **An AI coding assistant**, because the productivity difference is large and the learning curve is short.
+- **`ripgrep`**, because searching a codebase is something you do many times a day once you have a tool fast enough to make it worth doing.
 
-**Installation:**
-
-1. Download from [mythicsoft.com](https://www.mythicsoft.com/agentransack/download/)
-2. Run the installer
-
-Agent Ransack is invaluable when you need to find specific data or code across multiple projects or locate where certain variables or functions are used in a large codebase.
-
-### Conclusion: Building Your Utility Toolkit
-
-While the core programming languages and frameworks form the foundation of data science work, these utility tools provide specialised capabilities that can significantly enhance your productivity. As you progress in your data science journey, you'll likely discover which tools best complement your workflow.
-
-Start by incorporating a few tools that address your immediate needs—perhaps a better text editor, an API testing tool, or a database management interface. Over time, expand your toolkit as you encounter new challenges. Remember that the goal is not to use every tool available, but to find the combination that helps you work most effectively.
-
-Many of these tools have free versions or trials, so you can experiment without financial commitment. You'll soon discover your favourites and find which tools save you time or reduce friction in your workflow.
-
-By thoughtfully building your utility toolkit alongside your core data science skills, you'll be better equipped to handle the varied challenges of real-world data science projects.
+Everything else can wait until you want it.

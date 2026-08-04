@@ -13,20 +13,32 @@ book:
   title: "Ready Before Run()"
   subtitle: "A Practical Guide to Gear Up for Data Science"
   author: "Cesaire Tobias"
-  date: "2026-04-14"
+  date: "2026-08-04"
   chapters:
     - index.qmd
     - chapters/intro.qmd
-    - chapters/reporting.qmd
-    - chapters/visualisation.qmd
-    - chapters/cloud.qmd
-    - chapters/web_dev.qmd
-    - chapters/deployment.qmd
-    - chapters/containers.qmd
-    - chapters/workflows.qmd
+    - part: "Foundations"
+      chapters:
+        - chapters/command_line.qmd
+        - chapters/languages.qmd
+        - chapters/data_stores.qmd
+        - chapters/environments.qmd
+        - chapters/ide_git.qmd
+    - part: "Communicating Results"
+      chapters:
+        - chapters/reporting.qmd
+        - chapters/visualisation.qmd
+        - chapters/cloud.qmd
+    - part: "Shipping Your Work"
+      chapters:
+        - chapters/web_dev.qmd
+        - chapters/containers.qmd
+        - chapters/deployment.qmd
+        - chapters/workflows.qmd
     - chapters/summary.qmd
-    - chapters/utility_tools.qmd
     - chapters/references.qmd
+  appendices:
+    - chapters/utility_tools.qmd
     - chapters/appendix_troubleshooting.qmd
   cover-image: assets/cover_no_auth.png
   favicon: assets/cover_no_auth.png
@@ -44,8 +56,9 @@ format:
     self-contained: false
     link-external-icon: false
     link-external-newwindow: true
-    code-fold: true
-    code-summary: "Show code"
+    # Code is the content in a setup book - don't hide it behind a click
+    code-fold: false
+    code-copy: true
     mermaid:
       engine: mermaid
 

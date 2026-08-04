@@ -1,0 +1,190 @@
+---
+title: "Reproducible Environments"
+---
+
+## The Problem This Solves
+
+Six months after you finish a piece of analysis, someone asks you to rerun it. You clone your own repository, run the script, and it fails — a function that used to take three arguments now takes four, or a package you relied on has been renamed, or your machine has a newer Python than the one you wrote it on.
+
+The same problem in its more embarrassing form: you send a colleague your code and it doesn't run on their machine. Neither of you can tell why, because neither of you can see what's different.
+
+The cause in both cases is that your analysis had dependencies you never wrote down. The code was in Git. The *environment the code needed* was in your head, or nowhere.
+
+An environment is the complete set of software your analysis depends on: the language version, every package, and every version of every package. Making that reproducible is the single highest-return habit in this book, and unlike most of the material here it is genuinely quick to learn.
+
+## The Two Halves
+
+Two things need to happen, and it's worth separating them because different tools handle each:
+
+1. **Isolation** — each project gets its own set of packages, so installing something for project A can't break project B.
+2. **Recording** — the exact contents of that set are written to a file, committed alongside the code, and can be reconstructed later or elsewhere.
+
+Isolation without recording protects you from yourself today but not from time. Recording without isolation produces a file describing a mess. You want both.
+
+## Choosing a Tool
+
+There are four in common use for Python and one for R. The choice matters less than actually using one, but here is how they differ.
+
+| Tool | Best when | Records to |
+|---|---|---|
+| **venv** | You want the standard library answer with nothing to install | `requirements.txt` |
+| **uv** | Default choice for new Python projects — same model as venv, dramatically faster, manages Python versions too | `requirements.txt` or `uv.lock` |
+| **conda / Miniforge** | You need packages with heavy compiled components — GDAL, CUDA-enabled PyTorch, many bioinformatics tools | `environment.yml` |
+| **pixi** | You want conda's package coverage with a lockfile and a modern CLI | `pixi.lock` |
+| **renv** | R, always | `renv.lock` |
+
+For a new Python project with ordinary data science dependencies, **use uv**. For anything that needs the conda ecosystem's compiled packages, use Miniforge. For R, renv is the only real answer and it's a good one.
+
+:::{.callout-note}
+## Why Miniforge rather than Anaconda
+
+Both give you conda. Anaconda's Terms of Service restrict free use in organisations above a headcount threshold, which has caught out a number of companies who assumed it was free because the download was. Miniforge is community-maintained, defaults to the conda-forge channel, and carries no such restriction. If you already have Anaconda installed and you're using it for personal work, it's fine — but check the current terms before rolling it out at work.
+:::
+
+## Python: uv
+
+`uv` is a single binary that replaces `pip`, `venv`, and `pyenv`. Install it once:
+
+```bash
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows (PowerShell)
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Then, in a project directory:
+
+```bash
+# Create an environment. uv downloads Python 3.13 if you don't have it.
+uv venv --python 3.13
+
+# Activate it
+source .venv/bin/activate        # macOS/Linux
+.venv\Scripts\activate           # Windows
+
+# Install packages
+uv pip install pandas matplotlib scikit-learn jupyter
+```
+
+The `.venv` directory holds the environment. It should **never** be committed to Git — it's large, machine-specific, and reconstructible from the record file. Add `.venv/` to your `.gitignore` (the template in the [Editors and Version Control](ide_git.qmd) chapter already does).
+
+### Recording it
+
+```bash
+uv pip freeze > requirements.txt
+```
+
+Commit `requirements.txt`. Anyone with it — including you, later — reconstructs the environment with:
+
+```bash
+uv venv && uv pip install -r requirements.txt
+```
+
+## Python: conda
+
+If you need the conda ecosystem, the shape is the same:
+
+```bash
+# Create an environment named 'datasci'
+conda create -n datasci python=3.13
+
+# Activate it
+conda activate datasci
+
+# Install packages
+conda install numpy pandas matplotlib scikit-learn jupyter
+```
+
+Activate it whenever you work on that project. Unlike `venv`/`uv`, conda environments live in a central location rather than in the project directory, so there's nothing to `.gitignore`.
+
+### Recording it
+
+```bash
+conda env export --from-history > environment.yml
+```
+
+The `--from-history` flag matters. Without it, conda writes out every transitively-installed package pinned to an exact build string, including builds that only exist for your operating system — the resulting file often won't install on a different platform at all. With it, you get the packages you actually asked for, which is both readable and portable.
+
+## R: renv
+
+`renv` gives each R project its own package library and a lockfile recording exactly what's in it.
+
+```r
+install.packages("renv")
+```
+
+Then, from within your project (an RStudio Project, ideally):
+
+```r
+# Set up renv for this project — creates a private library
+renv::init()
+
+# ... install packages as normal, work on your analysis ...
+install.packages("ggplot2")
+
+# Record the current state
+renv::snapshot()
+```
+
+`renv::snapshot()` writes `renv.lock`, a JSON file listing every package, its version, and where it came from. Commit `renv.lock`. Do not commit the `renv/library/` directory — `renv::init()` adds the right `.gitignore` entries for you.
+
+Anyone who clones the project runs:
+
+```r
+renv::restore()
+```
+
+and gets exactly your package versions.
+
+:::{.callout-warning}
+## `packrat` is not the answer
+
+Older R material recommends `packrat` for this. Posit retired it in favour of renv years ago. If you meet a project using packrat, migrating is straightforward — `renv::migrate()` handles it.
+:::
+
+## Lockfiles vs Loose Requirements
+
+There's a distinction worth understanding, because it determines how reproducible your record actually is.
+
+A **loose requirement** says "pandas". A **pinned requirement** says "pandas 3.0.5". A **lockfile** says "pandas 3.0.5, and every package pandas itself depends on, at exactly these versions, with checksums to prove they weren't tampered with."
+
+`requirements.txt` from `pip freeze` sits in the middle: it pins direct and transitive dependencies to versions, but not to checksums, and it doesn't distinguish between what you asked for and what came along. `renv.lock`, `uv.lock`, and `pixi.lock` are true lockfiles.
+
+For most analysis work, a pinned `requirements.txt` is enough. For anything whose result someone will act on months later, prefer a real lockfile. The difference shows up exactly when you need it most.
+
+## What Goes in Git
+
+| Commit | Never commit |
+|---|---|
+| `requirements.txt` / `environment.yml` / `renv.lock` / `uv.lock` | `.venv/`, `venv/`, `env/` |
+| `.python-version` | `renv/library/` |
+| `pyproject.toml` | `__pycache__/`, `.Rhistory`, `.RData` |
+
+The rule underneath: commit the *description* of the environment, never the environment itself.
+
+## Making It a Habit
+
+The failure mode isn't ignorance, it's drift — you set up an environment, then install three more packages over the following weeks without re-recording. Two things prevent it:
+
+- **Re-snapshot when you install.** `uv pip freeze > requirements.txt` or `renv::snapshot()` immediately after adding a package, in the same breath as the install. It takes a second.
+- **Let CI catch you.** A continuous integration workflow (covered in [Optimising Workflows](workflows.qmd)) builds your project from nothing but the record file. If you forgot to record something, the build fails — in front of you, on a commit, rather than in front of a colleague six months later. This is the single most useful thing CI does for analysis work.
+
+## Environments and Containers
+
+A reasonable question at this point: if containers (covered in [Containerisation](containers.qmd)) also make things reproducible, why bother with both?
+
+They solve overlapping but different problems. An environment file pins your *packages*. A container pins the packages **and** the operating system, the system libraries, the locale, and the compiler toolchain. That extra coverage matters when a package depends on a specific version of a C library, or when the analysis has to run on infrastructure you don't control.
+
+Use an environment file always; it costs nothing. Reach for a container when the environment file isn't enough — deployment, awkward system dependencies, or a colleague on a genuinely different platform. The two compose: a good container is usually a base image plus your `requirements.txt`.
+
+## Conclusion
+
+**By the end of this chapter you should have:**
+
+- Every active project in its own isolated environment
+- A `requirements.txt`, `environment.yml`, or `renv.lock` committed alongside the code
+- `.venv/` and `renv/library/` in your `.gitignore`
+- Successfully reconstructed one of your own environments from its record file — do this once deliberately, so you find out now whether the file is actually complete
+
+That last item is the one people skip. A record file you've never restored from is a hypothesis, not a backup.

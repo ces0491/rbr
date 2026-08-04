@@ -1,9 +1,13 @@
 # Quarto
 /.quarto/
 _book/
-# _freeze/ - Keep freeze cache to speed up CI builds
 *_files/
 *_cache/
+
+# Freeze cache is a build artifact. Only one chunk in the book actually
+# executes, so there is nothing worth caching here, and stale frozen output
+# would publish silently. CI executes fresh.
+_freeze/
 
 # R/RStudio
 .Rhistory

@@ -8,14 +8,12 @@ After developing your data science project, the next crucial step is deployment�
 
 ### Why Deployment Matters
 
-Deployment is often overlooked in data science education, but it's critical for several reasons:
+Deployment gets little attention in data science training. It matters for four reasons:
 
 1. **Impact**: Even the most insightful analysis has no impact if it remains on your computer
 2. **Collaboration**: Deployment enables others to interact with your work
-3. **Reproducibility**: Properly deployed projects document the environment and dependencies
-4. **Professional growth**: Deployment skills significantly enhance your value as a data scientist
-
-Data scientists who can effectively deploy their work are more likely to see their projects create real business value.
+3. **Reproducibility**: A deployed project is one whose environment and dependencies you were forced to write down
+4. **Independence**: You can put work in front of stakeholders without an engineering team in between
 
 ### Static vs. Dynamic Deployment
 
@@ -59,7 +57,7 @@ Different data science projects have specific deployment requirements:
 |--------------|---------------|-------------|-------------|-------------------|
 | Analysis reports | None | None | None | GitHub Pages, Netlify, Vercel, Quarto Pub |
 | Interactive visualisations | Medium | Low | Static | GitHub Pages (with JavaScript), Netlify |
-| Dashboards | High | Medium | Often dynamic | Render, Fly.io, Railway, shinyapps.io, Posit Connect Cloud |
+| Dashboards | High | Medium | Often dynamic | Render, Fly.io, Railway, Posit Connect Cloud |
 | ML model APIs | Low | High | May need database | Google Cloud Run, AWS App Runner, Azure Container Apps |
 
 Understanding these requirements helps you choose the most appropriate deployment strategy.
@@ -96,40 +94,13 @@ git push origin gh-pages
 # Your site will be available at: https://username.github.io/repository
 ```
 
-For automated deployment with GitHub Actions, create a file at `.github/workflows/publish.yml`:
+Pushing the rendered output by hand gets old quickly. The alternative is to let GitHub render it for you on every push, using GitHub Actions: you commit your source `.qmd` files, and a workflow file at `.github/workflows/publish.yml` describes the machine that should build them. We work through a complete Quarto workflow later in this chapter, under [Deploying a Data Science Report to GitHub Pages](#deploying-a-data-science-report-to-github-pages).
 
-```yaml
-name: Deploy to GitHub Pages
+:::{.callout-note}
+## Pinning action versions
 
-on:
-  push:
-    branches: [main]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build
-```
-
-GitHub Actions publishes new versions of its `actions/*` building blocks regularly. Check [github.com/actions](https://github.com/actions) and pin to the current major version at the time you set up the workflow.
+Workflow steps reference reusable actions by major version, as in `uses: actions/checkout@v7`. Those majors are republished periodically, usually because GitHub has moved the runner to a newer Node.js version, and old majors eventually stop working. The versions in this book were current when it was written. Check [github.com/actions](https://github.com/actions) and pin to whatever the current major is when you set your workflow up.
+:::
 
 #### Netlify
 
@@ -137,7 +108,7 @@ Netlify provides more advanced features for static sites:
 
 **Best for**: Static sites that require a build process
 **Setup complexity**: Low to medium
-**Cost**: Free tier with generous limits, paid plans start at $19/month
+**Cost**: Free tier (100GB bandwidth, 300 build minutes per month); paid plans from $19/month
 **Limitations**: Limited build minutes on free tier
 
 **Quick setup**:
@@ -152,14 +123,12 @@ Netlify automatically rebuilds your site when you push changes to your repositor
 
 #### Vercel
 
-Vercel is a cloud platform that specialises in frontend frameworks and static sites, with excellent support for modern web technologies and serverless functions. Originally created by the makers of Next.js, Vercel has become popular for its speed and developer experience.
+Vercel, from the makers of Next.js, hosts static sites and serverless functions. For our purposes the distinguishing feature over Netlify is that it will run a Python function on demand, so a mostly-static site can still call out to a small piece of server-side code without you running a server.
 
 **Best for**: Static sites with interactive elements, data visualisations with JavaScript, projects using modern web frameworks
 **Setup complexity**: Low to medium
-**Cost**: Generous free tier, paid plans start at $20/month per team member
-**Limitations**: Optimised for frontend applications, limited backend capabilities compared to full cloud platforms
-
-Vercel excels at deploying static content that includes interactive JavaScript components, making it ideal for data science projects that combine static analysis with interactive visualisations. Unlike traditional static hosts, Vercel can also run serverless functions, allowing you to add dynamic capabilities without managing servers.
+**Cost**: Free tier for personal projects; paid plans from $20/month per team member
+**Limitations**: Optimised for frontend applications; serverless functions have execution time limits, so this is not where long-running model training belongs
 
 **Quick setup**:
 
@@ -190,27 +159,16 @@ Create a `vercel.json` file in your project root to customise the build process:
 ```json
 {
   "buildCommand": "quarto render",
-  "outputDirectory": "_site",
-  "installCommand": "npm install",
-  "functions": {
-    "api/*.py": {
-      "runtime": "python3.12"
-    }
-  }
+  "outputDirectory": "_site"
 }
 ```
 
-This configuration tells Vercel to use Quarto to build your site (common for data science documentation), specifies where the built files are located, and enables Python serverless functions for any dynamic features you might need.
+That is the whole file. Two things you might expect to see here and shouldn't:
 
-**Example use case**: Vercel is particularly well-suited for deploying interactive data visualisations created with modern JavaScript libraries. For instance, if you create visualisations using Observable Plot or D3.js alongside your static analysis, Vercel can host both the static content and any serverless functions needed for data processing.
+- **No `installCommand`.** Vercel's default is `npm install`, which fails immediately on a Quarto or R project with no `package.json`. Omitting the key is not the same as accepting the default — Vercel skips the install step when there's no lockfile to work from. If you do need Python packages, add a `requirements.txt` and Vercel will install from it.
+- **No `functions` block declaring a runtime.** Any `.py` file you place in an `api/` directory is picked up as a Python serverless function automatically. Writing `"runtime": "python3.12"` is a common guess and Vercel rejects it outright with `Function Runtimes must have a valid version` — that key is for third-party community runtimes, specified as npm package versions, not for the built-in ones. The Python version is set in your project settings instead.
 
-**Why choose Vercel over alternatives**:
-
-- **Speed**: Vercel's global CDN ensures fast loading times worldwide
-- **Automatic optimisation**: Images and assets are automatically optimised
-- **Preview deployments**: Every pull request gets its own preview URL for testing
-- **Serverless functions**: Add dynamic capabilities without complex backend setup
-- **Analytics**: Built-in web analytics to understand how users interact with your deployed projects
+**Example use case**: if you build visualisations with Observable Plot or D3.js alongside a static Quarto report, Vercel hosts the report and a small `api/` function that serves fresh data to the charts, with no server to maintain.
 
 #### Quarto Pub
 
@@ -239,7 +197,7 @@ Heroku used to be the default recommendation for deploying small Python and R we
 
 #### Render
 
-Render is the most direct successor to old-Heroku for data science workloads, with a generous free tier for experimentation:
+Render is the most direct successor to old-Heroku for data science workloads:
 
 **Best for**: Python and R web applications, Dockerised dashboards
 **Setup complexity**: Medium
@@ -251,11 +209,25 @@ Render is the most direct successor to old-Heroku for data science workloads, wi
 1. Create a `requirements.txt` file:
 
 ```
-flask==3.0.3
-pandas==2.2.3
-matplotlib==3.9.2
-gunicorn==23.0.0
+flask==3.1.3
+pandas==3.0.5
+matplotlib==3.11.1
+gunicorn==26.0.0
 ```
+
+:::{.callout-note}
+## About the version numbers in this book
+
+Every pinned version here was current when this was written and will be out of date by the time you read it — that's the nature of printing version numbers. Pinning is still the right practice; the specific numbers are illustrative.
+
+The reliable way to produce this file is to generate it from an environment you've actually tested, rather than copying versions out of a book:
+
+```bash
+uv pip freeze > requirements.txt
+```
+
+See [Reproducible Environments](environments.qmd). Check PyPI, or run `pip index versions <package>`, when you want to know what's current.
+:::
 
 2. Push your project to a GitHub repository
 3. Sign up at [render.com](https://render.com/)
@@ -268,29 +240,58 @@ gunicorn==23.0.0
 
 Render builds and deploys your app on every push to the configured branch, so there's no separate `git push render main` step.
 
+:::{.callout-note}
+## Two pieces of jargon in that start command
+
+`gunicorn app:app` will appear in every deployment example from here on, so it's worth unpacking.
+
+**Gunicorn** is a production web server for Python. Flask, Dash, and Streamlit all ship with their own built-in server, and every one of them prints a warning telling you not to use it in production — it handles one request at a time and has no protection against malformed input from the open internet. Gunicorn runs your app across several worker processes and is built to face real traffic. You don't change your code to use it; you just start the app with `gunicorn` instead of `python app.py`.
+
+**`app:app`** is `module:variable`. The part before the colon is the Python file to import (`app.py`, without the `.py`); the part after is the name of the object inside that file which gunicorn should serve. For a Flask app created with `app = Flask(__name__)` in `app.py`, both halves happen to be `app` — which is why the notation looks redundant until you meet a Dash app, where the servable object is `server`, and the command becomes `gunicorn app:server`.
+:::
+
 #### Fly.io and Railway
 
 Two other platforms worth knowing for small to mid-sized Python/R deployments:
 
-- **[Fly.io](https://fly.io/)**: Deploys Docker containers globally on a pay-as-you-go basis. Good fit once you're comfortable with Docker (covered in the next chapter); the `flyctl` command-line tool handles the build, push, and deploy steps with one command.
-- **[Railway](https://railway.com/)**: Similar developer experience to Render, with generous trial credits. Good Postgres and cron support out of the box.
+- **[Fly.io](https://fly.io/)**: Deploys Docker containers globally on a pay-as-you-go basis. Good fit once you're comfortable with Docker (covered in the [previous chapter](containers.qmd)); the `flyctl` command-line tool handles the build, push, and deploy steps with one command.
+- **[Railway](https://railway.com/)**: Similar developer experience to Render, with a one-time trial credit to try it out before committing. Good Postgres and cron support out of the box.
 
 All three platforms use essentially the same mental model: connect a Git repo, describe how to build the app (either `requirements.txt` + a start command or a `Dockerfile`), and let the platform handle HTTPS, logging, and redeploys on push.
 
-#### shinyapps.io
+#### Posit Connect Cloud (and the shinyapps.io migration)
 
-For R Shiny applications, shinyapps.io offers the simplest deployment option:
+For R Shiny, Quarto, Streamlit, and Dash content, Posit's hosted platform is the path of least resistance.
 
-**Best for**: R Shiny applications
+:::{.callout-important}
+## shinyapps.io is being retired — start on Connect Cloud
+
+If you have read about deploying Shiny apps anywhere else, you have read about **shinyapps.io**. It still works, but Posit is consolidating it into **[Posit Connect Cloud](https://connect.posit.cloud/)** and has published a timeline: a migration tool arrived in Connect Cloud around September 2026, and accounts that haven't migrated are moved automatically from early 2027. Existing URLs get permanent redirects, so links already shared keep working.
+
+The practical advice depends on where you are:
+
+- **Starting fresh?** Go straight to Connect Cloud. Don't learn a workflow that's being retired.
+- **Already on shinyapps.io?** Nothing breaks, but migrate at a time you choose rather than waiting for the automatic move.
+
+Everything below targets Connect Cloud. The `rsconnect` package still handles both, and the deploy call is nearly identical, so the skill transfers either way.
+:::
+
+**Best for**: R Shiny apps, Quarto documents, Streamlit and Dash applications
 **Setup complexity**: Low
-**Cost**: Free tier (5 apps, 25 hours/month), paid plans start at $9/month
-**Limitations**: Limited monthly active hours on free tier
+**Cost**: Free tier available; interactive applications count against plan limits differently from static documents, so check current terms if you plan to host several
+**Limitations**: Tied to Posit's platform — for full control over the runtime, use a container on Render or Cloud Run instead
 
-**Deployment from RStudio**:
+**Deployment from Git (the recommended path)**:
 
-The easiest path is to use the Publish button in RStudio (the blue arrow next to the Run button in the editor for `app.R`). RStudio walks you through linking your shinyapps.io account and deploys the app with one click, with no token handling in code.
+Connect Cloud publishes directly from a GitHub repository. Push your app, link the repo in the Connect Cloud interface, and it redeploys on every push — the same model as Render and Netlify. There are no tokens to manage in code, which makes it both the easiest and the safest route.
 
-If you prefer to do it from the console, install `rsconnect` and keep your credentials out of the script. Read them from environment variables that you set in your OS or in a `.Renviron` file that's listed in `.gitignore`:
+**Deployment from the IDE**:
+
+The Publish button in RStudio (the blue arrow next to Run in the editor for `app.R`) walks you through linking an account and deploys in one click.
+
+**Deployment from the console**:
+
+If you script your deploys, install `rsconnect` and keep credentials out of the source file. Read them from environment variables set in your OS or in a `.Renviron` that's listed in `.gitignore`:
 
 ```r
 install.packages("rsconnect")
@@ -312,10 +313,18 @@ rsconnect::deployApp(
 )
 ```
 
-:::{.callout-note}
-## shinyapps.io alternatives
+:::{.callout-tip}
+## Publishing Quarto to Connect Cloud
 
-Since 2024, [**Posit Connect Cloud**](https://connect.posit.cloud/) offers a modern free tier for deploying Shiny, Quarto, Streamlit, and Dash content directly from a Git repository, and is worth a look if shinyapps.io feels dated. For fully client-side Shiny apps (no server required), [**Shinylive**](https://shinylive.io/) runs R or Python Shiny apps entirely in the browser via WebAssembly and can be hosted on any static host like GitHub Pages.
+Quarto has native support: `quarto publish` from the project directory offers Connect Cloud as a target and handles the rest. Useful for reports and dashboards that don't need a Shiny server.
+:::
+
+:::{.callout-note}
+## No server at all: Shinylive
+
+For apps whose computation is light enough to run in the browser, [**Shinylive**](https://shinylive.io/) compiles an R or Python Shiny app to WebAssembly. The result is static files you can host anywhere — GitHub Pages, Netlify, an S3 bucket — with no server, no cold starts, no hosting bill, and no active-hours limit.
+
+The trade-off is real: everything runs on the user's machine, so the data ships to the browser and heavy computation will be slow. But for a teaching demo, a small interactive figure, or a calculator over a modest dataset, it removes the entire deployment problem.
 :::
 
 ### Cloud Platform Deployment
@@ -328,47 +337,38 @@ Cloud Run is ideal for containerised applications:
 
 **Best for**: Containerised applications that need to scale
 **Setup complexity**: Medium to high
-**Cost**: Pay-per-use with generous free tier
+**Cost**: Pay-per-use, with a monthly free allowance of requests and compute time
 **Limitations**: Requires Docker knowledge
 
 **Deployment steps**:
 
+From a directory containing a `Dockerfile`, one command does everything — Google builds the image for you, stores it, and deploys it:
+
 ```bash
-# Build your Docker image
-docker build -t gcr.io/your-project/app-name .
-
-# Push to Google Container Registry
-docker push gcr.io/your-project/app-name
-
-# Deploy to Cloud Run
 gcloud run deploy app-name \
-  --image gcr.io/your-project/app-name \
-  --platform managed \
+  --source . \
   --region us-central1 \
   --allow-unauthenticated
 ```
 
-#### AWS Elastic Beanstalk
+:::{.callout-warning}
+## Older tutorials will tell you to push to `gcr.io`
 
-Elastic Beanstalk handles the infrastructure for your applications:
+You will find a great many Cloud Run guides that begin `docker build -t gcr.io/your-project/app-name .` followed by `docker push`. Don't follow them. That is Google Container Registry, which was retired in 2025 — it stopped accepting pushes in March of that year and stopped serving reads in June. Its replacement is Artifact Registry, whose image paths look like `us-central1-docker.pkg.dev/your-project/your-repo/app-name`.
 
-**Best for**: Production-level web applications
-**Setup complexity**: Medium to high
-**Cost**: Pay for underlying resources
-**Limitations**: More complex setup
+The `--source .` flag above sidesteps the question entirely: Cloud Build produces the image and files it in Artifact Registry without you naming a registry at all. Push images yourself only when you need the image to exist before the deploy — for example when the same image is deployed to several services.
+:::
 
-**Deployment with the AWS CLI**:
+#### AWS App Runner
 
-```bash
-# Initialize Elastic Beanstalk in your project
-eb init -p python-3.12 my-app --region us-west-2
+App Runner takes a container image or a source repository and runs it as a scaling web service, which puts it in roughly the same category as Cloud Run.
 
-# Create an environment
-eb create my-app-env
+**Best for**: Production web applications already committed to AWS
+**Setup complexity**: Medium
+**Cost**: Pay for provisioned and active compute
+**Limitations**: Fewer regions than the rest of AWS; no free tier
 
-# Deploy your application
-eb deploy
-```
+Deployment is normally driven from the console or from a `apprunner.yaml` in your repository. If you are not already in the AWS ecosystem, Cloud Run and Render both reach a running container with less ceremony — this is here so the AWS row in the comparison table above has a corresponding section, not because it is the recommended path.
 
 ## Step-by-Step Deployment Guides
 
@@ -433,7 +433,7 @@ jobs:
       contents: write
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
@@ -441,16 +441,19 @@ jobs:
       - name: Install R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: '4.4.0'
+          r-version: 'release'
 
       - name: Install R Dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          packages:
+          # The `|` matters. Without it YAML folds these four lines into
+          # a single space-joined string and the action fails to parse them.
+          packages: |
             any::knitr
             any::rmarkdown
             any::ggplot2
             any::dplyr
+            any::here
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
@@ -540,16 +543,16 @@ if __name__ == '__main__':
 2. Create a `requirements.txt` file:
 
 ```
-dash==2.18.2
-pandas==2.2.3
-plotly==5.24.1
-gunicorn==23.0.0
+dash==4.4.1
+pandas==3.0.5
+plotly==6.9.0
+gunicorn==26.0.0
 ```
 
 3. Create a minimal `Dockerfile`:
 
 ```dockerfile
-FROM python:3.12-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 
@@ -560,6 +563,18 @@ COPY . .
 
 CMD gunicorn app:server -b 0.0.0.0:$PORT
 ```
+
+:::{.callout-note}
+## Where `$PORT` comes from
+
+Render, Cloud Run, Fly.io and Heroku all set a `PORT` environment variable inside your container and expect the app to listen on it. You don't choose the number and you shouldn't hardcode one — the platform picks it and routes traffic there.
+
+The catch is local testing. Run this image on your own machine and `$PORT` is empty, so gunicorn tries to bind to `0.0.0.0:` and fails with an unhelpful error. Supply one yourself:
+
+```bash
+docker run -e PORT=8080 -p 8080:8080 my-dashboard
+```
+:::
 
 4. Sign up for Render and connect your GitHub repository
 
@@ -573,7 +588,7 @@ CMD gunicorn app:server -b 0.0.0.0:$PORT
 
 Your interactive dashboard will be available at the URL provided by Render.
 
-### Deploying a Shiny Application to shinyapps.io
+### Deploying a Shiny Application to Posit Connect Cloud
 
 This example shows how to deploy an R Shiny dashboard:
 
@@ -638,18 +653,7 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-2. Install and configure the rsconnect package:
-
-```r
-install.packages("rsconnect")
-
-# Set up your account (one-time setup)
-rsconnect::setAccountInfo(
-  name = "your-account-name",  # Your shinyapps.io username
-  token = "YOUR_TOKEN",
-  secret = "YOUR_SECRET"
-)
-```
+2. Push the app directory to a GitHub repository and link it in Connect Cloud, which redeploys on every push. If you'd rather deploy from the console, configure `rsconnect` as shown in the Connect Cloud section above, reading your credentials from the environment rather than writing them into the script
 
 3. Deploy your application:
 
@@ -657,13 +661,13 @@ rsconnect::setAccountInfo(
 rsconnect::deployApp(
   appDir = "path/to/your/app",  # Directory containing app.R
   appName = "sales-dashboard",  # Name for your deployed app
-  account = "your-account-name" # Your shinyapps.io username
+  account = "your-account-name" # Your Posit account name
 )
 ```
 
 4. Share the provided URL with your stakeholders
 
-The deployed Shiny app will be available at `https://your-account-name.shinyapps.io/sales-dashboard/`.
+The deployed app gets a public URL you can share. Apps already published to shinyapps.io keep their existing `https://your-account-name.shinyapps.io/...` address, which redirects to the Connect Cloud URL after migration.
 
 ### Deploying a Machine Learning Model API
 
@@ -730,16 +734,16 @@ For production use you would want stricter input validation (for example with Py
 2. Create a `requirements.txt` file:
 
 ```
-flask==3.0.3
-pandas==2.2.3
-scikit-learn==1.5.2
-gunicorn==23.0.0
+flask==3.1.3
+pandas==3.0.5
+scikit-learn==1.9.0
+gunicorn==26.0.0
 ```
 
 3. Create a `Dockerfile`:
 
 ```dockerfile
-FROM python:3.12-slim
+FROM python:3.13-slim
 
 WORKDIR /app
 
@@ -754,13 +758,11 @@ CMD gunicorn --bind 0.0.0.0:$PORT app:app
 4. Deploy to Google Cloud Run:
 
 ```bash
-# Build the container
-gcloud builds submit --tag gcr.io/your-project/model-api
-
-# Deploy to Cloud Run
+# Build the container from the Dockerfile in this directory and deploy it.
+# Cloud Build produces the image; Artifact Registry stores it. You don't
+# have to name a registry.
 gcloud run deploy model-api \
-  --image gcr.io/your-project/model-api \
-  --platform managed \
+  --source . \
   --region us-central1 \
   --allow-unauthenticated
 ```
@@ -789,7 +791,7 @@ Regardless of the platform you choose, these best practices will help ensure suc
 ### Environment Management
 
 1. **Use environment files**: Include `requirements.txt` for Python or `renv.lock` for R
-2. **Specify exact versions**: Use `pandas==1.5.3` rather than `pandas>=1.5.0`
+2. **Specify exact versions**: Use `pandas==3.0.5` rather than `pandas>=3.0`
 3. **Minimise dependencies**: Include only what you need to reduce deployment size
 4. **Test in a clean environment**: Verify your environment files are complete
 
@@ -811,10 +813,13 @@ Once your application is deployed, you need to know when it breaks:
 
     ```dockerfile
     HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
-      CMD curl -fsS http://localhost:${PORT:-8080}/health || exit 1
+      CMD python -c "import os,urllib.request; \
+        urllib.request.urlopen(f'http://localhost:{os.environ.get(\"PORT\",8080)}/health')"
     ```
 
-4. **Track errors separately**: Services like Sentry or Better Stack give you grouped stack traces and notifications when something goes wrong. Both have generous free tiers for small projects.
+    Most healthcheck examples you'll find online use `curl` instead. That works on a Debian or Ubuntu base image but fails silently-ish on the slim Python images used throughout this book — `python:3.13-slim` doesn't ship curl, so the check errors on every run and Docker marks a perfectly healthy container as unhealthy. Calling Python, which is guaranteed to be there, avoids the problem. Use `curl` only if you've explicitly installed it in the image.
+
+4. **Track errors separately**: Services like Sentry or Better Stack give you grouped stack traces and notifications when something goes wrong. Both have free tiers sized for small projects.
 5. **Set budget alerts**: On pay-per-use platforms (Cloud Run, AWS, GCP) configure a monthly budget with email alerts before you deploy anything that autoscales.
 
 ### Performance Optimisation
@@ -853,11 +858,11 @@ Once your application is deployed, you need to know when it breaks:
 | Build failures | Ensure dependencies are pinned in `requirements.txt` and that the build command is correct |
 | Free service sleeping when idle | Use periodic health-check pings, or upgrade to a paid tier that stays warm |
 
-#### shinyapps.io
+#### Posit Connect Cloud
 
 | Issue | Solution |
 |-------|----------|
-| Package installation failures | Use `packrat` or `renv` to manage dependencies |
+| Package installation failures | Use `renv` to capture exact package versions in a lockfile |
 | Application timeout | Optimise data loading and computation |
 | Deployment failures | Check rsconnect logs in RStudio |
 
@@ -890,8 +895,15 @@ Once your application is deployed, you need to know when it breaks:
 
 ## Conclusion
 
-Effective deployment is crucial for sharing your data science work with stakeholders and making it accessible to users. By understanding the different deployment options and following best practices, you can ensure your projects have the impact they deserve.
+Deployment is ongoing. As projects evolve you will redeploy, read logs, and fix what breaks — which is why the platform choices in this chapter were weighted towards the ones that make redeploying cheap.
 
-Remember that deployment is not a one-time task but an ongoing process. As your projects evolve, you'll need to update your deployed applications, monitor their performance, and address any issues that arise.
+**By the end of this chapter you should have:**
 
-In the next chapter, we'll explore how to optimise your entire data science workflow, from development to deployment, to maximise your productivity and impact.
+- A Quarto report that rebuilds and republishes to GitHub Pages on every push
+- At least one dynamic application — Shiny, Dash, or Flask — running on a public URL
+- Every credential in a platform secret store or a `.gitignore`d `.Renviron` / `.env`, and none in a file you've committed
+- A `requirements.txt` or `renv.lock` complete enough that the deployment built from a clean environment
+
+If the second one is still failing, the cause is nearly always one of three things: a missing dependency in the environment file, an app bound to `127.0.0.1` instead of `0.0.0.0`, or a hardcoded port where the platform expected `$PORT`.
+
+The next chapter turns from getting one project deployed to making the whole cycle repeatable: project structure, automation, testing, and the continuous integration that catches a broken environment file before your users do.

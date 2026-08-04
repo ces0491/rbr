@@ -15,13 +15,13 @@ Setting up a data science environment can sometimes be challenging, especially w
 **Solution**:
 
 1. **Windows**:
-   - Ensure Conda is properly initialised by running `conda init` in the Anaconda Prompt
-   - If using PowerShell, you may need to run: `Set-ExecutionPolicy RemoteSigned` as administrator
-   - Verify PATH variable includes Conda directories: check `C:\Users\<username>\anaconda3\Scripts` and `C:\Users\<username>\anaconda3`
+   - Ensure Conda is properly initialised by running `conda init` in the Miniforge (or Anaconda) Prompt
+   - If using PowerShell, you may need to run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`. Scoping it to your own user account is enough to let conda's activation script run and avoids changing the policy machine-wide
+   - Verify the PATH variable includes the Conda directories: `C:\Users\<username>\miniforge3\Scripts` and `C:\Users\<username>\miniforge3` (substitute `anaconda3` if you installed Anaconda)
 
 2. **macOS/Linux**:
-   - Run `source ~/anaconda3/bin/activate` or the appropriate path to your Conda installation
-   - Add `export PATH="$HOME/anaconda3/bin:$PATH"` to your `.bashrc` or `.zshrc` file
+   - Run `source ~/miniforge3/bin/activate`, or the appropriate path to your Conda installation
+   - Add `export PATH="$HOME/miniforge3/bin:$PATH"` to your `.bashrc` or `.zshrc` file
    - Restart your terminal or run `source ~/.bashrc` (or `.zshrc`)
 
 **Why this happens**: Conda needs to modify your system's PATH variable to make its commands available. Installation scripts sometimes fail to properly update configuration files, especially if you're using a non-default shell.
@@ -35,7 +35,7 @@ Setting up a data science environment can sometimes be challenging, especially w
 1. **For conda**:
    - Try specifying a channel: `conda install -c conda-forge package_name`
    - Update conda first: `conda update -n base conda`
-   - Create a fresh environment if existing one is corrupted: `conda create -n fresh_env python=3.12`
+   - Create a fresh environment if existing one is corrupted: `conda create -n fresh_env python=3.13`
 
 2. **For pip**:
    - Ensure pip is updated: `python -m pip install --upgrade pip`
@@ -106,7 +106,7 @@ Setting up a data science environment can sometimes be challenging, especially w
 
 3. **Platform-specific issues**:
    - **Windows**: Ensure Git Bash is used for SSH operations or set up SSH Agent in Windows
-   - **macOS**: Add keys to keychain: `ssh-add -K ~/.ssh/id_ed25519`
+   - **macOS**: Add keys to the keychain: `ssh-add --apple-use-keychain ~/.ssh/id_ed25519`. Older guides use the short flag `-K`, which was deprecated in macOS Monterey
    - **Linux**: Ensure ssh-agent is running: `eval "$(ssh-agent -s)"`
 
 **Why this happens**: GitHub has enhanced security measures that require proper authentication setup.

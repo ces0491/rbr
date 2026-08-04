@@ -109,7 +109,7 @@ Let's create a basic starter project on AWS as an example:
 1. Sign up for an [AWS account](https://aws.amazon.com/)
 2. Navigate to SageMaker AI → Studio in the AWS console
 3. Create a Studio domain (for personal use, pick "Quick setup")
-4. Open Studio and launch a JupyterLab space, choosing a small instance type such as `ml.t3.medium` (covered by the SageMaker free tier for new accounts)
+4. Open Studio and launch a JupyterLab space, choosing a small instance type such as `ml.t3.medium`. Check what your account's current free-tier terms cover before you start it — see the note on free tiers below
 5. Start the space, open JupyterLab, create a notebook, and start working
 
 This gives you a fully configured Jupyter environment with access to more computational resources than your local machine likely has. SageMaker comes pre-installed with popular data science libraries and integrates with other AWS services like S3 for storage.
@@ -128,7 +128,7 @@ One of the most important aspects of using cloud platforms is managing costs eff
 - **Data egress**: Moving data *out* of a cloud provider (to your laptop, to another region, to another cloud) is almost always charged. Moving it *in* is usually free. Pulling a 500 GB dataset to your machine "just to look at it" is a classic expensive mistake.
 - **NAT gateways and load balancers**: On AWS especially, these run 24/7 and bill by the hour even if nothing is using them. Delete them when the project ends.
 - **Storage classes**: Object storage has cheap long-term tiers (S3 Glacier, GCS Coldline, Azure Archive) for data you rarely read. Use them for raw archives.
-- **Free tier expiry**: Most "free tier" offers last 12 months from signup, after which the same resources begin charging at normal rates.
+- **Free tier expiry**: Free tiers end, and the terms change often enough that any specific figure printed in a book will be wrong before you read it. AWS restructured its offer in July 2025, replacing the old 12-month allowance with a credit-based plan for new accounts. Check the provider's current terms before assuming anything is free, and don't rely on a tutorial's description of them.
 
 Practical habits that help:
 
@@ -145,7 +145,7 @@ For example, in AWS you can create a budget with alerts:
 3. Create a budget with monthly limits
 4. Set up email alerts at 50%, 80%, and 100% of your budget
 
-When working with cloud platforms, it's important to remember to shut down resources when you're not using them to avoid unnecessary charges. Most platforms provide cost management tools to help you monitor and control your spending.
+Do this before you launch anything, not after the first bill.
 
 ### Security Best Practices in the Cloud
 
@@ -310,8 +310,13 @@ These patterns allow you to work with data stored in various cloud locations whi
 
 ## Conclusion
 
-Cloud platforms provide powerful resources for data science, allowing you to scale beyond the limitations of your local machine. Whether you're using free services like Google Colab or comprehensive platforms like AWS, GCP, or Azure, the cloud offers flexibility, scalability, and specialised tools that can significantly enhance your data science capabilities.
+The cloud buys you three things your laptop can't give you: hardware you don't own, storage that doesn't live on one disk, and a machine that keeps running when you close the lid.
 
-As you grow more comfortable with cloud services, you can explore more advanced features like automated machine learning pipelines, distributed computing, and real-time data processing. The cloud is continuously evolving, with new services and features being added regularly to support data science workflows.
+**By the end of this chapter you should have:**
 
-In the upcoming chapters, we'll explore how to deploy your data science projects to make them accessible to others (Deployment chapter) and how to use containerisation with Docker to ensure your environments are reproducible across local and cloud platforms (Containerisation chapter).
+- A notebook running in Google Colab, with a GPU attached at least once so you've seen how to request one
+- Data read into that notebook from cloud storage rather than uploaded by hand
+- A billing alert configured on any paid account you opened
+- Credentials read from a secrets store or environment variable — never typed into a notebook cell
+
+The next chapter, [Web Development for Data Scientists](web_dev.qmd), covers building the applications and dashboards you might eventually host on these platforms. [Containerisation](containers.qmd) and [Deploying Data Science Projects](deployment.qmd) then cover packaging them and getting them online.

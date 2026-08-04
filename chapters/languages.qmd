@@ -1,0 +1,268 @@
+---
+title: "Python and R"
+---
+
+## Setting Up Python
+
+Python has become a cornerstone language in data science due to its readability, extensive libraries, and versatile applications. Let's set up a proper Python environment.
+
+### Why Python for Data Science?
+
+Python offers several advantages for data science:
+
+1. Rich ecosystem of specialised libraries (NumPy, pandas, scikit-learn, etc.)
+2. Readable syntax that makes complex analyses more accessible
+3. Strong community support and documentation
+4. Integration with various data sources and visualisation tools
+
+Python consistently ranks among the top programming languages for data science and is widely used across the industry.
+
+### Installing Python
+
+You have a few reasonable ways to install Python for data science. Each has trade-offs:
+
+- **Miniforge** (recommended for most readers): a minimal, community-maintained conda distribution that defaults to the free `conda-forge` channel. Gives you `conda` for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.
+- **Anaconda**: the "batteries-included" distribution. Convenient but note that since 2024 its Terms of Service restrict free commercial use for organisations with more than ~200 employees. Fine for learning and personal projects.
+- **`uv`** (the modern, fast option): a single binary that installs Python versions and manages virtual environments and packages. Much faster than conda or pip and rapidly becoming the default for pure-Python projects. A great choice once you're comfortable, especially if you don't need conda's scientific package ecosystem.
+- **System Python** (`python.org` installer, `brew install python`, or `apt install python3`): simple, but you'll still want to create isolated environments per project with `venv` or `uv venv`.
+
+For this book we'll use conda-based instructions since they work uniformly across Windows, macOS, and Linux and handle tricky scientific packages well. Everything shown below works with either Miniforge or Anaconda.
+
+#### Installing Miniforge (or Anaconda)
+
+1. Visit the [Miniforge releases page](https://github.com/conda-forge/miniforge/releases/latest) (or the [Anaconda download page](https://www.anaconda.com/download) if you prefer)
+2. Download the appropriate installer for your operating system
+3. Run the installer and follow the prompts
+
+During installation on Windows, you may be asked whether to add the installation to your PATH environment variable. Leave this unchecked and use the Miniforge Prompt (or Anaconda Prompt) from the Start menu, which avoids conflicts with other Python installations on your system.
+
+The "PATH" is like an address book that tells your computer where to find programs when you type their names. Adding your conda install to PATH means you can use Python from any command prompt, but it could cause conflicts with other versions of Python on your system.
+
+#### Verifying Installation
+
+Open a new terminal (or Miniforge/Anaconda Prompt on Windows) and type:
+
+```bash
+python --version
+```
+
+You should see the Python version number. Also, check that conda is installed:
+
+```bash
+conda --version
+```
+
+:::{.callout-important}
+## Don't install packages into the base installation
+
+The next thing most people do is `pip install pandas` and carry on. Resist it. Packages installed globally accumulate, conflict, and eventually break each other in ways that are genuinely painful to unpick — and nothing records what you installed, so the analysis you write today may not run tomorrow.
+
+Create a per-project environment first. That is the whole subject of the [Reproducible Environments](environments.qmd) chapter, and it's worth reading before you install your second package. The one-line version:
+
+```bash
+uv venv --python 3.13 && source .venv/bin/activate   # then install into it
+```
+:::
+
+### Using Jupyter Notebooks
+
+Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualisations, and narrative text. They're like digital lab notebooks where you can document your analysis process along with the code and results.
+
+```bash
+# Make sure your environment is activated
+conda activate datasci
+
+# Launch Jupyter Notebook
+jupyter notebook
+```
+
+This opens a web browser where you can create and work with notebooks. Let's create a simple notebook to verify everything works:
+
+1. Click "New" → "Python 3"
+2. In the first cell, type:
+
+```{python}
+#| eval: false
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Create some sample data
+data = pd.DataFrame({
+    'x': range(1, 11),
+    'y': np.random.randn(10)
+})
+
+# Create a simple plot
+plt.figure(figsize=(8, 4))
+plt.plot(data['x'], data['y'], marker='o')
+plt.title('Sample Plot')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.grid(True)
+plt.show()
+
+print("Python environment is working correctly!")
+```
+
+3. Press Shift+Enter to run the cell
+
+If you see a plot and the success message, your Python setup is complete!
+
+### Installing Additional Packages
+
+As your data science journey progresses, you'll need additional packages. Use either:
+
+```bash
+# Using conda (preferred when available)
+conda install package_name
+
+# Using pip (when packages aren't available in conda)
+pip install package_name
+```
+
+Conda is often preferred for data science packages because it handles complex dependencies better, especially for packages with C/C++ components. This is particularly important for libraries that have parts written in lower-level programming languages to make them run faster.
+
+## Setting Up R
+
+R is a powerful language and environment specifically designed for statistical computing and graphics. Many statisticians and data scientists prefer R for statistical analysis and visualisation.
+
+### Why R for Data Science?
+
+R offers several advantages:
+
+1. Built specifically for statistical analysis
+2. Excellent for data visualisation with ggplot2
+3. A rich ecosystem of packages for specialised statistical methods
+4. Strong in reproducible research through R Markdown
+
+R has thousands of packages available on CRAN for various statistical and data analysis tasks, with active development from the statistics and research communities.
+
+### Installing R
+
+Let's install both R itself and RStudio, a popular integrated development environment for R.
+
+#### Installing Base R
+
+1. Visit the [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/)
+2. Click on the link for your operating system
+3. Follow the installation instructions
+
+#### Installing RStudio Desktop
+
+RStudio provides a user-friendly interface for working with R.
+
+1. Visit the [Posit RStudio download page](https://posit.co/download/rstudio-desktop/) (RStudio's parent company rebranded to Posit in 2022)
+2. Download the free RStudio Desktop version for your operating system
+3. Run the installer and follow the prompts
+
+Think of R as the engine and RStudio as the dashboard that makes it easier to control that engine. You could use R without RStudio, but RStudio makes many tasks more convenient.
+
+#### Verifying Installation
+
+Open RStudio and enter this command in the console (lower-left pane):
+
+```{r}
+#| eval: false
+R.version.string
+```
+
+You should see the R version information displayed. You can verify this as the version is the first printed output you will see in the console at the start of a new session. It should look something like this:
+
+`R version 4.5.0 (2025-04-11 ucrt) -- "How About a Twenty-Six"`
+`Copyright (C) 2025 The R Foundation for Statistical Computing`
+`Platform: x86_64-w64-mingw32/x64`
+
+### Essential R Packages for Data Science
+
+Let's install some core packages that you'll likely need:
+
+```{r}
+#| eval: false
+# Install essential packages
+install.packages(c("tidyverse", "rmarkdown", "shiny", "knitr", "plotly"))
+```
+
+This installs:
+
+- **tidyverse**: A collection of packages for data manipulation and visualisation
+- **rmarkdown**: For creating documents that mix code and text
+- **shiny**: For building interactive web applications
+- **knitr**: For dynamic report generation
+- **plotly**: For interactive visualisations
+
+These packages are like specialised toolkits that expand what you can do with R. The tidyverse, for example, makes data manipulation much more intuitive than it would be using just base R.
+
+### Creating Your First R Script
+
+Let's verify our setup with a simple R script:
+
+1. In RStudio, go to File → New File → R Script
+2. Enter the following code:
+
+```{r}
+#| eval: false
+# Load libraries
+library(tidyverse)
+
+# Create sample data
+data <- tibble(
+  x = 1:10,
+  y = rnorm(10)
+)
+
+# Create a plot with ggplot2
+ggplot(data, aes(x = x, y = y)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Sample Plot in R",
+       x = "X-axis",
+       y = "Y-axis") +
+  theme_minimal()
+
+print("R environment is working correctly!")
+```
+
+3. Click the "Run" button or press Ctrl+Enter (Cmd+Enter on Mac) to execute the code
+
+If you see a plot in the lower-right pane and the success message in the console, your R setup is complete!
+
+### Understanding R Packages
+
+Unlike Python, where conda or pip manage packages, R has its own built-in package management system accessed through functions like `install.packages()` and `library()`.
+
+There are thousands of R packages available on CRAN, with more on Bioconductor (for bioinformatics) and GitHub. To install a package from GitHub, you first need the devtools package:
+
+```{r}
+#| eval: false
+install.packages("devtools")
+devtools::install_github("username/package")
+```
+
+Think of CRAN as the official app store for R packages, while GitHub is like getting apps directly from developers. Both are useful, but packages on CRAN have gone through more quality checks.
+
+
+## Python or R?
+
+The question comes up constantly and has a boring answer: both are excellent, the differences that once mattered mostly don't any more, and the deciding factor is almost always what the people around you use.
+
+Where genuine differences remain:
+
+- **R** is stronger for statistical modelling and for publication-quality graphics. The tidyverse is a more coherent data-manipulation vocabulary than pandas, and ggplot2 has no true equal in Python. If your work is econometrics, biostatistics, or survey analysis, R's package ecosystem is deeper.
+- **Python** is stronger everywhere the analysis has to connect to something else — a web application, a production pipeline, a machine learning framework, a cloud service. If your output is a system rather than a paper, Python is the shorter path.
+
+Both are covered throughout this book because most working analysts eventually use both. Quarto renders either. Git doesn't care. The environment and deployment chapters apply to both with minor syntax differences.
+
+If you have no constraint and no preference: learn Python first, because more of the infrastructure in this book is Python-native, then pick up R when you meet a statistical problem it's better at.
+
+## Conclusion
+
+**By the end of this chapter you should have:**
+
+- Python installed via Miniforge, with `python --version` and `conda --version` both working
+- R and RStudio installed, with `R.version.string` reporting a current version
+- A Jupyter notebook that runs a cell and produces a plot
+- An R script that loads ggplot2 and produces a plot
+- Read the [Reproducible Environments](environments.qmd) chapter before installing much else
+
+The next chapter covers where your data lives: SQL, the file formats worth knowing, and the query engines that have changed what's practical on a laptop.

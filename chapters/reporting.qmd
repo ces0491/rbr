@@ -41,11 +41,13 @@ Table:
 
 `Inline code`
 
-```{python}
+```python
 # Code block
 print("Hello, world!")
 ```
 ````
+
+The language name after the opening backticks is optional and only controls syntax highlighting. Later in this chapter you'll see fences written as `` ```{python} `` with braces — that is Quarto and R Markdown's own extension, marking a block as code to *execute* rather than merely display. Plain Markdown has no such concept.
 
 Markdown is designed to be readable even in its raw form. The syntax is intuitive—for example, surrounding text with asterisks makes it italic, and using hash symbols creates headings of different levels.
 
@@ -73,7 +75,7 @@ To create your first R Markdown document:
 3. Choose an output format (HTML, PDF, or Word)
 4. Click "OK"
 
-RStudio creates a template document with examples of text, code chunks, and plots. This template is extremely helpful because it shows you the basic structure of an R Markdown document right away—you don't have to start from scratch.
+RStudio creates a template document with examples of text, code chunks, and plots, so you don't start from scratch.
 
 A typical R Markdown document consists of three components:
 
@@ -103,8 +105,8 @@ data(diamonds, package = "ggplot2")
 
 # Create a smaller sample of the diamonds dataset
 set.seed(123)  # For reproducibility
-my_data <- diamonds %>% 
-  dplyr::sample_n(1000) %>%
+my_data <- diamonds |>
+  dplyr::slice_sample(n = 1000) |>
   dplyr::select(
     X = carat,
     Y = price,
@@ -133,6 +135,8 @@ ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
 - Avoids loading the full package with `library()`
 - Prevents naming conflicts (e.g. `dplyr::filter()` vs. `stats::filter()`)
 - Keeps dependencies explicit and localised right next to each call
+
+*For the same reason the pipe above is `|>`, R's native pipe, which is part of base R since version 4.1 and needs no package. The older `%>%` comes from magrittr and requires `library(dplyr)` or `library(magrittr)` first.*
 :::
 
 When you click the "Knit" button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. The reason this is so powerful is that it combines your code, results, and narrative explanation in a single, reproducible document. If your data changes, you simply re-knit the document to update all results automatically.
@@ -147,7 +151,7 @@ We've already covered Jupyter notebooks for Python development, but they're also
 
 Jupyter notebooks can be exported to various formats:
 
-1. In a notebook, go to File → Download as
+1. In JupyterLab or Notebook 7, go to File → Save and Export Notebook As
 2. Choose from options like HTML, PDF, Markdown, etc.
 
 Alternatively, you can use `nbconvert` from the command line:
@@ -166,14 +170,17 @@ For larger documentation projects, Jupyter Book builds on the notebook format to
 # Install Jupyter Book
 pip install jupyter-book
 
-# Create a new book project
-jupyter-book create my-book
-
-# Build the book
-jupyter-book build my-book/
+# Create a project and start a live-reloading preview
+jupyter book start
 ```
 
-Jupyter Book organises multiple notebooks and markdown files into a cohesive book with navigation, search, and cross-references. This is especially useful for comprehensive documentation, tutorials, or course materials. The resulting books have a professional appearance with a table of contents, navigation panel, and consistent styling throughout.
+Jupyter Book organises multiple notebooks and markdown files into a book with navigation, search, and cross-references — useful for multi-page documentation, tutorials, or course materials.
+
+:::{.callout-warning}
+## Version 2 changed the commands
+
+Jupyter Book 2, built on the MyST document engine, is what `pip install jupyter-book` now gives you, and its CLI is `jupyter book` — two words. Version 1's commands were hyphenated and different: `jupyter-book create my-book` followed by `jupyter-book build my-book/`. Most tutorials you'll find still show the v1 form, which fails with a "command not found" error against a current install.
+:::
 
 ### Quarto: The Next Generation of Literate Programming
 
@@ -228,7 +235,27 @@ params:
 ---
 ```
 
-Inside the document you refer to `params$region` (R) or `params["region"]` (Python), and render with:
+How you read those values inside the document depends on the engine.
+
+With the **knitr engine** (R), the YAML block above is all you need — the values arrive in a `params` list:
+
+```{.r}
+cat("Report for", params$region, "covering", params$month)
+```
+
+With the **Jupyter engine** (Python), Quarto follows papermill's convention instead: you tag one code cell `parameters`, assign defaults there as ordinary variables, and refer to them as ordinary variables everywhere else. There is no `params` object.
+
+```{.python}
+#| tags: [parameters]
+region = "South Africa"
+month = "2026-03"
+```
+
+```{.python}
+print(f"Report for {region} covering {month}")
+```
+
+Either way, you render with `-P`:
 
 ```bash
 quarto render sales.qmd -P region:"EU" -P month:"2026-03"
@@ -620,16 +647,18 @@ If you get an error about a missing package when rendering:
 ! LaTeX Error: File 'tikz.sty' not found.
 ```
 
-With TinyTeX, you can install the missing package:
+TinyTeX normally resolves this for you: when it hits a missing `.sty` file it looks up which TeX Live package provides it, installs it, and recompiles. That happens by default, so most of the time the error above is one you never see.
+
+When it doesn't resolve automatically, point TinyTeX at the compilation log and let it work out what's missing:
 
 ```r
-tinytex::tlmgr_install("tikz")
+tinytex::parse_install("document.log")
 ```
 
-Or let TinyTeX handle it automatically:
+Installing by hand is a last resort, and the trap is that the TeX Live package name rarely matches the file name — `tikz.sty` ships in a package called `pgf`, not `tikz`:
 
 ```r
-options(tinytex.verbose = TRUE)
+tinytex::tlmgr_install("pgf")
 ```
 
 #### Figure Placement
@@ -658,22 +687,24 @@ Model & Accuracy & Precision & Recall \\
 
 #### PDF Compilation Hangs
 
-If compilation seems to hang, it might be waiting for user input due to an error. Try:
+If compilation seems to hang, it is usually waiting for input at LaTeX's interactive error prompt. TinyTeX passes `-halt-on-error` by default so this is rare, but if you are calling LaTeX yourself, or a package has re-enabled the prompt, force it to fail rather than wait:
 
 ```r
 # In R
-tinytex::pdflatex('document.tex', pdflatex_args = c('-interaction=nonstopmode'))
+tinytex::latexmk('document.tex', engine_args = '-interaction=nonstopmode')
 ```
 
-### Conclusion
+Then read `document.log` — the first `!` line in that file is the real error.
 
-LaTeX has been the de facto gold standard for scientific documentation for decades, and for good reason. Most PDF rendering systems still use LaTeX under the hood, making it the backbone of academic publishing, technical reports, and mathematical documentation. When you generate a PDF from Quarto or R Markdown, you're ultimately leveraging LaTeX's sophisticated typesetting engine.
+### LaTeX or Typst?
 
-While LaTeX provides unmatched power and precision for creating professional data science documents, especially when mathematical notation is involved, there is undeniably a learning curve. The integration with Quarto and R Markdown has made LaTeX more accessible by handling much of the complexity behind the scenes, allowing you to focus on content rather than typesetting commands.
+LaTeX has been the standard for scientific documentation for decades. Quarto and R Markdown default to it when you ask for a PDF, which is why it is worth knowing even if you never write a `.tex` file by hand — and why the errors above are errors you will eventually meet.
 
-#### The Rise of Modern Alternatives: Typst
+It also carries a real learning curve, and for most of what this book's readers produce, there is now a second option.
 
-However, the document preparation landscape is evolving. Newer tools like **Typst** are emerging as modern alternatives that aim to simplify the traditional LaTeX workflow while maintaining high-quality output. Typst offers several advantages:
+#### Typst
+
+**Typst** is a newer typesetting system aimed at the same output with less ceremony:
 
 **Simpler Syntax**: Where LaTeX might require complex commands, Typst uses more intuitive markup:
 
@@ -729,13 +760,16 @@ For data scientists starting their journey, here's how to think about these tool
 - You're starting fresh and don't have legacy LaTeX requirements
 - You want to avoid LaTeX's steep learning curve
 
-**The Quarto Advantage**: One of Quarto's strengths is that it abstracts away many of these decisions. You can often switch between PDF engines (including future Typst support) without changing your content, giving you flexibility as the ecosystem evolves.
+**You don't have to choose up front.** Quarto has shipped the Typst compiler since version 1.4, so switching engines is a one-line YAML change and your content stays as it is:
 
-#### Looking Ahead
+```{.yaml}
+---
+title: "Sales Report"
+format: typst     # instead of: pdf
+---
+```
 
-As you progress in your data science career, investing time in understanding document preparation will pay dividends when creating reports, papers, or presentations that require precise typesetting and mathematical expressions. Whether you choose the established power of LaTeX or explore newer alternatives like Typst, start with the basics and gradually incorporate more advanced features as your needs grow.
-
-The key is to pick the tool that best fits your current workflow and requirements, knowing that the fundamental principles of good document structure and clear communication remain constant regardless of the underlying technology.
+There is a practical consequence worth stating plainly: `format: typst` produces a PDF without LaTeX installed at all. If PDF output is all you need, you can skip the TinyTeX installation and everything that follows from it.
 
 ### Creating Technical Documentation
 
@@ -893,9 +927,7 @@ Effective documentation follows certain principles:
 4. **Consider your audience**: Technical details for peers, higher-level explanations for stakeholders
 5. **Update regularly**: Keep documentation in sync with your code
 
-Projects with comprehensive documentation tend to have fewer defects and require less maintenance effort. Well-documented data science projects are also more likely to be reproducible and reusable by others.
-
-The practice of documenting your work isn't just about helping others understand what you've done—it also helps you think more clearly about your own process. By explaining your choices and methods in writing, you often gain new insights and identify potential improvements in your approach.
+Documenting your work also sharpens your own thinking. Explaining a modelling choice in prose is a reliable way to discover that you can't justify it.
 
 ## Conclusion
 

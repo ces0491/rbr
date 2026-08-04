@@ -18,22 +18,25 @@ A popular project template follows this structure:
 project_name/
 ├── data/                   # Raw and processed data
 │   ├── raw/                # Original, immutable data
-│   ├── processed/          # Cleaned, transformed data
+│   ├── interim/            # Intermediate, partially transformed data
+│   ├── processed/          # Cleaned, final datasets for modelling
 │   └── external/           # Data from third-party sources
 ├── notebooks/              # Jupyter notebooks for exploration
-├── src/                    # Source code for use in the project
-│   ├── __init__.py         # Makes src a Python package
-│   ├── data/               # Scripts to download or generate data
-│   ├── features/           # Scripts to turn raw data into features
-│   ├── models/             # Scripts to train and use models
-│   └── visualization/      # Scripts to create visualizations
-├── tests/                  # Test cases
+├── project_name/           # Source code, importable as a package
+│   ├── __init__.py         # Makes the directory a Python package
+│   ├── config.py           # Paths and settings in one place
+│   ├── dataset.py          # Scripts to download or generate data
+│   ├── features.py         # Scripts to turn raw data into features
+│   ├── modeling/           # train.py and predict.py
+│   └── plots.py            # Scripts to create visualisations
+├── docs/                   # MkDocs documentation project
 ├── models/                 # Trained model files
+├── references/             # Data dictionaries, manuals, explanatory material
 ├── reports/                # Generated analysis as HTML, PDF, etc.
 │   └── figures/            # Generated graphics and figures
+├── Makefile                # Common commands (see below)
 ├── requirements.txt        # Python dependencies
-├── environment.yml         # Conda environment file
-├── setup.py                # Make the project pip installable
+├── pyproject.toml          # Project metadata and tool configuration
 ├── .gitignore              # Files to ignore in version control
 └── README.md               # Project description
 ```
@@ -47,36 +50,52 @@ Organising your projects this way provides several benefits:
 3. Better reproducibility through clearly defined workflows
 4. Simpler maintenance as the project grows
 
-You can create this structure automatically using cookiecutter:
+You can create this structure automatically. The template above is [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org/), which since version 2 ships its own command, `ccds`:
 
 ```bash
-# Install cookiecutter
-pip install cookiecutter
+# Install the tool (pipx keeps it isolated from your project environments)
+pipx install cookiecutter-data-science
 
-# Create a new project from the template
-cookiecutter https://github.com/drivendata/cookiecutter-data-science
+# Create a new project - run this in the directory that should contain it
+ccds
 ```
+
+`ccds` asks a short series of questions (Python version, environment manager, testing framework, whether you want documentation) and generates the tree accordingly, so your project won't match the listing above in every detail.
+
+:::{.callout-note}
+## Older instructions won't work
+
+Plenty of tutorials still say `pip install cookiecutter` followed by `cookiecutter https://github.com/drivendata/cookiecutter-data-science`. Both halves are now wrong: the project moved to the `drivendataorg` organisation, and v2 of the template requires the `ccds` command rather than plain `cookiecutter`. If you meet a version of this instruction that generates a `src/` directory and a `setup.py`, you are looking at v1.
+:::
 
 ### Data Version Control
 
-While Git works well for code (as we covered in the introductory chapter), it's not designed for large data files. Data Version Control (DVC) extends Git to handle data:
+While Git works well for code (covered in [Editors and Version Control](ide_git.qmd)), it's not designed for large data files. Data Version Control (DVC) extends Git to handle data:
 
 ```bash
-# Install DVC
-pip install dvc
+# Install DVC. The bracketed extra pulls in the libraries for your chosen
+# storage backend - use dvc[gdrive], dvc[azure] or dvc[gs] instead of
+# dvc[s3] if you're not on AWS. Plain `pip install dvc` installs no
+# backends at all and `dvc push` will fail.
+pip install "dvc[s3]"
 
-# Initialize DVC in your Git repository
+# Initialise DVC in your Git repository
 dvc init
 
-# Add data to DVC tracking
+# Hand a large file over to DVC
 dvc add data/raw/large_dataset.csv
 
-# Push data to remote storage
+# That created two things to commit: a small pointer file, and a
+# .gitignore entry so Git stops tracking the data itself
+git add data/raw/large_dataset.csv.dvc data/raw/.gitignore
+git commit -m "Track raw dataset with DVC"
+
+# Configure remote storage and upload
 dvc remote add -d storage s3://mybucket/dvcstore
 dvc push
 ```
 
-DVC stores large files in remote storage while keeping lightweight pointers in your Git repository. This allows you to version control both your code and data, ensuring reproducibility across the entire project.
+The two-file result is the whole mechanism. `large_dataset.csv.dvc` is a few lines of YAML containing a hash of the data, and it lives in Git like any other source file; the multi-gigabyte CSV lives in S3. A colleague clones the repository, gets the pointer, runs `dvc pull`, and receives exactly the version of the data that matches the code they checked out. Checking out an old commit and running `dvc pull` reconstructs the data as it was then.
 
 The benefits of using DVC include:
 
@@ -160,12 +179,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v7
       with:
-        python-version: '3.12'
+        python-version: '3.13'
 
     - name: Install dependencies
       run: |
@@ -180,14 +199,74 @@ jobs:
 
 2. Write tests for your code in the `tests/` directory
 
-CI helps catch errors early and ensures that your code remains functional as you make changes. This is particularly important for data science projects that might be used to make business decisions.
+Push a commit and GitHub runs this on a fresh Linux machine. A green tick next to the commit means the tests passed; a red cross links to the log, with the failing test and its traceback. The useful side effect is that CI runs in an environment that has nothing but your `requirements.txt` — so a package you installed locally six months ago and forgot to record shows up as a failure here rather than in front of a stakeholder.
 
-Testing data science code can be more complex than testing traditional software, but it's still valuable. Some approaches include:
+### Writing Tests for Analysis Code
 
-1. **Unit tests** for individual functions and transformations
-2. **Data validation tests** to check assumptions about your data
-3. **Model performance tests** to ensure models meet minimum quality thresholds
-4. **Integration tests** to verify that different components work together correctly
+Testing is the piece of software practice that data science teams most often skip, usually on the grounds that "the output is a number, not a program". The counter-argument is that a number informing a decision is exactly the thing you want to be sure about.
+
+A test is an ordinary function whose name starts with `test_`, containing an `assert`. Put this in `tests/test_features.py`:
+
+```python
+import pandas as pd
+import pytest
+from project_name.features import add_growth_rate
+
+def test_growth_rate_computes_period_over_period_change():
+    df = pd.DataFrame({"revenue": [100.0, 110.0, 121.0]})
+    result = add_growth_rate(df, column="revenue")
+    assert result["growth_rate"].tolist() == pytest.approx([None, 0.10, 0.10], nan_ok=True)
+
+def test_growth_rate_handles_zero_denominator():
+    df = pd.DataFrame({"revenue": [0.0, 50.0]})
+    result = add_growth_rate(df, column="revenue")
+    assert result["growth_rate"].isna().iloc[1]   # not inf, not a crash
+```
+
+Run them with `pytest` from the project root. The second test is the more instructive one: division by zero is the sort of edge case that produces `inf` in a spreadsheet, propagates quietly through three more calculations, and surfaces as an absurd figure in a board pack.
+
+Four kinds of test earn their keep in analysis work:
+
+1. **Unit tests** for individual transformations — the example above
+2. **Data validation tests** asserting your assumptions about incoming data: no negative prices, no duplicate IDs, dates within an expected range. [Great Expectations](https://greatexpectations.io/) and [Pandera](https://pandera.readthedocs.io/) are built for this; a handful of `assert` statements works too
+3. **Model performance tests** that fail the build if accuracy on a held-out set drops below a threshold you set
+4. **Integration tests** that run the whole pipeline end to end on a small sample and check it produces output at all
+
+R users have the same facilities through [testthat](https://testthat.r-lib.org/): `test_that("growth rate handles zero denominators", { expect_true(is.na(...)) })`, run with `devtools::test()`.
+
+### Catching Problems Before They Reach CI
+
+CI tells you something broke after you pushed. Pre-commit hooks tell you before. The [pre-commit](https://pre-commit.com/) framework runs a set of checks against your staged files every time you commit:
+
+```yaml
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.1
+    hooks:
+      - id: ruff            # lint
+      - id: ruff-format     # format
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files   # stop a 2GB CSV entering Git history
+      - id: detect-private-key        # stop a credential entering Git history
+      - id: end-of-file-fixer
+```
+
+Install with `pip install pre-commit` then `pre-commit install`. Run `pre-commit autoupdate` occasionally to bump those `rev:` pins — they're exact tags, so they don't move on their own. The last two hooks are the ones to care about: a large file or a leaked key committed to Git is genuinely painful to remove afterwards, and both are trivial to prevent.
+
+### When Make Isn't Enough: Workflow Orchestrators
+
+Make handles "run these steps in this order, skip what's already done" on one machine, on demand. When a pipeline needs to run on a schedule, retry failed steps, alert someone when it breaks, or coordinate work across machines, you've reached the limits of a Makefile.
+
+The tools for that job are workflow orchestrators. The three you'll encounter:
+
+- **[Airflow](https://airflow.apache.org/)** — the incumbent, widely deployed, heavier to operate. If your organisation already runs a data platform, it probably runs Airflow.
+- **[Prefect](https://www.prefect.io/)** — Python-native and considerably lighter to start with; you decorate ordinary functions with `@task` and `@flow`.
+- **[Dagster](https://dagster.io/)** — organised around data assets rather than tasks, which maps well onto analytics work where the thing you care about is "is this table up to date".
+
+The honest advice is not to reach for any of them early. A Makefile plus a scheduled GitHub Actions workflow (`on: schedule:` with a cron expression) covers a surprising amount of ground, and none of these tools is free to operate. Adopt one when you have several interdependent pipelines and a real need to know when one of them fails overnight.
 
 ## Advanced Topics and Next Steps
 
@@ -220,30 +299,25 @@ These tools help automate parts of the model development process:
 - **Model Interpretation**: Understanding model decisions
 - **Neural Architecture Search**: Automatically discovering optimal neural network architectures
 
-### Staying Current with Data Science Tools
+### Staying Current
 
-The field evolves rapidly, so it's important to stay updated:
+Tooling churns, and keeping up with all of it is neither possible nor useful. Two habits are worth more than a subscription list:
 
-1. **Follow key blogs**:
-   - [Towards Data Science](https://towardsdatascience.com/)
-   - [Analytics Vidhya](https://www.analyticsvidhya.com/blog/)
-   - Company tech blogs from Google, Netflix, Airbnb, etc.
+- **Read the release notes for the handful of tools you actually depend on.** Pandas, Quarto, and your cloud provider each publish them, and they are where breaking changes are announced before they break something of yours.
+- **Teach it.** [The Carpentries](https://carpentries.org/) run workshops on exactly this material — the shell, Git, R, and Python for researchers — and their [instructor training](https://carpentries.github.io/instructor-training/) is free and well designed. Explaining `git rebase` to a room of ecologists is an efficient way to discover what you don't understand about it.
 
-2. **Participate in communities**:
-   - Stack Overflow
-   - Reddit communities (r/datascience, r/machinelearning)
-   - GitHub discussions
-   - Twitter/LinkedIn data science communities
+For everything else, PyData conference talks (all on YouTube, free) and the Stack Overflow question you find while debugging will cover more ground than any curated feed.
 
-3. **Attend virtual events and conferences**:
-   - PyData
-   - NeurIPS, ICML, ICLR (for machine learning)
-   - Local meetups (find them on Meetup.com)
+## Conclusion
 
-4. **Take online courses for specific technologies**:
-   - Coursera, edX, Udacity
-   - YouTube tutorials
-   - Official documentation and tutorials
+The tools in this chapter share a purpose: making the second run of an analysis cheaper than the first.
 
-5. **Consider becoming a Data Carpentries instructor**
-   - <https://carpentries.github.io/instructor-training/>
+**By the end of this chapter you should have:**
+
+- A project directory whose structure someone else could navigate without asking you
+- A `Makefile` that rebuilds your analysis end to end with one command
+- Tests in a `tests/` directory and a CI workflow that runs them on every push
+- Pre-commit hooks installed, so a large file or a stray API key can't reach your Git history by accident
+- Data too large for Git under DVC, with the pointer files committed alongside the code
+
+None of this is worth doing on a one-off script you'll delete next week. All of it is worth doing on anything a colleague will inherit, anything that runs more than once, and anything whose output someone will act on.

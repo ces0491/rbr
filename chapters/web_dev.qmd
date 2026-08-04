@@ -4,7 +4,7 @@ title: "Web Development for Data Scientists"
 
 ## Web Development Fundamentals for Data Scientists
 
-As a data scientist, you'll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. The deployment tools discussed earlier (such as Shiny or Quarto) are largely wrappers for lower-level web technologies like HTML and CSS. These tools handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? This becomes possible with a basic understanding of web development.
+As a data scientist, you'll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. Quarto (covered in the [Documentation and Reporting](reporting.qmd) chapter) and the dashboard frameworks in this chapter are all wrappers around the same lower-level web technologies: HTML, CSS, and JavaScript. They handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? That becomes possible with a basic understanding of web development.
 
 ### Why Web Development for Data Scientists?
 
@@ -14,9 +14,7 @@ Web development skills are increasingly important for data scientists because:
 2. **Interactive Visualisations**: Web technologies enable rich, interactive data exploration
 3. **Model Deployment**: Web APIs allow your models to be integrated into larger systems
 4. **Data Collection**: Web applications can facilitate data gathering and annotation
-5. **Professional Completeness**: Being able to deploy your analysis closes the loop in being able to deliver a complete end-to-end solution.
-
-Web development skills become increasingly valuable as you advance in your data science career, particularly when you need to deliver complete end-to-end solutions.
+5. **Independence**: You can deliver an end-to-end solution without waiting on an engineering team
 
 ### HTML, CSS, and JavaScript Basics
 
@@ -277,8 +275,7 @@ Shiny is also now available for Python via [Shiny for Python](https://shiny.posi
 
 Dash is Python's equivalent to Shiny, created by the makers of Plotly:
 
-```{python}
-#| eval: false
+```bash
 # Install Dash
 pip install dash dash-bootstrap-components
 ```
@@ -453,7 +450,7 @@ with tab3:
     st.dataframe(df.describe())
 ```
 
-Streamlit's appeal lies in its simplicity. Instead of defining callbacks between inputs and outputs (as in Dash and Shiny), the entire script runs from top to bottom whenever any input changes. You write a straightforward Python script that builds the UI linearly, and Streamlit reruns it on every interaction. This procedural approach is very intuitive for beginners and allows for rapid prototyping, though it can become less efficient for complex applications where you don't want to recompute everything on every keystroke.
+Streamlit's appeal lies in its simplicity. Instead of defining callbacks between inputs and outputs (as in Dash and Shiny), the entire script runs from top to bottom whenever any input changes. You write a straightforward Python script that builds the UI linearly, and Streamlit reruns it on every interaction. This procedural approach suits beginners and rapid prototyping, though it becomes less efficient for complex applications where you don't want to recompute everything on every keystroke.
 
 #### Flask: A Lightweight Framework for Custom Backends
 
@@ -461,18 +458,17 @@ Shiny, Dash, and Streamlit are great for dashboards, but sometimes you need a pl
 
 ```python
 import os
-from flask import Flask, render_template
+from flask import Flask, jsonify
 import pandas as pd
-import json
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
+@app.route('/api/sales')
+def sales():
     # Load and process data
     df = pd.read_csv('sales_data.csv')
 
-    # Convert data to JSON for JavaScript
+    # Shape the data the way Chart.js expects it
     chart_data = {
         'labels': df['quarter'].tolist(),
         'datasets': [
@@ -487,7 +483,8 @@ def index():
         ]
     }
 
-    return render_template('index.html', chart_data=json.dumps(chart_data))
+    # jsonify sets the Content-Type header and serialises for you
+    return jsonify(chart_data)
 
 if __name__ == '__main__':
     # Only enable debug mode when a FLASK_DEBUG env var is set.
@@ -495,6 +492,21 @@ if __name__ == '__main__':
     # interactive Python console to anyone who can reach the app.
     app.run(debug=os.environ.get("FLASK_DEBUG") == "1")
 ```
+
+Run this and `http://127.0.0.1:5000/api/sales` returns JSON that the Chart.js page from earlier in this chapter can fetch, instead of having its numbers hardcoded.
+
+:::{.callout-note}
+## Serving HTML from Flask
+
+To return a full page rather than JSON, Flask uses `render_template('index.html')`. That call has one requirement people trip over constantly: the file must live in a directory named `templates/` next to your Python file. Flask looks nowhere else, and the error when it can't find the file (`TemplateNotFound`) doesn't say so.
+
+```text
+my_app/
+├── app.py
+└── templates/
+    └── index.html
+```
+:::
 
 Flask is well-suited for data scientists because it lets you use your Python data-processing code alongside a web server with very little overhead. The deployment chapter shows a full Flask-based ML model API example.
 
@@ -512,9 +524,9 @@ Don't get paralysed by the choice. Any of the first three will produce a working
 
 ### Deploying Web Applications
 
-Once you've built your application, you'll need to deploy it for others to access. Rather than duplicating the material here, the next chapter (Deploying Data Science Projects) walks through full deployment workflows for Flask, Dash, and Shiny applications on modern platforms like Render, Google Cloud Run, Posit Connect Cloud, and shinyapps.io.
+Once you've built your application, you'll need to deploy it for others to access. Rather than duplicating the material here, [Deploying Data Science Projects](deployment.qmd) walks through full deployment workflows for Flask, Dash, and Shiny applications on Render, Google Cloud Run, and Posit Connect Cloud.
 
-The short version: Flask apps are typically deployed by containerising them with Docker and pushing the image to a platform-as-a-service provider; Shiny apps are most easily deployed via shinyapps.io or Posit Connect Cloud directly from RStudio. The best choice depends on your specific needs, including factors like:
+The short version: Flask apps are typically deployed by containerising them with Docker and pushing the image to a platform-as-a-service provider; Shiny apps are most easily deployed to Posit Connect Cloud, either from a linked GitHub repository or straight from RStudio. The best choice depends on your specific needs, including factors like:
 
 - Expected traffic volume
 - Security requirements
@@ -526,4 +538,4 @@ The short version: Flask apps are typically deployed by containerising them with
 
 Web development skills complement your data science toolkit by enabling you to share your work more effectively. A light understanding of HTML, CSS, and JavaScript lets you customise reports and debug rendering issues. The frameworks in this chapter (Shiny, Dash, Streamlit, and Flask) abstract away most of the rest so you can focus on the analysis rather than the plumbing.
 
-The ability to put an interactive application in front of a stakeholder is what turns a clever notebook into something the business actually uses. In the next chapter, we'll explore deployment in more depth, covering various platforms and strategies for making your applications accessible to stakeholders.
+The ability to put an interactive application in front of a stakeholder is what turns a clever notebook into something the business actually uses. The next chapter covers containers — the packaging step that makes deploying any of these applications predictable — followed by deployment itself.
