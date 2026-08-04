@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Cloud Computing for Data Science – Ready Before Run()</title>
+<title>10&nbsp; Cloud Computing for Data Science – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d1ce83cbcf7f21d8208077a0fee83aa1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -121,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/cloud.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/reporting.html">Communicating Results</a></li><li class="breadcrumb-item"><a href="../chapters/cloud.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,75 +161,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting Up for Success: Infrastructure for the Modern Data Scientist</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/command_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Command Line</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Communicating Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/reporting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Shipping Your Work</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/containers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/workflows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -237,29 +314,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#cloud-platforms-for-data-science" id="toc-cloud-platforms-for-data-science" class="nav-link active" data-scroll-target="#cloud-platforms-for-data-science"><span class="header-section-number">5.1</span> Cloud Platforms for Data Science</a>
+  <li><a href="#cloud-platforms-for-data-science" id="toc-cloud-platforms-for-data-science" class="nav-link active" data-scroll-target="#cloud-platforms-for-data-science"><span class="header-section-number">10.1</span> Cloud Platforms for Data Science</a>
   <ul class="collapse">
-  <li><a href="#why-use-cloud-platforms" id="toc-why-use-cloud-platforms" class="nav-link" data-scroll-target="#why-use-cloud-platforms"><span class="header-section-number">5.1.1</span> Why Use Cloud Platforms?</a></li>
-  <li><a href="#getting-started-with-google-colab" id="toc-getting-started-with-google-colab" class="nav-link" data-scroll-target="#getting-started-with-google-colab"><span class="header-section-number">5.1.2</span> Getting Started with Google Colab</a></li>
-  <li><a href="#basic-cloud-storage-options" id="toc-basic-cloud-storage-options" class="nav-link" data-scroll-target="#basic-cloud-storage-options"><span class="header-section-number">5.1.3</span> Basic Cloud Storage Options</a></li>
-  <li><a href="#comprehensive-cloud-platforms" id="toc-comprehensive-cloud-platforms" class="nav-link" data-scroll-target="#comprehensive-cloud-platforms"><span class="header-section-number">5.1.4</span> Comprehensive Cloud Platforms</a></li>
-  <li><a href="#choosing-the-right-cloud-services" id="toc-choosing-the-right-cloud-services" class="nav-link" data-scroll-target="#choosing-the-right-cloud-services"><span class="header-section-number">5.1.5</span> Choosing the Right Cloud Services</a></li>
-  <li><a href="#getting-started-with-a-cloud-platform" id="toc-getting-started-with-a-cloud-platform" class="nav-link" data-scroll-target="#getting-started-with-a-cloud-platform"><span class="header-section-number">5.1.6</span> Getting Started with a Cloud Platform</a></li>
-  <li><a href="#managing-cloud-costs" id="toc-managing-cloud-costs" class="nav-link" data-scroll-target="#managing-cloud-costs"><span class="header-section-number">5.1.7</span> Managing Cloud Costs</a></li>
-  <li><a href="#security-best-practices-in-the-cloud" id="toc-security-best-practices-in-the-cloud" class="nav-link" data-scroll-target="#security-best-practices-in-the-cloud"><span class="header-section-number">5.1.8</span> Security Best Practices in the Cloud</a></li>
-  <li><a href="#hands-on-exercise-your-first-cloud-analysis-with-google-colab" id="toc-hands-on-exercise-your-first-cloud-analysis-with-google-colab" class="nav-link" data-scroll-target="#hands-on-exercise-your-first-cloud-analysis-with-google-colab"><span class="header-section-number">5.1.9</span> Hands-On Exercise: Your First Cloud Analysis with Google Colab</a></li>
-  <li><a href="#connecting-cloud-storage-to-your-analysis" id="toc-connecting-cloud-storage-to-your-analysis" class="nav-link" data-scroll-target="#connecting-cloud-storage-to-your-analysis"><span class="header-section-number">5.1.10</span> Connecting Cloud Storage to Your Analysis</a></li>
+  <li><a href="#why-use-cloud-platforms" id="toc-why-use-cloud-platforms" class="nav-link" data-scroll-target="#why-use-cloud-platforms"><span class="header-section-number">10.1.1</span> Why Use Cloud Platforms?</a></li>
+  <li><a href="#getting-started-with-google-colab" id="toc-getting-started-with-google-colab" class="nav-link" data-scroll-target="#getting-started-with-google-colab"><span class="header-section-number">10.1.2</span> Getting Started with Google Colab</a></li>
+  <li><a href="#basic-cloud-storage-options" id="toc-basic-cloud-storage-options" class="nav-link" data-scroll-target="#basic-cloud-storage-options"><span class="header-section-number">10.1.3</span> Basic Cloud Storage Options</a></li>
+  <li><a href="#comprehensive-cloud-platforms" id="toc-comprehensive-cloud-platforms" class="nav-link" data-scroll-target="#comprehensive-cloud-platforms"><span class="header-section-number">10.1.4</span> Comprehensive Cloud Platforms</a></li>
+  <li><a href="#choosing-the-right-cloud-services" id="toc-choosing-the-right-cloud-services" class="nav-link" data-scroll-target="#choosing-the-right-cloud-services"><span class="header-section-number">10.1.5</span> Choosing the Right Cloud Services</a></li>
+  <li><a href="#getting-started-with-a-cloud-platform" id="toc-getting-started-with-a-cloud-platform" class="nav-link" data-scroll-target="#getting-started-with-a-cloud-platform"><span class="header-section-number">10.1.6</span> Getting Started with a Cloud Platform</a></li>
+  <li><a href="#managing-cloud-costs" id="toc-managing-cloud-costs" class="nav-link" data-scroll-target="#managing-cloud-costs"><span class="header-section-number">10.1.7</span> Managing Cloud Costs</a></li>
+  <li><a href="#security-best-practices-in-the-cloud" id="toc-security-best-practices-in-the-cloud" class="nav-link" data-scroll-target="#security-best-practices-in-the-cloud"><span class="header-section-number">10.1.8</span> Security Best Practices in the Cloud</a></li>
+  <li><a href="#hands-on-exercise-your-first-cloud-analysis-with-google-colab" id="toc-hands-on-exercise-your-first-cloud-analysis-with-google-colab" class="nav-link" data-scroll-target="#hands-on-exercise-your-first-cloud-analysis-with-google-colab"><span class="header-section-number">10.1.9</span> Hands-On Exercise: Your First Cloud Analysis with Google Colab</a></li>
+  <li><a href="#connecting-cloud-storage-to-your-analysis" id="toc-connecting-cloud-storage-to-your-analysis" class="nav-link" data-scroll-target="#connecting-cloud-storage-to-your-analysis"><span class="header-section-number">10.1.10</span> Connecting Cloud Storage to Your Analysis</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.2</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">10.2</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/reporting.html">Communicating Results</a></li><li class="breadcrumb-item"><a href="../chapters/cloud.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></h1>
 </div>
 
 
@@ -276,11 +353,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="cloud-platforms-for-data-science" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="cloud-platforms-for-data-science"><span class="header-section-number">5.1</span> Cloud Platforms for Data Science</h2>
+<section id="cloud-platforms-for-data-science" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="cloud-platforms-for-data-science"><span class="header-section-number">10.1</span> Cloud Platforms for Data Science</h2>
 <p>As your projects grow in size and complexity, you may need more computing power than your local machine can provide. You may require secure, centralised storage solutions that scale seamlessly. Cloud platforms offer scalable resources and specialised tools for data science.</p>
-<section id="why-use-cloud-platforms" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="why-use-cloud-platforms"><span class="header-section-number">5.1.1</span> Why Use Cloud Platforms?</h3>
+<section id="why-use-cloud-platforms" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="why-use-cloud-platforms"><span class="header-section-number">10.1.1</span> Why Use Cloud Platforms?</h3>
 <p>Cloud platforms offer several advantages for data science:</p>
 <ol type="1">
 <li><strong>Scalability</strong>: Access to more storage and computing power when needed</li>
@@ -291,8 +368,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>The ability to scale compute resources is particularly valuable for data scientists working with large datasets or computationally intensive models. Rather than investing in expensive hardware that might sit idle most of the time, cloud platforms allow you to rent powerful machines when you need them and shut them down when you don’t.</p>
 </section>
-<section id="getting-started-with-google-colab" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="getting-started-with-google-colab"><span class="header-section-number">5.1.2</span> Getting Started with Google Colab</h3>
+<section id="getting-started-with-google-colab" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="getting-started-with-google-colab"><span class="header-section-number">10.1.2</span> Getting Started with Google Colab</h3>
 <p>Google Colab provides free access to Python notebooks with GPU and TPU acceleration. It’s an excellent way to get started with cloud-based data science without any financial commitment.</p>
 <ol type="1">
 <li>Visit <a href="https://colab.research.google.com/">Google Colab</a></li>
@@ -309,8 +386,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Integration with GitHub for loading and saving notebooks</li>
 </ul>
 </section>
-<section id="basic-cloud-storage-options" class="level3" data-number="5.1.3">
-<h3 data-number="5.1.3" class="anchored" data-anchor-id="basic-cloud-storage-options"><span class="header-section-number">5.1.3</span> Basic Cloud Storage Options</h3>
+<section id="basic-cloud-storage-options" class="level3" data-number="10.1.3">
+<h3 data-number="10.1.3" class="anchored" data-anchor-id="basic-cloud-storage-options"><span class="header-section-number">10.1.3</span> Basic Cloud Storage Options</h3>
 <p>Cloud storage services provide an easy way to store and share data:</p>
 <ol type="1">
 <li><strong>Google Drive</strong>: 15GB free storage, integrates well with Colab</li>
@@ -321,11 +398,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These services can be used to store datasets, notebooks, and results. They also facilitate collaboration, as you can easily share files with colleagues.</p>
 <p>For larger datasets or specialised needs, you’ll want to look at dedicated cloud storage solutions like Amazon S3, Google Cloud Storage, or Azure Blob Storage. These services are designed for scalability and can handle terabytes or even petabytes of data.</p>
 </section>
-<section id="comprehensive-cloud-platforms" class="level3" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="comprehensive-cloud-platforms"><span class="header-section-number">5.1.4</span> Comprehensive Cloud Platforms</h3>
+<section id="comprehensive-cloud-platforms" class="level3" data-number="10.1.4">
+<h3 data-number="10.1.4" class="anchored" data-anchor-id="comprehensive-cloud-platforms"><span class="header-section-number">10.1.4</span> Comprehensive Cloud Platforms</h3>
 <p>For more advanced needs, consider these major cloud platforms:</p>
-<section id="amazon-web-services-aws" class="level4" data-number="5.1.4.1">
-<h4 data-number="5.1.4.1" class="anchored" data-anchor-id="amazon-web-services-aws"><span class="header-section-number">5.1.4.1</span> Amazon Web Services (AWS)</h4>
+<section id="amazon-web-services-aws" class="level4" data-number="10.1.4.1">
+<h4 data-number="10.1.4.1" class="anchored" data-anchor-id="amazon-web-services-aws"><span class="header-section-number">10.1.4.1</span> Amazon Web Services (AWS)</h4>
 <p>AWS offers a comprehensive suite of data science tools:</p>
 <ul>
 <li><strong>SageMaker</strong>: Managed Jupyter notebooks with integrated ML tools</li>
@@ -336,8 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>AWS offers a free tier that includes limited access to many of these services, allowing you to experiment before committing financially.</p>
 </section>
-<section id="google-cloud-platform-gcp" class="level4" data-number="5.1.4.2">
-<h4 data-number="5.1.4.2" class="anchored" data-anchor-id="google-cloud-platform-gcp"><span class="header-section-number">5.1.4.2</span> Google Cloud Platform (GCP)</h4>
+<section id="google-cloud-platform-gcp" class="level4" data-number="10.1.4.2">
+<h4 data-number="10.1.4.2" class="anchored" data-anchor-id="google-cloud-platform-gcp"><span class="header-section-number">10.1.4.2</span> Google Cloud Platform (GCP)</h4>
 <p>GCP provides similar capabilities:</p>
 <ul>
 <li><strong>Vertex AI</strong>: End-to-end machine learning platform</li>
@@ -347,8 +424,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Dataproc</strong>: Managed Spark and Hadoop</li>
 </ul>
 </section>
-<section id="microsoft-azure" class="level4" data-number="5.1.4.3">
-<h4 data-number="5.1.4.3" class="anchored" data-anchor-id="microsoft-azure"><span class="header-section-number">5.1.4.3</span> Microsoft Azure</h4>
+<section id="microsoft-azure" class="level4" data-number="10.1.4.3">
+<h4 data-number="10.1.4.3" class="anchored" data-anchor-id="microsoft-azure"><span class="header-section-number">10.1.4.3</span> Microsoft Azure</h4>
 <p>Azure is particularly well-integrated with Microsoft’s other tools:</p>
 <ul>
 <li><strong>Azure Machine Learning</strong>: End-to-end ML platform</li>
@@ -360,8 +437,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Each platform has its strengths, and many organisations use multiple clouds for different purposes. AWS has the broadest range of services, GCP excels in machine learning tools, and Azure integrates well with Microsoft’s enterprise ecosystem.</p>
 </section>
 </section>
-<section id="choosing-the-right-cloud-services" class="level3" data-number="5.1.5">
-<h3 data-number="5.1.5" class="anchored" data-anchor-id="choosing-the-right-cloud-services"><span class="header-section-number">5.1.5</span> Choosing the Right Cloud Services</h3>
+<section id="choosing-the-right-cloud-services" class="level3" data-number="10.1.5">
+<h3 data-number="10.1.5" class="anchored" data-anchor-id="choosing-the-right-cloud-services"><span class="header-section-number">10.1.5</span> Choosing the Right Cloud Services</h3>
 <p>When selecting cloud services for data science, consider these factors:</p>
 <ol type="1">
 <li><strong>Project requirements</strong>: Match services to your specific needs</li>
@@ -373,14 +450,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>A strategic approach is to start with a small project on your chosen platform. This allows you to gain familiarity with the environment before committing to larger workloads.</p>
 </section>
-<section id="getting-started-with-a-cloud-platform" class="level3" data-number="5.1.6">
-<h3 data-number="5.1.6" class="anchored" data-anchor-id="getting-started-with-a-cloud-platform"><span class="header-section-number">5.1.6</span> Getting Started with a Cloud Platform</h3>
+<section id="getting-started-with-a-cloud-platform" class="level3" data-number="10.1.6">
+<h3 data-number="10.1.6" class="anchored" data-anchor-id="getting-started-with-a-cloud-platform"><span class="header-section-number">10.1.6</span> Getting Started with a Cloud Platform</h3>
 <p>Let’s create a basic starter project on AWS as an example:</p>
 <ol type="1">
 <li>Sign up for an <a href="https://aws.amazon.com/">AWS account</a></li>
 <li>Navigate to SageMaker AI → Studio in the AWS console</li>
 <li>Create a Studio domain (for personal use, pick “Quick setup”)</li>
-<li>Open Studio and launch a JupyterLab space, choosing a small instance type such as <code>ml.t3.medium</code> (covered by the SageMaker free tier for new accounts)</li>
+<li>Open Studio and launch a JupyterLab space, choosing a small instance type such as <code>ml.t3.medium</code>. Check what your account’s current free-tier terms cover before you start it — see the note on free tiers below</li>
 <li>Start the space, open JupyterLab, create a notebook, and start working</li>
 </ol>
 <p>This gives you a fully configured Jupyter environment with access to more computational resources than your local machine likely has. SageMaker comes pre-installed with popular data science libraries and integrates with other AWS services like S3 for storage.</p>
@@ -398,15 +475,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="managing-cloud-costs" class="level3" data-number="5.1.7">
-<h3 data-number="5.1.7" class="anchored" data-anchor-id="managing-cloud-costs"><span class="header-section-number">5.1.7</span> Managing Cloud Costs</h3>
+<section id="managing-cloud-costs" class="level3" data-number="10.1.7">
+<h3 data-number="10.1.7" class="anchored" data-anchor-id="managing-cloud-costs"><span class="header-section-number">10.1.7</span> Managing Cloud Costs</h3>
 <p>One of the most important aspects of using cloud platforms is managing costs effectively. A few traps catch almost every beginner:</p>
 <ul>
 <li><strong>Idle notebook and VM instances</strong>: Cloud notebooks bill by wall-clock time, not usage. An instance left running overnight can cost more than a whole week of active work.</li>
 <li><strong>Data egress</strong>: Moving data <em>out</em> of a cloud provider (to your laptop, to another region, to another cloud) is almost always charged. Moving it <em>in</em> is usually free. Pulling a 500 GB dataset to your machine “just to look at it” is a classic expensive mistake.</li>
 <li><strong>NAT gateways and load balancers</strong>: On AWS especially, these run 24/7 and bill by the hour even if nothing is using them. Delete them when the project ends.</li>
 <li><strong>Storage classes</strong>: Object storage has cheap long-term tiers (S3 Glacier, GCS Coldline, Azure Archive) for data you rarely read. Use them for raw archives.</li>
-<li><strong>Free tier expiry</strong>: Most “free tier” offers last 12 months from signup, after which the same resources begin charging at normal rates.</li>
+<li><strong>Free tier expiry</strong>: Free tiers end, and the terms change often enough that any specific figure printed in a book will be wrong before you read it. AWS restructured its offer in July 2025, replacing the old 12-month allowance with a credit-based plan for new accounts. Check the provider’s current terms before assuming anything is free, and don’t rely on a tutorial’s description of them.</li>
 </ul>
 <p>Practical habits that help:</p>
 <ol type="1">
@@ -423,10 +500,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Create a budget with monthly limits</li>
 <li>Set up email alerts at 50%, 80%, and 100% of your budget</li>
 </ol>
-<p>When working with cloud platforms, it’s important to remember to shut down resources when you’re not using them to avoid unnecessary charges. Most platforms provide cost management tools to help you monitor and control your spending.</p>
+<p>Do this before you launch anything, not after the first bill.</p>
 </section>
-<section id="security-best-practices-in-the-cloud" class="level3" data-number="5.1.8">
-<h3 data-number="5.1.8" class="anchored" data-anchor-id="security-best-practices-in-the-cloud"><span class="header-section-number">5.1.8</span> Security Best Practices in the Cloud</h3>
+<section id="security-best-practices-in-the-cloud" class="level3" data-number="10.1.8">
+<h3 data-number="10.1.8" class="anchored" data-anchor-id="security-best-practices-in-the-cloud"><span class="header-section-number">10.1.8</span> Security Best Practices in the Cloud</h3>
 <p>Data security is critical when working in cloud environments:</p>
 <ol type="1">
 <li><strong>Follow the principle of least privilege</strong>: Grant only the permissions necessary</li>
@@ -457,23 +534,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Remember that security is a shared responsibility between you and the cloud provider. The provider secures the infrastructure, but you’re responsible for securing your data and applications.</p>
 </section>
-<section id="hands-on-exercise-your-first-cloud-analysis-with-google-colab" class="level3" data-number="5.1.9">
-<h3 data-number="5.1.9" class="anchored" data-anchor-id="hands-on-exercise-your-first-cloud-analysis-with-google-colab"><span class="header-section-number">5.1.9</span> Hands-On Exercise: Your First Cloud Analysis with Google Colab</h3>
+<section id="hands-on-exercise-your-first-cloud-analysis-with-google-colab" class="level3" data-number="10.1.9">
+<h3 data-number="10.1.9" class="anchored" data-anchor-id="hands-on-exercise-your-first-cloud-analysis-with-google-colab"><span class="header-section-number">10.1.9</span> Hands-On Exercise: Your First Cloud Analysis with Google Colab</h3>
 <p>Let’s walk through a complete example of using Google Colab for a data science task. This exercise demonstrates the practical workflow of cloud-based analysis.</p>
-<section id="step-1-create-a-new-notebook" class="level4" data-number="5.1.9.1">
-<h4 data-number="5.1.9.1" class="anchored" data-anchor-id="step-1-create-a-new-notebook"><span class="header-section-number">5.1.9.1</span> Step 1: Create a New Notebook</h4>
+<section id="step-1-create-a-new-notebook" class="level4" data-number="10.1.9.1">
+<h4 data-number="10.1.9.1" class="anchored" data-anchor-id="step-1-create-a-new-notebook"><span class="header-section-number">10.1.9.1</span> Step 1: Create a New Notebook</h4>
 <ol type="1">
 <li>Go to <a href="https://colab.research.google.com/">colab.research.google.com</a></li>
 <li>Click “New Notebook”</li>
 <li>Rename it by clicking on “Untitled0.ipynb” at the top</li>
 </ol>
 </section>
-<section id="step-2-load-and-explore-data" class="level4" data-number="5.1.9.2">
-<h4 data-number="5.1.9.2" class="anchored" data-anchor-id="step-2-load-and-explore-data"><span class="header-section-number">5.1.9.2</span> Step 2: Load and Explore Data</h4>
+<section id="step-2-load-and-explore-data" class="level4" data-number="10.1.9.2">
+<h4 data-number="10.1.9.2" class="anchored" data-anchor-id="step-2-load-and-explore-data"><span class="header-section-number">10.1.9.2</span> Step 2: Load and Explore Data</h4>
 <p>In the first cell, load a dataset directly from a URL:</p>
-<div id="f9b7ffb1" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Show code</summary>
+<div id="528990b8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -487,22 +562,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Column types:</span><span class="ch">\n</span><span class="sc">{</span>df<span class="sc">.</span>dtypes<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">First few rows:"</span>)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
-<section id="step-3-perform-analysis" class="level4" data-number="5.1.9.3">
-<h4 data-number="5.1.9.3" class="anchored" data-anchor-id="step-3-perform-analysis"><span class="header-section-number">5.1.9.3</span> Step 3: Perform Analysis</h4>
+<section id="step-3-perform-analysis" class="level4" data-number="10.1.9.3">
+<h4 data-number="10.1.9.3" class="anchored" data-anchor-id="step-3-perform-analysis"><span class="header-section-number">10.1.9.3</span> Step 3: Perform Analysis</h4>
 <p>In subsequent cells, perform your analysis:</p>
-<div id="5ce90c23" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Show code</summary>
+<div id="f8d4cf21" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<div id="3acacf28" class="cell" data-execution_count="3">
-<details class="code-fold">
-<summary>Show code</summary>
+<div id="9a888097" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a visualisation</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>,</span>
@@ -513,11 +582,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">'upper left'</span>)</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
-<section id="step-4-enable-gpu-acceleration-optional" class="level4" data-number="5.1.9.4">
-<h4 data-number="5.1.9.4" class="anchored" data-anchor-id="step-4-enable-gpu-acceleration-optional"><span class="header-section-number">5.1.9.4</span> Step 4: Enable GPU Acceleration (Optional)</h4>
+<section id="step-4-enable-gpu-acceleration-optional" class="level4" data-number="10.1.9.4">
+<h4 data-number="10.1.9.4" class="anchored" data-anchor-id="step-4-enable-gpu-acceleration-optional"><span class="header-section-number">10.1.9.4</span> Step 4: Enable GPU Acceleration (Optional)</h4>
 <p>For machine learning tasks, you can enable GPU acceleration:</p>
 <ol type="1">
 <li>Go to Runtime → Change runtime type</li>
@@ -525,9 +593,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Click Save</li>
 </ol>
 <p>Then verify GPU availability:</p>
-<div id="2e7506bf" class="cell" data-execution_count="4">
-<details class="code-fold">
-<summary>Show code</summary>
+<div id="fc26bf6b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> torch.cuda.is_available():</span>
@@ -535,11 +601,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"GPU memory: </span><span class="sc">{</span>torch<span class="sc">.</span>cuda<span class="sc">.</span>get_device_properties(<span class="dv">0</span>)<span class="sc">.</span>total_memory <span class="op">/</span> <span class="fl">1e9</span><span class="sc">:.1f}</span><span class="ss"> GB"</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"No GPU available - using CPU"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 </section>
-<section id="step-5-save-your-work" class="level4" data-number="5.1.9.5">
-<h4 data-number="5.1.9.5" class="anchored" data-anchor-id="step-5-save-your-work"><span class="header-section-number">5.1.9.5</span> Step 5: Save Your Work</h4>
+<section id="step-5-save-your-work" class="level4" data-number="10.1.9.5">
+<h4 data-number="10.1.9.5" class="anchored" data-anchor-id="step-5-save-your-work"><span class="header-section-number">10.1.9.5</span> Step 5: Save Your Work</h4>
 <p>Colab notebooks are automatically saved to your Google Drive. You can also:</p>
 <ul>
 <li>Download the notebook: File → Download → Download .ipynb</li>
@@ -549,12 +614,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This exercise demonstrates the core workflow of cloud-based data science: loading data, performing analysis, creating visualisations, and optionally leveraging specialised hardware—all without installing anything on your local machine.</p>
 </section>
 </section>
-<section id="connecting-cloud-storage-to-your-analysis" class="level3" data-number="5.1.10">
-<h3 data-number="5.1.10" class="anchored" data-anchor-id="connecting-cloud-storage-to-your-analysis"><span class="header-section-number">5.1.10</span> Connecting Cloud Storage to Your Analysis</h3>
+<section id="connecting-cloud-storage-to-your-analysis" class="level3" data-number="10.1.10">
+<h3 data-number="10.1.10" class="anchored" data-anchor-id="connecting-cloud-storage-to-your-analysis"><span class="header-section-number">10.1.10</span> Connecting Cloud Storage to Your Analysis</h3>
 <p>When working with larger datasets, you’ll want to connect cloud storage to your notebooks. Here’s how to mount Google Drive in Colab:</p>
-<div id="27a0bb81" class="cell" data-execution_count="5">
-<details class="code-fold">
-<summary>Show code</summary>
+<div id="accb85ab" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mount Google Drive</span></span>
@@ -563,12 +626,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Now you can access files in your Drive</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'/content/drive/MyDrive/data/my_dataset.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>For AWS S3 from a Colab notebook, use the boto3 library with credentials supplied through Colab’s secret manager rather than typing them into cells:</p>
-<div id="e10be22b" class="cell" data-execution_count="6">
-<details class="code-fold">
-<summary>Show code</summary>
+<div id="9533f03b" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In Colab: click the 🔑 key icon in the left sidebar and add two secrets</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># named AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Then:</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -580,18 +640,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> boto3.client(<span class="st">"s3"</span>, region_name<span class="op">=</span><span class="st">"us-east-1"</span>)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>s3.download_file(<span class="st">"your-bucket"</span>, <span class="st">"data.csv"</span>, <span class="st">"data.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p><strong>Never paste access keys directly into notebook cells or commit them to a repository.</strong> Anything written in a cell gets saved to the <code>.ipynb</code> file and is trivially recoverable. Use Colab secrets, environment variables, or (better) IAM roles for service-to-service access.</p>
 <p>If a key does leak, rotate it in the AWS console immediately. Don’t try to scrub the notebook history.</p>
 <p>These patterns allow you to work with data stored in various cloud locations while leveraging the computational resources of your cloud notebook environment.</p>
 </section>
 </section>
-<section id="conclusion" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.2</span> Conclusion</h2>
-<p>Cloud platforms provide powerful resources for data science, allowing you to scale beyond the limitations of your local machine. Whether you’re using free services like Google Colab or comprehensive platforms like AWS, GCP, or Azure, the cloud offers flexibility, scalability, and specialised tools that can significantly enhance your data science capabilities.</p>
-<p>As you grow more comfortable with cloud services, you can explore more advanced features like automated machine learning pipelines, distributed computing, and real-time data processing. The cloud is continuously evolving, with new services and features being added regularly to support data science workflows.</p>
-<p>In the upcoming chapters, we’ll explore how to deploy your data science projects to make them accessible to others (Deployment chapter) and how to use containerisation with Docker to ensure your environments are reproducible across local and cloud platforms (Containerisation chapter).</p>
+<section id="conclusion" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">10.2</span> Conclusion</h2>
+<p>The cloud buys you three things your laptop can’t give you: hardware you don’t own, storage that doesn’t live on one disk, and a machine that keeps running when you close the lid.</p>
+<p><strong>By the end of this chapter you should have:</strong></p>
+<ul>
+<li>A notebook running in Google Colab, with a GPU attached at least once so you’ve seen how to request one</li>
+<li>Data read into that notebook from cloud storage rather than uploaded by hand</li>
+<li>A billing alert configured on any paid account you opened</li>
+<li>Credentials read from a secrets store or environment variable — never typed into a notebook cell</li>
+</ul>
+<p>The next chapter, <a href="../chapters/web_dev.html">Web Development for Data Scientists</a>, covers building the applications and dashboards you might eventually host on these platforms. <a href="../chapters/containers.html">Containerisation</a> and <a href="../chapters/deployment.html">Deploying Data Science Projects</a> then cover packaging them and getting them online.</p>
 
 
 </section>
@@ -1005,12 +1070,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/visualisation.html" class="pagination-link" aria-label="Data Visualisation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/web_dev.html" class="pagination-link" aria-label="Web Development for Data Scientists">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

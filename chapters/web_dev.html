@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Web Development for Data Scientists – Ready Before Run()</title>
+<title>11&nbsp; Web Development for Data Scientists – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -68,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/deployment.html" rel="next">
+<link href="../chapters/containers.html" rel="next">
 <link href="../chapters/cloud.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d1ce83cbcf7f21d8208077a0fee83aa1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -121,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/web_dev.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/web_dev.html">Shipping Your Work</a></li><li class="breadcrumb-item"><a href="../chapters/web_dev.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,75 +161,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting Up for Success: Infrastructure for the Modern Data Scientist</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/command_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Command Line</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Communicating Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/reporting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Shipping Your Work</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/containers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/workflows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -237,23 +314,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#web-development-fundamentals-for-data-scientists" id="toc-web-development-fundamentals-for-data-scientists" class="nav-link active" data-scroll-target="#web-development-fundamentals-for-data-scientists"><span class="header-section-number">6.1</span> Web Development Fundamentals for Data Scientists</a>
+  <li><a href="#web-development-fundamentals-for-data-scientists" id="toc-web-development-fundamentals-for-data-scientists" class="nav-link active" data-scroll-target="#web-development-fundamentals-for-data-scientists"><span class="header-section-number">11.1</span> Web Development Fundamentals for Data Scientists</a>
   <ul class="collapse">
-  <li><a href="#why-web-development-for-data-scientists" id="toc-why-web-development-for-data-scientists" class="nav-link" data-scroll-target="#why-web-development-for-data-scientists"><span class="header-section-number">6.1.1</span> Why Web Development for Data Scientists?</a></li>
-  <li><a href="#html-css-and-javascript-basics" id="toc-html-css-and-javascript-basics" class="nav-link" data-scroll-target="#html-css-and-javascript-basics"><span class="header-section-number">6.1.2</span> HTML, CSS, and JavaScript Basics</a></li>
-  <li><a href="#interactive-dashboards-and-web-frameworks" id="toc-interactive-dashboards-and-web-frameworks" class="nav-link" data-scroll-target="#interactive-dashboards-and-web-frameworks"><span class="header-section-number">6.1.3</span> Interactive Dashboards and Web Frameworks</a></li>
-  <li><a href="#deploying-web-applications" id="toc-deploying-web-applications" class="nav-link" data-scroll-target="#deploying-web-applications"><span class="header-section-number">6.1.4</span> Deploying Web Applications</a></li>
+  <li><a href="#why-web-development-for-data-scientists" id="toc-why-web-development-for-data-scientists" class="nav-link" data-scroll-target="#why-web-development-for-data-scientists"><span class="header-section-number">11.1.1</span> Why Web Development for Data Scientists?</a></li>
+  <li><a href="#html-css-and-javascript-basics" id="toc-html-css-and-javascript-basics" class="nav-link" data-scroll-target="#html-css-and-javascript-basics"><span class="header-section-number">11.1.2</span> HTML, CSS, and JavaScript Basics</a></li>
+  <li><a href="#interactive-dashboards-and-web-frameworks" id="toc-interactive-dashboards-and-web-frameworks" class="nav-link" data-scroll-target="#interactive-dashboards-and-web-frameworks"><span class="header-section-number">11.1.3</span> Interactive Dashboards and Web Frameworks</a></li>
+  <li><a href="#deploying-web-applications" id="toc-deploying-web-applications" class="nav-link" data-scroll-target="#deploying-web-applications"><span class="header-section-number">11.1.4</span> Deploying Web Applications</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6.2</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">11.2</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/web_dev.html">Shipping Your Work</a></li><li class="breadcrumb-item"><a href="../chapters/web_dev.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></h1>
 </div>
 
 
@@ -270,23 +347,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="web-development-fundamentals-for-data-scientists" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="web-development-fundamentals-for-data-scientists"><span class="header-section-number">6.1</span> Web Development Fundamentals for Data Scientists</h2>
-<p>As a data scientist, you’ll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. The deployment tools discussed earlier (such as Shiny or Quarto) are largely wrappers for lower-level web technologies like HTML and CSS. These tools handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? This becomes possible with a basic understanding of web development.</p>
-<section id="why-web-development-for-data-scientists" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="why-web-development-for-data-scientists"><span class="header-section-number">6.1.1</span> Why Web Development for Data Scientists?</h3>
+<section id="web-development-fundamentals-for-data-scientists" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="web-development-fundamentals-for-data-scientists"><span class="header-section-number">11.1</span> Web Development Fundamentals for Data Scientists</h2>
+<p>As a data scientist, you’ll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. Quarto (covered in the <a href="../chapters/reporting.html">Documentation and Reporting</a> chapter) and the dashboard frameworks in this chapter are all wrappers around the same lower-level web technologies: HTML, CSS, and JavaScript. They handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? That becomes possible with a basic understanding of web development.</p>
+<section id="why-web-development-for-data-scientists" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="why-web-development-for-data-scientists"><span class="header-section-number">11.1.1</span> Why Web Development for Data Scientists?</h3>
 <p>Web development skills are increasingly important for data scientists because:</p>
 <ol type="1">
 <li><strong>Sharing Results</strong>: Web interfaces make your analysis accessible to non-technical stakeholders</li>
 <li><strong>Interactive Visualisations</strong>: Web technologies enable rich, interactive data exploration</li>
 <li><strong>Model Deployment</strong>: Web APIs allow your models to be integrated into larger systems</li>
 <li><strong>Data Collection</strong>: Web applications can facilitate data gathering and annotation</li>
-<li><strong>Professional Completeness</strong>: Being able to deploy your analysis closes the loop in being able to deliver a complete end-to-end solution.</li>
+<li><strong>Independence</strong>: You can deliver an end-to-end solution without waiting on an engineering team</li>
 </ol>
-<p>Web development skills become increasingly valuable as you advance in your data science career, particularly when you need to deliver complete end-to-end solutions.</p>
 </section>
-<section id="html-css-and-javascript-basics" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="html-css-and-javascript-basics"><span class="header-section-number">6.1.2</span> HTML, CSS, and JavaScript Basics</h3>
+<section id="html-css-and-javascript-basics" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="html-css-and-javascript-basics"><span class="header-section-number">11.1.2</span> HTML, CSS, and JavaScript Basics</h3>
 <p>These three technologies form the foundation of web development:</p>
 <ul>
 <li><strong>HTML</strong>: Structures the content of web pages</li>
@@ -424,8 +500,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualisation library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart. I would stress that, as a data scientist, you do not need to be able to write the above web page from scratch. Rather, become familiar with the structure and language. That way, when you’re presented with raw output, you can find the things that are useful for you and be able to make changes effectively.</p>
 </section>
-<section id="interactive-dashboards-and-web-frameworks" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="interactive-dashboards-and-web-frameworks"><span class="header-section-number">6.1.3</span> Interactive Dashboards and Web Frameworks</h3>
+<section id="interactive-dashboards-and-web-frameworks" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="interactive-dashboards-and-web-frameworks"><span class="header-section-number">11.1.3</span> Interactive Dashboards and Web Frameworks</h3>
 <p>Most data scientists don’t build web apps from raw HTML/CSS/JavaScript. They use a framework that wraps the web machinery and lets them stay in Python or R. There are four tools worth knowing, each optimised for a different situation:</p>
 <ul>
 <li><strong>Shiny</strong> (R, also available for Python): reactive dashboards, strongest when you live in R and need server-side reactivity</li>
@@ -435,15 +511,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>If your problem is “give stakeholders a dashboard where they can filter this chart,” pick Shiny, Dash, or Streamlit. If it’s “expose this trained model as a JSON endpoint that another service can call,” Flask or FastAPI is the right level. We cover all four below.</p>
 <p>The examples in this section reference placeholder files like <code>sales_data.csv</code>. These aren’t shipped with the book; substitute your own file, a built-in dataset (<code>ggplot2::diamonds</code>, <code>sns.load_dataset("tips")</code>, or similar), or a stable public CSV. The framework mechanics don’t depend on which data you use.</p>
-<section id="shiny-interactive-web-applications-with-r" class="level4" data-number="6.1.3.1">
-<h4 data-number="6.1.3.1" class="anchored" data-anchor-id="shiny-interactive-web-applications-with-r"><span class="header-section-number">6.1.3.1</span> Shiny: Interactive Web Applications with R</h4>
+<section id="shiny-interactive-web-applications-with-r" class="level4" data-number="11.1.3.1">
+<h4 data-number="11.1.3.1" class="anchored" data-anchor-id="shiny-interactive-web-applications-with-r"><span class="header-section-number">11.1.3.1</span> Shiny: Interactive Web Applications with R</h4>
 <p>Shiny allows you to build interactive web applications entirely in R, without requiring knowledge of HTML, CSS, or JavaScript.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Shiny if needed</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"shiny"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>A simple Shiny app consists of two components:</p>
 <ol type="1">
@@ -452,8 +525,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Here’s a basic example:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
@@ -526,25 +597,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application</span></span>
 <span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>What makes Shiny powerful is its reactivity system, which automatically updates outputs when inputs change. You specify <em>relationships</em> between inputs and outputs, and the framework figures out what to recompute when something changes. It’s similar to how a spreadsheet automatically recalculates formulas when a cell’s value changes: you don’t write “when the dropdown changes, rerun the plot”, you say “the plot depends on the filtered data, which depends on the dropdown”, and Shiny does the rest.</p>
 <p>Shiny is also now available for Python via <a href="https://shiny.posit.co/py/">Shiny for Python</a>, which offers the same reactive model with Python syntax. A useful option if you like the Shiny mental model but your team uses Python.</p>
 </section>
-<section id="dash-interactive-web-applications-with-python" class="level4" data-number="6.1.3.2">
-<h4 data-number="6.1.3.2" class="anchored" data-anchor-id="dash-interactive-web-applications-with-python"><span class="header-section-number">6.1.3.2</span> Dash: Interactive Web Applications with Python</h4>
+<section id="dash-interactive-web-applications-with-python" class="level4" data-number="11.1.3.2">
+<h4 data-number="11.1.3.2" class="anchored" data-anchor-id="dash-interactive-web-applications-with-python"><span class="header-section-number">11.1.3.2</span> Dash: Interactive Web Applications with Python</h4>
 <p>Dash is Python’s equivalent to Shiny, created by the makers of Plotly:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Dash</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pip install dash dash<span class="op">-</span>bootstrap<span class="op">-</span>components</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Dash</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install dash dash-bootstrap-components</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A simple Dash app follows a similar structure to Shiny:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> dash</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash <span class="im">import</span> dcc, html, dash_table</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dash.dependencies <span class="im">import</span> Input, Output</span>
@@ -646,17 +709,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
 <span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># debug=True must NEVER be used in production.</span></span>
 <span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>Dash uses Plotly for visualisations and React.js for the UI, resulting in modern, responsive applications without requiring front-end experience.</p>
 <p>Unlike Shiny’s reactive programming model, Dash uses an explicit callback-based approach. You define functions that take specific inputs and produce specific outputs, with the Dash framework wiring them together. This approach may feel more familiar to Python programmers used to callback-based frameworks.</p>
 </section>
-<section id="streamlit-rapid-application-development" class="level4" data-number="6.1.3.3">
-<h4 data-number="6.1.3.3" class="anchored" data-anchor-id="streamlit-rapid-application-development"><span class="header-section-number">6.1.3.3</span> Streamlit: Rapid Application Development</h4>
+<section id="streamlit-rapid-application-development" class="level4" data-number="11.1.3.3">
+<h4 data-number="11.1.3.3" class="anchored" data-anchor-id="streamlit-rapid-application-development"><span class="header-section-number">11.1.3.3</span> Streamlit: Rapid Application Development</h4>
 <p>Streamlit simplifies interactive app creation even further with a minimal, straightforward API. Here’s a simple Streamlit app:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> streamlit <span class="im">as</span> st</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
@@ -708,51 +768,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> tab3:</span>
 <span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    st.subheader(<span class="st">"Statistical Summary"</span>)</span>
 <span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    st.dataframe(df.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-<p>Streamlit’s appeal lies in its simplicity. Instead of defining callbacks between inputs and outputs (as in Dash and Shiny), the entire script runs from top to bottom whenever any input changes. You write a straightforward Python script that builds the UI linearly, and Streamlit reruns it on every interaction. This procedural approach is very intuitive for beginners and allows for rapid prototyping, though it can become less efficient for complex applications where you don’t want to recompute everything on every keystroke.</p>
+<p>Streamlit’s appeal lies in its simplicity. Instead of defining callbacks between inputs and outputs (as in Dash and Shiny), the entire script runs from top to bottom whenever any input changes. You write a straightforward Python script that builds the UI linearly, and Streamlit reruns it on every interaction. This procedural approach suits beginners and rapid prototyping, though it becomes less efficient for complex applications where you don’t want to recompute everything on every keystroke.</p>
 </section>
-<section id="flask-a-lightweight-framework-for-custom-backends" class="level4" data-number="6.1.3.4">
-<h4 data-number="6.1.3.4" class="anchored" data-anchor-id="flask-a-lightweight-framework-for-custom-backends"><span class="header-section-number">6.1.3.4</span> Flask: A Lightweight Framework for Custom Backends</h4>
+<section id="flask-a-lightweight-framework-for-custom-backends" class="level4" data-number="11.1.3.4">
+<h4 data-number="11.1.3.4" class="anchored" data-anchor-id="flask-a-lightweight-framework-for-custom-backends"><span class="header-section-number">11.1.3.4</span> Flask: A Lightweight Framework for Custom Backends</h4>
 <p>Shiny, Dash, and Streamlit are great for dashboards, but sometimes you need a plain web endpoint: for example, exposing a trained model as a JSON API that other applications can call, or serving a custom HTML page that mixes pandas-generated content with JavaScript on the front end. Flask is the most common lightweight choice for that role. (<a href="https://fastapi.tiangolo.com/">FastAPI</a> is a modern alternative with built-in data validation via Pydantic and automatic OpenAPI documentation; worth considering for any new API project in 2026.)</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, render_template</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> flask <span class="im">import</span> Flask, jsonify</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/'</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> index():</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load and process data</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(<span class="st">'sales_data.csv'</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert data to JSON for JavaScript</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    chart_data <span class="op">=</span> {</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'labels'</span>: df[<span class="st">'quarter'</span>].tolist(),</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">'datasets'</span>: [</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>            {</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">'label'</span>: <span class="st">'Product A'</span>,</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">'data'</span>: df[<span class="st">'product_a'</span>].tolist(),</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">'backgroundColor'</span>: <span class="st">'rgba(54, 162, 235, 0.2)'</span>,</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">'borderColor'</span>: <span class="st">'rgba(54, 162, 235, 1)'</span>,</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                <span class="st">'borderWidth'</span>: <span class="dv">1</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>            },</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Other products...</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        ]</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> render_template(<span class="st">'index.html'</span>, chart_data<span class="op">=</span>json.dumps(chart_data))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>app <span class="op">=</span> Flask(<span class="va">__name__</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="at">@app.route</span>(<span class="st">'/api/sales'</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sales():</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Load and process data</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(<span class="st">'sales_data.csv'</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Shape the data the way Chart.js expects it</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    chart_data <span class="op">=</span> {</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">'labels'</span>: df[<span class="st">'quarter'</span>].tolist(),</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">'datasets'</span>: [</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>            {</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">'label'</span>: <span class="st">'Product A'</span>,</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">'data'</span>: df[<span class="st">'product_a'</span>].tolist(),</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">'backgroundColor'</span>: <span class="st">'rgba(54, 162, 235, 0.2)'</span>,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">'borderColor'</span>: <span class="st">'rgba(54, 162, 235, 1)'</span>,</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">'borderWidth'</span>: <span class="dv">1</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>            },</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Other products...</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># jsonify sets the Content-Type header and serialises for you</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> jsonify(chart_data)</span>
 <span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">'__main__'</span>:</span>
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Only enable debug mode when a FLASK_DEBUG env var is set.</span></span>
 <span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Never run with debug=True in production: it exposes an</span></span>
 <span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># interactive Python console to anyone who can reach the app.</span></span>
 <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    app.run(debug<span class="op">=</span>os.environ.get(<span class="st">"FLASK_DEBUG"</span>) <span class="op">==</span> <span class="st">"1"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run this and <code>http://127.0.0.1:5000/api/sales</code> returns JSON that the Chart.js page from earlier in this chapter can fetch, instead of having its numbers hardcoded.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Serving HTML from Flask
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To return a full page rather than JSON, Flask uses <code>render_template('index.html')</code>. That call has one requirement people trip over constantly: the file must live in a directory named <code>templates/</code> next to your Python file. Flask looks nowhere else, and the error when it can’t find the file (<code>TemplateNotFound</code>) doesn’t say so.</p>
+<pre class="text"><code>my_app/
+├── app.py
+└── templates/
+    └── index.html</code></pre>
+</div>
+</div>
 <p>Flask is well-suited for data scientists because it lets you use your Python data-processing code alongside a web server with very little overhead. The deployment chapter shows a full Flask-based ML model API example.</p>
 </section>
-<section id="which-one-should-you-pick" class="level4" data-number="6.1.3.5">
-<h4 data-number="6.1.3.5" class="anchored" data-anchor-id="which-one-should-you-pick"><span class="header-section-number">6.1.3.5</span> Which one should you pick?</h4>
+<section id="which-one-should-you-pick" class="level4" data-number="11.1.3.5">
+<h4 data-number="11.1.3.5" class="anchored" data-anchor-id="which-one-should-you-pick"><span class="header-section-number">11.1.3.5</span> Which one should you pick?</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -790,10 +867,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Don’t get paralysed by the choice. Any of the first three will produce a working dashboard in an afternoon; the right answer is usually “whichever one your team already uses.”</p>
 </section>
 </section>
-<section id="deploying-web-applications" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="deploying-web-applications"><span class="header-section-number">6.1.4</span> Deploying Web Applications</h3>
-<p>Once you’ve built your application, you’ll need to deploy it for others to access. Rather than duplicating the material here, the next chapter (Deploying Data Science Projects) walks through full deployment workflows for Flask, Dash, and Shiny applications on modern platforms like Render, Google Cloud Run, Posit Connect Cloud, and shinyapps.io.</p>
-<p>The short version: Flask apps are typically deployed by containerising them with Docker and pushing the image to a platform-as-a-service provider; Shiny apps are most easily deployed via shinyapps.io or Posit Connect Cloud directly from RStudio. The best choice depends on your specific needs, including factors like:</p>
+<section id="deploying-web-applications" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="deploying-web-applications"><span class="header-section-number">11.1.4</span> Deploying Web Applications</h3>
+<p>Once you’ve built your application, you’ll need to deploy it for others to access. Rather than duplicating the material here, <a href="../chapters/deployment.html">Deploying Data Science Projects</a> walks through full deployment workflows for Flask, Dash, and Shiny applications on Render, Google Cloud Run, and Posit Connect Cloud.</p>
+<p>The short version: Flask apps are typically deployed by containerising them with Docker and pushing the image to a platform-as-a-service provider; Shiny apps are most easily deployed to Posit Connect Cloud, either from a linked GitHub repository or straight from RStudio. The best choice depends on your specific needs, including factors like:</p>
 <ul>
 <li>Expected traffic volume</li>
 <li>Security requirements</li>
@@ -803,10 +880,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="conclusion" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6.2</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">11.2</span> Conclusion</h2>
 <p>Web development skills complement your data science toolkit by enabling you to share your work more effectively. A light understanding of HTML, CSS, and JavaScript lets you customise reports and debug rendering issues. The frameworks in this chapter (Shiny, Dash, Streamlit, and Flask) abstract away most of the rest so you can focus on the analysis rather than the plumbing.</p>
-<p>The ability to put an interactive application in front of a stakeholder is what turns a clever notebook into something the business actually uses. In the next chapter, we’ll explore deployment in more depth, covering various platforms and strategies for making your applications accessible to stakeholders.</p>
+<p>The ability to put an interactive application in front of a stakeholder is what turns a clever notebook into something the business actually uses. The next chapter covers containers — the packaging step that makes deploying any of these applications predictable — followed by deployment itself.</p>
 
 
 </section>
@@ -1220,12 +1297,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/cloud.html" class="pagination-link" aria-label="Cloud Computing for Data Science">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/deployment.html" class="pagination-link" aria-label="Deploying Data Science Projects">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/containers.html" class="pagination-link" aria-label="Containerisation">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerisation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

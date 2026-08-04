@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; References and Resources – Ready Before Run()</title>
+<title>6&nbsp; Reproducible Environments – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -36,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/utility_tools.html" rel="next">
-<link href="../chapters/summary.html" rel="prev">
+<link href="../chapters/ide_git.html" rel="next">
+<link href="../chapters/data_stores.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -89,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/references.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/environments.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
   </div>
 </li>
@@ -242,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
   </div>
 </li>
@@ -279,28 +314,32 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#resources-for-further-learning" id="toc-resources-for-further-learning" class="nav-link active" data-scroll-target="#resources-for-further-learning"><span class="header-section-number">16.1</span> Resources for Further Learning</a>
+  <li><a href="#the-problem-this-solves" id="toc-the-problem-this-solves" class="nav-link active" data-scroll-target="#the-problem-this-solves"><span class="header-section-number">6.1</span> The Problem This Solves</a></li>
+  <li><a href="#the-two-halves" id="toc-the-two-halves" class="nav-link" data-scroll-target="#the-two-halves"><span class="header-section-number">6.2</span> The Two Halves</a></li>
+  <li><a href="#choosing-a-tool" id="toc-choosing-a-tool" class="nav-link" data-scroll-target="#choosing-a-tool"><span class="header-section-number">6.3</span> Choosing a Tool</a></li>
+  <li><a href="#python-uv" id="toc-python-uv" class="nav-link" data-scroll-target="#python-uv"><span class="header-section-number">6.4</span> Python: uv</a>
   <ul class="collapse">
-  <li><a href="#python-for-data-science" id="toc-python-for-data-science" class="nav-link" data-scroll-target="#python-for-data-science"><span class="header-section-number">16.1.1</span> Python for Data Science</a></li>
-  <li><a href="#r-for-data-science" id="toc-r-for-data-science" class="nav-link" data-scroll-target="#r-for-data-science"><span class="header-section-number">16.1.2</span> R for Data Science</a></li>
-  <li><a href="#sql-and-databases" id="toc-sql-and-databases" class="nav-link" data-scroll-target="#sql-and-databases"><span class="header-section-number">16.1.3</span> SQL and Databases</a></li>
-  <li><a href="#version-control-and-collaboration" id="toc-version-control-and-collaboration" class="nav-link" data-scroll-target="#version-control-and-collaboration"><span class="header-section-number">16.1.4</span> Version Control and Collaboration</a></li>
-  <li><a href="#data-visualisation" id="toc-data-visualisation" class="nav-link" data-scroll-target="#data-visualisation"><span class="header-section-number">16.1.5</span> Data Visualisation</a></li>
-  <li><a href="#cloud-computing-and-devops" id="toc-cloud-computing-and-devops" class="nav-link" data-scroll-target="#cloud-computing-and-devops"><span class="header-section-number">16.1.6</span> Cloud Computing and DevOps</a></li>
-  <li><a href="#workflow-testing-and-reproducibility" id="toc-workflow-testing-and-reproducibility" class="nav-link" data-scroll-target="#workflow-testing-and-reproducibility"><span class="header-section-number">16.1.7</span> Workflow, Testing, and Reproducibility</a></li>
-  <li><a href="#online-learning-platforms" id="toc-online-learning-platforms" class="nav-link" data-scroll-target="#online-learning-platforms"><span class="header-section-number">16.1.8</span> Online Learning Platforms</a></li>
-  <li><a href="#communities-and-forums" id="toc-communities-and-forums" class="nav-link" data-scroll-target="#communities-and-forums"><span class="header-section-number">16.1.9</span> Communities and Forums</a></li>
+  <li><a href="#recording-it" id="toc-recording-it" class="nav-link" data-scroll-target="#recording-it"><span class="header-section-number">6.4.1</span> Recording it</a></li>
   </ul></li>
-  <li><a href="#image-credits" id="toc-image-credits" class="nav-link" data-scroll-target="#image-credits"><span class="header-section-number">16.2</span> Image Credits</a></li>
+  <li><a href="#python-conda" id="toc-python-conda" class="nav-link" data-scroll-target="#python-conda"><span class="header-section-number">6.5</span> Python: conda</a>
+  <ul class="collapse">
+  <li><a href="#recording-it-1" id="toc-recording-it-1" class="nav-link" data-scroll-target="#recording-it-1"><span class="header-section-number">6.5.1</span> Recording it</a></li>
+  </ul></li>
+  <li><a href="#r-renv" id="toc-r-renv" class="nav-link" data-scroll-target="#r-renv"><span class="header-section-number">6.6</span> R: renv</a></li>
+  <li><a href="#lockfiles-vs-loose-requirements" id="toc-lockfiles-vs-loose-requirements" class="nav-link" data-scroll-target="#lockfiles-vs-loose-requirements"><span class="header-section-number">6.7</span> Lockfiles vs Loose Requirements</a></li>
+  <li><a href="#what-goes-in-git" id="toc-what-goes-in-git" class="nav-link" data-scroll-target="#what-goes-in-git"><span class="header-section-number">6.8</span> What Goes in Git</a></li>
+  <li><a href="#making-it-a-habit" id="toc-making-it-a-habit" class="nav-link" data-scroll-target="#making-it-a-habit"><span class="header-section-number">6.9</span> Making It a Habit</a></li>
+  <li><a href="#environments-and-containers" id="toc-environments-and-containers" class="nav-link" data-scroll-target="#environments-and-containers"><span class="header-section-number">6.10</span> Environments and Containers</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6.11</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/environments.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></h1>
 </div>
 
 
@@ -317,104 +356,217 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="resources-for-further-learning" class="level2" data-number="16.1">
-<h2 data-number="16.1" class="anchored" data-anchor-id="resources-for-further-learning"><span class="header-section-number">16.1</span> Resources for Further Learning</h2>
-<p>To deepen your understanding of data science concepts and tools, here are some excellent resources that build upon the infrastructure we’ve set up in this book:</p>
-<section id="python-for-data-science" class="level3" data-number="16.1.1">
-<h3 data-number="16.1.1" class="anchored" data-anchor-id="python-for-data-science"><span class="header-section-number">16.1.1</span> Python for Data Science</h3>
+<section id="the-problem-this-solves" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="the-problem-this-solves"><span class="header-section-number">6.1</span> The Problem This Solves</h2>
+<p>Six months after you finish a piece of analysis, someone asks you to rerun it. You clone your own repository, run the script, and it fails — a function that used to take three arguments now takes four, or a package you relied on has been renamed, or your machine has a newer Python than the one you wrote it on.</p>
+<p>The same problem in its more embarrassing form: you send a colleague your code and it doesn’t run on their machine. Neither of you can tell why, because neither of you can see what’s different.</p>
+<p>The cause in both cases is that your analysis had dependencies you never wrote down. The code was in Git. The <em>environment the code needed</em> was in your head, or nowhere.</p>
+<p>An environment is the complete set of software your analysis depends on: the language version, every package, and every version of every package. Making that reproducible is the single highest-return habit in this book, and unlike most of the material here it is genuinely quick to learn.</p>
+</section>
+<section id="the-two-halves" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="the-two-halves"><span class="header-section-number">6.2</span> The Two Halves</h2>
+<p>Two things need to happen, and it’s worth separating them because different tools handle each:</p>
 <ol type="1">
-<li><p><strong><a href="https://wesmckinney.com/book/">Python for Data Analysis, 3rd edition</a></strong> by Wes McKinney pandas from its author. The third edition is free to read online and covers pandas 2.x; earlier editions predate several API changes.</p></li>
-<li><p><strong><a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook</a></strong> by Jake VanderPlas Covers NumPy, pandas, matplotlib, and scikit-learn end to end. Free online.</p></li>
-<li><p><strong><a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/">Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd edition</a></strong> by Aurélien Géron Implementation-focused, with worked examples throughout.</p></li>
-<li><p><strong><a href="https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/">Fluent Python, 2nd edition</a></strong> by Luciano Ramalho For the Python language itself rather than the data stack. The 2nd edition covers type hints and async, both absent from the 1st.</p></li>
+<li><strong>Isolation</strong> — each project gets its own set of packages, so installing something for project A can’t break project B.</li>
+<li><strong>Recording</strong> — the exact contents of that set are written to a file, committed alongside the code, and can be reconstructed later or elsewhere.</li>
 </ol>
+<p>Isolation without recording protects you from yourself today but not from time. Recording without isolation produces a file describing a mess. You want both.</p>
 </section>
-<section id="r-for-data-science" class="level3" data-number="16.1.2">
-<h3 data-number="16.1.2" class="anchored" data-anchor-id="r-for-data-science"><span class="header-section-number">16.1.2</span> R for Data Science</h3>
-<ol type="1">
-<li><p><strong><a href="https://r4ds.hadley.nz/">R for Data Science, 2nd edition</a></strong> by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund The standard introduction to the tidyverse. Free online. Note the domain: the 1st edition still lives at <code>r4ds.had.co.nz</code> and is what most search results point to.</p></li>
-<li><p><strong><a href="https://adv-r.hadley.nz/">Advanced R</a></strong> by Hadley Wickham<br>
-For those wanting to understand R at a deeper level and write more efficient code.</p></li>
-<li><p><strong><a href="https://www.bigbookofr.com/">The Big Book of R</a></strong> by Oscar Baruffa<br>
-A curated collection of free R resources across various domains and specialties.</p></li>
-<li><p><strong><a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a></strong> by Hadley Wickham The reference for ggplot2, from its author. Free online.</p></li>
-</ol>
+<section id="choosing-a-tool" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="choosing-a-tool"><span class="header-section-number">6.3</span> Choosing a Tool</h2>
+<p>There are four in common use for Python and one for R. The choice matters less than actually using one, but here is how they differ.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Best when</th>
+<th>Records to</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>venv</strong></td>
+<td>You want the standard library answer with nothing to install</td>
+<td><code>requirements.txt</code></td>
+</tr>
+<tr class="even">
+<td><strong>uv</strong></td>
+<td>Default choice for new Python projects — same model as venv, dramatically faster, manages Python versions too</td>
+<td><code>requirements.txt</code> or <code>uv.lock</code></td>
+</tr>
+<tr class="odd">
+<td><strong>conda / Miniforge</strong></td>
+<td>You need packages with heavy compiled components — GDAL, CUDA-enabled PyTorch, many bioinformatics tools</td>
+<td><code>environment.yml</code></td>
+</tr>
+<tr class="even">
+<td><strong>pixi</strong></td>
+<td>You want conda’s package coverage with a lockfile and a modern CLI</td>
+<td><code>pixi.lock</code></td>
+</tr>
+<tr class="odd">
+<td><strong>renv</strong></td>
+<td>R, always</td>
+<td><code>renv.lock</code></td>
+</tr>
+</tbody>
+</table>
+<p>For a new Python project with ordinary data science dependencies, <strong>use uv</strong>. For anything that needs the conda ecosystem’s compiled packages, use Miniforge. For R, renv is the only real answer and it’s a good one.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why Miniforge rather than Anaconda
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both give you conda. Anaconda’s Terms of Service restrict free use in organisations above a headcount threshold, which has caught out a number of companies who assumed it was free because the download was. Miniforge is community-maintained, defaults to the conda-forge channel, and carries no such restriction. If you already have Anaconda installed and you’re using it for personal work, it’s fine — but check the current terms before rolling it out at work.</p>
+</div>
+</div>
 </section>
-<section id="sql-and-databases" class="level3" data-number="16.1.3">
-<h3 data-number="16.1.3" class="anchored" data-anchor-id="sql-and-databases"><span class="header-section-number">16.1.3</span> SQL and Databases</h3>
-<ol type="1">
-<li><p><strong><a href="https://www.oreilly.com/library/view/sql-for-data/9781492088776/">SQL for Data Analysis</a></strong> by Cathy Tanimura<br>
-A practical guide to using SQL for data science tasks.</p></li>
-<li><p><strong><a href="https://www.informit.com/store/database-design-for-mere-mortals-a-hands-on-guide-to-9780136788041">Database Design for Mere Mortals</a></strong> by Michael J. Hernandez<br>
-Helps understand database design principles for more effective data modelling.</p></li>
-</ol>
-</section>
-<section id="version-control-and-collaboration" class="level3" data-number="16.1.4">
-<h3 data-number="16.1.4" class="anchored" data-anchor-id="version-control-and-collaboration"><span class="header-section-number">16.1.4</span> Version Control and Collaboration</h3>
-<ol type="1">
-<li><p><strong><a href="https://git-scm.com/book/en/v2">Pro Git</a></strong> by Scott Chacon and Ben Straub<br>
-A comprehensive guide to Git, available for free online.</p></li>
-<li><p><strong><a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a></strong> by Jenny Bryan Written for exactly this book’s audience: researchers and analysts who need Git to work, not a full account of how it works. Free online, and the troubleshooting chapters are the best of their kind.</p></li>
-</ol>
-</section>
-<section id="data-visualisation" class="level3" data-number="16.1.5">
-<h3 data-number="16.1.5" class="anchored" data-anchor-id="data-visualisation"><span class="header-section-number">16.1.5</span> Data Visualisation</h3>
-<ol type="1">
-<li><p><strong><a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualisation</a></strong> by Claus O. Wilke<br>
-Principles for creating effective visualisations based on perception science.</p></li>
-<li><p><strong><a href="https://www.storytellingwithdata.com/books">Storytelling with Data</a></strong> by Cole Nussbaumer Knaflic<br>
-Focuses on the narrative aspects of data visualisation.</p></li>
-<li><p><strong><a href="https://observablehq.com/plot/">Observable Plot documentation</a></strong> For web-based visualisation. Plot covers most of what analysts previously reached for D3 to do, in far less code; drop to D3 only when you need control Plot doesn’t expose.</p></li>
-</ol>
-</section>
-<section id="cloud-computing-and-devops" class="level3" data-number="16.1.6">
-<h3 data-number="16.1.6" class="anchored" data-anchor-id="cloud-computing-and-devops"><span class="header-section-number">16.1.6</span> Cloud Computing and DevOps</h3>
-<ol type="1">
-<li><p><strong><a href="https://noahgift.com/publication/cloud4data/">Cloud Computing for Data Analysis</a></strong> by Noah Gift Project-based, with hands-on labs across AWS, GCP, and Azure.</p></li>
-<li><p><strong><a href="https://docs.docker.com/get-started/">Docker Documentation</a></strong> Docker’s own getting-started material is current and free, which is more than can be said for most published Docker books — the field moves faster than print.</p></li>
-<li><p><strong><a href="https://quarto.org/docs/guide/">Quarto documentation</a></strong> The reference for everything in the Reporting chapter, including the Typst and LaTeX output paths.</p></li>
-</ol>
-</section>
-<section id="workflow-testing-and-reproducibility" class="level3" data-number="16.1.7">
-<h3 data-number="16.1.7" class="anchored" data-anchor-id="workflow-testing-and-reproducibility"><span class="header-section-number">16.1.7</span> Workflow, Testing, and Reproducibility</h3>
-<ol type="1">
-<li><p><strong><a href="https://the-turing-way.netlify.app/">The Turing Way</a></strong> A community-written handbook on reproducible research. The reproducibility and project-design chapters are the closest thing to a canonical reference for the material in the Workflows chapter.</p></li>
-<li><p><strong><a href="https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/">Python Testing with pytest, 2nd edition</a></strong> by Brian Okken The standard pytest reference.</p></li>
-<li><p><strong><a href="https://r-pkgs.org/">R Packages, 2nd edition</a></strong> by Hadley Wickham and Jennifer Bryan Free online. Read it when your R code outgrows a folder of scripts — the testing and package-structure chapters apply well before you have anything worth publishing.</p></li>
-<li><p><strong><a href="https://software-carpentry.org/lessons/">Software Carpentry lessons</a></strong> Free, well-tested teaching material on the shell, Git, Python, and R, aimed at researchers. Useful both to learn from and to teach from.</p></li>
-</ol>
-</section>
-<section id="online-learning-platforms" class="level3" data-number="16.1.8">
-<h3 data-number="16.1.8" class="anchored" data-anchor-id="online-learning-platforms"><span class="header-section-number">16.1.8</span> Online Learning Platforms</h3>
-<ol type="1">
-<li><p><strong><a href="https://www.datacamp.com/">DataCamp</a></strong><br>
-Interactive courses on Python, R, SQL, and more.</p></li>
-<li><p><strong><a href="https://www.coursera.org/">Coursera</a></strong><br>
-Offers specialisations in data science from top universities.</p></li>
-<li><p><strong><a href="https://www.kaggle.com/learn">Kaggle Learn</a></strong><br>
-Free mini-courses on data science topics with practical exercises.</p></li>
-</ol>
-</section>
-<section id="communities-and-forums" class="level3" data-number="16.1.9">
-<h3 data-number="16.1.9" class="anchored" data-anchor-id="communities-and-forums"><span class="header-section-number">16.1.9</span> Communities and Forums</h3>
-<ol type="1">
-<li><p><strong><a href="https://stackoverflow.com/">Stack Overflow</a></strong><br>
-For programming-related questions.</p></li>
-<li><p><strong><a href="https://stats.stackexchange.com/">Cross Validated</a></strong><br>
-For statistics and machine learning questions.</p></li>
-<li><p><strong><a href="https://datascience.stackexchange.com/">Data Science Stack Exchange</a></strong><br>
-Specifically for data science questions.</p></li>
-<li><p><strong><a href="https://github.com/">GitHub</a></strong><br>
-For finding open-source projects to learn from or contribute to.</p></li>
-<li><p><strong><a href="https://tex.stackexchange.com/">TeX Stack Exchange</a></strong><br>
-For questions about LaTeX and document preparation.</p></li>
-</ol>
-<p>Several of the best resources above are free and maintained online, which is not a coincidence — books on tooling date faster than books on method. Where a printed reference and its authors’ website disagree, trust the website.</p>
+<section id="python-uv" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="python-uv"><span class="header-section-number">6.4</span> Python: uv</h2>
+<p><code>uv</code> is a single binary that replaces <code>pip</code>, <code>venv</code>, and <code>pyenv</code>. Install it once:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows (PowerShell)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">powershell</span> <span class="at">-c</span> <span class="st">"irm https://astral.sh/uv/install.ps1 | iex"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then, in a project directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment. uv downloads Python 3.13 if you don't have it.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv <span class="at">--python</span> 3.13</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate it</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate        <span class="co"># macOS/Linux</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span>           <span class="co"># Windows</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>.venv</code> directory holds the environment. It should <strong>never</strong> be committed to Git — it’s large, machine-specific, and reconstructible from the record file. Add <code>.venv/</code> to your <code>.gitignore</code> (the template in the <a href="../chapters/ide_git.html">Editors and Version Control</a> chapter already does).</p>
+<section id="recording-it" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="recording-it"><span class="header-section-number">6.4.1</span> Recording it</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Commit <code>requirements.txt</code>. Anyone with it — including you, later — reconstructs the environment with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv <span class="kw">&amp;&amp;</span> <span class="ex">uv</span> pip install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="image-credits" class="level2" data-number="16.2">
-<h2 data-number="16.2" class="anchored" data-anchor-id="image-credits"><span class="header-section-number">16.2</span> Image Credits</h2>
-<p><em>Cover illustration generated using OpenAI’s DALL·E model via ChatGPT (April 2025).</em></p>
+<section id="python-conda" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="python-conda"><span class="header-section-number">6.5</span> Python: conda</h2>
+<p>If you need the conda ecosystem, the shape is the same:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment named 'datasci'</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> datasci python=3.13</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate it</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install numpy pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Activate it whenever you work on that project. Unlike <code>venv</code>/<code>uv</code>, conda environments live in a central location rather than in the project directory, so there’s nothing to <code>.gitignore</code>.</p>
+<section id="recording-it-1" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="recording-it-1"><span class="header-section-number">6.5.1</span> Recording it</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>--from-history</code> flag matters. Without it, conda writes out every transitively-installed package pinned to an exact build string, including builds that only exist for your operating system — the resulting file often won’t install on a different platform at all. With it, you get the packages you actually asked for, which is both readable and portable.</p>
+</section>
+</section>
+<section id="r-renv" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="r-renv"><span class="header-section-number">6.6</span> R: renv</h2>
+<p><code>renv</code> gives each R project its own package library and a lockfile recording exactly what’s in it.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then, from within your project (an RStudio Project, ideally):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up renv for this project — creates a private library</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ... install packages as normal, work on your analysis ...</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Record the current state</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>renv::snapshot()</code> writes <code>renv.lock</code>, a JSON file listing every package, its version, and where it came from. Commit <code>renv.lock</code>. Do not commit the <code>renv/library/</code> directory — <code>renv::init()</code> adds the right <code>.gitignore</code> entries for you.</p>
+<p>Anyone who clones the project runs:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>and gets exactly your package versions.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span><code>packrat</code> is not the answer
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Older R material recommends <code>packrat</code> for this. Posit retired it in favour of renv years ago. If you meet a project using packrat, migrating is straightforward — <code>renv::migrate()</code> handles it.</p>
+</div>
+</div>
+</section>
+<section id="lockfiles-vs-loose-requirements" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="lockfiles-vs-loose-requirements"><span class="header-section-number">6.7</span> Lockfiles vs Loose Requirements</h2>
+<p>There’s a distinction worth understanding, because it determines how reproducible your record actually is.</p>
+<p>A <strong>loose requirement</strong> says “pandas”. A <strong>pinned requirement</strong> says “pandas 3.0.5”. A <strong>lockfile</strong> says “pandas 3.0.5, and every package pandas itself depends on, at exactly these versions, with checksums to prove they weren’t tampered with.”</p>
+<p><code>requirements.txt</code> from <code>pip freeze</code> sits in the middle: it pins direct and transitive dependencies to versions, but not to checksums, and it doesn’t distinguish between what you asked for and what came along. <code>renv.lock</code>, <code>uv.lock</code>, and <code>pixi.lock</code> are true lockfiles.</p>
+<p>For most analysis work, a pinned <code>requirements.txt</code> is enough. For anything whose result someone will act on months later, prefer a real lockfile. The difference shows up exactly when you need it most.</p>
+</section>
+<section id="what-goes-in-git" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="what-goes-in-git"><span class="header-section-number">6.8</span> What Goes in Git</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Commit</th>
+<th>Never commit</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>requirements.txt</code> / <code>environment.yml</code> / <code>renv.lock</code> / <code>uv.lock</code></td>
+<td><code>.venv/</code>, <code>venv/</code>, <code>env/</code></td>
+</tr>
+<tr class="even">
+<td><code>.python-version</code></td>
+<td><code>renv/library/</code></td>
+</tr>
+<tr class="odd">
+<td><code>pyproject.toml</code></td>
+<td><code>__pycache__/</code>, <code>.Rhistory</code>, <code>.RData</code></td>
+</tr>
+</tbody>
+</table>
+<p>The rule underneath: commit the <em>description</em> of the environment, never the environment itself.</p>
+</section>
+<section id="making-it-a-habit" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="making-it-a-habit"><span class="header-section-number">6.9</span> Making It a Habit</h2>
+<p>The failure mode isn’t ignorance, it’s drift — you set up an environment, then install three more packages over the following weeks without re-recording. Two things prevent it:</p>
+<ul>
+<li><strong>Re-snapshot when you install.</strong> <code>uv pip freeze &gt; requirements.txt</code> or <code>renv::snapshot()</code> immediately after adding a package, in the same breath as the install. It takes a second.</li>
+<li><strong>Let CI catch you.</strong> A continuous integration workflow (covered in <a href="../chapters/workflows.html">Optimising Workflows</a>) builds your project from nothing but the record file. If you forgot to record something, the build fails — in front of you, on a commit, rather than in front of a colleague six months later. This is the single most useful thing CI does for analysis work.</li>
+</ul>
+</section>
+<section id="environments-and-containers" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="environments-and-containers"><span class="header-section-number">6.10</span> Environments and Containers</h2>
+<p>A reasonable question at this point: if containers (covered in <a href="../chapters/containers.html">Containerisation</a>) also make things reproducible, why bother with both?</p>
+<p>They solve overlapping but different problems. An environment file pins your <em>packages</em>. A container pins the packages <strong>and</strong> the operating system, the system libraries, the locale, and the compiler toolchain. That extra coverage matters when a package depends on a specific version of a C library, or when the analysis has to run on infrastructure you don’t control.</p>
+<p>Use an environment file always; it costs nothing. Reach for a container when the environment file isn’t enough — deployment, awkward system dependencies, or a colleague on a genuinely different platform. The two compose: a good container is usually a base image plus your <code>requirements.txt</code>.</p>
+</section>
+<section id="conclusion" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6.11</span> Conclusion</h2>
+<p><strong>By the end of this chapter you should have:</strong></p>
+<ul>
+<li>Every active project in its own isolated environment</li>
+<li>A <code>requirements.txt</code>, <code>environment.yml</code>, or <code>renv.lock</code> committed alongside the code</li>
+<li><code>.venv/</code> and <code>renv/library/</code> in your <code>.gitignore</code></li>
+<li>Successfully reconstructed one of your own environments from its record file — do this once deliberately, so you find out now whether the file is actually complete</li>
+</ul>
+<p>That last item is the one people skip. A record file you’ve never restored from is a hypothesis, not a backup.</p>
 
 
 </section>
@@ -827,13 +979,13 @@ For questions about LaTeX and document preparation.</p></li>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/summary.html" class="pagination-link" aria-label="Conclusion">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span>
+      <a href="../chapters/data_stores.html" class="pagination-link" aria-label="Data Stores: SQL and Beyond">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/utility_tools.html" class="pagination-link" aria-label="Utility Tools for Data Scientists">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/ide_git.html" class="pagination-link" aria-label="Editors and Version Control">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

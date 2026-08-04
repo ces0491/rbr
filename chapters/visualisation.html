@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Data Visualisation – Ready Before Run()</title>
+<title>9&nbsp; Data Visualisation – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d1ce83cbcf7f21d8208077a0fee83aa1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -125,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/visualisation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/reporting.html">Communicating Results</a></li><li class="breadcrumb-item"><a href="../chapters/visualisation.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -162,75 +165,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting Up for Success: Infrastructure for the Modern Data Scientist</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/command_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Command Line</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Communicating Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/reporting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/visualisation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Shipping Your Work</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/containers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/workflows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -241,38 +318,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-visualisation-matters-in-data-science" id="toc-why-visualisation-matters-in-data-science" class="nav-link active" data-scroll-target="#why-visualisation-matters-in-data-science"><span class="header-section-number">4.1</span> Why Visualisation Matters in Data Science</a></li>
-  <li><a href="#python-visualisation-libraries" id="toc-python-visualisation-libraries" class="nav-link" data-scroll-target="#python-visualisation-libraries"><span class="header-section-number">4.2</span> Python Visualisation Libraries</a>
+  <li><a href="#why-visualisation-matters-in-data-science" id="toc-why-visualisation-matters-in-data-science" class="nav-link active" data-scroll-target="#why-visualisation-matters-in-data-science"><span class="header-section-number">9.1</span> Why Visualisation Matters in Data Science</a></li>
+  <li><a href="#python-visualisation-libraries" id="toc-python-visualisation-libraries" class="nav-link" data-scroll-target="#python-visualisation-libraries"><span class="header-section-number">9.2</span> Python Visualisation Libraries</a>
   <ul class="collapse">
-  <li><a href="#matplotlib-the-foundation" id="toc-matplotlib-the-foundation" class="nav-link" data-scroll-target="#matplotlib-the-foundation"><span class="header-section-number">4.2.1</span> Matplotlib: The Foundation</a></li>
-  <li><a href="#seaborn-statistical-visualisation" id="toc-seaborn-statistical-visualisation" class="nav-link" data-scroll-target="#seaborn-statistical-visualisation"><span class="header-section-number">4.2.2</span> Seaborn: Statistical Visualisation</a></li>
-  <li><a href="#plotly-interactive-visualisations" id="toc-plotly-interactive-visualisations" class="nav-link" data-scroll-target="#plotly-interactive-visualisations"><span class="header-section-number">4.2.3</span> Plotly: Interactive Visualisations</a></li>
-  <li><a href="#choosing-between-python-libraries" id="toc-choosing-between-python-libraries" class="nav-link" data-scroll-target="#choosing-between-python-libraries"><span class="header-section-number">4.2.4</span> Choosing Between Python Libraries</a></li>
+  <li><a href="#matplotlib-the-foundation" id="toc-matplotlib-the-foundation" class="nav-link" data-scroll-target="#matplotlib-the-foundation"><span class="header-section-number">9.2.1</span> Matplotlib: The Foundation</a></li>
+  <li><a href="#seaborn-statistical-visualisation" id="toc-seaborn-statistical-visualisation" class="nav-link" data-scroll-target="#seaborn-statistical-visualisation"><span class="header-section-number">9.2.2</span> Seaborn: Statistical Visualisation</a></li>
+  <li><a href="#plotly-interactive-visualisations" id="toc-plotly-interactive-visualisations" class="nav-link" data-scroll-target="#plotly-interactive-visualisations"><span class="header-section-number">9.2.3</span> Plotly: Interactive Visualisations</a></li>
+  <li><a href="#choosing-between-python-libraries" id="toc-choosing-between-python-libraries" class="nav-link" data-scroll-target="#choosing-between-python-libraries"><span class="header-section-number">9.2.4</span> Choosing Between Python Libraries</a></li>
   </ul></li>
-  <li><a href="#r-visualisation-libraries" id="toc-r-visualisation-libraries" class="nav-link" data-scroll-target="#r-visualisation-libraries"><span class="header-section-number">4.3</span> R Visualisation Libraries</a>
+  <li><a href="#r-visualisation-libraries" id="toc-r-visualisation-libraries" class="nav-link" data-scroll-target="#r-visualisation-libraries"><span class="header-section-number">9.3</span> R Visualisation Libraries</a>
   <ul class="collapse">
-  <li><a href="#ggplot2-grammar-of-graphics" id="toc-ggplot2-grammar-of-graphics" class="nav-link" data-scroll-target="#ggplot2-grammar-of-graphics"><span class="header-section-number">4.3.1</span> ggplot2: Grammar of Graphics</a></li>
-  <li><a href="#interactive-r-visualisations" id="toc-interactive-r-visualisations" class="nav-link" data-scroll-target="#interactive-r-visualisations"><span class="header-section-number">4.3.2</span> Interactive R Visualisations</a></li>
+  <li><a href="#ggplot2-grammar-of-graphics" id="toc-ggplot2-grammar-of-graphics" class="nav-link" data-scroll-target="#ggplot2-grammar-of-graphics"><span class="header-section-number">9.3.1</span> ggplot2: Grammar of Graphics</a></li>
+  <li><a href="#interactive-r-visualisations" id="toc-interactive-r-visualisations" class="nav-link" data-scroll-target="#interactive-r-visualisations"><span class="header-section-number">9.3.2</span> Interactive R Visualisations</a></li>
   </ul></li>
-  <li><a href="#code-based-diagramming-with-mermaid" id="toc-code-based-diagramming-with-mermaid" class="nav-link" data-scroll-target="#code-based-diagramming-with-mermaid"><span class="header-section-number">4.4</span> Code-Based Diagramming with Mermaid</a>
+  <li><a href="#code-based-diagramming-with-mermaid" id="toc-code-based-diagramming-with-mermaid" class="nav-link" data-scroll-target="#code-based-diagramming-with-mermaid"><span class="header-section-number">9.4</span> Code-Based Diagramming with Mermaid</a>
   <ul class="collapse">
-  <li><a href="#why-use-mermaid-for-data-science" id="toc-why-use-mermaid-for-data-science" class="nav-link" data-scroll-target="#why-use-mermaid-for-data-science"><span class="header-section-number">4.4.1</span> Why Use Mermaid for Data Science?</a></li>
-  <li><a href="#creating-mermaid-diagrams-in-quarto" id="toc-creating-mermaid-diagrams-in-quarto" class="nav-link" data-scroll-target="#creating-mermaid-diagrams-in-quarto"><span class="header-section-number">4.4.2</span> Creating Mermaid Diagrams in Quarto</a></li>
-  <li><a href="#diagram-types-for-data-science" id="toc-diagram-types-for-data-science" class="nav-link" data-scroll-target="#diagram-types-for-data-science"><span class="header-section-number">4.4.3</span> Diagram Types for Data Science</a></li>
-  <li><a href="#styling-mermaid-diagrams" id="toc-styling-mermaid-diagrams" class="nav-link" data-scroll-target="#styling-mermaid-diagrams"><span class="header-section-number">4.4.4</span> Styling Mermaid Diagrams</a></li>
-  <li><a href="#generating-diagrams-programmatically" id="toc-generating-diagrams-programmatically" class="nav-link" data-scroll-target="#generating-diagrams-programmatically"><span class="header-section-number">4.4.5</span> Generating Diagrams Programmatically</a></li>
-  <li><a href="#best-practices-for-diagrams-in-data-science" id="toc-best-practices-for-diagrams-in-data-science" class="nav-link" data-scroll-target="#best-practices-for-diagrams-in-data-science"><span class="header-section-number">4.4.6</span> Best Practices for Diagrams in Data Science</a></li>
+  <li><a href="#why-use-mermaid-for-data-science" id="toc-why-use-mermaid-for-data-science" class="nav-link" data-scroll-target="#why-use-mermaid-for-data-science"><span class="header-section-number">9.4.1</span> Why Use Mermaid for Data Science?</a></li>
+  <li><a href="#creating-mermaid-diagrams-in-quarto" id="toc-creating-mermaid-diagrams-in-quarto" class="nav-link" data-scroll-target="#creating-mermaid-diagrams-in-quarto"><span class="header-section-number">9.4.2</span> Creating Mermaid Diagrams in Quarto</a></li>
+  <li><a href="#diagram-types-for-data-science" id="toc-diagram-types-for-data-science" class="nav-link" data-scroll-target="#diagram-types-for-data-science"><span class="header-section-number">9.4.3</span> Diagram Types for Data Science</a></li>
+  <li><a href="#styling-mermaid-diagrams" id="toc-styling-mermaid-diagrams" class="nav-link" data-scroll-target="#styling-mermaid-diagrams"><span class="header-section-number">9.4.4</span> Styling Mermaid Diagrams</a></li>
+  <li><a href="#generating-diagrams-programmatically" id="toc-generating-diagrams-programmatically" class="nav-link" data-scroll-target="#generating-diagrams-programmatically"><span class="header-section-number">9.4.5</span> Generating Diagrams Programmatically</a></li>
+  <li><a href="#best-practices-for-diagrams-in-data-science" id="toc-best-practices-for-diagrams-in-data-science" class="nav-link" data-scroll-target="#best-practices-for-diagrams-in-data-science"><span class="header-section-number">9.4.6</span> Best Practices for Diagrams in Data Science</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.5</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">9.5</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/reporting.html">Communicating Results</a></li><li class="breadcrumb-item"><a href="../chapters/visualisation.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></h1>
 </div>
 
 
@@ -289,8 +366,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="why-visualisation-matters-in-data-science" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="why-visualisation-matters-in-data-science"><span class="header-section-number">4.1</span> Why Visualisation Matters in Data Science</h2>
+<section id="why-visualisation-matters-in-data-science" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="why-visualisation-matters-in-data-science"><span class="header-section-number">9.1</span> Why Visualisation Matters in Data Science</h2>
 <p>Effective visualisation is crucial for data science: it helps you communicate findings and enables pattern discovery. A well-designed chart can convey relationships instantly that would take paragraphs to explain in words. The reporting chapter covered the <em>document</em> that wraps your analysis; this chapter covers the charts and diagrams that go inside it.</p>
 <p>Data visualisation serves multiple purposes in the data science workflow:</p>
 <ol type="1">
@@ -308,15 +385,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Interactive web dashboards built on top of these libraries (Shiny, Dash, Streamlit) are covered in the <a href="../chapters/web_dev.html">Web Development for Data Scientists</a> chapter, since they’re fundamentally running web applications rather than visualisations embedded in a document.</p>
 </section>
-<section id="python-visualisation-libraries" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="python-visualisation-libraries"><span class="header-section-number">4.2</span> Python Visualisation Libraries</h2>
+<section id="python-visualisation-libraries" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="python-visualisation-libraries"><span class="header-section-number">9.2</span> Python Visualisation Libraries</h2>
 <p>Python offers several powerful libraries for data visualisation, each with different strengths and use cases.</p>
-<section id="matplotlib-the-foundation" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="matplotlib-the-foundation"><span class="header-section-number">4.2.1</span> Matplotlib: The Foundation</h3>
+<section id="matplotlib-the-foundation" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="matplotlib-the-foundation"><span class="header-section-number">9.2.1</span> Matplotlib: The Foundation</h3>
 <p>Matplotlib is the original Python visualisation library and serves as the foundation for many others. It provides precise control over every element of a plot.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -342,16 +417,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Save and show the figure</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'sine_wave.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>Matplotlib provides a blank canvas approach where you explicitly define every element. This gives you complete control but requires more code for complex visualisations. It’s the right tool when you need exact control over every line, tick, and label, for example when preparing a figure for a journal submission.</p>
 </section>
-<section id="seaborn-statistical-visualisation" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="seaborn-statistical-visualisation"><span class="header-section-number">4.2.2</span> Seaborn: Statistical Visualisation</h3>
+<section id="seaborn-statistical-visualisation" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="seaborn-statistical-visualisation"><span class="header-section-number">9.2.2</span> Seaborn: Statistical Visualisation</h3>
 <p>Seaborn builds on Matplotlib to provide high-level functions for common statistical visualisations.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -370,16 +442,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Total Bill ($)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>Seaborn simplifies the creation of statistical visualisations like box plots, violin plots, and regression plots. It also comes with built-in themes that improve the default appearance of plots. Reach for Seaborn when the chart you want is a standard statistical view of a pandas DataFrame: it will usually be a single function call, where the equivalent matplotlib code would be a dozen lines.</p>
 </section>
-<section id="plotly-interactive-visualisations" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="plotly-interactive-visualisations"><span class="header-section-number">4.2.3</span> Plotly: Interactive Visualisations</h3>
+<section id="plotly-interactive-visualisations" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="plotly-interactive-visualisations"><span class="header-section-number">9.2.3</span> Plotly: Interactive Visualisations</h3>
 <p>Plotly creates interactive visualisations that can be embedded in web applications or Jupyter notebooks.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -403,12 +472,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the figure</span></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>Plotly’s interactive features include zooming, panning, hovering for details, and the ability to export plots as images. These features make exploration more intuitive and presentations more engaging. Plotly is available in both Python and R, so you can use the same underlying library across languages.</p>
 </section>
-<section id="choosing-between-python-libraries" class="level3" data-number="4.2.4">
-<h3 data-number="4.2.4" class="anchored" data-anchor-id="choosing-between-python-libraries"><span class="header-section-number">4.2.4</span> Choosing Between Python Libraries</h3>
+<section id="choosing-between-python-libraries" class="level3" data-number="9.2.4">
+<h3 data-number="9.2.4" class="anchored" data-anchor-id="choosing-between-python-libraries"><span class="header-section-number">9.2.4</span> Choosing Between Python Libraries</h3>
 <p>A pragmatic decision tree for the non-CS reader:</p>
 <ul>
 <li><strong>Need absolute control or a publication-quality static figure?</strong> Matplotlib.</li>
@@ -418,15 +486,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You’ll usually end up with all three in your toolkit: seaborn for quick EDA, plotly for HTML-bound output, and matplotlib when one of the other two can’t quite render what you want.</p>
 </section>
 </section>
-<section id="r-visualisation-libraries" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="r-visualisation-libraries"><span class="header-section-number">4.3</span> R Visualisation Libraries</h2>
+<section id="r-visualisation-libraries" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="r-visualisation-libraries"><span class="header-section-number">9.3</span> R Visualisation Libraries</h2>
 <p>R also provides powerful tools for data visualisation, with ggplot2 being the most widely used library.</p>
-<section id="ggplot2-grammar-of-graphics" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="ggplot2-grammar-of-graphics"><span class="header-section-number">4.3.1</span> ggplot2: Grammar of Graphics</h3>
+<section id="ggplot2-grammar-of-graphics" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="ggplot2-grammar-of-graphics"><span class="header-section-number">9.3.1</span> ggplot2: Grammar of Graphics</h3>
 <p>ggplot2 is the gold standard for data visualisation in R, based on the Grammar of Graphics concept.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -463,16 +529,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the plot</span></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"diamond_price_carat.png"</span>, p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>The philosophy behind ggplot2 is that you build a visualisation layer by layer, which corresponds to how we think about visualisations conceptually. First, you define your data and aesthetic mappings (which variables map to which visual properties), then add geometric objects (points, lines, bars), then statistical transformations, scales, coordinate systems, and finally visual themes. This layered approach makes it possible to create complex visualisations by combining simple, understandable components.</p>
 </section>
-<section id="interactive-r-visualisations" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="interactive-r-visualisations"><span class="header-section-number">4.3.2</span> Interactive R Visualisations</h3>
+<section id="interactive-r-visualisations" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="interactive-r-visualisations"><span class="header-section-number">9.3.2</span> Interactive R Visualisations</h3>
 <p>R also offers interactive visualisation libraries:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -516,24 +579,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the plot</span></span>
 <span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>The R version of plotly can convert ggplot2 visualisations to interactive versions with a single function call:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert a ggplot to an interactive plotly visualisation</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
 <p>This ability to transform static ggplot2 charts into interactive visualisations with one function call is extremely convenient. It lets you develop visualisations using the familiar ggplot2 syntax, then add interactivity with minimal effort. This is especially powerful when you need to produce reports in both PDF and HTML formats: use ggplot2 for static PDFs and Plotly for dynamic HTML.</p>
 </section>
 </section>
-<section id="code-based-diagramming-with-mermaid" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="code-based-diagramming-with-mermaid"><span class="header-section-number">4.4</span> Code-Based Diagramming with Mermaid</h2>
+<section id="code-based-diagramming-with-mermaid" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="code-based-diagramming-with-mermaid"><span class="header-section-number">9.4</span> Code-Based Diagramming with Mermaid</h2>
 <p>Diagrams are essential for data science documentation, helping to explain workflows, architectures, and relationships. Rather than creating images with external tools, you can write diagrams as code directly in your Quarto documents using Mermaid.</p>
-<section id="why-use-mermaid-for-data-science" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="why-use-mermaid-for-data-science"><span class="header-section-number">4.4.1</span> Why Use Mermaid for Data Science?</h3>
+<section id="why-use-mermaid-for-data-science" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="why-use-mermaid-for-data-science"><span class="header-section-number">9.4.1</span> Why Use Mermaid for Data Science?</h3>
 <p>Code-based diagramming offers several advantages:</p>
 <ol type="1">
 <li><strong>Reproducibility</strong>: Diagrams are defined as code and rendered during document compilation</li>
@@ -544,12 +603,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>For data scientists, this means your entire workflow (code, analysis, explanations, and diagrams) can all be maintained in the same reproducible environment.</p>
 </section>
-<section id="creating-mermaid-diagrams-in-quarto" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="creating-mermaid-diagrams-in-quarto"><span class="header-section-number">4.4.2</span> Creating Mermaid Diagrams in Quarto</h3>
+<section id="creating-mermaid-diagrams-in-quarto" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="creating-mermaid-diagrams-in-quarto"><span class="header-section-number">9.4.2</span> Creating Mermaid Diagrams in Quarto</h3>
 <p>Quarto has built-in support for Mermaid diagrams. To create a diagram, use a code block with the <code>mermaid</code> engine:</p>
 <div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    A[Raw Data] --&gt; B[Data Cleaning]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[Exploratory Analysis]</span>
@@ -557,7 +614,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    D --&gt; E[Model Training]</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    E --&gt; F[Evaluation]</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    F --&gt; G[Deployment]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
@@ -577,15 +633,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The syntax starts with the diagram type (<code>flowchart</code>), followed by the direction (<code>LR</code> for left-to-right), and then the definition of nodes and connections.</p>
 </section>
-<section id="diagram-types-for-data-science" class="level3" data-number="4.4.3">
-<h3 data-number="4.4.3" class="anchored" data-anchor-id="diagram-types-for-data-science"><span class="header-section-number">4.4.3</span> Diagram Types for Data Science</h3>
+<section id="diagram-types-for-data-science" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="diagram-types-for-data-science"><span class="header-section-number">9.4.3</span> Diagram Types for Data Science</h3>
 <p>Mermaid supports several diagram types that are particularly useful for data science:</p>
-<section id="flowcharts" class="level4" data-number="4.4.3.1">
-<h4 data-number="4.4.3.1" class="anchored" data-anchor-id="flowcharts"><span class="header-section-number">4.4.3.1</span> Flowcharts</h4>
+<section id="flowcharts" class="level4" data-number="9.4.3.1">
+<h4 data-number="9.4.3.1" class="anchored" data-anchor-id="flowcharts"><span class="header-section-number">9.4.3.1</span> Flowcharts</h4>
 <p>Flowcharts are perfect for documenting data pipelines and analysis workflows:</p>
 <div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    A[Raw Data] --&gt; B{Missing Values?}</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    B --&gt;|Yes| C[Imputation]</span>
@@ -598,7 +652,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    H --&gt;|Yes| I[Deploy Model]</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    H --&gt;|No| J[Tune Parameters]</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    J --&gt; F</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
@@ -623,12 +676,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This top-down (TD) flowchart illustrates a complete machine learning workflow with decision points. Notice how you can use different node shapes (rectangles, diamonds) and add text to connections.</p>
 </section>
-<section id="class-diagrams" class="level4" data-number="4.4.3.2">
-<h4 data-number="4.4.3.2" class="anchored" data-anchor-id="class-diagrams"><span class="header-section-number">4.4.3.2</span> Class Diagrams</h4>
+<section id="class-diagrams" class="level4" data-number="9.4.3.2">
+<h4 data-number="9.4.3.2" class="anchored" data-anchor-id="class-diagrams"><span class="header-section-number">9.4.3.2</span> Class Diagrams</h4>
 <p>Class diagrams help explain data structures and relationships:</p>
 <div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>classDiagram</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    class Dataset {</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        +DataFrame data</span>
@@ -653,7 +704,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    Dataset --&gt; Model: provides data to</span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    Pipeline --&gt; Dataset: processes</span>
 <span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    Pipeline --&gt; Model: feeds into</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
@@ -690,12 +740,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This diagram shows the relationships between key classes in a machine learning system. It’s useful for documenting the architecture of your data science projects.</p>
 </section>
-<section id="sequence-diagrams" class="level4" data-number="4.4.3.3">
-<h4 data-number="4.4.3.3" class="anchored" data-anchor-id="sequence-diagrams"><span class="header-section-number">4.4.3.3</span> Sequence Diagrams</h4>
+<section id="sequence-diagrams" class="level4" data-number="9.4.3.3">
+<h4 data-number="9.4.3.3" class="anchored" data-anchor-id="sequence-diagrams"><span class="header-section-number">9.4.3.3</span> Sequence Diagrams</h4>
 <p>Sequence diagrams show interactions between components over time:</p>
 <div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sequenceDiagram</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    participant U as User</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    participant API as REST API</span>
@@ -709,7 +757,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    ML--&gt;&gt;API: Return prediction</span>
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    API-&gt;&gt;DB: Log prediction</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    API--&gt;&gt;U: Return results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
@@ -735,12 +782,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This diagram illustrates the sequence of interactions in a model deployment scenario, showing how data flows between the user, API, model, and database.</p>
 </section>
-<section id="gantt-charts" class="level4" data-number="4.4.3.4">
-<h4 data-number="4.4.3.4" class="anchored" data-anchor-id="gantt-charts"><span class="header-section-number">4.4.3.4</span> Gantt Charts</h4>
+<section id="gantt-charts" class="level4" data-number="9.4.3.4">
+<h4 data-number="9.4.3.4" class="anchored" data-anchor-id="gantt-charts"><span class="header-section-number">9.4.3.4</span> Gantt Charts</h4>
 <p>Gantt charts are useful for project planning and timelines:</p>
 <div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gantt</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    title Data Science Project Timeline</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    dateFormat YYYY-MM-DD</span>
@@ -762,7 +807,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    Documentation         :c2, after b4, 8d</span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    Testing               :c3, after c1, 5d</span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    Production release    :milestone, after c2 c3, 0d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
@@ -796,12 +840,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This Gantt chart shows the timeline of a data science project, with tasks grouped into sections and dependencies between them clearly indicated.</p>
 </section>
-<section id="entity-relationship-diagrams" class="level4" data-number="4.4.3.5">
-<h4 data-number="4.4.3.5" class="anchored" data-anchor-id="entity-relationship-diagrams"><span class="header-section-number">4.4.3.5</span> Entity-Relationship Diagrams</h4>
+<section id="entity-relationship-diagrams" class="level4" data-number="9.4.3.5">
+<h4 data-number="9.4.3.5" class="anchored" data-anchor-id="entity-relationship-diagrams"><span class="header-section-number">9.4.3.5</span> Entity-Relationship Diagrams</h4>
 <p>ER diagrams are valuable for database schema design:</p>
 <div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>erDiagram</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    CUSTOMER ||--o{ ORDER : places</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    ORDER ||--|{ ORDER_ITEM : contains</span>
@@ -830,7 +872,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>        string category</span>
 <span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>        float unit_price</span>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
@@ -872,12 +913,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This diagram shows a typical e-commerce database schema with relationships between tables and their attributes.</p>
 </section>
 </section>
-<section id="styling-mermaid-diagrams" class="level3" data-number="4.4.4">
-<h3 data-number="4.4.4" class="anchored" data-anchor-id="styling-mermaid-diagrams"><span class="header-section-number">4.4.4</span> Styling Mermaid Diagrams</h3>
+<section id="styling-mermaid-diagrams" class="level3" data-number="9.4.4">
+<h3 data-number="9.4.4" class="anchored" data-anchor-id="styling-mermaid-diagrams"><span class="header-section-number">9.4.4</span> Styling Mermaid Diagrams</h3>
 <p>You can customise the appearance of your diagrams:</p>
 <div class="cell" data-layout-align="default">
-<details class="code-fold">
-<summary>Show code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    A[Data Collection] --&gt; B[Data Cleaning]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    B --&gt; C[Analysis]</span>
@@ -885,7 +924,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    style A fill:#f9f,stroke:#333,stroke-width:2px</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    style B fill:#bbf,stroke:#33f,stroke-width:2px</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    style C fill:#bfb,stroke:#3f3,stroke-width:2px</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
@@ -905,11 +943,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This diagram uses custom colours and border styles for each node to highlight different stages of the process.</p>
 </section>
-<section id="generating-diagrams-programmatically" class="level3" data-number="4.4.5">
-<h3 data-number="4.4.5" class="anchored" data-anchor-id="generating-diagrams-programmatically"><span class="header-section-number">4.4.5</span> Generating Diagrams Programmatically</h3>
-<p>For complex or dynamic diagrams, you can generate Mermaid code programmatically:</p>
-<details class="code-fold">
-<summary>Show code</summary>
+<section id="generating-diagrams-programmatically" class="level3" data-number="9.4.5">
+<h3 data-number="9.4.5" class="anchored" data-anchor-id="generating-diagrams-programmatically"><span class="header-section-number">9.4.5</span> Generating Diagrams Programmatically</h3>
+<p>For complex or dynamic diagrams, you can generate Mermaid code programmatically. The trick is <code>output: asis</code>, which tells Quarto to drop the chunk’s output into the document as raw Markdown rather than as printed R output — so a Mermaid fence you build with <code>cat()</code> is processed exactly as if you’d typed it:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the steps in a data pipeline</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>steps <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Import Data"</span>, <span class="st">"Clean Data"</span>, <span class="st">"Feature Engineering"</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Split Dataset"</span>, <span class="st">"Train Model"</span>, <span class="st">"Evaluate"</span>, <span class="st">"Deploy"</span>)</span>
@@ -934,11 +970,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the Mermaid code</span></span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(mermaid_code, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<p>This R code generates a Mermaid flowchart based on a list of steps. The approach is particularly useful when you want to create diagrams based on data or configuration.</p>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    A["Import Data"] --&gt; B["Clean Data"]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    B["Clean Data"] --&gt; C["Feature Engineering"]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    C["Feature Engineering"] --&gt; D["Split Dataset"]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    D["Split Dataset"] --&gt; E["Train Model"]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    E["Train Model"] --&gt; F["Evaluate"]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    F["Evaluate"] --&gt; G["Deploy"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Import Data"] --&gt; B["Clean Data"]
+    B["Clean Data"] --&gt; C["Feature Engineering"]
+    C["Feature Engineering"] --&gt; D["Split Dataset"]
+    D["Split Dataset"] --&gt; E["Train Model"]
+    E["Train Model"] --&gt; F["Evaluate"]
+    F["Evaluate"] --&gt; G["Deploy"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>The diagram above was generated by that code when this book was rendered — change the <code>steps</code> vector and the flowchart changes with it. That’s the point: a diagram derived from data or configuration can’t drift out of sync with the thing it documents, which hand-drawn diagrams invariably do.</p>
 </section>
-<section id="best-practices-for-diagrams-in-data-science" class="level3" data-number="4.4.6">
-<h3 data-number="4.4.6" class="anchored" data-anchor-id="best-practices-for-diagrams-in-data-science"><span class="header-section-number">4.4.6</span> Best Practices for Diagrams in Data Science</h3>
+<section id="best-practices-for-diagrams-in-data-science" class="level3" data-number="9.4.6">
+<h3 data-number="9.4.6" class="anchored" data-anchor-id="best-practices-for-diagrams-in-data-science"><span class="header-section-number">9.4.6</span> Best Practices for Diagrams in Data Science</h3>
 <ol type="1">
 <li><strong>Keep it simple</strong>: Focus on clarity over complexity</li>
 <li><strong>Maintain consistency</strong>: Use similar styles and conventions across diagrams</li>
@@ -949,8 +1009,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Diagrams should clarify your explanations, not complicate them. A well-designed diagram can make complex processes or relationships immediately understandable.</p>
 </section>
 </section>
-<section id="conclusion" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.5</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">9.5</span> Conclusion</h2>
 <p>Visualisation is the layer where your analysis meets its audience. The libraries covered here (matplotlib, seaborn, plotly, ggplot2) are the workhorses of static and lightly-interactive charts you embed in reports. Mermaid handles the architecture and workflow diagrams that explain <em>how</em> your system fits together rather than <em>what</em> the data looks like.</p>
 <p>As your datasets and models grow, you’ll eventually hit the limits of what your laptop can render or compute. The next chapter steps away from the document and visualisation layer to look at cloud platforms: where to run notebooks and training jobs when local hardware isn’t enough, and how to do so without accidentally running up a bill. After that, we return to the “how do I put this in front of a stakeholder” question with web development and interactive dashboards.</p>
 
@@ -1366,12 +1426,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/reporting.html" class="pagination-link" aria-label="Data Science Tools for Reporting">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/cloud.html" class="pagination-link" aria-label="Cloud Computing for Data Science">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

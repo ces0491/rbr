@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Utility Tools for Data Scientists – Ready Before Run()</title>
+<title>Appendix A — Utility Tools for Data Scientists – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -68,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/references.html" rel="next">
-<link href="../chapters/summary.html" rel="prev">
+<link href="../chapters/appendix_troubleshooting.html" rel="next">
+<link href="../chapters/references.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d1ce83cbcf7f21d8208077a0fee83aa1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -121,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/utility_tools.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/utility_tools.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/utility_tools.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,75 +161,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting Up for Success: Infrastructure for the Modern Data Scientist</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/command_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Command Line</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Communicating Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/reporting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Shipping Your Work</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/containers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/workflows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -237,30 +314,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#utility-tools-for-data-scientists" id="toc-utility-tools-for-data-scientists" class="nav-link active" data-scroll-target="#utility-tools-for-data-scientists"><span class="header-section-number">11.1</span> Utility Tools for Data Scientists</a>
+  <li><a href="#utility-tools-for-data-scientists" id="toc-utility-tools-for-data-scientists" class="nav-link active" data-scroll-target="#utility-tools-for-data-scientists"><span class="header-section-number">A.1</span> Utility Tools for Data Scientists</a>
   <ul class="collapse">
-  <li><a href="#ai-coding-assistants" id="toc-ai-coding-assistants" class="nav-link" data-scroll-target="#ai-coding-assistants"><span class="header-section-number">11.1.1</span> AI Coding Assistants</a></li>
-  <li><a href="#text-editors-and-ide-enhancements" id="toc-text-editors-and-ide-enhancements" class="nav-link" data-scroll-target="#text-editors-and-ide-enhancements"><span class="header-section-number">11.1.2</span> Text Editors and IDE Enhancements</a></li>
-  <li><a href="#api-development-and-testing-tools" id="toc-api-development-and-testing-tools" class="nav-link" data-scroll-target="#api-development-and-testing-tools"><span class="header-section-number">11.1.3</span> API Development and Testing Tools</a></li>
-  <li><a href="#database-management-tools" id="toc-database-management-tools" class="nav-link" data-scroll-target="#database-management-tools"><span class="header-section-number">11.1.4</span> Database Management Tools</a></li>
-  <li><a href="#file-comparison-and-merging-tools" id="toc-file-comparison-and-merging-tools" class="nav-link" data-scroll-target="#file-comparison-and-merging-tools"><span class="header-section-number">11.1.5</span> File Comparison and Merging Tools</a></li>
-  <li><a href="#terminal-enhancements" id="toc-terminal-enhancements" class="nav-link" data-scroll-target="#terminal-enhancements"><span class="header-section-number">11.1.6</span> Terminal Enhancements</a></li>
-  <li><a href="#data-wrangling-tools" id="toc-data-wrangling-tools" class="nav-link" data-scroll-target="#data-wrangling-tools"><span class="header-section-number">11.1.7</span> Data Wrangling Tools</a></li>
-  <li><a href="#diagramming-and-visualisation-tools" id="toc-diagramming-and-visualisation-tools" class="nav-link" data-scroll-target="#diagramming-and-visualisation-tools"><span class="header-section-number">11.1.8</span> Diagramming and Visualisation Tools</a></li>
-  <li><a href="#screenshot-and-recording-tools" id="toc-screenshot-and-recording-tools" class="nav-link" data-scroll-target="#screenshot-and-recording-tools"><span class="header-section-number">11.1.9</span> Screenshot and Recording Tools</a></li>
-  <li><a href="#productivity-and-note-taking-tools" id="toc-productivity-and-note-taking-tools" class="nav-link" data-scroll-target="#productivity-and-note-taking-tools"><span class="header-section-number">11.1.10</span> Productivity and Note-Taking Tools</a></li>
-  <li><a href="#file-management-tools" id="toc-file-management-tools" class="nav-link" data-scroll-target="#file-management-tools"><span class="header-section-number">11.1.11</span> File Management Tools</a></li>
-  <li><a href="#conclusion-building-your-utility-toolkit" id="toc-conclusion-building-your-utility-toolkit" class="nav-link" data-scroll-target="#conclusion-building-your-utility-toolkit"><span class="header-section-number">11.1.12</span> Conclusion: Building Your Utility Toolkit</a></li>
+  <li><a href="#ai-coding-assistants" id="toc-ai-coding-assistants" class="nav-link" data-scroll-target="#ai-coding-assistants"><span class="header-section-number">A.1.1</span> AI Coding Assistants</a></li>
+  <li><a href="#text-editors-and-ide-enhancements" id="toc-text-editors-and-ide-enhancements" class="nav-link" data-scroll-target="#text-editors-and-ide-enhancements"><span class="header-section-number">A.1.2</span> Text Editors and IDE Enhancements</a></li>
+  <li><a href="#api-development-and-testing-tools" id="toc-api-development-and-testing-tools" class="nav-link" data-scroll-target="#api-development-and-testing-tools"><span class="header-section-number">A.1.3</span> API Development and Testing Tools</a></li>
+  <li><a href="#database-management-tools" id="toc-database-management-tools" class="nav-link" data-scroll-target="#database-management-tools"><span class="header-section-number">A.1.4</span> Database Management Tools</a></li>
+  <li><a href="#file-comparison-and-merging-tools" id="toc-file-comparison-and-merging-tools" class="nav-link" data-scroll-target="#file-comparison-and-merging-tools"><span class="header-section-number">A.1.5</span> File Comparison and Merging Tools</a></li>
+  <li><a href="#terminal-enhancements" id="toc-terminal-enhancements" class="nav-link" data-scroll-target="#terminal-enhancements"><span class="header-section-number">A.1.6</span> Terminal Enhancements</a></li>
+  <li><a href="#data-wrangling-tools" id="toc-data-wrangling-tools" class="nav-link" data-scroll-target="#data-wrangling-tools"><span class="header-section-number">A.1.7</span> Data Wrangling Tools</a></li>
+  <li><a href="#diagramming-and-visualisation-tools" id="toc-diagramming-and-visualisation-tools" class="nav-link" data-scroll-target="#diagramming-and-visualisation-tools"><span class="header-section-number">A.1.8</span> Diagramming and Visualisation Tools</a></li>
+  <li><a href="#screenshot-and-recording-tools" id="toc-screenshot-and-recording-tools" class="nav-link" data-scroll-target="#screenshot-and-recording-tools"><span class="header-section-number">A.1.9</span> Screenshot and Recording Tools</a></li>
+  <li><a href="#productivity-and-note-taking-tools" id="toc-productivity-and-note-taking-tools" class="nav-link" data-scroll-target="#productivity-and-note-taking-tools"><span class="header-section-number">A.1.10</span> Productivity and Note-Taking Tools</a></li>
+  <li><a href="#finding-things" id="toc-finding-things" class="nav-link" data-scroll-target="#finding-things"><span class="header-section-number">A.1.11</span> Finding Things</a></li>
   </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">A.2</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/utility_tools.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/utility_tools.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></h1>
+<h1 class="title">Appendix A — Utility Tools for Data Scientists</h1>
 </div>
 
 
@@ -277,11 +354,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="utility-tools-for-data-scientists" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="utility-tools-for-data-scientists"><span class="header-section-number">11.1</span> Utility Tools for Data Scientists</h2>
-<p>While programming languages, libraries, and frameworks form the core of your data science toolkit, a collection of utility tools can significantly enhance your productivity and effectiveness. This chapter covers specialised tools that address specific needs in the data science workflow.</p>
-<section id="ai-coding-assistants" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="ai-coding-assistants"><span class="header-section-number">11.1.1</span> AI Coding Assistants</h3>
+<section id="utility-tools-for-data-scientists" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="utility-tools-for-data-scientists"><span class="header-section-number">A.1</span> Utility Tools for Data Scientists</h2>
+<p>While programming languages, libraries, and frameworks form the core of your data science toolkit, a handful of smaller utilities remove real friction from day-to-day work. This appendix is a catalogue rather than a curriculum: nothing in the main chapters depends on any of it, and you should adopt items from it when you notice a problem they solve, not because they’re listed here.</p>
+<section id="ai-coding-assistants" class="level3" data-number="A.1.1">
+<h3 data-number="A.1.1" class="anchored" data-anchor-id="ai-coding-assistants"><span class="header-section-number">A.1.1</span> AI Coding Assistants</h3>
 <p>Large-language-model-based coding assistants are probably the single biggest productivity change in data science tooling since this book was first drafted. For readers without a CS background they’re especially useful: they can scaffold boilerplate, explain unfamiliar code, translate between Python and R, suggest fixes for cryptic error messages, and draft regex patterns or SQL queries on request. The caveat is universal: they confidently produce wrong answers too, so treat suggestions as a fast draft to be reviewed, not an oracle.</p>
 <p>A few options worth knowing, all with free tiers for individuals:</p>
 <ul>
@@ -290,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong><a href="https://cursor.com/">Cursor</a></strong>: A fork of VS Code with deep LLM integration throughout the editor. Popular with developers who want a single tool rather than an extension.</li>
 <li><strong><a href="https://aider.chat/">Aider</a></strong>: An open-source terminal-based pair-programmer that uses git commits as its unit of work. A great fit if you already live in the terminal.</li>
 </ul>
-<p>For genuinely throwaway tasks, the web chat interfaces to <a href="https://claude.ai/">Claude</a> and <a href="https://chat.openai.com/">ChatGPT</a> are fine. For anything you’ll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.</p>
+<p>For genuinely throwaway tasks, the web chat interfaces to <a href="https://claude.ai/">Claude</a> and <a href="https://chatgpt.com/">ChatGPT</a> are fine. For anything you’ll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.</p>
 <p>A few habits that make these tools more useful and less dangerous:</p>
 <ol type="1">
 <li><strong>Read the diff</strong>. Never accept an edit without skimming what changed.</li>
@@ -299,12 +376,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Run the code</strong>. LLMs hallucinate function signatures, flag names, and library behaviours. Trust the interpreter over the chatbot.</li>
 </ol>
 </section>
-<section id="text-editors-and-ide-enhancements" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="text-editors-and-ide-enhancements"><span class="header-section-number">11.1.2</span> Text Editors and IDE Enhancements</h3>
+<section id="text-editors-and-ide-enhancements" class="level3" data-number="A.1.2">
+<h3 data-number="A.1.2" class="anchored" data-anchor-id="text-editors-and-ide-enhancements"><span class="header-section-number">A.1.2</span> Text Editors and IDE Enhancements</h3>
 <p>The intro chapter covers <strong>Visual Studio Code</strong> (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It’s free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in the intro chapter will cover 90% of your needs.</p>
 <p>The editors below are lightweight alternatives for quick edits, very large files, or platform-specific situations.</p>
-<section id="notepad" class="level4" data-number="11.1.2.1">
-<h4 data-number="11.1.2.1" class="anchored" data-anchor-id="notepad"><span class="header-section-number">11.1.2.1</span> Notepad++</h4>
+<section id="notepad" class="level4" data-number="A.1.2.1">
+<h4 data-number="A.1.2.1" class="anchored" data-anchor-id="notepad"><span class="header-section-number">A.1.2.1</span> Notepad++</h4>
 <p>Notepad++ is a free, open-source text editor for Windows that’s more powerful than the default Notepad application.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
@@ -326,11 +403,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>Ctrl+D</code>: Duplicate current line</li>
 <li><code>Ctrl+Shift+Up/Down</code>: Move current line up/down</li>
 </ul>
-<p>Notepad++ is particularly useful for quickly viewing and editing large text files, CSV data, or configuration files without launching a full IDE. Its ability to handle multi-gigabyte files makes it valuable for inspecting large datasets.</p>
+<p>Notepad++ is useful for quickly viewing and editing text files, CSV extracts, or configuration files without launching a full IDE. It is not a large-file tool: it has a hard limit around 2 GB and becomes sluggish well before that. For a genuinely large CSV, read a sample in pandas or query it in place with DuckDB rather than trying to open it.</p>
 <p>Notepad++ (as of writing) is not available on Mac, but the following alternative is.</p>
 </section>
-<section id="sublime-text" class="level4" data-number="11.1.2.2">
-<h4 data-number="11.1.2.2" class="anchored" data-anchor-id="sublime-text"><span class="header-section-number">11.1.2.2</span> Sublime Text</h4>
+<section id="sublime-text" class="level4" data-number="A.1.2.2">
+<h4 data-number="A.1.2.2" class="anchored" data-anchor-id="sublime-text"><span class="header-section-number">A.1.2.2</span> Sublime Text</h4>
 <p>Sublime Text is a sophisticated cross-platform text editor with powerful features for code editing.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
@@ -338,7 +415,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Command palette</strong>: Quickly access commands without menus</li>
 <li><strong>Distraction-free mode</strong>: Focus on your text without UI elements</li>
 <li><strong>Splits and grids</strong>: View multiple files or parts of files simultaneously</li>
-<li><strong>Customizable key bindings</strong>: Create shortcuts tailored to your workflow</li>
+<li><strong>Customisable key bindings</strong>: Create shortcuts tailored to your workflow</li>
 </ol>
 <p><strong>Installation:</strong></p>
 <ol type="1">
@@ -348,12 +425,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sublime Text’s speed and versatility make it excellent for manipulating text data, writing scripts, or making quick edits to code without launching a heavier IDE.</p>
 </section>
 </section>
-<section id="api-development-and-testing-tools" class="level3" data-number="11.1.3">
-<h3 data-number="11.1.3" class="anchored" data-anchor-id="api-development-and-testing-tools"><span class="header-section-number">11.1.3</span> API Development and Testing Tools</h3>
+<section id="api-development-and-testing-tools" class="level3" data-number="A.1.3">
+<h3 data-number="A.1.3" class="anchored" data-anchor-id="api-development-and-testing-tools"><span class="header-section-number">A.1.3</span> API Development and Testing Tools</h3>
 <p>APIs (Application Programming Interfaces) are crucial for accessing web services and databases. These tools help you test, debug, and document APIs.</p>
-<section id="postman" class="level4" data-number="11.1.3.1">
-<h4 data-number="11.1.3.1" class="anchored" data-anchor-id="postman"><span class="header-section-number">11.1.3.1</span> Postman</h4>
-<p>Postman is the industry standard for API development and testing.</p>
+<section id="postman" class="level4" data-number="A.1.3.1">
+<h4 data-number="A.1.3.1" class="anchored" data-anchor-id="postman"><span class="header-section-number">A.1.3.1</span> Postman</h4>
+<p>Postman is the most widely used tool for API development and testing, and the one whose interface most tutorials assume.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
 <li><strong>Request building</strong>: Create and save HTTP requests</li>
@@ -376,32 +453,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Send the request and analyse the JSON response</p></li>
 <li><p>Save the request to a collection for future use</p></li>
 </ol>
-<p>Postman is invaluable when working with data APIs, whether you’re fetching data from public sources like financial markets, weather services, or social media platforms, or interacting with internal company APIs.</p>
+<p>Postman earns its place when you’re working with data APIs — financial markets, weather services, or an internal company endpoint — and want to poke at the response before writing any code against it.</p>
+<p>One caveat worth knowing before you commit: Postman now requires an account and syncs your collections to its cloud by default. For work under a client NDA, or anywhere requests carry credentials you’d rather not upload, check what your organisation’s policy says about that.</p>
 </section>
-<section id="insomnia" class="level4" data-number="11.1.3.2">
-<h4 data-number="11.1.3.2" class="anchored" data-anchor-id="insomnia"><span class="header-section-number">11.1.3.2</span> Insomnia</h4>
-<p>Insomnia is a lightweight alternative to Postman with an intuitive interface.</p>
-<p><strong>Key features:</strong></p>
-<ol type="1">
-<li><strong>Clean, focused UI</strong>: Less complex than Postman</li>
-<li><strong>GraphQL support</strong>: Built-in tools for GraphQL queries</li>
-<li><strong>Request chaining</strong>: Use data from one request in another</li>
-<li><strong>Environment management</strong>: Switch between configurations easily</li>
-<li><strong>Open source</strong>: Free core version available</li>
-</ol>
-<p><strong>Installation:</strong></p>
-<ol type="1">
-<li>Download from <a href="https://insomnia.rest/download">insomnia.rest</a></li>
-<li>Run the installer</li>
-</ol>
-<p>For data scientists who occasionally work with APIs but don’t need Postman’s full feature set, Insomnia offers a streamlined alternative.</p>
+<section id="bruno-and-insomnia" class="level4" data-number="A.1.3.2">
+<h4 data-number="A.1.3.2" class="anchored" data-anchor-id="bruno-and-insomnia"><span class="header-section-number">A.1.3.2</span> Bruno and Insomnia</h4>
+<p>Two alternatives, both a response to the same concern:</p>
+<ul>
+<li><strong><a href="https://www.usebruno.com/">Bruno</a></strong> stores collections as plain text files in a folder you choose, which means they live in Git alongside the code that calls the API and diff like any other source file. Offline by default, no account required. If the cloud-sync caveat above matters to you, this is the one to look at.</li>
+<li><strong><a href="https://insomnia.rest/">Insomnia</a></strong> is lighter than Postman with good GraphQL support. Note that since Kong’s 2023 changes, using it without an account means working in Scratch Pad mode, which limits what you can save — check the current terms before assuming the free tier fits your workflow.</li>
+</ul>
+<p>For occasional API work, any of the three is fine. The choice matters when collections need to be shared, version-controlled, or kept off someone else’s servers.</p>
 </section>
 </section>
-<section id="database-management-tools" class="level3" data-number="11.1.4">
-<h3 data-number="11.1.4" class="anchored" data-anchor-id="database-management-tools"><span class="header-section-number">11.1.4</span> Database Management Tools</h3>
+<section id="database-management-tools" class="level3" data-number="A.1.4">
+<h3 data-number="A.1.4" class="anchored" data-anchor-id="database-management-tools"><span class="header-section-number">A.1.4</span> Database Management Tools</h3>
 <p>These tools provide graphical interfaces for working with databases, making it easier to explore and manipulate data.</p>
-<section id="dbeaver" class="level4" data-number="11.1.4.1">
-<h4 data-number="11.1.4.1" class="anchored" data-anchor-id="dbeaver"><span class="header-section-number">11.1.4.1</span> DBeaver</h4>
+<section id="dbeaver" class="level4" data-number="A.1.4.1">
+<h4 data-number="A.1.4.1" class="anchored" data-anchor-id="dbeaver"><span class="header-section-number">A.1.4.1</span> DBeaver</h4>
 <p>DBeaver is a universal database tool that works with almost any database system.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
@@ -432,8 +501,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>DBeaver streamlines database interactions, allowing you to explore data structures, write queries, and export results without writing code to establish database connections.</p>
 </section>
-<section id="pgadmin" class="level4" data-number="11.1.4.2">
-<h4 data-number="11.1.4.2" class="anchored" data-anchor-id="pgadmin"><span class="header-section-number">11.1.4.2</span> pgAdmin</h4>
+<section id="pgadmin" class="level4" data-number="A.1.4.2">
+<h4 data-number="A.1.4.2" class="anchored" data-anchor-id="pgadmin"><span class="header-section-number">A.1.4.2</span> pgAdmin</h4>
 <p>pgAdmin is a specialised tool for PostgreSQL databases.</p>
 <p><strong>Key features:</strong></p>
 <ol type="1">
@@ -451,11 +520,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For data scientists working specifically with PostgreSQL databases, pgAdmin provides specialised features that generic tools may lack.</p>
 </section>
 </section>
-<section id="file-comparison-and-merging-tools" class="level3" data-number="11.1.5">
-<h3 data-number="11.1.5" class="anchored" data-anchor-id="file-comparison-and-merging-tools"><span class="header-section-number">11.1.5</span> File Comparison and Merging Tools</h3>
+<section id="file-comparison-and-merging-tools" class="level3" data-number="A.1.5">
+<h3 data-number="A.1.5" class="anchored" data-anchor-id="file-comparison-and-merging-tools"><span class="header-section-number">A.1.5</span> File Comparison and Merging Tools</h3>
 <p>These tools help identify differences between files and directories, which is useful for comparing datasets or code versions.</p>
-<section id="beyond-compare" class="level4" data-number="11.1.5.1">
-<h4 data-number="11.1.5.1" class="anchored" data-anchor-id="beyond-compare"><span class="header-section-number">11.1.5.1</span> Beyond Compare</h4>
+<section id="beyond-compare" class="level4" data-number="A.1.5.1">
+<h4 data-number="A.1.5.1" class="anchored" data-anchor-id="beyond-compare"><span class="header-section-number">A.1.5.1</span> Beyond Compare</h4>
 <p>Beyond Compare is a powerful file and directory comparison tool.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
@@ -479,8 +548,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Beyond Compare is particularly valuable when dealing with evolving datasets, where you need to understand what changed between versions.</p>
 </section>
-<section id="winmerge" class="level4" data-number="11.1.5.2">
-<h4 data-number="11.1.5.2" class="anchored" data-anchor-id="winmerge"><span class="header-section-number">11.1.5.2</span> WinMerge</h4>
+<section id="winmerge" class="level4" data-number="A.1.5.2">
+<h4 data-number="A.1.5.2" class="anchored" data-anchor-id="winmerge"><span class="header-section-number">A.1.5.2</span> WinMerge</h4>
 <p>WinMerge is a free, open-source alternative for file and folder comparison.</p>
 <p><strong>Key features:</strong></p>
 <ol type="1">
@@ -498,11 +567,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>WinMerge is an excellent free option for basic comparison needs, though it lacks some of the advanced features of commercial alternatives.</p>
 </section>
 </section>
-<section id="terminal-enhancements" class="level3" data-number="11.1.6">
-<h3 data-number="11.1.6" class="anchored" data-anchor-id="terminal-enhancements"><span class="header-section-number">11.1.6</span> Terminal Enhancements</h3>
+<section id="terminal-enhancements" class="level3" data-number="A.1.6">
+<h3 data-number="A.1.6" class="anchored" data-anchor-id="terminal-enhancements"><span class="header-section-number">A.1.6</span> Terminal Enhancements</h3>
 <p>Improving your command line experience can significantly boost productivity when working with data and code.</p>
-<section id="oh-my-zsh" class="level4" data-number="11.1.6.1">
-<h4 data-number="11.1.6.1" class="anchored" data-anchor-id="oh-my-zsh"><span class="header-section-number">11.1.6.1</span> Oh My Zsh</h4>
+<section id="oh-my-zsh" class="level4" data-number="A.1.6.1">
+<h4 data-number="A.1.6.1" class="anchored" data-anchor-id="oh-my-zsh"><span class="header-section-number">A.1.6.1</span> Oh My Zsh</h4>
 <p>Oh My Zsh is a framework for managing your Zsh configuration, providing themes and plugins for the Z shell.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
@@ -510,7 +579,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Git integration</strong>: Visual indicators of repository status</li>
 <li><strong>Syntax highlighting</strong>: Colour-coded command syntax</li>
 <li><strong>Command history</strong>: Improved search through previous commands</li>
-<li><strong>Customizable themes</strong>: Visual enhancements for the terminal</li>
+<li><strong>Customisable themes</strong>: Visual enhancements for the terminal</li>
 </ol>
 <p><strong>Installation (macOS or Linux):</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Zsh first if needed</span></span>
@@ -532,12 +601,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span>git python pip conda docker jupyter<span class="va">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Oh My Zsh makes the command line more user-friendly and efficient, which is valuable when working with data processing tools, running scripts, or managing environments.</p>
 </section>
-<section id="windows-terminal-and-powershell-7" class="level4" data-number="11.1.6.2">
-<h4 data-number="11.1.6.2" class="anchored" data-anchor-id="windows-terminal-and-powershell-7"><span class="header-section-number">11.1.6.2</span> Windows Terminal and PowerShell 7</h4>
+<section id="windows-terminal-and-powershell-7" class="level4" data-number="A.1.6.2">
+<h4 data-number="A.1.6.2" class="anchored" data-anchor-id="windows-terminal-and-powershell-7"><span class="header-section-number">A.1.6.2</span> Windows Terminal and PowerShell 7</h4>
 <p>On Windows, <strong>Windows Terminal</strong> (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) is a huge upgrade over the legacy <code>cmd.exe</code> and the old PowerShell window: tabs, split panes, GPU-accelerated rendering, and sensible keyboard shortcuts. Pair it with <strong>PowerShell 7</strong> (<code>winget install Microsoft.PowerShell</code>), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in the intro chapter) from inside Windows Terminal, which handles both worlds side-by-side.</p>
 </section>
-<section id="modern-rust-based-cli-replacements" class="level4" data-number="11.1.6.3">
-<h4 data-number="11.1.6.3" class="anchored" data-anchor-id="modern-rust-based-cli-replacements"><span class="header-section-number">11.1.6.3</span> Modern Rust-based CLI replacements</h4>
+<section id="modern-rust-based-cli-replacements" class="level4" data-number="A.1.6.3">
+<h4 data-number="A.1.6.3" class="anchored" data-anchor-id="modern-rust-based-cli-replacements"><span class="header-section-number">A.1.6.3</span> Modern Rust-based CLI replacements</h4>
 <p>A family of newer command-line tools, mostly written in Rust, have become the de-facto replacements for the standard Unix utilities. They’re all faster than the originals and, more importantly for this book’s audience, tend to have friendlier defaults and output. Every one is installable with Homebrew, apt, <code>winget</code>, <code>choco</code>, or <code>cargo</code>:</p>
 <table class="caption-top table">
 <thead>
@@ -594,11 +663,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>None of these are required to follow this book. The classic <code>pip</code>/<code>conda</code>/<code>grep</code>/<code>find</code> commands still work fine. But once you’ve tried them it’s hard to go back.</p>
 </section>
 </section>
-<section id="data-wrangling-tools" class="level3" data-number="11.1.7">
-<h3 data-number="11.1.7" class="anchored" data-anchor-id="data-wrangling-tools"><span class="header-section-number">11.1.7</span> Data Wrangling Tools</h3>
+<section id="data-wrangling-tools" class="level3" data-number="A.1.7">
+<h3 data-number="A.1.7" class="anchored" data-anchor-id="data-wrangling-tools"><span class="header-section-number">A.1.7</span> Data Wrangling Tools</h3>
 <p>These specialised tools help with specific data manipulation tasks that complement programming languages.</p>
-<section id="csvkit" class="level4" data-number="11.1.7.1">
-<h4 data-number="11.1.7.1" class="anchored" data-anchor-id="csvkit"><span class="header-section-number">11.1.7.1</span> CSVKit</h4>
+<section id="csvkit" class="level4" data-number="A.1.7.1">
+<h4 data-number="A.1.7.1" class="anchored" data-anchor-id="csvkit"><span class="header-section-number">A.1.7.1</span> CSVKit</h4>
 <p>CSVKit is a suite of command-line tools for working with CSV files.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
@@ -624,8 +693,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">csvsort</span> <span class="at">-c</span> 3 data.csv <span class="op">&gt;</span> sorted.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>CSVKit is extremely useful for quick data exploration and manipulation directly from the command line, without the need to write Python or R code for simple operations.</p>
 </section>
-<section id="jq" class="level4" data-number="11.1.7.2">
-<h4 data-number="11.1.7.2" class="anchored" data-anchor-id="jq"><span class="header-section-number">11.1.7.2</span> jq</h4>
+<section id="jq" class="level4" data-number="A.1.7.2">
+<h4 data-number="A.1.7.2" class="anchored" data-anchor-id="jq"><span class="header-section-number">A.1.7.2</span> jq</h4>
 <p>jq is a lightweight command-line JSON processor that helps manipulate JSON data.</p>
 <p><strong>Key features:</strong></p>
 <ol type="1">
@@ -659,11 +728,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>jq is invaluable when working with APIs that return JSON data or when preparing JSON data for visualisation or further analysis.</p>
 </section>
 </section>
-<section id="diagramming-and-visualisation-tools" class="level3" data-number="11.1.8">
-<h3 data-number="11.1.8" class="anchored" data-anchor-id="diagramming-and-visualisation-tools"><span class="header-section-number">11.1.8</span> Diagramming and Visualisation Tools</h3>
+<section id="diagramming-and-visualisation-tools" class="level3" data-number="A.1.8">
+<h3 data-number="A.1.8" class="anchored" data-anchor-id="diagramming-and-visualisation-tools"><span class="header-section-number">A.1.8</span> Diagramming and Visualisation Tools</h3>
 <p>While code-based visualisation is powerful, sometimes you need standalone tools for creating diagrams and flowcharts.</p>
-<section id="diagrams.net-formerly-draw.io" class="level4" data-number="11.1.8.1">
-<h4 data-number="11.1.8.1" class="anchored" data-anchor-id="diagrams.net-formerly-draw.io"><span class="header-section-number">11.1.8.1</span> diagrams.net (formerly draw.io)</h4>
+<section id="diagrams.net-formerly-draw.io" class="level4" data-number="A.1.8.1">
+<h4 data-number="A.1.8.1" class="anchored" data-anchor-id="diagrams.net-formerly-draw.io"><span class="header-section-number">A.1.8.1</span> diagrams.net (formerly draw.io)</h4>
 <p>diagrams.net is a free, open-source online diagramming tool that works with various diagram types.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
@@ -688,8 +757,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Clear diagrams are essential for communicating complex data processing workflows to stakeholders or documenting them for future reference.</p>
 </section>
-<section id="graphviz" class="level4" data-number="11.1.8.2">
-<h4 data-number="11.1.8.2" class="anchored" data-anchor-id="graphviz"><span class="header-section-number">11.1.8.2</span> Graphviz</h4>
+<section id="graphviz" class="level4" data-number="A.1.8.2">
+<h4 data-number="A.1.8.2" class="anchored" data-anchor-id="graphviz"><span class="header-section-number">A.1.8.2</span> Graphviz</h4>
 <p>Graphviz is a command-line tool for creating structured diagrams from text descriptions.</p>
 <p><strong>Key features:</strong></p>
 <ol type="1">
@@ -731,35 +800,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Graphviz is particularly useful for generating diagrams programmatically as part of automated documentation processes or for visualising complex relationships that would be tedious to draw manually.</p>
 </section>
 </section>
-<section id="screenshot-and-recording-tools" class="level3" data-number="11.1.9">
-<h3 data-number="11.1.9" class="anchored" data-anchor-id="screenshot-and-recording-tools"><span class="header-section-number">11.1.9</span> Screenshot and Recording Tools</h3>
+<section id="screenshot-and-recording-tools" class="level3" data-number="A.1.9">
+<h3 data-number="A.1.9" class="anchored" data-anchor-id="screenshot-and-recording-tools"><span class="header-section-number">A.1.9</span> Screenshot and Recording Tools</h3>
 <p>These tools help create visual documentation and tutorials.</p>
-<section id="greenshot" class="level4" data-number="11.1.9.1">
-<h4 data-number="11.1.9.1" class="anchored" data-anchor-id="greenshot"><span class="header-section-number">11.1.9.1</span> Greenshot</h4>
-<p>Greenshot is a lightweight screenshot tool with annotation features.</p>
-<p><strong>Key features for data scientists:</strong></p>
-<ol type="1">
-<li><strong>Region selection</strong>: Capture specific areas of the screen</li>
-<li><strong>Window capture</strong>: Automatically capture a window</li>
-<li><strong>Annotation</strong>: Add text, highlights, and arrows</li>
-<li><strong>Auto-save</strong>: Configure automatic saving patterns</li>
-<li><strong>Integration</strong>: Send to image editor, clipboard, or file</li>
-</ol>
-<p><strong>Installation:</strong></p>
-<ol type="1">
-<li>Download from <a href="https://getgreenshot.org/downloads/">getgreenshot.org</a></li>
-<li>Run the installer</li>
-</ol>
-<p><strong>Default shortcuts:</strong></p>
+<section id="your-operating-systems-built-in-tool" class="level4" data-number="A.1.9.1">
+<h4 data-number="A.1.9.1" class="anchored" data-anchor-id="your-operating-systems-built-in-tool"><span class="header-section-number">A.1.9.1</span> Your operating system’s built-in tool</h4>
+<p>Screenshot utilities were once worth installing separately. They mostly aren’t any more — every current OS ships one that annotates:</p>
 <ul>
-<li><code>Print Screen</code>: Capture region</li>
-<li><code>Alt+Print Screen</code>: Capture active window</li>
-<li><code>Ctrl+Print Screen</code>: Capture full screen</li>
+<li><strong>Windows</strong>: Snipping Tool (<code>Win+Shift+S</code> for a region capture straight to the clipboard). Annotates, and records short screen videos.</li>
+<li><strong>macOS</strong>: <code>Cmd+Shift+4</code> for a region, <code>Cmd+Shift+5</code> for the capture-and-record panel. Markup opens from the thumbnail that appears after a capture.</li>
+<li><strong>Linux</strong>: varies by desktop — GNOME’s Screenshot and KDE’s Spectacle both cover region capture and annotation.</li>
 </ul>
-<p>Greenshot is useful for capturing visualisations, error messages, or UI elements for documentation or troubleshooting.</p>
+<p>You’ll still see older guides recommending Greenshot for this on Windows. It works, but its last stable release was in 2017 and the built-in tool now does the same job.</p>
+<p>For anything beyond a static image — a bug you can only demonstrate by reproducing it — record a short clip instead. Screenshots of error messages are a common source of confusion in bug reports: paste the text.</p>
 </section>
-<section id="obs-studio" class="level4" data-number="11.1.9.2">
-<h4 data-number="11.1.9.2" class="anchored" data-anchor-id="obs-studio"><span class="header-section-number">11.1.9.2</span> OBS Studio</h4>
+<section id="obs-studio" class="level4" data-number="A.1.9.2">
+<h4 data-number="A.1.9.2" class="anchored" data-anchor-id="obs-studio"><span class="header-section-number">A.1.9.2</span> OBS Studio</h4>
 <p>OBS (Open Broadcaster Software) Studio is a powerful tool for screen recording and streaming.</p>
 <p><strong>Key features:</strong></p>
 <ol type="1">
@@ -777,11 +833,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>OBS is excellent for creating tutorial videos, recording presentations, or documenting complex data analysis processes for training purposes.</p>
 </section>
 </section>
-<section id="productivity-and-note-taking-tools" class="level3" data-number="11.1.10">
-<h3 data-number="11.1.10" class="anchored" data-anchor-id="productivity-and-note-taking-tools"><span class="header-section-number">11.1.10</span> Productivity and Note-Taking Tools</h3>
+<section id="productivity-and-note-taking-tools" class="level3" data-number="A.1.10">
+<h3 data-number="A.1.10" class="anchored" data-anchor-id="productivity-and-note-taking-tools"><span class="header-section-number">A.1.10</span> Productivity and Note-Taking Tools</h3>
 <p>These tools help organise your thinking, document your work, and manage your projects.</p>
-<section id="obsidian" class="level4" data-number="11.1.10.1">
-<h4 data-number="11.1.10.1" class="anchored" data-anchor-id="obsidian"><span class="header-section-number">11.1.10.1</span> Obsidian</h4>
+<section id="obsidian" class="level4" data-number="A.1.10.1">
+<h4 data-number="A.1.10.1" class="anchored" data-anchor-id="obsidian"><span class="header-section-number">A.1.10.1</span> Obsidian</h4>
 <p>Obsidian is a knowledge base and note-taking application that works on Markdown files.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
@@ -806,8 +862,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Obsidian helps capture the thought process behind your data science work, creating a valuable reference for future projects.</p>
 </section>
-<section id="notion" class="level4" data-number="11.1.10.2">
-<h4 data-number="11.1.10.2" class="anchored" data-anchor-id="notion"><span class="header-section-number">11.1.10.2</span> Notion</h4>
+<section id="notion" class="level4" data-number="A.1.10.2">
+<h4 data-number="A.1.10.2" class="anchored" data-anchor-id="notion"><span class="header-section-number">A.1.10.2</span> Notion</h4>
 <p>Notion is an all-in-one workspace that combines notes, tasks, databases, and more.</p>
 <p><strong>Key features:</strong></p>
 <ol type="1">
@@ -825,55 +881,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Notion is particularly useful for team-based data science projects, where you need to coordinate tasks, share documentation, and track progress in one place.</p>
 </section>
 </section>
-<section id="file-management-tools" class="level3" data-number="11.1.11">
-<h3 data-number="11.1.11" class="anchored" data-anchor-id="file-management-tools"><span class="header-section-number">11.1.11</span> File Management Tools</h3>
-<p>Managing, finding, and organising files is an essential but often overlooked part of data science work.</p>
-<section id="total-commander" class="level4" data-number="11.1.11.1">
-<h4 data-number="11.1.11.1" class="anchored" data-anchor-id="total-commander"><span class="header-section-number">11.1.11.1</span> Total Commander</h4>
-<p>Total Commander is a comprehensive file manager with advanced features.</p>
-<p><strong>Key features for data scientists:</strong></p>
-<ol type="1">
-<li><strong>Dual-pane interface</strong>: Compare and move files efficiently</li>
-<li><strong>Built-in viewers</strong>: View text, images, and other files without opening separate programs</li>
-<li><strong>Advanced search</strong>: Find files by content, name, size, or date</li>
-<li><strong>Batch rename</strong>: Rename multiple files with patterns</li>
-<li><strong>FTP/SFTP client</strong>: Transfer files to and from servers</li>
-</ol>
-<p><strong>Installation:</strong></p>
-<ol type="1">
-<li>Download from <a href="https://www.ghisler.com/download.htm">ghisler.com</a></li>
-<li>Run the installer (shareware with unlimited trial)</li>
-</ol>
-<p>Total Commander streamlines file operations that are common in data science work, such as organising datasets, managing project files, or transferring data to and from remote servers.</p>
-</section>
-<section id="agent-ransack" class="level4" data-number="11.1.11.2">
-<h4 data-number="11.1.11.2" class="anchored" data-anchor-id="agent-ransack"><span class="header-section-number">11.1.11.2</span> Agent Ransack</h4>
-<p>Agent Ransack is a powerful file search tool that can find text within files.</p>
-<p><strong>Key features:</strong></p>
-<ol type="1">
-<li><strong>Content search</strong>: Find files containing specific text</li>
-<li><strong>Regular expressions</strong>: Use patterns for advanced searching</li>
-<li><strong>Search filters</strong>: Limit by file type, size, or date</li>
-<li><strong>Result preview</strong>: See matching text without opening files</li>
-<li><strong>Boolean operators</strong>: Combine multiple search terms</li>
-</ol>
-<p><strong>Installation:</strong></p>
-<ol type="1">
-<li>Download from <a href="https://www.mythicsoft.com/agentransack/download/">mythicsoft.com</a></li>
-<li>Run the installer</li>
-</ol>
-<p>Agent Ransack is invaluable when you need to find specific data or code across multiple projects or locate where certain variables or functions are used in a large codebase.</p>
+<section id="finding-things" class="level3" data-number="A.1.11">
+<h3 data-number="A.1.11" class="anchored" data-anchor-id="finding-things"><span class="header-section-number">A.1.11</span> Finding Things</h3>
+<p>Searching across files is common enough in analytical work — where is this variable used, which script produced this column — that it’s worth having a fast tool for it.</p>
+<p><strong><code>ripgrep</code> (<code>rg</code>)</strong> is the answer on every platform. It’s already listed in the command-line tools section above; this is just to say that it also replaces the category of dedicated desktop search applications you may have used on Windows. It respects <code>.gitignore</code> by default, so it won’t waste time searching your <code>.venv</code> or your raw data.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Every occurrence of a column name across a project</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">rg</span> <span class="st">"customer_lifetime_value"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Only in Python files, showing three lines of context</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">rg</span> <span class="at">-t</span> py <span class="at">-C</span> 3 <span class="st">"def build_features"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Files that mention it, without the matching lines</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ex">rg</span> <span class="at">-l</span> <span class="st">"POPIA"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>VS Code’s search panel (<code>Ctrl+Shift+F</code>) uses ripgrep underneath, so if you prefer a graphical interface you already have one with the same speed and the same <code>.gitignore</code> behaviour.</p>
+<p>For finding <em>files</em> rather than text inside them, <code>fd</code> is the equivalent — also listed above.</p>
 </section>
 </section>
-<section id="conclusion-building-your-utility-toolkit" class="level3" data-number="11.1.12">
-<h3 data-number="11.1.12" class="anchored" data-anchor-id="conclusion-building-your-utility-toolkit"><span class="header-section-number">11.1.12</span> Conclusion: Building Your Utility Toolkit</h3>
-<p>While the core programming languages and frameworks form the foundation of data science work, these utility tools provide specialised capabilities that can significantly enhance your productivity. As you progress in your data science journey, you’ll likely discover which tools best complement your workflow.</p>
-<p>Start by incorporating a few tools that address your immediate needs—perhaps a better text editor, an API testing tool, or a database management interface. Over time, expand your toolkit as you encounter new challenges. Remember that the goal is not to use every tool available, but to find the combination that helps you work most effectively.</p>
-<p>Many of these tools have free versions or trials, so you can experiment without financial commitment. You’ll soon discover your favourites and find which tools save you time or reduce friction in your workflow.</p>
-<p>By thoughtfully building your utility toolkit alongside your core data science skills, you’ll be better equipped to handle the varied challenges of real-world data science projects.</p>
+<section id="conclusion" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">A.2</span> Conclusion</h2>
+<p>The tools in this appendix are optional by definition. Nothing in the main chapters depends on any of them, and adopting all of them at once would be a poor use of a week.</p>
+<p>The productive approach is to add one when you notice friction. If you keep opening a CSV in Excel to look at it, install a better editor. If you’re testing an API by writing throwaway scripts, install Bruno. If you’re taking notes on projects in a text file you can’t search, try Obsidian.</p>
+<p>Two of these are worth adopting sooner rather than later regardless of whether you’ve noticed the friction:</p>
+<ul>
+<li><strong>An AI coding assistant</strong>, because the productivity difference is large and the learning curve is short.</li>
+<li><strong><code>ripgrep</code></strong>, because searching a codebase is something you do many times a day once you have a tool fast enough to make it worth doing.</li>
+</ul>
+<p>Everything else can wait until you want it.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1284,13 +1319,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/summary.html" class="pagination-link" aria-label="Conclusion">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span>
+      <a href="../chapters/references.html" class="pagination-link" aria-label="References and Resources">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/references.html" class="pagination-link" aria-label="References and Resources">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References and Resources</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/appendix_troubleshooting.html" class="pagination-link" aria-label="Appendix: Troubleshooting Guide">
+        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

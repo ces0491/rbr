@@ -2,61 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Setting Up for Success: Infrastructure for the Modern Data Scientist – Ready Before Run()</title>
+<title>2&nbsp; Introduction – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -68,7 +36,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/reporting.html" rel="next">
+<link href="../chapters/command_line.html" rel="next">
 <link href="../index.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -77,10 +45,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d1ce83cbcf7f21d8208077a0fee83aa1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -121,7 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting Up for Success: Infrastructure for the Modern Data Scientist</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,75 +126,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting Up for Success: Infrastructure for the Modern Data Scientist</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/command_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Command Line</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Communicating Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/reporting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Shipping Your Work</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/containers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/workflows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -237,59 +279,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">2.1</span> Introduction</a></li>
-  <li><a href="#understanding-the-command-line" id="toc-understanding-the-command-line" class="nav-link" data-scroll-target="#understanding-the-command-line"><span class="header-section-number">2.2</span> Understanding the Command Line</a>
-  <ul class="collapse">
-  <li><a href="#what-is-the-command-line" id="toc-what-is-the-command-line" class="nav-link" data-scroll-target="#what-is-the-command-line"><span class="header-section-number">2.2.1</span> What is the Command Line?</a></li>
-  <li><a href="#getting-started-with-the-command-line" id="toc-getting-started-with-the-command-line" class="nav-link" data-scroll-target="#getting-started-with-the-command-line"><span class="header-section-number">2.2.2</span> Getting Started with the Command Line</a></li>
-  <li><a href="#essential-command-line-operations" id="toc-essential-command-line-operations" class="nav-link" data-scroll-target="#essential-command-line-operations"><span class="header-section-number">2.2.3</span> Essential Command Line Operations</a></li>
-  <li><a href="#package-managers" id="toc-package-managers" class="nav-link" data-scroll-target="#package-managers"><span class="header-section-number">2.2.4</span> Package Managers</a></li>
-  </ul></li>
-  <li><a href="#setting-up-python" id="toc-setting-up-python" class="nav-link" data-scroll-target="#setting-up-python"><span class="header-section-number">2.3</span> Setting Up Python</a>
-  <ul class="collapse">
-  <li><a href="#why-python-for-data-science" id="toc-why-python-for-data-science" class="nav-link" data-scroll-target="#why-python-for-data-science"><span class="header-section-number">2.3.1</span> Why Python for Data Science?</a></li>
-  <li><a href="#installing-python" id="toc-installing-python" class="nav-link" data-scroll-target="#installing-python"><span class="header-section-number">2.3.2</span> Installing Python</a></li>
-  <li><a href="#creating-a-python-environment" id="toc-creating-a-python-environment" class="nav-link" data-scroll-target="#creating-a-python-environment"><span class="header-section-number">2.3.3</span> Creating a Python Environment</a></li>
-  <li><a href="#recording-your-environment" id="toc-recording-your-environment" class="nav-link" data-scroll-target="#recording-your-environment"><span class="header-section-number">2.3.4</span> Recording Your Environment</a></li>
-  <li><a href="#using-jupyter-notebooks" id="toc-using-jupyter-notebooks" class="nav-link" data-scroll-target="#using-jupyter-notebooks"><span class="header-section-number">2.3.5</span> Using Jupyter Notebooks</a></li>
-  <li><a href="#installing-additional-packages" id="toc-installing-additional-packages" class="nav-link" data-scroll-target="#installing-additional-packages"><span class="header-section-number">2.3.6</span> Installing Additional Packages</a></li>
-  </ul></li>
-  <li><a href="#setting-up-r" id="toc-setting-up-r" class="nav-link" data-scroll-target="#setting-up-r"><span class="header-section-number">2.4</span> Setting Up R</a>
-  <ul class="collapse">
-  <li><a href="#why-r-for-data-science" id="toc-why-r-for-data-science" class="nav-link" data-scroll-target="#why-r-for-data-science"><span class="header-section-number">2.4.1</span> Why R for Data Science?</a></li>
-  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r"><span class="header-section-number">2.4.2</span> Installing R</a></li>
-  <li><a href="#essential-r-packages-for-data-science" id="toc-essential-r-packages-for-data-science" class="nav-link" data-scroll-target="#essential-r-packages-for-data-science"><span class="header-section-number">2.4.3</span> Essential R Packages for Data Science</a></li>
-  <li><a href="#creating-your-first-r-script" id="toc-creating-your-first-r-script" class="nav-link" data-scroll-target="#creating-your-first-r-script"><span class="header-section-number">2.4.4</span> Creating Your First R Script</a></li>
-  <li><a href="#understanding-r-packages" id="toc-understanding-r-packages" class="nav-link" data-scroll-target="#understanding-r-packages"><span class="header-section-number">2.4.5</span> Understanding R Packages</a></li>
-  </ul></li>
-  <li><a href="#sql-fundamentals-and-setup" id="toc-sql-fundamentals-and-setup" class="nav-link" data-scroll-target="#sql-fundamentals-and-setup"><span class="header-section-number">2.5</span> SQL Fundamentals and Setup</a>
-  <ul class="collapse">
-  <li><a href="#why-sql-for-data-science" id="toc-why-sql-for-data-science" class="nav-link" data-scroll-target="#why-sql-for-data-science"><span class="header-section-number">2.5.1</span> Why SQL for Data Science?</a></li>
-  <li><a href="#installing-sqlite" id="toc-installing-sqlite" class="nav-link" data-scroll-target="#installing-sqlite"><span class="header-section-number">2.5.2</span> Installing SQLite</a></li>
-  <li><a href="#creating-your-first-database" id="toc-creating-your-first-database" class="nav-link" data-scroll-target="#creating-your-first-database"><span class="header-section-number">2.5.3</span> Creating Your First Database</a></li>
-  <li><a href="#sql-guis-for-easier-database-management" id="toc-sql-guis-for-easier-database-management" class="nav-link" data-scroll-target="#sql-guis-for-easier-database-management"><span class="header-section-number">2.5.4</span> SQL GUIs for Easier Database Management</a></li>
-  </ul></li>
-  <li><a href="#integrated-development-environments-ides" id="toc-integrated-development-environments-ides" class="nav-link" data-scroll-target="#integrated-development-environments-ides"><span class="header-section-number">2.6</span> Integrated Development Environments (IDEs)</a>
-  <ul class="collapse">
-  <li><a href="#why-ides-matter-for-data-science" id="toc-why-ides-matter-for-data-science" class="nav-link" data-scroll-target="#why-ides-matter-for-data-science"><span class="header-section-number">2.6.1</span> Why IDEs Matter for Data Science</a></li>
-  <li><a href="#vs-code-a-universal-ide" id="toc-vs-code-a-universal-ide" class="nav-link" data-scroll-target="#vs-code-a-universal-ide"><span class="header-section-number">2.6.2</span> VS Code: A Universal IDE</a></li>
-  <li><a href="#pycharm-community-edition" id="toc-pycharm-community-edition" class="nav-link" data-scroll-target="#pycharm-community-edition"><span class="header-section-number">2.6.3</span> PyCharm Community Edition</a></li>
-  <li><a href="#working-with-jupyter-notebooks" id="toc-working-with-jupyter-notebooks" class="nav-link" data-scroll-target="#working-with-jupyter-notebooks"><span class="header-section-number">2.6.4</span> Working with Jupyter Notebooks</a></li>
-  <li><a href="#choosing-the-right-ide" id="toc-choosing-the-right-ide" class="nav-link" data-scroll-target="#choosing-the-right-ide"><span class="header-section-number">2.6.5</span> Choosing the Right IDE</a></li>
-  </ul></li>
-  <li><a href="#version-control-with-git-and-github" id="toc-version-control-with-git-and-github" class="nav-link" data-scroll-target="#version-control-with-git-and-github"><span class="header-section-number">2.7</span> Version Control with Git and GitHub</a>
-  <ul class="collapse">
-  <li><a href="#why-version-control-for-data-science" id="toc-why-version-control-for-data-science" class="nav-link" data-scroll-target="#why-version-control-for-data-science"><span class="header-section-number">2.7.1</span> Why Version Control for Data Science?</a></li>
-  <li><a href="#installing-git" id="toc-installing-git" class="nav-link" data-scroll-target="#installing-git"><span class="header-section-number">2.7.2</span> Installing Git</a></li>
-  <li><a href="#creating-a-github-account" id="toc-creating-a-github-account" class="nav-link" data-scroll-target="#creating-a-github-account"><span class="header-section-number">2.7.3</span> Creating a GitHub Account</a></li>
-  <li><a href="#setting-up-ssh-authentication-for-github" id="toc-setting-up-ssh-authentication-for-github" class="nav-link" data-scroll-target="#setting-up-ssh-authentication-for-github"><span class="header-section-number">2.7.4</span> Setting Up SSH Authentication for GitHub</a></li>
-  <li><a href="#basic-git-workflow" id="toc-basic-git-workflow" class="nav-link" data-scroll-target="#basic-git-workflow"><span class="header-section-number">2.7.5</span> Basic Git Workflow</a></li>
-  <li><a href="#telling-git-what-to-ignore-.gitignore" id="toc-telling-git-what-to-ignore-.gitignore" class="nav-link" data-scroll-target="#telling-git-what-to-ignore-.gitignore"><span class="header-section-number">2.7.6</span> Telling Git What to Ignore: <code>.gitignore</code></a></li>
-  <li><a href="#connecting-to-github" id="toc-connecting-to-github" class="nav-link" data-scroll-target="#connecting-to-github"><span class="header-section-number">2.7.7</span> Connecting to GitHub</a></li>
-  <li><a href="#basic-git-commands-for-daily-use" id="toc-basic-git-commands-for-daily-use" class="nav-link" data-scroll-target="#basic-git-commands-for-daily-use"><span class="header-section-number">2.7.8</span> Basic Git Commands for Daily Use</a></li>
-  <li><a href="#using-git-in-ides" id="toc-using-git-in-ides" class="nav-link" data-scroll-target="#using-git-in-ides"><span class="header-section-number">2.7.9</span> Using Git in IDEs</a></li>
-  <li><a href="#collaborating-with-others-on-github" id="toc-collaborating-with-others-on-github" class="nav-link" data-scroll-target="#collaborating-with-others-on-github"><span class="header-section-number">2.7.10</span> Collaborating with Others on GitHub</a></li>
-  </ul></li>
+  <li><a href="#what-this-book-is-for" id="toc-what-this-book-is-for" class="nav-link active" data-scroll-target="#what-this-book-is-for"><span class="header-section-number">2.1</span> What This Book Is For</a></li>
+  <li><a href="#does-this-still-matter-when-a-model-can-write-the-code" id="toc-does-this-still-matter-when-a-model-can-write-the-code" class="nav-link" data-scroll-target="#does-this-still-matter-when-a-model-can-write-the-code"><span class="header-section-number">2.2</span> Does This Still Matter When a Model Can Write the Code?</a></li>
+  <li><a href="#how-the-book-is-organised" id="toc-how-the-book-is-organised" class="nav-link" data-scroll-target="#how-the-book-is-organised"><span class="header-section-number">2.3</span> How the Book Is Organised</a></li>
+  <li><a href="#what-it-costs" id="toc-what-it-costs" class="nav-link" data-scroll-target="#what-it-costs"><span class="header-section-number">2.4</span> What It Costs</a></li>
   </ul>
 </nav>
     </div>
@@ -298,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting Up for Success: Infrastructure for the Modern Data Scientist</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
 </div>
 
 
@@ -315,892 +308,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
-<p>If you’re coming from economics, statistics, engineering, or another technical field, you already have many of the analytical skills needed to make productive use of data. However, since you’re reading this, you’d like some help setting up the technical infrastructure that supports modern data science work. For those without a computer science background, all of this may seem overwhelming at first, but soon you’ll have the tools to make your workflows even more productive.</p>
-<p>This guide focuses on getting you set up with the tools you need to practise data science, rather than teaching you how to code. Think of it as preparing your workshop before you begin crafting. We’ll cover installing and configuring the essential software, platforms, and tools that data scientists use regularly.</p>
-<p>By the end of this guide, you’ll have:</p>
-<ul>
-<li>A fully configured development environment for Python, R, and SQL</li>
-<li>Experience with version control through Git and GitHub</li>
-<li>The ability to create interactive reports and visualisations</li>
-<li>Knowledge of how to deploy your work for others to see and use</li>
-<li>A foundation in the command line and other developer tools</li>
-</ul>
-<p>While this guide is written to provide a natural progression from fundamental concepts to more involved material that builds on prior knowledge, each chapter is designed to be a standalone reference—you don’t need to read “Understanding the Command Line” if all you need is help with app deployment.</p>
-<p>The resources presented in this guide are largely freely available up to some tier (except for some of the cloud platforms, which are free to set up but incur usage costs), so you can get started without needing to make decisions based on costs.</p>
+<section id="what-this-book-is-for" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="what-this-book-is-for"><span class="header-section-number">2.1</span> What This Book Is For</h2>
+<p>If you’re coming from economics, statistics, engineering, or another quantitative field, you already have the analytical skills to make productive use of data. What you may not have is the layer underneath: the command line, environments, version control, deployment — the infrastructure that turns an analysis on your laptop into something reproducible, shareable, and durable.</p>
+<p>That layer is rarely taught. Statistics degrees cover inference; econometrics courses cover identification; almost none of them cover what to do when a colleague says “it doesn’t run on my machine.” This book covers that.</p>
+<p>It is about setting up the tools, not about learning to code. There are excellent resources for the latter, several listed in the <a href="../chapters/references.html">References</a> chapter. This one assumes you can already write the analysis and focuses on everything that has to be true before you can run it.</p>
 </section>
-<section id="understanding-the-command-line" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="understanding-the-command-line"><span class="header-section-number">2.2</span> Understanding the Command Line</h2>
-<p>Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface. Further, when we later discuss Integrated Development Environments (IDEs) such as Visual Studio Code, RStudio, and many others, you’ll find that they provide dedicated functionality to allow you to interact directly with the command line, so understanding its purpose is globally useful across workflows.</p>
-<section id="what-is-the-command-line" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="what-is-the-command-line"><span class="header-section-number">2.2.1</span> What is the Command Line?</h3>
-<p>The command line (also called terminal, shell, or console) is a text-based interface where you type commands for the computer to execute. While graphical user interfaces (GUIs) let you point and click, the command line gives you more precise control through text commands.</p>
-<p>Why use the command line when we have modern GUIs?</p>
-<ol type="1">
-<li><p><strong>Many data science tools are designed to be used this way</strong>: Tools like Git, Docker, and many Python and R package management utilities primarily use command-line interfaces.</p></li>
-<li><p><strong>It allows for reproducibility through scripts</strong>: Command-line operations can be saved in script files and run again later, ensuring that the exact same steps are followed each time. This reproducibility is essential for reliable data analysis.</p></li>
-<li><p><strong>It often provides more flexibility and power</strong>: Command-line tools typically offer more options and configurations than their graphical counterparts. For example, when installing Python packages, the command-line tool <code>pip</code> offers dozens of options to handle dependencies, versions, and installation locations that aren’t available in most graphical installers.</p></li>
-<li><p><strong>It’s faster for many operations once you learn the commands</strong>: After becoming familiar with the commands, many operations can be performed more quickly than navigating through multiple screens in a GUI. For instance, you can install multiple Python packages with a single command line rather than clicking through installation wizards for each one.</p></li>
-</ol>
+<section id="does-this-still-matter-when-a-model-can-write-the-code" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="does-this-still-matter-when-a-model-can-write-the-code"><span class="header-section-number">2.2</span> Does This Still Matter When a Model Can Write the Code?</h2>
+<p>It’s a fair question, and it deserves a direct answer rather than a reassurance.</p>
+<p>Consider what an AI assistant can and cannot do for you. It can draft your regression, explain an unfamiliar codebase, and suggest a fix for a stack trace. It cannot install Python on your laptop, repair your PATH, resolve a conflict between two package versions, or configure the machine its code will run on. Everything in this book is the part of the job that can’t be done from inside a chat window.</p>
+<p>There’s a second reason, and it’s the more important one. An assistant’s output is only as useful as your ability to run it, test it, and tell whether it’s right. If you can’t reproduce a result, you can’t check it. If you can’t check it, you’re taking a machine’s word for a number you’re about to put in front of someone who will act on it. The infrastructure in this book is what makes verification possible — which is precisely the skill that becomes more valuable, not less, as more of the drafting gets automated.</p>
+<p>So: use the assistants. They are genuinely good at the things this book doesn’t cover. But treat them as a fast pair-programmer rather than an oracle, and know enough about what’s underneath to catch them when they’re confidently wrong.</p>
 </section>
-<section id="getting-started-with-the-command-line" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="getting-started-with-the-command-line"><span class="header-section-number">2.2.2</span> Getting Started with the Command Line</h3>
-<section id="on-windows" class="level4" data-number="2.2.2.1">
-<h4 data-number="2.2.2.1" class="anchored" data-anchor-id="on-windows"><span class="header-section-number">2.2.2.1</span> On Windows</h4>
-<p>Windows offers several options for command line interfaces:</p>
-<ol type="1">
-<li><strong>Command Prompt</strong>: Built into Windows, but limited in functionality</li>
-<li><strong>PowerShell</strong>: A more powerful alternative built into Windows</li>
-<li><strong>Windows Subsystem for Linux (WSL)</strong>: Provides a Linux environment within Windows (recommended)</li>
-</ol>
-<p>To install WSL, open PowerShell as administrator and run:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This installs Ubuntu Linux by default. After installation, restart your computer and follow the setup prompts.</p>
+<section id="how-the-book-is-organised" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="how-the-book-is-organised"><span class="header-section-number">2.3</span> How the Book Is Organised</h2>
+<p>The chapters run roughly in dependency order — earlier ones set up what later ones assume — but each is written to stand alone if you already have the earlier pieces working.</p>
+<p><strong>Foundations</strong> (chapters 2–6) cover the machine itself: the command line, Python and R, where data lives, how to make an environment reproducible, and how to keep your work under version control.</p>
+<p><strong>Communicating results</strong> (7–9) covers turning analysis into output someone else can read: documents and reports, charts and diagrams, and cloud platforms when your laptop isn’t enough.</p>
+<p><strong>Shipping</strong> (10–13) covers getting work in front of people: web applications, containers, deployment, and the workflow tooling that makes the second run cheaper than the first.</p>
+<p>Two appendices follow: a catalogue of smaller utilities worth knowing about, and a troubleshooting reference for the errors you’re most likely to hit.</p>
+<p>By the end you should have a working development environment for Python, R, and SQL; your projects under Git with a remote on GitHub; the ability to produce a report or dashboard and put it on the internet; and an environment file complete enough that someone else can reproduce your results.</p>
 </section>
-<section id="on-macos" class="level4" data-number="2.2.2.2">
-<h4 data-number="2.2.2.2" class="anchored" data-anchor-id="on-macos"><span class="header-section-number">2.2.2.2</span> On macOS</h4>
-<p>The Terminal application comes pre-installed:</p>
-<ol type="1">
-<li>Press Cmd+Space to open Spotlight search</li>
-<li>Type “Terminal” and press Enter</li>
-</ol>
-</section>
-<section id="on-linux" class="level4" data-number="2.2.2.3">
-<h4 data-number="2.2.2.3" class="anchored" data-anchor-id="on-linux"><span class="header-section-number">2.2.2.3</span> On Linux</h4>
-<p>Most Linux distributions come with a terminal emulator. Look for “Terminal” in your applications menu.</p>
-</section>
-</section>
-<section id="essential-command-line-operations" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="essential-command-line-operations"><span class="header-section-number">2.2.3</span> Essential Command Line Operations</h3>
-<p>Let’s practise some basic commands. Open your terminal and try these:</p>
-<section id="navigating-the-file-system" class="level4" data-number="2.2.3.1">
-<h4 data-number="2.2.3.1" class="anchored" data-anchor-id="navigating-the-file-system"><span class="header-section-number">2.2.3.1</span> Navigating the File System</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print working directory (shows where you are)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List files and directories</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Change directory [to Documents]</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Documents</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Go up one directory level (like clicking the back button in your browser)</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new directory</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> data_science_projects</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a file (be careful!)</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> filename.txt</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a directory</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">rmdir</span> directory_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>These commands form the foundation of file navigation and manipulation. As you work with data science tools, you’ll find yourself using them frequently.</p>
-<p>The commands above are like giving directions to your computer. Just as you might tell someone “Go down this street, then turn left at the second intersection,” these commands tell your computer “Show me where I am,” “Show me what’s here,” “Go into this folder,” and so on.</p>
-</section>
-<section id="creating-and-editing-files" class="level4" data-number="2.2.3.2">
-<h4 data-number="2.2.3.2" class="anchored" data-anchor-id="creating-and-editing-files"><span class="header-section-number">2.2.3.2</span> Creating and Editing Files</h4>
-<p>While you can create files through the command line, it’s often easier to use a text editor. However, it’s good to know these commands:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty file</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> newfile.txt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display file contents</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> filename.txt</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple editor (press i to insert, Esc then :wq to save and quit)</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> filename.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Think of these commands as ways to create and look at the contents of notes or documents on your computer, all without opening a word processor or text editor application.</p>
-</section>
-</section>
-<section id="package-managers" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="package-managers"><span class="header-section-number">2.2.4</span> Package Managers</h3>
-<p>Most command line environments include package managers, which help install and update software. Think of package managers as app stores for your command line. Common ones include:</p>
-<ul>
-<li><strong>apt</strong> (Ubuntu/Debian Linux)</li>
-<li><strong>brew</strong> (macOS)</li>
-<li><strong>winget</strong> (Windows)</li>
-</ul>
-<p>For example, on Ubuntu you might install Python using:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install python3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>On macOS with Homebrew:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Homebrew first if you don't have it</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then install Python</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install python</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The term “sudo” gives you temporary administrator-level privileges, similar to when Windows asks “Do you want to allow this app to make changes to your device?”</p>
-<p>Understanding these basics will help tremendously as we set up our data science tools. The command line might seem intimidating at first, but it becomes an invaluable ally as you grow more comfortable with it.</p>
-</section>
-</section>
-<section id="setting-up-python" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="setting-up-python"><span class="header-section-number">2.3</span> Setting Up Python</h2>
-<p>Python has become a cornerstone language in data science due to its readability, extensive libraries, and versatile applications. Let’s set up a proper Python environment.</p>
-<section id="why-python-for-data-science" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="why-python-for-data-science"><span class="header-section-number">2.3.1</span> Why Python for Data Science?</h3>
-<p>Python offers several advantages for data science:</p>
-<ol type="1">
-<li>Rich ecosystem of specialised libraries (NumPy, pandas, scikit-learn, etc.)</li>
-<li>Readable syntax that makes complex analyses more accessible</li>
-<li>Strong community support and documentation</li>
-<li>Integration with various data sources and visualisation tools</li>
-</ol>
-<p>Python consistently ranks among the top programming languages for data science and is widely used across the industry.</p>
-</section>
-<section id="installing-python" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">2.3.2</span> Installing Python</h3>
-<p>You have a few reasonable ways to install Python for data science. Each has trade-offs:</p>
-<ul>
-<li><strong>Miniforge</strong> (recommended for most readers): a minimal, community-maintained conda distribution that defaults to the free <code>conda-forge</code> channel. Gives you <code>conda</code> for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.</li>
-<li><strong>Anaconda</strong>: the “batteries-included” distribution. Convenient but note that since 2024 its Terms of Service restrict free commercial use for organisations with more than ~200 employees. Fine for learning and personal projects.</li>
-<li><strong><code>uv</code></strong> (the modern, fast option): a single binary that installs Python versions and manages virtual environments and packages. Much faster than conda or pip and rapidly becoming the default for pure-Python projects. A great choice once you’re comfortable, especially if you don’t need conda’s scientific package ecosystem.</li>
-<li><strong>System Python</strong> (<code>python.org</code> installer, <code>brew install python</code>, or <code>apt install python3</code>): simple, but you’ll still want to create isolated environments per project with <code>venv</code> or <code>uv venv</code>.</li>
-</ul>
-<p>For this book we’ll use conda-based instructions since they work uniformly across Windows, macOS, and Linux and handle tricky scientific packages well. Everything shown below works with either Miniforge or Anaconda.</p>
-<section id="installing-miniforge-or-anaconda" class="level4" data-number="2.3.2.1">
-<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="installing-miniforge-or-anaconda"><span class="header-section-number">2.3.2.1</span> Installing Miniforge (or Anaconda)</h4>
-<ol type="1">
-<li>Visit the <a href="https://github.com/conda-forge/miniforge/releases/latest">Miniforge releases page</a> (or the <a href="https://www.anaconda.com/download">Anaconda download page</a> if you prefer)</li>
-<li>Download the appropriate installer for your operating system</li>
-<li>Run the installer and follow the prompts</li>
-</ol>
-<p>During installation on Windows, you may be asked whether to add the installation to your PATH environment variable. Leave this unchecked and use the Miniforge Prompt (or Anaconda Prompt) from the Start menu, which avoids conflicts with other Python installations on your system.</p>
-<p>The “PATH” is like an address book that tells your computer where to find programs when you type their names. Adding your conda install to PATH means you can use Python from any command prompt, but it could cause conflicts with other versions of Python on your system.</p>
-</section>
-<section id="verifying-installation" class="level4" data-number="2.3.2.2">
-<h4 data-number="2.3.2.2" class="anchored" data-anchor-id="verifying-installation"><span class="header-section-number">2.3.2.2</span> Verifying Installation</h4>
-<p>Open a new terminal (or Miniforge/Anaconda Prompt on Windows) and type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see the Python version number. Also, check that conda is installed:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="creating-a-python-environment" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="creating-a-python-environment"><span class="header-section-number">2.3.3</span> Creating a Python Environment</h3>
-<p>Environments let you isolate projects with specific dependencies. Think of environments as separate workspaces for different projects—like having different toolboxes for different types of jobs. Here’s how to create one:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment named 'datasci' with Python 3.12</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> datasci python=3.12</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate the environment</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install common data science packages</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install numpy pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Whenever you work on your data science projects, activate this environment first.</p>
+<section id="what-it-costs" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="what-it-costs"><span class="header-section-number">2.4</span> What It Costs</h2>
+<p>Almost everything here is free. The command line, Python, R, Git, Docker, VS Code, and the entire reporting and visualisation stack cost nothing and have no usage limits.</p>
+<p>The exceptions are the cloud platforms and hosting services in the later chapters. Most have a free tier adequate for learning, but they bill for usage beyond it, and their terms change often. Where this book quotes a specific limit, treat it as indicative rather than current — check the provider’s own pricing page before you rely on it. The <a href="../chapters/cloud.html">Cloud Platforms</a> chapter covers how to set a budget alert before you need one.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Lighter alternative: <code>venv</code> or <code>uv</code>
+<span class="screen-reader-only">Tip</span>If you only read one chapter
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you don’t need conda’s broader scientific ecosystem, Python’s built-in <code>venv</code> module is a lighter alternative:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows:</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS/Linux:</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install numpy pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Or with <code>uv</code> (much faster, installs Python for you if needed):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv <span class="at">--python</span> 3.12</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate   <span class="co"># Windows: .venv\Scripts\activate</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install numpy pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>A good rule of thumb: use conda environments when you need packages with heavy C/C++/Fortran components (GDAL, PyTorch with CUDA, bioinformatics tools). Use <code>venv</code>/<code>uv</code> for everything else.</p>
+<p><a href="../chapters/environments.html">Reproducible Environments</a>. Environment problems are the single largest source of wasted time for analysts who write code, and the fix takes an afternoon to learn and pays back for the rest of your career.</p>
 </div>
 </div>
-</section>
-<section id="recording-your-environment" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="recording-your-environment"><span class="header-section-number">2.3.4</span> Recording Your Environment</h3>
-<p>Whichever tool you pick, write down what’s in your environment so someone else (including future you) can reproduce it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># conda</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pip / venv</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># uv</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Commit this file alongside your code. We’ll come back to reproducibility when we discuss containers and workflows.</p>
-</section>
-<section id="using-jupyter-notebooks" class="level3" data-number="2.3.5">
-<h3 data-number="2.3.5" class="anchored" data-anchor-id="using-jupyter-notebooks"><span class="header-section-number">2.3.5</span> Using Jupyter Notebooks</h3>
-<p>Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualisations, and narrative text. They’re like digital lab notebooks where you can document your analysis process along with the code and results.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure your environment is activated</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch Jupyter Notebook</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This opens a web browser where you can create and work with notebooks. Let’s create a simple notebook to verify everything works:</p>
-<ol type="1">
-<li>Click “New” → “Python 3”</li>
-<li>In the first cell, type:</li>
-</ol>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create some sample data</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x'</span>: <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y'</span>: np.random.randn(<span class="dv">10</span>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple plot</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'x'</span>], data[<span class="st">'y'</span>], marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sample Plot'</span>)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X-axis'</span>)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Y-axis'</span>)</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Python environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<ol start="3" type="1">
-<li>Press Shift+Enter to run the cell</li>
-</ol>
-<p>If you see a plot and the success message, your Python setup is complete!</p>
-</section>
-<section id="installing-additional-packages" class="level3" data-number="2.3.6">
-<h3 data-number="2.3.6" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">2.3.6</span> Installing Additional Packages</h3>
-<p>As your data science journey progresses, you’ll need additional packages. Use either:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using conda (preferred when available)</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install package_name</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pip (when packages aren't available in conda)</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install package_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Conda is often preferred for data science packages because it handles complex dependencies better, especially for packages with C/C++ components. This is particularly important for libraries that have parts written in lower-level programming languages to make them run faster.</p>
-</section>
-</section>
-<section id="setting-up-r" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="setting-up-r"><span class="header-section-number">2.4</span> Setting Up R</h2>
-<p>R is a powerful language and environment specifically designed for statistical computing and graphics. Many statisticians and data scientists prefer R for statistical analysis and visualisation.</p>
-<section id="why-r-for-data-science" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="why-r-for-data-science"><span class="header-section-number">2.4.1</span> Why R for Data Science?</h3>
-<p>R offers several advantages:</p>
-<ol type="1">
-<li>Built specifically for statistical analysis</li>
-<li>Excellent for data visualisation with ggplot2</li>
-<li>A rich ecosystem of packages for specialised statistical methods</li>
-<li>Strong in reproducible research through R Markdown</li>
-</ol>
-<p>R has thousands of packages available on CRAN for various statistical and data analysis tasks, with active development from the statistics and research communities.</p>
-</section>
-<section id="installing-r" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">2.4.2</span> Installing R</h3>
-<p>Let’s install both R itself and RStudio, a popular integrated development environment for R.</p>
-<section id="installing-base-r" class="level4" data-number="2.4.2.1">
-<h4 data-number="2.4.2.1" class="anchored" data-anchor-id="installing-base-r"><span class="header-section-number">2.4.2.1</span> Installing Base R</h4>
-<ol type="1">
-<li>Visit the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN)</a></li>
-<li>Click on the link for your operating system</li>
-<li>Follow the installation instructions</li>
-</ol>
-</section>
-<section id="installing-rstudio-desktop" class="level4" data-number="2.4.2.2">
-<h4 data-number="2.4.2.2" class="anchored" data-anchor-id="installing-rstudio-desktop"><span class="header-section-number">2.4.2.2</span> Installing RStudio Desktop</h4>
-<p>RStudio provides a user-friendly interface for working with R.</p>
-<ol type="1">
-<li>Visit the <a href="https://posit.co/download/rstudio-desktop/">Posit RStudio download page</a> (RStudio’s parent company rebranded to Posit in 2022)</li>
-<li>Download the free RStudio Desktop version for your operating system</li>
-<li>Run the installer and follow the prompts</li>
-</ol>
-<p>Think of R as the engine and RStudio as the dashboard that makes it easier to control that engine. You could use R without RStudio, but RStudio makes many tasks more convenient.</p>
-</section>
-<section id="verifying-installation-1" class="level4" data-number="2.4.2.3">
-<h4 data-number="2.4.2.3" class="anchored" data-anchor-id="verifying-installation-1"><span class="header-section-number">2.4.2.3</span> Verifying Installation</h4>
-<p>Open RStudio and enter this command in the console (lower-left pane):</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>You should see the R version information displayed. You can verify this as the version is the first printed output you will see in the console at the start of a new session. It should look something like this:</p>
-<p><code>R version 4.5.0 (2025-04-11 ucrt) -- "How About a Twenty-Six"</code> <code>Copyright (C) 2025 The R Foundation for Statistical Computing</code> <code>Platform: x86_64-w64-mingw32/x64</code></p>
-</section>
-</section>
-<section id="essential-r-packages-for-data-science" class="level3" data-number="2.4.3">
-<h3 data-number="2.4.3" class="anchored" data-anchor-id="essential-r-packages-for-data-science"><span class="header-section-number">2.4.3</span> Essential R Packages for Data Science</h3>
-<p>Let’s install some core packages that you’ll likely need:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install essential packages</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"shiny"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>This installs:</p>
-<ul>
-<li><strong>tidyverse</strong>: A collection of packages for data manipulation and visualisation</li>
-<li><strong>rmarkdown</strong>: For creating documents that mix code and text</li>
-<li><strong>shiny</strong>: For building interactive web applications</li>
-<li><strong>knitr</strong>: For dynamic report generation</li>
-<li><strong>plotly</strong>: For interactive visualisations</li>
-</ul>
-<p>These packages are like specialised toolkits that expand what you can do with R. The tidyverse, for example, makes data manipulation much more intuitive than it would be using just base R.</p>
-</section>
-<section id="creating-your-first-r-script" class="level3" data-number="2.4.4">
-<h3 data-number="2.4.4" class="anchored" data-anchor-id="creating-your-first-r-script"><span class="header-section-number">2.4.4</span> Creating Your First R Script</h3>
-<p>Let’s verify our setup with a simple R script:</p>
-<ol type="1">
-<li>In RStudio, go to File → New File → R Script</li>
-<li>Enter the following code:</li>
-</ol>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sample data</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot with ggplot2</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sample Plot in R"</span>,</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"X-axis"</span>,</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Y-axis"</span>) <span class="sc">+</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"R environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<ol start="3" type="1">
-<li>Click the “Run” button or press Ctrl+Enter (Cmd+Enter on Mac) to execute the code</li>
-</ol>
-<p>If you see a plot in the lower-right pane and the success message in the console, your R setup is complete!</p>
-</section>
-<section id="understanding-r-packages" class="level3" data-number="2.4.5">
-<h3 data-number="2.4.5" class="anchored" data-anchor-id="understanding-r-packages"><span class="header-section-number">2.4.5</span> Understanding R Packages</h3>
-<p>Unlike Python, where conda or pip manage packages, R has its own built-in package management system accessed through functions like <code>install.packages()</code> and <code>library()</code>.</p>
-<p>There are thousands of R packages available on CRAN, with more on Bioconductor (for bioinformatics) and GitHub. To install a package from GitHub, you first need the devtools package:</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"username/package"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>Think of CRAN as the official app store for R packages, while GitHub is like getting apps directly from developers. Both are useful, but packages on CRAN have gone through more quality checks.</p>
-</section>
-</section>
-<section id="sql-fundamentals-and-setup" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="sql-fundamentals-and-setup"><span class="header-section-number">2.5</span> SQL Fundamentals and Setup</h2>
-<p>SQL (Structured Query Language) is essential for data scientists to interact with databases. We’ll set up a lightweight database system so you can practise SQL queries locally.</p>
-<section id="why-sql-for-data-science" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="why-sql-for-data-science"><span class="header-section-number">2.5.1</span> Why SQL for Data Science?</h3>
-<p>SQL is crucial for data science because:</p>
-<ol type="1">
-<li>Most organisational data resides in databases</li>
-<li>It provides a standard way to query and manipulate data</li>
-<li>It’s often more efficient than Python or R for large data operations</li>
-<li>Data transformation often happens in databases before analysis</li>
-</ol>
-<p>SQL is one of the most important skills for data scientists, as most organisational data resides in relational databases.</p>
-</section>
-<section id="installing-sqlite" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="installing-sqlite"><span class="header-section-number">2.5.2</span> Installing SQLite</h3>
-<p>SQLite is a lightweight, file-based database that requires no server setup, making it perfect for learning.</p>
-<p>Think of SQLite as a simple filing cabinet for your data that you can easily carry around, unlike larger database systems that require dedicated servers.</p>
-<section id="on-windows-1" class="level4" data-number="2.5.2.1">
-<h4 data-number="2.5.2.1" class="anchored" data-anchor-id="on-windows-1"><span class="header-section-number">2.5.2.1</span> On Windows</h4>
-<ol type="1">
-<li>Download the SQLite command-line tools (look for the “Precompiled Binaries for Windows” section) from the <a href="https://www.sqlite.org/download.html">SQLite download page</a></li>
-<li>Extract the ZIP to a folder (e.g., <code>C:\sqlite</code>)</li>
-<li>Add this folder to your PATH environment variable so you can run <code>sqlite3</code> from any terminal:
-<ul>
-<li>Press the Windows key, type “environment variables”, and open “Edit the system environment variables”</li>
-<li>Click “Environment Variables…”</li>
-<li>Under <strong>User variables</strong>, select <code>Path</code> and click “Edit…”</li>
-<li>Click “New” and paste <code>C:\sqlite</code> (or wherever you extracted the files)</li>
-<li>Click OK on every dialogue, then open a <strong>new</strong> terminal window for the change to take effect</li>
-</ul></li>
-</ol>
-</section>
-<section id="on-macos-1" class="level4" data-number="2.5.2.2">
-<h4 data-number="2.5.2.2" class="anchored" data-anchor-id="on-macos-1"><span class="header-section-number">2.5.2.2</span> On macOS</h4>
-<p>SQLite comes pre-installed, but you can install a newer version with Homebrew:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install SQLite</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sqlite</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="on-linux-1" class="level4" data-number="2.5.2.3">
-<h4 data-number="2.5.2.3" class="anchored" data-anchor-id="on-linux-1"><span class="header-section-number">2.5.2.3</span> On Linux</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install sqlite3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="verifying-installation-2" class="level4" data-number="2.5.2.4">
-<h4 data-number="2.5.2.4" class="anchored" data-anchor-id="verifying-installation-2"><span class="header-section-number">2.5.2.4</span> Verifying Installation</h4>
-<p>Open a terminal or command prompt and type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see the version information displayed.</p>
-</section>
-</section>
-<section id="creating-your-first-database" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="creating-your-first-database"><span class="header-section-number">2.5.3</span> Creating Your First Database</h3>
-<p>Let’s create a simple database to verify our setup:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new database file</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> sample.db</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In the SQLite prompt, create a table</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="ex">CREATE</span> TABLE people <span class="er">(</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">id</span> INTEGER PRIMARY KEY,</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">name</span> TEXT NOT NULL,</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">age</span> INTEGER,</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">city</span> TEXT</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="kw">);</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Insert some data</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="ex">INSERT</span> INTO people <span class="er">(</span><span class="ex">name,</span> age, city<span class="kw">)</span> <span class="ex">VALUES</span> <span class="er">(</span><span class="st">'Alice'</span><span class="ex">,</span> 28, <span class="st">'New York'</span><span class="kw">);</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="ex">INSERT</span> INTO people <span class="er">(</span><span class="ex">name,</span> age, city<span class="kw">)</span> <span class="ex">VALUES</span> <span class="er">(</span><span class="st">'Bob'</span><span class="ex">,</span> 35, <span class="st">'Chicago'</span><span class="kw">);</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="ex">INSERT</span> INTO people <span class="er">(</span><span class="ex">name,</span> age, city<span class="kw">)</span> <span class="ex">VALUES</span> <span class="er">(</span><span class="st">'Charlie'</span><span class="ex">,</span> 42, <span class="st">'San Francisco'</span><span class="kw">);</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Query the data</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="ex">SELECT</span> <span class="pp">*</span> FROM people<span class="kw">;</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Exit SQLite</span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="ex">.exit</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Think of this process as creating a spreadsheet (the table) within a file (the database), then adding some rows of data, and finally viewing all the data.</p>
-</section>
-<section id="sql-guis-for-easier-database-management" class="level3" data-number="2.5.4">
-<h3 data-number="2.5.4" class="anchored" data-anchor-id="sql-guis-for-easier-database-management"><span class="header-section-number">2.5.4</span> SQL GUIs for Easier Database Management</h3>
-<p>While the command line is powerful, graphical interfaces can make working with databases more intuitive:</p>
-<section id="db-browser-for-sqlite" class="level4" data-number="2.5.4.1">
-<h4 data-number="2.5.4.1" class="anchored" data-anchor-id="db-browser-for-sqlite"><span class="header-section-number">2.5.4.1</span> DB Browser for SQLite</h4>
-<p>This free, open-source tool provides a user-friendly interface for SQLite databases.</p>
-<ol type="1">
-<li>Visit the <a href="https://sqlitebrowser.org/dl/">DB Browser for SQLite download page</a></li>
-<li>Download the appropriate version for your operating system</li>
-<li>Install and open it</li>
-<li>Open the sample.db file you created earlier</li>
-</ol>
-<p>DB Browser for SQLite acts like a spreadsheet program for your database, making it easier to view and edit data without typing SQL commands.</p>
-</section>
-<section id="using-sql-from-python-and-r" class="level4" data-number="2.5.4.2">
-<h4 data-number="2.5.4.2" class="anchored" data-anchor-id="using-sql-from-python-and-r"><span class="header-section-number">2.5.4.2</span> Using SQL from Python and R</h4>
-<p>You can also interact with SQLite databases from Python and R:</p>
-<section id="python" class="level5" data-number="2.5.4.2.1">
-<h5 data-number="2.5.4.2.1" class="anchored" data-anchor-id="python"><span class="header-section-number">2.5.4.2.1</span> Python</h5>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the database</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">'sample.db'</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Query data into a pandas DataFrame</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_sql_query(<span class="st">"SELECT * FROM people"</span>, conn)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the connection</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</section>
-<section id="r" class="level5" data-number="2.5.4.2.2">
-<h5 data-number="2.5.4.2.2" class="anchored" data-anchor-id="r"><span class="header-section-number">2.5.4.2.2</span> R</h5>
-<div class="cell">
-<details class="code-fold">
-<summary>Show code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Connect to the database</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>conn <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">SQLite</span>(), <span class="st">"sample.db"</span>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Query data into a data frame</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(conn, <span class="st">"SELECT * FROM people"</span>)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df)</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the connection</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<p>This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyse it with Python or R—all within the same workflow.</p>
-</section>
-</section>
-</section>
-</section>
-<section id="integrated-development-environments-ides" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="integrated-development-environments-ides"><span class="header-section-number">2.6</span> Integrated Development Environments (IDEs)</h2>
-<p>An Integrated Development Environment (IDE) combines the tools needed for software development into a single application. A good IDE dramatically improves productivity by providing code editing, debugging, execution, and project management in one place.</p>
-<section id="why-ides-matter-for-data-science" class="level3" data-number="2.6.1">
-<h3 data-number="2.6.1" class="anchored" data-anchor-id="why-ides-matter-for-data-science"><span class="header-section-number">2.6.1</span> Why IDEs Matter for Data Science</h3>
-<p>IDEs help data scientists by:</p>
-<ol type="1">
-<li>Providing syntax highlighting and code completion</li>
-<li>Catching errors before execution</li>
-<li>Offering integrated documentation</li>
-<li>Simplifying project organisation and version control</li>
-</ol>
-<p>Most professional developers use a specialised IDE rather than a basic text editor, as the additional features significantly improve productivity.</p>
-<p>Think of an IDE as a fully equipped workshop rather than just having a single tool. It has everything arranged conveniently in one place.</p>
-<p>We’ve already installed RStudio for R development. Now let’s look at options for Python and SQL.</p>
-</section>
-<section id="vs-code-a-universal-ide" class="level3" data-number="2.6.2">
-<h3 data-number="2.6.2" class="anchored" data-anchor-id="vs-code-a-universal-ide"><span class="header-section-number">2.6.2</span> VS Code: A Universal IDE</h3>
-<p>Visual Studio Code (VS Code) is a free, open-source editor that supports multiple languages through extensions. Its flexibility makes it an excellent choice for data scientists.</p>
-<section id="installing-vs-code" class="level4" data-number="2.6.2.1">
-<h4 data-number="2.6.2.1" class="anchored" data-anchor-id="installing-vs-code"><span class="header-section-number">2.6.2.1</span> Installing VS Code</h4>
-<ol type="1">
-<li>Visit the <a href="https://code.visualstudio.com/download">VS Code download page</a></li>
-<li>Download the appropriate version for your operating system</li>
-<li>Run the installer and follow the prompts</li>
-</ol>
-</section>
-<section id="essential-vs-code-extensions-for-data-science" class="level4" data-number="2.6.2.2">
-<h4 data-number="2.6.2.2" class="anchored" data-anchor-id="essential-vs-code-extensions-for-data-science"><span class="header-section-number">2.6.2.2</span> Essential VS Code Extensions for Data Science</h4>
-<p>After installing VS Code, add these extensions by clicking on the Extensions icon in the sidebar (or pressing Ctrl+Shift+X):</p>
-<ul>
-<li><strong>Python</strong> by Microsoft: Python language support</li>
-<li><strong>Jupyter</strong>: Support for Jupyter notebooks</li>
-<li><strong>Rainbow CSV</strong>: Makes CSV files easier to read</li>
-<li><strong>SQLite</strong>: SQLite database support</li>
-<li><strong>R</strong>: R language support (if you plan to use R in VS Code)</li>
-<li><strong>GitLens</strong>: Enhanced Git capabilities</li>
-<li><strong>GitHub Copilot</strong> or <strong>Claude for VS Code</strong>: LLM-assisted code completion and chat. These have become nearly standard for professional development since 2024 and are particularly useful for readers without a CS background: they’re excellent at scaffolding boilerplate, explaining unfamiliar code, and suggesting fixes to error messages. Both offer free tiers for individuals. Treat them as a fast pair-programmer, not an oracle: always read the suggestions before accepting them.</li>
-</ul>
-<p>Extensions in VS Code are like add-ons or plugins that enhance its functionality for specific tasks or languages, similar to how you might install apps on your phone to give it new capabilities.</p>
-</section>
-<section id="configuring-vs-code-for-python" class="level4" data-number="2.6.2.3">
-<h4 data-number="2.6.2.3" class="anchored" data-anchor-id="configuring-vs-code-for-python"><span class="header-section-number">2.6.2.3</span> Configuring VS Code for Python</h4>
-<ol type="1">
-<li>Open VS Code</li>
-<li>Press Ctrl+Shift+P (Cmd+Shift+P on Mac) to open the command palette</li>
-<li>Type “Python: Select Interpreter” and select it</li>
-<li>Choose your conda environment (e.g., datasci)</li>
-</ol>
-<p>This step tells VS Code which Python installation to use when running your code. It’s like telling a multilingual person which language to speak when communicating with you.</p>
-</section>
-</section>
-<section id="pycharm-community-edition" class="level3" data-number="2.6.3">
-<h3 data-number="2.6.3" class="anchored" data-anchor-id="pycharm-community-edition"><span class="header-section-number">2.6.3</span> PyCharm Community Edition</h3>
-<p>PyCharm is an IDE specifically designed for Python development, with excellent data science support.</p>
-<section id="installing-pycharm-community-edition" class="level4" data-number="2.6.3.1">
-<h4 data-number="2.6.3.1" class="anchored" data-anchor-id="installing-pycharm-community-edition"><span class="header-section-number">2.6.3.1</span> Installing PyCharm Community Edition</h4>
-<ol type="1">
-<li>Visit the <a href="https://www.jetbrains.com/pycharm/download/">PyCharm download page</a></li>
-<li>Download the free Community Edition</li>
-<li>Run the installer and follow the prompts</li>
-</ol>
-</section>
-<section id="configuring-pycharm-for-your-conda-environment" class="level4" data-number="2.6.3.2">
-<h4 data-number="2.6.3.2" class="anchored" data-anchor-id="configuring-pycharm-for-your-conda-environment"><span class="header-section-number">2.6.3.2</span> Configuring PyCharm for Your Conda Environment</h4>
-<ol type="1">
-<li>Open PyCharm</li>
-<li>Create a new project</li>
-<li>Click on “Previously configured interpreter”</li>
-<li>Click on the gear icon and select “Add…”</li>
-<li>Choose “Conda Environment” → “Existing environment”</li>
-<li>Browse to your conda environment’s Python executable
-<ul>
-<li>On Windows: Usually in <code>C:\Users\&lt;username&gt;\anaconda3\envs\datasci\python.exe</code></li>
-<li>On macOS/Linux: Usually in <code>/home/&lt;username&gt;/anaconda3/envs/datasci/bin/python</code></li>
-</ul></li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Note: In file paths, forward slashes (/) are primarily used in Unix-like systems like Linux and macOS, while backslashes (\) are commonly used in Windows.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="working-with-jupyter-notebooks" class="level3" data-number="2.6.4">
-<h3 data-number="2.6.4" class="anchored" data-anchor-id="working-with-jupyter-notebooks"><span class="header-section-number">2.6.4</span> Working with Jupyter Notebooks</h3>
-<p>While we already mentioned Jupyter notebooks in the Python section, they deserve more attention as a popular IDE-like interface for data science.</p>
-<section id="jupyterlab-the-next-generation-of-jupyter" class="level4" data-number="2.6.4.1">
-<h4 data-number="2.6.4.1" class="anchored" data-anchor-id="jupyterlab-the-next-generation-of-jupyter"><span class="header-section-number">2.6.4.1</span> JupyterLab: The Next Generation of Jupyter</h4>
-<p>JupyterLab is a web-based interactive development environment that extends the notebook interface with a file browser, consoles, terminals, and more.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install JupyterLab</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge jupyterlab</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch JupyterLab</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>JupyterLab provides a more IDE-like experience than classic Jupyter notebooks, with the ability to open multiple notebooks, view data frames, and edit other file types in a single interface. It’s like upgrading from having separate tools to having a comprehensive workbench.</p>
-</section>
-</section>
-<section id="choosing-the-right-ide" class="level3" data-number="2.6.5">
-<h3 data-number="2.6.5" class="anchored" data-anchor-id="choosing-the-right-ide"><span class="header-section-number">2.6.5</span> Choosing the Right IDE</h3>
-<p>Each IDE has strengths and weaknesses:</p>
-<ul>
-<li><strong>VS Code</strong>: Versatile, lightweight, supports multiple languages</li>
-<li><strong>PyCharm</strong>: Robust Python-specific features, excellent for large projects</li>
-<li><strong>RStudio</strong>: Optimised for R development</li>
-<li><strong>JupyterLab</strong>: Excellent for exploratory data analysis and sharing results</li>
-</ul>
-<p>Many data scientists use multiple IDEs depending on the task. For example, you might use:</p>
-<ul>
-<li>JupyterLab for exploration and visualisation</li>
-<li>VS Code for script development and Git integration</li>
-<li>RStudio for statistical analysis and report generation</li>
-</ul>
-<p>Choose the tools that best fit your workflow and preferences. It’s perfectly fine to start with one and add others as you grow more comfortable.</p>
-</section>
-</section>
-<section id="version-control-with-git-and-github" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="version-control-with-git-and-github"><span class="header-section-number">2.7</span> Version Control with Git and GitHub</h2>
-<p>Version control is a system that records changes to files over time, allowing you to recall specific versions later. Git is the most widely used version control system, and GitHub is a popular platform for hosting Git repositories.</p>
-<section id="why-version-control-for-data-science" class="level3" data-number="2.7.1">
-<h3 data-number="2.7.1" class="anchored" data-anchor-id="why-version-control-for-data-science"><span class="header-section-number">2.7.1</span> Why Version Control for Data Science?</h3>
-<p>Version control is essential for data science because it:</p>
-<ol type="1">
-<li>Tracks changes to code and documentation</li>
-<li>Facilitates collaboration with others</li>
-<li>Provides a backup of your work</li>
-<li>Documents the evolution of your analysis</li>
-<li>Enables reproducibility by capturing the state of code at specific points</li>
-</ol>
-<p>Proper version control is essential for reproducibility and collaboration in data science work.</p>
-<p>Think of Git as a time machine for your code. It allows you to save snapshots of your project at different points in time and revisit or restore those snapshots if needed.</p>
-</section>
-<section id="installing-git" class="level3" data-number="2.7.2">
-<h3 data-number="2.7.2" class="anchored" data-anchor-id="installing-git"><span class="header-section-number">2.7.2</span> Installing Git</h3>
-<section id="on-windows-2" class="level4" data-number="2.7.2.1">
-<h4 data-number="2.7.2.1" class="anchored" data-anchor-id="on-windows-2"><span class="header-section-number">2.7.2.1</span> On Windows</h4>
-<ol type="1">
-<li>Download the installer from <a href="https://gitforwindows.org/">Git for Windows</a></li>
-<li>Run the installer, accepting the default options (though you may want to choose VS Code as your default editor if you installed it)</li>
-</ol>
-</section>
-<section id="on-macos-2" class="level4" data-number="2.7.2.2">
-<h4 data-number="2.7.2.2" class="anchored" data-anchor-id="on-macos-2"><span class="header-section-number">2.7.2.2</span> On macOS</h4>
-<p>Git may already be installed. Check by typing <code>git --version</code> in the terminal. If not:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Git using Homebrew</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="on-linux-2" class="level4" data-number="2.7.2.3">
-<h4 data-number="2.7.2.3" class="anchored" data-anchor-id="on-linux-2"><span class="header-section-number">2.7.2.3</span> On Linux</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="configuring-git" class="level4" data-number="2.7.2.4">
-<h4 data-number="2.7.2.4" class="anchored" data-anchor-id="configuring-git"><span class="header-section-number">2.7.2.4</span> Configuring Git</h4>
-<p>After installation, open a terminal and configure your identity:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your.email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This is like putting your name and address on a letter. When you make changes to a project, Git will know who made them.</p>
-</section>
-</section>
-<section id="creating-a-github-account" class="level3" data-number="2.7.3">
-<h3 data-number="2.7.3" class="anchored" data-anchor-id="creating-a-github-account"><span class="header-section-number">2.7.3</span> Creating a GitHub Account</h3>
-<p>GitHub provides free hosting for Git repositories, making it easy to share code and collaborate.</p>
-<ol type="1">
-<li>Visit <a href="https://github.com/">GitHub</a></li>
-<li>Click “Sign up” and follow the instructions</li>
-<li>Verify your email address</li>
-</ol>
-<p>GitHub is to Git what social media is to your photos—a place to share your work with others and collaborate on projects.</p>
-</section>
-<section id="setting-up-ssh-authentication-for-github" class="level3" data-number="2.7.4">
-<h3 data-number="2.7.4" class="anchored" data-anchor-id="setting-up-ssh-authentication-for-github"><span class="header-section-number">2.7.4</span> Setting Up SSH Authentication for GitHub</h3>
-<p>Using SSH keys makes it more secure and convenient to interact with GitHub:</p>
-<section id="generating-ssh-keys" class="level4" data-number="2.7.4.1">
-<h4 data-number="2.7.4.1" class="anchored" data-anchor-id="generating-ssh-keys"><span class="header-section-number">2.7.4.1</span> Generating SSH Keys</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a new SSH key</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your.email@example.com"</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Start the SSH agent</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="fu">ssh-agent</span> <span class="at">-s</span><span class="va">)</span><span class="st">"</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add your key to the agent</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> ~/.ssh/id_ed25519</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When <code>ssh-keygen</code> prompts you for a passphrase, <strong>set one</strong>. It’s tempting to press Enter for a blank passphrase, but an unprotected private key on a compromised laptop gives an attacker your full GitHub access. The SSH agent will remember the passphrase for your session so you only type it once after login.</p>
-<p>SSH keys are like a special lock and key system. Instead of typing your password every time you interact with GitHub, your computer uses these keys to prove it’s really you.</p>
-</section>
-<section id="adding-your-ssh-key-to-github" class="level4" data-number="2.7.4.2">
-<h4 data-number="2.7.4.2" class="anchored" data-anchor-id="adding-your-ssh-key-to-github"><span class="header-section-number">2.7.4.2</span> Adding Your SSH Key to GitHub</h4>
-<ol type="1">
-<li>Copy your public key to the clipboard:
-<ul>
-<li>On Windows (in Git Bash): <code>cat ~/.ssh/id_ed25519.pub | clip</code></li>
-<li>On macOS: <code>pbcopy &lt; ~/.ssh/id_ed25519.pub</code></li>
-<li>On Linux: <code>cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard</code></li>
-</ul></li>
-<li>Go to GitHub → Settings → SSH and GPG keys → New SSH key</li>
-<li>Paste your key and save</li>
-</ol>
-</section>
-</section>
-<section id="basic-git-workflow" class="level3" data-number="2.7.5">
-<h3 data-number="2.7.5" class="anchored" data-anchor-id="basic-git-workflow"><span class="header-section-number">2.7.5</span> Basic Git Workflow</h3>
-<p>Let’s create a repository and learn the essential Git commands:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new directory</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my_first_repo</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my_first_repo</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize a Git repository</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a README file</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# My First Repository"</span> <span class="op">&gt;</span> README.md</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the file to the staging area</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit the changes</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial commit"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Think of this process as:</p>
-<ol type="1">
-<li>Creating a new folder for your project</li>
-<li>Telling Git to start tracking changes in this folder</li>
-<li>Creating a simple text file</li>
-<li>Telling Git you want to include this file in your next snapshot</li>
-<li>Taking the snapshot with a brief description</li>
-</ol>
-</section>
-<section id="telling-git-what-to-ignore-.gitignore" class="level3" data-number="2.7.6">
-<h3 data-number="2.7.6" class="anchored" data-anchor-id="telling-git-what-to-ignore-.gitignore"><span class="header-section-number">2.7.6</span> Telling Git What to Ignore: <code>.gitignore</code></h3>
-<p>Before you commit anything else, create a <code>.gitignore</code> file in the root of your repository. This tells Git which files and folders it should never track: things like local virtual environments, cached files, large data dumps, and, critically, secrets like API keys. Getting this right from day one prevents the single most common beginner mistake: accidentally pushing credentials to a public repository.</p>
-<p>Create a file named <code>.gitignore</code> (note the leading dot) with content like this as a starting point for a data science project:</p>
-<pre class="gitignore"><code># Secrets: never commit these
-.env
-.env.local
-*.pem
-credentials.json
-
-# Python
-__pycache__/
-*.pyc
-.venv/
-venv/
-.ipynb_checkpoints/
-
-# R
-.Rhistory
-.RData
-.Rproj.user/
-renv/library/
-
-# Data: keep raw data out of Git, use DVC or cloud storage
-data/raw/
-data/processed/
-*.parquet
-*.db
-
-# OS and editor clutter
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/</code></pre>
-<p>Adjust the patterns to fit your project. If you do need to store small reference datasets in Git, remove the relevant <code>data/</code> lines. If you find yourself wanting to commit something you’ve already ignored, you can force it with <code>git add -f &lt;file&gt;</code>.</p>
-<p>If you ever accidentally commit a secret, rotating the credential is faster and safer than trying to scrub it from Git history. Assume anything that reached a public repository is compromised and generate a new key.</p>
-</section>
-<section id="connecting-to-github" class="level3" data-number="2.7.7">
-<h3 data-number="2.7.7" class="anchored" data-anchor-id="connecting-to-github"><span class="header-section-number">2.7.7</span> Connecting to GitHub</h3>
-<p>Now let’s push this local repository to GitHub:</p>
-<ol type="1">
-<li>On GitHub, click “+” in the top-right corner and select “New repository”</li>
-<li>Name it “my_first_repo”</li>
-<li>Leave it as a public repository</li>
-<li>Don’t initialise with a README (we already created one)</li>
-<li>Click “Create repository”</li>
-<li>Follow the instructions for “push an existing repository from the command line”:</li>
-</ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:yourusername/my_first_repo.git</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This process connects your local repository to GitHub (like linking your local folder to a cloud storage service) and uploads your code.</p>
-</section>
-<section id="basic-git-commands-for-daily-use" class="level3" data-number="2.7.8">
-<h3 data-number="2.7.8" class="anchored" data-anchor-id="basic-git-commands-for-daily-use"><span class="header-section-number">2.7.8</span> Basic Git Commands for Daily Use</h3>
-<p>These commands form the core of day-to-day Git usage:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check status of your repository</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View commit history</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and switch to a new branch</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> new-feature      <span class="co"># older syntax: git checkout -b new-feature</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Switch between existing branches</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch main                <span class="co"># older syntax: git checkout main</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull latest changes from remote repository</span></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add all changed files to staging</span></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Commit staged changes</span></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Description of changes"</span></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Push commits to remote repository</span></span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Think of branches as parallel versions of your project. The main branch is like the trunk of a tree, and other branches are like branches growing out from it. You can work on different features in different branches without affecting the main branch, then combine them when they’re ready.</p>
-</section>
-<section id="using-git-in-ides" class="level3" data-number="2.7.9">
-<h3 data-number="2.7.9" class="anchored" data-anchor-id="using-git-in-ides"><span class="header-section-number">2.7.9</span> Using Git in IDEs</h3>
-<p>Most modern IDEs integrate with Git, making version control easier:</p>
-<section id="vs-code" class="level4" data-number="2.7.9.1">
-<h4 data-number="2.7.9.1" class="anchored" data-anchor-id="vs-code"><span class="header-section-number">2.7.9.1</span> VS Code</h4>
-<ul>
-<li>Click the Source Control icon in the sidebar</li>
-<li>Use the interface to stage, commit, and push changes</li>
-</ul>
-</section>
-<section id="pycharm" class="level4" data-number="2.7.9.2">
-<h4 data-number="2.7.9.2" class="anchored" data-anchor-id="pycharm"><span class="header-section-number">2.7.9.2</span> PyCharm</h4>
-<ul>
-<li>Go to VCS → Git in the menu</li>
-<li>Use the interface for Git operations</li>
-</ul>
-</section>
-<section id="rstudio" class="level4" data-number="2.7.9.3">
-<h4 data-number="2.7.9.3" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">2.7.9.3</span> RStudio</h4>
-<ul>
-<li>Click the Git tab in the upper-right panel</li>
-<li>Use the interface for Git operations</li>
-</ul>
-<p>These integrations mean you don’t have to use the command line for every Git operation—you can manage version control without leaving your coding environment.</p>
-</section>
-</section>
-<section id="collaborating-with-others-on-github" class="level3" data-number="2.7.10">
-<h3 data-number="2.7.10" class="anchored" data-anchor-id="collaborating-with-others-on-github"><span class="header-section-number">2.7.10</span> Collaborating with Others on GitHub</h3>
-<p>GitHub facilitates collaboration through pull requests:</p>
-<ol type="1">
-<li><p>Fork someone’s repository by clicking the “Fork” button on GitHub</p></li>
-<li><p>Clone your fork locally:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:yourusername/their-repo.git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Create a branch for your changes:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch <span class="at">-c</span> my-feature</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>Make changes, commit them, and push to your fork:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin my-feature</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>On GitHub, navigate to your fork and click “New pull request”</p></li>
-</ol>
-<p>Pull requests allow project maintainers to review your changes before incorporating them. It’s like submitting a draft for review before it gets published.</p>
-<p>The “fork and pull request” workflow is used by nearly all open-source projects, from small libraries to major platforms like TensorFlow and pandas. It’s considered a best practice for collaborative development.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1616,8 +764,8 @@ Thumbs.db
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/reporting.html" class="pagination-link" aria-label="Data Science Tools for Reporting">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/command_line.html" class="pagination-link" aria-label="The Command Line">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Command Line</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

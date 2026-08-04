@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; Optimising Workflows and Next Steps – Ready Before Run()</title>
+<title>14&nbsp; Optimising Workflows and Next Steps – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/summary.html" rel="next">
-<link href="../chapters/containers.html" rel="prev">
+<link href="../chapters/deployment.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d1ce83cbcf7f21d8208077a0fee83aa1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -121,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/workflows.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/web_dev.html">Shipping Your Work</a></li><li class="breadcrumb-item"><a href="../chapters/workflows.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,75 +161,149 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting Up for Success: Infrastructure for the Modern Data Scientist</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/command_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Command Line</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Communicating Results</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/reporting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/visualisation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Shipping Your Work</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Web Development for Data Scientists</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/containers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Containerisation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/deployment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/workflows.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">References and Resources</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/utility_tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -237,29 +314,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#optimising-your-data-science-workflow" id="toc-optimising-your-data-science-workflow" class="nav-link active" data-scroll-target="#optimising-your-data-science-workflow"><span class="header-section-number">9.1</span> Optimising Your Data Science Workflow</a>
+  <li><a href="#optimising-your-data-science-workflow" id="toc-optimising-your-data-science-workflow" class="nav-link active" data-scroll-target="#optimising-your-data-science-workflow"><span class="header-section-number">14.1</span> Optimising Your Data Science Workflow</a>
   <ul class="collapse">
-  <li><a href="#project-organisation-best-practices" id="toc-project-organisation-best-practices" class="nav-link" data-scroll-target="#project-organisation-best-practices"><span class="header-section-number">9.1.1</span> Project Organisation Best Practices</a></li>
-  <li><a href="#data-version-control" id="toc-data-version-control" class="nav-link" data-scroll-target="#data-version-control"><span class="header-section-number">9.1.2</span> Data Version Control</a></li>
-  <li><a href="#automating-workflows-with-make" id="toc-automating-workflows-with-make" class="nav-link" data-scroll-target="#automating-workflows-with-make"><span class="header-section-number">9.1.3</span> Automating Workflows with Make</a></li>
-  <li><a href="#continuous-integration-for-data-science" id="toc-continuous-integration-for-data-science" class="nav-link" data-scroll-target="#continuous-integration-for-data-science"><span class="header-section-number">9.1.4</span> Continuous Integration for Data Science</a></li>
+  <li><a href="#project-organisation-best-practices" id="toc-project-organisation-best-practices" class="nav-link" data-scroll-target="#project-organisation-best-practices"><span class="header-section-number">14.1.1</span> Project Organisation Best Practices</a></li>
+  <li><a href="#data-version-control" id="toc-data-version-control" class="nav-link" data-scroll-target="#data-version-control"><span class="header-section-number">14.1.2</span> Data Version Control</a></li>
+  <li><a href="#automating-workflows-with-make" id="toc-automating-workflows-with-make" class="nav-link" data-scroll-target="#automating-workflows-with-make"><span class="header-section-number">14.1.3</span> Automating Workflows with Make</a></li>
+  <li><a href="#continuous-integration-for-data-science" id="toc-continuous-integration-for-data-science" class="nav-link" data-scroll-target="#continuous-integration-for-data-science"><span class="header-section-number">14.1.4</span> Continuous Integration for Data Science</a></li>
+  <li><a href="#writing-tests-for-analysis-code" id="toc-writing-tests-for-analysis-code" class="nav-link" data-scroll-target="#writing-tests-for-analysis-code"><span class="header-section-number">14.1.5</span> Writing Tests for Analysis Code</a></li>
+  <li><a href="#catching-problems-before-they-reach-ci" id="toc-catching-problems-before-they-reach-ci" class="nav-link" data-scroll-target="#catching-problems-before-they-reach-ci"><span class="header-section-number">14.1.6</span> Catching Problems Before They Reach CI</a></li>
+  <li><a href="#when-make-isnt-enough-workflow-orchestrators" id="toc-when-make-isnt-enough-workflow-orchestrators" class="nav-link" data-scroll-target="#when-make-isnt-enough-workflow-orchestrators"><span class="header-section-number">14.1.7</span> When Make Isn’t Enough: Workflow Orchestrators</a></li>
   </ul></li>
-  <li><a href="#advanced-topics-and-next-steps" id="toc-advanced-topics-and-next-steps" class="nav-link" data-scroll-target="#advanced-topics-and-next-steps"><span class="header-section-number">9.2</span> Advanced Topics and Next Steps</a>
+  <li><a href="#advanced-topics-and-next-steps" id="toc-advanced-topics-and-next-steps" class="nav-link" data-scroll-target="#advanced-topics-and-next-steps"><span class="header-section-number">14.2</span> Advanced Topics and Next Steps</a>
   <ul class="collapse">
-  <li><a href="#mlops-machine-learning-operations" id="toc-mlops-machine-learning-operations" class="nav-link" data-scroll-target="#mlops-machine-learning-operations"><span class="header-section-number">9.2.1</span> MLOps (Machine Learning Operations)</a></li>
-  <li><a href="#distributed-computing" id="toc-distributed-computing" class="nav-link" data-scroll-target="#distributed-computing"><span class="header-section-number">9.2.2</span> Distributed Computing</a></li>
-  <li><a href="#automl-and-model-development-tools" id="toc-automl-and-model-development-tools" class="nav-link" data-scroll-target="#automl-and-model-development-tools"><span class="header-section-number">9.2.3</span> AutoML and Model Development Tools</a></li>
-  <li><a href="#staying-current-with-data-science-tools" id="toc-staying-current-with-data-science-tools" class="nav-link" data-scroll-target="#staying-current-with-data-science-tools"><span class="header-section-number">9.2.4</span> Staying Current with Data Science Tools</a></li>
+  <li><a href="#mlops-machine-learning-operations" id="toc-mlops-machine-learning-operations" class="nav-link" data-scroll-target="#mlops-machine-learning-operations"><span class="header-section-number">14.2.1</span> MLOps (Machine Learning Operations)</a></li>
+  <li><a href="#distributed-computing" id="toc-distributed-computing" class="nav-link" data-scroll-target="#distributed-computing"><span class="header-section-number">14.2.2</span> Distributed Computing</a></li>
+  <li><a href="#automl-and-model-development-tools" id="toc-automl-and-model-development-tools" class="nav-link" data-scroll-target="#automl-and-model-development-tools"><span class="header-section-number">14.2.3</span> AutoML and Model Development Tools</a></li>
+  <li><a href="#staying-current" id="toc-staying-current" class="nav-link" data-scroll-target="#staying-current"><span class="header-section-number">14.2.4</span> Staying Current</a></li>
   </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">14.3</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/web_dev.html">Shipping Your Work</a></li><li class="breadcrumb-item"><a href="../chapters/workflows.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimising Workflows and Next Steps</span></h1>
 </div>
 
 
@@ -276,34 +357,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="optimising-your-data-science-workflow" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="optimising-your-data-science-workflow"><span class="header-section-number">9.1</span> Optimising Your Data Science Workflow</h2>
+<section id="optimising-your-data-science-workflow" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="optimising-your-data-science-workflow"><span class="header-section-number">14.1</span> Optimising Your Data Science Workflow</h2>
 <p>With all the tools and infrastructure in place, let’s explore how to optimise your data science workflow for productivity and effectiveness.</p>
-<section id="project-organisation-best-practices" class="level3" data-number="9.1.1">
-<h3 data-number="9.1.1" class="anchored" data-anchor-id="project-organisation-best-practices"><span class="header-section-number">9.1.1</span> Project Organisation Best Practices</h3>
+<section id="project-organisation-best-practices" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="project-organisation-best-practices"><span class="header-section-number">14.1.1</span> Project Organisation Best Practices</h3>
 <p>A well-organised project makes collaboration easier and helps maintain reproducibility:</p>
-<section id="the-cookiecutter-data-science-structure" class="level4" data-number="9.1.1.1">
-<h4 data-number="9.1.1.1" class="anchored" data-anchor-id="the-cookiecutter-data-science-structure"><span class="header-section-number">9.1.1.1</span> The Cookiecutter Data Science Structure</h4>
+<section id="the-cookiecutter-data-science-structure" class="level4" data-number="14.1.1.1">
+<h4 data-number="14.1.1.1" class="anchored" data-anchor-id="the-cookiecutter-data-science-structure"><span class="header-section-number">14.1.1.1</span> The Cookiecutter Data Science Structure</h4>
 <p>A popular project template follows this structure:</p>
 <pre><code>project_name/
 ├── data/                   # Raw and processed data
 │   ├── raw/                # Original, immutable data
-│   ├── processed/          # Cleaned, transformed data
+│   ├── interim/            # Intermediate, partially transformed data
+│   ├── processed/          # Cleaned, final datasets for modelling
 │   └── external/           # Data from third-party sources
 ├── notebooks/              # Jupyter notebooks for exploration
-├── src/                    # Source code for use in the project
-│   ├── __init__.py         # Makes src a Python package
-│   ├── data/               # Scripts to download or generate data
-│   ├── features/           # Scripts to turn raw data into features
-│   ├── models/             # Scripts to train and use models
-│   └── visualization/      # Scripts to create visualizations
-├── tests/                  # Test cases
+├── project_name/           # Source code, importable as a package
+│   ├── __init__.py         # Makes the directory a Python package
+│   ├── config.py           # Paths and settings in one place
+│   ├── dataset.py          # Scripts to download or generate data
+│   ├── features.py         # Scripts to turn raw data into features
+│   ├── modeling/           # train.py and predict.py
+│   └── plots.py            # Scripts to create visualisations
+├── docs/                   # MkDocs documentation project
 ├── models/                 # Trained model files
+├── references/             # Data dictionaries, manuals, explanatory material
 ├── reports/                # Generated analysis as HTML, PDF, etc.
 │   └── figures/            # Generated graphics and figures
+├── Makefile                # Common commands (see below)
 ├── requirements.txt        # Python dependencies
-├── environment.yml         # Conda environment file
-├── setup.py                # Make the project pip installable
+├── pyproject.toml          # Project metadata and tool configuration
 ├── .gitignore              # Files to ignore in version control
 └── README.md               # Project description</code></pre>
 <p>This structure separates raw data (which should never be modified) from processed data and keeps code organised by purpose. It also makes it clear where to find notebooks for exploration versus production-ready code.</p>
@@ -314,30 +398,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Better reproducibility through clearly defined workflows</li>
 <li>Simpler maintenance as the project grows</li>
 </ol>
-<p>You can create this structure automatically using cookiecutter:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install cookiecutter</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install cookiecutter</span>
+<p>You can create this structure automatically. The template above is <a href="https://cookiecutter-data-science.drivendata.org/">Cookiecutter Data Science</a>, which since version 2 ships its own command, <code>ccds</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the tool (pipx keeps it isolated from your project environments)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pipx</span> install cookiecutter-data-science</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new project from the template</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">cookiecutter</span> https://github.com/drivendata/cookiecutter-data-science</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new project - run this in the directory that should contain it</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ccds</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>ccds</code> asks a short series of questions (Python version, environment manager, testing framework, whether you want documentation) and generates the tree accordingly, so your project won’t match the listing above in every detail.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Older instructions won’t work
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Plenty of tutorials still say <code>pip install cookiecutter</code> followed by <code>cookiecutter https://github.com/drivendata/cookiecutter-data-science</code>. Both halves are now wrong: the project moved to the <code>drivendataorg</code> organisation, and v2 of the template requires the <code>ccds</code> command rather than plain <code>cookiecutter</code>. If you meet a version of this instruction that generates a <code>src/</code> directory and a <code>setup.py</code>, you are looking at v1.</p>
+</div>
+</div>
 </section>
 </section>
-<section id="data-version-control" class="level3" data-number="9.1.2">
-<h3 data-number="9.1.2" class="anchored" data-anchor-id="data-version-control"><span class="header-section-number">9.1.2</span> Data Version Control</h3>
-<p>While Git works well for code (as we covered in the introductory chapter), it’s not designed for large data files. Data Version Control (DVC) extends Git to handle data:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install DVC</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install dvc</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize DVC in your Git repository</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> init</span>
+<section id="data-version-control" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="data-version-control"><span class="header-section-number">14.1.2</span> Data Version Control</h3>
+<p>While Git works well for code (covered in <a href="../chapters/ide_git.html">Editors and Version Control</a>), it’s not designed for large data files. Data Version Control (DVC) extends Git to handle data:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install DVC. The bracketed extra pulls in the libraries for your chosen</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># storage backend - use dvc[gdrive], dvc[azure] or dvc[gs] instead of</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dvc[s3] if you're not on AWS. Plain `pip install dvc` installs no</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># backends at all and `dvc push` will fail.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"dvc[s3]"</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Add data to DVC tracking</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> add data/raw/large_dataset.csv</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialise DVC in your Git repository</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> init</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Push data to remote storage</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> remote add <span class="at">-d</span> storage s3://mybucket/dvcstore</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>DVC stores large files in remote storage while keeping lightweight pointers in your Git repository. This allows you to version control both your code and data, ensuring reproducibility across the entire project.</p>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Hand a large file over to DVC</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> add data/raw/large_dataset.csv</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># That created two things to commit: a small pointer file, and a</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># .gitignore entry so Git stops tracking the data itself</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add data/raw/large_dataset.csv.dvc data/raw/.gitignore</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Track raw dataset with DVC"</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Configure remote storage and upload</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> remote add <span class="at">-d</span> storage s3://mybucket/dvcstore</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="ex">dvc</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The two-file result is the whole mechanism. <code>large_dataset.csv.dvc</code> is a few lines of YAML containing a hash of the data, and it lives in Git like any other source file; the multi-gigabyte CSV lives in S3. A colleague clones the repository, gets the pointer, runs <code>dvc pull</code>, and receives exactly the version of the data that matches the code they checked out. Checking out an old commit and running <code>dvc pull</code> reconstructs the data as it was then.</p>
 <p>The benefits of using DVC include:</p>
 <ol type="1">
 <li>Tracking changes to data alongside code</li>
@@ -346,8 +452,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Creating pipelines that track dependencies between data processing stages</li>
 </ol>
 </section>
-<section id="automating-workflows-with-make" class="level3" data-number="9.1.3">
-<h3 data-number="9.1.3" class="anchored" data-anchor-id="automating-workflows-with-make"><span class="header-section-number">9.1.3</span> Automating Workflows with Make</h3>
+<section id="automating-workflows-with-make" class="level3" data-number="14.1.3">
+<h3 data-number="14.1.3" class="anchored" data-anchor-id="automating-workflows-with-make"><span class="header-section-number">14.1.3</span> Automating Workflows with Make</h3>
 <p>Make is a build tool that can automate repetitive tasks in your data science workflow:</p>
 <ol type="1">
 <li>Create a file named <code>Makefile</code>:</li>
@@ -402,8 +508,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Make tracks dependencies between tasks and only runs the necessary steps. For example, if you’ve already downloaded the data but need to rebuild features, <code>make features</code> will skip the download step.</p>
 <p>Automation tools like Make help ensure consistency and save time by eliminating repetitive manual steps. They also serve as documentation of your workflow, making it easier for others (or your future self) to understand and reproduce your analysis.</p>
 </section>
-<section id="continuous-integration-for-data-science" class="level3" data-number="9.1.4">
-<h3 data-number="9.1.4" class="anchored" data-anchor-id="continuous-integration-for-data-science"><span class="header-section-number">9.1.4</span> Continuous Integration for Data Science</h3>
+<section id="continuous-integration-for-data-science" class="level3" data-number="14.1.4">
+<h3 data-number="14.1.4" class="anchored" data-anchor-id="continuous-integration-for-data-science"><span class="header-section-number">14.1.4</span> Continuous Integration for Data Science</h3>
 <p>Continuous Integration (CI) automatically tests your code whenever changes are pushed to your repository:</p>
 <ol type="1">
 <li>Create a GitHub Actions workflow file at <code>.github/workflows/python-tests.yml</code>:</li>
@@ -421,12 +527,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v7</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v5</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v7</span></span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.12'</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">'3.13'</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
@@ -440,21 +546,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>Write tests for your code in the <code>tests/</code> directory</li>
 </ol>
-<p>CI helps catch errors early and ensures that your code remains functional as you make changes. This is particularly important for data science projects that might be used to make business decisions.</p>
-<p>Testing data science code can be more complex than testing traditional software, but it’s still valuable. Some approaches include:</p>
+<p>Push a commit and GitHub runs this on a fresh Linux machine. A green tick next to the commit means the tests passed; a red cross links to the log, with the failing test and its traceback. The useful side effect is that CI runs in an environment that has nothing but your <code>requirements.txt</code> — so a package you installed locally six months ago and forgot to record shows up as a failure here rather than in front of a stakeholder.</p>
+</section>
+<section id="writing-tests-for-analysis-code" class="level3" data-number="14.1.5">
+<h3 data-number="14.1.5" class="anchored" data-anchor-id="writing-tests-for-analysis-code"><span class="header-section-number">14.1.5</span> Writing Tests for Analysis Code</h3>
+<p>Testing is the piece of software practice that data science teams most often skip, usually on the grounds that “the output is a number, not a program”. The counter-argument is that a number informing a decision is exactly the thing you want to be sure about.</p>
+<p>A test is an ordinary function whose name starts with <code>test_</code>, containing an <code>assert</code>. Put this in <code>tests/test_features.py</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> project_name.features <span class="im">import</span> add_growth_rate</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_growth_rate_computes_period_over_period_change():</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame({<span class="st">"revenue"</span>: [<span class="fl">100.0</span>, <span class="fl">110.0</span>, <span class="fl">121.0</span>]})</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> add_growth_rate(df, column<span class="op">=</span><span class="st">"revenue"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> result[<span class="st">"growth_rate"</span>].tolist() <span class="op">==</span> pytest.approx([<span class="va">None</span>, <span class="fl">0.10</span>, <span class="fl">0.10</span>], nan_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_growth_rate_handles_zero_denominator():</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame({<span class="st">"revenue"</span>: [<span class="fl">0.0</span>, <span class="fl">50.0</span>]})</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> add_growth_rate(df, column<span class="op">=</span><span class="st">"revenue"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> result[<span class="st">"growth_rate"</span>].isna().iloc[<span class="dv">1</span>]   <span class="co"># not inf, not a crash</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Run them with <code>pytest</code> from the project root. The second test is the more instructive one: division by zero is the sort of edge case that produces <code>inf</code> in a spreadsheet, propagates quietly through three more calculations, and surfaces as an absurd figure in a board pack.</p>
+<p>Four kinds of test earn their keep in analysis work:</p>
 <ol type="1">
-<li><strong>Unit tests</strong> for individual functions and transformations</li>
-<li><strong>Data validation tests</strong> to check assumptions about your data</li>
-<li><strong>Model performance tests</strong> to ensure models meet minimum quality thresholds</li>
-<li><strong>Integration tests</strong> to verify that different components work together correctly</li>
+<li><strong>Unit tests</strong> for individual transformations — the example above</li>
+<li><strong>Data validation tests</strong> asserting your assumptions about incoming data: no negative prices, no duplicate IDs, dates within an expected range. <a href="https://greatexpectations.io/">Great Expectations</a> and <a href="https://pandera.readthedocs.io/">Pandera</a> are built for this; a handful of <code>assert</code> statements works too</li>
+<li><strong>Model performance tests</strong> that fail the build if accuracy on a held-out set drops below a threshold you set</li>
+<li><strong>Integration tests</strong> that run the whole pipeline end to end on a small sample and check it produces output at all</li>
 </ol>
+<p>R users have the same facilities through <a href="https://testthat.r-lib.org/">testthat</a>: <code>test_that("growth rate handles zero denominators", { expect_true(is.na(...)) })</code>, run with <code>devtools::test()</code>.</p>
+</section>
+<section id="catching-problems-before-they-reach-ci" class="level3" data-number="14.1.6">
+<h3 data-number="14.1.6" class="anchored" data-anchor-id="catching-problems-before-they-reach-ci"><span class="header-section-number">14.1.6</span> Catching Problems Before They Reach CI</h3>
+<p>CI tells you something broke after you pushed. Pre-commit hooks tell you before. The <a href="https://pre-commit.com/">pre-commit</a> framework runs a set of checks against your staged files every time you commit:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># .pre-commit-config.yaml</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">repos</span><span class="kw">:</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> https://github.com/astral-sh/ruff-pre-commit</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v0.16.1</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">hooks</span><span class="kw">:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> ruff</span><span class="co">            # lint</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> ruff-format</span><span class="co">     # format</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> https://github.com/pre-commit/pre-commit-hooks</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">rev</span><span class="kw">:</span><span class="at"> v6.0.0</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">hooks</span><span class="kw">:</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> check-added-large-files</span><span class="co">   # stop a 2GB CSV entering Git history</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> detect-private-key</span><span class="co">        # stop a credential entering Git history</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> end-of-file-fixer</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Install with <code>pip install pre-commit</code> then <code>pre-commit install</code>. Run <code>pre-commit autoupdate</code> occasionally to bump those <code>rev:</code> pins — they’re exact tags, so they don’t move on their own. The last two hooks are the ones to care about: a large file or a leaked key committed to Git is genuinely painful to remove afterwards, and both are trivial to prevent.</p>
+</section>
+<section id="when-make-isnt-enough-workflow-orchestrators" class="level3" data-number="14.1.7">
+<h3 data-number="14.1.7" class="anchored" data-anchor-id="when-make-isnt-enough-workflow-orchestrators"><span class="header-section-number">14.1.7</span> When Make Isn’t Enough: Workflow Orchestrators</h3>
+<p>Make handles “run these steps in this order, skip what’s already done” on one machine, on demand. When a pipeline needs to run on a schedule, retry failed steps, alert someone when it breaks, or coordinate work across machines, you’ve reached the limits of a Makefile.</p>
+<p>The tools for that job are workflow orchestrators. The three you’ll encounter:</p>
+<ul>
+<li><strong><a href="https://airflow.apache.org/">Airflow</a></strong> — the incumbent, widely deployed, heavier to operate. If your organisation already runs a data platform, it probably runs Airflow.</li>
+<li><strong><a href="https://www.prefect.io/">Prefect</a></strong> — Python-native and considerably lighter to start with; you decorate ordinary functions with <code>@task</code> and <code>@flow</code>.</li>
+<li><strong><a href="https://dagster.io/">Dagster</a></strong> — organised around data assets rather than tasks, which maps well onto analytics work where the thing you care about is “is this table up to date”.</li>
+</ul>
+<p>The honest advice is not to reach for any of them early. A Makefile plus a scheduled GitHub Actions workflow (<code>on: schedule:</code> with a cron expression) covers a surprising amount of ground, and none of these tools is free to operate. Adopt one when you have several interdependent pipelines and a real need to know when one of them fails overnight.</p>
 </section>
 </section>
-<section id="advanced-topics-and-next-steps" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="advanced-topics-and-next-steps"><span class="header-section-number">9.2</span> Advanced Topics and Next Steps</h2>
+<section id="advanced-topics-and-next-steps" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="advanced-topics-and-next-steps"><span class="header-section-number">14.2</span> Advanced Topics and Next Steps</h2>
 <p>As you grow more comfortable with the data science infrastructure we’ve covered, here are some advanced topics to explore:</p>
-<section id="mlops-machine-learning-operations" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="mlops-machine-learning-operations"><span class="header-section-number">9.2.1</span> MLOps (Machine Learning Operations)</h3>
+<section id="mlops-machine-learning-operations" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="mlops-machine-learning-operations"><span class="header-section-number">14.2.1</span> MLOps (Machine Learning Operations)</h3>
 <p>MLOps combines DevOps practices with machine learning to streamline model deployment and maintenance:</p>
 <ul>
 <li><strong>Model Serving</strong>: Tools like TensorFlow Serving, TorchServe, or MLflow for deploying models</li>
@@ -463,8 +618,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Experiment Tracking</strong>: Recording parameters, metrics, and artefacts from experiments</li>
 </ul>
 </section>
-<section id="distributed-computing" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="distributed-computing"><span class="header-section-number">9.2.2</span> Distributed Computing</h3>
+<section id="distributed-computing" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="distributed-computing"><span class="header-section-number">14.2.2</span> Distributed Computing</h3>
 <p>For processing very large datasets or training complex models:</p>
 <ul>
 <li><strong>Spark</strong>: Distributed data processing</li>
@@ -473,8 +628,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Kubernetes</strong>: Container orchestration for scaling</li>
 </ul>
 </section>
-<section id="automl-and-model-development-tools" class="level3" data-number="9.2.3">
-<h3 data-number="9.2.3" class="anchored" data-anchor-id="automl-and-model-development-tools"><span class="header-section-number">9.2.3</span> AutoML and Model Development Tools</h3>
+<section id="automl-and-model-development-tools" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="automl-and-model-development-tools"><span class="header-section-number">14.2.3</span> AutoML and Model Development Tools</h3>
 <p>These tools help automate parts of the model development process:</p>
 <ul>
 <li><strong>AutoML</strong>: Automated model selection and hyperparameter tuning</li>
@@ -483,43 +638,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Neural Architecture Search</strong>: Automatically discovering optimal neural network architectures</li>
 </ul>
 </section>
-<section id="staying-current-with-data-science-tools" class="level3" data-number="9.2.4">
-<h3 data-number="9.2.4" class="anchored" data-anchor-id="staying-current-with-data-science-tools"><span class="header-section-number">9.2.4</span> Staying Current with Data Science Tools</h3>
-<p>The field evolves rapidly, so it’s important to stay updated:</p>
-<ol type="1">
-<li><strong>Follow key blogs</strong>:
+<section id="staying-current" class="level3" data-number="14.2.4">
+<h3 data-number="14.2.4" class="anchored" data-anchor-id="staying-current"><span class="header-section-number">14.2.4</span> Staying Current</h3>
+<p>Tooling churns, and keeping up with all of it is neither possible nor useful. Two habits are worth more than a subscription list:</p>
 <ul>
-<li><a href="https://towardsdatascience.com/">Towards Data Science</a></li>
-<li><a href="https://www.analyticsvidhya.com/blog/">Analytics Vidhya</a></li>
-<li>Company tech blogs from Google, Netflix, Airbnb, etc.</li>
-</ul></li>
-<li><strong>Participate in communities</strong>:
-<ul>
-<li>Stack Overflow</li>
-<li>Reddit communities (r/datascience, r/machinelearning)</li>
-<li>GitHub discussions</li>
-<li>Twitter/LinkedIn data science communities</li>
-</ul></li>
-<li><strong>Attend virtual events and conferences</strong>:
-<ul>
-<li>PyData</li>
-<li>NeurIPS, ICML, ICLR (for machine learning)</li>
-<li>Local meetups (find them on Meetup.com)</li>
-</ul></li>
-<li><strong>Take online courses for specific technologies</strong>:
-<ul>
-<li>Coursera, edX, Udacity</li>
-<li>YouTube tutorials</li>
-<li>Official documentation and tutorials</li>
-</ul></li>
-<li><strong>Consider becoming a Data Carpentries instructor</strong>
-<ul>
-<li><a href="https://carpentries.github.io/instructor-training/" class="uri">https://carpentries.github.io/instructor-training/</a></li>
-</ul></li>
-</ol>
-
-
+<li><strong>Read the release notes for the handful of tools you actually depend on.</strong> Pandas, Quarto, and your cloud provider each publish them, and they are where breaking changes are announced before they break something of yours.</li>
+<li><strong>Teach it.</strong> <a href="https://carpentries.org/">The Carpentries</a> run workshops on exactly this material — the shell, Git, R, and Python for researchers — and their <a href="https://carpentries.github.io/instructor-training/">instructor training</a> is free and well designed. Explaining <code>git rebase</code> to a room of ecologists is an efficient way to discover what you don’t understand about it.</li>
+</ul>
+<p>For everything else, PyData conference talks (all on YouTube, free) and the Stack Overflow question you find while debugging will cover more ground than any curated feed.</p>
 </section>
+</section>
+<section id="conclusion" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">14.3</span> Conclusion</h2>
+<p>The tools in this chapter share a purpose: making the second run of an analysis cheaper than the first.</p>
+<p><strong>By the end of this chapter you should have:</strong></p>
+<ul>
+<li>A project directory whose structure someone else could navigate without asking you</li>
+<li>A <code>Makefile</code> that rebuilds your analysis end to end with one command</li>
+<li>Tests in a <code>tests/</code> directory and a CI workflow that runs them on every push</li>
+<li>Pre-commit hooks installed, so a large file or a stray API key can’t reach your Git history by accident</li>
+<li>Data too large for Git under DVC, with the pointer files committed alongside the code</li>
+</ul>
+<p>None of this is worth doing on a one-off script you’ll delete next week. All of it is worth doing on anything a colleague will inherit, anything that runs more than once, and anything whose output someone will act on.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -930,13 +1072,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/containers.html" class="pagination-link" aria-label="Containerisation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Containerisation</span></span>
+      <a href="../chapters/deployment.html" class="pagination-link" aria-label="Deploying Data Science Projects">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Deploying Data Science Projects</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/summary.html" class="pagination-link" aria-label="Conclusion">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Conclusion</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conclusion</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

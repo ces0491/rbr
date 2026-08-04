@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Appendix B — Appendix: Troubleshooting Guide – Ready Before Run()</title>
+<title>4&nbsp; Python and R – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,7 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/utility_tools.html" rel="prev">
+<link href="../chapters/data_stores.html" rel="next">
+<link href="../chapters/command_line.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -123,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/utility_tools.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/appendix_troubleshooting.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/languages.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -180,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/languages.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/languages.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></span></a>
   </div>
 </li>
@@ -297,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapters/appendix_troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
@@ -313,26 +314,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#common-installation-and-configuration-issues" id="toc-common-installation-and-configuration-issues" class="nav-link active" data-scroll-target="#common-installation-and-configuration-issues"><span class="header-section-number">B.1</span> Common Installation and Configuration Issues</a>
+  <li><a href="#setting-up-python" id="toc-setting-up-python" class="nav-link active" data-scroll-target="#setting-up-python"><span class="header-section-number">4.1</span> Setting Up Python</a>
   <ul class="collapse">
-  <li><a href="#python-environment-issues" id="toc-python-environment-issues" class="nav-link" data-scroll-target="#python-environment-issues"><span class="header-section-number">B.1.1</span> Python Environment Issues</a></li>
-  <li><a href="#r-and-rstudio-configuration" id="toc-r-and-rstudio-configuration" class="nav-link" data-scroll-target="#r-and-rstudio-configuration"><span class="header-section-number">B.1.2</span> R and RStudio Configuration</a></li>
-  <li><a href="#git-and-github-problems" id="toc-git-and-github-problems" class="nav-link" data-scroll-target="#git-and-github-problems"><span class="header-section-number">B.1.3</span> Git and GitHub Problems</a></li>
-  <li><a href="#docker-and-container-issues" id="toc-docker-and-container-issues" class="nav-link" data-scroll-target="#docker-and-container-issues"><span class="header-section-number">B.1.4</span> Docker and Container Issues</a></li>
-  <li><a href="#environment-conflicts-and-management" id="toc-environment-conflicts-and-management" class="nav-link" data-scroll-target="#environment-conflicts-and-management"><span class="header-section-number">B.1.5</span> Environment Conflicts and Management</a></li>
-  <li><a href="#ide-specific-problems" id="toc-ide-specific-problems" class="nav-link" data-scroll-target="#ide-specific-problems"><span class="header-section-number">B.1.6</span> IDE-Specific Problems</a></li>
-  <li><a href="#platform-specific-considerations" id="toc-platform-specific-considerations" class="nav-link" data-scroll-target="#platform-specific-considerations"><span class="header-section-number">B.1.7</span> Platform-Specific Considerations</a></li>
+  <li><a href="#why-python-for-data-science" id="toc-why-python-for-data-science" class="nav-link" data-scroll-target="#why-python-for-data-science"><span class="header-section-number">4.1.1</span> Why Python for Data Science?</a></li>
+  <li><a href="#installing-python" id="toc-installing-python" class="nav-link" data-scroll-target="#installing-python"><span class="header-section-number">4.1.2</span> Installing Python</a></li>
+  <li><a href="#using-jupyter-notebooks" id="toc-using-jupyter-notebooks" class="nav-link" data-scroll-target="#using-jupyter-notebooks"><span class="header-section-number">4.1.3</span> Using Jupyter Notebooks</a></li>
+  <li><a href="#installing-additional-packages" id="toc-installing-additional-packages" class="nav-link" data-scroll-target="#installing-additional-packages"><span class="header-section-number">4.1.4</span> Installing Additional Packages</a></li>
   </ul></li>
-  <li><a href="#troubleshooting-workflow" id="toc-troubleshooting-workflow" class="nav-link" data-scroll-target="#troubleshooting-workflow"><span class="header-section-number">B.2</span> Troubleshooting Workflow</a></li>
+  <li><a href="#setting-up-r" id="toc-setting-up-r" class="nav-link" data-scroll-target="#setting-up-r"><span class="header-section-number">4.2</span> Setting Up R</a>
+  <ul class="collapse">
+  <li><a href="#why-r-for-data-science" id="toc-why-r-for-data-science" class="nav-link" data-scroll-target="#why-r-for-data-science"><span class="header-section-number">4.2.1</span> Why R for Data Science?</a></li>
+  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r"><span class="header-section-number">4.2.2</span> Installing R</a></li>
+  <li><a href="#essential-r-packages-for-data-science" id="toc-essential-r-packages-for-data-science" class="nav-link" data-scroll-target="#essential-r-packages-for-data-science"><span class="header-section-number">4.2.3</span> Essential R Packages for Data Science</a></li>
+  <li><a href="#creating-your-first-r-script" id="toc-creating-your-first-r-script" class="nav-link" data-scroll-target="#creating-your-first-r-script"><span class="header-section-number">4.2.4</span> Creating Your First R Script</a></li>
+  <li><a href="#understanding-r-packages" id="toc-understanding-r-packages" class="nav-link" data-scroll-target="#understanding-r-packages"><span class="header-section-number">4.2.5</span> Understanding R Packages</a></li>
+  </ul></li>
+  <li><a href="#python-or-r" id="toc-python-or-r" class="nav-link" data-scroll-target="#python-or-r"><span class="header-section-number">4.3</span> Python or R?</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.4</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/utility_tools.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/appendix_troubleshooting.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/languages.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix B — Appendix: Troubleshooting Guide</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></h1>
 </div>
 
 
@@ -349,353 +356,242 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="common-installation-and-configuration-issues" class="level2" data-number="B.1">
-<h2 data-number="B.1" class="anchored" data-anchor-id="common-installation-and-configuration-issues"><span class="header-section-number">B.1</span> Common Installation and Configuration Issues</h2>
-<p>Setting up a data science environment can sometimes be challenging, especially when working across different operating systems and with tools that have complex dependencies. This appendix addresses common issues you might encounter and provides solutions based on platform-specific considerations.</p>
-<section id="python-environment-issues" class="level3" data-number="B.1.1">
-<h3 data-number="B.1.1" class="anchored" data-anchor-id="python-environment-issues"><span class="header-section-number">B.1.1</span> Python Environment Issues</h3>
-<section id="conda-environment-activation-problems" class="level4" data-number="B.1.1.1">
-<h4 data-number="B.1.1.1" class="anchored" data-anchor-id="conda-environment-activation-problems"><span class="header-section-number">B.1.1.1</span> Conda Environment Activation Problems</h4>
-<p><strong>Issue</strong>: Unable to activate conda environments or “conda not recognised” errors.</p>
-<p><strong>Solution</strong>:</p>
+<section id="setting-up-python" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="setting-up-python"><span class="header-section-number">4.1</span> Setting Up Python</h2>
+<p>Python has become a cornerstone language in data science due to its readability, extensive libraries, and versatile applications. Let’s set up a proper Python environment.</p>
+<section id="why-python-for-data-science" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="why-python-for-data-science"><span class="header-section-number">4.1.1</span> Why Python for Data Science?</h3>
+<p>Python offers several advantages for data science:</p>
 <ol type="1">
-<li><strong>Windows</strong>:
-<ul>
-<li>Ensure Conda is properly initialised by running <code>conda init</code> in the Miniforge (or Anaconda) Prompt</li>
-<li>If using PowerShell, you may need to run <code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code>. Scoping it to your own user account is enough to let conda’s activation script run and avoids changing the policy machine-wide</li>
-<li>Verify the PATH variable includes the Conda directories: <code>C:\Users\&lt;username&gt;\miniforge3\Scripts</code> and <code>C:\Users\&lt;username&gt;\miniforge3</code> (substitute <code>anaconda3</code> if you installed Anaconda)</li>
-</ul></li>
-<li><strong>macOS/Linux</strong>:
-<ul>
-<li>Run <code>source ~/miniforge3/bin/activate</code>, or the appropriate path to your Conda installation</li>
-<li>Add <code>export PATH="$HOME/miniforge3/bin:$PATH"</code> to your <code>.bashrc</code> or <code>.zshrc</code> file</li>
-<li>Restart your terminal or run <code>source ~/.bashrc</code> (or <code>.zshrc</code>)</li>
-</ul></li>
+<li>Rich ecosystem of specialised libraries (NumPy, pandas, scikit-learn, etc.)</li>
+<li>Readable syntax that makes complex analyses more accessible</li>
+<li>Strong community support and documentation</li>
+<li>Integration with various data sources and visualisation tools</li>
 </ol>
-<p><strong>Why this happens</strong>: Conda needs to modify your system’s PATH variable to make its commands available. Installation scripts sometimes fail to properly update configuration files, especially if you’re using a non-default shell.</p>
+<p>Python consistently ranks among the top programming languages for data science and is widely used across the industry.</p>
 </section>
-<section id="package-installation-failures" class="level4" data-number="B.1.1.2">
-<h4 data-number="B.1.1.2" class="anchored" data-anchor-id="package-installation-failures"><span class="header-section-number">B.1.1.2</span> Package Installation Failures</h4>
-<p><strong>Issue</strong>: Error messages when attempting to install packages with pip or conda.</p>
-<p><strong>Solution</strong>:</p>
-<ol type="1">
-<li><strong>For conda</strong>:
+<section id="installing-python" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">4.1.2</span> Installing Python</h3>
+<p>You have a few reasonable ways to install Python for data science. Each has trade-offs:</p>
 <ul>
-<li>Try specifying a channel: <code>conda install -c conda-forge package_name</code></li>
-<li>Update conda first: <code>conda update -n base conda</code></li>
-<li>Create a fresh environment if existing one is corrupted: <code>conda create -n fresh_env python=3.13</code></li>
-</ul></li>
-<li><strong>For pip</strong>:
-<ul>
-<li>Ensure pip is updated: <code>python -m pip install --upgrade pip</code></li>
-<li>Try installing wheels instead of source distributions: <code>pip install --only-binary :all: package_name</code></li>
-<li>For packages with C extensions on Windows, you might need the Visual C++ Build Tools</li>
-</ul></li>
-</ol>
-<p><strong>Why this happens</strong>: Dependency conflicts, network issues, or missing compilers for packages that need to build from source.</p>
-</section>
-</section>
-<section id="r-and-rstudio-configuration" class="level3" data-number="B.1.2">
-<h3 data-number="B.1.2" class="anchored" data-anchor-id="r-and-rstudio-configuration"><span class="header-section-number">B.1.2</span> R and RStudio Configuration</h3>
-<section id="package-installation-errors-in-r" class="level4" data-number="B.1.2.1">
-<h4 data-number="B.1.2.1" class="anchored" data-anchor-id="package-installation-errors-in-r"><span class="header-section-number">B.1.2.1</span> Package Installation Errors in R</h4>
-<p><strong>Issue</strong>: Unable to install packages, especially those requiring compilation.</p>
-<p><strong>Solution</strong>:</p>
-<ol type="1">
-<li><strong>Windows</strong>:
-<ul>
-<li>Install Rtools from the CRAN website</li>
-<li>Ensure you’re using a compatible version of Rtools for your R version</li>
-<li>Try <code>install.packages("package_name", dependencies=TRUE)</code></li>
-</ul></li>
-<li><strong>macOS</strong>:
-<ul>
-<li>Install XCode Command Line Tools: <code>xcode-select --install</code></li>
-<li>Use homebrew to install dependencies: <code>brew install pkg-config</code></li>
-<li>For specific packages with external dependencies (like <code>rJava</code>), install the required system libraries first</li>
-</ul></li>
-<li><strong>Linux</strong>:
-<ul>
-<li>Install R development packages: <code>sudo apt install r-base-dev</code> (Ubuntu/Debian)</li>
-<li>Install specific dev libraries as needed, e.g., <code>sudo apt install libxml2-dev libssl-dev</code></li>
-</ul></li>
-</ol>
-<p><strong>Why this happens</strong>: Many R packages contain compiled code that requires appropriate compilers and development libraries on your system.</p>
-</section>
-<section id="rstudio-display-or-rendering-issues" class="level4" data-number="B.1.2.2">
-<h4 data-number="B.1.2.2" class="anchored" data-anchor-id="rstudio-display-or-rendering-issues"><span class="header-section-number">B.1.2.2</span> RStudio Display or Rendering Issues</h4>
-<p><strong>Issue</strong>: RStudio interface problems, plot display issues, or PDF rendering errors.</p>
-<p><strong>Solution</strong>:</p>
-<ol type="1">
-<li><p><strong>Update RStudio</strong> to the latest version</p></li>
-<li><p><strong>Reset user preferences</strong>: Go to Tools → Global Options → Reset</p></li>
-<li><p><strong>For PDF rendering issues</strong>: Install LaTeX (TinyTeX is recommended):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'tinytex'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>For plot display issues</strong>: Try a different graphics device or check your graphics drivers</p></li>
-</ol>
-<p><strong>Why this happens</strong>: RStudio relies on several external components for rendering that may conflict with system settings or require additional software.</p>
-</section>
-</section>
-<section id="git-and-github-problems" class="level3" data-number="B.1.3">
-<h3 data-number="B.1.3" class="anchored" data-anchor-id="git-and-github-problems"><span class="header-section-number">B.1.3</span> Git and GitHub Problems</h3>
-<section id="authentication-issues-with-github" class="level4" data-number="B.1.3.1">
-<h4 data-number="B.1.3.1" class="anchored" data-anchor-id="authentication-issues-with-github"><span class="header-section-number">B.1.3.1</span> Authentication Issues with GitHub</h4>
-<p><strong>Issue</strong>: Unable to push to or pull from GitHub repositories.</p>
-<p><strong>Solution</strong>:</p>
-<ol type="1">
-<li><strong>Check that your SSH keys are properly set up</strong>:
-<ul>
-<li>Verify key exists: <code>ls -la ~/.ssh</code></li>
-<li>Test SSH connection: <code>ssh -T git@github.com</code></li>
-</ul></li>
-<li><strong>If using HTTPS</strong>:
-<ul>
-<li>GitHub no longer accepts password authentication for HTTPS</li>
-<li>Set up a personal access token (PAT) on GitHub and use it instead of your password</li>
-<li>Store credentials: <code>git config --global credential.helper store</code></li>
-</ul></li>
-<li><strong>Platform-specific issues</strong>:
-<ul>
-<li><strong>Windows</strong>: Ensure Git Bash is used for SSH operations or set up SSH Agent in Windows</li>
-<li><strong>macOS</strong>: Add keys to the keychain: <code>ssh-add --apple-use-keychain ~/.ssh/id_ed25519</code>. Older guides use the short flag <code>-K</code>, which was deprecated in macOS Monterey</li>
-<li><strong>Linux</strong>: Ensure ssh-agent is running: <code>eval "$(ssh-agent -s)"</code></li>
-</ul></li>
-</ol>
-<p><strong>Why this happens</strong>: GitHub has enhanced security measures that require proper authentication setup.</p>
-</section>
-<section id="git-merge-conflicts" class="level4" data-number="B.1.3.2">
-<h4 data-number="B.1.3.2" class="anchored" data-anchor-id="git-merge-conflicts"><span class="header-section-number">B.1.3.2</span> Git Merge Conflicts</h4>
-<p><strong>Issue</strong>: Encountering merge conflicts when trying to integrate changes.</p>
-<p><strong>Solution</strong>:</p>
-<ol type="1">
-<li><strong>Understand which files have conflicts</strong>: <code>git status</code></li>
-<li><strong>Open conflicted files</strong> and look for conflict markers (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>)</li>
-<li><strong>Edit files</strong> to resolve conflicts, removing the markers once done</li>
-<li><strong>Mark as resolved</strong>: <code>git add &lt;filename&gt;</code></li>
-<li><strong>Complete the merge</strong>: <code>git commit</code></li>
-</ol>
-<p><strong>Visual merge tools can help</strong>:</p>
-<ul>
-<li>VS Code has built-in merge conflict resolution</li>
-<li>Use <code>git mergetool</code> with tools like KDiff3, Meld, or P4Merge</li>
+<li><strong>Miniforge</strong> (recommended for most readers): a minimal, community-maintained conda distribution that defaults to the free <code>conda-forge</code> channel. Gives you <code>conda</code> for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.</li>
+<li><strong>Anaconda</strong>: the “batteries-included” distribution. Convenient but note that since 2024 its Terms of Service restrict free commercial use for organisations with more than ~200 employees. Fine for learning and personal projects.</li>
+<li><strong><code>uv</code></strong> (the modern, fast option): a single binary that installs Python versions and manages virtual environments and packages. Much faster than conda or pip and rapidly becoming the default for pure-Python projects. A great choice once you’re comfortable, especially if you don’t need conda’s scientific package ecosystem.</li>
+<li><strong>System Python</strong> (<code>python.org</code> installer, <code>brew install python</code>, or <code>apt install python3</code>): simple, but you’ll still want to create isolated environments per project with <code>venv</code> or <code>uv venv</code>.</li>
 </ul>
-<p><strong>Why this happens</strong>: Git can’t automatically determine which changes to keep when the same lines are modified in different ways.</p>
-</section>
-</section>
-<section id="docker-and-container-issues" class="level3" data-number="B.1.4">
-<h3 data-number="B.1.4" class="anchored" data-anchor-id="docker-and-container-issues"><span class="header-section-number">B.1.4</span> Docker and Container Issues</h3>
-<section id="permission-problems" class="level4" data-number="B.1.4.1">
-<h4 data-number="B.1.4.1" class="anchored" data-anchor-id="permission-problems"><span class="header-section-number">B.1.4.1</span> Permission Problems</h4>
-<p><strong>Issue</strong>: “Permission denied” errors when running Docker commands.</p>
-<p><strong>Solution</strong>:</p>
+<p>For this book we’ll use conda-based instructions since they work uniformly across Windows, macOS, and Linux and handle tricky scientific packages well. Everything shown below works with either Miniforge or Anaconda.</p>
+<section id="installing-miniforge-or-anaconda" class="level4" data-number="4.1.2.1">
+<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="installing-miniforge-or-anaconda"><span class="header-section-number">4.1.2.1</span> Installing Miniforge (or Anaconda)</h4>
 <ol type="1">
-<li><strong>Linux</strong>:
-<ul>
-<li>Add your user to the docker group: <code>sudo usermod -aG docker $USER</code></li>
-<li>Log out and back in for changes to take effect</li>
-<li>Alternatively, use <code>sudo</code> before docker commands</li>
-<li><strong>Security note</strong>: membership in the <code>docker</code> group is effectively equivalent to root access on the host, because anyone in the group can mount the host filesystem into a privileged container. Only add trusted users, and on multi-user machines consider running <a href="https://docs.docker.com/engine/security/rootless/">rootless Docker</a> or <a href="https://podman.io/">Podman</a> instead.</li>
-</ul></li>
-<li><strong>Windows/macOS</strong>:
-<ul>
-<li>Ensure Docker Desktop is running</li>
-<li>Check that virtualisation is enabled in BIOS (Windows)</li>
-<li>Restart Docker Desktop</li>
-</ul></li>
+<li>Visit the <a href="https://github.com/conda-forge/miniforge/releases/latest">Miniforge releases page</a> (or the <a href="https://www.anaconda.com/download">Anaconda download page</a> if you prefer)</li>
+<li>Download the appropriate installer for your operating system</li>
+<li>Run the installer and follow the prompts</li>
 </ol>
-<p><strong>Why this happens</strong>: Docker daemon runs with root privileges, so users need proper permissions to interact with it.</p>
+<p>During installation on Windows, you may be asked whether to add the installation to your PATH environment variable. Leave this unchecked and use the Miniforge Prompt (or Anaconda Prompt) from the Start menu, which avoids conflicts with other Python installations on your system.</p>
+<p>The “PATH” is like an address book that tells your computer where to find programs when you type their names. Adding your conda install to PATH means you can use Python from any command prompt, but it could cause conflicts with other versions of Python on your system.</p>
 </section>
-<section id="container-resource-limitations" class="level4" data-number="B.1.4.2">
-<h4 data-number="B.1.4.2" class="anchored" data-anchor-id="container-resource-limitations"><span class="header-section-number">B.1.4.2</span> Container Resource Limitations</h4>
-<p><strong>Issue</strong>: Containers running out of memory or being slow.</p>
-<p><strong>Solution</strong>:</p>
+<section id="verifying-installation" class="level4" data-number="4.1.2.2">
+<h4 data-number="4.1.2.2" class="anchored" data-anchor-id="verifying-installation"><span class="header-section-number">4.1.2.2</span> Verifying Installation</h4>
+<p>Open a new terminal (or Miniforge/Anaconda Prompt on Windows) and type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You should see the Python version number. Also, check that conda is installed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Don’t install packages into the base installation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The next thing most people do is <code>pip install pandas</code> and carry on. Resist it. Packages installed globally accumulate, conflict, and eventually break each other in ways that are genuinely painful to unpick — and nothing records what you installed, so the analysis you write today may not run tomorrow.</p>
+<p>Create a per-project environment first. That is the whole subject of the <a href="../chapters/environments.html">Reproducible Environments</a> chapter, and it’s worth reading before you install your second package. The one-line version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv <span class="at">--python</span> 3.13 <span class="kw">&amp;&amp;</span> <span class="bu">source</span> .venv/bin/activate   <span class="co"># then install into it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+</section>
+<section id="using-jupyter-notebooks" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="using-jupyter-notebooks"><span class="header-section-number">4.1.3</span> Using Jupyter Notebooks</h3>
+<p>Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualisations, and narrative text. They’re like digital lab notebooks where you can document your analysis process along with the code and results.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure your environment is activated</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch Jupyter Notebook</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This opens a web browser where you can create and work with notebooks. Let’s create a simple notebook to verify everything works:</p>
 <ol type="1">
-<li><strong>Increase Docker resource allocation</strong>:
-<ul>
-<li>In Docker Desktop, go to Settings/Preferences → Resources</li>
-<li>Increase CPU, memory, or swap allocations</li>
-<li>Apply changes and restart Docker</li>
-</ul></li>
-<li><strong>Optimise Docker images</strong>:
-<ul>
-<li>Use smaller base images (Alpine versions when possible)</li>
-<li>Clean up unnecessary files in your Dockerfile</li>
-<li>Properly layer your Docker instructions to leverage caching</li>
-</ul></li>
+<li>Click “New” → “Python 3”</li>
+<li>In the first cell, type:</li>
 </ol>
-<p><strong>Why this happens</strong>: By default, Docker may not be allocated sufficient host resources, especially on development machines.</p>
-</section>
-</section>
-<section id="environment-conflicts-and-management" class="level3" data-number="B.1.5">
-<h3 data-number="B.1.5" class="anchored" data-anchor-id="environment-conflicts-and-management"><span class="header-section-number">B.1.5</span> Environment Conflicts and Management</h3>
-<section id="python-virtual-environment-conflicts" class="level4" data-number="B.1.5.1">
-<h4 data-number="B.1.5.1" class="anchored" data-anchor-id="python-virtual-environment-conflicts"><span class="header-section-number">B.1.5.1</span> Python Virtual Environment Conflicts</h4>
-<p><strong>Issue</strong>: Multiple Python versions or environments causing conflicts.</p>
-<p><strong>Solution</strong>:</p>
-<ol type="1">
-<li><strong>Use environment management tools consistently</strong>:
-<ul>
-<li>Stick with either conda OR venv/virtualenv for a project</li>
-<li>Don’t mix pip and conda in the same environment when possible</li>
-</ul></li>
-<li><strong>Isolate projects completely</strong>:
-<ul>
-<li>Create separate environments for each project</li>
-<li>Use clear naming conventions: <code>conda create -n project_name_env</code></li>
-<li>Document dependencies: <code>pip freeze &gt; requirements.txt</code> or <code>conda env export &gt; environment.yml</code></li>
-</ul></li>
-<li><strong>When conflicts are unavoidable</strong>:
-<ul>
-<li>Use Docker containers to fully isolate environments</li>
-<li>Consider tools like <code>pyenv</code> to manage multiple Python versions</li>
-</ul></li>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create some sample data</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x'</span>: <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y'</span>: np.random.randn(<span class="dv">10</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple plot</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'x'</span>], data[<span class="st">'y'</span>], marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sample Plot'</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X-axis'</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Y-axis'</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Python environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>Press Shift+Enter to run the cell</li>
 </ol>
-<p><strong>Why this happens</strong>: Python’s packaging system allows packages to be installed in multiple locations, and search paths can create precedence issues.</p>
+<p>If you see a plot and the success message, your Python setup is complete!</p>
 </section>
-<section id="r-package-version-conflicts" class="level4" data-number="B.1.5.2">
-<h4 data-number="B.1.5.2" class="anchored" data-anchor-id="r-package-version-conflicts"><span class="header-section-number">B.1.5.2</span> R Package Version Conflicts</h4>
-<p><strong>Issue</strong>: Incompatible R package versions or updates breaking existing code.</p>
-<p><strong>Solution</strong>:</p>
+<section id="installing-additional-packages" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">4.1.4</span> Installing Additional Packages</h3>
+<p>As your data science journey progresses, you’ll need additional packages. Use either:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using conda (preferred when available)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install package_name</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pip (when packages aren't available in conda)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install package_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Conda is often preferred for data science packages because it handles complex dependencies better, especially for packages with C/C++ components. This is particularly important for libraries that have parts written in lower-level programming languages to make them run faster.</p>
+</section>
+</section>
+<section id="setting-up-r" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="setting-up-r"><span class="header-section-number">4.2</span> Setting Up R</h2>
+<p>R is a powerful language and environment specifically designed for statistical computing and graphics. Many statisticians and data scientists prefer R for statistical analysis and visualisation.</p>
+<section id="why-r-for-data-science" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="why-r-for-data-science"><span class="header-section-number">4.2.1</span> Why R for Data Science?</h3>
+<p>R offers several advantages:</p>
 <ol type="1">
-<li><p><strong>Use the <code>renv</code> package</strong> for project-specific package management:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()      <span class="co"># Initialise for a project</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()  <span class="co"># Save current state</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()   <span class="co"># Restore saved state</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Install specific versions when needed</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_version</span>(<span class="st">"ggplot2"</span>, <span class="at">version =</span> <span class="st">"3.3.3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>For reproducibility across systems</strong>:</p>
-<ul>
-<li>Consider using Docker with rocker images</li>
-<li>Document R and package versions in your project README</li>
-</ul></li>
+<li>Built specifically for statistical analysis</li>
+<li>Excellent for data visualisation with ggplot2</li>
+<li>A rich ecosystem of packages for specialised statistical methods</li>
+<li>Strong in reproducible research through R Markdown</li>
 </ol>
-<p><strong>Why this happens</strong>: R’s package ecosystem evolves quickly, and new versions sometimes introduce breaking changes.</p>
+<p>R has thousands of packages available on CRAN for various statistical and data analysis tasks, with active development from the statistics and research communities.</p>
 </section>
-</section>
-<section id="ide-specific-problems" class="level3" data-number="B.1.6">
-<h3 data-number="B.1.6" class="anchored" data-anchor-id="ide-specific-problems"><span class="header-section-number">B.1.6</span> IDE-Specific Problems</h3>
-<section id="vs-code-extensions-and-integration-issues" class="level4" data-number="B.1.6.1">
-<h4 data-number="B.1.6.1" class="anchored" data-anchor-id="vs-code-extensions-and-integration-issues"><span class="header-section-number">B.1.6.1</span> VS Code Extensions and Integration Issues</h4>
-<p><strong>Issue</strong>: Python or R extensions not working properly in VS Code.</p>
-<p><strong>Solution</strong>:</p>
+<section id="installing-r" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">4.2.2</span> Installing R</h3>
+<p>Let’s install both R itself and RStudio, a popular integrated development environment for R.</p>
+<section id="installing-base-r" class="level4" data-number="4.2.2.1">
+<h4 data-number="4.2.2.1" class="anchored" data-anchor-id="installing-base-r"><span class="header-section-number">4.2.2.1</span> Installing Base R</h4>
 <ol type="1">
-<li><strong>Python in VS Code</strong>:
-<ul>
-<li>Ensure proper interpreter selection: Ctrl+Shift+P → “Python: Select Interpreter”</li>
-<li>Restart language server: Ctrl+Shift+P → “Python: Restart Language Server”</li>
-<li>Check extension requirements: Python extension needs Python installed separately</li>
-</ul></li>
-<li><strong>R in VS Code</strong>:
-<ul>
-<li>Install languageserver package in R: <code>install.packages("languageserver")</code></li>
-<li>Configure R path in VS Code settings</li>
-<li>For plot viewing, install the httpgd package: <code>install.packages("httpgd")</code></li>
-</ul></li>
-</ol>
-<p><strong>Why this happens</strong>: VS Code relies on language servers and other components that need proper configuration to communicate with language runtimes.</p>
-</section>
-<section id="jupyter-notebook-kernel-issues" class="level4" data-number="B.1.6.2">
-<h4 data-number="B.1.6.2" class="anchored" data-anchor-id="jupyter-notebook-kernel-issues"><span class="header-section-number">B.1.6.2</span> Jupyter Notebook Kernel Issues</h4>
-<p><strong>Issue</strong>: Unable to connect to kernels or kernels repeatedly dying.</p>
-<p><strong>Solution</strong>:</p>
-<ol type="1">
-<li><strong>List available kernels</strong>: <code>jupyter kernelspec list</code></li>
-<li><strong>Reinstall problematic kernels</strong>:
-<ul>
-<li>Remove: <code>jupyter kernelspec remove kernelname</code></li>
-<li>Install for current environment: <code>python -m ipykernel install --user --name=environmentname</code></li>
-</ul></li>
-<li><strong>Check resource usage</strong> if kernels are crashing:
-<ul>
-<li>Reduce the size of data loaded into memory</li>
-<li>Increase system swap space</li>
-<li>For Google Colab, reconnect to get a fresh runtime</li>
-</ul></li>
-</ol>
-<p><strong>Why this happens</strong>: Jupyter kernels run as separate processes and rely on proper registration with the notebook server. They can crash if they run out of resources.</p>
-</section>
-</section>
-<section id="platform-specific-considerations" class="level3" data-number="B.1.7">
-<h3 data-number="B.1.7" class="anchored" data-anchor-id="platform-specific-considerations"><span class="header-section-number">B.1.7</span> Platform-Specific Considerations</h3>
-<section id="windows-specific-issues" class="level4" data-number="B.1.7.1">
-<h4 data-number="B.1.7.1" class="anchored" data-anchor-id="windows-specific-issues"><span class="header-section-number">B.1.7.1</span> Windows-Specific Issues</h4>
-<ol type="1">
-<li><strong>Path Length Limitations</strong>:
-<ul>
-<li>Enable long path support: in registry editor, set <code>HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled</code> to 1</li>
-<li>Use the Windows Subsystem for Linux (WSL) for projects with deep directory structures</li>
-</ul></li>
-<li><strong>Line Ending Differences</strong>:
-<ul>
-<li>Configure Git to handle line endings: <code>git config --global core.autocrlf true</code></li>
-<li>Use <code>.gitattributes</code> files to specify line ending behaviour per project</li>
-</ul></li>
-<li><strong>PowerShell Execution Policy</strong>:
-<ul>
-<li>If scripts won’t run: <code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code></li>
-</ul></li>
+<li>Visit the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN)</a></li>
+<li>Click on the link for your operating system</li>
+<li>Follow the installation instructions</li>
 </ol>
 </section>
-<section id="macos-specific-issues" class="level4" data-number="B.1.7.2">
-<h4 data-number="B.1.7.2" class="anchored" data-anchor-id="macos-specific-issues"><span class="header-section-number">B.1.7.2</span> macOS-Specific Issues</h4>
+<section id="installing-rstudio-desktop" class="level4" data-number="4.2.2.2">
+<h4 data-number="4.2.2.2" class="anchored" data-anchor-id="installing-rstudio-desktop"><span class="header-section-number">4.2.2.2</span> Installing RStudio Desktop</h4>
+<p>RStudio provides a user-friendly interface for working with R.</p>
 <ol type="1">
-<li><strong>Homebrew Conflicts</strong>:
-<ul>
-<li>Keep Homebrew updated: <code>brew update &amp;&amp; brew upgrade</code></li>
-<li>If conflicts occur with Python/R: prefer conda/CRAN over Homebrew versions</li>
-<li>Use <code>brew doctor</code> to diagnose issues</li>
-</ul></li>
-<li><strong>XCode Requirements</strong>:
-<ul>
-<li>Many data science tools require the XCode Command Line Tools</li>
-<li>Install with: <code>xcode-select --install</code></li>
-<li>Update with: <code>softwareupdate --all --install --force</code></li>
-</ul></li>
-<li><strong>System Integrity Protection Limitations</strong>:
-<ul>
-<li>Some operations may be restricted by SIP</li>
-<li>For development-only machines, SIP can be disabled (not generally recommended)</li>
-</ul></li>
+<li>Visit the <a href="https://posit.co/download/rstudio-desktop/">Posit RStudio download page</a> (RStudio’s parent company rebranded to Posit in 2022)</li>
+<li>Download the free RStudio Desktop version for your operating system</li>
+<li>Run the installer and follow the prompts</li>
 </ol>
+<p>Think of R as the engine and RStudio as the dashboard that makes it easier to control that engine. You could use R without RStudio, but RStudio makes many tasks more convenient.</p>
 </section>
-<section id="linux-specific-issues" class="level4" data-number="B.1.7.3">
-<h4 data-number="B.1.7.3" class="anchored" data-anchor-id="linux-specific-issues"><span class="header-section-number">B.1.7.3</span> Linux-Specific Issues</h4>
+<section id="verifying-installation-1" class="level4" data-number="4.2.2.3">
+<h4 data-number="4.2.2.3" class="anchored" data-anchor-id="verifying-installation-1"><span class="header-section-number">4.2.2.3</span> Verifying Installation</h4>
+<p>Open RStudio and enter this command in the console (lower-left pane):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You should see the R version information displayed. You can verify this as the version is the first printed output you will see in the console at the start of a new session. It should look something like this:</p>
+<p><code>R version 4.5.0 (2025-04-11 ucrt) -- "How About a Twenty-Six"</code> <code>Copyright (C) 2025 The R Foundation for Statistical Computing</code> <code>Platform: x86_64-w64-mingw32/x64</code></p>
+</section>
+</section>
+<section id="essential-r-packages-for-data-science" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="essential-r-packages-for-data-science"><span class="header-section-number">4.2.3</span> Essential R Packages for Data Science</h3>
+<p>Let’s install some core packages that you’ll likely need:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install essential packages</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"shiny"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This installs:</p>
+<ul>
+<li><strong>tidyverse</strong>: A collection of packages for data manipulation and visualisation</li>
+<li><strong>rmarkdown</strong>: For creating documents that mix code and text</li>
+<li><strong>shiny</strong>: For building interactive web applications</li>
+<li><strong>knitr</strong>: For dynamic report generation</li>
+<li><strong>plotly</strong>: For interactive visualisations</li>
+</ul>
+<p>These packages are like specialised toolkits that expand what you can do with R. The tidyverse, for example, makes data manipulation much more intuitive than it would be using just base R.</p>
+</section>
+<section id="creating-your-first-r-script" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="creating-your-first-r-script"><span class="header-section-number">4.2.4</span> Creating Your First R Script</h3>
+<p>Let’s verify our setup with a simple R script:</p>
 <ol type="1">
-<li><strong>Package Manager Conflicts</strong>:
-<ul>
-<li>Avoid mixing distribution packages with conda/pip when possible</li>
-<li>Consider using <code>--user</code> flag with pip or isolated conda environments</li>
-<li>For system-wide Python/R, use distro packages for system dependencies and virtual environments for project dependencies</li>
-</ul></li>
-<li><strong>Library Path Issues</strong>:
-<ul>
-<li>If shared libraries aren’t found: <code>export LD_LIBRARY_PATH=/path/to/libs:$LD_LIBRARY_PATH</code></li>
-<li>Create <code>.conf</code> files in <code>/etc/ld.so.conf.d/</code> for permanent settings</li>
-</ul></li>
-<li><strong>Permission Issues with Docker</strong>:
-<ul>
-<li>If facing repeated permission issues, consider using Podman as a rootless alternative</li>
-<li>Properly set up user namespaces if needed for production</li>
-</ul></li>
+<li>In RStudio, go to File → New File → R Script</li>
+<li>Enter the following code:</li>
 </ol>
-</section>
-</section>
-</section>
-<section id="troubleshooting-workflow" class="level2" data-number="B.2">
-<h2 data-number="B.2" class="anchored" data-anchor-id="troubleshooting-workflow"><span class="header-section-number">B.2</span> Troubleshooting Workflow</h2>
-<p>When facing issues, follow this general troubleshooting workflow:</p>
-<ol type="1">
-<li><strong>Identify the exact error message</strong> - Copy the full message, not just part of it</li>
-<li><strong>Search online for the specific error</strong> - Use quotes in your search to find exact phrases</li>
-<li><strong>Check documentation</strong> - Official docs often have troubleshooting sections</li>
-<li><strong>Try the simplest solution first</strong> - Many issues can be resolved by restarting services or updating software</li>
-<li><strong>Isolate the problem</strong> - Create a minimal example that reproduces the issue</li>
-<li><strong>Use community resources</strong> - Stack Overflow, GitHub issues, and Reddit communities can help</li>
-<li><strong>Document your solution</strong> - Once solved, document it for future reference</li>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sample data</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot with ggplot2</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sample Plot in R"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"X-axis"</span>,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Y-axis"</span>) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"R environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="1">
+<li>Click the “Run” button or press Ctrl+Enter (Cmd+Enter on Mac) to execute the code</li>
 </ol>
-<p>Remember that troubleshooting is a normal part of the data science workflow. Each problem solved increases your understanding of the tools and makes you more effective in the long run.</p>
+<p>If you see a plot in the lower-right pane and the success message in the console, your R setup is complete!</p>
+</section>
+<section id="understanding-r-packages" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="understanding-r-packages"><span class="header-section-number">4.2.5</span> Understanding R Packages</h3>
+<p>Unlike Python, where conda or pip manage packages, R has its own built-in package management system accessed through functions like <code>install.packages()</code> and <code>library()</code>.</p>
+<p>There are thousands of R packages available on CRAN, with more on Bioconductor (for bioinformatics) and GitHub. To install a package from GitHub, you first need the devtools package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"username/package"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Think of CRAN as the official app store for R packages, while GitHub is like getting apps directly from developers. Both are useful, but packages on CRAN have gone through more quality checks.</p>
+</section>
+</section>
+<section id="python-or-r" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="python-or-r"><span class="header-section-number">4.3</span> Python or R?</h2>
+<p>The question comes up constantly and has a boring answer: both are excellent, the differences that once mattered mostly don’t any more, and the deciding factor is almost always what the people around you use.</p>
+<p>Where genuine differences remain:</p>
+<ul>
+<li><strong>R</strong> is stronger for statistical modelling and for publication-quality graphics. The tidyverse is a more coherent data-manipulation vocabulary than pandas, and ggplot2 has no true equal in Python. If your work is econometrics, biostatistics, or survey analysis, R’s package ecosystem is deeper.</li>
+<li><strong>Python</strong> is stronger everywhere the analysis has to connect to something else — a web application, a production pipeline, a machine learning framework, a cloud service. If your output is a system rather than a paper, Python is the shorter path.</li>
+</ul>
+<p>Both are covered throughout this book because most working analysts eventually use both. Quarto renders either. Git doesn’t care. The environment and deployment chapters apply to both with minor syntax differences.</p>
+<p>If you have no constraint and no preference: learn Python first, because more of the infrastructure in this book is Python-native, then pick up R when you meet a statistical problem it’s better at.</p>
+</section>
+<section id="conclusion" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.4</span> Conclusion</h2>
+<p><strong>By the end of this chapter you should have:</strong></p>
+<ul>
+<li>Python installed via Miniforge, with <code>python --version</code> and <code>conda --version</code> both working</li>
+<li>R and RStudio installed, with <code>R.version.string</code> reporting a current version</li>
+<li>A Jupyter notebook that runs a cell and produces a plot</li>
+<li>An R script that loads ggplot2 and produces a plot</li>
+<li>Read the <a href="../chapters/environments.html">Reproducible Environments</a> chapter before installing much else</li>
+</ul>
+<p>The next chapter covers where your data lives: SQL, the file formats worth knowing, and the query engines that have changed what’s practical on a laptop.</p>
 
 
 </section>
@@ -1108,11 +1004,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/utility_tools.html" class="pagination-link" aria-label="Utility Tools for Data Scientists">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Utility Tools for Data Scientists</span></span>
+      <a href="../chapters/command_line.html" class="pagination-link" aria-label="The Command Line">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The Command Line</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../chapters/data_stores.html" class="pagination-link" aria-label="Data Stores: SQL and Beyond">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
