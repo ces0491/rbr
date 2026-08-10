@@ -21,8 +21,8 @@ Python consistently ranks among the top programming languages for data science a
 
 You have a few reasonable ways to install Python for data science. Each has trade-offs:
 
-- **Miniforge** (recommended for most readers): a minimal, community-maintained conda distribution that defaults to the free `conda-forge` channel. Gives you `conda` for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.
-- **Anaconda**: the "batteries-included" distribution. Convenient but note that since 2024 its Terms of Service restrict free commercial use for organisations with more than ~200 employees. Fine for learning and personal projects.
+- **Miniforge** (recommended for most readers): a minimal, community-maintained conda distribution that defaults to `conda-forge`, a free package repository — conda calls these "channels" — maintained by the community rather than by a company. Gives you `conda` for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.
+- **Anaconda**: the "batteries-included" distribution. Convenient, but its Terms of Service have restricted free commercial use for organisations with 200 or more employees since 2020, and a 2024 update extended that to government bodies and non-profits of the same size. Fine for learning and personal projects.
 - **`uv`** (the modern, fast option): a single binary that installs Python versions and manages virtual environments and packages. Much faster than conda or pip and rapidly becoming the default for pure-Python projects. A great choice once you're comfortable, especially if you don't need conda's scientific package ecosystem.
 - **System Python** (`python.org` installer, `brew install python`, or `apt install python3`): simple, but you'll still want to create isolated environments per project with `venv` or `uv venv`.
 
@@ -57,24 +57,34 @@ conda --version
 
 The next thing most people do is `pip install pandas` and carry on. Resist it. Packages installed globally accumulate, conflict, and eventually break each other in ways that are genuinely painful to unpick — and nothing records what you installed, so the analysis you write today may not run tomorrow.
 
-Create a per-project environment first. That is the whole subject of the [Reproducible Environments](environments.qmd) chapter, and it's worth reading before you install your second package. The one-line version:
+Create a per-project environment first. That is the whole subject of the [Reproducible Environments](environments.qmd) chapter, and it's worth reading before you install your second package. The short version, using the conda you have just installed:
 
 ```bash
-uv venv --python 3.13 && source .venv/bin/activate   # then install into it
+conda create -n myproject python=3.13
+conda activate myproject
 ```
+
+Install into that, not into `base`.
 :::
 
 ### Using Jupyter Notebooks
 
 Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualisations, and narrative text. They're like digital lab notebooks where you can document your analysis process along with the code and results.
 
+Miniforge is deliberately minimal, so Jupyter is not installed yet. Create an environment for working through this book and install what the next few chapters need:
+
 ```bash
-# Make sure your environment is activated
+# Create an environment named 'datasci' with the packages used below
+conda create -n datasci python=3.13 numpy pandas matplotlib jupyter
+
+# Activate it. Do this in every new terminal session where you want these packages.
 conda activate datasci
 
 # Launch Jupyter Notebook
 jupyter notebook
 ```
+
+The first command takes a few minutes — conda is resolving a consistent set of versions for everything you asked for and everything those packages depend on in turn. Later chapters refer back to this `datasci` environment; [Reproducible Environments](environments.qmd) explains why one environment per project beats one environment for everything.
 
 This opens a web browser where you can create and work with notebooks. Let's create a simple notebook to verify everything works:
 
@@ -107,7 +117,7 @@ print("Python environment is working correctly!")
 
 3. Press Shift+Enter to run the cell
 
-If you see a plot and the success message, your Python setup is complete!
+If you see a plot and the success message, your Python setup is working.
 
 ### Installing Additional Packages
 
@@ -125,7 +135,7 @@ Conda is often preferred for data science packages because it handles complex de
 
 ## Setting Up R
 
-R is a powerful language and environment specifically designed for statistical computing and graphics. Many statisticians and data scientists prefer R for statistical analysis and visualisation.
+R is a language and environment designed specifically for statistical computing and graphics. Many statisticians and data scientists prefer it for statistical analysis and visualisation.
 
 ### Why R for Data Science?
 
@@ -167,11 +177,13 @@ Open RStudio and enter this command in the console (lower-left pane):
 R.version.string
 ```
 
-You should see the R version information displayed. You can verify this as the version is the first printed output you will see in the console at the start of a new session. It should look something like this:
+RStudio also prints the same information unprompted at the start of every new session, so you may already see it above your cursor. It should look something like this:
 
-`R version 4.5.0 (2025-04-11 ucrt) -- "How About a Twenty-Six"`
-`Copyright (C) 2025 The R Foundation for Statistical Computing`
+`R version 4.6.1 (2026-06-24 ucrt) -- "Happy Hop"`
+`Copyright (C) 2026 The R Foundation for Statistical Computing`
 `Platform: x86_64-w64-mingw32/x64`
+
+Your version number and codename will differ — R releases a new minor version each April and patches through the year. The `ucrt` and `Platform` lines only appear on Windows.
 
 ### Essential R Packages for Data Science
 
@@ -225,7 +237,7 @@ print("R environment is working correctly!")
 
 3. Click the "Run" button or press Ctrl+Enter (Cmd+Enter on Mac) to execute the code
 
-If you see a plot in the lower-right pane and the success message in the console, your R setup is complete!
+If you see a plot in the lower-right pane and the success message in the console, your R setup is working.
 
 ### Understanding R Packages
 
@@ -260,6 +272,7 @@ If you have no constraint and no preference: learn Python first, because more of
 **By the end of this chapter you should have:**
 
 - Python installed via Miniforge, with `python --version` and `conda --version` both working
+- A conda environment named `datasci` containing numpy, pandas, matplotlib, and Jupyter, which later chapters assume
 - R and RStudio installed, with `R.version.string` reporting a current version
 - A Jupyter notebook that runs a cell and produces a plot
 - An R script that loads ggplot2 and produces a plot

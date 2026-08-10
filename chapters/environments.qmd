@@ -28,7 +28,7 @@ There are four in common use for Python and one for R. The choice matters less t
 | Tool | Best when | Records to |
 |---|---|---|
 | **venv** | You want the standard library answer with nothing to install | `requirements.txt` |
-| **uv** | Default choice for new Python projects — same model as venv, dramatically faster, manages Python versions too | `requirements.txt` or `uv.lock` |
+| **uv** | Default choice for new Python projects — same model as venv, an order of magnitude faster to resolve and install, manages Python versions too | `requirements.txt` or `uv.lock` |
 | **conda / Miniforge** | You need packages with heavy compiled components — GDAL, CUDA-enabled PyTorch, many bioinformatics tools | `environment.yml` |
 | **pixi** | You want conda's package coverage with a lockfile and a modern CLI | `pixi.lock` |
 | **renv** | R, always | `renv.lock` |
@@ -53,32 +53,63 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
+Both of these download a script and run it immediately. That is how Astral distributes uv and it is the instruction from their own documentation, but it is worth knowing what you are agreeing to: you are executing whatever is at that address, sight unseen. For installers from a vendor you have reason to trust this is normal practice; for a script you found in a forum post, download it and read it first.
+
 Then, in a project directory:
 
 ```bash
 # Create an environment. uv downloads Python 3.13 if you don't have it.
 uv venv --python 3.13
+```
 
-# Activate it
-source .venv/bin/activate        # macOS/Linux
-.venv\Scripts\activate           # Windows
+Next, activate it. The command differs by platform — run only the one for yours.
 
-# Install packages
+```bash
+# macOS / Linux
+source .venv/bin/activate
+```
+
+```powershell
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+```
+
+```text
+:: Windows cmd.exe
+.venv\Scripts\activate.bat
+```
+
+:::{.callout-warning}
+## Windows: "running scripts is disabled on this system"
+
+A fresh Windows install refuses to run PowerShell scripts at all, so `Activate.ps1` fails with `cannot be loaded because running scripts is disabled on this system`. This is not a problem with your environment. Allow locally-created scripts for your own user account, once:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+`RemoteSigned` permits scripts you wrote or that a tool generated locally, while still requiring a signature on anything downloaded from the internet. You need this once per machine, not per project.
+:::
+
+With the environment active, install into it:
+
+```bash
 uv pip install pandas matplotlib scikit-learn jupyter
 ```
 
-The `.venv` directory holds the environment. It should **never** be committed to Git — it's large, machine-specific, and reconstructible from the record file. Add `.venv/` to your `.gitignore` (the template in the [Editors and Version Control](ide_git.qmd) chapter already does).
+The `.venv` directory holds the environment. It should **never** be committed to Git — it's large, machine-specific, and reconstructible from the record file. Add `.venv/` to your `.gitignore`, a plain text file listing paths Git should leave alone; [Editors and Version Control](ide_git.qmd) covers it properly and gives a template that already includes this line.
 
-### Recording it
+### Recording It
 
 ```bash
 uv pip freeze > requirements.txt
 ```
 
-Commit `requirements.txt`. Anyone with it — including you, later — reconstructs the environment with:
+The `>` redirects the command's output into a file instead of printing it to the screen. Commit `requirements.txt`. Anyone with it — including you, later — reconstructs the environment with:
 
 ```bash
-uv venv && uv pip install -r requirements.txt
+uv venv
+uv pip install -r requirements.txt
 ```
 
 ## Python: conda
@@ -86,25 +117,27 @@ uv venv && uv pip install -r requirements.txt
 If you need the conda ecosystem, the shape is the same:
 
 ```bash
-# Create an environment named 'datasci'
-conda create -n datasci python=3.13
+# One environment per project - name it after the project, not after the work
+conda create -n sales-forecast python=3.13
 
 # Activate it
-conda activate datasci
+conda activate sales-forecast
 
 # Install packages
 conda install numpy pandas matplotlib scikit-learn jupyter
 ```
 
+The naming matters more than it looks. The `datasci` environment you created in [Python and R](languages.qmd) is a reasonable scratchpad for working through this book, but it is exactly the pattern this chapter argues against for real work: one shared environment that every project quietly depends on, so upgrading a package for one analysis breaks another. Give each project its own.
+
 Activate it whenever you work on that project. Unlike `venv`/`uv`, conda environments live in a central location rather than in the project directory, so there's nothing to `.gitignore`.
 
-### Recording it
+### Recording It
 
 ```bash
 conda env export --from-history > environment.yml
 ```
 
-The `--from-history` flag matters. Without it, conda writes out every transitively-installed package pinned to an exact build string, including builds that only exist for your operating system — the resulting file often won't install on a different platform at all. With it, you get the packages you actually asked for, which is both readable and portable.
+The `--from-history` flag matters. Without it, conda writes out every package that came along as a dependency of something you asked for — transitive dependencies — each pinned to an exact build string, including builds that only exist for your operating system. The resulting file often won't install on a different platform at all. With it, you get the packages you actually asked for, which is both readable and portable.
 
 ## R: renv
 
@@ -127,7 +160,7 @@ install.packages("ggplot2")
 renv::snapshot()
 ```
 
-`renv::snapshot()` writes `renv.lock`, a JSON file listing every package, its version, and where it came from. Commit `renv.lock`. Do not commit the `renv/library/` directory — `renv::init()` adds the right `.gitignore` entries for you.
+`renv::snapshot()` writes `renv.lock`, a JSON file — a plain text format of nested `"key": value` pairs, readable by both people and programs — listing every package, its version, and where it came from. Commit `renv.lock`. Do not commit the `renv/library/` directory — `renv::init()` adds the right `.gitignore` entries for you.
 
 Anyone who clones the project runs:
 
@@ -143,11 +176,33 @@ and gets exactly your package versions.
 Older R material recommends `packrat` for this. Posit retired it in favour of renv years ago. If you meet a project using packrat, migrating is straightforward — `renv::migrate()` handles it.
 :::
 
+## Connecting the Environment to Your Tools
+
+Creating an environment is half the job. Your editor and your notebooks each have their own idea of which Python to use, and neither picks up a new environment automatically. This is the most common reason people conclude that environments "don't work": the environment is fine, but the tool is still running a different one.
+
+**Jupyter notebooks.** A notebook runs against a *kernel*, and your new environment is not one until you register it. From inside the activated environment:
+
+```bash
+# Install the machinery that lets Jupyter talk to this environment
+uv pip install ipykernel      # or: conda install ipykernel
+
+# Register it under a name you'll recognise in the kernel menu
+python -m ipykernel install --user --name sales-forecast
+```
+
+The environment now appears in Jupyter's *Kernel → Change kernel* menu. If a notebook reports that pandas isn't installed when you know it is, this is almost always the cause — the notebook is running a kernel from a different environment.
+
+**VS Code.** Press `Ctrl+Shift+P` (`Cmd+Shift+P` on macOS), run **Python: Select Interpreter**, and choose your environment from the list. VS Code detects `.venv` directories inside the project automatically and usually offers them at the top. The chosen interpreter shows in the status bar, which is worth glancing at when something behaves oddly.
+
+**RStudio.** `renv::init()` writes a `.Rprofile` into the project, so simply opening the RStudio Project activates the private library. The console prints a line confirming it on startup. Nothing further to configure — but this only works if you open the project rather than the individual `.R` file.
+
+[Editors and Version Control](ide_git.qmd) covers the editor side in more detail.
+
 ## Lockfiles vs Loose Requirements
 
 There's a distinction worth understanding, because it determines how reproducible your record actually is.
 
-A **loose requirement** says "pandas". A **pinned requirement** says "pandas 3.0.5". A **lockfile** says "pandas 3.0.5, and every package pandas itself depends on, at exactly these versions, with checksums to prove they weren't tampered with."
+A **loose requirement** says "pandas". A **pinned requirement** says "pandas 3.0.5". A **lockfile** says "pandas 3.0.5, and every package pandas itself depends on, at exactly these versions, with a checksum for each — a short fingerprint computed from the file's contents, which won't match if the file has been altered or replaced."
 
 `requirements.txt` from `pip freeze` sits in the middle: it pins direct and transitive dependencies to versions, but not to checksums, and it doesn't distinguish between what you asked for and what came along. `renv.lock`, `uv.lock`, and `pixi.lock` are true lockfiles.
 
@@ -165,7 +220,7 @@ The rule underneath: commit the *description* of the environment, never the envi
 
 ## Making It a Habit
 
-The failure mode isn't ignorance, it's drift — you set up an environment, then install three more packages over the following weeks without re-recording. Two things prevent it:
+The usual failure mode is drift rather than ignorance: you set up an environment, then install three more packages over the following weeks without re-recording. Two things prevent it:
 
 - **Re-snapshot when you install.** `uv pip freeze > requirements.txt` or `renv::snapshot()` immediately after adding a package, in the same breath as the install. It takes a second.
 - **Let CI catch you.** A continuous integration workflow (covered in [Optimising Workflows](workflows.qmd)) builds your project from nothing but the record file. If you forgot to record something, the build fails — in front of you, on a commit, rather than in front of a colleague six months later. This is the single most useful thing CI does for analysis work.
@@ -185,6 +240,7 @@ Use an environment file always; it costs nothing. Reach for a container when the
 - Every active project in its own isolated environment
 - A `requirements.txt`, `environment.yml`, or `renv.lock` committed alongside the code
 - `.venv/` and `renv/library/` in your `.gitignore`
+- Your editor pointed at the right interpreter, and the environment registered as a Jupyter kernel if you use notebooks
 - Successfully reconstructed one of your own environments from its record file — do this once deliberately, so you find out now whether the file is actually complete
 
 That last item is the one people skip. A record file you've never restored from is a hypothesis, not a backup.

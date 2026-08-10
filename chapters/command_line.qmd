@@ -6,7 +6,7 @@ title: "The Command Line"
 
 Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface. Further, when we later discuss Integrated Development Environments (IDEs) such as Visual Studio Code, RStudio, and many others, you'll find that they provide dedicated functionality to allow you to interact directly with the command line, so understanding its purpose is globally useful across workflows.
 
-### What is the Command Line?
+### What Is the Command Line?
 
 The command line (also called terminal, shell, or console) is a text-based interface where you type commands for the computer to execute. While graphical user interfaces (GUIs) let you point and click, the command line gives you more precise control through text commands.
 
@@ -27,7 +27,7 @@ Why use the command line when we have modern GUIs?
 Windows offers several options for command line interfaces:
 
 1. **Command Prompt**: Built into Windows, but limited in functionality
-2. **PowerShell**: A more powerful alternative built into Windows
+2. **PowerShell**: A more capable alternative, also built in, and the default in Windows Terminal
 3. **Windows Subsystem for Linux (WSL)**: Provides a Linux environment within Windows (recommended)
 
 To install WSL, open PowerShell as administrator and run:
@@ -124,17 +124,62 @@ On macOS with Homebrew:
 brew install python
 ```
 
-The term "sudo" gives you temporary administrator-level privileges, similar to when Windows asks "Do you want to allow this app to make changes to your device?"
-
 `sudo` grants temporary administrator privileges, the terminal equivalent of Windows asking "Do you want to allow this app to make changes to your device?"
 
+That Homebrew line deserves a second look, because you will meet its shape often. `curl` downloads a file; the surrounding `/bin/bash -c "$(...)"` hands what came back straight to the shell and runs it. You are executing code from the internet without reading it first. For an installer published by the project itself — Homebrew here, `uv` and Docker later — this is the documented method and the risk is the same as running any installer you downloaded. For a one-liner you found in a forum answer, download it to a file, read it, then run it.
+
+## Three Constructs You'll See Everywhere
+
+Beyond navigating and installing, three pieces of shell syntax appear throughout the rest of this book. They look cryptic and mean something simple.
+
+**Redirection: `>` sends output to a file.** By default a command prints its results to the screen. `>` diverts that into a file instead, replacing whatever was there:
+
+```bash
+# Instead of printing the package list, write it to a file
+pip freeze > requirements.txt
+
+# Two arrows appends rather than replacing
+echo "one more line" >> notes.txt
+```
+
+This is why the environments chapter records a project's packages with `uv pip freeze > requirements.txt`. The command doesn't know about files at all — the shell captures its output and writes it.
+
+**Pipes: `|` sends output to another command.** Where `>` writes to a file, `|` feeds one command's output directly into the next as input, letting you chain small tools:
+
+```bash
+# List files, and pass that list to a search for ".csv"
+ls | grep ".csv"
+
+# Count the lines in a file
+cat data.csv | wc -l
+```
+
+Each program does one job and knows nothing about the others. This composability is most of why the command line survives.
+
+**Environment variables hold settings the shell passes to programs.** These are named values that live in your shell session, and any program you launch can read them. `PATH` — the list of directories searched when you type a command name — is one you have already met:
+
+```bash
+# Show one variable (macOS/Linux/Git Bash)
+echo $PATH
+
+# Set one for this session
+export API_KEY='abc123'
+```
+
+```powershell
+# The same two things in PowerShell
+$env:PATH
+$env:API_KEY = 'abc123'
+```
+
+Note the difference: Bash uses `$NAME` and `export`, PowerShell uses `$env:NAME` and plain assignment. Variables set this way last only until you close the terminal. This is the mechanism behind keeping passwords out of your code — [Data Stores](data_stores.qmd) uses it for exactly that — and behind hosting platforms telling your application which port to listen on.
 
 ## A Note on Windows Shells
 
 Windows gives you three shells and they are not interchangeable, which is the source of a great deal of confusion when following tutorials.
 
 - **PowerShell** is the modern default and what Windows Terminal opens. Most of this book's commands work here.
-- **Git Bash** ships with Git for Windows and gives you a POSIX-style shell. Anything in this book written for macOS or Linux works in Git Bash, which makes it the safest choice when following a tutorial that assumes Unix.
+- **Git Bash** ships with Git for Windows and gives you a Unix-style shell. Anything in this book written for macOS or Linux works in Git Bash, which makes it the safest choice when following a tutorial that assumes Unix.
 - **Command Prompt (`cmd.exe`)** is the legacy shell. It's still around, and a few things differ — `$(pwd)` doesn't expand, for instance (use `%cd%`).
 
 If a command from a tutorial fails on Windows with a syntax error rather than a "not found" error, you are usually in the wrong shell rather than typing the wrong thing. Try it in Git Bash.
@@ -149,6 +194,7 @@ PowerShell has one more trap worth knowing now: `&&` and `||` don't work in Wind
 - Navigate the filesystem with `pwd`, `ls`, and `cd` without thinking about it
 - Create, inspect, and delete files and directories — and know that `rm -r` has no undo
 - Install software with your platform's package manager
+- Recognise `>`, `|`, and `$VARIABLE` when a later chapter uses them without explanation
 
 None of this needs to be memorised. `cd`, `ls`, and `pwd` will become automatic within a week of use; everything else you can look up. What matters is that a terminal window no longer feels like a place where you might break something.
 

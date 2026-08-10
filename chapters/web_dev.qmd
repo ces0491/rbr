@@ -4,7 +4,7 @@ title: "Web Development for Data Scientists"
 
 ## Web Development Fundamentals for Data Scientists
 
-As a data scientist, you'll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. Quarto (covered in the [Documentation and Reporting](reporting.qmd) chapter) and the dashboard frameworks in this chapter are all wrappers around the same lower-level web technologies: HTML, CSS, and JavaScript. They handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? That becomes possible with a basic understanding of web development.
+As a data scientist, you'll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. Quarto (covered in [Data Science Tools for Reporting](reporting.qmd)) and the dashboard frameworks in this chapter are all wrappers around the same lower-level web technologies: HTML, CSS, and JavaScript. They handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? That becomes possible with a basic understanding of web development.
 
 ### Why Web Development for Data Scientists?
 
@@ -159,7 +159,7 @@ const salesChart = new Chart(ctx, {
 
 4. Open `index.html` in a web browser
 
-This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualisation library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart. I would stress that, as a data scientist, you do not need to be able to write the above web page from scratch. Rather, become familiar with the structure and language. That way, when you're presented with raw output, you can find the things that are useful for you and be able to make changes effectively.
+This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualisation library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart. As a data scientist you do not need to be able to write that page from scratch. Aim instead for familiarity with its structure and vocabulary, so that when you're handed raw output you can find the parts that matter to you and change them with some confidence.
 
 ### Interactive Dashboards and Web Frameworks
 
@@ -170,7 +170,7 @@ Most data scientists don't build web apps from raw HTML/CSS/JavaScript. They use
 - **Streamlit** (Python): script-based, fastest path from analysis to a demo
 - **Flask** / **FastAPI** (Python): lower-level web frameworks, for when you're building a custom API or a page with specific backend logic rather than a dashboard
 
-If your problem is "give stakeholders a dashboard where they can filter this chart," pick Shiny, Dash, or Streamlit. If it's "expose this trained model as a JSON endpoint that another service can call," Flask or FastAPI is the right level. We cover all four below.
+If your problem is "give stakeholders a dashboard where they can filter this chart," pick Shiny, Dash, or Streamlit. If it's "expose this trained model at a URL that another program can send data to and get a prediction back from," Flask or FastAPI is the right level. We cover all four below.
 
 The examples in this section reference placeholder files like `sales_data.csv`. These aren't shipped with the book; substitute your own file, a built-in dataset (`ggplot2::diamonds`, `sns.load_dataset("tips")`, or similar), or a stable public CSV. The framework mechanics don't depend on which data you use.
 
@@ -267,7 +267,7 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-What makes Shiny powerful is its reactivity system, which automatically updates outputs when inputs change. You specify *relationships* between inputs and outputs, and the framework figures out what to recompute when something changes. It's similar to how a spreadsheet automatically recalculates formulas when a cell's value changes: you don't write "when the dropdown changes, rerun the plot", you say "the plot depends on the filtered data, which depends on the dropdown", and Shiny does the rest.
+Shiny's distinguishing feature is its reactivity system, which automatically updates outputs when inputs change. You specify *relationships* between inputs and outputs, and the framework figures out what to recompute when something changes. It's similar to how a spreadsheet automatically recalculates formulas when a cell's value changes: you don't write "when the dropdown changes, rerun the plot", you say "the plot depends on the filtered data, which depends on the dropdown", and Shiny does the rest.
 
 Shiny is also now available for Python via [Shiny for Python](https://shiny.posit.co/py/), which offers the same reactive model with Python syntax. A useful option if you like the Shiny mental model but your team uses Python.
 
@@ -387,7 +387,7 @@ if __name__ == '__main__':
     app.run(debug=False)
 ```
 
-Dash uses Plotly for visualisations and React.js for the UI, resulting in modern, responsive applications without requiring front-end experience.
+Dash builds its charts with Plotly and its interface with React, a widely used JavaScript framework — but you write only Python, and never touch either directly.
 
 Unlike Shiny's reactive programming model, Dash uses an explicit callback-based approach. You define functions that take specific inputs and produce specific outputs, with the Dash framework wiring them together. This approach may feel more familiar to Python programmers used to callback-based frameworks.
 
@@ -537,5 +537,12 @@ The short version: Flask apps are typically deployed by containerising them with
 ## Conclusion
 
 Web development skills complement your data science toolkit by enabling you to share your work more effectively. A light understanding of HTML, CSS, and JavaScript lets you customise reports and debug rendering issues. The frameworks in this chapter (Shiny, Dash, Streamlit, and Flask) abstract away most of the rest so you can focus on the analysis rather than the plumbing.
+
+**By the end of this chapter you should have:**
+
+- One interactive application running on your own machine, in whichever of Shiny, Dash, or Streamlit fits your language — reachable in a browser at `localhost`
+- The ability to read an HTML file and identify where its structure, styling, and behaviour each live
+- A working sense of which framework to reach for: Streamlit for the quickest route from script to app, Dash for control over layout, Shiny if you're in R, Flask when what you need is an API rather than a page
+- Understood why `debug=True` never belongs in anything reachable by someone else
 
 The ability to put an interactive application in front of a stakeholder is what turns a clever notebook into something the business actually uses. The next chapter covers containers — the packaging step that makes deploying any of these applications predictable — followed by deployment itself.

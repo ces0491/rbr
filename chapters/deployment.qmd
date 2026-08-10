@@ -94,7 +94,9 @@ git push origin gh-pages
 # Your site will be available at: https://username.github.io/repository
 ```
 
-Pushing the rendered output by hand gets old quickly. The alternative is to let GitHub render it for you on every push, using GitHub Actions: you commit your source `.qmd` files, and a workflow file at `.github/workflows/publish.yml` describes the machine that should build them. We work through a complete Quarto workflow later in this chapter, under [Deploying a Data Science Report to GitHub Pages](#deploying-a-data-science-report-to-github-pages).
+Pushing the rendered output by hand gets old quickly. The alternative is to let GitHub render it for you on every push, using GitHub Actions: you commit your source `.qmd` files, and a workflow file at `.github/workflows/publish.yml` describes the machine that should build them.
+
+This is *continuous integration* — having a server rebuild and re-test your project automatically whenever you push. This chapter uses it as a deployment mechanism and shows complete workflow files; [Optimising Workflows](workflows.qmd) comes back to the idea properly and explains what else it buys you. For now, read the YAML as a recipe: a description of a fresh machine, what to install on it, and what to run. We work through a complete Quarto workflow later in this chapter, under [Deploying a Data Science Report to GitHub Pages](#deploying-a-data-science-report-to-github-pages).
 
 :::{.callout-note}
 ## Pinning action versions
@@ -108,8 +110,16 @@ Netlify provides more advanced features for static sites:
 
 **Best for**: Static sites that require a build process
 **Setup complexity**: Low to medium
-**Cost**: Free tier (100GB bandwidth, 300 build minutes per month); paid plans from $19/month
-**Limitations**: Limited build minutes on free tier
+**Cost**: Free tier of 300 credits per month; paid plans from $9/month (Personal, 1,000 credits)
+**Limitations**: Everything consumes from one credit allowance, so a burst of traffic and a burst of rebuilds compete with each other
+
+:::{.callout-note}
+## Netlify's credits, and why older tutorials describe something different
+
+In September 2025 Netlify replaced its separate bandwidth and build-minute allowances with a single credit balance. Deploys, bandwidth, compute, and requests all draw from the same pool at published rates — a production deploy costs 15 credits, bandwidth 20 credits per GB — so 300 free credits is a real but small budget rather than four generous separate ones.
+
+Tutorials written before that change describe "100GB bandwidth and 300 build minutes". Those terms still apply to accounts created before the cutover, which is why you'll see both stories in circulation. Any account you open now gets credits.
+:::
 
 **Quick setup**:
 
@@ -192,7 +202,7 @@ quarto publish
 :::{.callout-note}
 ## A note on Heroku
 
-Heroku used to be the default recommendation for deploying small Python and R web apps, and many older tutorials still mention its free tier. Heroku **discontinued its free product tiers in November 2022** and now charges for all dynos. It's still a perfectly good platform, but for readers looking for a free starting point the recommendations below (Render, Fly.io, Railway) are better aligned with that goal.
+Heroku used to be the default recommendation for deploying small Python and R web apps, and many older tutorials still mention its free tier. Heroku **discontinued its free product tiers in November 2022** and now charges for all dynos — its name for the container your application runs in. It's still a perfectly good platform, but if you want to deploy something without entering card details, start with **Render**, which is the only option below with an ongoing free tier. Fly.io and Railway both offer a trial credit and then bill by usage.
 :::
 
 #### Render
@@ -266,7 +276,7 @@ For R Shiny, Quarto, Streamlit, and Dash content, Posit's hosted platform is the
 :::{.callout-important}
 ## shinyapps.io is being retired — start on Connect Cloud
 
-If you have read about deploying Shiny apps anywhere else, you have read about **shinyapps.io**. It still works, but Posit is consolidating it into **[Posit Connect Cloud](https://connect.posit.cloud/)** and has published a timeline: a migration tool arrived in Connect Cloud around September 2026, and accounts that haven't migrated are moved automatically from early 2027. Existing URLs get permanent redirects, so links already shared keep working.
+If you have read about deploying Shiny apps anywhere else, you have read about **shinyapps.io**. It still works, but Posit is consolidating it into **[Posit Connect Cloud](https://connect.posit.cloud/)** and has published a timeline: a migration tool arrives in Connect Cloud in September 2026, and accounts that haven't migrated are moved automatically from early 2027. Existing URLs get permanent redirects, so links already shared keep working.
 
 The practical advice depends on where you are:
 
@@ -322,7 +332,7 @@ Quarto has native support: `quarto publish` from the project directory offers Co
 :::{.callout-note}
 ## No server at all: Shinylive
 
-For apps whose computation is light enough to run in the browser, [**Shinylive**](https://shinylive.io/) compiles an R or Python Shiny app to WebAssembly. The result is static files you can host anywhere — GitHub Pages, Netlify, an S3 bucket — with no server, no cold starts, no hosting bill, and no active-hours limit.
+For apps whose computation is light enough to run in the browser, [**Shinylive**](https://shinylive.io/) compiles an R or Python Shiny app to WebAssembly, a format modern browsers can execute directly. The result is static files you can host anywhere — GitHub Pages, Netlify, an S3 bucket — with no server, no hosting bill, no active-hours limit, and no delay on the first visit while a sleeping service wakes up.
 
 The trade-off is real: everything runs on the user's machine, so the data ships to the browser and heavy computation will be slow. But for a teaching demo, a small interactive figure, or a calculator over a modest dataset, it removes the entire deployment problem.
 :::
@@ -339,6 +349,32 @@ Cloud Run is ideal for containerised applications:
 **Setup complexity**: Medium to high
 **Cost**: Pay-per-use, with a monthly free allowance of requests and compute time
 **Limitations**: Requires Docker knowledge
+
+**Before you can deploy**: Cloud Run is driven by the Google Cloud CLI, which is a separate install. This is a one-off, and every `gcloud` command in this chapter assumes it:
+
+1. Install the [Google Cloud CLI](https://cloud.google.com/sdk/docs/install) for your platform — there's a Windows installer, and a `brew install --cask google-cloud-sdk` for macOS
+2. Authenticate. This opens a browser and links the CLI to your Google account:
+
+   ```bash
+   gcloud auth login
+   ```
+
+3. Create or select a project, and set it as the default so you don't have to name it every time. Projects are how Google Cloud groups resources and bills them:
+
+   ```bash
+   gcloud projects create my-analysis-project    # or skip, if you have one
+   gcloud config set project my-analysis-project
+   ```
+
+4. Enable the two services this uses, and link a billing account to the project. Cloud Run has a monthly free allowance, but Google still requires a billing account on file before it will run anything:
+
+   ```bash
+   gcloud services enable run.googleapis.com cloudbuild.googleapis.com
+   ```
+
+Confirm the CLI is working and pointed at the right project with `gcloud config list`.
+
+The AWS equivalent is `aws configure` after installing the AWS CLI; Azure's is `az login`. All three follow the same shape — install a command-line tool, authenticate it against your account in a browser, then set a default project or region.
 
 **Deployment steps**:
 
@@ -361,14 +397,14 @@ The `--source .` flag above sidesteps the question entirely: Cloud Build produce
 
 #### AWS App Runner
 
-App Runner takes a container image or a source repository and runs it as a scaling web service, which puts it in roughly the same category as Cloud Run.
+App Runner takes a container image or a source repository and runs it as a scaling web service, which puts it in roughly the same category as Cloud Run. Choose it when your organisation is already on AWS and keeping everything in one account matters; otherwise Cloud Run is the easier path and the one the worked example later in this chapter uses.
 
 **Best for**: Production web applications already committed to AWS
 **Setup complexity**: Medium
 **Cost**: Pay for provisioned and active compute
 **Limitations**: Fewer regions than the rest of AWS; no free tier
 
-Deployment is normally driven from the console or from a `apprunner.yaml` in your repository. If you are not already in the AWS ecosystem, Cloud Run and Render both reach a running container with less ceremony — this is here so the AWS row in the comparison table above has a corresponding section, not because it is the recommended path.
+Deployment is normally driven from the console or from an `apprunner.yaml` in your repository. If you are not already in the AWS ecosystem, Cloud Run and Render both reach a running container with less ceremony.
 
 ## Step-by-Step Deployment Guides
 
@@ -377,7 +413,7 @@ Let's walk through complete deployment workflows for common data science scenari
 :::{.callout-note}
 ## A note on the example data and model files
 
-The examples below reference placeholder files like `sales_data.csv`, `my_data.csv`, and `model.pkl`. These aren't shipped with the book — they stand in for your own data or trained model. When you follow along, either point the code at one of your own files, substitute a built-in dataset (e.g. `ggplot2::diamonds` for R, `sns.load_dataset("tips")` for Python), or pull a stable public CSV from a URL as shown in the Reporting and Visualisation chapters. The deployment mechanics don't depend on which file you use.
+The examples below reference placeholder files like `sales_data.csv` and `model.pkl`, which stand in for your own data or trained model rather than being shipped with the book. (`data/my_data.csv` is the exception — that one is in the book's repository, and the reporting examples use it.) When you follow along, either point the code at one of your own files, substitute a built-in dataset (e.g. `ggplot2::diamonds` for R, `sns.load_dataset("tips")` for Python), or pull a stable public CSV from a URL as shown in the Reporting and Visualisation chapters. The deployment mechanics don't depend on which file you use.
 :::
 
 ### Deploying a Data Science Report to GitHub Pages
@@ -599,6 +635,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(here)
+library(DT)      # install.packages("DT") - interactive tables
 
 # Load data
 sales <- read.csv(here("data", "my_data.csv"))
@@ -620,7 +657,7 @@ ui <- fluidPage(
     
     mainPanel(
       plotOutput("salesPlot"),
-      dataTableOutput("salesTable")
+      DT::DTOutput("salesTable")
     )
   )
 )
@@ -641,10 +678,10 @@ server <- function(input, output) {
       labs(title = paste("Sales for", input$Date))
   })
   
-  output$salesTable <- renderDataTable({
+  output$salesTable <- DT::renderDT({
     filtered_data() %>%
       group_by(Product) %>%
-      summarize(Total = sum(Sales),
+      summarise(Total = sum(Sales),
                 Average = mean(Sales))
   })
 }
@@ -652,6 +689,8 @@ server <- function(input, output) {
 # Run the application
 shinyApp(ui = ui, server = server)
 ```
+
+Note `DT::DTOutput()` and `DT::renderDT()` rather than Shiny's own `dataTableOutput()` and `renderDataTable()`. Shiny deprecated those years ago in favour of the DT package, and calling them now prints deprecation messages to your console that are hard to interpret if you don't know what they refer to. Most tutorials still show the old names.
 
 2. Push the app directory to a GitHub repository and link it in Connect Cloud, which redeploys on every push. If you'd rather deploy from the console, configure `rsconnect` as shown in the Connect Cloud section above, reading your credentials from the environment rather than writing them into the script
 
@@ -770,19 +809,38 @@ gcloud run deploy model-api \
 :::{.callout-warning}
 ## `--allow-unauthenticated` exposes the endpoint to the public internet
 
-For a quick demo this is fine, but don't leave a model API wide open to the internet without rate limiting and authentication. For production use, drop `--allow-unauthenticated` and require callers to present an identity token (`gcloud auth print-identity-token`), or put an API gateway in front of the service. At minimum, monitor the Cloud Run request count and set budget alerts so you notice unexpected traffic early.
+For a quick demo this is fine, but don't leave a model API wide open to the internet without rate limiting and authentication. For production use, drop `--allow-unauthenticated` and require callers to present an identity token (`gcloud auth print-identity-token`), or put an API gateway — a service that sits in front of yours and handles authentication, rate limiting, and routing before requests reach it — in front of the service. At minimum, monitor the Cloud Run request count and set budget alerts so you notice unexpected traffic early.
 :::
 
-5. Test your API:
+5. Test your API. Replace the host below with the URL `gcloud run deploy` printed when it finished — it is unique to your service and the `xxxx-xx` here is a stand-in:
 
 ```bash
+# Bash, Git Bash, WSL, macOS
 curl -X POST \
   https://model-api-xxxx-xx.a.run.app/predict \
   -H "Content-Type: application/json" \
   -d '{"feature1": 0.5, "feature2": 0.8, "feature3": 1.2}'
 ```
 
-This API allows other applications to easily access your machine learning model's predictions.
+In Windows PowerShell, `curl` is an alias for `Invoke-WebRequest`, which doesn't understand `-X` or `-d`, and line continuation uses a backtick rather than a backslash. Either call the real `curl.exe` explicitly:
+
+```powershell
+curl.exe -X POST `
+  https://model-api-xxxx-xx.a.run.app/predict `
+  -H "Content-Type: application/json" `
+  -d '{"feature1": 0.5, "feature2": 0.8, "feature3": 1.2}'
+```
+
+or use the native cmdlet:
+
+```powershell
+Invoke-RestMethod -Method Post `
+  -Uri https://model-api-xxxx-xx.a.run.app/predict `
+  -ContentType "application/json" `
+  -Body '{"feature1": 0.5, "feature2": 0.8, "feature3": 1.2}'
+```
+
+This API allows other applications to access your machine learning model's predictions.
 
 ## Deployment Best Practices
 
@@ -797,11 +855,11 @@ Regardless of the platform you choose, these best practices will help ensure suc
 
 ### Security Considerations
 
-1. **Never commit secrets**: Keep API keys, database passwords, and access tokens in environment variables, platform-managed secret stores (Render Environment, Fly.io secrets, GCP Secret Manager, AWS Secrets Manager), or a local `.env` file that is listed in `.gitignore`. If a secret ever reaches a repository, whether public *or* private, treat it as compromised and rotate it immediately rather than trying to scrub git history.
+1. **Never commit secrets**: Keep API keys, database passwords, and access tokens in environment variables, platform-managed secret stores (Render Environment, Fly.io secrets, GCP Secret Manager, AWS Secrets Manager), or a local `.env` file that is listed in `.gitignore`. [Data Stores](data_stores.qmd) covers the mechanics, including what to do if one leaks.
 2. **Set up proper authentication**: Restrict access to sensitive applications. Don't leave `--allow-unauthenticated` endpoints, default passwords, or `debug=True` enabled in anything publicly reachable.
 3. **Implement input validation**: Protect against malicious inputs, especially for any endpoint that touches a database or a machine learning model.
-4. **Use HTTPS**: Every modern platform-as-a-service (Render, Fly, Railway, Vercel, Cloud Run) issues free TLS certificates automatically; use them. Custom domains should always be served over HTTPS.
-5. **Regularly update dependencies**: Address security vulnerabilities. Tools like GitHub Dependabot or `pip-audit` can flag known CVEs in your `requirements.txt`.
+4. **Use HTTPS**: Every modern platform-as-a-service (Render, Fly, Railway, Vercel, Cloud Run) issues the certificates that make HTTPS work automatically and at no cost; use them. Custom domains should always be served over HTTPS.
+5. **Regularly update dependencies**: Address security vulnerabilities. Tools like GitHub Dependabot or `pip-audit` cross-check your `requirements.txt` against public databases of known flaws and tell you which of your packages need upgrading.
 
 ### Observability: Logging, Health Checks, and Monitoring
 

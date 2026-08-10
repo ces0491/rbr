@@ -10,12 +10,12 @@ While programming languages, libraries, and frameworks form the core of your dat
 
 Large-language-model-based coding assistants are probably the single biggest productivity change in data science tooling since this book was first drafted. For readers without a CS background they're especially useful: they can scaffold boilerplate, explain unfamiliar code, translate between Python and R, suggest fixes for cryptic error messages, and draft regex patterns or SQL queries on request. The caveat is universal: they confidently produce wrong answers too, so treat suggestions as a fast draft to be reviewed, not an oracle.
 
-A few options worth knowing, all with free tiers for individuals:
+A few options worth knowing. Pricing differs between them, so the cost note matters as much as the description:
 
-- **[GitHub Copilot](https://github.com/features/copilot)**: In-editor completion and chat inside VS Code, JetBrains IDEs, Neovim, and the web. The most mature and widely used option; free for verified students, educators, and maintainers of popular open-source projects.
-- **[Claude for VS Code](https://docs.claude.com/en/docs/claude-code/ide-integrations) and [Claude Code](https://www.claude.com/product/claude-code)**: Anthropic's CLI and IDE integrations. Claude Code runs in a terminal and can read, edit, and run code in a project with your supervision. Particularly good for multi-file refactors.
-- **[Cursor](https://cursor.com/)**: A fork of VS Code with deep LLM integration throughout the editor. Popular with developers who want a single tool rather than an extension.
-- **[Aider](https://aider.chat/)**: An open-source terminal-based pair-programmer that uses git commits as its unit of work. A great fit if you already live in the terminal.
+- **[GitHub Copilot](https://github.com/features/copilot)**: In-editor completion and chat inside VS Code, JetBrains IDEs, Neovim, and the web. The most mature and widely used option. Has a genuine free tier with a monthly allowance of completions and chats, and is free outright for verified students, educators, and maintainers of popular open-source projects.
+- **[Claude for VS Code](https://docs.claude.com/en/docs/claude-code/ide-integrations) and [Claude Code](https://www.claude.com/product/claude-code)**: Anthropic's CLI and IDE integrations. Claude Code runs in a terminal and can read, edit, and run code in a project with your supervision. Particularly good for multi-file refactors. Requires a paid Claude subscription or API credits — there is no free tier.
+- **[Cursor](https://cursor.com/)**: A fork of VS Code with deep LLM integration throughout the editor. Popular with developers who want a single tool rather than an extension. Free hobby tier, paid beyond it.
+- **[Aider](https://aider.chat/)**: An open-source terminal-based pair-programmer that uses git commits as its unit of work. A great fit if you already live in the terminal. The tool itself is free; you supply an API key and pay the model provider for usage.
 
 For genuinely throwaway tasks, the web chat interfaces to [Claude](https://claude.ai/) and [ChatGPT](https://chatgpt.com/) are fine. For anything you'll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.
 
@@ -28,19 +28,19 @@ A few habits that make these tools more useful and less dangerous:
 
 ### Text Editors and IDE Enhancements
 
-The intro chapter covers **Visual Studio Code** (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It's free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in the intro chapter will cover 90% of your needs.
+[Editors and Version Control](ide_git.qmd) covers **Visual Studio Code** (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It's free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in that chapter will cover 90% of your needs.
 
 The editors below are lightweight alternatives for quick edits, very large files, or platform-specific situations.
 
 #### Notepad++
 
-Notepad++ is a free, open-source text editor for Windows that's more powerful than the default Notepad application.
+Notepad++ is a free, open-source text editor for Windows, and a substantial step up from the built-in Notepad.
 
 **Key features for data scientists:**
 
 1. **Syntax highlighting**: Supports many languages including Python, R, SQL, JSON, and more
 2. **Column editing**: Edit multiple lines simultaneously (useful for cleaning data)
-3. **Regex search and replace**: Powerful pattern matching for text manipulation
+3. **Regex search and replace**: Search by pattern rather than by literal text — *regular expressions*, usually shortened to regex, are a compact notation for describing text shapes such as "a date" or "any line ending in a comma"
 4. **Macro recording**: Automate repetitive text edits
 5. **Plugins**: Extend functionality with viewers for JSON, HTML, Markdown, and other common data-science file formats.
 
@@ -62,7 +62,7 @@ Notepad++ (as of writing) is not available on Mac, but the following alternative
 
 #### Sublime Text
 
-Sublime Text is a sophisticated cross-platform text editor with powerful features for code editing.
+Sublime Text is a cross-platform editor known for opening very large files quickly — useful when a CSV is too big for anything else to load.
 
 **Key features for data scientists:**
 
@@ -196,7 +196,7 @@ These tools help identify differences between files and directories, which is us
 
 #### Beyond Compare
 
-Beyond Compare is a powerful file and directory comparison tool.
+Beyond Compare compares files and whole directory trees side by side, and handles more than plain text.
 
 **Key features for data scientists:**
 
@@ -280,14 +280,16 @@ Many sites still show a one-liner `sh -c "$(curl ... install.sh)"`, which downlo
 
 ```bash
 # Edit ~/.zshrc to activate plugins
-plugins=(git python pip conda docker jupyter)
+plugins=(git python pip conda docker)
 ```
+
+Only name plugins that exist — Oh My Zsh prints `plugin 'x' not found` in every new shell otherwise, and there is no `jupyter` plugin despite several tutorials listing one. The [plugins directory](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins) is the authoritative list.
 
 Oh My Zsh makes the command line more user-friendly and efficient, which is valuable when working with data processing tools, running scripts, or managing environments.
 
 #### Windows Terminal and PowerShell 7
 
-On Windows, **Windows Terminal** (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) is a huge upgrade over the legacy `cmd.exe` and the old PowerShell window: tabs, split panes, GPU-accelerated rendering, and sensible keyboard shortcuts. Pair it with **PowerShell 7** (`winget install Microsoft.PowerShell`), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in the intro chapter) from inside Windows Terminal, which handles both worlds side-by-side.
+On Windows, **Windows Terminal** (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) is a huge upgrade over the legacy `cmd.exe` and the old PowerShell window: tabs, split panes, GPU-accelerated rendering, and sensible keyboard shortcuts. Pair it with **PowerShell 7** (`winget install Microsoft.PowerShell`), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in [The Command Line](command_line.qmd)) from inside Windows Terminal, which handles both worlds side-by-side.
 
 #### Modern Rust-based CLI replacements
 
@@ -296,7 +298,7 @@ A family of newer command-line tools, mostly written in Rust, have become the de
 | Instead of | Use | What you get |
 |---|---|---|
 | `grep` | **[ripgrep](https://github.com/BurntSushi/ripgrep)** (`rg`) | Much faster recursive search; respects `.gitignore` by default |
-| `find` | **[fd](https://github.com/sharkdp/fd)** | Saner syntax, colour output, ignores VCS noise |
+| `find` | **[fd](https://github.com/sharkdp/fd)** | Saner syntax, colour output, skips `.git` and anything in your `.gitignore` |
 | `cat` | **[bat](https://github.com/sharkdp/bat)** | Syntax highlighting and line numbers |
 | `ls` | **[eza](https://github.com/eza-community/eza)** | Git status, icons, tree view |
 | `cd` | **[zoxide](https://github.com/ajeetdsouza/zoxide)** | `z projectname` jumps to any directory you've visited |
@@ -305,7 +307,7 @@ A family of newer command-line tools, mostly written in Rust, have become the de
 
 For Python and R tooling specifically, three newer tools are now standard enough to mention:
 
-- **[uv](https://docs.astral.sh/uv/)**: an extremely fast Python package manager and virtual-environment tool written in Rust. It's a drop-in replacement for `pip`, `pip-tools`, `virtualenv`, and `pyenv`. Create an environment with `uv venv`, install from a `requirements.txt` with `uv pip install -r requirements.txt`, and run project scripts with `uv run`.
+- **[uv](https://docs.astral.sh/uv/)**: a Python package manager and virtual-environment tool written in Rust, an order of magnitude faster than pip at resolving and installing. It's a drop-in replacement for `pip`, `pip-tools`, `virtualenv`, and `pyenv`. Create an environment with `uv venv`, install from a `requirements.txt` with `uv pip install -r requirements.txt`, and run project scripts with `uv run`.
 - **[ruff](https://docs.astral.sh/ruff/)**: a Python linter and formatter, also from Astral, 10–100× faster than the tools it replaces (flake8, isort, black). Modern Python projects almost always use it.
 - **[pixi](https://pixi.sh/)**: a project-based package manager built on the conda ecosystem. Think of it as "uv for conda": fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.
 
@@ -349,7 +351,7 @@ csvgrep -c 2 -m "Pattern" data.csv > filtered.csv
 csvsort -c 3 data.csv > sorted.csv
 ```
 
-CSVKit is extremely useful for quick data exploration and manipulation directly from the command line, without the need to write Python or R code for simple operations.
+CSVKit earns its place for quick exploration directly from the command line — checking what's in a file, or pulling two columns out of it, without opening an editor and writing a script.
 
 #### jq
 
@@ -396,7 +398,7 @@ jq is invaluable when working with APIs that return JSON data or when preparing 
 
 ### Diagramming and Visualisation Tools
 
-While code-based visualisation is powerful, sometimes you need standalone tools for creating diagrams and flowcharts.
+Code-based diagrams version well, but sometimes a drawing tool is the faster route to a one-off architecture sketch.
 
 #### diagrams.net (formerly draw.io)
 
@@ -416,7 +418,7 @@ diagrams.net is a free, open-source online diagramming tool that works with vari
 2. Choose where to save your diagrams (local, Google Drive, etc.)
 
 **Example data science use case:**
-Creating a data flow diagram to document an ETL process:
+Creating a data flow diagram to document an ETL process — extract, transform, load, the standard name for a pipeline that pulls data from a source, reshapes it, and writes it somewhere queryable:
 
 1. Select the flowchart template
 2. Add data sources, transformation steps, and outputs
@@ -499,7 +501,7 @@ For anything beyond a static image — a bug you can only demonstrate by reprodu
 
 #### OBS Studio
 
-OBS (Open Broadcaster Software) Studio is a powerful tool for screen recording and streaming.
+OBS (Open Broadcaster Software) Studio records your screen and streams it, free and on every platform.
 
 **Key features:**
 

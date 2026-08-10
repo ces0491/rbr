@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     permissions:
+      # `quarto publish gh-pages` pushes a branch, so only contents: write is
+      # needed. The pages:/id-token: pair is for the Actions-based Pages deploy.
       contents: write
-      pages: write
-      id-token: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -29,7 +29,9 @@ jobs:
         uses: actions/cache@v6
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          # The book has no requirements.txt, so the key is derived from the
+          # workflow itself - it changes when the pinned package list below does.
+          key: ${{ runner.os }}-pip-${{ hashFiles('.github/workflows/publish.yml') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 

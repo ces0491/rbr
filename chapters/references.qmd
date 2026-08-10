@@ -45,7 +45,7 @@ To deepen your understanding of data science concepts and tools, here are some e
 ### Version Control and Collaboration
 
 1. **[Pro Git](https://git-scm.com/book/en/v2)** by Scott Chacon and Ben Straub  
-   A comprehensive guide to Git, available for free online.
+   The reference work on Git, from first commit to internals, available for free online.
 
 2. **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** by Jenny Bryan
    Written for exactly this book's audience: researchers and analysts who need Git to work, not a full account of how it works. Free online, and the troubleshooting chapters are the best of their kind.

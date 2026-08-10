@@ -25,7 +25,7 @@ Interactive web dashboards built on top of these libraries (Shiny, Dash, Streaml
 
 ## Python Visualisation Libraries
 
-Python offers several powerful libraries for data visualisation, each with different strengths and use cases.
+Python has several established visualisation libraries, each with different strengths and use cases.
 
 ### Matplotlib: The Foundation
 
@@ -135,7 +135,7 @@ You'll usually end up with all three in your toolkit: seaborn for quick EDA, plo
 
 ## R Visualisation Libraries
 
-R also provides powerful tools for data visualisation, with ggplot2 being the most widely used library.
+R has its own visualisation ecosystem, with ggplot2 the most widely used library by a wide margin.
 
 ### ggplot2: Grammar of Graphics
 
@@ -242,7 +242,7 @@ The R version of plotly can convert ggplot2 visualisations to interactive versio
 ggplotly(p)
 ```
 
-This ability to transform static ggplot2 charts into interactive visualisations with one function call is extremely convenient. It lets you develop visualisations using the familiar ggplot2 syntax, then add interactivity with minimal effort. This is especially powerful when you need to produce reports in both PDF and HTML formats: use ggplot2 for static PDFs and Plotly for dynamic HTML.
+Turning a static ggplot2 chart into an interactive one with a single function call means you can develop in familiar ggplot2 syntax and add interactivity at the end. That matters most when the same analysis has to ship as both a PDF and a web page: build the chart once, render it static for the PDF and interactive for the HTML.
 
 ## Code-Based Diagramming with Mermaid
 
@@ -492,5 +492,12 @@ Diagrams should clarify your explanations, not complicate them. A well-designed 
 ## Conclusion
 
 Visualisation is the layer where your analysis meets its audience. The libraries covered here (matplotlib, seaborn, plotly, ggplot2) are the workhorses of static and lightly-interactive charts you embed in reports. Mermaid handles the architecture and workflow diagrams that explain *how* your system fits together rather than *what* the data looks like.
+
+**By the end of this chapter you should have:**
+
+- A plotting library installed and working in each language you use — matplotlib or plotly for Python, ggplot2 for R
+- One chart saved to a file at a resolution suitable for a report, rather than only ever viewed on screen
+- One interactive chart embedded in a rendered HTML document, with hover and zoom working
+- A Mermaid diagram rendering inside a Quarto document, so you can draw a pipeline without opening a drawing tool
 
 As your datasets and models grow, you'll eventually hit the limits of what your laptop can render or compute. The next chapter steps away from the document and visualisation layer to look at cloud platforms: where to run notebooks and training jobs when local hardware isn't enough, and how to do so without accidentally running up a bill. After that, we return to the "how do I put this in front of a stakeholder" question with web development and interactive dashboards.

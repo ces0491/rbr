@@ -16,7 +16,7 @@ Containerisation offers several advantages for data science:
 4. **Collaboration**: Easier sharing of complex environments with colleagues
 5. **Deployment**: Simplifies deploying models to production environments
 
-Think of containers as lightweight, portable units that package everything your code needs to run. Unlike virtual machines, containers don't boot their own operating system; they share the host's kernel and isolate themselves using OS-level features. That makes them much faster to start and much cheaper in memory than a VM, while still giving you a reproducible, isolated environment.
+Think of containers as lightweight, portable units that package everything your code needs to run. Unlike virtual machines, containers don't boot their own operating system; they share the host's kernel — the core of the operating system that manages memory, files, and processes — and isolate themselves using features that kernel already provides. That makes them much faster to start and much cheaper in memory than a VM, while still giving you a reproducible, isolated environment.
 
 ### Installing Docker
 
@@ -28,7 +28,7 @@ Docker is the most widely used containerisation platform, and its command-line t
 Since 2021, **Docker Desktop requires a paid subscription for commercial use at companies with more than 250 employees or over $10 million in annual revenue**. It remains free for personal use, education, small businesses, and open-source projects. If your workplace falls above that threshold, the free alternatives below are excellent and all provide the same `docker` command:
 
 - **[Rancher Desktop](https://rancherdesktop.io/)**: open source, works on Windows/macOS/Linux, bundles Kubernetes
-- **[Podman Desktop](https://podman-desktop.io/)**: open source, daemonless, Red Hat–maintained, the most drop-in replacement for Docker CLI
+- **[Podman Desktop](https://podman-desktop.io/)**: open source, Red Hat–maintained, and the closest drop-in replacement for the Docker CLI. It runs without a background service (a *daemon*) holding root privileges, which some IT departments prefer
 - **[OrbStack](https://orbstack.dev/)** (macOS only): very fast, polished; free for personal use, paid for commercial
 
 All the Dockerfiles and `docker` commands in this chapter work identically on each of these tools.
@@ -171,7 +171,7 @@ If the volume mount appears to do nothing — the container starts but your file
 
 6. Open the Jupyter Lab URL shown in the terminal output
 
-You now have a containerised data science environment that can be easily shared with others and deployed to different systems!
+You now have a containerised data science environment that can be shared with others and deployed to different systems.
 
 ### Understanding the Dockerfile
 
@@ -256,7 +256,7 @@ docker run -p 8888:8888 quay.io/jupyter/datascience-notebook:2025-10-13
 docker run -p 8888:8888 quay.io/jupyter/tensorflow-notebook:2025-10-13
 ```
 
-These pre-built images offer a convenient way to get started without creating your own Dockerfile. The Jupyter Docker Stacks project provides a range of images for different needs, from minimal environments to comprehensive data science setups.
+These pre-built images offer a convenient way to get started without creating your own Dockerfile. The Jupyter Docker Stacks project provides a range of images for different needs, from a bare Python and JupyterLab up to images with the scientific stack, R, and deep learning frameworks already installed.
 
 Two small but important habits:
 
@@ -268,11 +268,21 @@ Two small but important habits:
 For R users, the Rocker project maintains RStudio Server images. Keep the password out of your shell history by reading it from an environment variable or `.env` file rather than typing it on the command line:
 
 ```bash
-# Set the password once for your shell session (choose a strong one):
+# Bash, Git Bash, WSL, macOS. Set the password once for this shell session:
 export RSTUDIO_PASSWORD='a-strong-password-you-chose'
 
 docker run -p 8787:8787 \
   -e PASSWORD="$RSTUDIO_PASSWORD" \
+  rocker/rstudio:4.5
+```
+
+PowerShell has no `export`, and uses a backtick rather than a backslash to continue a line:
+
+```powershell
+$env:RSTUDIO_PASSWORD = 'a-strong-password-you-chose'
+
+docker run -p 8787:8787 `
+  -e PASSWORD="$env:RSTUDIO_PASSWORD" `
   rocker/rstudio:4.5
 ```
 
@@ -333,17 +343,41 @@ Docker Compose creates a separate container for each service in your configurati
 
 ### Docker for Machine Learning Projects
 
-For machine learning projects, containers are particularly valuable for ensuring model reproducibility and simplifying deployment:
+For machine learning projects, containers are particularly valuable for ensuring model reproducibility and simplifying deployment.
+
+:::{.callout-note}
+## This example needs a trained model to copy
+
+Docker's `COPY` fails the build if the source path doesn't exist, so the Dockerfile below needs this layout in place before it will build:
+
+```
+ml-api/
+├── Dockerfile
+├── requirements.txt
+├── app.py
+└── models/
+    └── model.pkl        <- your trained model
+```
+
+If you have no trained model to hand, write a throwaway one so the example builds. Run this once from the `ml-api` directory, in an environment that has scikit-learn:
+
+```python
+# make_model.py
+import pickle, pathlib
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression().fit(np.array([[0.0], [1.0]]), np.array([0.0, 1.0]))
+pathlib.Path("models").mkdir(exist_ok=True)
+with open("models/model.pkl", "wb") as f:
+    pickle.dump(model, f)
+```
+:::
 
 1. Create a project-specific Dockerfile:
 
 ```dockerfile
 FROM python:3.13-slim
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -351,9 +385,8 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy model code and artifacts
+# Copy the model artefact and the application that serves it
 COPY models/ models/
-COPY src/ src/
 COPY app.py .
 
 # Expose port for API
@@ -364,7 +397,22 @@ EXPOSE 5000
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
 ```
 
-2. Create a simple model serving API (`app.py`):
+2. Create a `requirements.txt` for the API. This is a different, much smaller set than the notebook environment earlier in the chapter — a serving container needs the web server and whatever library loads your model, and has no use for JupyterLab:
+
+```
+flask
+gunicorn
+scikit-learn
+numpy
+```
+
+:::{.callout-warning}
+## A pickled model needs the same library version that created it
+
+`pickle` stores a reference to the classes that built the object, not a self-contained description of it. Loading a scikit-learn model in a container with a different scikit-learn version produces either a warning about version mismatch or a failure to unpickle at all. Pin the version here to whatever you trained with — `scikit-learn==1.9.0` rather than bare `scikit-learn` — which is one more reason the environment chapter's advice about recording versions matters.
+:::
+
+3. Create a simple model serving API (`app.py`):
 
 ```python
 from flask import Flask, request, jsonify
@@ -377,6 +425,11 @@ app = Flask(__name__)
 with open('models/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
+@app.route('/health')
+def health():
+    # A cheap endpoint for the container runtime to poll - see HEALTHCHECK below
+    return jsonify({'status': 'ok'})
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
@@ -388,7 +441,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 ```
 
-3. Build and run the container:
+4. Build and run the container:
 
 ```bash
 docker build -t ml-model-api .
@@ -401,7 +454,7 @@ This creates a containerised API service for your machine learning model that ca
 
 To get the most out of Docker for data science, follow these best practices:
 
-1. **Keep images lean**: Smaller images pull faster, deploy faster, and expose less attack surface. Use `-slim` (or `-alpine` for pure-Python workloads) base images when you can.
+1. **Keep images lean**: Smaller images pull faster, deploy faster, and ship less software that could turn out to have a vulnerability in it. Use `-slim` (or `-alpine` for pure-Python workloads) base images when you can.
 
    ```dockerfile
    FROM python:3.13-slim  # ~150 MB; the full python:3.13 image is ~1 GB
@@ -427,7 +480,7 @@ To get the most out of Docker for data science, follow these best practices:
    CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
    ```
 
-   The benefit: your final image doesn't carry compilers, header files, or build tools, only the installed Python packages and your application code. For typical data science containers this can cut image size by 30–50% and reduce the attack surface.
+   The benefit: your final image doesn't carry compilers, header files, or build tools, only the installed Python packages and your application code. For typical data science containers this can cut image size by 30–50%, and every tool you leave out is one that can't be used against you if someone gets into the container.
 
    The second `COPY --from=builder` line is easy to leave out and the resulting failure is confusing. `site-packages` holds the importable library code, but packages that install a command — `gunicorn`, `jupyter`, `streamlit`, `dvc` — put an executable script in `/usr/local/bin`, which is a different directory. Copy only `site-packages` and `import gunicorn` works fine while `gunicorn` at the command line reports `not found`.
 
@@ -481,10 +534,10 @@ To get the most out of Docker for data science, follow these best practices:
    ```dockerfile
    HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
      CMD python -c "import urllib.request; \
-       urllib.request.urlopen('http://localhost:8080/health')"
+       urllib.request.urlopen('http://localhost:5000/health')"
    ```
 
-   Healthcheck examples online almost always use `curl`. That fails on the `-slim` images this chapter recommends, because they don't include it — the check errors every time it runs and Docker reports a working container as unhealthy. Use something the image is guaranteed to have.
+   Two things have to line up here, and both are easy to get wrong. The port and path must match something your application actually serves — `5000` and `/health` above correspond to the Flask API earlier in this chapter; point a healthcheck at a route that doesn't exist and Docker will report a perfectly healthy container as unhealthy forever. And the command must exist inside the image: healthcheck examples online almost always use `curl`, which the `-slim` images this chapter recommends don't include, so the check errors every time it runs. Python is guaranteed to be there, so use Python.
 
 9. **Run as a non-root user** in production images. Most official base images provide one (e.g. the Jupyter stacks use `jovyan`, Rocker uses `rstudio`). For your own images, add a user near the end of the Dockerfile:
 

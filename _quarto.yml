@@ -3,12 +3,15 @@ project:
   output-dir: output
 
 execute:
-  freeze: true    # Always use frozen results - render locally to update
+  # `auto` re-executes a chapter only when its source changes. `_freeze/` is
+  # gitignored, so CI has no cache and executes everything fresh - this setting
+  # only affects local renders, where `true` would serve stale cached output
+  # after an edit.
+  freeze: auto
   echo: true      # Show code chunks in output
   eval: true      # Evaluate code chunks
   warning: false  # Don't show warnings
-  timeout: 300    # Increase timeout to 300 seconds
-  
+
 book:
   title: "Ready Before Run()"
   subtitle: "A Practical Guide to Gear Up for Data Science"
@@ -46,6 +49,8 @@ book:
   search: true
   # downloads: [pdf, epub]  # Disabled - Mermaid rendering times out in CI
 
+bibliography: references.bib
+
 format:
   html:
     theme: cosmo
@@ -59,8 +64,6 @@ format:
     # Code is the content in a setup book - don't hide it behind a click
     code-fold: false
     code-copy: true
-    mermaid:
-      engine: mermaid
 
 # PDF/EPUB disabled - Mermaid diagrams require Chromium which times out in CI
 # To generate PDF/EPUB, run `quarto render` locally and upload manually

@@ -79,7 +79,7 @@ RStudio creates a template document with examples of text, code chunks, and plot
 
 A typical R Markdown document consists of three components:
 
-1. **YAML Header**: Contains metadata like title, author, and output format
+1. **YAML Header**: The block fenced by `---` at the top, holding metadata like title, author, and output format. YAML is a plain-text format of `key: value` settings, with indentation indicating nesting; you'll meet it again in Docker Compose files and GitHub Actions workflows
 2. **Text**: Written in Markdown for narratives, explanations, and interpretations
 3. **Code Chunks**: R code that can be executed to perform analysis and create outputs
 
@@ -139,7 +139,7 @@ ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
 *For the same reason the pipe above is `|>`, R's native pipe, which is part of base R since version 4.1 and needs no package. The older `%>%` comes from magrittr and requires `library(dplyr)` or `library(magrittr)` first.*
 :::
 
-When you click the "Knit" button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. The reason this is so powerful is that it combines your code, results, and narrative explanation in a single, reproducible document. If your data changes, you simply re-knit the document to update all results automatically.
+When you click the "Knit" button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. Code, results, and narrative live in one file, so there is no step where a number is copied from a console into a paragraph and then goes stale. If your data changes, re-knit the document and every figure and table updates.
 
 R Markdown has become a standard in reproducible research because it creates a direct connection between your data, analysis, and conclusions. This connection makes your work more transparent and reliable, as anyone can follow your exact steps and see how you reached your conclusions.
 
@@ -179,7 +179,7 @@ Jupyter Book organises multiple notebooks and markdown files into a book with na
 :::{.callout-warning}
 ## Version 2 changed the commands
 
-Jupyter Book 2, built on the MyST document engine, is what `pip install jupyter-book` now gives you, and its CLI is `jupyter book` — two words. Version 1's commands were hyphenated and different: `jupyter-book create my-book` followed by `jupyter-book build my-book/`. Most tutorials you'll find still show the v1 form, which fails with a "command not found" error against a current install.
+Jupyter Book 2, built on the MyST document engine, is what `pip install jupyter-book` now gives you, and the command you type — its command-line interface, or CLI — is `jupyter book`, two words. Version 1's commands were hyphenated and different: `jupyter-book create my-book` followed by `jupyter-book build my-book/`. Most tutorials you'll find still show the v1 form, which fails with a "command not found" error against a current install.
 :::
 
 ### Quarto: The Next Generation of Literate Programming
@@ -265,7 +265,7 @@ This single pattern replaces a surprising amount of the ad-hoc "one notebook per
 
 ### LaTeX for Professional Document Creation
 
-When creating data science reports that require a professional appearance, particularly for academic or formal business contexts, LaTeX provides powerful typesetting capabilities. While Markdown is excellent for simple documents, LaTeX excels at complex formatting, mathematical equations, and producing publication-quality PDFs.
+When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX handles precise page layout, mathematical notation, numbered figures and cross-references, and bibliographies.
 
 #### Why LaTeX for Data Scientists?
 
@@ -793,9 +793,9 @@ mkdocs serve
 
 MkDocs is focused on simplicity and readability. It generates a clean, responsive website from your Markdown files, with navigation, search, and themes. This makes it an excellent choice for project documentation that needs to be accessible to users or team members.
 
-#### Sphinx: Comprehensive Documentation
+#### Sphinx: Documentation Generated from Code
 
-Sphinx is a more powerful documentation tool widely used in the Python ecosystem:
+Sphinx is the documentation tool the Python ecosystem standardised on:
 
 ```bash
 # Install Sphinx
@@ -811,7 +811,7 @@ make html
 
 Sphinx offers advanced features like automatic API documentation generation, cross-referencing, and multiple output formats. It's the system behind the official documentation for Python itself and many major libraries like NumPy, pandas, and scikit-learn.
 
-The reason Sphinx has become the standard for Python documentation is its powerful extension system and its ability to generate API documentation automatically from docstrings in your code. This means you can document your functions and classes directly in your code, and Sphinx will extract and format that information into comprehensive documentation.
+Sphinx became the standard for Python documentation largely because it generates reference documentation from *docstrings* — the descriptive text you write inside a function or class, which Python keeps attached to the object at runtime. You document each function where it lives, and Sphinx extracts and formats those descriptions into a browsable reference that can't drift out of step with the code.
 
 ## Reproducible Reports - Working with Data
 
@@ -932,6 +932,13 @@ Documenting your work also sharpens your own thinking. Explaining a modelling ch
 ## Conclusion
 
 This chapter has walked through the *document* side of data science output: Markdown and Quarto for literate programming, LaTeX (and newer alternatives like Typst) for publication-quality typesetting, parameterised reports for templating, and reproducible data-loading patterns so your reports can be rendered from any machine.
+
+**By the end of this chapter you should have:**
+
+- One `.qmd` document that renders to HTML, containing both prose and a code chunk whose output appears in the result
+- The same document rendered to PDF, with TinyTeX installed — or Typst configured instead, if you'd rather not install a LaTeX distribution at all
+- A report that loads its data by a path that works on someone else's machine, using `here()` or an equivalent, rather than an absolute path from yours
+- At least one parameterised render, so you've seen the same document produce two different outputs from the same source
 
 What we haven't covered yet are the **charts** that live inside these documents and the **interactive applications** that extend beyond them:
 

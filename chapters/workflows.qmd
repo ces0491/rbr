@@ -4,7 +4,7 @@ title: "Optimising Workflows and Next Steps"
 
 ## Optimising Your Data Science Workflow
 
-With all the tools and infrastructure in place, let's explore how to optimise your data science workflow for productivity and effectiveness.
+The tools are installed and your work deploys. What remains is the difference between a project that runs and a project that keeps running: a structure someone else can navigate, a single command that rebuilds the whole analysis, and checks that catch a mistake before a stakeholder does.
 
 ### Project Organisation Best Practices
 
@@ -50,10 +50,30 @@ Organising your projects this way provides several benefits:
 3. Better reproducibility through clearly defined workflows
 4. Simpler maintenance as the project grows
 
-You can create this structure automatically. The template above is [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org/), which since version 2 ships its own command, `ccds`:
+#### Making Your Code Importable
+
+The `project_name/` directory is a Python package, which is what lets you write `from project_name.features import add_growth_rate` in a notebook or a test rather than juggling relative paths. That only works once you have told Python the package exists. From the project root, with your project environment activated:
 
 ```bash
-# Install the tool (pipx keeps it isolated from your project environments)
+pip install -e .
+```
+
+The `-e` stands for editable: Python records where your source lives instead of copying it, so your next edit takes effect without reinstalling. It reads the package name from `pyproject.toml`, which is why the tree above includes one. Do this once per environment, and again if you rename the package.
+
+Skip it and the tests later in this chapter fail with `ModuleNotFoundError: No module named 'project_name'`, which is the most common first stumble with this layout.
+
+#### Generating the Structure
+
+You can create this structure automatically. The template above is [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org/), which since version 2 ships its own command, `ccds`.
+
+It is distributed as a command-line application rather than a library, so install it with `pipx`, which puts each such application in its own environment where it cannot conflict with your projects:
+
+```bash
+# Install pipx itself, once per machine
+pip install pipx
+pipx ensurepath        # adds pipx's install directory to your PATH
+
+# Close and reopen your terminal, then install the template tool
 pipx install cookiecutter-data-science
 
 # Create a new project - run this in the directory that should contain it
@@ -95,6 +115,14 @@ dvc remote add -d storage s3://mybucket/dvcstore
 dvc push
 ```
 
+:::{.callout-warning}
+## Adopting DVC means editing the `.gitignore` template
+
+The template in [Editors and Version Control](ide_git.qmd) ignores `data/raw/` and `data/processed/` wholesale, which is the right default when you have no other way to keep large files out of Git. DVC writes its own, narrower rules — it ignores the data file itself and leaves the `.dvc` pointer trackable — so the blanket rule now works against you, and the `git add` above fails with *"The following paths are ignored by one of your .gitignore files"*.
+
+Remove the `data/` lines from your `.gitignore` when you adopt DVC and let DVC manage those directories instead.
+:::
+
 The two-file result is the whole mechanism. `large_dataset.csv.dvc` is a few lines of YAML containing a hash of the data, and it lives in Git like any other source file; the multi-gigabyte CSV lives in S3. A colleague clones the repository, gets the pointer, runs `dvc pull`, and receives exactly the version of the data that matches the code they checked out. Checking out an old commit and running `dvc pull` reconstructs the data as it was then.
 
 The benefits of using DVC include:
@@ -115,31 +143,35 @@ Make is a build tool that can automate repetitive tasks in your data science wor
 
 # Download raw data
 data:
-	python src/data/download_data.py
+	python project_name/dataset.py
 
 # Process data and create features
 features: data
-	python src/features/build_features.py
+	python project_name/features.py
 
 # Train model
 model: features
-	python src/models/train_model.py
+	python project_name/modeling/train.py
 
 # Generate report
 report: model
 	quarto render reports/final_report.qmd --to html
 
-# Clean generated files
+# Remove generated files. This deletes outputs only - the report source,
+# and everything under data/raw/, are deliberately left alone.
 clean:
 	rm -rf data/processed/*
 	rm -rf models/*
-	rm -rf reports/*
+	rm -f reports/*.html reports/*.pdf
+	rm -rf reports/*_files reports/figures/*
 ```
+
+The paths match the `project_name/` package from the structure above. If you generated your project with `ccds` and answered its questions differently, adjust them to whatever it created.
 
 :::{.callout-warning}
 ## Makefile recipes MUST be indented with a literal TAB
 
-Make is notoriously picky: the commands under each target (the lines like `python src/data/download_data.py`) must start with a real tab character, **not spaces**. If your editor auto-converts tabs to spaces, you'll get a cryptic `missing separator` error when you run `make`. Most editors (VS Code, Vim, RStudio) can be told to leave tabs alone in `Makefile` specifically, and VS Code does this automatically. If in doubt, run `cat -A Makefile` and make sure each recipe line starts with `^I` (a tab).
+Make is notoriously picky: the commands under each target (the lines like `python project_name/dataset.py`) must start with a real tab character, **not spaces**. If your editor auto-converts tabs to spaces, you'll get a cryptic `missing separator` error when you run `make`. Most editors (VS Code, Vim, RStudio) can be told to leave tabs alone in `Makefile` specifically, and VS Code does this automatically. If in doubt, run `cat -A Makefile` and make sure each recipe line starts with `^I` (a tab).
 :::
 
 2. Run tasks with simple commands:
@@ -192,9 +224,12 @@ jobs:
         pip install pytest pytest-cov
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+    - name: Install the project itself, so tests can import it
+      run: pip install -e .
+
     - name: Test with pytest
       run: |
-        pytest --cov=src tests/
+        pytest --cov=project_name tests/
 ```
 
 2. Write tests for your code in the `tests/` directory
@@ -204,6 +239,24 @@ Push a commit and GitHub runs this on a fresh Linux machine. A green tick next t
 ### Writing Tests for Analysis Code
 
 Testing is the piece of software practice that data science teams most often skip, usually on the grounds that "the output is a number, not a program". The counter-argument is that a number informing a decision is exactly the thing you want to be sure about.
+
+Here is the function we're going to test. Put it in `project_name/features.py`:
+
+```python
+import numpy as np
+import pandas as pd
+
+def add_growth_rate(df: pd.DataFrame, column: str) -> pd.DataFrame:
+    """Add a period-over-period growth rate for `column`.
+
+    Where the previous period was zero, the growth rate is undefined and we
+    return NA rather than inf.
+    """
+    df = df.copy()
+    previous = df[column].shift(1)
+    df["growth_rate"] = (df[column] - previous) / previous.replace(0, np.nan)
+    return df
+```
 
 A test is an ordinary function whose name starts with `test_`, containing an `assert`. Put this in `tests/test_features.py`:
 
@@ -215,7 +268,9 @@ from project_name.features import add_growth_rate
 def test_growth_rate_computes_period_over_period_change():
     df = pd.DataFrame({"revenue": [100.0, 110.0, 121.0]})
     result = add_growth_rate(df, column="revenue")
-    assert result["growth_rate"].tolist() == pytest.approx([None, 0.10, 0.10], nan_ok=True)
+    assert result["growth_rate"].tolist() == pytest.approx(
+        [float("nan"), 0.10, 0.10], nan_ok=True
+    )
 
 def test_growth_rate_handles_zero_denominator():
     df = pd.DataFrame({"revenue": [0.0, 50.0]})
@@ -223,13 +278,17 @@ def test_growth_rate_handles_zero_denominator():
     assert result["growth_rate"].isna().iloc[1]   # not inf, not a crash
 ```
 
-Run them with `pytest` from the project root. The second test is the more instructive one: division by zero is the sort of edge case that produces `inf` in a spreadsheet, propagates quietly through three more calculations, and surfaces as an absurd figure in a board pack.
+Run them with `pytest` from the project root.
+
+Two details in the first test are worth pausing on, because both are easy to get wrong in a way that fails a correct implementation. The expected first value is `float("nan")` and not `None`: the first row has no prior period, and a float column represents that gap as `nan`, so `None` would never match. And `nan_ok=True` is what tells `pytest.approx` to count two NaNs as equal — in ordinary Python, `nan == nan` is `False`, so without it the test fails no matter what your function returns.
+
+The second test is the more instructive one, and it is the reason `features.py` bothers with `previous.replace(0, np.nan)`. The obvious one-line implementation — `df[column].pct_change()` — passes the first test and fails the second, because dividing 50 by 0 gives `inf` rather than NA. That is exactly the edge case that produces a nonsense number in a spreadsheet, propagates quietly through three more calculations, and surfaces as an absurd figure in a board pack. The test is what forces the guard to exist.
 
 Four kinds of test earn their keep in analysis work:
 
 1. **Unit tests** for individual transformations — the example above
 2. **Data validation tests** asserting your assumptions about incoming data: no negative prices, no duplicate IDs, dates within an expected range. [Great Expectations](https://greatexpectations.io/) and [Pandera](https://pandera.readthedocs.io/) are built for this; a handful of `assert` statements works too
-3. **Model performance tests** that fail the build if accuracy on a held-out set drops below a threshold you set
+3. **Model performance tests** that fail the build if accuracy on a held-out set — data the model never saw while training — drops below a threshold you set
 4. **Integration tests** that run the whole pipeline end to end on a small sample and check it produces output at all
 
 R users have the same facilities through [testthat](https://testthat.r-lib.org/): `test_that("growth rate handles zero denominators", { expect_true(is.na(...)) })`, run with `devtools::test()`.
@@ -266,7 +325,7 @@ The tools for that job are workflow orchestrators. The three you'll encounter:
 - **[Prefect](https://www.prefect.io/)** — Python-native and considerably lighter to start with; you decorate ordinary functions with `@task` and `@flow`.
 - **[Dagster](https://dagster.io/)** — organised around data assets rather than tasks, which maps well onto analytics work where the thing you care about is "is this table up to date".
 
-The honest advice is not to reach for any of them early. A Makefile plus a scheduled GitHub Actions workflow (`on: schedule:` with a cron expression) covers a surprising amount of ground, and none of these tools is free to operate. Adopt one when you have several interdependent pipelines and a real need to know when one of them fails overnight.
+Don't reach for any of them early. A Makefile plus a scheduled GitHub Actions workflow — `on: schedule:` with a cron expression, the five-field `0 6 * * 1` notation meaning "06:00 every Monday" — covers a surprising amount of ground, and none of these tools is free to operate. Adopt one when you have several interdependent pipelines and a real need to know when one of them fails overnight.
 
 ## Advanced Topics and Next Steps
 
@@ -277,8 +336,8 @@ As you grow more comfortable with the data science infrastructure we've covered,
 MLOps combines DevOps practices with machine learning to streamline model deployment and maintenance:
 
 - **Model Serving**: Tools like TensorFlow Serving, TorchServe, or MLflow for deploying models
-- **Model Monitoring**: Tracking performance and detecting drift
-- **Feature Stores**: Centralised repositories for feature storage and serving
+- **Model Monitoring**: Tracking performance and detecting drift — the gradual decay in accuracy as live data stops resembling the data the model was trained on
+- **Feature Stores**: Centralised repositories that compute a feature once and serve the same definition to both training and production
 - **Experiment Tracking**: Recording parameters, metrics, and artefacts from experiments
 
 ### Distributed Computing

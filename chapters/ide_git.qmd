@@ -4,7 +4,7 @@ title: "Editors and Version Control"
 
 ## Integrated Development Environments (IDEs)
 
-An Integrated Development Environment (IDE) combines the tools needed for software development into a single application. A good IDE dramatically improves productivity by providing code editing, debugging, execution, and project management in one place.
+An Integrated Development Environment (IDE) combines the tools needed for software development into a single application: code editing, debugging, execution, and project management in one place, so you aren't switching between four programs to run one script.
 
 ### Why IDEs Matter for Data Science
 
@@ -41,7 +41,7 @@ After installing VS Code, add these extensions by clicking on the Extensions ico
 - **SQLite**: SQLite database support
 - **R**: R language support (if you plan to use R in VS Code)
 - **GitLens**: Enhanced Git capabilities
-- **GitHub Copilot** or **Claude Code**: LLM-assisted code completion and chat, both available as VS Code extensions. These have become close to standard for professional development and are particularly useful for readers without a CS background: they scaffold boilerplate, explain unfamiliar code, and suggest fixes for error messages. Copilot has a free tier for individuals with a monthly completion allowance; Claude Code requires a paid Claude subscription or API credits. Treat either one as a fast pair-programmer, not an oracle: read the suggestions before accepting them.
+- **GitHub Copilot** or **Claude Code**: LLM-assisted code completion and chat, both available as VS Code extensions. Copilot has a free tier for individuals with a monthly completion allowance; Claude Code requires a paid Claude subscription or API credits. The [Utility Tools](utility_tools.qmd) appendix compares the options and the habits worth adopting with them.
 
 Extensions in VS Code are like add-ons or plugins that enhance its functionality for specific tasks or languages, similar to how you might install apps on your phone to give it new capabilities.
 
@@ -99,14 +99,14 @@ conda install -c conda-forge jupyterlab
 jupyter lab
 ```
 
-JupyterLab provides a more IDE-like experience than classic Jupyter notebooks, with the ability to open multiple notebooks, view data frames, and edit other file types in a single interface. It's like upgrading from having separate tools to having a comprehensive workbench.
+JupyterLab provides a more IDE-like experience than classic Jupyter notebooks, with the ability to open multiple notebooks, view data frames, and edit other file types in a single interface. It's the difference between a handful of separate tools and one workbench.
 
 ### Choosing the Right IDE
 
 Each IDE has strengths and weaknesses:
 
 - **VS Code**: Versatile, lightweight, supports multiple languages
-- **PyCharm**: Robust Python-specific features, excellent for large projects
+- **PyCharm**: Deep Python-specific tooling — refactoring, type inference, an integrated debugger — which pays off most on large projects
 - **RStudio**: Optimised for R development
 - **JupyterLab**: Excellent for exploratory data analysis and sharing results
 
@@ -186,6 +186,8 @@ Using SSH keys makes it more secure and convenient to interact with GitHub:
 
 #### Generating SSH Keys
 
+On macOS, Linux, or Git Bash:
+
 ```bash
 # Generate a new SSH key
 ssh-keygen -t ed25519 -C "your.email@example.com"
@@ -195,6 +197,18 @@ eval "$(ssh-agent -s)"
 
 # Add your key to the agent
 ssh-add ~/.ssh/id_ed25519
+```
+
+In Windows PowerShell, `eval "$(...)"` is Bash syntax and won't run. Windows ships an SSH agent as a system service instead, which you start once and which then survives reboots — run this in a PowerShell window opened as administrator:
+
+```powershell
+# Set the agent to start automatically, then start it now
+Get-Service ssh-agent | Set-Service -StartupType Automatic
+Start-Service ssh-agent
+
+# Generate the key and add it (these work in ordinary PowerShell too)
+ssh-keygen -t ed25519 -C "your.email@example.com"
+ssh-add $env:USERPROFILE\.ssh\id_ed25519
 ```
 
 When `ssh-keygen` prompts you for a passphrase, **set one**. It's tempting to press Enter for a blank passphrase, but an unprotected private key on a compromised laptop gives an attacker your full GitHub access. The SSH agent will remember the passphrase for your session so you only type it once after login.
@@ -220,7 +234,7 @@ Let's create a repository and learn the essential Git commands:
 mkdir my_first_repo
 cd my_first_repo
 
-# Initialize a Git repository
+# Initialise a Git repository
 git init
 
 # Create a README file
@@ -235,11 +249,19 @@ git commit -m "Initial commit"
 
 Think of this process as:
 
-1. Creating a new folder for your project
-2. Telling Git to start tracking changes in this folder
+1. Creating a new directory for your project
+2. Telling Git to start tracking changes in this directory
 3. Creating a simple text file
 4. Telling Git you want to include this file in your next snapshot
 5. Taking the snapshot with a brief description
+
+Step 4 is the one that surprises people. Git doesn't commit everything that changed — it commits what you've put in the *staging area*, a holding space between your working files and the permanent record. `git add` moves things into it, `git commit` records whatever is in it. The point is that you can commit two of the five files you've edited, so each commit describes one coherent change rather than an afternoon's worth of unrelated ones.
+
+:::{.callout-note}
+## PowerShell writes `>` output as UTF-16
+
+The `echo "..." > README.md` line above produces a file in a different text encoding under Windows PowerShell than everywhere else, which some tools read as garbled characters or as a binary file. It's harmless for a scratch repository, but if you want a normal file, use Git Bash for that line, or PowerShell's own `Set-Content -Encoding utf8 README.md "# My First Repository"`.
+:::
 
 ### Telling Git What to Ignore: `.gitignore`
 
@@ -267,11 +289,10 @@ venv/
 .Rproj.user/
 renv/library/
 
-# Data: keep raw data out of Git, use DVC or cloud storage
+# Data: keep bulky data out of Git. Options for versioning it properly are
+# in Optimising Workflows - see DVC there.
 data/raw/
 data/processed/
-*.parquet
-*.db
 
 # OS and editor clutter
 .DS_Store
@@ -280,9 +301,14 @@ Thumbs.db
 .idea/
 ```
 
-Adjust the patterns to fit your project. If you do need to store small reference datasets in Git, remove the relevant `data/` lines. If you find yourself wanting to commit something you've already ignored, you can force it with `git add -f <file>`.
+Adjust the patterns to fit your project — this is a starting point, not a rule. Two adjustments come up often:
 
-If you ever accidentally commit a secret, rotating the credential is faster and safer than trying to scrub it from Git history. Assume anything that reached a public repository is compromised and generate a new key.
+- **Small reference datasets belong in Git.** A lookup table of country codes is a few kilobytes and versioning it alongside the code is exactly right. Remove the `data/` lines, or narrow them to the directories that actually hold bulk data.
+- **Don't ignore file formats wholesale.** Patterns like `*.parquet` or `*.db` are tempting, but [Data Stores](data_stores.qmd) recommends working *from* Parquet — so a blanket rule quietly stops your main working files from ever being tracked. Ignore by location, not by extension.
+
+If you find yourself wanting to commit something you've already ignored, you can force it with `git add -f <file>`.
+
+If you ever accidentally commit a secret, rotate the credential rather than trying to scrub Git history — [Data Stores](data_stores.qmd) explains why, and what to do.
 
 ### Connecting to GitHub
 

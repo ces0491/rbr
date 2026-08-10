@@ -4,18 +4,33 @@ title: "Data Stores: SQL and Beyond"
 
 ## SQL Fundamentals and Setup
 
-SQL (Structured Query Language) is essential for data scientists to interact with databases. We'll set up a lightweight database system so you can practise SQL queries locally.
+SQL (Structured Query Language) is how you get data out of a database. We'll set up a lightweight database system so you can practise SQL queries locally.
 
 ### Why SQL for Data Science?
 
-SQL is crucial for data science because:
+Four reasons SQL earns its place:
 
-1. Most organisational data resides in databases
-2. It provides a standard way to query and manipulate data
-3. It's often more efficient than Python or R for large data operations
-4. Data transformation often happens in databases before analysis
+1. Most organisational data lives in relational databases, so SQL is often the only way to reach it
+2. It provides a standard vocabulary that transfers across nearly every database you'll meet
+3. It's usually faster than Python or R for filtering and aggregating large tables, because the work happens where the data already is
+4. Much of the transformation in a data pipeline happens in the database, before anything reaches your analysis
 
-SQL is one of the most important skills for data scientists, as most organisational data resides in relational databases.
+:::{.callout-note}
+## About the example data in this chapter
+
+The code below refers to files like `sales.parquet`, `sales_2026.csv`, and `data/sales_*.parquet`. These aren't shipped with the book — they stand in for your own data. When you follow along, point the code at a file of your own, or write a small one first:
+
+```python
+import pandas as pd
+pd.DataFrame({
+    "region": ["North", "South", "North", "South"],
+    "quarter": ["Q4", "Q4", "Q3", "Q3"],
+    "revenue": [120.0, 95.0, 110.0, 88.0],
+}).to_parquet("sales.parquet")
+```
+
+The `sample.db` SQLite database is the one exception — you create that yourself in the next section.
+:::
 
 ### Installing SQLite
 
@@ -32,7 +47,7 @@ Think of SQLite as a simple filing cabinet for your data that you can easily car
     - Click "Environment Variables…"
     - Under **User variables**, select `Path` and click "Edit…"
     - Click "New" and paste `C:\sqlite` (or wherever you extracted the files)
-    - Click OK on every dialogue, then open a **new** terminal window for the change to take effect
+    - Click OK on every dialog box, then open a **new** terminal window for the change to take effect
 
 #### On macOS
 
@@ -100,7 +115,7 @@ This creates a spreadsheet-like table inside a file, adds some rows, and views t
 
 ### SQL GUIs for Easier Database Management
 
-While the command line is powerful, graphical interfaces can make working with databases more intuitive:
+The command line is the fastest route once you know it, but a graphical interface makes exploring an unfamiliar database considerably easier:
 
 #### DB Browser for SQLite
 
@@ -115,7 +130,20 @@ DB Browser for SQLite acts like a spreadsheet program for your database, making 
 
 #### Using SQL from Python and R
 
-You can also interact with SQLite databases from Python and R:
+You can also interact with SQLite databases from Python and R. Python needs nothing extra — `sqlite3` is part of the standard library — but R needs two packages, and every other database in this chapter needs a driver of its own. Install them into your project environment now:
+
+```{r}
+#| eval: false
+# DBI is the common interface; the others are drivers for specific databases
+install.packages(c("DBI", "RSQLite", "duckdb", "RPostgres"))
+```
+
+```bash
+# Python: sqlite3 is built in, the rest are not
+pip install pandas pyarrow duckdb sqlalchemy "psycopg[binary]"
+```
+
+`DBI` in R and `sqlalchemy` in Python are the layers that let you write the same code against different databases; the rest are the per-database drivers underneath. You only need the driver for the database you're actually connecting to, so install the PostgreSQL ones when you reach that section if you prefer.
 
 ##### Python
 
@@ -164,7 +192,7 @@ This interoperability between SQL, Python, and R is a fundamental skill for data
 
 CSV is the universal interchange format and it will never go away, but it is a poor working format. It has no types (every column is text until something guesses), no compression, no column selection (reading one column means parsing all of them), and no schema.
 
-**Parquet** fixes all four. It is a columnar, compressed, typed binary format, and it is the default choice for any dataset you'll read more than once.
+**Parquet** fixes all four. It is a compressed, typed binary format, and it is *columnar*: where a CSV stores row after row, Parquet stores each column's values together, which is why it can hand you one column without reading the others. It is the default choice for any dataset you'll read more than once.
 
 ```{python}
 #| eval: false
@@ -188,7 +216,7 @@ The file is usually a fraction of the CSV's size, loads far faster, and — the 
 
 ## DuckDB: SQL Without a Database Server
 
-SQLite gave you a database in a file. **DuckDB** gives you an analytical query engine in a file — or in no file at all — and it is probably the most useful single tool added to this space in the last five years.
+SQLite gave you a database in a file. **DuckDB** gives you an analytical query engine in a file — or in no file at all — and it has changed how a lot of analysis gets done in the few years since it appeared.
 
 The pitch: DuckDB runs SQL directly against CSV and Parquet files on disk, at speeds that make a laptop competitive with a small cluster, with no server to install, configure, or keep running.
 
@@ -200,7 +228,7 @@ pip install duckdb        # Python
 install.packages("duckdb")   # R
 ```
 
-### Querying files directly
+### Querying Files Directly
 
 No import step, no schema definition, no server:
 
@@ -211,7 +239,7 @@ import duckdb
 # Query a CSV as if it were a table
 duckdb.sql("SELECT COUNT(*) FROM 'sales_2026.csv'").show()
 
-# Query every Parquet file matching a glob, as one table
+# Query every Parquet file matching a wildcard pattern, as one table
 duckdb.sql("""
     SELECT region, SUM(revenue) AS total
     FROM 'data/sales_*.parquet'
@@ -222,7 +250,7 @@ duckdb.sql("""
 
 That second query reads a directory of files, treats them as a single table, and aggregates — on files larger than your available memory, because DuckDB streams rather than loading everything first. Doing the same thing in pandas means reading each file, concatenating, and hoping it fits in RAM.
 
-### Working with pandas and R data frames
+### Working with pandas and R Data Frames
 
 DuckDB reads data frames in the calling session directly, by name:
 
@@ -244,12 +272,15 @@ result = duckdb.sql("""
 
 This makes DuckDB useful even when your data comfortably fits in memory: a `GROUP BY` with three joins is easier to read as SQL than as chained pandas operations, and you can move between the two freely within a single script.
 
-In R, the same pattern works through DBI:
+In R, the same pattern works through DBI, with one extra step — the data frame has to be registered under a name the query can use:
 
 ```{r}
 #| eval: false
 library(duckdb)
 library(DBI)
+library(arrow)
+
+sales_df <- read_parquet("sales.parquet")
 
 con <- dbConnect(duckdb())
 duckdb_register(con, "sales", sales_df)
@@ -262,7 +293,7 @@ result <- dbGetQuery(con, "
 dbDisconnect(con, shutdown = TRUE)
 ```
 
-### When to use which
+### When to Use Which
 
 | Situation | Reach for |
 |---|---|
@@ -272,7 +303,7 @@ dbDisconnect(con, shutdown = TRUE)
 | Multiple people or applications writing concurrently | PostgreSQL |
 | Data already in a company database | Whatever that is — connect, don't copy |
 
-SQLite and DuckDB are complements, not competitors: SQLite is optimised for transactions (many small reads and writes), DuckDB for analytics (scanning and aggregating large volumes). For the work in this book, DuckDB is the one you'll reach for more often.
+SQLite and DuckDB complement each other rather than competing: SQLite is optimised for transactions (many small reads and writes), DuckDB for analytics (scanning and aggregating large volumes). For the work in this book, DuckDB is the one you'll reach for more often.
 
 ## Polars: An Alternative to pandas
 
@@ -347,7 +378,7 @@ dbDisconnect(con)
 :::{.callout-warning}
 ## Two rules for database credentials
 
-**Read them from the environment, never write them in the script.** Every example above uses `os.environ` / `Sys.getenv` for exactly this reason. A connection string with a password in it, committed once, is in your Git history permanently — deleting the line in a later commit does not remove it.
+**Read them from the environment, never write them in the script.** Every example above uses `os.environ` / `Sys.getenv` for exactly this reason. A connection string with a password in it, once recorded in version control, stays in that project's history permanently — deleting the line later changes the current file, not the record of what it used to say. The "Where to Put Credentials" section below explains the mechanics.
 
 **Never build a query by string-concatenating user input.** Use the parameter binding your library provides:
 
@@ -367,9 +398,19 @@ If you do want a local PostgreSQL for development, the least painful route is a 
 
 ## Where to Put Credentials
 
-Since this chapter is where credentials first become unavoidable, here is the whole answer in one place. It applies equally to database passwords, API keys, and cloud access tokens.
+Since this chapter is where credentials first become unavoidable, here is the whole answer in one place. It applies equally to database passwords, API keys — the token a service issues you so its API, its programmatic interface, knows who is calling — and cloud access tokens.
 
 **The rule: secrets live in the environment or a secret store; the code reads them by name; the file holding them is never committed.**
+
+:::{.callout-note}
+## A forward reference to Git
+
+This section talks about committing files and about `.gitignore`, both of which belong to Git, the version control system covered properly in [Editors and Version Control](ide_git.qmd). You don't need that chapter to follow the rules here, only two facts.
+
+*Committing* a file records a permanent snapshot of its contents in your project's history. That history is what makes version control useful, and it is also why a password committed once is difficult to remove: later deleting the line changes the current state, not the record of what the file used to contain.
+
+`.gitignore` is a plain text file listing paths Git should pretend not to see, so they are never committed in the first place. It is the mechanism behind every "add this to `.gitignore`" instruction below.
+:::
 
 ### Local development: a `.env` file
 

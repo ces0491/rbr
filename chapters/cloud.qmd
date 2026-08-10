@@ -6,19 +6,19 @@ execute:
 
 ## Cloud Platforms for Data Science
 
-As your projects grow in size and complexity, you may need more computing power than your local machine can provide. You may require secure, centralised storage solutions that scale seamlessly. Cloud platforms offer scalable resources and specialised tools for data science.
+As your projects grow in size and complexity, you may need more computing power than your local machine can provide, or somewhere to keep data that isn't one laptop's hard drive. Cloud platforms rent both by the hour, along with a set of tools built specifically for this kind of work.
 
 ### Why Use Cloud Platforms?
 
 Cloud platforms offer several advantages for data science:
 
-1. **Scalability**: Access to more storage and computing power when needed
+1. **Scalability**: Access to more storage and computing power when needed, without buying a machine
 2. **Collaboration**: Easier sharing of resources and results with team members
-3. **Specialised Hardware**: Access to GPUs and TPUs for deep learning
+3. **Specialised Hardware**: Access to GPUs and TPUs — processors designed for the kind of parallel arithmetic that training a neural network needs, and far faster at it than an ordinary CPU
 4. **Managed Services**: Pre-configured tools and infrastructure
 5. **Cost Efficiency**: Pay only for what you use
 
-The ability to scale compute resources is particularly valuable for data scientists working with large datasets or computationally intensive models. Rather than investing in expensive hardware that might sit idle most of the time, cloud platforms allow you to rent powerful machines when you need them and shut them down when you don't.
+The ability to scale compute resources is particularly valuable for data scientists working with large datasets or computationally intensive models. Rather than investing in expensive hardware that might sit idle most of the time, cloud platforms let you rent a large machine for the afternoon you need it and shut it down afterwards.
 
 ### Getting Started with Google Colab
 
@@ -51,19 +51,19 @@ These services can be used to store datasets, notebooks, and results. They also 
 
 For larger datasets or specialised needs, you'll want to look at dedicated cloud storage solutions like Amazon S3, Google Cloud Storage, or Azure Blob Storage. These services are designed for scalability and can handle terabytes or even petabytes of data.
 
-### Comprehensive Cloud Platforms
+### The Major Cloud Platforms
 
 For more advanced needs, consider these major cloud platforms:
 
 #### Amazon Web Services (AWS)
 
-AWS offers a comprehensive suite of data science tools:
+The largest provider, with a correspondingly large catalogue. The services relevant here:
 
 - **SageMaker**: Managed Jupyter notebooks with integrated ML tools
 - **EC2**: Virtual machines for customised environments
 - **S3**: Scalable storage for datasets
 - **Redshift**: Data warehousing
-- **Lambda**: Serverless computing for data processing
+- **Lambda**: *Serverless* computing — you upload a function rather than running a server, and AWS starts it on demand, runs it, and bills you for the milliseconds it was executing. Useful for data processing triggered by an event, such as a file landing in S3
 
 AWS offers a free tier that includes limited access to many of these services, allowing you to experiment before committing financially.
 
@@ -126,8 +126,8 @@ One of the most important aspects of using cloud platforms is managing costs eff
 
 - **Idle notebook and VM instances**: Cloud notebooks bill by wall-clock time, not usage. An instance left running overnight can cost more than a whole week of active work.
 - **Data egress**: Moving data *out* of a cloud provider (to your laptop, to another region, to another cloud) is almost always charged. Moving it *in* is usually free. Pulling a 500 GB dataset to your machine "just to look at it" is a classic expensive mistake.
-- **NAT gateways and load balancers**: On AWS especially, these run 24/7 and bill by the hour even if nothing is using them. Delete them when the project ends.
-- **Storage classes**: Object storage has cheap long-term tiers (S3 Glacier, GCS Coldline, Azure Archive) for data you rarely read. Use them for raw archives.
+- **NAT gateways and load balancers**: Networking components that a tutorial may have had you create — one lets private machines reach the internet, the other spreads incoming traffic across several servers. On AWS especially, they run 24/7 and bill by the hour even when nothing is using them. Delete them when the project ends.
+- **Storage classes**: Object storage — the kind that holds whole files you address by name, like S3, rather than rows you query — has cheap long-term tiers (S3 Glacier, GCS Coldline, Azure Archive) for data you rarely read. Use them for raw archives.
 - **Free tier expiry**: Free tiers end, and the terms change often enough that any specific figure printed in a book will be wrong before you read it. AWS restructured its offer in July 2025, replacing the old 12-month allowance with a credit-based plan for new accounts. Check the provider's current terms before assuming anything is free, and don't rely on a tutorial's description of them.
 
 Practical habits that help:
@@ -157,7 +157,7 @@ Data security is critical when working in cloud environments:
 4. **Use private networks**: Isolate your resources when possible
 5. **Regular security audits**: Review permissions and access regularly
 
-In practice, the cleanest approach for most data science work is to enable **default encryption on the S3 bucket itself** (AWS console → Bucket → Properties → Default encryption → SSE-S3 or SSE-KMS). Once that's set, every object written to the bucket is encrypted at rest automatically, and your notebook code doesn't need to pass keys at all:
+AWS offers three ways to encrypt what's in a bucket, distinguished by who holds the key: **SSE-S3** (AWS manages it entirely, nothing for you to do), **SSE-KMS** (a key you own in AWS's Key Management Service, so you can control and audit its use), and **SSE-C** (you supply the key on every request). In practice, the cleanest approach for most data science work is to enable **default encryption on the S3 bucket itself** with one of the first two (AWS console → Bucket → Properties → Default encryption → SSE-S3 or SSE-KMS). Once that's set, every object written to the bucket is encrypted at rest automatically, and your notebook code doesn't need to pass keys at all:
 
 ```python
 import boto3
@@ -177,9 +177,9 @@ def get_data(bucket, key):
 
 A few principles to notice:
 
-- **No access keys in code**. When running on an EC2 instance, SageMaker notebook, or Lambda, attach an IAM role with the minimum required permissions; boto3 picks up credentials automatically. For local development, use `aws configure` to store credentials in `~/.aws/credentials` (which is already outside your git repository).
+- **No access keys in code**. When running on an EC2 instance, SageMaker notebook, or Lambda, attach an IAM role — a named set of permissions granted to the machine itself rather than to a person, so nothing has to carry a key around — with the minimum permissions the job needs; boto3 picks up credentials automatically. For local development, use `aws configure` to store credentials in `~/.aws/credentials` (which is already outside your git repository).
 - **Let the bucket policy enforce encryption**, not the client. This avoids the trap of one script forgetting to encrypt.
-- **Avoid SSE-C** (customer-provided keys) unless you have a specific compliance reason. With SSE-C, *you* are responsible for the encryption key, and losing it means losing the data. SSE-KMS is almost always the better choice.
+- **Avoid SSE-C** unless you have a specific compliance reason. Holding the key yourself means losing the key loses the data, permanently and with no recourse. SSE-KMS is almost always the better choice.
 
 Remember that security is a shared responsibility between you and the cloud provider. The provider secures the infrastructure, but you're responsible for securing your data and applications.
 
