@@ -316,13 +316,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#understanding-the-command-line" id="toc-understanding-the-command-line" class="nav-link active" data-scroll-target="#understanding-the-command-line"><span class="header-section-number">3.1</span> Understanding the Command Line</a>
   <ul class="collapse">
-  <li><a href="#what-is-the-command-line" id="toc-what-is-the-command-line" class="nav-link" data-scroll-target="#what-is-the-command-line"><span class="header-section-number">3.1.1</span> What is the Command Line?</a></li>
+  <li><a href="#what-is-the-command-line" id="toc-what-is-the-command-line" class="nav-link" data-scroll-target="#what-is-the-command-line"><span class="header-section-number">3.1.1</span> What Is the Command Line?</a></li>
   <li><a href="#getting-started-with-the-command-line" id="toc-getting-started-with-the-command-line" class="nav-link" data-scroll-target="#getting-started-with-the-command-line"><span class="header-section-number">3.1.2</span> Getting Started with the Command Line</a></li>
   <li><a href="#essential-command-line-operations" id="toc-essential-command-line-operations" class="nav-link" data-scroll-target="#essential-command-line-operations"><span class="header-section-number">3.1.3</span> Essential Command Line Operations</a></li>
   <li><a href="#package-managers" id="toc-package-managers" class="nav-link" data-scroll-target="#package-managers"><span class="header-section-number">3.1.4</span> Package Managers</a></li>
   </ul></li>
-  <li><a href="#a-note-on-windows-shells" id="toc-a-note-on-windows-shells" class="nav-link" data-scroll-target="#a-note-on-windows-shells"><span class="header-section-number">3.2</span> A Note on Windows Shells</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.3</span> Conclusion</a></li>
+  <li><a href="#three-constructs-youll-see-everywhere" id="toc-three-constructs-youll-see-everywhere" class="nav-link" data-scroll-target="#three-constructs-youll-see-everywhere"><span class="header-section-number">3.2</span> Three Constructs You’ll See Everywhere</a></li>
+  <li><a href="#a-note-on-windows-shells" id="toc-a-note-on-windows-shells" class="nav-link" data-scroll-target="#a-note-on-windows-shells"><span class="header-section-number">3.3</span> A Note on Windows Shells</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">3.4</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -352,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.1" class="anchored" data-anchor-id="understanding-the-command-line"><span class="header-section-number">3.1</span> Understanding the Command Line</h2>
 <p>Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface. Further, when we later discuss Integrated Development Environments (IDEs) such as Visual Studio Code, RStudio, and many others, you’ll find that they provide dedicated functionality to allow you to interact directly with the command line, so understanding its purpose is globally useful across workflows.</p>
 <section id="what-is-the-command-line" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="what-is-the-command-line"><span class="header-section-number">3.1.1</span> What is the Command Line?</h3>
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="what-is-the-command-line"><span class="header-section-number">3.1.1</span> What Is the Command Line?</h3>
 <p>The command line (also called terminal, shell, or console) is a text-based interface where you type commands for the computer to execute. While graphical user interfaces (GUIs) let you point and click, the command line gives you more precise control through text commands.</p>
 <p>Why use the command line when we have modern GUIs?</p>
 <ol type="1">
@@ -369,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Windows offers several options for command line interfaces:</p>
 <ol type="1">
 <li><strong>Command Prompt</strong>: Built into Windows, but limited in functionality</li>
-<li><strong>PowerShell</strong>: A more powerful alternative built into Windows</li>
+<li><strong>PowerShell</strong>: A more capable alternative, also built in, and the default in Windows Terminal</li>
 <li><strong>Windows Subsystem for Linux (WSL)</strong>: Provides a Linux environment within Windows (recommended)</li>
 </ol>
 <p>To install WSL, open PowerShell as administrator and run:</p>
@@ -448,29 +449,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then install Python</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install python</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The term “sudo” gives you temporary administrator-level privileges, similar to when Windows asks “Do you want to allow this app to make changes to your device?”</p>
 <p><code>sudo</code> grants temporary administrator privileges, the terminal equivalent of Windows asking “Do you want to allow this app to make changes to your device?”</p>
+<p>That Homebrew line deserves a second look, because you will meet its shape often. <code>curl</code> downloads a file; the surrounding <code>/bin/bash -c "$(...)"</code> hands what came back straight to the shell and runs it. You are executing code from the internet without reading it first. For an installer published by the project itself — Homebrew here, <code>uv</code> and Docker later — this is the documented method and the risk is the same as running any installer you downloaded. For a one-liner you found in a forum answer, download it to a file, read it, then run it.</p>
 </section>
 </section>
-<section id="a-note-on-windows-shells" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="a-note-on-windows-shells"><span class="header-section-number">3.2</span> A Note on Windows Shells</h2>
+<section id="three-constructs-youll-see-everywhere" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="three-constructs-youll-see-everywhere"><span class="header-section-number">3.2</span> Three Constructs You’ll See Everywhere</h2>
+<p>Beyond navigating and installing, three pieces of shell syntax appear throughout the rest of this book. They look cryptic and mean something simple.</p>
+<p><strong>Redirection: <code>&gt;</code> sends output to a file.</strong> By default a command prints its results to the screen. <code>&gt;</code> diverts that into a file instead, replacing whatever was there:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of printing the package list, write it to a file</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Two arrows appends rather than replacing</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"one more line"</span> <span class="op">&gt;&gt;</span> notes.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is why the environments chapter records a project’s packages with <code>uv pip freeze &gt; requirements.txt</code>. The command doesn’t know about files at all — the shell captures its output and writes it.</p>
+<p><strong>Pipes: <code>|</code> sends output to another command.</strong> Where <code>&gt;</code> writes to a file, <code>|</code> feeds one command’s output directly into the next as input, letting you chain small tools:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List files, and pass that list to a search for ".csv"</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="kw">|</span> <span class="fu">grep</span> <span class="st">".csv"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the lines in a file</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> data.csv <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Each program does one job and knows nothing about the others. This composability is most of why the command line survives.</p>
+<p><strong>Environment variables hold settings the shell passes to programs.</strong> These are named values that live in your shell session, and any program you launch can read them. <code>PATH</code> — the list of directories searched when you type a command name — is one you have already met:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show one variable (macOS/Linux/Git Bash)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set one for this session</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">API_KEY</span><span class="op">=</span><span class="st">'abc123'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The same two things in PowerShell</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">PATH</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">API_KEY</span> <span class="op">=</span> <span class="st">'abc123'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note the difference: Bash uses <code>$NAME</code> and <code>export</code>, PowerShell uses <code>$env:NAME</code> and plain assignment. Variables set this way last only until you close the terminal. This is the mechanism behind keeping passwords out of your code — <a href="../chapters/data_stores.html">Data Stores</a> uses it for exactly that — and behind hosting platforms telling your application which port to listen on.</p>
+</section>
+<section id="a-note-on-windows-shells" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="a-note-on-windows-shells"><span class="header-section-number">3.3</span> A Note on Windows Shells</h2>
 <p>Windows gives you three shells and they are not interchangeable, which is the source of a great deal of confusion when following tutorials.</p>
 <ul>
 <li><strong>PowerShell</strong> is the modern default and what Windows Terminal opens. Most of this book’s commands work here.</li>
-<li><strong>Git Bash</strong> ships with Git for Windows and gives you a POSIX-style shell. Anything in this book written for macOS or Linux works in Git Bash, which makes it the safest choice when following a tutorial that assumes Unix.</li>
+<li><strong>Git Bash</strong> ships with Git for Windows and gives you a Unix-style shell. Anything in this book written for macOS or Linux works in Git Bash, which makes it the safest choice when following a tutorial that assumes Unix.</li>
 <li><strong>Command Prompt (<code>cmd.exe</code>)</strong> is the legacy shell. It’s still around, and a few things differ — <code>$(pwd)</code> doesn’t expand, for instance (use <code>%cd%</code>).</li>
 </ul>
 <p>If a command from a tutorial fails on Windows with a syntax error rather than a “not found” error, you are usually in the wrong shell rather than typing the wrong thing. Try it in Git Bash.</p>
 <p>PowerShell has one more trap worth knowing now: <code>&amp;&amp;</code> and <code>||</code> don’t work in Windows PowerShell 5.1, the version that ships with Windows. <code>A; if ($?) { B }</code> is the equivalent. PowerShell 7, installed separately, does support <code>&amp;&amp;</code>.</p>
 </section>
-<section id="conclusion" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.3</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">3.4</span> Conclusion</h2>
 <p><strong>By the end of this chapter you should be able to:</strong></p>
 <ul>
 <li>Open a terminal on your operating system and tell which shell you’re in</li>
 <li>Navigate the filesystem with <code>pwd</code>, <code>ls</code>, and <code>cd</code> without thinking about it</li>
 <li>Create, inspect, and delete files and directories — and know that <code>rm -r</code> has no undo</li>
 <li>Install software with your platform’s package manager</li>
+<li>Recognise <code>&gt;</code>, <code>|</code>, and <code>$VARIABLE</code> when a later chapter uses them without explanation</li>
 </ul>
 <p>None of this needs to be memorised. <code>cd</code>, <code>ls</code>, and <code>pwd</code> will become automatic within a week of use; everything else you can look up. What matters is that a terminal window no longer feels like a place where you might break something.</p>
 <p>The next chapter installs the languages themselves.</p>

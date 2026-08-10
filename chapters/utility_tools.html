@@ -360,12 +360,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ai-coding-assistants" class="level3" data-number="A.1.1">
 <h3 data-number="A.1.1" class="anchored" data-anchor-id="ai-coding-assistants"><span class="header-section-number">A.1.1</span> AI Coding Assistants</h3>
 <p>Large-language-model-based coding assistants are probably the single biggest productivity change in data science tooling since this book was first drafted. For readers without a CS background they’re especially useful: they can scaffold boilerplate, explain unfamiliar code, translate between Python and R, suggest fixes for cryptic error messages, and draft regex patterns or SQL queries on request. The caveat is universal: they confidently produce wrong answers too, so treat suggestions as a fast draft to be reviewed, not an oracle.</p>
-<p>A few options worth knowing, all with free tiers for individuals:</p>
+<p>A few options worth knowing. Pricing differs between them, so the cost note matters as much as the description:</p>
 <ul>
-<li><strong><a href="https://github.com/features/copilot">GitHub Copilot</a></strong>: In-editor completion and chat inside VS Code, JetBrains IDEs, Neovim, and the web. The most mature and widely used option; free for verified students, educators, and maintainers of popular open-source projects.</li>
-<li><strong><a href="https://docs.claude.com/en/docs/claude-code/ide-integrations">Claude for VS Code</a> and <a href="https://www.claude.com/product/claude-code">Claude Code</a></strong>: Anthropic’s CLI and IDE integrations. Claude Code runs in a terminal and can read, edit, and run code in a project with your supervision. Particularly good for multi-file refactors.</li>
-<li><strong><a href="https://cursor.com/">Cursor</a></strong>: A fork of VS Code with deep LLM integration throughout the editor. Popular with developers who want a single tool rather than an extension.</li>
-<li><strong><a href="https://aider.chat/">Aider</a></strong>: An open-source terminal-based pair-programmer that uses git commits as its unit of work. A great fit if you already live in the terminal.</li>
+<li><strong><a href="https://github.com/features/copilot">GitHub Copilot</a></strong>: In-editor completion and chat inside VS Code, JetBrains IDEs, Neovim, and the web. The most mature and widely used option. Has a genuine free tier with a monthly allowance of completions and chats, and is free outright for verified students, educators, and maintainers of popular open-source projects.</li>
+<li><strong><a href="https://docs.claude.com/en/docs/claude-code/ide-integrations">Claude for VS Code</a> and <a href="https://www.claude.com/product/claude-code">Claude Code</a></strong>: Anthropic’s CLI and IDE integrations. Claude Code runs in a terminal and can read, edit, and run code in a project with your supervision. Particularly good for multi-file refactors. Requires a paid Claude subscription or API credits — there is no free tier.</li>
+<li><strong><a href="https://cursor.com/">Cursor</a></strong>: A fork of VS Code with deep LLM integration throughout the editor. Popular with developers who want a single tool rather than an extension. Free hobby tier, paid beyond it.</li>
+<li><strong><a href="https://aider.chat/">Aider</a></strong>: An open-source terminal-based pair-programmer that uses git commits as its unit of work. A great fit if you already live in the terminal. The tool itself is free; you supply an API key and pay the model provider for usage.</li>
 </ul>
 <p>For genuinely throwaway tasks, the web chat interfaces to <a href="https://claude.ai/">Claude</a> and <a href="https://chatgpt.com/">ChatGPT</a> are fine. For anything you’ll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.</p>
 <p>A few habits that make these tools more useful and less dangerous:</p>
@@ -378,16 +378,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="text-editors-and-ide-enhancements" class="level3" data-number="A.1.2">
 <h3 data-number="A.1.2" class="anchored" data-anchor-id="text-editors-and-ide-enhancements"><span class="header-section-number">A.1.2</span> Text Editors and IDE Enhancements</h3>
-<p>The intro chapter covers <strong>Visual Studio Code</strong> (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It’s free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in the intro chapter will cover 90% of your needs.</p>
+<p><a href="../chapters/ide_git.html">Editors and Version Control</a> covers <strong>Visual Studio Code</strong> (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It’s free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in that chapter will cover 90% of your needs.</p>
 <p>The editors below are lightweight alternatives for quick edits, very large files, or platform-specific situations.</p>
 <section id="notepad" class="level4" data-number="A.1.2.1">
 <h4 data-number="A.1.2.1" class="anchored" data-anchor-id="notepad"><span class="header-section-number">A.1.2.1</span> Notepad++</h4>
-<p>Notepad++ is a free, open-source text editor for Windows that’s more powerful than the default Notepad application.</p>
+<p>Notepad++ is a free, open-source text editor for Windows, and a substantial step up from the built-in Notepad.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
 <li><strong>Syntax highlighting</strong>: Supports many languages including Python, R, SQL, JSON, and more</li>
 <li><strong>Column editing</strong>: Edit multiple lines simultaneously (useful for cleaning data)</li>
-<li><strong>Regex search and replace</strong>: Powerful pattern matching for text manipulation</li>
+<li><strong>Regex search and replace</strong>: Search by pattern rather than by literal text — <em>regular expressions</em>, usually shortened to regex, are a compact notation for describing text shapes such as “a date” or “any line ending in a comma”</li>
 <li><strong>Macro recording</strong>: Automate repetitive text edits</li>
 <li><strong>Plugins</strong>: Extend functionality with viewers for JSON, HTML, Markdown, and other common data-science file formats.</li>
 </ol>
@@ -408,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sublime-text" class="level4" data-number="A.1.2.2">
 <h4 data-number="A.1.2.2" class="anchored" data-anchor-id="sublime-text"><span class="header-section-number">A.1.2.2</span> Sublime Text</h4>
-<p>Sublime Text is a sophisticated cross-platform text editor with powerful features for code editing.</p>
+<p>Sublime Text is a cross-platform editor known for opening very large files quickly — useful when a CSV is too big for anything else to load.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
 <li><strong>Multiple selections</strong>: Edit many places at once</li>
@@ -525,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These tools help identify differences between files and directories, which is useful for comparing datasets or code versions.</p>
 <section id="beyond-compare" class="level4" data-number="A.1.5.1">
 <h4 data-number="A.1.5.1" class="anchored" data-anchor-id="beyond-compare"><span class="header-section-number">A.1.5.1</span> Beyond Compare</h4>
-<p>Beyond Compare is a powerful file and directory comparison tool.</p>
+<p>Beyond Compare compares files and whole directory trees side by side, and handles more than plain text.</p>
 <p><strong>Key features for data scientists:</strong></p>
 <ol type="1">
 <li><strong>Text comparison</strong>: View differences between text files line by line</li>
@@ -598,12 +598,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Many sites still show a one-liner <code>sh -c "$(curl ... install.sh)"</code>, which downloads and immediately executes code from a third-party server. The two-step version above takes five extra seconds and lets you actually see what’s about to run on your machine.</p>
 <p><strong>Useful plugins for data scientists:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Edit ~/.zshrc to activate plugins</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span>git python pip conda docker jupyter<span class="va">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span>git python pip conda docker<span class="va">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Only name plugins that exist — Oh My Zsh prints <code>plugin 'x' not found</code> in every new shell otherwise, and there is no <code>jupyter</code> plugin despite several tutorials listing one. The <a href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins">plugins directory</a> is the authoritative list.</p>
 <p>Oh My Zsh makes the command line more user-friendly and efficient, which is valuable when working with data processing tools, running scripts, or managing environments.</p>
 </section>
 <section id="windows-terminal-and-powershell-7" class="level4" data-number="A.1.6.2">
 <h4 data-number="A.1.6.2" class="anchored" data-anchor-id="windows-terminal-and-powershell-7"><span class="header-section-number">A.1.6.2</span> Windows Terminal and PowerShell 7</h4>
-<p>On Windows, <strong>Windows Terminal</strong> (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) is a huge upgrade over the legacy <code>cmd.exe</code> and the old PowerShell window: tabs, split panes, GPU-accelerated rendering, and sensible keyboard shortcuts. Pair it with <strong>PowerShell 7</strong> (<code>winget install Microsoft.PowerShell</code>), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in the intro chapter) from inside Windows Terminal, which handles both worlds side-by-side.</p>
+<p>On Windows, <strong>Windows Terminal</strong> (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) is a huge upgrade over the legacy <code>cmd.exe</code> and the old PowerShell window: tabs, split panes, GPU-accelerated rendering, and sensible keyboard shortcuts. Pair it with <strong>PowerShell 7</strong> (<code>winget install Microsoft.PowerShell</code>), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in <a href="../chapters/command_line.html">The Command Line</a>) from inside Windows Terminal, which handles both worlds side-by-side.</p>
 </section>
 <section id="modern-rust-based-cli-replacements" class="level4" data-number="A.1.6.3">
 <h4 data-number="A.1.6.3" class="anchored" data-anchor-id="modern-rust-based-cli-replacements"><span class="header-section-number">A.1.6.3</span> Modern Rust-based CLI replacements</h4>
@@ -625,7 +626,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="even">
 <td><code>find</code></td>
 <td><strong><a href="https://github.com/sharkdp/fd">fd</a></strong></td>
-<td>Saner syntax, colour output, ignores VCS noise</td>
+<td>Saner syntax, colour output, skips <code>.git</code> and anything in your <code>.gitignore</code></td>
 </tr>
 <tr class="odd">
 <td><code>cat</code></td>
@@ -656,7 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>For Python and R tooling specifically, three newer tools are now standard enough to mention:</p>
 <ul>
-<li><strong><a href="https://docs.astral.sh/uv/">uv</a></strong>: an extremely fast Python package manager and virtual-environment tool written in Rust. It’s a drop-in replacement for <code>pip</code>, <code>pip-tools</code>, <code>virtualenv</code>, and <code>pyenv</code>. Create an environment with <code>uv venv</code>, install from a <code>requirements.txt</code> with <code>uv pip install -r requirements.txt</code>, and run project scripts with <code>uv run</code>.</li>
+<li><strong><a href="https://docs.astral.sh/uv/">uv</a></strong>: a Python package manager and virtual-environment tool written in Rust, an order of magnitude faster than pip at resolving and installing. It’s a drop-in replacement for <code>pip</code>, <code>pip-tools</code>, <code>virtualenv</code>, and <code>pyenv</code>. Create an environment with <code>uv venv</code>, install from a <code>requirements.txt</code> with <code>uv pip install -r requirements.txt</code>, and run project scripts with <code>uv run</code>.</li>
 <li><strong><a href="https://docs.astral.sh/ruff/">ruff</a></strong>: a Python linter and formatter, also from Astral, 10–100× faster than the tools it replaces (flake8, isort, black). Modern Python projects almost always use it.</li>
 <li><strong><a href="https://pixi.sh/">pixi</a></strong>: a project-based package manager built on the conda ecosystem. Think of it as “uv for conda”: fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.</li>
 </ul>
@@ -691,7 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by a column</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">csvsort</span> <span class="at">-c</span> 3 data.csv <span class="op">&gt;</span> sorted.csv</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>CSVKit is extremely useful for quick data exploration and manipulation directly from the command line, without the need to write Python or R code for simple operations.</p>
+<p>CSVKit earns its place for quick exploration directly from the command line — checking what’s in a file, or pulling two columns out of it, without opening an editor and writing a script.</p>
 </section>
 <section id="jq" class="level4" data-number="A.1.7.2">
 <h4 data-number="A.1.7.2" class="anchored" data-anchor-id="jq"><span class="header-section-number">A.1.7.2</span> jq</h4>
@@ -730,7 +731,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="diagramming-and-visualisation-tools" class="level3" data-number="A.1.8">
 <h3 data-number="A.1.8" class="anchored" data-anchor-id="diagramming-and-visualisation-tools"><span class="header-section-number">A.1.8</span> Diagramming and Visualisation Tools</h3>
-<p>While code-based visualisation is powerful, sometimes you need standalone tools for creating diagrams and flowcharts.</p>
+<p>Code-based diagrams version well, but sometimes a drawing tool is the faster route to a one-off architecture sketch.</p>
 <section id="diagrams.net-formerly-draw.io" class="level4" data-number="A.1.8.1">
 <h4 data-number="A.1.8.1" class="anchored" data-anchor-id="diagrams.net-formerly-draw.io"><span class="header-section-number">A.1.8.1</span> diagrams.net (formerly draw.io)</h4>
 <p>diagrams.net is a free, open-source online diagramming tool that works with various diagram types.</p>
@@ -747,7 +748,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Go to <a href="https://app.diagrams.net/">app.diagrams.net</a> in your browser</li>
 <li>Choose where to save your diagrams (local, Google Drive, etc.)</li>
 </ol>
-<p><strong>Example data science use case:</strong> Creating a data flow diagram to document an ETL process:</p>
+<p><strong>Example data science use case:</strong> Creating a data flow diagram to document an ETL process — extract, transform, load, the standard name for a pipeline that pulls data from a source, reshapes it, and writes it somewhere queryable:</p>
 <ol type="1">
 <li>Select the flowchart template</li>
 <li>Add data sources, transformation steps, and outputs</li>
@@ -816,7 +817,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="obs-studio" class="level4" data-number="A.1.9.2">
 <h4 data-number="A.1.9.2" class="anchored" data-anchor-id="obs-studio"><span class="header-section-number">A.1.9.2</span> OBS Studio</h4>
-<p>OBS (Open Broadcaster Software) Studio is a powerful tool for screen recording and streaming.</p>
+<p>OBS (Open Broadcaster Software) Studio records your screen and streams it, free and on every platform.</p>
 <p><strong>Key features:</strong></p>
 <ol type="1">
 <li><strong>High-quality recording</strong>: Capture screen activity with audio</li>

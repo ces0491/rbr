@@ -374,8 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">4.1.2</span> Installing Python</h3>
 <p>You have a few reasonable ways to install Python for data science. Each has trade-offs:</p>
 <ul>
-<li><strong>Miniforge</strong> (recommended for most readers): a minimal, community-maintained conda distribution that defaults to the free <code>conda-forge</code> channel. Gives you <code>conda</code> for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.</li>
-<li><strong>Anaconda</strong>: the “batteries-included” distribution. Convenient but note that since 2024 its Terms of Service restrict free commercial use for organisations with more than ~200 employees. Fine for learning and personal projects.</li>
+<li><strong>Miniforge</strong> (recommended for most readers): a minimal, community-maintained conda distribution that defaults to <code>conda-forge</code>, a free package repository — conda calls these “channels” — maintained by the community rather than by a company. Gives you <code>conda</code> for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.</li>
+<li><strong>Anaconda</strong>: the “batteries-included” distribution. Convenient, but its Terms of Service have restricted free commercial use for organisations with 200 or more employees since 2020, and a 2024 update extended that to government bodies and non-profits of the same size. Fine for learning and personal projects.</li>
 <li><strong><code>uv</code></strong> (the modern, fast option): a single binary that installs Python versions and manages virtual environments and packages. Much faster than conda or pip and rapidly becoming the default for pure-Python projects. A great choice once you’re comfortable, especially if you don’t need conda’s scientific package ecosystem.</li>
 <li><strong>System Python</strong> (<code>python.org</code> installer, <code>brew install python</code>, or <code>apt install python3</code>): simple, but you’ll still want to create isolated environments per project with <code>venv</code> or <code>uv venv</code>.</li>
 </ul>
@@ -407,8 +407,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <p>The next thing most people do is <code>pip install pandas</code> and carry on. Resist it. Packages installed globally accumulate, conflict, and eventually break each other in ways that are genuinely painful to unpick — and nothing records what you installed, so the analysis you write today may not run tomorrow.</p>
-<p>Create a per-project environment first. That is the whole subject of the <a href="../chapters/environments.html">Reproducible Environments</a> chapter, and it’s worth reading before you install your second package. The one-line version:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv <span class="at">--python</span> 3.13 <span class="kw">&amp;&amp;</span> <span class="bu">source</span> .venv/bin/activate   <span class="co"># then install into it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Create a per-project environment first. That is the whole subject of the <a href="../chapters/environments.html">Reproducible Environments</a> chapter, and it’s worth reading before you install your second package. The short version, using the conda you have just installed:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> myproject python=3.13</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate myproject</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Install into that, not into <code>base</code>.</p>
 </div>
 </div>
 </section>
@@ -416,11 +418,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-jupyter-notebooks" class="level3" data-number="4.1.3">
 <h3 data-number="4.1.3" class="anchored" data-anchor-id="using-jupyter-notebooks"><span class="header-section-number">4.1.3</span> Using Jupyter Notebooks</h3>
 <p>Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualisations, and narrative text. They’re like digital lab notebooks where you can document your analysis process along with the code and results.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure your environment is activated</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
+<p>Miniforge is deliberately minimal, so Jupyter is not installed yet. Create an environment for working through this book and install what the next few chapters need:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment named 'datasci' with the packages used below</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> datasci python=3.13 numpy pandas matplotlib jupyter</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch Jupyter Notebook</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate it. Do this in every new terminal session where you want these packages.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch Jupyter Notebook</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first command takes a few minutes — conda is resolving a consistent set of versions for everything you asked for and everything those packages depend on in turn. Later chapters refer back to this <code>datasci</code> environment; <a href="../chapters/environments.html">Reproducible Environments</a> explains why one environment per project beats one environment for everything.</p>
 <p>This opens a web browser where you can create and work with notebooks. Let’s create a simple notebook to verify everything works:</p>
 <ol type="1">
 <li>Click “New” → “Python 3”</li>
@@ -451,7 +458,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Press Shift+Enter to run the cell</li>
 </ol>
-<p>If you see a plot and the success message, your Python setup is complete!</p>
+<p>If you see a plot and the success message, your Python setup is working.</p>
 </section>
 <section id="installing-additional-packages" class="level3" data-number="4.1.4">
 <h3 data-number="4.1.4" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">4.1.4</span> Installing Additional Packages</h3>
@@ -466,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="setting-up-r" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="setting-up-r"><span class="header-section-number">4.2</span> Setting Up R</h2>
-<p>R is a powerful language and environment specifically designed for statistical computing and graphics. Many statisticians and data scientists prefer R for statistical analysis and visualisation.</p>
+<p>R is a language and environment designed specifically for statistical computing and graphics. Many statisticians and data scientists prefer it for statistical analysis and visualisation.</p>
 <section id="why-r-for-data-science" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="why-r-for-data-science"><span class="header-section-number">4.2.1</span> Why R for Data Science?</h3>
 <p>R offers several advantages:</p>
@@ -505,8 +512,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>You should see the R version information displayed. You can verify this as the version is the first printed output you will see in the console at the start of a new session. It should look something like this:</p>
-<p><code>R version 4.5.0 (2025-04-11 ucrt) -- "How About a Twenty-Six"</code> <code>Copyright (C) 2025 The R Foundation for Statistical Computing</code> <code>Platform: x86_64-w64-mingw32/x64</code></p>
+<p>RStudio also prints the same information unprompted at the start of every new session, so you may already see it above your cursor. It should look something like this:</p>
+<p><code>R version 4.6.1 (2026-06-24 ucrt) -- "Happy Hop"</code> <code>Copyright (C) 2026 The R Foundation for Statistical Computing</code> <code>Platform: x86_64-w64-mingw32/x64</code></p>
+<p>Your version number and codename will differ — R releases a new minor version each April and patches through the year. The <code>ucrt</code> and <code>Platform</code> lines only appear on Windows.</p>
 </section>
 </section>
 <section id="essential-r-packages-for-data-science" class="level3" data-number="4.2.3">
@@ -557,7 +565,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="3" type="1">
 <li>Click the “Run” button or press Ctrl+Enter (Cmd+Enter on Mac) to execute the code</li>
 </ol>
-<p>If you see a plot in the lower-right pane and the success message in the console, your R setup is complete!</p>
+<p>If you see a plot in the lower-right pane and the success message in the console, your R setup is working.</p>
 </section>
 <section id="understanding-r-packages" class="level3" data-number="4.2.5">
 <h3 data-number="4.2.5" class="anchored" data-anchor-id="understanding-r-packages"><span class="header-section-number">4.2.5</span> Understanding R Packages</h3>
@@ -586,6 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>Python installed via Miniforge, with <code>python --version</code> and <code>conda --version</code> both working</li>
+<li>A conda environment named <code>datasci</code> containing numpy, pandas, matplotlib, and Jupyter, which later chapters assume</li>
 <li>R and RStudio installed, with <code>R.version.string</code> reporting a current version</li>
 <li>A Jupyter notebook that runs a cell and produces a plot</li>
 <li>An R script that loads ggplot2 and produces a plot</li>

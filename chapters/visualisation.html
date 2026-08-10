@@ -111,7 +111,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<meta name="mermaid-theme" content="neutral">
 <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
 <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
 <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
@@ -387,7 +386,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="python-visualisation-libraries" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="python-visualisation-libraries"><span class="header-section-number">9.2</span> Python Visualisation Libraries</h2>
-<p>Python offers several powerful libraries for data visualisation, each with different strengths and use cases.</p>
+<p>Python has several established visualisation libraries, each with different strengths and use cases.</p>
 <section id="matplotlib-the-foundation" class="level3" data-number="9.2.1">
 <h3 data-number="9.2.1" class="anchored" data-anchor-id="matplotlib-the-foundation"><span class="header-section-number">9.2.1</span> Matplotlib: The Foundation</h3>
 <p>Matplotlib is the original Python visualisation library and serves as the foundation for many others. It provides precise control over every element of a plot.</p>
@@ -488,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="r-visualisation-libraries" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="r-visualisation-libraries"><span class="header-section-number">9.3</span> R Visualisation Libraries</h2>
-<p>R also provides powerful tools for data visualisation, with ggplot2 being the most widely used library.</p>
+<p>R has its own visualisation ecosystem, with ggplot2 the most widely used library by a wide margin.</p>
 <section id="ggplot2-grammar-of-graphics" class="level3" data-number="9.3.1">
 <h3 data-number="9.3.1" class="anchored" data-anchor-id="ggplot2-grammar-of-graphics"><span class="header-section-number">9.3.1</span> ggplot2: Grammar of Graphics</h3>
 <p>ggplot2 is the gold standard for data visualisation in R, based on the Grammar of Graphics concept.</p>
@@ -585,7 +584,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert a ggplot to an interactive plotly visualisation</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This ability to transform static ggplot2 charts into interactive visualisations with one function call is extremely convenient. It lets you develop visualisations using the familiar ggplot2 syntax, then add interactivity with minimal effort. This is especially powerful when you need to produce reports in both PDF and HTML formats: use ggplot2 for static PDFs and Plotly for dynamic HTML.</p>
+<p>Turning a static ggplot2 chart into an interactive one with a single function call means you can develop in familiar ggplot2 syntax and add interactivity at the end. That matters most when the same analysis has to ship as both a PDF and a web page: build the chart once, render it static for the PDF and interactive for the HTML.</p>
 </section>
 </section>
 <section id="code-based-diagramming-with-mermaid" class="level2" data-number="9.4">
@@ -1012,6 +1011,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="conclusion" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">9.5</span> Conclusion</h2>
 <p>Visualisation is the layer where your analysis meets its audience. The libraries covered here (matplotlib, seaborn, plotly, ggplot2) are the workhorses of static and lightly-interactive charts you embed in reports. Mermaid handles the architecture and workflow diagrams that explain <em>how</em> your system fits together rather than <em>what</em> the data looks like.</p>
+<p><strong>By the end of this chapter you should have:</strong></p>
+<ul>
+<li>A plotting library installed and working in each language you use — matplotlib or plotly for Python, ggplot2 for R</li>
+<li>One chart saved to a file at a resolution suitable for a report, rather than only ever viewed on screen</li>
+<li>One interactive chart embedded in a rendered HTML document, with hover and zoom working</li>
+<li>A Mermaid diagram rendering inside a Quarto document, so you can draw a pipeline without opening a drawing tool</li>
+</ul>
 <p>As your datasets and models grow, you’ll eventually hit the limits of what your laptop can render or compute. The next chapter steps away from the document and visualisation layer to look at cloud platforms: where to run notebooks and training jobs when local hardware isn’t enough, and how to do so without accidentally running up a bill. After that, we return to the “how do I put this in front of a stakeholder” question with web development and interactive dashboards.</p>
 
 

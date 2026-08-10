@@ -455,7 +455,7 @@ window.Quarto = {
 <p>RStudio creates a template document with examples of text, code chunks, and plots, so you don’t start from scratch.</p>
 <p>A typical R Markdown document consists of three components:</p>
 <ol type="1">
-<li><strong>YAML Header</strong>: Contains metadata like title, author, and output format</li>
+<li><strong>YAML Header</strong>: The block fenced by <code>---</code> at the top, holding metadata like title, author, and output format. YAML is a plain-text format of <code>key: value</code> settings, with indentation indicating nesting; you’ll meet it again in Docker Compose files and GitHub Actions workflows</li>
 <li><strong>Text</strong>: Written in Markdown for narratives, explanations, and interpretations</li>
 <li><strong>Code Chunks</strong>: R code that can be executed to perform analysis and create outputs</li>
 </ol>
@@ -520,7 +520,7 @@ Note
 <p><em>For the same reason the pipe above is <code>|&gt;</code>, R’s native pipe, which is part of base R since version 4.1 and needs no package. The older <code>%&gt;%</code> comes from magrittr and requires <code>library(dplyr)</code> or <code>library(magrittr)</code> first.</em></p>
 </div>
 </div>
-<p>When you click the “Knit” button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. The reason this is so powerful is that it combines your code, results, and narrative explanation in a single, reproducible document. If your data changes, you simply re-knit the document to update all results automatically.</p>
+<p>When you click the “Knit” button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. Code, results, and narrative live in one file, so there is no step where a number is copied from a console into a paragraph and then goes stale. If your data changes, re-knit the document and every figure and table updates.</p>
 <p>R Markdown has become a standard in reproducible research because it creates a direct connection between your data, analysis, and conclusions. This connection makes your work more transparent and reliable, as anyone can follow your exact steps and see how you reached your conclusions.</p>
 </section>
 </section>
@@ -557,7 +557,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Jupyter Book 2, built on the MyST document engine, is what <code>pip install jupyter-book</code> now gives you, and its CLI is <code>jupyter book</code> — two words. Version 1’s commands were hyphenated and different: <code>jupyter-book create my-book</code> followed by <code>jupyter-book build my-book/</code>. Most tutorials you’ll find still show the v1 form, which fails with a “command not found” error against a current install.</p>
+<p>Jupyter Book 2, built on the MyST document engine, is what <code>pip install jupyter-book</code> now gives you, and the command you type — its command-line interface, or CLI — is <code>jupyter book</code>, two words. Version 1’s commands were hyphenated and different: <code>jupyter-book create my-book</code> followed by <code>jupyter-book build my-book/</code>. Most tutorials you’ll find still show the v1 form, which fails with a “command not found” error against a current install.</p>
 </div>
 </div>
 </section>
@@ -613,7 +613,7 @@ Note
 </section>
 <section id="latex-for-professional-document-creation" class="level3" data-number="8.1.5">
 <h3 data-number="8.1.5" class="anchored" data-anchor-id="latex-for-professional-document-creation"><span class="header-section-number">8.1.5</span> LaTeX for Professional Document Creation</h3>
-<p>When creating data science reports that require a professional appearance, particularly for academic or formal business contexts, LaTeX provides powerful typesetting capabilities. While Markdown is excellent for simple documents, LaTeX excels at complex formatting, mathematical equations, and producing publication-quality PDFs.</p>
+<p>When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX handles precise page layout, mathematical notation, numbered figures and cross-references, and bibliographies.</p>
 <section id="why-latex-for-data-scientists" class="level4" data-number="8.1.5.1">
 <h4 data-number="8.1.5.1" class="anchored" data-anchor-id="why-latex-for-data-scientists"><span class="header-section-number">8.1.5.1</span> Why LaTeX for Data Scientists?</h4>
 <p>LaTeX offers several advantages for data science documentation:</p>
@@ -1071,9 +1071,9 @@ Note
 <span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mkdocs</span> serve</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>MkDocs is focused on simplicity and readability. It generates a clean, responsive website from your Markdown files, with navigation, search, and themes. This makes it an excellent choice for project documentation that needs to be accessible to users or team members.</p>
 </section>
-<section id="sphinx-comprehensive-documentation" class="level4" data-number="8.1.10.2">
-<h4 data-number="8.1.10.2" class="anchored" data-anchor-id="sphinx-comprehensive-documentation"><span class="header-section-number">8.1.10.2</span> Sphinx: Comprehensive Documentation</h4>
-<p>Sphinx is a more powerful documentation tool widely used in the Python ecosystem:</p>
+<section id="sphinx-documentation-generated-from-code" class="level4" data-number="8.1.10.2">
+<h4 data-number="8.1.10.2" class="anchored" data-anchor-id="sphinx-documentation-generated-from-code"><span class="header-section-number">8.1.10.2</span> Sphinx: Documentation Generated from Code</h4>
+<p>Sphinx is the documentation tool the Python ecosystem standardised on:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Sphinx</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install sphinx</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1084,7 +1084,7 @@ Note
 <span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> docs</span>
 <span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Sphinx offers advanced features like automatic API documentation generation, cross-referencing, and multiple output formats. It’s the system behind the official documentation for Python itself and many major libraries like NumPy, pandas, and scikit-learn.</p>
-<p>The reason Sphinx has become the standard for Python documentation is its powerful extension system and its ability to generate API documentation automatically from docstrings in your code. This means you can document your functions and classes directly in your code, and Sphinx will extract and format that information into comprehensive documentation.</p>
+<p>Sphinx became the standard for Python documentation largely because it generates reference documentation from <em>docstrings</em> — the descriptive text you write inside a function or class, which Python keeps attached to the object at runtime. You document each function where it lives, and Sphinx extracts and formats those descriptions into a browsable reference that can’t drift out of step with the code.</p>
 </section>
 </section>
 </section>
@@ -1185,6 +1185,13 @@ Note
 <section id="conclusion" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8.3</span> Conclusion</h2>
 <p>This chapter has walked through the <em>document</em> side of data science output: Markdown and Quarto for literate programming, LaTeX (and newer alternatives like Typst) for publication-quality typesetting, parameterised reports for templating, and reproducible data-loading patterns so your reports can be rendered from any machine.</p>
+<p><strong>By the end of this chapter you should have:</strong></p>
+<ul>
+<li>One <code>.qmd</code> document that renders to HTML, containing both prose and a code chunk whose output appears in the result</li>
+<li>The same document rendered to PDF, with TinyTeX installed — or Typst configured instead, if you’d rather not install a LaTeX distribution at all</li>
+<li>A report that loads its data by a path that works on someone else’s machine, using <code>here()</code> or an equivalent, rather than an absolute path from yours</li>
+<li>At least one parameterised render, so you’ve seen the same document produce two different outputs from the same source</li>
+</ul>
 <p>What we haven’t covered yet are the <strong>charts</strong> that live inside these documents and the <strong>interactive applications</strong> that extend beyond them:</p>
 <ul>
 <li>The <a href="../chapters/visualisation.html">Data Visualisation</a> chapter covers the static and lightly-interactive plotting libraries you’ll embed in reports (matplotlib, seaborn, plotly, ggplot2), plus Mermaid for code-based diagrams.</li>
