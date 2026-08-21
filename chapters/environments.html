@@ -369,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Six months after you finish a piece of analysis, someone asks you to rerun it. You clone your own repository, run the script, and it fails — a function that used to take three arguments now takes four, or a package you relied on has been renamed, or your machine has a newer Python than the one you wrote it on.</p>
 <p>The same problem in its more embarrassing form: you send a colleague your code and it doesn’t run on their machine. Neither of you can tell why, because neither of you can see what’s different.</p>
 <p>The cause in both cases is that your analysis had dependencies you never wrote down. The code was in Git. The <em>environment the code needed</em> was in your head, or nowhere.</p>
-<p>An environment is the complete set of software your analysis depends on: the language version, every package, and every version of every package. Making that reproducible is the single highest-return habit in this book, and unlike most of the material here it is genuinely quick to learn.</p>
+<p>An environment is the complete set of software your analysis depends on: the language version, every package, and every version of every package. Making that reproducible is the highest-return habit in this book, and unlike most of the material here it is quick to learn.</p>
 </section>
 <section id="the-two-halves" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="the-two-halves"><span class="header-section-number">6.2</span> The Two Halves</h2>
@@ -378,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Isolation</strong> — each project gets its own set of packages, so installing something for project A can’t break project B.</li>
 <li><strong>Recording</strong> — the exact contents of that set are written to a file, committed alongside the code, and can be reconstructed later or elsewhere.</li>
 </ol>
-<p>Isolation without recording protects you from yourself today but not from time. Recording without isolation produces a file describing a mess. You want both.</p>
+<p>Isolation on its own protects you from today’s conflicts but not from next year’s. Recording on its own just documents a mess. You want both.</p>
 </section>
 <section id="choosing-a-tool" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="choosing-a-tool"><span class="header-section-number">6.3</span> Choosing a Tool</h2>
@@ -404,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><strong>uv</strong></td>
-<td>Default choice for new Python projects — same model as venv, an order of magnitude faster to resolve and install, manages Python versions too</td>
+<td>Default choice for new Python projects — same model as venv, far quicker to resolve and install, manages Python versions too</td>
 <td><code>requirements.txt</code> or <code>uv.lock</code></td>
 </tr>
 <tr class="odd">
@@ -583,14 +583,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>The rule underneath: commit the <em>description</em> of the environment, never the environment itself.</p>
+<p>The rule underneath: commit the <em>description</em> of the environment, and never the environment itself.</p>
 </section>
 <section id="making-it-a-habit" class="level2" data-number="6.10">
 <h2 data-number="6.10" class="anchored" data-anchor-id="making-it-a-habit"><span class="header-section-number">6.10</span> Making It a Habit</h2>
-<p>The usual failure mode is drift rather than ignorance: you set up an environment, then install three more packages over the following weeks without re-recording. Two things prevent it:</p>
+<p>The usual failure mode is drift: you set up an environment, then install three more packages over the following weeks without re-recording. Two things prevent it:</p>
 <ul>
 <li><strong>Re-snapshot when you install.</strong> <code>uv pip freeze &gt; requirements.txt</code> or <code>renv::snapshot()</code> immediately after adding a package, in the same breath as the install. It takes a second.</li>
-<li><strong>Let CI catch you.</strong> A continuous integration workflow (covered in <a href="../chapters/workflows.html">Optimising Workflows</a>) builds your project from nothing but the record file. If you forgot to record something, the build fails — in front of you, on a commit, rather than in front of a colleague six months later. This is the single most useful thing CI does for analysis work.</li>
+<li><strong>Let CI catch you.</strong> A continuous integration workflow (covered in <a href="../chapters/workflows.html">Optimising Workflows</a>) builds your project from nothing but the record file. If you forgot to record something, the build fails — in front of you, on a commit, rather than in front of a colleague six months later. For analysis work this is most of CI’s value.</li>
 </ul>
 </section>
 <section id="environments-and-containers" class="level2" data-number="6.11">
@@ -609,7 +609,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Your editor pointed at the right interpreter, and the environment registered as a Jupyter kernel if you use notebooks</li>
 <li>Successfully reconstructed one of your own environments from its record file — do this once deliberately, so you find out now whether the file is actually complete</li>
 </ul>
-<p>That last item is the one people skip. A record file you’ve never restored from is a hypothesis, not a backup.</p>
+<p>That last item is the one people skip. A record file you’ve never restored from is only a hypothesis.</p>
 
 
 </section>

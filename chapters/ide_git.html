@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Choosing an editor and learning version control - VS Code, RStudio and JupyterLab, and the Git workflow running underneath all three.">
+<meta name="description" content="Choosing an editor and learning version control — VS Code, RStudio and JupyterLab, and the Git workflow running underneath all three.">
 
 <title>7&nbsp; Editors and Version Control – Ready Before Run()</title>
 <style>
@@ -382,13 +382,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Offering integrated documentation</li>
 <li>Simplifying project organisation and version control</li>
 </ol>
-<p>Most professional developers use a specialised IDE rather than a basic text editor, as the additional features significantly improve productivity.</p>
+<p>Most professional developers work in a specialised IDE. The features above are why.</p>
 <p>Think of an IDE as a fully equipped workshop rather than just having a single tool. It has everything arranged conveniently in one place.</p>
 <p>We’ve already installed RStudio for R development. Now let’s look at options for Python and SQL.</p>
 </section>
 <section id="vs-code-a-universal-ide" class="level3" data-number="7.1.2">
 <h3 data-number="7.1.2" class="anchored" data-anchor-id="vs-code-a-universal-ide"><span class="header-section-number">7.1.2</span> VS Code: A Universal IDE</h3>
-<p>Visual Studio Code (VS Code) is a free, open-source editor that supports multiple languages through extensions. Its flexibility makes it an excellent choice for data scientists.</p>
+<p>Visual Studio Code (VS Code) is a free, open-source editor that supports multiple languages through extensions. That flexibility is what makes it a reasonable default for data science, where one project routinely mixes Python, R, SQL, and notebooks.</p>
 <section id="installing-vs-code" class="level4" data-number="7.1.2.1">
 <h4 data-number="7.1.2.1" class="anchored" data-anchor-id="installing-vs-code"><span class="header-section-number">7.1.2.1</span> Installing VS Code</h4>
 <ol type="1">
@@ -424,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pycharm-community-edition" class="level3" data-number="7.1.3">
 <h3 data-number="7.1.3" class="anchored" data-anchor-id="pycharm-community-edition"><span class="header-section-number">7.1.3</span> PyCharm Community Edition</h3>
-<p>PyCharm is an IDE specifically designed for Python development, with excellent data science support.</p>
+<p>PyCharm is an IDE built specifically for Python, with data science support to match.</p>
 <section id="installing-pycharm-community-edition" class="level4" data-number="7.1.3.1">
 <h4 data-number="7.1.3.1" class="anchored" data-anchor-id="installing-pycharm-community-edition"><span class="header-section-number">7.1.3.1</span> Installing PyCharm Community Edition</h4>
 <ol type="1">
@@ -486,7 +486,7 @@ Note
 <li><strong>VS Code</strong>: Versatile, lightweight, supports multiple languages</li>
 <li><strong>PyCharm</strong>: Deep Python-specific tooling — refactoring, type inference, an integrated debugger — which pays off most on large projects</li>
 <li><strong>RStudio</strong>: Optimised for R development</li>
-<li><strong>JupyterLab</strong>: Excellent for exploratory data analysis and sharing results</li>
+<li><strong>JupyterLab</strong>: Suited to exploratory data analysis and sharing results</li>
 </ul>
 <p>Many data scientists use multiple IDEs depending on the task. For example, you might use:</p>
 <ul>
@@ -549,7 +549,7 @@ Note
 <li>Click “Sign up” and follow the instructions</li>
 <li>Verify your email address</li>
 </ol>
-<p>GitHub is to Git what social media is to your photos—a place to share your work with others and collaborate on projects.</p>
+<p>GitHub is to Git what social media is to your photos — a place to share your work with others and collaborate on projects.</p>
 </section>
 <section id="setting-up-ssh-authentication-for-github" class="level3" data-number="7.2.4">
 <h3 data-number="7.2.4" class="anchored" data-anchor-id="setting-up-ssh-authentication-for-github"><span class="header-section-number">7.2.4</span> Setting Up SSH Authentication for GitHub</h3>
@@ -633,7 +633,7 @@ Note
 </section>
 <section id="telling-git-what-to-ignore-.gitignore" class="level3" data-number="7.2.6">
 <h3 data-number="7.2.6" class="anchored" data-anchor-id="telling-git-what-to-ignore-.gitignore"><span class="header-section-number">7.2.6</span> Telling Git What to Ignore: <code>.gitignore</code></h3>
-<p>Before you commit anything else, create a <code>.gitignore</code> file in the root of your repository. This tells Git which files and folders it should never track: things like local virtual environments, cached files, large data dumps, and, critically, secrets like API keys. Getting this right from day one prevents the single most common beginner mistake: accidentally pushing credentials to a public repository.</p>
+<p>Before you commit anything else, create a <code>.gitignore</code> file in the root of your repository. This tells Git which files and folders it should never track: things like local virtual environments, cached files, large data dumps, and, critically, secrets like API keys. Getting this right from day one prevents the classic beginner mistake: accidentally pushing credentials to a public repository.</p>
 <p>Create a file named <code>.gitignore</code> (note the leading dot) with content like this as a starting point for a data science project:</p>
 <pre class="gitignore"><code># Secrets: never commit these
 .env
@@ -664,10 +664,10 @@ data/processed/
 Thumbs.db
 .vscode/
 .idea/</code></pre>
-<p>Adjust the patterns to fit your project — this is a starting point, not a rule. Two adjustments come up often:</p>
+<p>Adjust the patterns to fit your project; treat this as a starting point. Two adjustments come up often:</p>
 <ul>
 <li><strong>Small reference datasets belong in Git.</strong> A lookup table of country codes is a few kilobytes and versioning it alongside the code is exactly right. Remove the <code>data/</code> lines, or narrow them to the directories that actually hold bulk data.</li>
-<li><strong>Don’t ignore file formats wholesale.</strong> Patterns like <code>*.parquet</code> or <code>*.db</code> are tempting, but <a href="../chapters/data_stores.html">Data Stores</a> recommends working <em>from</em> Parquet — so a blanket rule quietly stops your main working files from ever being tracked. Ignore by location, not by extension.</li>
+<li><strong>Don’t ignore file formats wholesale.</strong> Patterns like <code>*.parquet</code> or <code>*.db</code> are tempting, but <a href="../chapters/data_stores.html">Data Stores</a> recommends working <em>from</em> Parquet — so a blanket rule quietly stops your main working files from ever being tracked. Ignore by location instead of by extension.</li>
 </ul>
 <p>If you find yourself wanting to commit something you’ve already ignored, you can force it with <code>git add -f &lt;file&gt;</code>.</p>
 <p>If you ever accidentally commit a secret, rotate the credential rather than trying to scrub Git history — <a href="../chapters/data_stores.html">Data Stores</a> explains why, and what to do.</p>
@@ -739,7 +739,7 @@ Thumbs.db
 <li>Click the Git tab in the upper-right panel</li>
 <li>Use the interface for Git operations</li>
 </ul>
-<p>These integrations mean you don’t have to use the command line for every Git operation—you can manage version control without leaving your coding environment.</p>
+<p>These integrations mean you don’t have to use the command line for every Git operation — you can manage version control without leaving your coding environment.</p>
 </section>
 </section>
 <section id="collaborating-with-others-on-github" class="level3" data-number="7.2.10">
@@ -763,7 +763,7 @@ Thumbs.db
 <h2 data-number="7.3" class="anchored" data-anchor-id="git-for-analysts-what-actually-matters"><span class="header-section-number">7.3</span> Git for Analysts: What Actually Matters</h2>
 <p>Git has a large surface area and most of it is irrelevant to analytical work. If you learn four things, you have covered the overwhelming majority of what you’ll do:</p>
 <ol type="1">
-<li><strong><code>git add</code> / <code>git commit</code> / <code>git push</code></strong> — the daily loop. Commit when you finish a coherent piece of work, not at the end of the day.</li>
+<li><strong><code>git add</code> / <code>git commit</code> / <code>git push</code></strong> — the daily loop. Commit when you finish a coherent piece of work, which is rarely the same moment as the end of the day.</li>
 <li><strong>Branches</strong> — one per piece of work, merged back when it’s done. Keeps half-finished changes off <code>main</code>.</li>
 <li><strong><code>.gitignore</code></strong> — what never goes in. Data, credentials, environments, rendered output.</li>
 <li><strong>How to undo the last thing you did</strong> — <code>git restore &lt;file&gt;</code> to discard uncommitted changes, <code>git revert &lt;commit&gt;</code> to undo a commit that’s already pushed.</li>
@@ -784,7 +784,7 @@ Thumbs.db
 <li><strong>Your work is probably not lost.</strong> Committed work is very hard to actually destroy — <code>git reflog</code> shows where every branch has been, including commits you think you deleted.</li>
 <li><strong>The nuclear option is fine.</strong> Clone the repository fresh into a new directory, copy your changed files across, and commit. It feels like cheating; it takes five minutes and always works. Do that rather than spending an afternoon on a merge you don’t understand.</li>
 </ul>
-<p><a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a> has the best troubleshooting material for exactly this situation.</p>
+<p><a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a> covers exactly this situation, and the <a href="../chapters/references.html">References</a> chapter says more about it.</p>
 </div>
 </div>
 </section>

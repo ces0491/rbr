@@ -637,7 +637,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="catching-problems-before-they-reach-ci" class="level3" data-number="14.1.6">
 <h3 data-number="14.1.6" class="anchored" data-anchor-id="catching-problems-before-they-reach-ci"><span class="header-section-number">14.1.6</span> Catching Problems Before They Reach CI</h3>
-<p>CI tells you something broke after you pushed. Pre-commit hooks tell you before. The <a href="https://pre-commit.com/">pre-commit</a> framework runs a set of checks against your staged files every time you commit:</p>
+<p>CI tells you something broke only after you have pushed it. Pre-commit hooks catch it while the change is still on your machine. The <a href="https://pre-commit.com/">pre-commit</a> framework runs a set of checks against your staged files every time you commit:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># .pre-commit-config.yaml</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">repos</span><span class="kw">:</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">repo</span><span class="kw">:</span><span class="at"> https://github.com/astral-sh/ruff-pre-commit</span></span>
@@ -719,7 +719,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Pre-commit hooks installed, so a large file or a stray API key can’t reach your Git history by accident</li>
 <li>Data too large for Git under DVC, with the pointer files committed alongside the code</li>
 </ul>
-<p>None of this is worth doing on a one-off script you’ll delete next week. All of it is worth doing on anything a colleague will inherit, anything that runs more than once, and anything whose output someone will act on.</p>
+<p>Skip all of it on a one-off script you’ll delete next week. Do it on anything a colleague will inherit, anything that runs more than once, and anything whose output someone will act on.</p>
 
 
 </section>

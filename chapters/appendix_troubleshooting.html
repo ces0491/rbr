@@ -460,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>GitHub no longer accepts password authentication for HTTPS</li>
 <li>Set up a personal access token (PAT) on GitHub and use it instead of your password</li>
-<li>Store credentials: <code>git config --global credential.helper store</code></li>
+<li>Store the token in your operating system’s keychain rather than in a file: <code>credential.helper manager</code> on Windows, <code>osxkeychain</code> on macOS, <code>libsecret</code> on Linux. Avoid <code>credential.helper store</code>, which many guides recommend — it writes the token to <code>~/.git-credentials</code> in plain text, and a PAT is as good as a password</li>
 </ul></li>
 <li><strong>Platform-specific issues</strong>:
 <ul>

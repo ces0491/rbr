@@ -62,7 +62,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -363,7 +382,7 @@ window.Quarto = {
   <li><a href="#latex-or-typst" id="toc-latex-or-typst" class="nav-link" data-scroll-target="#latex-or-typst"><span class="header-section-number">8.1.9</span> LaTeX or Typst?</a></li>
   <li><a href="#creating-technical-documentation" id="toc-creating-technical-documentation" class="nav-link" data-scroll-target="#creating-technical-documentation"><span class="header-section-number">8.1.10</span> Creating Technical Documentation</a></li>
   </ul></li>
-  <li><a href="#reproducible-reports---working-with-data" id="toc-reproducible-reports---working-with-data" class="nav-link" data-scroll-target="#reproducible-reports---working-with-data"><span class="header-section-number">8.2</span> Reproducible Reports - Working with Data</a>
+  <li><a href="#reproducible-reports-working-with-data" id="toc-reproducible-reports-working-with-data" class="nav-link" data-scroll-target="#reproducible-reports-working-with-data"><span class="header-section-number">8.2</span> Reproducible Reports — Working with Data</a>
   <ul class="collapse">
   <li><a href="#common-issues-with-file-paths" id="toc-common-issues-with-file-paths" class="nav-link" data-scroll-target="#common-issues-with-file-paths"><span class="header-section-number">8.2.1</span> Common Issues with File Paths</a></li>
   <li><a href="#project-relative-paths-with-the-here-package" id="toc-project-relative-paths-with-the-here-package" class="nav-link" data-scroll-target="#project-relative-paths-with-the-here-package"><span class="header-section-number">8.2.2</span> Project-Relative Paths with the <code>here</code> Package</a></li>
@@ -437,15 +456,15 @@ window.Quarto = {
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a># Code block</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>print("Hello, world!")</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The language name after the opening backticks is optional and only controls syntax highlighting. Later in this chapter you’ll see fences written as <code>```{python}</code> with braces — that is Quarto and R Markdown’s own extension, marking a block as code to <em>execute</em> rather than merely display. Plain Markdown has no such concept.</p>
-<p>Markdown is designed to be readable even in its raw form. The syntax is intuitive—for example, surrounding text with asterisks makes it italic, and using hash symbols creates headings of different levels.</p>
+<p>The language name after the opening backticks is optional and only controls syntax highlighting. Later in this chapter you’ll see fences written as <code>```{python}</code> with braces — that is Quarto and R Markdown’s own extension, marking a block as code to <em>execute</em> instead of merely display. Plain Markdown has no such concept.</p>
+<p>Markdown is designed to be readable even in its raw form. The syntax is intuitive — for example, surrounding text with asterisks makes it italic, and using hash symbols creates headings of different levels.</p>
 <p>Many platforms interpret Markdown, including GitHub, Jupyter notebooks, and the documentation tools we’ll discuss next.</p>
 </section>
 </section>
 <section id="r-markdown" class="level3" data-number="8.1.2">
 <h3 data-number="8.1.2" class="anchored" data-anchor-id="r-markdown"><span class="header-section-number">8.1.2</span> R Markdown</h3>
 <p>R Markdown combines R code, output, and narrative text in a single document that can be rendered to HTML, PDF, Word, and other formats.</p>
-<p>The concept of “literate programming” behind R Markdown was first proposed by computer scientist Donald Knuth in 1984, and it has become a cornerstone of reproducible research in data science.</p>
+<p>The concept of “literate programming” behind R Markdown was first proposed by Donald Knuth in 1984 <span class="citation" data-cites="knuth84">(<a href="references.html#ref-knuth84" role="doc-biblioref">Knuth 1984</a>)</span>, and it has become a cornerstone of reproducible research in data science.</p>
 <section id="installing-and-using-r-markdown" class="level4" data-number="8.1.2.1">
 <h4 data-number="8.1.2.1" class="anchored" data-anchor-id="installing-and-using-r-markdown"><span class="header-section-number">8.1.2.1</span> Installing and Using R Markdown</h4>
 <p>If you’ve installed R and RStudio as described earlier, R Markdown is just a package installation away:</p>
@@ -470,7 +489,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>title: "My First Data Analysis"</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>author: "Your Name"</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>date: "2025-04-30"</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>date: "2026-04-30"</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>output: html_document</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
@@ -533,7 +552,7 @@ Note
 </section>
 <section id="jupyter-notebooks-for-documentation" class="level3" data-number="8.1.3">
 <h3 data-number="8.1.3" class="anchored" data-anchor-id="jupyter-notebooks-for-documentation"><span class="header-section-number">8.1.3</span> Jupyter Notebooks for Documentation</h3>
-<p>We’ve already covered Jupyter notebooks for Python development, but they’re also excellent documentation tools. Like R Markdown, they combine code, output, and narrative text.</p>
+<p>We’ve already covered Jupyter notebooks for Python development, but they double as documentation tools. Like R Markdown, they combine code, output, and narrative text.</p>
 <section id="exporting-jupyter-notebooks" class="level4" data-number="8.1.3.1">
 <h4 data-number="8.1.3.1" class="anchored" data-anchor-id="exporting-jupyter-notebooks"><span class="header-section-number">8.1.3.1</span> Exporting Jupyter Notebooks</h4>
 <p>Jupyter notebooks can be exported to various formats:</p>
@@ -583,7 +602,7 @@ Note
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a document to HTML (or PDF, docx, etc.)</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Quarto represents an evolution in documentation tools because it provides a unified system for creating computational documents with multiple programming languages. This is particularly valuable if you work with both Python and R, as you can maintain a consistent documentation approach across all your projects.</p>
-<p>The key advantage of Quarto is its language-agnostic design—you can mix Python, R, Julia, and other languages in a single document, which reflects the reality of many data science workflows where different tools are used for different tasks.</p>
+<p>The key advantage of Quarto is its language-agnostic design — you can mix Python, R, Julia, and other languages in a single document, which reflects the reality of many data science workflows where different tools are used for different tasks.</p>
 <section id="quarto-dashboards" class="level4" data-number="8.1.4.1">
 <h4 data-number="8.1.4.1" class="anchored" data-anchor-id="quarto-dashboards"><span class="header-section-number">8.1.4.1</span> Quarto Dashboards</h4>
 <p>Since Quarto 1.4 (released in 2024), Quarto can render a document directly into a dashboard layout with rows, columns, value boxes, and tab sets, with no Shiny, Dash, or Streamlit required for the static case. If all you need is a periodic refresh of a dashboard view over your data, this is by far the lightest way to get there: you write a normal <code>.qmd</code> file with a <code>format: dashboard</code> YAML key, and Quarto handles the layout.</p>
@@ -626,7 +645,7 @@ Note
 <p>LaTeX offers several advantages for data science documentation:</p>
 <ol type="1">
 <li><strong>Professional typesetting</strong>: Produces publication-quality documents with consistent formatting</li>
-<li><strong>Exceptional math support</strong>: Renders complex equations with beautiful typography</li>
+<li><strong>Math support</strong>: Renders complex equations to a typographic standard nothing else matches</li>
 <li><strong>Advanced layout control</strong>: Provides precise control over document structure and appearance</li>
 <li><strong>Bibliography management</strong>: Integrates with citation systems like BibTeX</li>
 <li><strong>Reproducibility</strong>: Separates content from presentation in a plain text format that works with version control</li>
@@ -635,7 +654,7 @@ Note
 </section>
 <section id="getting-started-with-latex" class="level4" data-number="8.1.5.2">
 <h4 data-number="8.1.5.2" class="anchored" data-anchor-id="getting-started-with-latex"><span class="header-section-number">8.1.5.2</span> Getting Started with LaTeX</h4>
-<p>LaTeX works differently from word processors—you write plain text with special commands, then compile it to produce a PDF. For data science, you don’t need to install a full LaTeX distribution, as Quarto and R Markdown can handle the compilation process.</p>
+<p>LaTeX works differently from word processors — you write plain text with special commands, then compile it to produce a PDF. For data science, you don’t need to install a full LaTeX distribution, as Quarto and R Markdown can handle the compilation process.</p>
 </section>
 <section id="installing-latex-for-quarto-and-r-markdown" class="level4" data-number="8.1.5.3">
 <h4 data-number="8.1.5.3" class="anchored" data-anchor-id="installing-latex-for-quarto-and-r-markdown"><span class="header-section-number">8.1.5.3</span> Installing LaTeX for Quarto and R Markdown</h4>
@@ -686,7 +705,7 @@ Note
 </section>
 <section id="mathematical-equations" class="level4" data-number="8.1.5.6">
 <h4 data-number="8.1.5.6" class="anchored" data-anchor-id="mathematical-equations"><span class="header-section-number">8.1.5.6</span> Mathematical Equations</h4>
-<p>LaTeX shines when it comes to mathematical notation. Here are examples of common equation formats:</p>
+<p>Mathematical notation is what LaTeX is best at. Here are examples of common equation formats:</p>
 <p><strong>Inline equations</strong> use single dollar signs:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>The model accuracy is <span class="ss">$</span><span class="sc">\alpha</span><span class="ss"> = 0.95$</span>, which exceeds our threshold.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Display equations</strong> use double dollar signs:</p>
@@ -854,7 +873,7 @@ Note
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Knuth, Donald E.},</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {Literate Programming},</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {1984},</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {The Computer Journal},</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Comput. J.},</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span> = {27},</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {2},</span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span> = {97--111}</span>
@@ -1076,7 +1095,7 @@ Note
 <span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Serve the documentation locally</span></span>
 <span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-documentation</span>
 <span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mkdocs</span> serve</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>MkDocs is focused on simplicity and readability. It generates a clean, responsive website from your Markdown files, with navigation, search, and themes. This makes it an excellent choice for project documentation that needs to be accessible to users or team members.</p>
+<p>MkDocs is focused on simplicity and readability. It generates a clean, responsive website from your Markdown files, with navigation, search, and themes — enough for project documentation aimed at users or team members, without a heavier system’s configuration burden.</p>
 </section>
 <section id="sphinx-documentation-generated-from-code" class="level4" data-number="8.1.10.2">
 <h4 data-number="8.1.10.2" class="anchored" data-anchor-id="sphinx-documentation-generated-from-code"><span class="header-section-number">8.1.10.2</span> Sphinx: Documentation Generated from Code</h4>
@@ -1095,8 +1114,8 @@ Note
 </section>
 </section>
 </section>
-<section id="reproducible-reports---working-with-data" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="reproducible-reports---working-with-data"><span class="header-section-number">8.2</span> Reproducible Reports - Working with Data</h2>
+<section id="reproducible-reports-working-with-data" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="reproducible-reports-working-with-data"><span class="header-section-number">8.2</span> Reproducible Reports — Working with Data</h2>
 <p>When using external data files in Quarto projects, it’s important to understand how to handle file paths properly to ensure reproducibility across different environments.</p>
 <section id="common-issues-with-file-paths" class="level3" data-number="8.2.1">
 <h3 data-number="8.2.1" class="anchored" data-anchor-id="common-issues-with-file-paths"><span class="header-section-number">8.2.1</span> Common Issues with File Paths</h3>
@@ -1180,7 +1199,7 @@ Note
 <h3 data-number="8.2.6" class="anchored" data-anchor-id="best-practices-for-documentation"><span class="header-section-number">8.2.6</span> Best Practices for Documentation</h3>
 <p>Effective documentation follows certain principles:</p>
 <ol type="1">
-<li><strong>Start early</strong>: Document as you go rather than treating it as an afterthought</li>
+<li><strong>Start early</strong>: Document as you go, instead of leaving it to the end</li>
 <li><strong>Be consistent</strong>: Use the same style and terminology throughout</li>
 <li><strong>Include examples</strong>: Show how to use your code or analysis</li>
 <li><strong>Consider your audience</strong>: Technical details for peers, higher-level explanations for stakeholders</li>
@@ -1207,6 +1226,11 @@ Note
 <p>Together these three chapters form a progression: from static documents that communicate findings, to visualisations that make those findings immediate, to interactive applications that invite exploration.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-knuth84" class="csl-entry" role="listitem">
+Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</em> (USA) 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

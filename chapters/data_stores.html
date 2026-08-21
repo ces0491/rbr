@@ -528,7 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the connection</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyse it with Python or R—all within the same workflow.</p>
+<p>This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyse it with Python or R — all within the same workflow.</p>
 </section>
 </section>
 </section>
@@ -545,7 +545,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Write once</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df.to_parquet(<span class="st">"large_dataset.parquet"</span>)</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read back - types preserved, no parsing, typically 5-10x faster</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Read back - types preserved, no parsing, and much faster on large files</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_parquet(<span class="st">"large_dataset.parquet"</span>)</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Read only the columns you need - the rest is never touched on disk</span></span>
@@ -557,7 +557,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="duckdb-sql-without-a-database-server" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="duckdb-sql-without-a-database-server"><span class="header-section-number">5.3</span> DuckDB: SQL Without a Database Server</h2>
 <p>SQLite gave you a database in a file. <strong>DuckDB</strong> gives you an analytical query engine in a file — or in no file at all — and it has changed how a lot of analysis gets done in the few years since it appeared.</p>
-<p>The pitch: DuckDB runs SQL directly against CSV and Parquet files on disk, at speeds that make a laptop competitive with a small cluster, with no server to install, configure, or keep running.</p>
+<p>The pitch: DuckDB runs SQL directly against CSV and Parquet files on disk, fast enough that work you would once have sent to a cluster now finishes on a laptop, with no server to install, configure, or keep running.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install duckdb        <span class="co"># Python</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"duckdb"</span>)   <span class="co"># R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="querying-files-directly" class="level3" data-number="5.3.1">
@@ -652,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>SQLite and DuckDB complement each other rather than competing: SQLite is optimised for transactions (many small reads and writes), DuckDB for analytics (scanning and aggregating large volumes). For the work in this book, DuckDB is the one you’ll reach for more often.</p>
+<p>SQLite and DuckDB complement each other: SQLite is optimised for transactions (many small reads and writes), DuckDB for analytics (scanning and aggregating large volumes). For the work in this book, DuckDB is the one you’ll reach for more often.</p>
 </section>
 </section>
 <section id="polars-an-alternative-to-pandas" class="level2" data-number="5.4">
@@ -679,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In the lazy version, Polars sees the filter before reading anything and pushes it down into the file scan — so rows for other quarters are never read off disk at all. On large files the difference is substantial.</p>
-<p>Should you switch? Not urgently. pandas has twenty years of ecosystem behind it, and almost every tutorial, Stack Overflow answer, and library integration assumes it. Polars is worth learning when pandas becomes the bottleneck — jobs that take minutes, or datasets that don’t fit comfortably in memory — and worth knowing about now so you recognise it when you meet it.</p>
+<p>Should you switch? Not urgently. pandas has had since 2008 to accumulate an ecosystem, and almost every tutorial, Stack Overflow answer, and library integration assumes it. Polars is worth learning when pandas becomes the bottleneck — jobs that take minutes, or datasets that don’t fit comfortably in memory — and worth knowing about now so you recognise it when you meet it.</p>
 <p>For most readers of this book, the ordering is: pandas by default, DuckDB when the query is more naturally SQL or the data is large, Polars when you’ve measured pandas being too slow.</p>
 </section>
 <section id="postgresql-when-you-need-a-real-server" class="level2" data-number="5.5">
@@ -786,8 +786,8 @@ WEATHER_API_KEY=abc123</code></pre>
 </section>
 <section id="if-a-secret-does-leak" class="level3" data-number="5.6.3">
 <h3 data-number="5.6.3" class="anchored" data-anchor-id="if-a-secret-does-leak"><span class="header-section-number">5.6.3</span> If a secret does leak</h3>
-<p>Assume it’s compromised and <strong>rotate it</strong> — issue a new one and revoke the old. Do not try to scrub it from Git history: rewriting history is disruptive, easy to get wrong, and doesn’t help if anyone has already cloned or if the repository was ever public. Rotation is fast, certain, and the only thing that actually works.</p>
-<p>This applies to private repositories too. “It’s private” is an access-control assumption, not a guarantee, and repositories change visibility more often than people expect.</p>
+<p>Assume it’s compromised and <strong>rotate it</strong> — issue a new one and revoke the old. Do not try to scrub it from Git history: rewriting history is disruptive, easy to get wrong, and doesn’t help if anyone has already cloned or if the repository was ever public. Rotation is fast, and it is the only step that reliably closes the exposure.</p>
+<p>This applies to private repositories too. “It’s private” is an access-control assumption rather than a guarantee, and repositories change visibility more often than people expect.</p>
 </section>
 </section>
 <section id="conclusion" class="level2" data-number="5.7">
