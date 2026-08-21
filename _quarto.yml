@@ -1,6 +1,13 @@
 project:
   type: book
   output-dir: output
+  # GitHub Pages reads the custom domain from a CNAME file in the published
+  # branch, and `quarto publish gh-pages` replaces that branch wholesale on
+  # every run. Listing it as a resource is what copies it into the output, so
+  # the domain survives each publish rather than needing to be re-entered in
+  # the repository settings afterwards.
+  resources:
+    - CNAME
 
 execute:
   # `auto` re-executes a chapter only when its source changes. `_freeze/` is
@@ -46,6 +53,14 @@ book:
   cover-image: assets/cover_no_auth.png
   favicon: assets/cover_no_auth.png
   repo-url: "https://github.com/ces0491/rbr"
+  site-url: "https://rbr.sheetsolved.com"
+  description: >-
+    A practical guide to the infrastructure data science assumes you already
+    have - the command line, reproducible environments, data stores, version
+    control, reporting, containers and deployment - written for people who
+    arrived at data work from somewhere other than computer science.
+  open-graph: true
+  twitter-card: true
   search: true
   # downloads: [pdf, epub]  # Disabled - Mermaid rendering times out in CI
 

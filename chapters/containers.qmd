@@ -1,5 +1,7 @@
 ---
 title: "Containerisation"
+description: >-
+  Docker for data science: fixing it-works-on-my-machine by shipping the environment along with the code that needs it.
 ---
 
 ## Containerisation with Docker

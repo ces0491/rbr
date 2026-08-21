@@ -1,5 +1,7 @@
 ---
 title: "Deploying Data Science Projects"
+description: >-
+  Getting a project in front of other people, and how deployment differs for a dashboard, an API and a job that runs on a schedule.
 ---
 
 ## Understanding Deployment for Data Science

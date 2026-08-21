@@ -1,5 +1,7 @@
 ---
 title: "Editors and Version Control"
+description: >-
+  Choosing an editor and learning version control - VS Code, RStudio and JupyterLab, and the Git workflow running underneath all three.
 ---
 
 ## Integrated Development Environments (IDEs)

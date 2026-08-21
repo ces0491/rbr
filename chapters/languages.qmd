@@ -1,5 +1,7 @@
 ---
 title: "Python and R"
+description: >-
+  Setting up Python and R properly - interpreters, package managers, and the environment to create before writing a line of analysis.
 ---
 
 ## Setting Up Python

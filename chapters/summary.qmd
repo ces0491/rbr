@@ -1,5 +1,7 @@
 ---
 title: "Conclusion"
+description: >-
+  What you have after working through the book, and where the infrastructure you built takes you next.
 ---
 
 ## What You Have Now

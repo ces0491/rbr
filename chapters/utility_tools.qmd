@@ -1,5 +1,7 @@
 ---
 title: "Utility Tools for Data Scientists"
+description: >-
+  The small utilities that remove real friction from daily data work - worth installing once and keeping.
 ---
 
 ## Utility Tools for Data Scientists

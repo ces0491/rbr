@@ -1,5 +1,7 @@
 ---
 title: "Appendix: Troubleshooting Guide"
+description: >-
+  Fixes for the install and configuration problems that come up most often across Windows, macOS and Linux.
 ---
 
 ## Common Installation and Configuration Issues

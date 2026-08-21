@@ -1,5 +1,7 @@
 ---
 title: "Data Science Tools for Reporting"
+description: >-
+  Turning analysis into something a reader can use: Quarto, R Markdown and Jupyter for reports and documents that rebuild themselves from the data.
 ---
 
 ## Documentation and Reporting Tools

@@ -1,5 +1,7 @@
 ---
 title: "Web Development for Data Scientists"
+description: >-
+  The web development a data scientist actually needs - HTML, HTTP and APIs - to ship a dashboard or put a model behind an endpoint.
 ---
 
 ## Web Development Fundamentals for Data Scientists

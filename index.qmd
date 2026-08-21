@@ -1,4 +1,10 @@
-# Welcome
+---
+title: "Welcome"
+description: >-
+  A practical guide to the technical infrastructure behind data science, for
+  economists, statisticians and engineers who have the analytical skills and
+  not the tooling.
+---
 
 Welcome to "Ready Before Run(): A Practical Guide to Gear Up for Data Science." This guide is designed for readers from diverse backgrounds - economists, statisticians, engineers, and beyond - who are interested in producing advanced analytics workflows, but don't necessarily have any computer science foundations.
 

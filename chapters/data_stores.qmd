@@ -1,5 +1,7 @@
 ---
 title: "Data Stores: SQL and Beyond"
+description: >-
+  SQL and where data really lives: installing SQLite, writing your first queries, and recognising when a database beats a folder of CSVs.
 ---
 
 ## SQL Fundamentals and Setup

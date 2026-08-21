@@ -1,5 +1,7 @@
 ---
 title: "Cloud Computing for Data Science"
+description: >-
+  When a laptop stops being enough: cloud compute, managed storage, and what it costs to move a data science workload off your own machine.
 execute:
   eval: false
 ---

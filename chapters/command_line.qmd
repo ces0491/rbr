@@ -1,5 +1,7 @@
 ---
 title: "The Command Line"
+description: >-
+  What the terminal actually is, why nearly every data science tool assumes you can use one, and the handful of commands worth knowing before you install anything.
 ---
 
 ## Understanding the Command Line

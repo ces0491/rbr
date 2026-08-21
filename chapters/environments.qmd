@@ -1,5 +1,7 @@
 ---
 title: "Reproducible Environments"
+description: >-
+  Why analysis that ran six months ago fails today, and how virtual environments, lockfiles and renv make a project rerunnable by someone else.
 ---
 
 ## The Problem This Solves

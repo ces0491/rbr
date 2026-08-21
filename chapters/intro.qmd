@@ -1,5 +1,7 @@
 ---
 title: "Introduction"
+description: >-
+  Who this book is for - quantitative people who already have the analytical skills and are missing the tooling that turns analysis into work other people can run.
 ---
 
 ## What This Book Is For

@@ -1,5 +1,7 @@
 ---
 title: "Data Visualisation"
+description: >-
+  Building charts that communicate - the grammar of graphics, ggplot2 and matplotlib, and the choices that decide whether a plot lands.
 ---
 
 ## Why Visualisation Matters in Data Science
