@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Why analysis that ran six months ago fails today, and how virtual environments, lockfiles and renv make a project rerunnable by someone else.">
 
 <title>6&nbsp; Reproducible Environments – Ready Before Run()</title>
 <style>
@@ -83,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d1ce83cbcf7f21d8208077a0fee83aa1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -113,6 +114,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<meta property="og:title" content="6&nbsp; Reproducible Environments – Ready Before Run()">
+<meta property="og:description" content="A practical guide to the infrastructure data science assumes you already have - the command line, reproducible environments, data stores, version control, reporting, containers and deployment - written for people who arrived at data work from somewhere other than computer science.">
+<meta property="og:site_name" content="Ready Before Run()">
+<meta name="twitter:title" content="6&nbsp; Reproducible Environments – Ready Before Run()">
+<meta name="twitter:description" content="A practical guide to the infrastructure data science assumes you already have - the command line, reproducible environments, data stores, version control, reporting, containers and deployment - written for people who arrived at data work from somewhere other than computer science.">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -681,7 +688,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/rbr\.sheetsolved\.com");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
