@@ -187,8 +187,7 @@ print(df)
 dbDisconnect(conn)
 ```
 
-This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyse it with Python or R—all within the same workflow.
-
+This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyse it with Python or R — all within the same workflow.
 
 ## File Formats: Stop Using CSV for Everything
 
@@ -205,7 +204,7 @@ df = pd.read_csv("large_dataset.csv")
 # Write once
 df.to_parquet("large_dataset.parquet")
 
-# Read back - types preserved, no parsing, typically 5-10x faster
+# Read back - types preserved, no parsing, and much faster on large files
 df = pd.read_parquet("large_dataset.parquet")
 
 # Read only the columns you need - the rest is never touched on disk
@@ -220,7 +219,7 @@ The file is usually a fraction of the CSV's size, loads far faster, and — the 
 
 SQLite gave you a database in a file. **DuckDB** gives you an analytical query engine in a file — or in no file at all — and it has changed how a lot of analysis gets done in the few years since it appeared.
 
-The pitch: DuckDB runs SQL directly against CSV and Parquet files on disk, at speeds that make a laptop competitive with a small cluster, with no server to install, configure, or keep running.
+The pitch: DuckDB runs SQL directly against CSV and Parquet files on disk, fast enough that work you would once have sent to a cluster now finishes on a laptop, with no server to install, configure, or keep running.
 
 ```bash
 pip install duckdb        # Python
@@ -305,7 +304,7 @@ dbDisconnect(con, shutdown = TRUE)
 | Multiple people or applications writing concurrently | PostgreSQL |
 | Data already in a company database | Whatever that is — connect, don't copy |
 
-SQLite and DuckDB complement each other rather than competing: SQLite is optimised for transactions (many small reads and writes), DuckDB for analytics (scanning and aggregating large volumes). For the work in this book, DuckDB is the one you'll reach for more often.
+SQLite and DuckDB complement each other: SQLite is optimised for transactions (many small reads and writes), DuckDB for analytics (scanning and aggregating large volumes). For the work in this book, DuckDB is the one you'll reach for more often.
 
 ## Polars: An Alternative to pandas
 
@@ -335,7 +334,7 @@ result = (
 
 In the lazy version, Polars sees the filter before reading anything and pushes it down into the file scan — so rows for other quarters are never read off disk at all. On large files the difference is substantial.
 
-Should you switch? Not urgently. pandas has twenty years of ecosystem behind it, and almost every tutorial, Stack Overflow answer, and library integration assumes it. Polars is worth learning when pandas becomes the bottleneck — jobs that take minutes, or datasets that don't fit comfortably in memory — and worth knowing about now so you recognise it when you meet it.
+Should you switch? Not urgently. pandas has had since 2008 to accumulate an ecosystem, and almost every tutorial, Stack Overflow answer, and library integration assumes it. Polars is worth learning when pandas becomes the bottleneck — jobs that take minutes, or datasets that don't fit comfortably in memory — and worth knowing about now so you recognise it when you meet it.
 
 For most readers of this book, the ordering is: pandas by default, DuckDB when the query is more naturally SQL or the data is large, Polars when you've measured pandas being too slow.
 
@@ -457,9 +456,9 @@ Every hosting platform has one, and it is always the right answer in production:
 
 ### If a secret does leak
 
-Assume it's compromised and **rotate it** — issue a new one and revoke the old. Do not try to scrub it from Git history: rewriting history is disruptive, easy to get wrong, and doesn't help if anyone has already cloned or if the repository was ever public. Rotation is fast, certain, and the only thing that actually works.
+Assume it's compromised and **rotate it** — issue a new one and revoke the old. Do not try to scrub it from Git history: rewriting history is disruptive, easy to get wrong, and doesn't help if anyone has already cloned or if the repository was ever public. Rotation is fast, and it is the only step that reliably closes the exposure.
 
-This applies to private repositories too. "It's private" is an access-control assumption, not a guarantee, and repositories change visibility more often than people expect.
+This applies to private repositories too. "It's private" is an access-control assumption rather than a guarantee, and repositories change visibility more often than people expect.
 
 ## Conclusion
 

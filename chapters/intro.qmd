@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 description: >-
-  Who this book is for - quantitative people who already have the analytical skills and are missing the tooling that turns analysis into work other people can run.
+  Who this book is for — quantitative people who already have the analytical skills and are missing the tooling that turns analysis into work other people can run.
 ---
 
 ## What This Book Is For
@@ -10,15 +10,15 @@ If you're coming from economics, statistics, engineering, or another quantitativ
 
 That layer is rarely taught. Statistics degrees cover inference; econometrics courses cover identification; almost none of them cover what to do when a colleague says "it doesn't run on my machine." This book covers that.
 
-It is about setting up the tools, not about learning to code. There are excellent resources for the latter, several listed in the [References](references.qmd) chapter. This one assumes you can already write the analysis and focuses on everything that has to be true before you can run it.
+This book is about setting up the tools that coding assumes you already have. There are good resources for the latter, several listed in the [References](references.qmd) chapter. This one assumes you can already write the analysis and focuses on everything that has to be true before you can run it.
 
 ## Does This Still Matter When a Model Can Write the Code?
 
-It's a fair question, and it deserves a direct answer rather than a reassurance.
+It's a fair question, and it deserves a real answer.
 
 Consider what an AI assistant can and cannot do for you. It can draft your regression, explain an unfamiliar codebase, and suggest a fix for a stack trace. It cannot install Python on your laptop, repair your PATH, resolve a conflict between two package versions, or configure the machine its code will run on. Everything in this book is the part of the job that can't be done from inside a chat window.
 
-There's a second reason, and it's the more important one. An assistant's output is only as useful as your ability to run it, test it, and tell whether it's right. If you can't reproduce a result, you can't check it. If you can't check it, you're taking a machine's word for a number you're about to put in front of someone who will act on it. The infrastructure in this book is what makes verification possible — which is precisely the skill that becomes more valuable, not less, as more of the drafting gets automated.
+There's a second reason, and it's the more important one. An assistant's output is only as useful as your ability to run it, test it, and tell whether it's right. If you can't reproduce a result, you can't check it. If you can't check it, you're taking a machine's word for a number you're about to put in front of someone who will act on it. The infrastructure in this book is what makes verification possible, and verification only grows more valuable as more of the drafting gets automated.
 
 So: use the assistants. They are genuinely good at the things this book doesn't cover. But treat them as a fast pair-programmer rather than an oracle, and know enough about what's underneath to catch them when they're confidently wrong.
 
@@ -45,5 +45,5 @@ The exceptions are the cloud platforms and hosting services in the later chapter
 :::{.callout-tip}
 ## If you only read one chapter
 
-[Reproducible Environments](environments.qmd). Environment problems are the single largest source of wasted time for analysts who write code, and the fix takes an afternoon to learn and pays back for the rest of your career.
+[Reproducible Environments](environments.qmd). Environment problems waste more of an analyst's time than anything else in this book, and the fix takes an afternoon to learn.
 :::

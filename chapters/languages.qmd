@@ -1,7 +1,7 @@
 ---
 title: "Python and R"
 description: >-
-  Setting up Python and R properly - interpreters, package managers, and the environment to create before writing a line of analysis.
+  Setting up Python and R properly — interpreters, package managers, and the environment to create before writing a line of analysis.
 ---
 
 ## Setting Up Python
@@ -144,7 +144,7 @@ R is a language and environment designed specifically for statistical computing 
 R offers several advantages:
 
 1. Built specifically for statistical analysis
-2. Excellent for data visualisation with ggplot2
+2. Strong data visualisation through ggplot2
 3. A rich ecosystem of packages for specialised statistical methods
 4. Strong in reproducible research through R Markdown
 
@@ -255,10 +255,9 @@ devtools::install_github("username/package")
 
 Think of CRAN as the official app store for R packages, while GitHub is like getting apps directly from developers. Both are useful, but packages on CRAN have gone through more quality checks.
 
-
 ## Python or R?
 
-The question comes up constantly and has a boring answer: both are excellent, the differences that once mattered mostly don't any more, and the deciding factor is almost always what the people around you use.
+The question comes up constantly and has a boring answer: both are good, the differences that once mattered mostly don't any more, and the deciding factor is almost always what the people around you use.
 
 Where genuine differences remain:
 

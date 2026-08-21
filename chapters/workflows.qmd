@@ -297,7 +297,7 @@ R users have the same facilities through [testthat](https://testthat.r-lib.org/)
 
 ### Catching Problems Before They Reach CI
 
-CI tells you something broke after you pushed. Pre-commit hooks tell you before. The [pre-commit](https://pre-commit.com/) framework runs a set of checks against your staged files every time you commit:
+CI tells you something broke only after you have pushed it. Pre-commit hooks catch it while the change is still on your machine. The [pre-commit](https://pre-commit.com/) framework runs a set of checks against your staged files every time you commit:
 
 ```yaml
 # .pre-commit-config.yaml
@@ -381,4 +381,4 @@ The tools in this chapter share a purpose: making the second run of an analysis 
 - Pre-commit hooks installed, so a large file or a stray API key can't reach your Git history by accident
 - Data too large for Git under DVC, with the pointer files committed alongside the code
 
-None of this is worth doing on a one-off script you'll delete next week. All of it is worth doing on anything a colleague will inherit, anything that runs more than once, and anything whose output someone will act on.
+Skip all of it on a one-off script you'll delete next week. Do it on anything a colleague will inherit, anything that runs more than once, and anything whose output someone will act on.

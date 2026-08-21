@@ -6,7 +6,7 @@ description: >-
 
 ## Containerisation with Docker
 
-As your data science projects grow more complex, you may encounter the "it works on my machine" problem—where code runs differently in different environments. Containerisation solves this by packaging your code and its dependencies into a standardised unit called a container. Building on the [Reproducible Environments](environments.qmd) chapter (conda and uv for Python, renv for R), containers extend that isolation to the whole runtime — the operating system libraries, the system tools, and the language version itself, not just the packages.
+As your data science projects grow more complex, you may encounter the "it works on my machine" problem — where code runs differently in different environments. Containerisation solves this by packaging your code and its dependencies into a standardised unit called a container. Building on the [Reproducible Environments](environments.qmd) chapter (conda and uv for Python, renv for R), containers extend that isolation to the whole runtime — the operating system libraries, the system tools, and the language version itself, not just the packages.
 
 ### Why Containerisation for Data Science?
 
@@ -27,7 +27,7 @@ Docker is the most widely used containerisation platform, and its command-line t
 :::{.callout-note}
 ## Docker Desktop licensing
 
-Since 2021, **Docker Desktop requires a paid subscription for commercial use at companies with more than 250 employees or over $10 million in annual revenue**. It remains free for personal use, education, small businesses, and open-source projects. If your workplace falls above that threshold, the free alternatives below are excellent and all provide the same `docker` command:
+Since 2021, **Docker Desktop requires a paid subscription for commercial use at companies with more than 250 employees or over $10 million in annual revenue**. It remains free for personal use, education, small businesses, and open-source projects. If your workplace falls above that threshold, the free alternatives below all provide the same `docker` command:
 
 - **[Rancher Desktop](https://rancherdesktop.io/)**: open source, works on Windows/macOS/Linux, bundles Kubernetes
 - **[Podman Desktop](https://podman-desktop.io/)**: open source, Red Hat–maintained, and the closest drop-in replacement for the Docker CLI. It runs without a background service (a *daemon*) holding root privileges, which some IT departments prefer
@@ -117,10 +117,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Create a non-root user (before copying files so we can set ownership)
 RUN useradd --create-home --shell /bin/bash jovyan
 
-# Copy the rest of the code, owned by the non-root user so Jupyter
-# can write notebooks back to /app
+# Copy the rest of the code, owned by the non-root user
 COPY --chown=jovyan:jovyan . .
-RUN chown -R jovyan:jovyan /app
 
 USER jovyan
 
@@ -221,7 +219,6 @@ Another `RUN` statement to install the Python dependencies listed in requirement
 RUN useradd --create-home --shell /bin/bash jovyan
 
 COPY --chown=jovyan:jovyan . .
-RUN chown -R jovyan:jovyan /app
 
 USER jovyan
 ```
@@ -230,7 +227,21 @@ Three things happen here. `COPY . .` copies everything from the current director
 
 That last part is the one worth internalising. By default everything in a container runs as root, which is fine until the container is exposed to the network or mounts a host directory, at which point a process that escapes its intended boundary is doing so with root privileges. Creating an unprivileged user costs two lines. (`jovyan` is not a special name — it's the convention the official Jupyter images use, and following it keeps file ownership consistent if you later switch to one of those base images.)
 
-The `chown -R` on the mounted `/app` directory is what lets Jupyter save your notebooks back to disk; without it the copied files belong to root and the notebook server can't write to them.
+Note what `--chown` does *not* cover. It sets ownership on the files baked into the image at build time. The `-v $(pwd):/app` mount in the run command replaces `/app` with a directory from your host, so anything the image had at that path is hidden underneath it, and the ownership the container sees is the host's, not what the Dockerfile set.
+
+:::{.callout-note}
+## If Jupyter can't save notebooks into a mounted directory
+
+On macOS and Windows, Docker Desktop translates ownership for you and this rarely comes up. On Linux the host's numeric user ID passes through unchanged, so if your account isn't UID 1000 the mounted files belong to someone `jovyan` isn't, and saving fails with a permission error.
+
+Run the container as yourself instead of rebuilding the image:
+
+```bash
+docker run -p 8888:8888 -u $(id -u):$(id -g) -v $(pwd):/app data-science-env
+```
+
+`id -u` and `id -g` are your own user and group numbers, so files the container writes come back owned by you.
+:::
 
 ```dockerfile
 # Command to run when the container starts
@@ -374,6 +385,7 @@ pathlib.Path("models").mkdir(exist_ok=True)
 with open("models/model.pkl", "wb") as f:
     pickle.dump(model, f)
 ```
+
 :::
 
 1. Create a project-specific Dockerfile:
@@ -482,7 +494,7 @@ To get the most out of Docker for data science, follow these best practices:
    CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
    ```
 
-   The benefit: your final image doesn't carry compilers, header files, or build tools, only the installed Python packages and your application code. For typical data science containers this can cut image size by 30–50%, and every tool you leave out is one that can't be used against you if someone gets into the container.
+   The benefit: your final image doesn't carry compilers, header files, or build tools, only the installed Python packages and your application code. That usually takes a substantial bite out of the image size, and every tool you leave out is one that can't be used against you if someone gets into the container.
 
    The second `COPY --from=builder` line is easy to leave out and the resulting failure is confusing. `site-packages` holds the importable library code, but packages that install a command — `gunicorn`, `jupyter`, `streamlit`, `dvc` — put an executable script in `/usr/local/bin`, which is a different directory. Copy only `site-packages` and `import gunicorn` works fine while `gunicorn` at the command line reports `not found`.
 
@@ -587,7 +599,7 @@ docker system prune
 
 ## Conclusion
 
-Packaging your code, dependencies, and configuration into a single unit gets you consistent behaviour across machines and makes "it works on mine" a claim you can test rather than argue about.
+Packaging your code, dependencies, and configuration into a single unit gets you consistent behaviour across machines, and turns "it works on mine" into a claim anyone can test.
 
 **By the end of this chapter you should have:**
 

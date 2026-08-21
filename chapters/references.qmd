@@ -6,25 +6,25 @@ description: >-
 
 ## Resources for Further Learning
 
-To deepen your understanding of data science concepts and tools, here are some excellent resources that build upon the infrastructure we've set up in this book:
+These build on the infrastructure this book sets up. Each entry says what it is for, so you can pick rather than work through the list.
 
 ### Python for Data Science
 
-1. **[Python for Data Analysis, 3rd edition](https://wesmckinney.com/book/)** by Wes McKinney
+1. **[Python for Data Analysis, 3rd edition](https://wesmckinney.com/book/)** by Wes McKinney  
    pandas from its author. The third edition is free to read online and covers pandas 2.x; earlier editions predate several API changes.
 
-2. **[Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)** by Jake VanderPlas
+2. **[Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)** by Jake VanderPlas  
    Covers NumPy, pandas, matplotlib, and scikit-learn end to end. Free online.
 
-3. **[Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd edition](https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/)** by Aurélien Géron
+3. **[Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd edition](https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/)** by Aurélien Géron  
    Implementation-focused, with worked examples throughout.
 
-4. **[Fluent Python, 2nd edition](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/)** by Luciano Ramalho
+4. **[Fluent Python, 2nd edition](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/)** by Luciano Ramalho  
    For the Python language itself rather than the data stack. The 2nd edition covers type hints and async, both absent from the 1st.
 
 ### R for Data Science
 
-1. **[R for Data Science, 2nd edition](https://r4ds.hadley.nz/)** by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund
+1. **[R for Data Science, 2nd edition](https://r4ds.hadley.nz/)** by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund  
    The standard introduction to the tidyverse. Free online. Note the domain: the 1st edition still lives at `r4ds.had.co.nz` and is what most search results point to.
 
 2. **[Advanced R](https://adv-r.hadley.nz/)** by Hadley Wickham  
@@ -33,7 +33,7 @@ To deepen your understanding of data science concepts and tools, here are some e
 3. **[The Big Book of R](https://www.bigbookofr.com/)** by Oscar Baruffa  
    A curated collection of free R resources across various domains and specialties.
 
-4. **[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)** by Hadley Wickham
+4. **[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)** by Hadley Wickham  
    The reference for ggplot2, from its author. Free online.
 
 ### SQL and Databases
@@ -49,8 +49,8 @@ To deepen your understanding of data science concepts and tools, here are some e
 1. **[Pro Git](https://git-scm.com/book/en/v2)** by Scott Chacon and Ben Straub  
    The reference work on Git, from first commit to internals, available for free online.
 
-2. **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** by Jenny Bryan
-   Written for exactly this book's audience: researchers and analysts who need Git to work, not a full account of how it works. Free online, and the troubleshooting chapters are the best of their kind.
+2. **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** by Jenny Bryan  
+   Written for exactly this book's audience: researchers and analysts who need Git to work, not a full account of how it works. Free online, and its troubleshooting chapters are the ones to reach for when Git has you stuck.
 
 ### Data Visualisation
 
@@ -60,32 +60,32 @@ To deepen your understanding of data science concepts and tools, here are some e
 2. **[Storytelling with Data](https://www.storytellingwithdata.com/books)** by Cole Nussbaumer Knaflic  
    Focuses on the narrative aspects of data visualisation.
 
-3. **[Observable Plot documentation](https://observablehq.com/plot/)**
+3. **[Observable Plot documentation](https://observablehq.com/plot/)**  
    For web-based visualisation. Plot covers most of what analysts previously reached for D3 to do, in far less code; drop to D3 only when you need control Plot doesn't expose.
 
 ### Cloud Computing and DevOps
 
-1. **[Cloud Computing for Data Analysis](https://noahgift.com/publication/cloud4data/)** by Noah Gift
+1. **[Cloud Computing for Data Analysis](https://noahgift.com/publication/cloud4data/)** by Noah Gift  
    Project-based, with hands-on labs across AWS, GCP, and Azure.
 
-2. **[Docker Documentation](https://docs.docker.com/get-started/)**
+2. **[Docker Documentation](https://docs.docker.com/get-started/)**  
    Docker's own getting-started material is current and free, which is more than can be said for most published Docker books — the field moves faster than print.
 
-3. **[Quarto documentation](https://quarto.org/docs/guide/)**
+3. **[Quarto documentation](https://quarto.org/docs/guide/)**  
    The reference for everything in the Reporting chapter, including the Typst and LaTeX output paths.
 
 ### Workflow, Testing, and Reproducibility
 
-1. **[The Turing Way](https://the-turing-way.netlify.app/)**
+1. **[The Turing Way](https://the-turing-way.netlify.app/)**  
    A community-written handbook on reproducible research. The reproducibility and project-design chapters are the closest thing to a canonical reference for the material in the Workflows chapter.
 
-2. **[Python Testing with pytest, 2nd edition](https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/)** by Brian Okken
+2. **[Python Testing with pytest, 2nd edition](https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/)** by Brian Okken  
    The standard pytest reference.
 
-3. **[R Packages, 2nd edition](https://r-pkgs.org/)** by Hadley Wickham and Jennifer Bryan
+3. **[R Packages, 2nd edition](https://r-pkgs.org/)** by Hadley Wickham and Jennifer Bryan  
    Free online. Read it when your R code outgrows a folder of scripts — the testing and package-structure chapters apply well before you have anything worth publishing.
 
-4. **[Software Carpentry lessons](https://software-carpentry.org/lessons/)**
+4. **[Software Carpentry lessons](https://software-carpentry.org/lessons/)**  
    Free, well-tested teaching material on the shell, Git, Python, and R, aimed at researchers. Useful both to learn from and to teach from.
 
 ### Online Learning Platforms
@@ -117,6 +117,11 @@ To deepen your understanding of data science concepts and tools, here are some e
    For questions about LaTeX and document preparation.
 
 Several of the best resources above are free and maintained online, which is not a coincidence — books on tooling date faster than books on method. Where a printed reference and its authors' website disagree, trust the website.
+
+## Works Cited
+
+::: {#refs}
+:::
 
 ## Image Credits
 

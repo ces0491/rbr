@@ -49,9 +49,9 @@ print("Hello, world!")
 ```
 ````
 
-The language name after the opening backticks is optional and only controls syntax highlighting. Later in this chapter you'll see fences written as `` ```{python} `` with braces — that is Quarto and R Markdown's own extension, marking a block as code to *execute* rather than merely display. Plain Markdown has no such concept.
+The language name after the opening backticks is optional and only controls syntax highlighting. Later in this chapter you'll see fences written as `` ```{python} `` with braces — that is Quarto and R Markdown's own extension, marking a block as code to *execute* instead of merely display. Plain Markdown has no such concept.
 
-Markdown is designed to be readable even in its raw form. The syntax is intuitive—for example, surrounding text with asterisks makes it italic, and using hash symbols creates headings of different levels.
+Markdown is designed to be readable even in its raw form. The syntax is intuitive — for example, surrounding text with asterisks makes it italic, and using hash symbols creates headings of different levels.
 
 Many platforms interpret Markdown, including GitHub, Jupyter notebooks, and the documentation tools we'll discuss next.
 
@@ -59,7 +59,7 @@ Many platforms interpret Markdown, including GitHub, Jupyter notebooks, and the 
 
 R Markdown combines R code, output, and narrative text in a single document that can be rendered to HTML, PDF, Word, and other formats.
 
-The concept of "literate programming" behind R Markdown was first proposed by computer scientist Donald Knuth in 1984, and it has become a cornerstone of reproducible research in data science.
+The concept of "literate programming" behind R Markdown was first proposed by Donald Knuth in 1984 [@knuth84], and it has become a cornerstone of reproducible research in data science.
 
 #### Installing and Using R Markdown
 
@@ -91,7 +91,7 @@ For example:
 ---
 title: "My First Data Analysis"
 author: "Your Name"
-date: "2025-04-30"
+date: "2026-04-30"
 output: html_document
 ---
 
@@ -147,7 +147,7 @@ R Markdown has become a standard in reproducible research because it creates a d
 
 ### Jupyter Notebooks for Documentation
 
-We've already covered Jupyter notebooks for Python development, but they're also excellent documentation tools. Like R Markdown, they combine code, output, and narrative text.
+We've already covered Jupyter notebooks for Python development, but they double as documentation tools. Like R Markdown, they combine code, output, and narrative text.
 
 #### Exporting Jupyter Notebooks
 
@@ -203,7 +203,7 @@ quarto render document.qmd
 
 Quarto represents an evolution in documentation tools because it provides a unified system for creating computational documents with multiple programming languages. This is particularly valuable if you work with both Python and R, as you can maintain a consistent documentation approach across all your projects.
 
-The key advantage of Quarto is its language-agnostic design—you can mix Python, R, Julia, and other languages in a single document, which reflects the reality of many data science workflows where different tools are used for different tasks.
+The key advantage of Quarto is its language-agnostic design — you can mix Python, R, Julia, and other languages in a single document, which reflects the reality of many data science workflows where different tools are used for different tasks.
 
 #### Quarto Dashboards
 
@@ -274,7 +274,7 @@ When a report needs to look like a journal article or a formal business document
 LaTeX offers several advantages for data science documentation:
 
 1. **Professional typesetting**: Produces publication-quality documents with consistent formatting
-2. **Exceptional math support**: Renders complex equations with beautiful typography
+2. **Math support**: Renders complex equations to a typographic standard nothing else matches
 3. **Advanced layout control**: Provides precise control over document structure and appearance
 4. **Bibliography management**: Integrates with citation systems like BibTeX
 5. **Reproducibility**: Separates content from presentation in a plain text format that works with version control
@@ -283,7 +283,7 @@ LaTeX documents, particularly those with programmatically generated figures, ten
 
 #### Getting Started with LaTeX
 
-LaTeX works differently from word processors—you write plain text with special commands, then compile it to produce a PDF. For data science, you don't need to install a full LaTeX distribution, as Quarto and R Markdown can handle the compilation process.
+LaTeX works differently from word processors — you write plain text with special commands, then compile it to produce a PDF. For data science, you don't need to install a full LaTeX distribution, as Quarto and R Markdown can handle the compilation process.
 
 #### Installing LaTeX for Quarto and R Markdown
 
@@ -347,7 +347,7 @@ When using Quarto or R Markdown, you won't write this structure directly. Instea
 
 #### Mathematical Equations
 
-LaTeX shines when it comes to mathematical notation. Here are examples of common equation formats:
+Mathematical notation is what LaTeX is best at. Here are examples of common equation formats:
 
 **Inline equations** use single dollar signs:
 
@@ -505,7 +505,7 @@ For managing citations, create a BibTeX file (e.g., `references.bib`):
   author = {Knuth, Donald E.},
   title = {Literate Programming},
   year = {1984},
-  journal = {The Computer Journal},
+  journal = {Comput. J.},
   volume = {27},
   number = {2},
   pages = {97--111}
@@ -793,7 +793,7 @@ cd my-documentation
 mkdocs serve
 ```
 
-MkDocs is focused on simplicity and readability. It generates a clean, responsive website from your Markdown files, with navigation, search, and themes. This makes it an excellent choice for project documentation that needs to be accessible to users or team members.
+MkDocs is focused on simplicity and readability. It generates a clean, responsive website from your Markdown files, with navigation, search, and themes — enough for project documentation aimed at users or team members, without a heavier system's configuration burden.
 
 #### Sphinx: Documentation Generated from Code
 
@@ -815,7 +815,7 @@ Sphinx offers advanced features like automatic API documentation generation, cro
 
 Sphinx became the standard for Python documentation largely because it generates reference documentation from *docstrings* — the descriptive text you write inside a function or class, which Python keeps attached to the object at runtime. You document each function where it lives, and Sphinx extracts and formats those descriptions into a browsable reference that can't drift out of step with the code.
 
-## Reproducible Reports - Working with Data
+## Reproducible Reports — Working with Data
 
 When using external data files in Quarto projects, it's important to understand how to handle file paths properly to ensure reproducibility across different environments.
 
@@ -923,7 +923,7 @@ The `cache: true` option tells Quarto to save the results and only re-execute th
 
 Effective documentation follows certain principles:
 
-1. **Start early**: Document as you go rather than treating it as an afterthought
+1. **Start early**: Document as you go, instead of leaving it to the end
 2. **Be consistent**: Use the same style and terminology throughout
 3. **Include examples**: Show how to use your code or analysis
 4. **Consider your audience**: Technical details for peers, higher-level explanations for stakeholders
@@ -948,5 +948,3 @@ What we haven't covered yet are the **charts** that live inside these documents 
 - The [Web Development for Data Scientists](web_dev.qmd) chapter covers the tools for when "rerun the render" isn't enough and stakeholders need to poke at the data themselves: Shiny, Dash, Streamlit, and Flask.
 
 Together these three chapters form a progression: from static documents that communicate findings, to visualisations that make those findings immediate, to interactive applications that invite exploration.
-
-

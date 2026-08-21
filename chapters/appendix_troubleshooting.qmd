@@ -104,7 +104,10 @@ Setting up a data science environment can sometimes be challenging, especially w
 2. **If using HTTPS**:
    - GitHub no longer accepts password authentication for HTTPS
    - Set up a personal access token (PAT) on GitHub and use it instead of your password
-   - Store credentials: `git config --global credential.helper store`
+   - Store the token in your operating system's keychain rather than in a file:
+     `credential.helper manager` on Windows, `osxkeychain` on macOS, `libsecret` on
+     Linux. Avoid `credential.helper store`, which many guides recommend — it writes
+     the token to `~/.git-credentials` in plain text, and a PAT is as good as a password
 
 3. **Platform-specific issues**:
    - **Windows**: Ensure Git Bash is used for SSH operations or set up SSH Agent in Windows

@@ -20,11 +20,11 @@ Cloud platforms offer several advantages for data science:
 4. **Managed Services**: Pre-configured tools and infrastructure
 5. **Cost Efficiency**: Pay only for what you use
 
-The ability to scale compute resources is particularly valuable for data scientists working with large datasets or computationally intensive models. Rather than investing in expensive hardware that might sit idle most of the time, cloud platforms let you rent a large machine for the afternoon you need it and shut it down afterwards.
+The ability to scale compute resources is particularly valuable for data scientists working with large datasets or computationally intensive models. Cloud platforms let you rent a large machine for the afternoon you need it and shut it down afterwards, instead of buying hardware that sits idle most of the year.
 
 ### Getting Started with Google Colab
 
-Google Colab provides free access to Python notebooks with GPU and TPU acceleration. It's an excellent way to get started with cloud-based data science without any financial commitment.
+Google Colab provides free access to Python notebooks with GPU and TPU acceleration, which makes it the cheapest place to start with cloud-based data science: there is nothing to pay and nothing to install.
 
 1. Visit [Google Colab](https://colab.research.google.com/)
 2. Sign in with your Google account
@@ -34,7 +34,7 @@ Google Colab is essentially Jupyter notebooks running on Google's servers, with 
 
 The key advantages of Colab include:
 
-- No setup required - just open your browser and start coding
+- No setup required — just open your browser and start coding
 - Free access to GPUs and TPUs for accelerated machine learning
 - Easy sharing and collaboration through Google Drive
 - Pre-installed data science libraries
@@ -89,7 +89,7 @@ Azure is particularly well-integrated with Microsoft's other tools:
 - **Azure SQL Database**: Managed SQL
 - **Power BI**: Business intelligence and visualisation
 
-Each platform has its strengths, and many organisations use multiple clouds for different purposes. AWS has the broadest range of services, GCP excels in machine learning tools, and Azure integrates well with Microsoft's enterprise ecosystem.
+Each platform has its strengths, and many organisations use multiple clouds for different purposes. AWS has the broadest service catalogue. GCP's machine learning tooling is the most developed of the three. Azure is the path of least resistance if your organisation already runs on Microsoft.
 
 ### Choosing the Right Cloud Services
 
@@ -102,7 +102,7 @@ When selecting cloud services for data science, consider these factors:
 5. **Security requirements**: Review compliance certifications and features
 6. **Data residency and regulation**: Where your data physically lives matters legally. Personal data about EU residents falls under GDPR; South African personal data falls under POPIA; similar laws exist in most jurisdictions. Pick a region in the right country or economic area for your data subjects, and check whether your employer or client has contractual restrictions on where data can be stored or processed. All three major clouds (AWS, GCP, Azure) have regions in both South Africa and Europe.
 
-A strategic approach is to start with a small project on your chosen platform. This allows you to gain familiarity with the environment before committing to larger workloads.
+Start with a small project on your chosen platform, so you learn the environment before committing a real workload to it.
 
 ### Getting Started with a Cloud Platform
 
@@ -119,7 +119,7 @@ This gives you a fully configured Jupyter environment with access to more comput
 :::{.callout-warning}
 ## Shut it down when you're done
 
-Studio spaces and notebook instances bill by the minute they're running, not by how much you use them. A notebook you forgot to stop over the weekend is the single most common surprise bill for beginners. Stop the space from the Studio UI when you finish a session.
+Studio spaces and notebook instances bill by the minute they're running, not by how much you use them. A notebook left running over a weekend is the classic first surprise bill. Stop the space from the Studio UI when you finish a session.
 :::
 
 ### Managing Cloud Costs
@@ -269,7 +269,7 @@ Colab notebooks are automatically saved to your Google Drive. You can also:
 - Save to GitHub: File → Save a copy in GitHub
 - Share with collaborators: Click the Share button in the top right
 
-This exercise demonstrates the core workflow of cloud-based data science: loading data, performing analysis, creating visualisations, and optionally leveraging specialised hardware—all without installing anything on your local machine.
+This exercise demonstrates the core workflow of cloud-based data science: loading data, performing analysis, creating visualisations, and optionally leveraging specialised hardware — all without installing anything on your local machine.
 
 ### Connecting Cloud Storage to Your Analysis
 
@@ -312,7 +312,7 @@ These patterns allow you to work with data stored in various cloud locations whi
 
 ## Conclusion
 
-The cloud buys you three things your laptop can't give you: hardware you don't own, storage that doesn't live on one disk, and a machine that keeps running when you close the lid.
+The cloud buys you hardware you don't own, storage that doesn't live on a single disk, and a machine that keeps running when you close the lid.
 
 **By the end of this chapter you should have:**
 

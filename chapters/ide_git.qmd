@@ -1,7 +1,7 @@
 ---
 title: "Editors and Version Control"
 description: >-
-  Choosing an editor and learning version control - VS Code, RStudio and JupyterLab, and the Git workflow running underneath all three.
+  Choosing an editor and learning version control — VS Code, RStudio and JupyterLab, and the Git workflow running underneath all three.
 ---
 
 ## Integrated Development Environments (IDEs)
@@ -17,7 +17,7 @@ IDEs help data scientists by:
 3. Offering integrated documentation
 4. Simplifying project organisation and version control
 
-Most professional developers use a specialised IDE rather than a basic text editor, as the additional features significantly improve productivity.
+Most professional developers work in a specialised IDE. The features above are why.
 
 Think of an IDE as a fully equipped workshop rather than just having a single tool. It has everything arranged conveniently in one place.
 
@@ -25,7 +25,7 @@ We've already installed RStudio for R development. Now let's look at options for
 
 ### VS Code: A Universal IDE
 
-Visual Studio Code (VS Code) is a free, open-source editor that supports multiple languages through extensions. Its flexibility makes it an excellent choice for data scientists.
+Visual Studio Code (VS Code) is a free, open-source editor that supports multiple languages through extensions. That flexibility is what makes it a reasonable default for data science, where one project routinely mixes Python, R, SQL, and notebooks.
 
 #### Installing VS Code
 
@@ -58,7 +58,7 @@ This step tells VS Code which Python installation to use when running your code.
 
 ### PyCharm Community Edition
 
-PyCharm is an IDE specifically designed for Python development, with excellent data science support.
+PyCharm is an IDE built specifically for Python, with data science support to match.
 
 #### Installing PyCharm Community Edition
 
@@ -110,7 +110,7 @@ Each IDE has strengths and weaknesses:
 - **VS Code**: Versatile, lightweight, supports multiple languages
 - **PyCharm**: Deep Python-specific tooling — refactoring, type inference, an integrated debugger — which pays off most on large projects
 - **RStudio**: Optimised for R development
-- **JupyterLab**: Excellent for exploratory data analysis and sharing results
+- **JupyterLab**: Suited to exploratory data analysis and sharing results
 
 Many data scientists use multiple IDEs depending on the task. For example, you might use:
 
@@ -180,7 +180,7 @@ GitHub provides free hosting for Git repositories, making it easy to share code 
 2. Click "Sign up" and follow the instructions
 3. Verify your email address
 
-GitHub is to Git what social media is to your photos—a place to share your work with others and collaborate on projects.
+GitHub is to Git what social media is to your photos — a place to share your work with others and collaborate on projects.
 
 ### Setting Up SSH Authentication for GitHub
 
@@ -267,7 +267,7 @@ The `echo "..." > README.md` line above produces a file in a different text enco
 
 ### Telling Git What to Ignore: `.gitignore`
 
-Before you commit anything else, create a `.gitignore` file in the root of your repository. This tells Git which files and folders it should never track: things like local virtual environments, cached files, large data dumps, and, critically, secrets like API keys. Getting this right from day one prevents the single most common beginner mistake: accidentally pushing credentials to a public repository.
+Before you commit anything else, create a `.gitignore` file in the root of your repository. This tells Git which files and folders it should never track: things like local virtual environments, cached files, large data dumps, and, critically, secrets like API keys. Getting this right from day one prevents the classic beginner mistake: accidentally pushing credentials to a public repository.
 
 Create a file named `.gitignore` (note the leading dot) with content like this as a starting point for a data science project:
 
@@ -303,10 +303,10 @@ Thumbs.db
 .idea/
 ```
 
-Adjust the patterns to fit your project — this is a starting point, not a rule. Two adjustments come up often:
+Adjust the patterns to fit your project; treat this as a starting point. Two adjustments come up often:
 
 - **Small reference datasets belong in Git.** A lookup table of country codes is a few kilobytes and versioning it alongside the code is exactly right. Remove the `data/` lines, or narrow them to the directories that actually hold bulk data.
-- **Don't ignore file formats wholesale.** Patterns like `*.parquet` or `*.db` are tempting, but [Data Stores](data_stores.qmd) recommends working *from* Parquet — so a blanket rule quietly stops your main working files from ever being tracked. Ignore by location, not by extension.
+- **Don't ignore file formats wholesale.** Patterns like `*.parquet` or `*.db` are tempting, but [Data Stores](data_stores.qmd) recommends working *from* Parquet — so a blanket rule quietly stops your main working files from ever being tracked. Ignore by location instead of by extension.
 
 If you find yourself wanting to commit something you've already ignored, you can force it with `git add -f <file>`.
 
@@ -382,7 +382,7 @@ Most modern IDEs integrate with Git, making version control easier:
 - Click the Git tab in the upper-right panel
 - Use the interface for Git operations
 
-These integrations mean you don't have to use the command line for every Git operation—you can manage version control without leaving your coding environment.
+These integrations mean you don't have to use the command line for every Git operation — you can manage version control without leaving your coding environment.
 
 ### Collaborating with Others on GitHub
 
@@ -417,7 +417,7 @@ The "fork and pull request" workflow is used by nearly all open-source projects,
 
 Git has a large surface area and most of it is irrelevant to analytical work. If you learn four things, you have covered the overwhelming majority of what you'll do:
 
-1. **`git add` / `git commit` / `git push`** — the daily loop. Commit when you finish a coherent piece of work, not at the end of the day.
+1. **`git add` / `git commit` / `git push`** — the daily loop. Commit when you finish a coherent piece of work, which is rarely the same moment as the end of the day.
 2. **Branches** — one per piece of work, merged back when it's done. Keeps half-finished changes off `main`.
 3. **`.gitignore`** — what never goes in. Data, credentials, environments, rendered output.
 4. **How to undo the last thing you did** — `git restore <file>` to discard uncommitted changes, `git revert <commit>` to undo a commit that's already pushed.
@@ -432,7 +432,7 @@ Almost everyone eventually lands in a Git state they don't understand. Two thing
 - **Your work is probably not lost.** Committed work is very hard to actually destroy — `git reflog` shows where every branch has been, including commits you think you deleted.
 - **The nuclear option is fine.** Clone the repository fresh into a new directory, copy your changed files across, and commit. It feels like cheating; it takes five minutes and always works. Do that rather than spending an afternoon on a merge you don't understand.
 
-[Happy Git and GitHub for the useR](https://happygitwithr.com/) has the best troubleshooting material for exactly this situation.
+[Happy Git and GitHub for the useR](https://happygitwithr.com/) covers exactly this situation, and the [References](references.qmd) chapter says more about it.
 :::
 
 ## Commit Messages

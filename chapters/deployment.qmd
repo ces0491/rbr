@@ -6,7 +6,7 @@ description: >-
 
 ## Understanding Deployment for Data Science
 
-After developing your data science project, the next crucial step is deployment—making your work accessible to others. Deployment can mean different things depending on your project: publishing an analysis report (using the documentation tools from the Reporting chapter), sharing an interactive dashboard (like the Shiny and Dash applications we explored in previous chapters), or creating an API for a machine learning model.
+After developing your data science project, the next crucial step is deployment — making your work accessible to others. Deployment can mean different things depending on your project: publishing an analysis report (using the documentation tools from the Reporting chapter), sharing an interactive dashboard (like the Shiny and Dash applications we explored in previous chapters), or creating an API for a machine learning model.
 
 ### Why Deployment Matters
 
@@ -278,7 +278,7 @@ For R Shiny, Quarto, Streamlit, and Dash content, Posit's hosted platform is the
 :::{.callout-important}
 ## shinyapps.io is being retired — start on Connect Cloud
 
-If you have read about deploying Shiny apps anywhere else, you have read about **shinyapps.io**. It still works, but Posit is consolidating it into **[Posit Connect Cloud](https://connect.posit.cloud/)** and has published a timeline: a migration tool arrives in Connect Cloud in September 2026, and accounts that haven't migrated are moved automatically from early 2027. Existing URLs get permanent redirects, so links already shared keep working.
+If you have read about deploying Shiny apps anywhere else, you have read about **shinyapps.io**. It still works, but Posit is consolidating it into **[Posit Connect Cloud](https://connect.posit.cloud/)**, and has said that all shinyapps.io users will be migrated by the end of 2026. Existing URLs get permanent redirects, so links already shared keep working. Check [shinyapps.io](https://www.shinyapps.io/) for the current schedule before you plan around a specific date.
 
 The practical advice depends on where you are:
 
@@ -308,14 +308,8 @@ If you script your deploys, install `rsconnect` and keep credentials out of the 
 ```r
 install.packages("rsconnect")
 
-# Configure your account (one-time setup)
-# Set SHINYAPPS_TOKEN and SHINYAPPS_SECRET in your environment first,
-# e.g. in ~/.Renviron (which should NOT be committed to git).
-rsconnect::setAccountInfo(
-  name   = "your-account-name",
-  token  = Sys.getenv("SHINYAPPS_TOKEN"),
-  secret = Sys.getenv("SHINYAPPS_SECRET")
-)
+# One-time setup. Opens a browser and links your Connect Cloud account.
+rsconnect::connectCloudUser()
 
 # Deploy your app
 rsconnect::deployApp(
@@ -324,6 +318,29 @@ rsconnect::deployApp(
   account = "your-account-name"
 )
 ```
+
+For a script that runs unattended — in CI, say — there is no browser to open. Create a
+service account in Connect Cloud, then authenticate with its OAuth client credentials,
+read from the environment rather than written into the file:
+
+```r
+rsconnect::connectCloudClientCredentials(
+  clientId     = Sys.getenv("CONNECT_CLOUD_CLIENT_ID"),
+  clientSecret = Sys.getenv("CONNECT_CLOUD_CLIENT_SECRET"),
+  accountName  = "your-account-name"
+)
+```
+
+:::{.callout-warning}
+## `setAccountInfo()` is the shinyapps.io call, not the Connect Cloud one
+
+Almost every tutorial you will find configures `rsconnect` with
+`setAccountInfo(name, token, secret)`. That is the shinyapps.io function, and it was
+the only one that mattered for a decade. Connect Cloud uses the `connectCloud*`
+functions above; `connectApiUser()` is a third thing again, for self-hosted Posit
+Connect servers. Three products, three registration calls, and the error you get from
+picking the wrong one does not tell you which one you wanted.
+:::
 
 :::{.callout-tip}
 ## Publishing Quarto to Connect Cloud
@@ -612,6 +629,7 @@ The catch is local testing. Run this image on your own machine and `$PORT` is em
 ```bash
 docker run -e PORT=8080 -p 8080:8080 my-dashboard
 ```
+
 :::
 
 4. Sign up for Render and connect your GitHub repository
@@ -668,7 +686,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   filtered_data <- reactive({
-    sales %>%
+    sales |>
       filter(Date == input$Date,
              Product %in% input$Products)
   })
@@ -681,8 +699,8 @@ server <- function(input, output) {
   })
   
   output$salesTable <- DT::renderDT({
-    filtered_data() %>%
-      group_by(Product) %>%
+    filtered_data() |>
+      group_by(Product) |>
       summarise(Total = sum(Sales),
                 Average = mean(Sales))
   })

@@ -4,9 +4,9 @@ _book/
 *_files/
 *_cache/
 
-# Freeze cache is a build artifact. Only one chunk in the book actually
-# executes, so there is nothing worth caching here, and stale frozen output
-# would publish silently. CI executes fresh.
+# Freeze cache is a build artifact: useful locally, never committed, so a
+# stale frozen result can't publish silently. CI has no cache and executes
+# every chapter from scratch.
 _freeze/
 
 # R/RStudio
@@ -32,10 +32,6 @@ ENV/
 output/
 _site/
 docs/
-*.html
-*.pdf
-*.epub
-!index.html
 
 # OS files
 .DS_Store

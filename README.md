@@ -33,7 +33,7 @@ Plus two appendices: utility tools worth knowing about, and a troubleshooting re
 
 ## Read Online
 
-The book is published via GitHub Pages at [ces0491.github.io/rbr](https://ces0491.github.io/rbr/).
+The book is published at [rbr.sheetsolved.com](https://rbr.sheetsolved.com/), served from GitHub Pages via the `CNAME` file in the repository root.
 
 ## Building Locally
 
@@ -43,7 +43,7 @@ This is a [Quarto](https://quarto.org/) book project. To build it locally:
 
 - [Quarto](https://quarto.org/docs/get-started/) (>= 1.4)
 - [Python 3.13+](https://www.python.org/) with Jupyter (`pip install jupyter nbformat nbclient`) — matches the version CI uses
-- [R 4.4+](https://cran.r-project.org/) with packages: `knitr`, `rmarkdown`, `reticulate`, `tidyverse`, `shiny`, `plotly`, `lubridate`
+- [R 4.5+](https://cran.r-project.org/) with packages: `knitr`, `rmarkdown`, `reticulate`, `tidyverse`, `shiny`, `plotly`, `lubridate`
 
 ### Render
 
@@ -73,6 +73,8 @@ quarto render --to epub
 ```
 .
 ├── _quarto.yml          # Book configuration
+├── CNAME                # Custom domain; listed under project resources so
+│                        #   `quarto publish` copies it into the output
 ├── index.qmd            # Welcome & preface
 ├── chapters/            # Chapter source files (.qmd)
 ├── assets/              # Cover images

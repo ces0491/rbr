@@ -1,7 +1,7 @@
 ---
 title: "Utility Tools for Data Scientists"
 description: >-
-  The small utilities that remove real friction from daily data work - worth installing once and keeping.
+  The small utilities that remove real friction from daily data work — worth installing once and keeping.
 ---
 
 ## Utility Tools for Data Scientists
@@ -79,7 +79,7 @@ Sublime Text is a cross-platform editor known for opening very large files quick
 1. Download from [sublimetext.com](https://www.sublimetext.com/download)
 2. Install and activate (free evaluation with occasional purchase reminder)
 
-Sublime Text's speed and versatility make it excellent for manipulating text data, writing scripts, or making quick edits to code without launching a heavier IDE.
+Sublime Text's speed suits manipulating text data, writing scripts, or making quick edits to code without launching a heavier IDE.
 
 ### API Development and Testing Tools
 
@@ -240,11 +240,11 @@ WinMerge is a free, open-source alternative for file and folder comparison.
 1. Download from [winmerge.org](https://winmerge.org/downloads/)
 2. Run the installer
 
-WinMerge is an excellent free option for basic comparison needs, though it lacks some of the advanced features of commercial alternatives.
+WinMerge covers basic comparison needs for free, though it lacks some of the features of commercial alternatives.
 
 ### Terminal Enhancements
 
-Improving your command line experience can significantly boost productivity when working with data and code.
+A better-configured shell pays for itself quickly once you're in one every day.
 
 #### Oh My Zsh
 
@@ -309,8 +309,8 @@ A family of newer command-line tools, mostly written in Rust, have become the de
 
 For Python and R tooling specifically, three newer tools are now standard enough to mention:
 
-- **[uv](https://docs.astral.sh/uv/)**: a Python package manager and virtual-environment tool written in Rust, an order of magnitude faster than pip at resolving and installing. It's a drop-in replacement for `pip`, `pip-tools`, `virtualenv`, and `pyenv`. Create an environment with `uv venv`, install from a `requirements.txt` with `uv pip install -r requirements.txt`, and run project scripts with `uv run`.
-- **[ruff](https://docs.astral.sh/ruff/)**: a Python linter and formatter, also from Astral, 10–100× faster than the tools it replaces (flake8, isort, black). Modern Python projects almost always use it.
+- **[uv](https://docs.astral.sh/uv/)**: a Python package manager and virtual-environment tool written in Rust, dramatically quicker than pip at resolving and installing. It's a drop-in replacement for `pip`, `pip-tools`, `virtualenv`, and `pyenv`. Create an environment with `uv venv`, install from a `requirements.txt` with `uv pip install -r requirements.txt`, and run project scripts with `uv run`.
+- **[ruff](https://docs.astral.sh/ruff/)**: a Python linter and formatter, also from Astral, fast enough to run on every keystroke where the tools it replaces (flake8, isort, black) were not. Modern Python projects almost always use it.
 - **[pixi](https://pixi.sh/)**: a project-based package manager built on the conda ecosystem. Think of it as "uv for conda": fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.
 
 None of these are required to follow this book. The classic `pip`/`conda`/`grep`/`find` commands still work fine. But once you've tried them it's hard to go back.
@@ -518,7 +518,7 @@ OBS (Open Broadcaster Software) Studio records your screen and streams it, free 
 1. Download from [obsproject.com](https://obsproject.com/download)
 2. Run the installer
 
-OBS is excellent for creating tutorial videos, recording presentations, or documenting complex data analysis processes for training purposes.
+OBS suits tutorial videos, recorded presentations, or documenting an analysis process for training purposes.
 
 ### Productivity and Note-Taking Tools
 

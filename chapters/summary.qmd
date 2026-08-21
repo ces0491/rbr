@@ -12,23 +12,23 @@ If you worked through the chapters rather than reading past them, you now have:
 
 **Communicating results.** Documents that regenerate themselves from data, so a corrected figure means a re-render rather than an afternoon of copy-paste. Charts in whichever of matplotlib, plotly, or ggplot2 fits the job. Cloud compute for the times your laptop isn't enough, with a budget alert you set before you needed it.
 
-**Shipping.** Applications your stakeholders can open in a browser. Containers that make "works on my machine" a testable claim rather than an argument. Deployment that happens on push. Tests that run in CI, and a project structure the next person can navigate without asking you.
+**Shipping.** Applications your stakeholders can open in a browser. Containers that settle "works on my machine" by letting someone else run it. Deployment that happens on push. Tests that run in CI, and a project structure the next person can navigate without asking you.
 
-None of this is the analysis. All of it is what makes the analysis count for something.
+None of it is the analysis. It is what makes the analysis count for something.
 
 ## The Three Ideas Underneath
 
 Strip away the specific tools — most of which will be replaced within a decade — and three principles remain.
 
-**Write down what you depend on.** Environment files, lockfiles, Dockerfiles, `requirements.txt`. The recurring failure in analytical work is a result nobody can reproduce, and the cause is almost always a dependency that existed only in someone's working directory. This is the cheapest habit in the book and the one with the highest return.
+**Write down what you depend on.** Environment files, lockfiles, Dockerfiles, `requirements.txt`. The recurring failure in analytical work is a result nobody can reproduce, and the cause is almost always a dependency that existed only in someone's working directory. It costs less than anything else here and returns more.
 
-**Automate the second run.** The first time you do something by hand is research. The fifth time is a Makefile you should have written. Automation isn't primarily about saving keystrokes — it's that a manual process leaves no record, so nobody can check it, and it drifts a little every time a person performs it.
+**Automate the second run.** The first time you do something by hand is research; the fifth time is a Makefile you should have written. The main gain is not saved keystrokes. A manual process leaves no record, so nobody can check it, and it drifts a little every time a person performs it.
 
-**Make failure loud and early.** A test that fails in CI is a good outcome. A missing dependency caught by a clean build is a good outcome. The alternative isn't success; it's the same failure discovered later, by someone else, after they've acted on a wrong number. Most of the tooling in this book exists to move errors earlier in the process, where they're cheap.
+**Make failure loud and early.** A test that fails in CI is a good outcome, and so is a missing dependency caught by a clean build. The alternative was never success — it was the same failure discovered later, by someone else, after they had acted on a wrong number. Most of the tooling in this book exists to move errors earlier in the process, where they're cheap.
 
 ## Where the Tools Will Change
 
-Being honest about the shelf life of what you've just read:
+The shelf life of what you've just read varies by layer:
 
 **Stable for a decade or more.** The command line, Git, SQL, and the concepts behind containerisation and continuous integration. These have changed remarkably little in twenty years and won't change much in the next twenty.
 
@@ -42,7 +42,7 @@ When a specific tool stops matching reality, the principle it illustrated almost
 
 Take a project you finished more than six months ago. Clone it fresh into a new directory — not the one you worked in — and try to reproduce a result.
 
-Whatever breaks is your real gap. Most people find at least one, and finding it deliberately, on a project that no longer matters, is enormously preferable to finding it under deadline on one that does.
+Whatever breaks is your real gap. Most people find at least one, and it is far better to find it deliberately, on a project that no longer matters, than under deadline on one that does.
 
 ## A Note on the Machines
 
@@ -50,11 +50,11 @@ The Preface argued that understanding this infrastructure matters more in an era
 
 An assistant will happily write you a Dockerfile, a GitHub Actions workflow, or a pandas pipeline, and it will usually be close to right. What it cannot do is tell you whether the result is correct — it cannot run your data through it and recognise that the answer is implausible. That judgement requires knowing what the pieces do, which is what you now have.
 
-The productive relationship is neither suspicion nor deference. Let the machine draft; you check. Checking is the skill that holds its value.
+The productive relationship is neither suspicion nor deference: let the machine draft, and check what it hands back. Checking is the skill that holds its value.
 
 ## Ready
 
-The environments are reproducible, the code is versioned, the outputs are deployable, and the pipeline runs when you push.
+Your environments are reproducible, your code is versioned, and the pipeline deploys when you push.
 
 That was the point. Everything from here is the actual work — the analysis you came to do, now with less between you and it.
 
