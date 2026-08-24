@@ -245,4 +245,6 @@ Use an environment file always; it costs nothing. Reach for a container when the
 - Your editor pointed at the right interpreter, and the environment registered as a Jupyter kernel if you use notebooks
 - Successfully reconstructed one of your own environments from its record file — do this once deliberately, so you find out now whether the file is actually complete
 
-That last item is the one people skip. A record file you've never restored from is only a hypothesis.
+That last item is the one people skip. Until you have restored from a record file, you don't know whether it works.
+
+With environments recorded, the foundations are done. The next section turns to producing output someone else can read.

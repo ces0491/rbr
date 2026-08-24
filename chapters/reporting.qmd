@@ -121,7 +121,7 @@ my_data <- diamonds |>
 head(my_data)
 ```
 
-## Data Visualization
+## Data Visualisation
 
 ```{r visualization, eval=FALSE}
 ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
@@ -267,23 +267,9 @@ This single pattern replaces a surprising amount of the ad-hoc "one notebook per
 
 ### LaTeX for Professional Document Creation
 
-When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX handles precise page layout, mathematical notation, numbered figures and cross-references, and bibliographies.
+When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX gives you precise page layout, mathematical notation to a standard nothing else matches, figures and tables that number and cross-reference themselves, and bibliographies through BibTeX — all from plain text, so it versions in Git like any other source file.
 
-#### Why LaTeX for Data Scientists?
-
-LaTeX offers several advantages for data science documentation:
-
-1. **Professional typesetting**: Produces publication-quality documents with consistent formatting
-2. **Math support**: Renders complex equations to a typographic standard nothing else matches
-3. **Advanced layout control**: Provides precise control over document structure and appearance
-4. **Bibliography management**: Integrates with citation systems like BibTeX
-5. **Reproducibility**: Separates content from presentation in a plain text format that works with version control
-
-LaTeX documents, particularly those with programmatically generated figures, tend to be more reproducible than those created with proprietary document formats.
-
-#### Getting Started with LaTeX
-
-LaTeX works differently from word processors — you write plain text with special commands, then compile it to produce a PDF. For data science, you don't need to install a full LaTeX distribution, as Quarto and R Markdown can handle the compilation process.
+LaTeX works differently from word processors: you write plain text with special commands, then compile it to a PDF. You don't need to learn those commands to get the benefit. Quarto and R Markdown generate them from your document and run the compiler for you, so what follows is how to install that compiler and configure Quarto to drive it, rather than a course in LaTeX itself. If you do end up writing raw LaTeX, [Quarto's PDF documentation](https://quarto.org/docs/output-formats/pdf-basics.html) and the [TeX Stack Exchange](https://tex.stackexchange.com/) are where to go.
 
 #### Installing LaTeX for Quarto and R Markdown
 
@@ -303,124 +289,6 @@ quarto install tinytex
 ```
 
 TinyTeX is designed specifically for R Markdown and Quarto users. It installs only the essential LaTeX packages (around 150MB) compared to full distributions (several GB), and it automatically installs additional packages as needed when you render documents.
-
-#### LaTeX Basics for Data Scientists
-
-Let's explore the essential LaTeX elements you'll need for data science documentation:
-
-#### Document Structure
-
-A basic LaTeX document structure looks like this:
-
-```latex
-\documentclass{article}
-\usepackage{graphicx}  % For images
-\usepackage{amsmath}   % For advanced math
-\usepackage{booktabs}  % For professional tables
-
-\title{Analysis of Customer Purchasing Patterns}
-\author{Your Name}
-\date{\today}
-
-\begin{document}
-
-\maketitle
-\tableofcontents
-
-\section{Introduction}
-This report analyses...
-
-\section{Methodology}
-\subsection{Data Collection}
-We collected data from...
-
-\section{Results}
-The results show...
-
-\section{Conclusion}
-In conclusion...
-
-\end{document}
-```
-
-When using Quarto or R Markdown, you won't write this structure directly. Instead, it's generated based on your YAML header and document content.
-
-#### Mathematical Equations
-
-Mathematical notation is what LaTeX is best at. Here are examples of common equation formats:
-
-**Inline equations** use single dollar signs:
-
-```latex
-The model accuracy is $\alpha = 0.95$, which exceeds our threshold.
-```
-
-**Display equations** use double dollar signs:
-
-```latex
-$$
-\bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i
-$$
-```
-
-**Equation arrays** for multi-line equations:
-
-```latex
-\begin{align}
-Y &= \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \epsilon \\
-&= \beta_0 + \sum_{i=1}^{2} \beta_i X_i + \epsilon
-\end{align}
-```
-
-Some common math symbols in data science:
-
-| Description | LaTeX Code | Result |
-|-------------|------------|--------|
-| Summation | `\sum_{i=1}^{n}` | $\sum_{i=1}^{n}$ |
-| Product | `\prod_{i=1}^{n}` | $\prod_{i=1}^{n}$ |
-| Fraction | `\frac{a}{b}` | $\frac{a}{b}$ |
-| Square root | `\sqrt{x}` | $\sqrt{x}$ |
-| Bar (mean) | `\bar{X}` | $\bar{X}$ |
-| Hat (estimate) | `\hat{\beta}` | $\hat{\beta}$ |
-| Greek letters | `\alpha, \beta, \gamma` | $\alpha, \beta, \gamma$ |
-| Infinity | `\infty` | $\infty$ |
-| Approximately equal | `\approx` | $\approx$ |
-| Distribution | `X \sim N(\mu, \sigma^2)` | $X \sim N(\mu, \sigma^2)$ |
-
-#### Tables
-
-LaTeX can create publication-quality tables. The `booktabs` package is recommended for professional-looking tables with proper spacing:
-
-```latex
-\begin{table}[htbp]
-\centering
-\caption{Model Performance Comparison}
-\begin{tabular}{lrrr}
-\toprule
-Model & Accuracy & Precision & Recall \\
-\midrule
-Random Forest & 0.92 & 0.89 & 0.94 \\
-XGBoost & 0.95 & 0.92 & 0.91 \\
-Neural Network & 0.90 & 0.87 & 0.92 \\
-\bottomrule
-\end{tabular}
-\end{table}
-```
-
-#### Figures
-
-To include figures with proper captioning and referencing:
-
-```latex
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.8\textwidth]{histogram.png}
-\caption{Distribution of customer spending by category}
-\label{fig:spending-dist}
-\end{figure}
-
-As shown in Figure \ref{fig:spending-dist}, the distribution is right-skewed.
-```
 
 #### Using LaTeX with Quarto
 
@@ -468,7 +336,7 @@ You can further customise the LaTeX template by:
    ```yaml
    format:
      pdf:
-       include-in-header: 
+       include-in-header:
          text: |
            \usepackage{siunitx}
            \usepackage{algorithm2e}
@@ -523,118 +391,6 @@ And configure in YAML:
 ```yaml
 bibliography: references.bib
 csl: ieee.csl  # Citation style
-```
-
-### Advanced LaTeX Features for Data Science
-
-#### Algorithm Description
-
-The `algorithm2e` package helps document computational methods:
-
-```latex
-\begin{algorithm}[H]
-\SetAlgoLined
-\KwData{Training data $X$, target values $y$}
-\KwResult{Trained model $M$}
-Split data into training and validation sets\;
-Initialize model $M$ with random weights\;
-\For{each epoch}{
-    \For{each batch}{
-        Compute predictions $\hat{y}$\;
-        Calculate loss $L(y, \hat{y})$\;
-        Update model weights using gradient descent\;
-    }
-    Evaluate on validation set\;
-    \If{early stopping condition met}{
-        break\;
-    }
-}
-\caption{Training Neural Network with Early Stopping}
-\end{algorithm}
-```
-
-#### Professional Tables with Statistical Significance
-
-For reporting analysis results with significance levels:
-
-```latex
-\begin{table}[htbp]
-\centering
-\caption{Regression Results}
-\begin{tabular}{lrrrr}
-\toprule
-Variable & Coefficient & Std. Error & t-statistic & p-value \\
-\midrule
-Intercept & 23.45 & 2.14 & 10.96 & $<0.001^{***}$ \\
-Age & -0.32 & 0.05 & -6.4 & $<0.001^{***}$ \\
-Income & 0.015 & 0.004 & 3.75 & $0.002^{**}$ \\
-Education & 1.86 & 0.72 & 2.58 & $0.018^{*}$ \\
-\bottomrule
-\multicolumn{5}{l}{\scriptsize{$^{*}p<0.05$; $^{**}p<0.01$; $^{***}p<0.001$}} \\
-\end{tabular}
-\end{table}
-```
-
-#### Multi-part Figures
-
-For comparing visualisations side by side:
-
-```latex
-\begin{figure}[htbp]
-\centering
-\begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{model1_results.png}
-    \caption{Linear Model Performance}
-    \label{fig:model1}
-\end{subfigure}
-\hfill
-\begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{model2_results.png}
-    \caption{Neural Network Performance}
-    \label{fig:model2}
-\end{subfigure}
-\caption{Performance comparison of predictive models}
-\label{fig:models-comparison}
-\end{figure}
-```
-
-### LaTeX in R Markdown
-
-If you're using R Markdown instead of Quarto, the approach is similar:
-
-```yaml
----
-title: "Statistical Analysis Report"
-author: "Your Name"
-output:
-  pdf_document:
-    toc: true
-    number_sections: true
-    fig_caption: true
-    keep_tex: true  # Useful for debugging
-    includes:
-      in_header: preamble.tex
----
-```
-
-The `preamble.tex` file can contain additional LaTeX packages and configurations:
-
-```latex
-% preamble.tex
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{wrapfig}
-\usepackage{float}
-\usepackage{colortbl}
-\usepackage{pdflscape}
-\usepackage{tabu}
-\usepackage{threeparttable}
-\usepackage{threeparttablex}
-\usepackage[normalem]{ulem}
-\usepackage{makecell}
-\usepackage{xcolor}
 ```
 
 ### Troubleshooting LaTeX Issues

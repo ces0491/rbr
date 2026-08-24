@@ -275,6 +275,7 @@ Create a file named `.gitignore` (note the leading dot) with content like this a
 # Secrets: never commit these
 .env
 .env.local
+.Renviron
 *.pem
 credentials.json
 
@@ -462,4 +463,4 @@ The first line is a summary under about 50 characters. If there's a reason worth
 
 That last point is worth repeating because it's the one people get wrong once and remember forever. A file that has never been committed is easy to exclude. A file that has been committed is in the history permanently, and if it was a credential, the only real fix is to rotate it.
 
-With version control in place, the foundations are done. The next section turns to producing output someone else can read.
+The next chapter covers where your data lives: SQL, the file formats worth knowing, the query engines that have changed what's practical on a laptop, and where credentials belong — which is the first place the `.gitignore` you just wrote starts earning its keep.

@@ -8,11 +8,11 @@ description: >-
 
 If you worked through the chapters rather than reading past them, you now have:
 
-**Foundations.** A terminal you're not afraid of. Python and R installed, each project in its own environment with its dependencies recorded in a file committed beside the code. Data in formats that remember their own types, and a query engine that handles files larger than your memory. Every project under Git, with a remote on GitHub and credentials that live in the environment rather than in the source.
+**Foundations.** A terminal you're not afraid of. Python and R installed. Every project under Git, with a remote on GitHub and credentials that live in the environment rather than in the source. Data in formats that remember their own types, and a query engine that handles files larger than your memory. Each project in its own environment, with its dependencies recorded in a file committed beside the code.
 
-**Communicating results.** Documents that regenerate themselves from data, so a corrected figure means a re-render rather than an afternoon of copy-paste. Charts in whichever of matplotlib, plotly, or ggplot2 fits the job. Cloud compute for the times your laptop isn't enough, with a budget alert you set before you needed it.
+**Communicating results.** Documents that regenerate themselves from data, so a corrected figure means a re-render rather than an afternoon of copy-paste. Charts in whichever of matplotlib, plotly, or ggplot2 fits the job.
 
-**Shipping.** Applications your stakeholders can open in a browser. Containers that settle "works on my machine" by letting someone else run it. Deployment that happens on push. Tests that run in CI, and a project structure the next person can navigate without asking you.
+**Shipping.** Cloud compute for the times your laptop isn't enough, with a budget alert you set before you needed it. Applications your stakeholders can open in a browser. Containers that settle "works on my machine" by letting someone else run it. Deployment that happens on push. Tests that run in CI, and a project structure the next person can navigate without asking you.
 
 None of it is the analysis. It is what makes the analysis count for something.
 

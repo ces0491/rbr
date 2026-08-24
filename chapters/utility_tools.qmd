@@ -60,27 +60,6 @@ Notepad++ is a free, open-source text editor for Windows, and a substantial step
 
 Notepad++ is useful for quickly viewing and editing text files, CSV extracts, or configuration files without launching a full IDE. It is not a large-file tool: it has a hard limit around 2 GB and becomes sluggish well before that. For a genuinely large CSV, read a sample in pandas or query it in place with DuckDB rather than trying to open it.
 
-Notepad++ (as of writing) is not available on Mac, but the following alternative is.
-
-#### Sublime Text
-
-Sublime Text is a cross-platform editor known for opening very large files quickly — useful when a CSV is too big for anything else to load.
-
-**Key features for data scientists:**
-
-1. **Multiple selections**: Edit many places at once
-2. **Command palette**: Quickly access commands without menus
-3. **Distraction-free mode**: Focus on your text without UI elements
-4. **Splits and grids**: View multiple files or parts of files simultaneously
-5. **Customisable key bindings**: Create shortcuts tailored to your workflow
-
-**Installation:**
-
-1. Download from [sublimetext.com](https://www.sublimetext.com/download)
-2. Install and activate (free evaluation with occasional purchase reminder)
-
-Sublime Text's speed suits manipulating text data, writing scripts, or making quick edits to code without launching a heavier IDE.
-
 ### API Development and Testing Tools
 
 APIs (Application Programming Interfaces) are crucial for accessing web services and databases. These tools help you test, debug, and document APIs.
@@ -160,7 +139,7 @@ DBeaver is a universal database tool that works with almost any database system.
 3. Use the SQL editor to write a query:
 
    ```sql
-   SELECT 
+   SELECT
        product_category,
        COUNT(*) as count,
        AVG(price) as avg_price
@@ -192,40 +171,9 @@ pgAdmin is a specialised tool for PostgreSQL databases.
 
 For data scientists working specifically with PostgreSQL databases, pgAdmin provides specialised features that generic tools may lack.
 
-### File Comparison and Merging Tools
+### File Comparison
 
-These tools help identify differences between files and directories, which is useful for comparing datasets or code versions.
-
-#### Beyond Compare
-
-Beyond Compare compares files and whole directory trees side by side, and handles more than plain text.
-
-**Key features for data scientists:**
-
-1. **Text comparison**: View differences between text files line by line
-2. **Table comparison**: Compare CSV and Excel files with data-aware features
-3. **Directory sync**: Compare and synchronise folders
-4. **3-way merge**: Resolve conflicts between different versions
-5. **Byte-level comparison**: Analyse binary files
-
-**Installation:**
-
-1. Download from [scootersoftware.com](https://www.scootersoftware.com/download.php)
-2. Install (trial version available)
-
-**Example data science use case:**
-Comparing two versions of a dataset to identify changes:
-
-1. Open two CSV files in Table Compare mode
-2. Automatically align columns by name
-3. Identify added, removed, or modified rows
-4. Export the differences to a new file
-
-Beyond Compare is particularly valuable when dealing with evolving datasets, where you need to understand what changed between versions.
-
-#### WinMerge
-
-WinMerge is a free, open-source alternative for file and folder comparison.
+Comparing two versions of a dataset or a config file is common enough to want a tool for it. Git handles this for anything under version control; for everything else there is **WinMerge**, free and open source, on Windows.
 
 **Key features:**
 
@@ -240,7 +188,7 @@ WinMerge is a free, open-source alternative for file and folder comparison.
 1. Download from [winmerge.org](https://winmerge.org/downloads/)
 2. Run the installer
 
-WinMerge covers basic comparison needs for free, though it lacks some of the features of commercial alternatives.
+On macOS and Linux, `diff` is already installed and VS Code compares two open files from the Explorer (right-click → **Select for Compare**), which covers most of the same ground without another install.
 
 ### Terminal Enhancements
 
@@ -460,14 +408,14 @@ choco install graphviz
 ```dot
 digraph DataPipeline {
   rankdir=LR;
-  
+
   raw_data [label="Raw Data"];
   cleaning [label="Data Cleaning"];
   features [label="Feature Engineering"];
   modeling [label="Model Training"];
   evaluation [label="Evaluation"];
   deployment [label="Deployment"];
-  
+
   raw_data -> cleaning;
   cleaning -> features;
   features -> modeling;
@@ -485,11 +433,7 @@ dot -Tpng graph.dot -o pipeline.png
 
 Graphviz is particularly useful for generating diagrams programmatically as part of automated documentation processes or for visualising complex relationships that would be tedious to draw manually.
 
-### Screenshot and Recording Tools
-
-These tools help create visual documentation and tutorials.
-
-#### Your operating system's built-in tool
+### Screenshots
 
 Screenshot utilities were once worth installing separately. They mostly aren't any more — every current OS ships one that annotates:
 
@@ -501,28 +445,7 @@ You'll still see older guides recommending Greenshot for this on Windows. It wor
 
 For anything beyond a static image — a bug you can only demonstrate by reproducing it — record a short clip instead. Screenshots of error messages are a common source of confusion in bug reports: paste the text.
 
-#### OBS Studio
-
-OBS (Open Broadcaster Software) Studio records your screen and streams it, free and on every platform.
-
-**Key features:**
-
-1. **High-quality recording**: Capture screen activity with audio
-2. **Multiple sources**: Record specific windows or regions
-3. **Scene composition**: Create layouts combining different sources
-4. **Flexible output**: Record to file or stream online
-5. **Cross-platform**: Available for Windows, macOS, and Linux
-
-**Installation:**
-
-1. Download from [obsproject.com](https://obsproject.com/download)
-2. Run the installer
-
-OBS suits tutorial videos, recorded presentations, or documenting an analysis process for training purposes.
-
-### Productivity and Note-Taking Tools
-
-These tools help organise your thinking, document your work, and manage your projects.
+### Note-Taking
 
 #### Obsidian
 
@@ -552,25 +475,6 @@ Creating a personal knowledge base for your data science projects:
 
 Obsidian helps capture the thought process behind your data science work, creating a valuable reference for future projects.
 
-#### Notion
-
-Notion is an all-in-one workspace that combines notes, tasks, databases, and more.
-
-**Key features:**
-
-1. **Rich content**: Mix text, code, embeds, and databases
-2. **Templates**: Pre-built layouts for different use cases
-3. **Collaboration**: Share and work together with others
-4. **Web-based**: Access from any device
-5. **Integration**: Connect with other tools and services
-
-**Installation:**
-
-1. Sign up at [notion.so](https://www.notion.so/)
-2. Download desktop and mobile apps if desired
-
-Notion is particularly useful for team-based data science projects, where you need to coordinate tasks, share documentation, and track progress in one place.
-
 ### Finding Things
 
 Searching across files is common enough in analytical work — where is this variable used, which script produced this column — that it's worth having a fast tool for it.
@@ -596,7 +500,7 @@ For finding *files* rather than text inside them, `fd` is the equivalent — als
 
 The tools in this appendix are optional by definition. Nothing in the main chapters depends on any of them, and adopting all of them at once would be a poor use of a week.
 
-The productive approach is to add one when you notice friction. If you keep opening a CSV in Excel to look at it, install a better editor. If you're testing an API by writing throwaway scripts, install Bruno. If you're taking notes on projects in a text file you can't search, try Obsidian.
+The productive approach is to add one when you notice friction. If you keep opening a CSV in Excel just to see what's in it, try `csvstat`. If you're testing an API by writing throwaway scripts, install Bruno. If you're taking notes on projects in a text file you can't search, try Obsidian.
 
 Two of these are worth adopting sooner rather than later regardless of whether you've noticed the friction:
 

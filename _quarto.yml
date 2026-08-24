@@ -29,18 +29,20 @@ book:
     - chapters/intro.qmd
     - part: "Foundations"
       chapters:
+        # Git comes before Data Stores: the credentials and .gitignore
+        # material there is written on the assumption you can commit.
         - chapters/command_line.qmd
         - chapters/languages.qmd
+        - chapters/ide_git.qmd
         - chapters/data_stores.qmd
         - chapters/environments.qmd
-        - chapters/ide_git.qmd
     - part: "Communicating Results"
       chapters:
         - chapters/reporting.qmd
         - chapters/visualisation.qmd
-        - chapters/cloud.qmd
     - part: "Shipping Your Work"
       chapters:
+        - chapters/cloud.qmd
         - chapters/web_dev.qmd
         - chapters/containers.qmd
         - chapters/deployment.qmd

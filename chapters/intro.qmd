@@ -26,11 +26,11 @@ So: use the assistants. They are genuinely good at the things this book doesn't 
 
 The chapters run roughly in dependency order — earlier ones set up what later ones assume — but each is written to stand alone if you already have the earlier pieces working.
 
-**Foundations** (chapters 2–6) cover the machine itself: the command line, Python and R, where data lives, how to make an environment reproducible, and how to keep your work under version control.
+**Foundations** (chapters 3–7) cover the machine itself: the command line, Python and R, version control, where data lives, and how to make an environment reproducible.
 
-**Communicating results** (7–9) covers turning analysis into output someone else can read: documents and reports, charts and diagrams, and cloud platforms when your laptop isn't enough.
+**Communicating results** (8–9) covers turning analysis into output someone else can read: documents and reports, and the charts and diagrams that go inside them.
 
-**Shipping** (10–13) covers getting work in front of people: web applications, containers, deployment, and the workflow tooling that makes the second run cheaper than the first.
+**Shipping** (10–14) covers getting work in front of people: cloud platforms for when your laptop isn't enough, web applications, containers, deployment, and the workflow tooling that makes the second run cheaper than the first.
 
 Two appendices follow: a catalogue of smaller utilities worth knowing about, and a troubleshooting reference for the errors you're most likely to hit.
 

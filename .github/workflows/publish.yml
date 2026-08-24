@@ -48,16 +48,19 @@ jobs:
       - name: Install R Dependencies
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          # Every R and Python example in the book is `eval: false`; the only
+          # chunk that executes is the Mermaid generator in the Visualisation
+          # chapter, which uses base R. So this list is just the two engine
+          # packages plus reticulate, which knitr loads whenever a document
+          # contains a Python chunk even when that chunk never runs.
+          # Switching any example to `eval: true` means adding its packages here.
+          #
           # The `|` is load-bearing. Without it YAML folds these into a single
           # space-joined string and the action fails to parse the package list.
           packages: |
             any::knitr
             any::rmarkdown
             any::reticulate
-            any::tidyverse
-            any::shiny
-            any::plotly
-            any::lubridate
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2

@@ -6,28 +6,28 @@ This book is for readers from diverse backgrounds (economists, statisticians, en
 
 ## Chapters
 
-The book runs in three parts, in rough dependency order.
+The book runs in three parts, in rough dependency order. Numbers match the rendered book, which counts the Welcome page as chapter 1 and the Introduction as chapter 2.
 
 ### Foundations
 
-1. **The Command Line**: shells, navigation, redirection and pipes, package managers
-2. **Python and R**: installing both, Miniforge, Jupyter, and choosing between them
-3. **Data Stores: SQL and Beyond**: SQLite, Parquet, DuckDB, Polars, PostgreSQL, and where credentials belong
-4. **Reproducible Environments**: uv, conda, renv, lockfiles, and connecting an environment to your tools
+3. **The Command Line**: shells, navigation, redirection and pipes, package managers
+4. **Python and R**: installing both, Miniforge, Jupyter, and choosing between them
 5. **Editors and Version Control**: VS Code, RStudio, Git, GitHub, and `.gitignore`
+6. **Data Stores: SQL and Beyond**: SQLite, Parquet, DuckDB, Polars, PostgreSQL, and where credentials belong
+7. **Reproducible Environments**: uv, conda, renv, lockfiles, and connecting an environment to your tools
 
 ### Communicating Results
 
-6. **Data Science Tools for Reporting**: Markdown, Quarto, R Markdown, LaTeX, Typst, and parameterised reports
-7. **Data Visualisation**: matplotlib, seaborn, plotly, ggplot2, and Mermaid diagrams
-8. **Cloud Platforms for Data Science**: rented compute and storage, cost control, and access management
+8. **Data Science Tools for Reporting**: Markdown, Quarto, R Markdown, LaTeX, Typst, and parameterised reports
+9. **Data Visualisation**: matplotlib, seaborn, plotly, ggplot2, and Mermaid diagrams
 
 ### Shipping Your Work
 
-9. **Web Development for Data Scientists**: Shiny, Dash, Streamlit, and Flask for interactive apps
-10. **Containerisation**: Docker, Compose, and image hygiene
-11. **Deploying Data Science Projects**: Render, Cloud Run, Posit Connect Cloud, and CI-driven deploys
-12. **Optimising Workflows and Next Steps**: project layout, Make, testing, DVC, and CI
+10. **Cloud Computing for Data Science**: rented compute and storage, cost control, and access management
+11. **Web Development for Data Scientists**: Shiny, Dash, Streamlit, and Flask for interactive apps
+12. **Containerisation**: Docker, Compose, and image hygiene
+13. **Deploying Data Science Projects**: Render, Cloud Run, Posit Connect Cloud, and CI-driven deploys
+14. **Optimising Workflows and Next Steps**: project layout, Make, testing, DVC, and CI
 
 Plus two appendices: utility tools worth knowing about, and a troubleshooting reference.
 
@@ -43,7 +43,9 @@ This is a [Quarto](https://quarto.org/) book project. To build it locally:
 
 - [Quarto](https://quarto.org/docs/get-started/) (>= 1.4)
 - [Python 3.13+](https://www.python.org/) with Jupyter (`pip install jupyter nbformat nbclient`) — matches the version CI uses
-- [R 4.5+](https://cran.r-project.org/) with packages: `knitr`, `rmarkdown`, `reticulate`, `tidyverse`, `shiny`, `plotly`, `lubridate`
+- [R 4.5+](https://cran.r-project.org/) with `knitr`, `rmarkdown` and `reticulate`
+
+That R list is short because every code example in the book is `eval: false` — the examples are there to be read and copied into your own project, not run during the build. The one chunk that does execute, the Mermaid generator in the Visualisation chapter, uses base R. `reticulate` is needed even so: knitr loads it whenever a document contains a Python chunk, whether or not that chunk runs. If you switch an example to `eval: true`, install its packages and add them to `.github/workflows/publish.yml`.
 
 ### Render
 
@@ -57,7 +59,7 @@ quarto preview
 
 Output is written to the `output/` directory.
 
-`execute: freeze: auto` in `_quarto.yml` means a chapter is only re-executed when its source changes; cached results live in `_freeze/`, which is gitignored. CI therefore has no cache and executes every chapter from scratch on each publish, which is why the workflow installs the full R and Python toolchain.
+`execute: freeze: auto` in `_quarto.yml` means a chapter is only re-executed when its source changes; cached results live in `_freeze/`, which is gitignored. CI therefore has no cache and processes every chapter from scratch on each publish, which is why the workflow installs the R and Python toolchains even though almost nothing in the book executes.
 
 ### PDF / EPUB
 
@@ -77,7 +79,7 @@ quarto render --to epub
 │                        #   `quarto publish` copies it into the output
 ├── index.qmd            # Welcome & preface
 ├── chapters/            # Chapter source files (.qmd)
-├── assets/              # Cover images
+├── assets/              # Cover image, used as both cover and favicon
 ├── data/                # Data files used in examples
 ├── references.bib       # Bibliography
 ├── .github/workflows/   # CI/CD — publishes to GitHub Pages on push to main

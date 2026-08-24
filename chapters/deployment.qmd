@@ -448,27 +448,45 @@ author: "Your Name"
 format: html
 ---
 
-## Executive Summary
-
-Our analysis shows a 15% increase in Q4 sales compared to the previous year.
-
 ```{r}
 #| echo: false
 #| warning: false
+#| message: false
 library(ggplot2)
 library(dplyr)
 library(here)
 
-# Load data
+# Load the data and aggregate it once, so the prose and the chart
+# below are both reading the same numbers
 sales <- read.csv(here("data", "my_data.csv"))
 
-# Create visualisation
-ggplot(sales, aes(x = Product, y = Sales, fill = Product)) +
-  geom_bar(stat = "identity", position = "dodge") +
+totals <- sales |>
+  group_by(Product) |>
+  summarise(Sales = sum(Sales)) |>
+  arrange(desc(Sales))
+```
+
+## Executive Summary
+
+`r totals$Product[1]` leads the range at
+`r round(100 * totals$Sales[1] / sum(totals$Sales))`% of sales in the period.
+
+```{r}
+#| echo: false
+ggplot(totals, aes(x = reorder(Product, -Sales), y = Sales, fill = Product)) +
+  geom_col() +
   theme_minimal() +
-  labs(title = "Product Comparison")
+  labs(title = "Total sales by product", x = "Product")
 ```
 ````
+
+Two details are doing real work here. The headline figure in the summary is *inline R* —
+a backtick expression starting with `r`, evaluated at render time and replaced by its
+result — rather than a number typed into the sentence, so it cannot disagree with the
+chart underneath it when the data changes. And the chart plots `totals`, which has one
+row per product, with `geom_col()`. Plotting the raw `sales` frame instead would draw one
+bar per *row*, overlapping them at each product's position, so the chart would show the
+largest single day rather than the total.
 
 2. Set up a GitHub repository for your project
 
@@ -553,18 +571,18 @@ server = app.server  # For Render deployment
 # Create layout
 app.layout = html.Div([
     html.H1("Sales Performance Dashboard"),
-    
+
     html.Div([
         html.Label("Select Year:"),
         dcc.Dropdown(
             id='year-filter',
-            options=[{'label': str(year), 'value': year} 
+            options=[{'label': str(year), 'value': year}
                      for year in sorted(df['year'].unique())],
             value=df['year'].max(),
             clearable=False
         )
     ], style={'width': '30%', 'margin': '20px'}),
-    
+
     dcc.Graph(id='sales-graph')
 ])
 
@@ -575,16 +593,16 @@ app.layout = html.Div([
 )
 def update_graph(selected_year):
     filtered_df = df[df['year'] == selected_year]
-    
+
     fig = px.bar(
-        filtered_df, 
-        x='quarter', 
+        filtered_df,
+        x='quarter',
         y='sales',
         color='product',
         barmode='group',
         title=f'Quarterly Sales by Product ({selected_year})'
     )
-    
+
     return fig
 
 if __name__ == '__main__':
@@ -663,18 +681,20 @@ sales <- read.csv(here("data", "my_data.csv"))
 # UI
 ui <- fluidPage(
   titlePanel("Sales Analysis Dashboard"),
-  
+
   sidebarLayout(
     sidebarPanel(
-      selectInput("Date", "Select Date:",
-                  choices = unique(sales$Date),
-                  selected = max(sales$Date)),
-      
-      checkboxGroupInput("Products", "Select Products:",
-                         choices = unique(sales$Product),
-                         selected = unique(sales$Product)[1])
+      # "All" first and selected, so the app opens on the whole dataset
+      selectInput("region", "Select Region:",
+                  choices = c("All", sort(unique(sales$Region))),
+                  selected = "All"),
+
+      # Every product ticked by default, for the same reason
+      checkboxGroupInput("products", "Select Products:",
+                         choices = sort(unique(sales$Product)),
+                         selected = sort(unique(sales$Product)))
     ),
-    
+
     mainPanel(
       plotOutput("salesPlot"),
       DT::DTOutput("salesTable")
@@ -684,20 +704,27 @@ ui <- fluidPage(
 
 # Server
 server <- function(input, output) {
-  
+
   filtered_data <- reactive({
-    sales |>
-      filter(Date == input$Date,
-             Product %in% input$Products)
+    data <- sales |> filter(Product %in% input$products)
+
+    if (input$region != "All") {
+      data <- data |> filter(Region == input$region)
+    }
+
+    data
   })
-  
+
   output$salesPlot <- renderPlot({
-    ggplot(filtered_data(), aes(x = Date, y = Sales, fill = Product)) +
-      geom_bar(stat = "identity", position = "dodge") +
+    # Nothing sensible to draw if the user unticks every product
+    req(nrow(filtered_data()) > 0)
+
+    ggplot(filtered_data(), aes(x = Product, y = Sales, fill = Product)) +
+      geom_bar(stat = "summary", fun = sum) +
       theme_minimal() +
-      labs(title = paste("Sales for", input$Date))
+      labs(title = paste("Total sales —", input$region), y = "Sales")
   })
-  
+
   output$salesTable <- DT::renderDT({
     filtered_data() |>
       group_by(Product) |>
@@ -711,6 +738,19 @@ shinyApp(ui = ui, server = server)
 ```
 
 Note `DT::DTOutput()` and `DT::renderDT()` rather than Shiny's own `dataTableOutput()` and `renderDataTable()`. Shiny deprecated those years ago in favour of the DT package, and calling them now prints deprecation messages to your console that are hard to interpret if you don't know what they refer to. Most tutorials still show the old names.
+
+Three choices in that app are worth copying into your own. Filter on a column with
+repeated values — `Region` here — because filtering on something close to a unique key
+leaves one row or none, and a one-bar chart looks like a bug even when the code is right.
+Open on everything: `"All"` as the first choice and every product ticked, so the first
+thing a stakeholder sees is the full picture rather than a corner of it. And `req()` stops
+a render early when its condition is false, which is how you handle the user unticking
+everything — Shiny leaves the previous plot in place instead of throwing an error into the
+browser.
+
+`geom_bar(stat = "summary", fun = sum)` is what totals the rows within each product. The
+alternative you'll see everywhere, `stat = "identity"`, draws one bar per row and stacks
+or overlaps them, which reads as a total without being one.
 
 2. Push the app directory to a GitHub repository and link it in Connect Cloud, which redeploys on every push. If you'd rather deploy from the console, configure `rsconnect` as shown in the Connect Cloud section above, reading your credentials from the environment rather than writing them into the script
 

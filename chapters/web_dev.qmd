@@ -36,7 +36,7 @@ Let's create a simple web page that displays a data visualisation:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Visualization Example</title>
+    <title>Data Visualisation Example</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -257,7 +257,7 @@ server <- function(input, output) {
   output$summary_table <- renderTable({
     filtered_data() |>
       group_by(cut) |>
-      summarize(
+      summarise(
         Count = n(),
         `Avg Price` = round(mean(price), 2),
         `Avg Carat` = round(mean(carat), 2)
@@ -279,7 +279,7 @@ Dash is Python's equivalent to Shiny, created by the makers of Plotly:
 
 ```bash
 # Install Dash
-pip install dash dash-bootstrap-components
+pip install dash
 ```
 
 A simple Dash app follows a similar structure to Shiny:
@@ -432,14 +432,14 @@ df = load_data(dataset_name)
 # Display basic dataset information
 st.header(f"{dataset_name} Dataset")
 
-tab1, tab2, tab3 = st.tabs(["📋 Data", "📈 Visualization", "📊 Summary"])
+tab1, tab2, tab3 = st.tabs(["📋 Data", "📈 Visualisation", "📊 Summary"])
 
 with tab1:
     st.subheader("Raw Data")
     st.dataframe(df.head(100))
 
 with tab2:
-    st.subheader("Data Visualization")
+    st.subheader("Data Visualisation")
     numeric_cols = df.select_dtypes("number").columns.tolist()
     if numeric_cols:
         x_var = st.selectbox("X variable", options=numeric_cols)

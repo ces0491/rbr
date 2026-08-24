@@ -403,15 +403,7 @@ Since this chapter is where credentials first become unavoidable, here is the wh
 
 **The rule: secrets live in the environment or a secret store; the code reads them by name; the file holding them is never committed.**
 
-:::{.callout-note}
-## A forward reference to Git
-
-This section talks about committing files and about `.gitignore`, both of which belong to Git, the version control system covered properly in [Editors and Version Control](ide_git.qmd). You don't need that chapter to follow the rules here, only two facts.
-
-*Committing* a file records a permanent snapshot of its contents in your project's history. That history is what makes version control useful, and it is also why a password committed once is difficult to remove: later deleting the line changes the current state, not the record of what the file used to contain.
-
-`.gitignore` is a plain text file listing paths Git should pretend not to see, so they are never committed in the first place. It is the mechanism behind every "add this to `.gitignore`" instruction below.
-:::
+The `.gitignore` template in [Editors and Version Control](ide_git.qmd) already lists both of the files below, under the heading "Secrets: never commit these". This section is why they're in it.
 
 ### Local development: a `.env` file
 

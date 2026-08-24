@@ -9,11 +9,11 @@ _book/
 # every chapter from scratch.
 _freeze/
 
-# R/RStudio
+# R/RStudio. The .Rproj file itself is committed - it is project config an
+# RStudio user wants on clone. Only the per-user state directory is ignored.
 .Rhistory
 .RData
 .Ruserdata
-*.Rproj
 .Rproj.user
 
 # Python

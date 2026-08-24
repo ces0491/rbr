@@ -200,7 +200,6 @@ Let's walk through a complete example of using Google Colab for a data science t
 In the first cell, load a dataset directly from a URL:
 
 ```{python}
-#| eval: false
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -221,13 +220,11 @@ df.head()
 In subsequent cells, perform your analysis:
 
 ```{python}
-#| eval: false
 # Summary statistics
 df.describe()
 ```
 
 ```{python}
-#| eval: false
 # Create a visualisation
 plt.figure(figsize=(10, 6))
 sns.scatterplot(data=df, x='bill_length_mm', y='bill_depth_mm',
@@ -251,7 +248,6 @@ For machine learning tasks, you can enable GPU acceleration:
 Then verify GPU availability:
 
 ```{python}
-#| eval: false
 import torch
 
 if torch.cuda.is_available():
@@ -276,7 +272,6 @@ This exercise demonstrates the core workflow of cloud-based data science: loadin
 When working with larger datasets, you'll want to connect cloud storage to your notebooks. Here's how to mount Google Drive in Colab:
 
 ```{python}
-#| eval: false
 from google.colab import drive
 
 # Mount Google Drive
@@ -290,7 +285,6 @@ df = pd.read_csv('/content/drive/MyDrive/data/my_dataset.csv')
 For AWS S3 from a Colab notebook, use the boto3 library with credentials supplied through Colab's secret manager rather than typing them into cells:
 
 ```{python}
-#| eval: false
 # In Colab: click the 🔑 key icon in the left sidebar and add two secrets
 # named AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Then:
 import os

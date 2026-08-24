@@ -54,7 +54,7 @@ These build on the infrastructure this book sets up. Each entry says what it is 
 
 ### Data Visualisation
 
-1. **[Fundamentals of Data Visualisation](https://clauswilke.com/dataviz/)** by Claus O. Wilke  
+1. **[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)** by Claus O. Wilke  
    Principles for creating effective visualisations based on perception science.
 
 2. **[Storytelling with Data](https://www.storytellingwithdata.com/books)** by Cole Nussbaumer Knaflic  
@@ -65,8 +65,8 @@ These build on the infrastructure this book sets up. Each entry says what it is 
 
 ### Cloud Computing and DevOps
 
-1. **[Cloud Computing for Data Analysis](https://noahgift.com/publication/cloud4data/)** by Noah Gift  
-   Project-based, with hands-on labs across AWS, GCP, and Azure.
+1. **[Data Analysis at Scale in the Cloud](https://noahgift.github.io/cloud-data-analysis-at-scale/)** by Noah Gift  
+   The course notes for Duke's MIDS programme, free online. Project-based, covering cloud foundations, ML engineering, and MLOps across AWS, GCP, and Azure.
 
 2. **[Docker Documentation](https://docs.docker.com/get-started/)**  
    Docker's own getting-started material is current and free, which is more than can be said for most published Docker books — the field moves faster than print.

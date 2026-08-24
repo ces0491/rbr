@@ -503,11 +503,11 @@ To get the most out of Docker for data science, follow these best practices:
    ```dockerfile
    # System dependencies change rarely
    RUN apt-get update && apt-get install -y gcc
-   
+
    # Requirements change occasionally
    COPY requirements.txt .
    RUN pip install -r requirements.txt
-   
+
    # Application code changes frequently
    COPY . .
    ```
