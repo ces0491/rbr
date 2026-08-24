@@ -8,7 +8,7 @@
 
 <meta name="description" content="SQL and where data really lives: installing SQLite, writing your first queries, and recognising when a database beats a folder of CSVs.">
 
-<title>5&nbsp; Data Stores: SQL and Beyond – Ready Before Run()</title>
+<title>6&nbsp; Data Stores: SQL and Beyond – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -73,7 +73,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/environments.html" rel="next">
-<link href="../chapters/languages.html" rel="prev">
+<link href="../chapters/ide_git.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -114,10 +114,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="5&nbsp; Data Stores: SQL and Beyond – Ready Before Run()">
+<meta property="og:title" content="6&nbsp; Data Stores: SQL and Beyond – Ready Before Run()">
 <meta property="og:description" content="A practical guide to the infrastructure data science assumes you already have - the command line, reproducible environments, data stores, version control, reporting, containers and deployment - written for people who arrived at data work from somewhere other than computer science.">
 <meta property="og:site_name" content="Ready Before Run()">
-<meta name="twitter:title" content="5&nbsp; Data Stores: SQL and Beyond – Ready Before Run()">
+<meta name="twitter:title" content="6&nbsp; Data Stores: SQL and Beyond – Ready Before Run()">
 <meta name="twitter:description" content="A practical guide to the infrastructure data science assumes you already have - the command line, reproducible environments, data stores, version control, reporting, containers and deployment - written for people who arrived at data work from somewhere other than computer science.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/data_stores.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/data_stores.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -194,20 +194,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
   </div>
 </li>
       </ul>
@@ -233,12 +233,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -250,6 +244,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
@@ -321,38 +321,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sql-fundamentals-and-setup" id="toc-sql-fundamentals-and-setup" class="nav-link active" data-scroll-target="#sql-fundamentals-and-setup"><span class="header-section-number">5.1</span> SQL Fundamentals and Setup</a>
+  <li><a href="#sql-fundamentals-and-setup" id="toc-sql-fundamentals-and-setup" class="nav-link active" data-scroll-target="#sql-fundamentals-and-setup"><span class="header-section-number">6.1</span> SQL Fundamentals and Setup</a>
   <ul class="collapse">
-  <li><a href="#why-sql-for-data-science" id="toc-why-sql-for-data-science" class="nav-link" data-scroll-target="#why-sql-for-data-science"><span class="header-section-number">5.1.1</span> Why SQL for Data Science?</a></li>
-  <li><a href="#installing-sqlite" id="toc-installing-sqlite" class="nav-link" data-scroll-target="#installing-sqlite"><span class="header-section-number">5.1.2</span> Installing SQLite</a></li>
-  <li><a href="#creating-your-first-database" id="toc-creating-your-first-database" class="nav-link" data-scroll-target="#creating-your-first-database"><span class="header-section-number">5.1.3</span> Creating Your First Database</a></li>
-  <li><a href="#sql-guis-for-easier-database-management" id="toc-sql-guis-for-easier-database-management" class="nav-link" data-scroll-target="#sql-guis-for-easier-database-management"><span class="header-section-number">5.1.4</span> SQL GUIs for Easier Database Management</a></li>
+  <li><a href="#why-sql-for-data-science" id="toc-why-sql-for-data-science" class="nav-link" data-scroll-target="#why-sql-for-data-science"><span class="header-section-number">6.1.1</span> Why SQL for Data Science?</a></li>
+  <li><a href="#installing-sqlite" id="toc-installing-sqlite" class="nav-link" data-scroll-target="#installing-sqlite"><span class="header-section-number">6.1.2</span> Installing SQLite</a></li>
+  <li><a href="#creating-your-first-database" id="toc-creating-your-first-database" class="nav-link" data-scroll-target="#creating-your-first-database"><span class="header-section-number">6.1.3</span> Creating Your First Database</a></li>
+  <li><a href="#sql-guis-for-easier-database-management" id="toc-sql-guis-for-easier-database-management" class="nav-link" data-scroll-target="#sql-guis-for-easier-database-management"><span class="header-section-number">6.1.4</span> SQL GUIs for Easier Database Management</a></li>
   </ul></li>
-  <li><a href="#file-formats-stop-using-csv-for-everything" id="toc-file-formats-stop-using-csv-for-everything" class="nav-link" data-scroll-target="#file-formats-stop-using-csv-for-everything"><span class="header-section-number">5.2</span> File Formats: Stop Using CSV for Everything</a></li>
-  <li><a href="#duckdb-sql-without-a-database-server" id="toc-duckdb-sql-without-a-database-server" class="nav-link" data-scroll-target="#duckdb-sql-without-a-database-server"><span class="header-section-number">5.3</span> DuckDB: SQL Without a Database Server</a>
+  <li><a href="#file-formats-stop-using-csv-for-everything" id="toc-file-formats-stop-using-csv-for-everything" class="nav-link" data-scroll-target="#file-formats-stop-using-csv-for-everything"><span class="header-section-number">6.2</span> File Formats: Stop Using CSV for Everything</a></li>
+  <li><a href="#duckdb-sql-without-a-database-server" id="toc-duckdb-sql-without-a-database-server" class="nav-link" data-scroll-target="#duckdb-sql-without-a-database-server"><span class="header-section-number">6.3</span> DuckDB: SQL Without a Database Server</a>
   <ul class="collapse">
-  <li><a href="#querying-files-directly" id="toc-querying-files-directly" class="nav-link" data-scroll-target="#querying-files-directly"><span class="header-section-number">5.3.1</span> Querying Files Directly</a></li>
-  <li><a href="#working-with-pandas-and-r-data-frames" id="toc-working-with-pandas-and-r-data-frames" class="nav-link" data-scroll-target="#working-with-pandas-and-r-data-frames"><span class="header-section-number">5.3.2</span> Working with pandas and R Data Frames</a></li>
-  <li><a href="#when-to-use-which" id="toc-when-to-use-which" class="nav-link" data-scroll-target="#when-to-use-which"><span class="header-section-number">5.3.3</span> When to Use Which</a></li>
+  <li><a href="#querying-files-directly" id="toc-querying-files-directly" class="nav-link" data-scroll-target="#querying-files-directly"><span class="header-section-number">6.3.1</span> Querying Files Directly</a></li>
+  <li><a href="#working-with-pandas-and-r-data-frames" id="toc-working-with-pandas-and-r-data-frames" class="nav-link" data-scroll-target="#working-with-pandas-and-r-data-frames"><span class="header-section-number">6.3.2</span> Working with pandas and R Data Frames</a></li>
+  <li><a href="#when-to-use-which" id="toc-when-to-use-which" class="nav-link" data-scroll-target="#when-to-use-which"><span class="header-section-number">6.3.3</span> When to Use Which</a></li>
   </ul></li>
-  <li><a href="#polars-an-alternative-to-pandas" id="toc-polars-an-alternative-to-pandas" class="nav-link" data-scroll-target="#polars-an-alternative-to-pandas"><span class="header-section-number">5.4</span> Polars: An Alternative to pandas</a></li>
-  <li><a href="#postgresql-when-you-need-a-real-server" id="toc-postgresql-when-you-need-a-real-server" class="nav-link" data-scroll-target="#postgresql-when-you-need-a-real-server"><span class="header-section-number">5.5</span> PostgreSQL: When You Need a Real Server</a></li>
-  <li><a href="#where-to-put-credentials" id="toc-where-to-put-credentials" class="nav-link" data-scroll-target="#where-to-put-credentials"><span class="header-section-number">5.6</span> Where to Put Credentials</a>
+  <li><a href="#polars-an-alternative-to-pandas" id="toc-polars-an-alternative-to-pandas" class="nav-link" data-scroll-target="#polars-an-alternative-to-pandas"><span class="header-section-number">6.4</span> Polars: An Alternative to pandas</a></li>
+  <li><a href="#postgresql-when-you-need-a-real-server" id="toc-postgresql-when-you-need-a-real-server" class="nav-link" data-scroll-target="#postgresql-when-you-need-a-real-server"><span class="header-section-number">6.5</span> PostgreSQL: When You Need a Real Server</a></li>
+  <li><a href="#where-to-put-credentials" id="toc-where-to-put-credentials" class="nav-link" data-scroll-target="#where-to-put-credentials"><span class="header-section-number">6.6</span> Where to Put Credentials</a>
   <ul class="collapse">
-  <li><a href="#local-development-a-.env-file" id="toc-local-development-a-.env-file" class="nav-link" data-scroll-target="#local-development-a-.env-file"><span class="header-section-number">5.6.1</span> Local development: a <code>.env</code> file</a></li>
-  <li><a href="#deployed-applications-the-platforms-secret-store" id="toc-deployed-applications-the-platforms-secret-store" class="nav-link" data-scroll-target="#deployed-applications-the-platforms-secret-store"><span class="header-section-number">5.6.2</span> Deployed applications: the platform’s secret store</a></li>
-  <li><a href="#if-a-secret-does-leak" id="toc-if-a-secret-does-leak" class="nav-link" data-scroll-target="#if-a-secret-does-leak"><span class="header-section-number">5.6.3</span> If a secret does leak</a></li>
+  <li><a href="#local-development-a-.env-file" id="toc-local-development-a-.env-file" class="nav-link" data-scroll-target="#local-development-a-.env-file"><span class="header-section-number">6.6.1</span> Local development: a <code>.env</code> file</a></li>
+  <li><a href="#deployed-applications-the-platforms-secret-store" id="toc-deployed-applications-the-platforms-secret-store" class="nav-link" data-scroll-target="#deployed-applications-the-platforms-secret-store"><span class="header-section-number">6.6.2</span> Deployed applications: the platform’s secret store</a></li>
+  <li><a href="#if-a-secret-does-leak" id="toc-if-a-secret-does-leak" class="nav-link" data-scroll-target="#if-a-secret-does-leak"><span class="header-section-number">6.6.3</span> If a secret does leak</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.7</span> Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6.7</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/data_stores.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/data_stores.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></h1>
 </div>
 
 
@@ -369,11 +369,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sql-fundamentals-and-setup" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="sql-fundamentals-and-setup"><span class="header-section-number">5.1</span> SQL Fundamentals and Setup</h2>
+<section id="sql-fundamentals-and-setup" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="sql-fundamentals-and-setup"><span class="header-section-number">6.1</span> SQL Fundamentals and Setup</h2>
 <p>SQL (Structured Query Language) is how you get data out of a database. We’ll set up a lightweight database system so you can practise SQL queries locally.</p>
-<section id="why-sql-for-data-science" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="why-sql-for-data-science"><span class="header-section-number">5.1.1</span> Why SQL for Data Science?</h3>
+<section id="why-sql-for-data-science" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="why-sql-for-data-science"><span class="header-section-number">6.1.1</span> Why SQL for Data Science?</h3>
 <p>Four reasons SQL earns its place:</p>
 <ol type="1">
 <li>Most organisational data lives in relational databases, so SQL is often the only way to reach it</li>
@@ -402,12 +402,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="installing-sqlite" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="installing-sqlite"><span class="header-section-number">5.1.2</span> Installing SQLite</h3>
+<section id="installing-sqlite" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="installing-sqlite"><span class="header-section-number">6.1.2</span> Installing SQLite</h3>
 <p>SQLite is a lightweight, file-based database that requires no server setup, making it perfect for learning.</p>
 <p>Think of SQLite as a simple filing cabinet for your data that you can easily carry around, unlike larger database systems that require dedicated servers.</p>
-<section id="on-windows" class="level4" data-number="5.1.2.1">
-<h4 data-number="5.1.2.1" class="anchored" data-anchor-id="on-windows"><span class="header-section-number">5.1.2.1</span> On Windows</h4>
+<section id="on-windows" class="level4" data-number="6.1.2.1">
+<h4 data-number="6.1.2.1" class="anchored" data-anchor-id="on-windows"><span class="header-section-number">6.1.2.1</span> On Windows</h4>
 <ol type="1">
 <li>Download the SQLite command-line tools (look for the “Precompiled Binaries for Windows” section) from the <a href="https://www.sqlite.org/download.html">SQLite download page</a></li>
 <li>Extract the ZIP to a folder (e.g., <code>C:\sqlite</code>)</li>
@@ -421,26 +421,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ol>
 </section>
-<section id="on-macos" class="level4" data-number="5.1.2.2">
-<h4 data-number="5.1.2.2" class="anchored" data-anchor-id="on-macos"><span class="header-section-number">5.1.2.2</span> On macOS</h4>
+<section id="on-macos" class="level4" data-number="6.1.2.2">
+<h4 data-number="6.1.2.2" class="anchored" data-anchor-id="on-macos"><span class="header-section-number">6.1.2.2</span> On macOS</h4>
 <p>SQLite comes pre-installed, but you can install a newer version with Homebrew:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install SQLite</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install sqlite</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="on-linux" class="level4" data-number="5.1.2.3">
-<h4 data-number="5.1.2.3" class="anchored" data-anchor-id="on-linux"><span class="header-section-number">5.1.2.3</span> On Linux</h4>
+<section id="on-linux" class="level4" data-number="6.1.2.3">
+<h4 data-number="6.1.2.3" class="anchored" data-anchor-id="on-linux"><span class="header-section-number">6.1.2.3</span> On Linux</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install sqlite3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="verifying-installation" class="level4" data-number="5.1.2.4">
-<h4 data-number="5.1.2.4" class="anchored" data-anchor-id="verifying-installation"><span class="header-section-number">5.1.2.4</span> Verifying Installation</h4>
+<section id="verifying-installation" class="level4" data-number="6.1.2.4">
+<h4 data-number="6.1.2.4" class="anchored" data-anchor-id="verifying-installation"><span class="header-section-number">6.1.2.4</span> Verifying Installation</h4>
 <p>Open a terminal or command prompt and type:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see the version information displayed.</p>
 </section>
 </section>
-<section id="creating-your-first-database" class="level3" data-number="5.1.3">
-<h3 data-number="5.1.3" class="anchored" data-anchor-id="creating-your-first-database"><span class="header-section-number">5.1.3</span> Creating Your First Database</h3>
+<section id="creating-your-first-database" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="creating-your-first-database"><span class="header-section-number">6.1.3</span> Creating Your First Database</h3>
 <p>Let’s create a simple database to verify our setup:</p>
 <p>First, in your terminal, create the database file and open a prompt on it:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> sample.db</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -467,11 +467,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Note the comment syntax. SQL uses <code>--</code>, not the <code>#</code> that shells use; paste a <code>#</code> comment at the <code>sqlite&gt;</code> prompt and you’ll get a syntax error.</p>
 <p>This creates a spreadsheet-like table inside a file, adds some rows, and views them.</p>
 </section>
-<section id="sql-guis-for-easier-database-management" class="level3" data-number="5.1.4">
-<h3 data-number="5.1.4" class="anchored" data-anchor-id="sql-guis-for-easier-database-management"><span class="header-section-number">5.1.4</span> SQL GUIs for Easier Database Management</h3>
+<section id="sql-guis-for-easier-database-management" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="sql-guis-for-easier-database-management"><span class="header-section-number">6.1.4</span> SQL GUIs for Easier Database Management</h3>
 <p>The command line is the fastest route once you know it, but a graphical interface makes exploring an unfamiliar database considerably easier:</p>
-<section id="db-browser-for-sqlite" class="level4" data-number="5.1.4.1">
-<h4 data-number="5.1.4.1" class="anchored" data-anchor-id="db-browser-for-sqlite"><span class="header-section-number">5.1.4.1</span> DB Browser for SQLite</h4>
+<section id="db-browser-for-sqlite" class="level4" data-number="6.1.4.1">
+<h4 data-number="6.1.4.1" class="anchored" data-anchor-id="db-browser-for-sqlite"><span class="header-section-number">6.1.4.1</span> DB Browser for SQLite</h4>
 <p>This free, open-source tool provides a user-friendly interface for SQLite databases.</p>
 <ol type="1">
 <li>Visit the <a href="https://sqlitebrowser.org/dl/">DB Browser for SQLite download page</a></li>
@@ -481,8 +481,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>DB Browser for SQLite acts like a spreadsheet program for your database, making it easier to view and edit data without typing SQL commands.</p>
 </section>
-<section id="using-sql-from-python-and-r" class="level4" data-number="5.1.4.2">
-<h4 data-number="5.1.4.2" class="anchored" data-anchor-id="using-sql-from-python-and-r"><span class="header-section-number">5.1.4.2</span> Using SQL from Python and R</h4>
+<section id="using-sql-from-python-and-r" class="level4" data-number="6.1.4.2">
+<h4 data-number="6.1.4.2" class="anchored" data-anchor-id="using-sql-from-python-and-r"><span class="header-section-number">6.1.4.2</span> Using SQL from Python and R</h4>
 <p>You can also interact with SQLite databases from Python and R. Python needs nothing extra — <code>sqlite3</code> is part of the standard library — but R needs two packages, and every other database in this chapter needs a driver of its own. Install them into your project environment now:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DBI is the common interface; the others are drivers for specific databases</span></span>
@@ -491,8 +491,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Python: sqlite3 is built in, the rest are not</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install pandas pyarrow duckdb sqlalchemy <span class="st">"psycopg[binary]"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>DBI</code> in R and <code>sqlalchemy</code> in Python are the layers that let you write the same code against different databases; the rest are the per-database drivers underneath. You only need the driver for the database you’re actually connecting to, so install the PostgreSQL ones when you reach that section if you prefer.</p>
-<section id="python" class="level5" data-number="5.1.4.2.1">
-<h5 data-number="5.1.4.2.1" class="anchored" data-anchor-id="python"><span class="header-section-number">5.1.4.2.1</span> Python</h5>
+<section id="python" class="level5" data-number="6.1.4.2.1">
+<h5 data-number="6.1.4.2.1" class="anchored" data-anchor-id="python"><span class="header-section-number">6.1.4.2.1</span> Python</h5>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -510,8 +510,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>conn.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="r" class="level5" data-number="5.1.4.2.2">
-<h5 data-number="5.1.4.2.2" class="anchored" data-anchor-id="r"><span class="header-section-number">5.1.4.2.2</span> R</h5>
+<section id="r" class="level5" data-number="6.1.4.2.2">
+<h5 data-number="6.1.4.2.2" class="anchored" data-anchor-id="r"><span class="header-section-number">6.1.4.2.2</span> R</h5>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DBI)</span>
@@ -533,8 +533,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="file-formats-stop-using-csv-for-everything" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="file-formats-stop-using-csv-for-everything"><span class="header-section-number">5.2</span> File Formats: Stop Using CSV for Everything</h2>
+<section id="file-formats-stop-using-csv-for-everything" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="file-formats-stop-using-csv-for-everything"><span class="header-section-number">6.2</span> File Formats: Stop Using CSV for Everything</h2>
 <p>CSV is the universal interchange format and it will never go away, but it is a poor working format. It has no types (every column is text until something guesses), no compression, no column selection (reading one column means parsing all of them), and no schema.</p>
 <p><strong>Parquet</strong> fixes all four. It is a compressed, typed binary format, and it is <em>columnar</em>: where a CSV stores row after row, Parquet stores each column’s values together, which is why it can hand you one column without reading the others. It is the default choice for any dataset you’ll read more than once.</p>
 <div class="cell">
@@ -554,14 +554,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In R, <code>arrow::write_parquet()</code> and <code>arrow::read_parquet()</code> do the same job.</p>
 <p>The file is usually a fraction of the CSV’s size, loads far faster, and — the part that matters most for reproducibility — remembers that your date column was a date. Keep the CSV if you need to hand it to someone in Excel. Work from the Parquet.</p>
 </section>
-<section id="duckdb-sql-without-a-database-server" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="duckdb-sql-without-a-database-server"><span class="header-section-number">5.3</span> DuckDB: SQL Without a Database Server</h2>
+<section id="duckdb-sql-without-a-database-server" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="duckdb-sql-without-a-database-server"><span class="header-section-number">6.3</span> DuckDB: SQL Without a Database Server</h2>
 <p>SQLite gave you a database in a file. <strong>DuckDB</strong> gives you an analytical query engine in a file — or in no file at all — and it has changed how a lot of analysis gets done in the few years since it appeared.</p>
 <p>The pitch: DuckDB runs SQL directly against CSV and Parquet files on disk, fast enough that work you would once have sent to a cluster now finishes on a laptop, with no server to install, configure, or keep running.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install duckdb        <span class="co"># Python</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"duckdb"</span>)   <span class="co"># R</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="querying-files-directly" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="querying-files-directly"><span class="header-section-number">5.3.1</span> Querying Files Directly</h3>
+<section id="querying-files-directly" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="querying-files-directly"><span class="header-section-number">6.3.1</span> Querying Files Directly</h3>
 <p>No import step, no schema definition, no server:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> duckdb</span>
@@ -579,8 +579,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>That second query reads a directory of files, treats them as a single table, and aggregates — on files larger than your available memory, because DuckDB streams rather than loading everything first. Doing the same thing in pandas means reading each file, concatenating, and hoping it fits in RAM.</p>
 </section>
-<section id="working-with-pandas-and-r-data-frames" class="level3" data-number="5.3.2">
-<h3 data-number="5.3.2" class="anchored" data-anchor-id="working-with-pandas-and-r-data-frames"><span class="header-section-number">5.3.2</span> Working with pandas and R Data Frames</h3>
+<section id="working-with-pandas-and-r-data-frames" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="working-with-pandas-and-r-data-frames"><span class="header-section-number">6.3.2</span> Working with pandas and R Data Frames</h3>
 <p>DuckDB reads data frames in the calling session directly, by name:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> duckdb</span>
@@ -616,8 +616,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con, <span class="at">shutdown =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="when-to-use-which" class="level3" data-number="5.3.3">
-<h3 data-number="5.3.3" class="anchored" data-anchor-id="when-to-use-which"><span class="header-section-number">5.3.3</span> When to Use Which</h3>
+<section id="when-to-use-which" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="when-to-use-which"><span class="header-section-number">6.3.3</span> When to Use Which</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -655,8 +655,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>SQLite and DuckDB complement each other: SQLite is optimised for transactions (many small reads and writes), DuckDB for analytics (scanning and aggregating large volumes). For the work in this book, DuckDB is the one you’ll reach for more often.</p>
 </section>
 </section>
-<section id="polars-an-alternative-to-pandas" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="polars-an-alternative-to-pandas"><span class="header-section-number">5.4</span> Polars: An Alternative to pandas</h2>
+<section id="polars-an-alternative-to-pandas" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="polars-an-alternative-to-pandas"><span class="header-section-number">6.4</span> Polars: An Alternative to pandas</h2>
 <p><strong>Polars</strong> is a data frame library with a different design from pandas: it’s written in Rust, parallelises across cores by default, and offers a <em>lazy</em> API that optimises a whole chain of operations before executing any of it.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
@@ -682,8 +682,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Should you switch? Not urgently. pandas has had since 2008 to accumulate an ecosystem, and almost every tutorial, Stack Overflow answer, and library integration assumes it. Polars is worth learning when pandas becomes the bottleneck — jobs that take minutes, or datasets that don’t fit comfortably in memory — and worth knowing about now so you recognise it when you meet it.</p>
 <p>For most readers of this book, the ordering is: pandas by default, DuckDB when the query is more naturally SQL or the data is large, Polars when you’ve measured pandas being too slow.</p>
 </section>
-<section id="postgresql-when-you-need-a-real-server" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="postgresql-when-you-need-a-real-server"><span class="header-section-number">5.5</span> PostgreSQL: When You Need a Real Server</h2>
+<section id="postgresql-when-you-need-a-real-server" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="postgresql-when-you-need-a-real-server"><span class="header-section-number">6.5</span> PostgreSQL: When You Need a Real Server</h2>
 <p>SQLite and DuckDB are files. At some point you’ll need a database that multiple people or applications can write to at once, with user accounts and permissions. That is almost always PostgreSQL.</p>
 <p>You are unlikely to install one from scratch as an analyst — more often you’ll be given connection details to an existing one. Connecting is the same shape in both languages:</p>
 <div class="cell">
@@ -737,27 +737,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If you do want a local PostgreSQL for development, the least painful route is a container rather than an installer — see the Docker Compose example in <a href="../chapters/containers.html">Containerisation</a>, which brings up Postgres alongside Jupyter in one command.</p>
 </section>
-<section id="where-to-put-credentials" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="where-to-put-credentials"><span class="header-section-number">5.6</span> Where to Put Credentials</h2>
+<section id="where-to-put-credentials" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="where-to-put-credentials"><span class="header-section-number">6.6</span> Where to Put Credentials</h2>
 <p>Since this chapter is where credentials first become unavoidable, here is the whole answer in one place. It applies equally to database passwords, API keys — the token a service issues you so its API, its programmatic interface, knows who is calling — and cloud access tokens.</p>
 <p><strong>The rule: secrets live in the environment or a secret store; the code reads them by name; the file holding them is never committed.</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>A forward reference to Git
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This section talks about committing files and about <code>.gitignore</code>, both of which belong to Git, the version control system covered properly in <a href="../chapters/ide_git.html">Editors and Version Control</a>. You don’t need that chapter to follow the rules here, only two facts.</p>
-<p><em>Committing</em> a file records a permanent snapshot of its contents in your project’s history. That history is what makes version control useful, and it is also why a password committed once is difficult to remove: later deleting the line changes the current state, not the record of what the file used to contain.</p>
-<p><code>.gitignore</code> is a plain text file listing paths Git should pretend not to see, so they are never committed in the first place. It is the mechanism behind every “add this to <code>.gitignore</code>” instruction below.</p>
-</div>
-</div>
-<section id="local-development-a-.env-file" class="level3" data-number="5.6.1">
-<h3 data-number="5.6.1" class="anchored" data-anchor-id="local-development-a-.env-file"><span class="header-section-number">5.6.1</span> Local development: a <code>.env</code> file</h3>
+<p>The <code>.gitignore</code> template in <a href="../chapters/ide_git.html">Editors and Version Control</a> already lists both of the files below, under the heading “Secrets: never commit these”. This section is why they’re in it.</p>
+<section id="local-development-a-.env-file" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="local-development-a-.env-file"><span class="header-section-number">6.6.1</span> Local development: a <code>.env</code> file</h3>
 <p>Create a <code>.env</code> file in your project root:</p>
 <pre><code>DB_HOST=localhost
 DB_NAME=analytics
@@ -780,18 +766,18 @@ WEATHER_API_KEY=abc123</code></pre>
 </div>
 <p><code>.Renviron</code> also belongs in <code>.gitignore</code>. Commit a <code>.env.example</code> listing the <em>names</em> with dummy values, so a colleague knows what to fill in.</p>
 </section>
-<section id="deployed-applications-the-platforms-secret-store" class="level3" data-number="5.6.2">
-<h3 data-number="5.6.2" class="anchored" data-anchor-id="deployed-applications-the-platforms-secret-store"><span class="header-section-number">5.6.2</span> Deployed applications: the platform’s secret store</h3>
+<section id="deployed-applications-the-platforms-secret-store" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="deployed-applications-the-platforms-secret-store"><span class="header-section-number">6.6.2</span> Deployed applications: the platform’s secret store</h3>
 <p>Every hosting platform has one, and it is always the right answer in production: Render’s Environment tab, GitHub Actions secrets, Fly.io secrets, GCP Secret Manager, AWS Secrets Manager. Your code doesn’t change — it still reads <code>os.environ[...]</code> — only the source of the value does. The <a href="../chapters/deployment.html">Deploying Data Science Projects</a> chapter covers the specifics per platform.</p>
 </section>
-<section id="if-a-secret-does-leak" class="level3" data-number="5.6.3">
-<h3 data-number="5.6.3" class="anchored" data-anchor-id="if-a-secret-does-leak"><span class="header-section-number">5.6.3</span> If a secret does leak</h3>
+<section id="if-a-secret-does-leak" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="if-a-secret-does-leak"><span class="header-section-number">6.6.3</span> If a secret does leak</h3>
 <p>Assume it’s compromised and <strong>rotate it</strong> — issue a new one and revoke the old. Do not try to scrub it from Git history: rewriting history is disruptive, easy to get wrong, and doesn’t help if anyone has already cloned or if the repository was ever public. Rotation is fast, and it is the only step that reliably closes the exposure.</p>
 <p>This applies to private repositories too. “It’s private” is an access-control assumption rather than a guarantee, and repositories change visibility more often than people expect.</p>
 </section>
 </section>
-<section id="conclusion" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.7</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6.7</span> Conclusion</h2>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>SQLite installed, with a <code>sample.db</code> you created and queried from the command line</li>
@@ -1213,13 +1199,13 @@ WEATHER_API_KEY=abc123</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/languages.html" class="pagination-link" aria-label="Python and R">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></span>
+      <a href="../chapters/ide_git.html" class="pagination-link" aria-label="Editors and Version Control">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/environments.html" class="pagination-link" aria-label="Reproducible Environments">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

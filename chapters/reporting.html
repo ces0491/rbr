@@ -92,7 +92,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/visualisation.html" rel="next">
-<link href="../chapters/ide_git.html" rel="prev">
+<link href="../chapters/environments.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -132,35 +132,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <meta property="og:title" content="8&nbsp; Data Science Tools for Reporting – Ready Before Run()">
 <meta property="og:description" content="A practical guide to the infrastructure data science assumes you already have - the command line, reproducible environments, data stores, version control, reporting, containers and deployment - written for people who arrived at data work from somewhere other than computer science.">
@@ -242,20 +213,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,12 +252,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -298,6 +263,12 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
@@ -376,11 +347,9 @@ window.Quarto = {
   <li><a href="#jupyter-notebooks-for-documentation" id="toc-jupyter-notebooks-for-documentation" class="nav-link" data-scroll-target="#jupyter-notebooks-for-documentation"><span class="header-section-number">8.1.3</span> Jupyter Notebooks for Documentation</a></li>
   <li><a href="#quarto-the-next-generation-of-literate-programming" id="toc-quarto-the-next-generation-of-literate-programming" class="nav-link" data-scroll-target="#quarto-the-next-generation-of-literate-programming"><span class="header-section-number">8.1.4</span> Quarto: The Next Generation of Literate Programming</a></li>
   <li><a href="#latex-for-professional-document-creation" id="toc-latex-for-professional-document-creation" class="nav-link" data-scroll-target="#latex-for-professional-document-creation"><span class="header-section-number">8.1.5</span> LaTeX for Professional Document Creation</a></li>
-  <li><a href="#advanced-latex-features-for-data-science" id="toc-advanced-latex-features-for-data-science" class="nav-link" data-scroll-target="#advanced-latex-features-for-data-science"><span class="header-section-number">8.1.6</span> Advanced LaTeX Features for Data Science</a></li>
-  <li><a href="#latex-in-r-markdown" id="toc-latex-in-r-markdown" class="nav-link" data-scroll-target="#latex-in-r-markdown"><span class="header-section-number">8.1.7</span> LaTeX in R Markdown</a></li>
-  <li><a href="#troubleshooting-latex-issues" id="toc-troubleshooting-latex-issues" class="nav-link" data-scroll-target="#troubleshooting-latex-issues"><span class="header-section-number">8.1.8</span> Troubleshooting LaTeX Issues</a></li>
-  <li><a href="#latex-or-typst" id="toc-latex-or-typst" class="nav-link" data-scroll-target="#latex-or-typst"><span class="header-section-number">8.1.9</span> LaTeX or Typst?</a></li>
-  <li><a href="#creating-technical-documentation" id="toc-creating-technical-documentation" class="nav-link" data-scroll-target="#creating-technical-documentation"><span class="header-section-number">8.1.10</span> Creating Technical Documentation</a></li>
+  <li><a href="#troubleshooting-latex-issues" id="toc-troubleshooting-latex-issues" class="nav-link" data-scroll-target="#troubleshooting-latex-issues"><span class="header-section-number">8.1.6</span> Troubleshooting LaTeX Issues</a></li>
+  <li><a href="#latex-or-typst" id="toc-latex-or-typst" class="nav-link" data-scroll-target="#latex-or-typst"><span class="header-section-number">8.1.7</span> LaTeX or Typst?</a></li>
+  <li><a href="#creating-technical-documentation" id="toc-creating-technical-documentation" class="nav-link" data-scroll-target="#creating-technical-documentation"><span class="header-section-number">8.1.8</span> Creating Technical Documentation</a></li>
   </ul></li>
   <li><a href="#reproducible-reports-working-with-data" id="toc-reproducible-reports-working-with-data" class="nav-link" data-scroll-target="#reproducible-reports-working-with-data"><span class="header-section-number">8.2</span> Reproducible Reports — Working with Data</a>
   <ul class="collapse">
@@ -519,7 +488,7 @@ window.Quarto = {
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>head(my_data)</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>```</span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>## Data Visualization</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>## Data Visualisation</span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>```{r visualization, eval=FALSE}</span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +</span>
@@ -639,25 +608,10 @@ Note
 </section>
 <section id="latex-for-professional-document-creation" class="level3" data-number="8.1.5">
 <h3 data-number="8.1.5" class="anchored" data-anchor-id="latex-for-professional-document-creation"><span class="header-section-number">8.1.5</span> LaTeX for Professional Document Creation</h3>
-<p>When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX handles precise page layout, mathematical notation, numbered figures and cross-references, and bibliographies.</p>
-<section id="why-latex-for-data-scientists" class="level4" data-number="8.1.5.1">
-<h4 data-number="8.1.5.1" class="anchored" data-anchor-id="why-latex-for-data-scientists"><span class="header-section-number">8.1.5.1</span> Why LaTeX for Data Scientists?</h4>
-<p>LaTeX offers several advantages for data science documentation:</p>
-<ol type="1">
-<li><strong>Professional typesetting</strong>: Produces publication-quality documents with consistent formatting</li>
-<li><strong>Math support</strong>: Renders complex equations to a typographic standard nothing else matches</li>
-<li><strong>Advanced layout control</strong>: Provides precise control over document structure and appearance</li>
-<li><strong>Bibliography management</strong>: Integrates with citation systems like BibTeX</li>
-<li><strong>Reproducibility</strong>: Separates content from presentation in a plain text format that works with version control</li>
-</ol>
-<p>LaTeX documents, particularly those with programmatically generated figures, tend to be more reproducible than those created with proprietary document formats.</p>
-</section>
-<section id="getting-started-with-latex" class="level4" data-number="8.1.5.2">
-<h4 data-number="8.1.5.2" class="anchored" data-anchor-id="getting-started-with-latex"><span class="header-section-number">8.1.5.2</span> Getting Started with LaTeX</h4>
-<p>LaTeX works differently from word processors — you write plain text with special commands, then compile it to produce a PDF. For data science, you don’t need to install a full LaTeX distribution, as Quarto and R Markdown can handle the compilation process.</p>
-</section>
-<section id="installing-latex-for-quarto-and-r-markdown" class="level4" data-number="8.1.5.3">
-<h4 data-number="8.1.5.3" class="anchored" data-anchor-id="installing-latex-for-quarto-and-r-markdown"><span class="header-section-number">8.1.5.3</span> Installing LaTeX for Quarto and R Markdown</h4>
+<p>When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX gives you precise page layout, mathematical notation to a standard nothing else matches, figures and tables that number and cross-reference themselves, and bibliographies through BibTeX — all from plain text, so it versions in Git like any other source file.</p>
+<p>LaTeX works differently from word processors: you write plain text with special commands, then compile it to a PDF. You don’t need to learn those commands to get the benefit. Quarto and R Markdown generate them from your document and run the compiler for you, so what follows is how to install that compiler and configure Quarto to drive it, rather than a course in LaTeX itself. If you do end up writing raw LaTeX, <a href="https://quarto.org/docs/output-formats/pdf-basics.html">Quarto’s PDF documentation</a> and the <a href="https://tex.stackexchange.com/">TeX Stack Exchange</a> are where to go.</p>
+<section id="installing-latex-for-quarto-and-r-markdown" class="level4" data-number="8.1.5.1">
+<h4 data-number="8.1.5.1" class="anchored" data-anchor-id="installing-latex-for-quarto-and-r-markdown"><span class="header-section-number">8.1.5.1</span> Installing LaTeX for Quarto and R Markdown</h4>
 <p>The easiest way to install LaTeX for use with Quarto or R Markdown is to use TinyTeX, a lightweight LaTeX distribution:</p>
 <p><strong>In R</strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tinytex"</span>)</span>
@@ -666,174 +620,31 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>TinyTeX is designed specifically for R Markdown and Quarto users. It installs only the essential LaTeX packages (around 150MB) compared to full distributions (several GB), and it automatically installs additional packages as needed when you render documents.</p>
 </section>
-<section id="latex-basics-for-data-scientists" class="level4" data-number="8.1.5.4">
-<h4 data-number="8.1.5.4" class="anchored" data-anchor-id="latex-basics-for-data-scientists"><span class="header-section-number">8.1.5.4</span> LaTeX Basics for Data Scientists</h4>
-<p>Let’s explore the essential LaTeX elements you’ll need for data science documentation:</p>
-</section>
-<section id="document-structure" class="level4" data-number="8.1.5.5">
-<h4 data-number="8.1.5.5" class="anchored" data-anchor-id="document-structure"><span class="header-section-number">8.1.5.5</span> Document Structure</h4>
-<p>A basic LaTeX document structure looks like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">graphicx</span>}  <span class="co">% For images</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">amsmath</span>}   <span class="co">% For advanced math</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">booktabs</span>}  <span class="co">% For professional tables</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{Analysis of Customer Purchasing Patterns}</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>{Your Name}</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\date</span>{<span class="fu">\today</span>}</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\maketitle</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\tableofcontents</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Introduction}</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>This report analyses...</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Methodology}</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="kw">\subsection</span>{Data Collection}</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>We collected data from...</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Results}</span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>The results show...</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Conclusion}</span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>In conclusion...</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>When using Quarto or R Markdown, you won’t write this structure directly. Instead, it’s generated based on your YAML header and document content.</p>
-</section>
-<section id="mathematical-equations" class="level4" data-number="8.1.5.6">
-<h4 data-number="8.1.5.6" class="anchored" data-anchor-id="mathematical-equations"><span class="header-section-number">8.1.5.6</span> Mathematical Equations</h4>
-<p>Mathematical notation is what LaTeX is best at. Here are examples of common equation formats:</p>
-<p><strong>Inline equations</strong> use single dollar signs:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>The model accuracy is <span class="ss">$</span><span class="sc">\alpha</span><span class="ss"> = 0.95$</span>, which exceeds our threshold.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Display equations</strong> use double dollar signs:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="sc">\bar</span><span class="ss">{X} = </span><span class="sc">\frac</span><span class="ss">{1}{n} </span><span class="sc">\sum</span><span class="ss">_{i=1}^{n} X_i</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ss">$$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Equation arrays</strong> for multi-line equations:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">align</span>}</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ss">Y &amp;= </span><span class="sc">\beta</span><span class="ss">_0 + </span><span class="sc">\beta</span><span class="ss">_1 X_1 + </span><span class="sc">\beta</span><span class="ss">_2 X_2 + </span><span class="sc">\epsilon</span><span class="ss"> </span><span class="sc">\\</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ss">&amp;= </span><span class="sc">\beta</span><span class="ss">_0 + </span><span class="sc">\sum</span><span class="ss">_{i=1}^{2} </span><span class="sc">\beta</span><span class="ss">_i X_i + </span><span class="sc">\epsilon</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">align</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Some common math symbols in data science:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Description</th>
-<th>LaTeX Code</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Summation</td>
-<td><code>\sum_{i=1}^{n}</code></td>
-<td><span class="math inline">\(\sum_{i=1}^{n}\)</span></td>
-</tr>
-<tr class="even">
-<td>Product</td>
-<td><code>\prod_{i=1}^{n}</code></td>
-<td><span class="math inline">\(\prod_{i=1}^{n}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Fraction</td>
-<td><code>\frac{a}{b}</code></td>
-<td><span class="math inline">\(\frac{a}{b}\)</span></td>
-</tr>
-<tr class="even">
-<td>Square root</td>
-<td><code>\sqrt{x}</code></td>
-<td><span class="math inline">\(\sqrt{x}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Bar (mean)</td>
-<td><code>\bar{X}</code></td>
-<td><span class="math inline">\(\bar{X}\)</span></td>
-</tr>
-<tr class="even">
-<td>Hat (estimate)</td>
-<td><code>\hat{\beta}</code></td>
-<td><span class="math inline">\(\hat{\beta}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Greek letters</td>
-<td><code>\alpha, \beta, \gamma</code></td>
-<td><span class="math inline">\(\alpha, \beta, \gamma\)</span></td>
-</tr>
-<tr class="even">
-<td>Infinity</td>
-<td><code>\infty</code></td>
-<td><span class="math inline">\(\infty\)</span></td>
-</tr>
-<tr class="odd">
-<td>Approximately equal</td>
-<td><code>\approx</code></td>
-<td><span class="math inline">\(\approx\)</span></td>
-</tr>
-<tr class="even">
-<td>Distribution</td>
-<td><code>X \sim N(\mu, \sigma^2)</code></td>
-<td><span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="tables" class="level4" data-number="8.1.5.7">
-<h4 data-number="8.1.5.7" class="anchored" data-anchor-id="tables"><span class="header-section-number">8.1.5.7</span> Tables</h4>
-<p>LaTeX can create publication-quality tables. The <code>booktabs</code> package is recommended for professional-looking tables with proper spacing:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">table</span>}[htbp]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\centering</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Model Performance Comparison}</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{lrrr}</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\toprule</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>Model <span class="op">&amp;</span> Accuracy <span class="op">&amp;</span> Precision <span class="op">&amp;</span> Recall <span class="fu">\\</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\midrule</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>Random Forest <span class="op">&amp;</span> 0.92 <span class="op">&amp;</span> 0.89 <span class="op">&amp;</span> 0.94 <span class="fu">\\</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>XGBoost <span class="op">&amp;</span> 0.95 <span class="op">&amp;</span> 0.92 <span class="op">&amp;</span> 0.91 <span class="fu">\\</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>Neural Network <span class="op">&amp;</span> 0.90 <span class="op">&amp;</span> 0.87 <span class="op">&amp;</span> 0.92 <span class="fu">\\</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\bottomrule</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">table</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="figures" class="level4" data-number="8.1.5.8">
-<h4 data-number="8.1.5.8" class="anchored" data-anchor-id="figures"><span class="header-section-number">8.1.5.8</span> Figures</h4>
-<p>To include figures with proper captioning and referencing:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}[htbp]</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\centering</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\includegraphics</span>[width=0.8<span class="fu">\textwidth</span>]{<span class="ex">histogram.png</span>}</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Distribution of customer spending by category}</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="kw">\label</span>{<span class="ex">fig:spending-dist</span>}</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>As shown in Figure <span class="kw">\ref</span>{<span class="ex">fig:spending-dist</span>}, the distribution is right-skewed.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="using-latex-with-quarto" class="level4" data-number="8.1.5.9">
-<h4 data-number="8.1.5.9" class="anchored" data-anchor-id="using-latex-with-quarto"><span class="header-section-number">8.1.5.9</span> Using LaTeX with Quarto</h4>
+<section id="using-latex-with-quarto" class="level4" data-number="8.1.5.2">
+<h4 data-number="8.1.5.2" class="anchored" data-anchor-id="using-latex-with-quarto"><span class="header-section-number">8.1.5.2</span> Using LaTeX with Quarto</h4>
 <p>Quarto makes it easy to incorporate LaTeX features while keeping your document source readable. Here’s how to configure Quarto for PDF output using LaTeX:</p>
-<section id="yaml-configuration" class="level5" data-number="8.1.5.9.1">
-<h5 data-number="8.1.5.9.1" class="anchored" data-anchor-id="yaml-configuration"><span class="header-section-number">8.1.5.9.1</span> YAML Configuration</h5>
+<section id="yaml-configuration" class="level5" data-number="8.1.5.2.1">
+<h5 data-number="8.1.5.2.1" class="anchored" data-anchor-id="yaml-configuration"><span class="header-section-number">8.1.5.2.1</span> YAML Configuration</h5>
 <p>In your Quarto YAML header, specify PDF output with LaTeX options:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Analysis Report"</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> article</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">geometry</span><span class="kw">:</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> margin=1in</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fontfamily</span><span class="kw">:</span><span class="at"> libertinus</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">colorlinks</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-width</span><span class="kw">:</span><span class="at"> </span><span class="dv">7</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-height</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">cite-method</span><span class="kw">:</span><span class="at"> biblatex</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">biblio-style</span><span class="kw">:</span><span class="at"> apa</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Analysis Report"</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> article</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">geometry</span><span class="kw">:</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> margin=1in</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fontfamily</span><span class="kw">:</span><span class="at"> libertinus</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">colorlinks</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-width</span><span class="kw">:</span><span class="at"> </span><span class="dv">7</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-height</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">cite-method</span><span class="kw">:</span><span class="at"> biblatex</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">biblio-style</span><span class="kw">:</span><span class="at"> apa</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="customising-pdf-output" class="level5" data-number="8.1.5.9.2">
-<h5 data-number="8.1.5.9.2" class="anchored" data-anchor-id="customising-pdf-output"><span class="header-section-number">8.1.5.9.2</span> Customising PDF Output</h5>
+<section id="customising-pdf-output" class="level5" data-number="8.1.5.2.2">
+<h5 data-number="8.1.5.2.2" class="anchored" data-anchor-id="customising-pdf-output"><span class="header-section-number">8.1.5.2.2</span> Customising PDF Output</h5>
 <p>You can further customise the LaTeX template by:</p>
 <ol type="1">
 <li><p><strong>Including raw LaTeX</strong>: Use the <code>raw</code> attribute to include LaTeX commands</p>
@@ -843,220 +654,123 @@ Note
 \end{center}
 ```</code></pre></li>
 <li><p><strong>Adding LaTeX packages</strong>: Include additional packages in the YAML</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">include-in-header</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">      text</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        \usepackage{siunitx}</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        \usepackage{algorithm2e}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">include-in-header</span><span class="kw">:</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">      text</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        \usepackage{siunitx}</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        \usepackage{algorithm2e}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p><strong>Using a custom template</strong>: Create your own template for full control</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">template</span><span class="kw">:</span><span class="at"> custom-template.tex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">template</span><span class="kw">:</span><span class="at"> custom-template.tex</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
 </section>
-<section id="equations-in-quarto" class="level5" data-number="8.1.5.9.3">
-<h5 data-number="8.1.5.9.3" class="anchored" data-anchor-id="equations-in-quarto"><span class="header-section-number">8.1.5.9.3</span> Equations in Quarto</h5>
+<section id="equations-in-quarto" class="level5" data-number="8.1.5.2.3">
+<h5 data-number="8.1.5.2.3" class="anchored" data-anchor-id="equations-in-quarto"><span class="header-section-number">8.1.5.2.3</span> Equations in Quarto</h5>
 <p>Quarto supports LaTeX math syntax directly:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="an">The linear regression model can be represented as:</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>y_i = \beta_0 + \beta_1 x_i + \epsilon_i</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>where $\epsilon_i \sim N(0, \sigma^2)$.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="an">The linear regression model can be represented as:</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>y_i = \beta_0 + \beta_1 x_i + \epsilon_i</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>where $\epsilon_i \sim N(0, \sigma^2)$.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="citations-and-bibliography" class="level5" data-number="8.1.5.9.4">
-<h5 data-number="8.1.5.9.4" class="anchored" data-anchor-id="citations-and-bibliography"><span class="header-section-number">8.1.5.9.4</span> Citations and Bibliography</h5>
+<section id="citations-and-bibliography" class="level5" data-number="8.1.5.2.4">
+<h5 data-number="8.1.5.2.4" class="anchored" data-anchor-id="citations-and-bibliography"><span class="header-section-number">8.1.5.2.4</span> Citations and Bibliography</h5>
 <p>For managing citations, create a BibTeX file (e.g., <code>references.bib</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">knuth84</span>,</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Knuth, Donald E.},</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {Literate Programming},</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {1984},</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Comput. J.},</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span> = {27},</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {2},</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span> = {97--111}</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">knuth84</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Knuth, Donald E.},</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {Literate Programming},</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {1984},</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Comput. J.},</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span> = {27},</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {2},</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span> = {97--111}</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then cite in your Quarto document:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Literate programming <span class="co">[</span><span class="ot">@knuth84</span><span class="co">]</span> combines documentation and code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Literate programming <span class="co">[</span><span class="ot">@knuth84</span><span class="co">]</span> combines documentation and code.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And configure in YAML:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> ieee.csl</span><span class="co">  # Citation style</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> ieee.csl</span><span class="co">  # Citation style</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 </section>
-<section id="advanced-latex-features-for-data-science" class="level3" data-number="8.1.6">
-<h3 data-number="8.1.6" class="anchored" data-anchor-id="advanced-latex-features-for-data-science"><span class="header-section-number">8.1.6</span> Advanced LaTeX Features for Data Science</h3>
-<section id="algorithm-description" class="level4" data-number="8.1.6.1">
-<h4 data-number="8.1.6.1" class="anchored" data-anchor-id="algorithm-description"><span class="header-section-number">8.1.6.1</span> Algorithm Description</h4>
-<p>The <code>algorithm2e</code> package helps document computational methods:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">algorithm</span>}[H]</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\SetAlgoLined</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\KwData</span>{Training data <span class="ss">$X$</span>, target values <span class="ss">$y$</span>}</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\KwResult</span>{Trained model <span class="ss">$M$</span>}</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>Split data into training and validation sets<span class="fu">\;</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>Initialize model <span class="ss">$M$</span> with random weights<span class="fu">\;</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\For</span>{each epoch}{</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\For</span>{each batch}{</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        Compute predictions <span class="ss">$</span><span class="sc">\hat</span><span class="ss">{y}$</span><span class="fu">\;</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>        Calculate loss <span class="ss">$L(y, </span><span class="sc">\hat</span><span class="ss">{y})$</span><span class="fu">\;</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>        Update model weights using gradient descent<span class="fu">\;</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    Evaluate on validation set<span class="fu">\;</span></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\If</span>{early stopping condition met}{</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>        break<span class="fu">\;</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Training Neural Network with Early Stopping}</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">algorithm</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="professional-tables-with-statistical-significance" class="level4" data-number="8.1.6.2">
-<h4 data-number="8.1.6.2" class="anchored" data-anchor-id="professional-tables-with-statistical-significance"><span class="header-section-number">8.1.6.2</span> Professional Tables with Statistical Significance</h4>
-<p>For reporting analysis results with significance levels:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">table</span>}[htbp]</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\centering</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Regression Results}</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tabular</span>}{lrrrr}</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\toprule</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>Variable <span class="op">&amp;</span> Coefficient <span class="op">&amp;</span> Std. Error <span class="op">&amp;</span> t-statistic <span class="op">&amp;</span> p-value <span class="fu">\\</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\midrule</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>Intercept <span class="op">&amp;</span> 23.45 <span class="op">&amp;</span> 2.14 <span class="op">&amp;</span> 10.96 <span class="op">&amp;</span> <span class="ss">$&lt;0.001^{***}$</span> <span class="fu">\\</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>Age <span class="op">&amp;</span> -0.32 <span class="op">&amp;</span> 0.05 <span class="op">&amp;</span> -6.4 <span class="op">&amp;</span> <span class="ss">$&lt;0.001^{***}$</span> <span class="fu">\\</span></span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>Income <span class="op">&amp;</span> 0.015 <span class="op">&amp;</span> 0.004 <span class="op">&amp;</span> 3.75 <span class="op">&amp;</span> <span class="ss">$0.002^{**}$</span> <span class="fu">\\</span></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>Education <span class="op">&amp;</span> 1.86 <span class="op">&amp;</span> 0.72 <span class="op">&amp;</span> 2.58 <span class="op">&amp;</span> <span class="ss">$0.018^{*}$</span> <span class="fu">\\</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\bottomrule</span></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\multicolumn</span>{5}{l}{<span class="fu">\scriptsize</span>{<span class="ss">$^{*}p&lt;0.05$</span>; <span class="ss">$^{**}p&lt;0.01$</span>; <span class="ss">$^{***}p&lt;0.001$</span>}} <span class="fu">\\</span></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tabular</span>}</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">table</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="multi-part-figures" class="level4" data-number="8.1.6.3">
-<h4 data-number="8.1.6.3" class="anchored" data-anchor-id="multi-part-figures"><span class="header-section-number">8.1.6.3</span> Multi-part Figures</h4>
-<p>For comparing visualisations side by side:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}[htbp]</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\centering</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">subfigure</span>}{0.48<span class="fu">\textwidth</span>}</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">\includegraphics</span>[width=<span class="fu">\textwidth</span>]{<span class="ex">model1_results.png</span>}</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\caption</span>{Linear Model Performance}</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\label</span>{<span class="ex">fig:model1</span>}</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">subfigure</span>}</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\hfill</span></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">subfigure</span>}{0.48<span class="fu">\textwidth</span>}</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">\includegraphics</span>[width=<span class="fu">\textwidth</span>]{<span class="ex">model2_results.png</span>}</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\caption</span>{Neural Network Performance}</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\label</span>{<span class="ex">fig:model2</span>}</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">subfigure</span>}</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Performance comparison of predictive models}</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="kw">\label</span>{<span class="ex">fig:models-comparison</span>}</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="latex-in-r-markdown" class="level3" data-number="8.1.7">
-<h3 data-number="8.1.7" class="anchored" data-anchor-id="latex-in-r-markdown"><span class="header-section-number">8.1.7</span> LaTeX in R Markdown</h3>
-<p>If you’re using R Markdown instead of Quarto, the approach is similar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Statistical Analysis Report"</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your Name"</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf_document</span><span class="kw">:</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number_sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig_caption</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">keep_tex</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">  # Useful for debugging</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">includes</span><span class="kw">:</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">in_header</span><span class="kw">:</span><span class="at"> preamble.tex</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>preamble.tex</code> file can contain additional LaTeX packages and configurations:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">% preamble.tex</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">booktabs</span>}</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">longtable</span>}</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">array</span>}</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">multirow</span>}</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">wrapfig</span>}</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">float</span>}</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">colortbl</span>}</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">pdflscape</span>}</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">tabu</span>}</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">threeparttable</span>}</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">threeparttablex</span>}</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[normalem]{<span class="ex">ulem</span>}</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">makecell</span>}</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">xcolor</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="troubleshooting-latex-issues" class="level3" data-number="8.1.8">
-<h3 data-number="8.1.8" class="anchored" data-anchor-id="troubleshooting-latex-issues"><span class="header-section-number">8.1.8</span> Troubleshooting LaTeX Issues</h3>
+<section id="troubleshooting-latex-issues" class="level3" data-number="8.1.6">
+<h3 data-number="8.1.6" class="anchored" data-anchor-id="troubleshooting-latex-issues"><span class="header-section-number">8.1.6</span> Troubleshooting LaTeX Issues</h3>
 <p>LaTeX can sometimes produce cryptic error messages. Here are solutions to common issues:</p>
-<section id="missing-packages" class="level4" data-number="8.1.8.1">
-<h4 data-number="8.1.8.1" class="anchored" data-anchor-id="missing-packages"><span class="header-section-number">8.1.8.1</span> Missing Packages</h4>
+<section id="missing-packages" class="level4" data-number="8.1.6.1">
+<h4 data-number="8.1.6.1" class="anchored" data-anchor-id="missing-packages"><span class="header-section-number">8.1.6.1</span> Missing Packages</h4>
 <p>If you get an error about a missing package when rendering:</p>
 <pre><code>! LaTeX Error: File 'tikz.sty' not found.</code></pre>
 <p>TinyTeX normally resolves this for you: when it hits a missing <code>.sty</code> file it looks up which TeX Live package provides it, installs it, and recompiles. That happens by default, so most of the time the error above is one you never see.</p>
 <p>When it doesn’t resolve automatically, point TinyTeX at the compilation log and let it work out what’s missing:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">parse_install</span>(<span class="st">"document.log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">parse_install</span>(<span class="st">"document.log"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Installing by hand is a last resort, and the trap is that the TeX Live package name rarely matches the file name — <code>tikz.sty</code> ships in a package called <code>pgf</code>, not <code>tikz</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="st">"pgf"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">tlmgr_install</span>(<span class="st">"pgf"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="figure-placement" class="level4" data-number="8.1.8.2">
-<h4 data-number="8.1.8.2" class="anchored" data-anchor-id="figure-placement"><span class="header-section-number">8.1.8.2</span> Figure Placement</h4>
+<section id="figure-placement" class="level4" data-number="8.1.6.2">
+<h4 data-number="8.1.6.2" class="anchored" data-anchor-id="figure-placement"><span class="header-section-number">8.1.6.2</span> Figure Placement</h4>
 <p>If figures aren’t appearing where expected:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}[!htbp]  <span class="co">% The ! makes LaTeX try harder to respect placement</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}[!htbp]  <span class="co">% The ! makes LaTeX try harder to respect placement</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="large-tables-spanning-multiple-pages" class="level4" data-number="8.1.8.3">
-<h4 data-number="8.1.8.3" class="anchored" data-anchor-id="large-tables-spanning-multiple-pages"><span class="header-section-number">8.1.8.3</span> Large Tables Spanning Multiple Pages</h4>
+<section id="large-tables-spanning-multiple-pages" class="level4" data-number="8.1.6.3">
+<h4 data-number="8.1.6.3" class="anchored" data-anchor-id="large-tables-spanning-multiple-pages"><span class="header-section-number">8.1.6.3</span> Large Tables Spanning Multiple Pages</h4>
 <p>For large tables that need to span pages:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">longtable</span>}{lrrr}</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Comprehensive Model Results}<span class="fu">\\</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\toprule</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>Model <span class="op">&amp;</span> Accuracy <span class="op">&amp;</span> Precision <span class="op">&amp;</span> Recall <span class="fu">\\</span></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\midrule</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\endhead</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co">% Table contents...</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\bottomrule</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">longtable</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">longtable</span>}{lrrr}</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Comprehensive Model Results}<span class="fu">\\</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\toprule</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>Model <span class="op">&amp;</span> Accuracy <span class="op">&amp;</span> Precision <span class="op">&amp;</span> Recall <span class="fu">\\</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\midrule</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\endhead</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">% Table contents...</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\bottomrule</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">longtable</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="pdf-compilation-hangs" class="level4" data-number="8.1.8.4">
-<h4 data-number="8.1.8.4" class="anchored" data-anchor-id="pdf-compilation-hangs"><span class="header-section-number">8.1.8.4</span> PDF Compilation Hangs</h4>
+<section id="pdf-compilation-hangs" class="level4" data-number="8.1.6.4">
+<h4 data-number="8.1.6.4" class="anchored" data-anchor-id="pdf-compilation-hangs"><span class="header-section-number">8.1.6.4</span> PDF Compilation Hangs</h4>
 <p>If compilation seems to hang, it is usually waiting for input at LaTeX’s interactive error prompt. TinyTeX passes <code>-halt-on-error</code> by default so this is rare, but if you are calling LaTeX yourself, or a package has re-enabled the prompt, force it to fail rather than wait:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In R</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">latexmk</span>(<span class="st">'document.tex'</span>, <span class="at">engine_args =</span> <span class="st">'-interaction=nonstopmode'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In R</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">latexmk</span>(<span class="st">'document.tex'</span>, <span class="at">engine_args =</span> <span class="st">'-interaction=nonstopmode'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then read <code>document.log</code> — the first <code>!</code> line in that file is the real error.</p>
 </section>
 </section>
-<section id="latex-or-typst" class="level3" data-number="8.1.9">
-<h3 data-number="8.1.9" class="anchored" data-anchor-id="latex-or-typst"><span class="header-section-number">8.1.9</span> LaTeX or Typst?</h3>
+<section id="latex-or-typst" class="level3" data-number="8.1.7">
+<h3 data-number="8.1.7" class="anchored" data-anchor-id="latex-or-typst"><span class="header-section-number">8.1.7</span> LaTeX or Typst?</h3>
 <p>LaTeX has been the standard for scientific documentation for decades. Quarto and R Markdown default to it when you ask for a PDF, which is why it is worth knowing even if you never write a <code>.tex</code> file by hand — and why the errors above are errors you will eventually meet.</p>
 <p>It also carries a real learning curve, and for most of what this book’s readers produce, there is now a second option.</p>
-<section id="typst" class="level4" data-number="8.1.9.1">
-<h4 data-number="8.1.9.1" class="anchored" data-anchor-id="typst"><span class="header-section-number">8.1.9.1</span> Typst</h4>
+<section id="typst" class="level4" data-number="8.1.7.1">
+<h4 data-number="8.1.7.1" class="anchored" data-anchor-id="typst"><span class="header-section-number">8.1.7.1</span> Typst</h4>
 <p><strong>Typst</strong> is a newer typesetting system aimed at the same output with less ceremony:</p>
 <p><strong>Simpler Syntax</strong>: Where LaTeX might require complex commands, Typst uses more intuitive markup:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode typst code-with-copy"><code class="sourceCode typst"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Typst syntax</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">= Introduction</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">== Subsection</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$x = (a + b) / c$</span>  <span class="co">// Math notation</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="kw">#</span>figure<span class="op">(</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  image<span class="op">(</span><span class="st">"plot.png"</span><span class="op">),</span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  caption<span class="op">:</span> <span class="st">"Sample Plot"</span></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode typst code-with-copy"><code class="sourceCode typst"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Typst syntax</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">= Introduction</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">== Subsection</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$x = (a + b) / c$</span>  <span class="co">// Math notation</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">#</span>figure<span class="op">(</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  image<span class="op">(</span><span class="st">"plot.png"</span><span class="op">),</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  caption<span class="op">:</span> <span class="st">"Sample Plot"</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compare this to equivalent LaTeX:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">% LaTeX syntax</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Introduction}</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\subsection</span>{Subsection}</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$x = </span><span class="sc">\frac</span><span class="ss">{a + b}{c}$</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">\includegraphics</span>{<span class="ex">plot.png</span>}</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\caption</span>{Sample Plot}</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">% LaTeX syntax</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{Introduction}</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\subsection</span>{Subsection}</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="ss">$x = </span><span class="sc">\frac</span><span class="ss">{a + b}{c}$</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">\includegraphics</span>{<span class="ex">plot.png</span>}</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\caption</span>{Sample Plot}</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Faster Compilation</strong>: Typst compiles documents significantly faster than LaTeX, making it more suitable for iterative document development.</p>
 <p><strong>Better Error Messages</strong>: When something goes wrong, Typst provides clearer, more actionable error messages compared to LaTeX’s often cryptic feedback.</p>
 <p><strong>Modern Design</strong>: Built from the ground up with modern document needs in mind, including better handling of digital-first workflows.</p>
 </section>
-<section id="choosing-your-path-forward" class="level4" data-number="8.1.9.2">
-<h4 data-number="8.1.9.2" class="anchored" data-anchor-id="choosing-your-path-forward"><span class="header-section-number">8.1.9.2</span> Choosing Your Path Forward</h4>
+<section id="choosing-your-path-forward" class="level4" data-number="8.1.7.2">
+<h4 data-number="8.1.7.2" class="anchored" data-anchor-id="choosing-your-path-forward"><span class="header-section-number">8.1.7.2</span> Choosing Your Path Forward</h4>
 <p>For data scientists starting their journey, here’s how to think about these tools:</p>
 <p><strong>Choose LaTeX when:</strong></p>
 <ul>
@@ -1073,42 +787,42 @@ Note
 <li>You want to avoid LaTeX’s steep learning curve</li>
 </ul>
 <p><strong>You don’t have to choose up front.</strong> Quarto has shipped the Typst compiler since version 1.4, so switching engines is a one-line YAML change and your content stays as it is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Sales Report"</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> typst</span><span class="co">     # instead of: pdf</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Sales Report"</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> typst</span><span class="co">     # instead of: pdf</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>There is a practical consequence worth stating plainly: <code>format: typst</code> produces a PDF without LaTeX installed at all. If PDF output is all you need, you can skip the TinyTeX installation and everything that follows from it.</p>
 </section>
 </section>
-<section id="creating-technical-documentation" class="level3" data-number="8.1.10">
-<h3 data-number="8.1.10" class="anchored" data-anchor-id="creating-technical-documentation"><span class="header-section-number">8.1.10</span> Creating Technical Documentation</h3>
+<section id="creating-technical-documentation" class="level3" data-number="8.1.8">
+<h3 data-number="8.1.8" class="anchored" data-anchor-id="creating-technical-documentation"><span class="header-section-number">8.1.8</span> Creating Technical Documentation</h3>
 <p>For more complex projects, specialised documentation tools may be needed:</p>
-<section id="mkdocs-simple-documentation-with-markdown" class="level4" data-number="8.1.10.1">
-<h4 data-number="8.1.10.1" class="anchored" data-anchor-id="mkdocs-simple-documentation-with-markdown"><span class="header-section-number">8.1.10.1</span> MkDocs: Simple Documentation with Markdown</h4>
+<section id="mkdocs-simple-documentation-with-markdown" class="level4" data-number="8.1.8.1">
+<h4 data-number="8.1.8.1" class="anchored" data-anchor-id="mkdocs-simple-documentation-with-markdown"><span class="header-section-number">8.1.8.1</span> MkDocs: Simple Documentation with Markdown</h4>
 <p>MkDocs creates a documentation website from Markdown files:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install MkDocs</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install mkdocs</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new project</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mkdocs</span> new my-documentation</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Serve the documentation locally</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-documentation</span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mkdocs</span> serve</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install MkDocs</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install mkdocs</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new project</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mkdocs</span> new my-documentation</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Serve the documentation locally</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> my-documentation</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="ex">mkdocs</span> serve</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>MkDocs is focused on simplicity and readability. It generates a clean, responsive website from your Markdown files, with navigation, search, and themes — enough for project documentation aimed at users or team members, without a heavier system’s configuration burden.</p>
 </section>
-<section id="sphinx-documentation-generated-from-code" class="level4" data-number="8.1.10.2">
-<h4 data-number="8.1.10.2" class="anchored" data-anchor-id="sphinx-documentation-generated-from-code"><span class="header-section-number">8.1.10.2</span> Sphinx: Documentation Generated from Code</h4>
+<section id="sphinx-documentation-generated-from-code" class="level4" data-number="8.1.8.2">
+<h4 data-number="8.1.8.2" class="anchored" data-anchor-id="sphinx-documentation-generated-from-code"><span class="header-section-number">8.1.8.2</span> Sphinx: Documentation Generated from Code</h4>
 <p>Sphinx is the documentation tool the Python ecosystem standardised on:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Sphinx</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install sphinx</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new documentation project</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sphinx-quickstart</span> docs</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the documentation</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> docs</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Sphinx</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install sphinx</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new documentation project</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sphinx-quickstart</span> docs</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the documentation</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> docs</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Sphinx offers advanced features like automatic API documentation generation, cross-referencing, and multiple output formats. It’s the system behind the official documentation for Python itself and many major libraries like NumPy, pandas, and scikit-learn.</p>
 <p>Sphinx became the standard for Python documentation largely because it generates reference documentation from <em>docstrings</em> — the descriptive text you write inside a function or class, which Python keeps attached to the object at runtime. You document each function where it lives, and Sphinx extracts and formats those descriptions into a browsable reference that can’t drift out of step with the code.</p>
 </section>
@@ -1130,12 +844,12 @@ Note
 <h3 data-number="8.2.2" class="anchored" data-anchor-id="project-relative-paths-with-the-here-package"><span class="header-section-number">8.2.2</span> Project-Relative Paths with the <code>here</code> Package</h3>
 <p>The <code>here</code> package provides an elegant solution by creating paths relative to your project root:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data using project-relative path</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_data.csv"</span>))</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data using project-relative path</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"my_data.csv"</span>))</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <code>here()</code> function automatically detects your project root (usually where your <code>.Rproj</code> file is located) and constructs paths relative to that location. This ensures consistent file access regardless of:</p>
 <ul>
@@ -1154,11 +868,11 @@ Note
 <h3 data-number="8.2.3" class="anchored" data-anchor-id="alternative-built-in-datasets"><span class="header-section-number">8.2.3</span> Alternative: Built-in Datasets</h3>
 <p>For maximum reproducibility, consider using built-in datasets that come with R packages:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a dataset from a package</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(diamonds, <span class="at">package =</span> <span class="st">"ggplot2"</span>)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a dataset from a package</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(diamonds, <span class="at">package =</span> <span class="st">"ggplot2"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Using built-in datasets eliminates file path issues entirely, as these datasets are available to anyone who has the package installed. This is ideal for examples and tutorials where the specific data isn’t crucial.</p>
 </section>
@@ -1166,17 +880,17 @@ Note
 <h3 data-number="8.2.4" class="anchored" data-anchor-id="creating-sample-data-programmatically"><span class="header-section-number">8.2.4</span> Creating Sample Data Programmatically</h3>
 <p>Another reproducible approach is to generate sample data within your code:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create synthetic data</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0491</span>)  <span class="co"># For reproducibility</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_x =</span> <span class="fu">rnorm</span>(<span class="dv">20</span>),</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_y =</span> value_x <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd =</span> <span class="fl">0.5</span>),</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">sample</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data</span></span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(synthetic_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create synthetic data</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0491</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_x =</span> <span class="fu">rnorm</span>(<span class="dv">20</span>),</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_y =</span> value_x <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd =</span> <span class="fl">0.5</span>),</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">sample</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(synthetic_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This approach works well for illustrative examples and ensures anyone can run your code without any external files.</p>
 </section>
@@ -1184,14 +898,14 @@ Note
 <h3 data-number="8.2.5" class="anchored" data-anchor-id="remote-data-with-caching"><span class="header-section-number">8.2.5</span> Remote Data with Caching</h3>
 <p>For real-world datasets that are too large to include in packages, you can fetch them from reliable URLs:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># URL to a stable dataset (ggplot2's default branch is 'main', not 'master')</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/diamonds.csv"</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and read the data</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>remote_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(remote_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># URL to a stable dataset (ggplot2's default branch is 'main', not 'master')</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/diamonds.csv"</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and read the data</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>remote_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(remote_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <code>cache: true</code> option tells Quarto to save the results and only re-execute this chunk when the code changes, which prevents unnecessary downloads.</p>
 </section>
@@ -1641,8 +1355,8 @@ Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/ide_git.html" class="pagination-link" aria-label="Editors and Version Control">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span>
+      <a href="../chapters/environments.html" class="pagination-link" aria-label="Reproducible Environments">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -8,7 +8,7 @@
 
 <meta name="description" content="Why analysis that ran six months ago fails today, and how virtual environments, lockfiles and renv make a project rerunnable by someone else.">
 
-<title>6&nbsp; Reproducible Environments – Ready Before Run()</title>
+<title>7&nbsp; Reproducible Environments – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/ide_git.html" rel="next">
+<link href="../chapters/reporting.html" rel="next">
 <link href="../chapters/data_stores.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -114,10 +114,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="6&nbsp; Reproducible Environments – Ready Before Run()">
+<meta property="og:title" content="7&nbsp; Reproducible Environments – Ready Before Run()">
 <meta property="og:description" content="A practical guide to the infrastructure data science assumes you already have - the command line, reproducible environments, data stores, version control, reporting, containers and deployment - written for people who arrived at data work from somewhere other than computer science.">
 <meta property="og:site_name" content="Ready Before Run()">
-<meta name="twitter:title" content="6&nbsp; Reproducible Environments – Ready Before Run()">
+<meta name="twitter:title" content="7&nbsp; Reproducible Environments – Ready Before Run()">
 <meta name="twitter:description" content="A practical guide to the infrastructure data science assumes you already have - the command line, reproducible environments, data stores, version control, reporting, containers and deployment - written for people who arrived at data work from somewhere other than computer science.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/environments.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/environments.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -194,20 +194,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
   </div>
 </li>
       </ul>
@@ -233,12 +233,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -250,6 +244,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
@@ -321,33 +321,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-problem-this-solves" id="toc-the-problem-this-solves" class="nav-link active" data-scroll-target="#the-problem-this-solves"><span class="header-section-number">6.1</span> The Problem This Solves</a></li>
-  <li><a href="#the-two-halves" id="toc-the-two-halves" class="nav-link" data-scroll-target="#the-two-halves"><span class="header-section-number">6.2</span> The Two Halves</a></li>
-  <li><a href="#choosing-a-tool" id="toc-choosing-a-tool" class="nav-link" data-scroll-target="#choosing-a-tool"><span class="header-section-number">6.3</span> Choosing a Tool</a></li>
-  <li><a href="#python-uv" id="toc-python-uv" class="nav-link" data-scroll-target="#python-uv"><span class="header-section-number">6.4</span> Python: uv</a>
+  <li><a href="#the-problem-this-solves" id="toc-the-problem-this-solves" class="nav-link active" data-scroll-target="#the-problem-this-solves"><span class="header-section-number">7.1</span> The Problem This Solves</a></li>
+  <li><a href="#the-two-halves" id="toc-the-two-halves" class="nav-link" data-scroll-target="#the-two-halves"><span class="header-section-number">7.2</span> The Two Halves</a></li>
+  <li><a href="#choosing-a-tool" id="toc-choosing-a-tool" class="nav-link" data-scroll-target="#choosing-a-tool"><span class="header-section-number">7.3</span> Choosing a Tool</a></li>
+  <li><a href="#python-uv" id="toc-python-uv" class="nav-link" data-scroll-target="#python-uv"><span class="header-section-number">7.4</span> Python: uv</a>
   <ul class="collapse">
-  <li><a href="#recording-it" id="toc-recording-it" class="nav-link" data-scroll-target="#recording-it"><span class="header-section-number">6.4.1</span> Recording It</a></li>
+  <li><a href="#recording-it" id="toc-recording-it" class="nav-link" data-scroll-target="#recording-it"><span class="header-section-number">7.4.1</span> Recording It</a></li>
   </ul></li>
-  <li><a href="#python-conda" id="toc-python-conda" class="nav-link" data-scroll-target="#python-conda"><span class="header-section-number">6.5</span> Python: conda</a>
+  <li><a href="#python-conda" id="toc-python-conda" class="nav-link" data-scroll-target="#python-conda"><span class="header-section-number">7.5</span> Python: conda</a>
   <ul class="collapse">
-  <li><a href="#recording-it-1" id="toc-recording-it-1" class="nav-link" data-scroll-target="#recording-it-1"><span class="header-section-number">6.5.1</span> Recording It</a></li>
+  <li><a href="#recording-it-1" id="toc-recording-it-1" class="nav-link" data-scroll-target="#recording-it-1"><span class="header-section-number">7.5.1</span> Recording It</a></li>
   </ul></li>
-  <li><a href="#r-renv" id="toc-r-renv" class="nav-link" data-scroll-target="#r-renv"><span class="header-section-number">6.6</span> R: renv</a></li>
-  <li><a href="#connecting-the-environment-to-your-tools" id="toc-connecting-the-environment-to-your-tools" class="nav-link" data-scroll-target="#connecting-the-environment-to-your-tools"><span class="header-section-number">6.7</span> Connecting the Environment to Your Tools</a></li>
-  <li><a href="#lockfiles-vs-loose-requirements" id="toc-lockfiles-vs-loose-requirements" class="nav-link" data-scroll-target="#lockfiles-vs-loose-requirements"><span class="header-section-number">6.8</span> Lockfiles vs Loose Requirements</a></li>
-  <li><a href="#what-goes-in-git" id="toc-what-goes-in-git" class="nav-link" data-scroll-target="#what-goes-in-git"><span class="header-section-number">6.9</span> What Goes in Git</a></li>
-  <li><a href="#making-it-a-habit" id="toc-making-it-a-habit" class="nav-link" data-scroll-target="#making-it-a-habit"><span class="header-section-number">6.10</span> Making It a Habit</a></li>
-  <li><a href="#environments-and-containers" id="toc-environments-and-containers" class="nav-link" data-scroll-target="#environments-and-containers"><span class="header-section-number">6.11</span> Environments and Containers</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6.12</span> Conclusion</a></li>
+  <li><a href="#r-renv" id="toc-r-renv" class="nav-link" data-scroll-target="#r-renv"><span class="header-section-number">7.6</span> R: renv</a></li>
+  <li><a href="#connecting-the-environment-to-your-tools" id="toc-connecting-the-environment-to-your-tools" class="nav-link" data-scroll-target="#connecting-the-environment-to-your-tools"><span class="header-section-number">7.7</span> Connecting the Environment to Your Tools</a></li>
+  <li><a href="#lockfiles-vs-loose-requirements" id="toc-lockfiles-vs-loose-requirements" class="nav-link" data-scroll-target="#lockfiles-vs-loose-requirements"><span class="header-section-number">7.8</span> Lockfiles vs Loose Requirements</a></li>
+  <li><a href="#what-goes-in-git" id="toc-what-goes-in-git" class="nav-link" data-scroll-target="#what-goes-in-git"><span class="header-section-number">7.9</span> What Goes in Git</a></li>
+  <li><a href="#making-it-a-habit" id="toc-making-it-a-habit" class="nav-link" data-scroll-target="#making-it-a-habit"><span class="header-section-number">7.10</span> Making It a Habit</a></li>
+  <li><a href="#environments-and-containers" id="toc-environments-and-containers" class="nav-link" data-scroll-target="#environments-and-containers"><span class="header-section-number">7.11</span> Environments and Containers</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.12</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/environments.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/environments.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></h1>
 </div>
 
 
@@ -364,15 +364,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="the-problem-this-solves" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="the-problem-this-solves"><span class="header-section-number">6.1</span> The Problem This Solves</h2>
+<section id="the-problem-this-solves" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="the-problem-this-solves"><span class="header-section-number">7.1</span> The Problem This Solves</h2>
 <p>Six months after you finish a piece of analysis, someone asks you to rerun it. You clone your own repository, run the script, and it fails — a function that used to take three arguments now takes four, or a package you relied on has been renamed, or your machine has a newer Python than the one you wrote it on.</p>
 <p>The same problem in its more embarrassing form: you send a colleague your code and it doesn’t run on their machine. Neither of you can tell why, because neither of you can see what’s different.</p>
 <p>The cause in both cases is that your analysis had dependencies you never wrote down. The code was in Git. The <em>environment the code needed</em> was in your head, or nowhere.</p>
 <p>An environment is the complete set of software your analysis depends on: the language version, every package, and every version of every package. Making that reproducible is the highest-return habit in this book, and unlike most of the material here it is quick to learn.</p>
 </section>
-<section id="the-two-halves" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="the-two-halves"><span class="header-section-number">6.2</span> The Two Halves</h2>
+<section id="the-two-halves" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="the-two-halves"><span class="header-section-number">7.2</span> The Two Halves</h2>
 <p>Two things need to happen, and it’s worth separating them because different tools handle each:</p>
 <ol type="1">
 <li><strong>Isolation</strong> — each project gets its own set of packages, so installing something for project A can’t break project B.</li>
@@ -380,8 +380,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Isolation on its own protects you from today’s conflicts but not from next year’s. Recording on its own just documents a mess. You want both.</p>
 </section>
-<section id="choosing-a-tool" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="choosing-a-tool"><span class="header-section-number">6.3</span> Choosing a Tool</h2>
+<section id="choosing-a-tool" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="choosing-a-tool"><span class="header-section-number">7.3</span> Choosing a Tool</h2>
 <p>There are four in common use for Python and one for R. The choice matters less than actually using one, but here is how they differ.</p>
 <table class="caption-top table">
 <colgroup>
@@ -439,8 +439,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="python-uv" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="python-uv"><span class="header-section-number">6.4</span> Python: uv</h2>
+<section id="python-uv" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="python-uv"><span class="header-section-number">7.4</span> Python: uv</h2>
 <p><code>uv</code> is a single binary that replaces <code>pip</code>, <code>venv</code>, and <code>pyenv</code>. Install it once:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
@@ -476,16 +476,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>With the environment active, install into it:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>.venv</code> directory holds the environment. It should <strong>never</strong> be committed to Git — it’s large, machine-specific, and reconstructible from the record file. Add <code>.venv/</code> to your <code>.gitignore</code>, a plain text file listing paths Git should leave alone; <a href="../chapters/ide_git.html">Editors and Version Control</a> covers it properly and gives a template that already includes this line.</p>
-<section id="recording-it" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="recording-it"><span class="header-section-number">6.4.1</span> Recording It</h3>
+<section id="recording-it" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="recording-it"><span class="header-section-number">7.4.1</span> Recording It</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>&gt;</code> redirects the command’s output into a file instead of printing it to the screen. Commit <code>requirements.txt</code>. Anyone with it — including you, later — reconstructs the environment with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="python-conda" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="python-conda"><span class="header-section-number">6.5</span> Python: conda</h2>
+<section id="python-conda" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="python-conda"><span class="header-section-number">7.5</span> Python: conda</h2>
 <p>If you need the conda ecosystem, the shape is the same:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One environment per project - name it after the project, not after the work</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> sales-forecast python=3.13</span>
@@ -497,14 +497,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install numpy pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The naming matters more than it looks. The <code>datasci</code> environment you created in <a href="../chapters/languages.html">Python and R</a> is a reasonable scratchpad for working through this book, but it is exactly the pattern this chapter argues against for real work: one shared environment that every project quietly depends on, so upgrading a package for one analysis breaks another. Give each project its own.</p>
 <p>Activate it whenever you work on that project. Unlike <code>venv</code>/<code>uv</code>, conda environments live in a central location rather than in the project directory, so there’s nothing to <code>.gitignore</code>.</p>
-<section id="recording-it-1" class="level3" data-number="6.5.1">
-<h3 data-number="6.5.1" class="anchored" data-anchor-id="recording-it-1"><span class="header-section-number">6.5.1</span> Recording It</h3>
+<section id="recording-it-1" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="recording-it-1"><span class="header-section-number">7.5.1</span> Recording It</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>--from-history</code> flag matters. Without it, conda writes out every package that came along as a dependency of something you asked for — transitive dependencies — each pinned to an exact build string, including builds that only exist for your operating system. The resulting file often won’t install on a different platform at all. With it, you get the packages you actually asked for, which is both readable and portable.</p>
 </section>
 </section>
-<section id="r-renv" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="r-renv"><span class="header-section-number">6.6</span> R: renv</h2>
+<section id="r-renv" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="r-renv"><span class="header-section-number">7.6</span> R: renv</h2>
 <p><code>renv</code> gives each R project its own package library and a lockfile recording exactly what’s in it.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then, from within your project (an RStudio Project, ideally):</p>
@@ -534,8 +534,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="connecting-the-environment-to-your-tools" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="connecting-the-environment-to-your-tools"><span class="header-section-number">6.7</span> Connecting the Environment to Your Tools</h2>
+<section id="connecting-the-environment-to-your-tools" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="connecting-the-environment-to-your-tools"><span class="header-section-number">7.7</span> Connecting the Environment to Your Tools</h2>
 <p>Creating an environment is half the job. Your editor and your notebooks each have their own idea of which Python to use, and neither picks up a new environment automatically. This is the most common reason people conclude that environments “don’t work”: the environment is fine, but the tool is still running a different one.</p>
 <p><strong>Jupyter notebooks.</strong> A notebook runs against a <em>kernel</em>, and your new environment is not one until you register it. From inside the activated environment:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the machinery that lets Jupyter talk to this environment</span></span>
@@ -548,15 +548,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>RStudio.</strong> <code>renv::init()</code> writes a <code>.Rprofile</code> into the project, so simply opening the RStudio Project activates the private library. The console prints a line confirming it on startup. Nothing further to configure — but this only works if you open the project rather than the individual <code>.R</code> file.</p>
 <p><a href="../chapters/ide_git.html">Editors and Version Control</a> covers the editor side in more detail.</p>
 </section>
-<section id="lockfiles-vs-loose-requirements" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="lockfiles-vs-loose-requirements"><span class="header-section-number">6.8</span> Lockfiles vs Loose Requirements</h2>
+<section id="lockfiles-vs-loose-requirements" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="lockfiles-vs-loose-requirements"><span class="header-section-number">7.8</span> Lockfiles vs Loose Requirements</h2>
 <p>There’s a distinction worth understanding, because it determines how reproducible your record actually is.</p>
 <p>A <strong>loose requirement</strong> says “pandas”. A <strong>pinned requirement</strong> says “pandas 3.0.5”. A <strong>lockfile</strong> says “pandas 3.0.5, and every package pandas itself depends on, at exactly these versions, with a checksum for each — a short fingerprint computed from the file’s contents, which won’t match if the file has been altered or replaced.”</p>
 <p><code>requirements.txt</code> from <code>pip freeze</code> sits in the middle: it pins direct and transitive dependencies to versions, but not to checksums, and it doesn’t distinguish between what you asked for and what came along. <code>renv.lock</code>, <code>uv.lock</code>, and <code>pixi.lock</code> are true lockfiles.</p>
 <p>For most analysis work, a pinned <code>requirements.txt</code> is enough. For anything whose result someone will act on months later, prefer a real lockfile. The difference shows up exactly when you need it most.</p>
 </section>
-<section id="what-goes-in-git" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="what-goes-in-git"><span class="header-section-number">6.9</span> What Goes in Git</h2>
+<section id="what-goes-in-git" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="what-goes-in-git"><span class="header-section-number">7.9</span> What Goes in Git</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -585,22 +585,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>The rule underneath: commit the <em>description</em> of the environment, and never the environment itself.</p>
 </section>
-<section id="making-it-a-habit" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="making-it-a-habit"><span class="header-section-number">6.10</span> Making It a Habit</h2>
+<section id="making-it-a-habit" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="making-it-a-habit"><span class="header-section-number">7.10</span> Making It a Habit</h2>
 <p>The usual failure mode is drift: you set up an environment, then install three more packages over the following weeks without re-recording. Two things prevent it:</p>
 <ul>
 <li><strong>Re-snapshot when you install.</strong> <code>uv pip freeze &gt; requirements.txt</code> or <code>renv::snapshot()</code> immediately after adding a package, in the same breath as the install. It takes a second.</li>
 <li><strong>Let CI catch you.</strong> A continuous integration workflow (covered in <a href="../chapters/workflows.html">Optimising Workflows</a>) builds your project from nothing but the record file. If you forgot to record something, the build fails — in front of you, on a commit, rather than in front of a colleague six months later. For analysis work this is most of CI’s value.</li>
 </ul>
 </section>
-<section id="environments-and-containers" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="environments-and-containers"><span class="header-section-number">6.11</span> Environments and Containers</h2>
+<section id="environments-and-containers" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="environments-and-containers"><span class="header-section-number">7.11</span> Environments and Containers</h2>
 <p>A reasonable question at this point: if containers (covered in <a href="../chapters/containers.html">Containerisation</a>) also make things reproducible, why bother with both?</p>
 <p>They solve overlapping but different problems. An environment file pins your <em>packages</em>. A container pins the packages <strong>and</strong> the operating system, the system libraries, the locale, and the compiler toolchain. That extra coverage matters when a package depends on a specific version of a C library, or when the analysis has to run on infrastructure you don’t control.</p>
 <p>Use an environment file always; it costs nothing. Reach for a container when the environment file isn’t enough — deployment, awkward system dependencies, or a colleague on a genuinely different platform. The two compose: a good container is usually a base image plus your <code>requirements.txt</code>.</p>
 </section>
-<section id="conclusion" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6.12</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="7.12">
+<h2 data-number="7.12" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.12</span> Conclusion</h2>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>Every active project in its own isolated environment</li>
@@ -609,7 +609,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Your editor pointed at the right interpreter, and the environment registered as a Jupyter kernel if you use notebooks</li>
 <li>Successfully reconstructed one of your own environments from its record file — do this once deliberately, so you find out now whether the file is actually complete</li>
 </ul>
-<p>That last item is the one people skip. A record file you’ve never restored from is only a hypothesis.</p>
+<p>That last item is the one people skip. Until you have restored from a record file, you don’t know whether it works.</p>
+<p>With environments recorded, the foundations are done. The next section turns to producing output someone else can read.</p>
 
 
 </section>
@@ -1023,12 +1024,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/data_stores.html" class="pagination-link" aria-label="Data Stores: SQL and Beyond">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/ide_git.html" class="pagination-link" aria-label="Editors and Version Control">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/reporting.html" class="pagination-link" aria-label="Data Science Tools for Reporting">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

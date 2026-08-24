@@ -8,7 +8,7 @@
 
 <meta name="description" content="Choosing an editor and learning version control — VS Code, RStudio and JupyterLab, and the Git workflow running underneath all three.">
 
-<title>7&nbsp; Editors and Version Control – Ready Before Run()</title>
+<title>5&nbsp; Editors and Version Control – Ready Before Run()</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,8 +72,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/reporting.html" rel="next">
-<link href="../chapters/environments.html" rel="prev">
+<link href="../chapters/data_stores.html" rel="next">
+<link href="../chapters/languages.html" rel="prev">
 <link href="../assets/cover_no_auth.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -114,10 +114,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta property="og:title" content="7&nbsp; Editors and Version Control – Ready Before Run()">
+<meta property="og:title" content="5&nbsp; Editors and Version Control – Ready Before Run()">
 <meta property="og:description" content="A practical guide to the infrastructure data science assumes you already have - the command line, reproducible environments, data stores, version control, reporting, containers and deployment - written for people who arrived at data work from somewhere other than computer science.">
 <meta property="og:site_name" content="Ready Before Run()">
-<meta name="twitter:title" content="7&nbsp; Editors and Version Control – Ready Before Run()">
+<meta name="twitter:title" content="5&nbsp; Editors and Version Control – Ready Before Run()">
 <meta name="twitter:description" content="A practical guide to the infrastructure data science assumes you already have - the command line, reproducible environments, data stores, version control, reporting, containers and deployment - written for people who arrived at data work from somewhere other than computer science.">
 <meta name="twitter:card" content="summary">
 </head>
@@ -131,7 +131,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/ide_git.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/ide_git.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -194,20 +194,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/data_stores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/environments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/ide_git.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span></a>
   </div>
 </li>
       </ul>
@@ -233,12 +233,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Visualisation</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -250,6 +244,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/cloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Cloud Computing for Data Science</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/web_dev.html" class="sidebar-item-text sidebar-link">
@@ -321,39 +321,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#integrated-development-environments-ides" id="toc-integrated-development-environments-ides" class="nav-link active" data-scroll-target="#integrated-development-environments-ides"><span class="header-section-number">7.1</span> Integrated Development Environments (IDEs)</a>
+  <li><a href="#integrated-development-environments-ides" id="toc-integrated-development-environments-ides" class="nav-link active" data-scroll-target="#integrated-development-environments-ides"><span class="header-section-number">5.1</span> Integrated Development Environments (IDEs)</a>
   <ul class="collapse">
-  <li><a href="#why-ides-matter-for-data-science" id="toc-why-ides-matter-for-data-science" class="nav-link" data-scroll-target="#why-ides-matter-for-data-science"><span class="header-section-number">7.1.1</span> Why IDEs Matter for Data Science</a></li>
-  <li><a href="#vs-code-a-universal-ide" id="toc-vs-code-a-universal-ide" class="nav-link" data-scroll-target="#vs-code-a-universal-ide"><span class="header-section-number">7.1.2</span> VS Code: A Universal IDE</a></li>
-  <li><a href="#pycharm-community-edition" id="toc-pycharm-community-edition" class="nav-link" data-scroll-target="#pycharm-community-edition"><span class="header-section-number">7.1.3</span> PyCharm Community Edition</a></li>
-  <li><a href="#working-with-jupyter-notebooks" id="toc-working-with-jupyter-notebooks" class="nav-link" data-scroll-target="#working-with-jupyter-notebooks"><span class="header-section-number">7.1.4</span> Working with Jupyter Notebooks</a></li>
-  <li><a href="#choosing-the-right-ide" id="toc-choosing-the-right-ide" class="nav-link" data-scroll-target="#choosing-the-right-ide"><span class="header-section-number">7.1.5</span> Choosing the Right IDE</a></li>
+  <li><a href="#why-ides-matter-for-data-science" id="toc-why-ides-matter-for-data-science" class="nav-link" data-scroll-target="#why-ides-matter-for-data-science"><span class="header-section-number">5.1.1</span> Why IDEs Matter for Data Science</a></li>
+  <li><a href="#vs-code-a-universal-ide" id="toc-vs-code-a-universal-ide" class="nav-link" data-scroll-target="#vs-code-a-universal-ide"><span class="header-section-number">5.1.2</span> VS Code: A Universal IDE</a></li>
+  <li><a href="#pycharm-community-edition" id="toc-pycharm-community-edition" class="nav-link" data-scroll-target="#pycharm-community-edition"><span class="header-section-number">5.1.3</span> PyCharm Community Edition</a></li>
+  <li><a href="#working-with-jupyter-notebooks" id="toc-working-with-jupyter-notebooks" class="nav-link" data-scroll-target="#working-with-jupyter-notebooks"><span class="header-section-number">5.1.4</span> Working with Jupyter Notebooks</a></li>
+  <li><a href="#choosing-the-right-ide" id="toc-choosing-the-right-ide" class="nav-link" data-scroll-target="#choosing-the-right-ide"><span class="header-section-number">5.1.5</span> Choosing the Right IDE</a></li>
   </ul></li>
-  <li><a href="#version-control-with-git-and-github" id="toc-version-control-with-git-and-github" class="nav-link" data-scroll-target="#version-control-with-git-and-github"><span class="header-section-number">7.2</span> Version Control with Git and GitHub</a>
+  <li><a href="#version-control-with-git-and-github" id="toc-version-control-with-git-and-github" class="nav-link" data-scroll-target="#version-control-with-git-and-github"><span class="header-section-number">5.2</span> Version Control with Git and GitHub</a>
   <ul class="collapse">
-  <li><a href="#why-version-control-for-data-science" id="toc-why-version-control-for-data-science" class="nav-link" data-scroll-target="#why-version-control-for-data-science"><span class="header-section-number">7.2.1</span> Why Version Control for Data Science?</a></li>
-  <li><a href="#installing-git" id="toc-installing-git" class="nav-link" data-scroll-target="#installing-git"><span class="header-section-number">7.2.2</span> Installing Git</a></li>
-  <li><a href="#creating-a-github-account" id="toc-creating-a-github-account" class="nav-link" data-scroll-target="#creating-a-github-account"><span class="header-section-number">7.2.3</span> Creating a GitHub Account</a></li>
-  <li><a href="#setting-up-ssh-authentication-for-github" id="toc-setting-up-ssh-authentication-for-github" class="nav-link" data-scroll-target="#setting-up-ssh-authentication-for-github"><span class="header-section-number">7.2.4</span> Setting Up SSH Authentication for GitHub</a></li>
-  <li><a href="#basic-git-workflow" id="toc-basic-git-workflow" class="nav-link" data-scroll-target="#basic-git-workflow"><span class="header-section-number">7.2.5</span> Basic Git Workflow</a></li>
-  <li><a href="#telling-git-what-to-ignore-.gitignore" id="toc-telling-git-what-to-ignore-.gitignore" class="nav-link" data-scroll-target="#telling-git-what-to-ignore-.gitignore"><span class="header-section-number">7.2.6</span> Telling Git What to Ignore: <code>.gitignore</code></a></li>
-  <li><a href="#connecting-to-github" id="toc-connecting-to-github" class="nav-link" data-scroll-target="#connecting-to-github"><span class="header-section-number">7.2.7</span> Connecting to GitHub</a></li>
-  <li><a href="#basic-git-commands-for-daily-use" id="toc-basic-git-commands-for-daily-use" class="nav-link" data-scroll-target="#basic-git-commands-for-daily-use"><span class="header-section-number">7.2.8</span> Basic Git Commands for Daily Use</a></li>
-  <li><a href="#using-git-in-ides" id="toc-using-git-in-ides" class="nav-link" data-scroll-target="#using-git-in-ides"><span class="header-section-number">7.2.9</span> Using Git in IDEs</a></li>
-  <li><a href="#collaborating-with-others-on-github" id="toc-collaborating-with-others-on-github" class="nav-link" data-scroll-target="#collaborating-with-others-on-github"><span class="header-section-number">7.2.10</span> Collaborating with Others on GitHub</a></li>
+  <li><a href="#why-version-control-for-data-science" id="toc-why-version-control-for-data-science" class="nav-link" data-scroll-target="#why-version-control-for-data-science"><span class="header-section-number">5.2.1</span> Why Version Control for Data Science?</a></li>
+  <li><a href="#installing-git" id="toc-installing-git" class="nav-link" data-scroll-target="#installing-git"><span class="header-section-number">5.2.2</span> Installing Git</a></li>
+  <li><a href="#creating-a-github-account" id="toc-creating-a-github-account" class="nav-link" data-scroll-target="#creating-a-github-account"><span class="header-section-number">5.2.3</span> Creating a GitHub Account</a></li>
+  <li><a href="#setting-up-ssh-authentication-for-github" id="toc-setting-up-ssh-authentication-for-github" class="nav-link" data-scroll-target="#setting-up-ssh-authentication-for-github"><span class="header-section-number">5.2.4</span> Setting Up SSH Authentication for GitHub</a></li>
+  <li><a href="#basic-git-workflow" id="toc-basic-git-workflow" class="nav-link" data-scroll-target="#basic-git-workflow"><span class="header-section-number">5.2.5</span> Basic Git Workflow</a></li>
+  <li><a href="#telling-git-what-to-ignore-.gitignore" id="toc-telling-git-what-to-ignore-.gitignore" class="nav-link" data-scroll-target="#telling-git-what-to-ignore-.gitignore"><span class="header-section-number">5.2.6</span> Telling Git What to Ignore: <code>.gitignore</code></a></li>
+  <li><a href="#connecting-to-github" id="toc-connecting-to-github" class="nav-link" data-scroll-target="#connecting-to-github"><span class="header-section-number">5.2.7</span> Connecting to GitHub</a></li>
+  <li><a href="#basic-git-commands-for-daily-use" id="toc-basic-git-commands-for-daily-use" class="nav-link" data-scroll-target="#basic-git-commands-for-daily-use"><span class="header-section-number">5.2.8</span> Basic Git Commands for Daily Use</a></li>
+  <li><a href="#using-git-in-ides" id="toc-using-git-in-ides" class="nav-link" data-scroll-target="#using-git-in-ides"><span class="header-section-number">5.2.9</span> Using Git in IDEs</a></li>
+  <li><a href="#collaborating-with-others-on-github" id="toc-collaborating-with-others-on-github" class="nav-link" data-scroll-target="#collaborating-with-others-on-github"><span class="header-section-number">5.2.10</span> Collaborating with Others on GitHub</a></li>
   </ul></li>
-  <li><a href="#git-for-analysts-what-actually-matters" id="toc-git-for-analysts-what-actually-matters" class="nav-link" data-scroll-target="#git-for-analysts-what-actually-matters"><span class="header-section-number">7.3</span> Git for Analysts: What Actually Matters</a></li>
-  <li><a href="#commit-messages" id="toc-commit-messages" class="nav-link" data-scroll-target="#commit-messages"><span class="header-section-number">7.4</span> Commit Messages</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7.5</span> Conclusion</a></li>
+  <li><a href="#git-for-analysts-what-actually-matters" id="toc-git-for-analysts-what-actually-matters" class="nav-link" data-scroll-target="#git-for-analysts-what-actually-matters"><span class="header-section-number">5.3</span> Git for Analysts: What Actually Matters</a></li>
+  <li><a href="#commit-messages" id="toc-commit-messages" class="nav-link" data-scroll-target="#commit-messages"><span class="header-section-number">5.4</span> Commit Messages</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">5.5</span> Conclusion</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/ide_git.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/command_line.html">Foundations</a></li><li class="breadcrumb-item"><a href="../chapters/ide_git.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Editors and Version Control</span></h1>
 </div>
 
 
@@ -370,11 +370,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="integrated-development-environments-ides" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="integrated-development-environments-ides"><span class="header-section-number">7.1</span> Integrated Development Environments (IDEs)</h2>
+<section id="integrated-development-environments-ides" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="integrated-development-environments-ides"><span class="header-section-number">5.1</span> Integrated Development Environments (IDEs)</h2>
 <p>An Integrated Development Environment (IDE) combines the tools needed for software development into a single application: code editing, debugging, execution, and project management in one place, so you aren’t switching between four programs to run one script.</p>
-<section id="why-ides-matter-for-data-science" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="why-ides-matter-for-data-science"><span class="header-section-number">7.1.1</span> Why IDEs Matter for Data Science</h3>
+<section id="why-ides-matter-for-data-science" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="why-ides-matter-for-data-science"><span class="header-section-number">5.1.1</span> Why IDEs Matter for Data Science</h3>
 <p>IDEs help data scientists by:</p>
 <ol type="1">
 <li>Providing syntax highlighting and code completion</li>
@@ -386,19 +386,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Think of an IDE as a fully equipped workshop rather than just having a single tool. It has everything arranged conveniently in one place.</p>
 <p>We’ve already installed RStudio for R development. Now let’s look at options for Python and SQL.</p>
 </section>
-<section id="vs-code-a-universal-ide" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="vs-code-a-universal-ide"><span class="header-section-number">7.1.2</span> VS Code: A Universal IDE</h3>
+<section id="vs-code-a-universal-ide" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="vs-code-a-universal-ide"><span class="header-section-number">5.1.2</span> VS Code: A Universal IDE</h3>
 <p>Visual Studio Code (VS Code) is a free, open-source editor that supports multiple languages through extensions. That flexibility is what makes it a reasonable default for data science, where one project routinely mixes Python, R, SQL, and notebooks.</p>
-<section id="installing-vs-code" class="level4" data-number="7.1.2.1">
-<h4 data-number="7.1.2.1" class="anchored" data-anchor-id="installing-vs-code"><span class="header-section-number">7.1.2.1</span> Installing VS Code</h4>
+<section id="installing-vs-code" class="level4" data-number="5.1.2.1">
+<h4 data-number="5.1.2.1" class="anchored" data-anchor-id="installing-vs-code"><span class="header-section-number">5.1.2.1</span> Installing VS Code</h4>
 <ol type="1">
 <li>Visit the <a href="https://code.visualstudio.com/download">VS Code download page</a></li>
 <li>Download the appropriate version for your operating system</li>
 <li>Run the installer and follow the prompts</li>
 </ol>
 </section>
-<section id="essential-vs-code-extensions-for-data-science" class="level4" data-number="7.1.2.2">
-<h4 data-number="7.1.2.2" class="anchored" data-anchor-id="essential-vs-code-extensions-for-data-science"><span class="header-section-number">7.1.2.2</span> Essential VS Code Extensions for Data Science</h4>
+<section id="essential-vs-code-extensions-for-data-science" class="level4" data-number="5.1.2.2">
+<h4 data-number="5.1.2.2" class="anchored" data-anchor-id="essential-vs-code-extensions-for-data-science"><span class="header-section-number">5.1.2.2</span> Essential VS Code Extensions for Data Science</h4>
 <p>After installing VS Code, add these extensions by clicking on the Extensions icon in the sidebar (or pressing Ctrl+Shift+X):</p>
 <ul>
 <li><strong>Python</strong> by Microsoft: Python language support</li>
@@ -411,8 +411,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Extensions in VS Code are like add-ons or plugins that enhance its functionality for specific tasks or languages, similar to how you might install apps on your phone to give it new capabilities.</p>
 </section>
-<section id="configuring-vs-code-for-python" class="level4" data-number="7.1.2.3">
-<h4 data-number="7.1.2.3" class="anchored" data-anchor-id="configuring-vs-code-for-python"><span class="header-section-number">7.1.2.3</span> Configuring VS Code for Python</h4>
+<section id="configuring-vs-code-for-python" class="level4" data-number="5.1.2.3">
+<h4 data-number="5.1.2.3" class="anchored" data-anchor-id="configuring-vs-code-for-python"><span class="header-section-number">5.1.2.3</span> Configuring VS Code for Python</h4>
 <ol type="1">
 <li>Open VS Code</li>
 <li>Press Ctrl+Shift+P (Cmd+Shift+P on Mac) to open the command palette</li>
@@ -422,19 +422,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This step tells VS Code which Python installation to use when running your code. It’s like telling a multilingual person which language to speak when communicating with you.</p>
 </section>
 </section>
-<section id="pycharm-community-edition" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="pycharm-community-edition"><span class="header-section-number">7.1.3</span> PyCharm Community Edition</h3>
+<section id="pycharm-community-edition" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="pycharm-community-edition"><span class="header-section-number">5.1.3</span> PyCharm Community Edition</h3>
 <p>PyCharm is an IDE built specifically for Python, with data science support to match.</p>
-<section id="installing-pycharm-community-edition" class="level4" data-number="7.1.3.1">
-<h4 data-number="7.1.3.1" class="anchored" data-anchor-id="installing-pycharm-community-edition"><span class="header-section-number">7.1.3.1</span> Installing PyCharm Community Edition</h4>
+<section id="installing-pycharm-community-edition" class="level4" data-number="5.1.3.1">
+<h4 data-number="5.1.3.1" class="anchored" data-anchor-id="installing-pycharm-community-edition"><span class="header-section-number">5.1.3.1</span> Installing PyCharm Community Edition</h4>
 <ol type="1">
 <li>Visit the <a href="https://www.jetbrains.com/pycharm/download/">PyCharm download page</a></li>
 <li>Download the free Community Edition</li>
 <li>Run the installer and follow the prompts</li>
 </ol>
 </section>
-<section id="configuring-pycharm-for-your-conda-environment" class="level4" data-number="7.1.3.2">
-<h4 data-number="7.1.3.2" class="anchored" data-anchor-id="configuring-pycharm-for-your-conda-environment"><span class="header-section-number">7.1.3.2</span> Configuring PyCharm for Your Conda Environment</h4>
+<section id="configuring-pycharm-for-your-conda-environment" class="level4" data-number="5.1.3.2">
+<h4 data-number="5.1.3.2" class="anchored" data-anchor-id="configuring-pycharm-for-your-conda-environment"><span class="header-section-number">5.1.3.2</span> Configuring PyCharm for Your Conda Environment</h4>
 <ol type="1">
 <li>Open PyCharm</li>
 <li>Create a new project</li>
@@ -464,11 +464,11 @@ Note
 </div>
 </section>
 </section>
-<section id="working-with-jupyter-notebooks" class="level3" data-number="7.1.4">
-<h3 data-number="7.1.4" class="anchored" data-anchor-id="working-with-jupyter-notebooks"><span class="header-section-number">7.1.4</span> Working with Jupyter Notebooks</h3>
+<section id="working-with-jupyter-notebooks" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="working-with-jupyter-notebooks"><span class="header-section-number">5.1.4</span> Working with Jupyter Notebooks</h3>
 <p>While we already mentioned Jupyter notebooks in the Python section, they deserve more attention as a popular IDE-like interface for data science.</p>
-<section id="jupyterlab-the-next-generation-of-jupyter" class="level4" data-number="7.1.4.1">
-<h4 data-number="7.1.4.1" class="anchored" data-anchor-id="jupyterlab-the-next-generation-of-jupyter"><span class="header-section-number">7.1.4.1</span> JupyterLab: The Next Generation of Jupyter</h4>
+<section id="jupyterlab-the-next-generation-of-jupyter" class="level4" data-number="5.1.4.1">
+<h4 data-number="5.1.4.1" class="anchored" data-anchor-id="jupyterlab-the-next-generation-of-jupyter"><span class="header-section-number">5.1.4.1</span> JupyterLab: The Next Generation of Jupyter</h4>
 <p>JupyterLab is a web-based interactive development environment that extends the notebook interface with a file browser, consoles, terminals, and more.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install JupyterLab</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
@@ -479,8 +479,8 @@ Note
 <p>JupyterLab provides a more IDE-like experience than classic Jupyter notebooks, with the ability to open multiple notebooks, view data frames, and edit other file types in a single interface. It’s the difference between a handful of separate tools and one workbench.</p>
 </section>
 </section>
-<section id="choosing-the-right-ide" class="level3" data-number="7.1.5">
-<h3 data-number="7.1.5" class="anchored" data-anchor-id="choosing-the-right-ide"><span class="header-section-number">7.1.5</span> Choosing the Right IDE</h3>
+<section id="choosing-the-right-ide" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="choosing-the-right-ide"><span class="header-section-number">5.1.5</span> Choosing the Right IDE</h3>
 <p>Each IDE has strengths and weaknesses:</p>
 <ul>
 <li><strong>VS Code</strong>: Versatile, lightweight, supports multiple languages</li>
@@ -497,11 +497,11 @@ Note
 <p>Choose the tools that best fit your workflow and preferences. It’s perfectly fine to start with one and add others as you grow more comfortable.</p>
 </section>
 </section>
-<section id="version-control-with-git-and-github" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="version-control-with-git-and-github"><span class="header-section-number">7.2</span> Version Control with Git and GitHub</h2>
+<section id="version-control-with-git-and-github" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="version-control-with-git-and-github"><span class="header-section-number">5.2</span> Version Control with Git and GitHub</h2>
 <p>Version control is a system that records changes to files over time, allowing you to recall specific versions later. Git is the most widely used version control system, and GitHub is a popular platform for hosting Git repositories.</p>
-<section id="why-version-control-for-data-science" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="why-version-control-for-data-science"><span class="header-section-number">7.2.1</span> Why Version Control for Data Science?</h3>
+<section id="why-version-control-for-data-science" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="why-version-control-for-data-science"><span class="header-section-number">5.2.1</span> Why Version Control for Data Science?</h3>
 <p>Version control is essential for data science because it:</p>
 <ol type="1">
 <li>Tracks changes to code and documentation</li>
@@ -513,36 +513,36 @@ Note
 <p>Proper version control is essential for reproducibility and collaboration in data science work.</p>
 <p>Think of Git as a time machine for your code. It allows you to save snapshots of your project at different points in time and revisit or restore those snapshots if needed.</p>
 </section>
-<section id="installing-git" class="level3" data-number="7.2.2">
-<h3 data-number="7.2.2" class="anchored" data-anchor-id="installing-git"><span class="header-section-number">7.2.2</span> Installing Git</h3>
-<section id="on-windows" class="level4" data-number="7.2.2.1">
-<h4 data-number="7.2.2.1" class="anchored" data-anchor-id="on-windows"><span class="header-section-number">7.2.2.1</span> On Windows</h4>
+<section id="installing-git" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="installing-git"><span class="header-section-number">5.2.2</span> Installing Git</h3>
+<section id="on-windows" class="level4" data-number="5.2.2.1">
+<h4 data-number="5.2.2.1" class="anchored" data-anchor-id="on-windows"><span class="header-section-number">5.2.2.1</span> On Windows</h4>
 <ol type="1">
 <li>Download the installer from <a href="https://gitforwindows.org/">Git for Windows</a></li>
 <li>Run the installer, accepting the default options (though you may want to choose VS Code as your default editor if you installed it)</li>
 </ol>
 </section>
-<section id="on-macos" class="level4" data-number="7.2.2.2">
-<h4 data-number="7.2.2.2" class="anchored" data-anchor-id="on-macos"><span class="header-section-number">7.2.2.2</span> On macOS</h4>
+<section id="on-macos" class="level4" data-number="5.2.2.2">
+<h4 data-number="5.2.2.2" class="anchored" data-anchor-id="on-macos"><span class="header-section-number">5.2.2.2</span> On macOS</h4>
 <p>Git may already be installed. Check by typing <code>git --version</code> in the terminal. If not:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Git using Homebrew</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="on-linux" class="level4" data-number="7.2.2.3">
-<h4 data-number="7.2.2.3" class="anchored" data-anchor-id="on-linux"><span class="header-section-number">7.2.2.3</span> On Linux</h4>
+<section id="on-linux" class="level4" data-number="5.2.2.3">
+<h4 data-number="5.2.2.3" class="anchored" data-anchor-id="on-linux"><span class="header-section-number">5.2.2.3</span> On Linux</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install git</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="configuring-git" class="level4" data-number="7.2.2.4">
-<h4 data-number="7.2.2.4" class="anchored" data-anchor-id="configuring-git"><span class="header-section-number">7.2.2.4</span> Configuring Git</h4>
+<section id="configuring-git" class="level4" data-number="5.2.2.4">
+<h4 data-number="5.2.2.4" class="anchored" data-anchor-id="configuring-git"><span class="header-section-number">5.2.2.4</span> Configuring Git</h4>
 <p>After installation, open a terminal and configure your identity:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"your.email@example.com"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is like putting your name and address on a letter. When you make changes to a project, Git will know who made them.</p>
 </section>
 </section>
-<section id="creating-a-github-account" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="creating-a-github-account"><span class="header-section-number">7.2.3</span> Creating a GitHub Account</h3>
+<section id="creating-a-github-account" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="creating-a-github-account"><span class="header-section-number">5.2.3</span> Creating a GitHub Account</h3>
 <p>GitHub provides free hosting for Git repositories, making it easy to share code and collaborate.</p>
 <ol type="1">
 <li>Visit <a href="https://github.com/">GitHub</a></li>
@@ -551,11 +551,11 @@ Note
 </ol>
 <p>GitHub is to Git what social media is to your photos — a place to share your work with others and collaborate on projects.</p>
 </section>
-<section id="setting-up-ssh-authentication-for-github" class="level3" data-number="7.2.4">
-<h3 data-number="7.2.4" class="anchored" data-anchor-id="setting-up-ssh-authentication-for-github"><span class="header-section-number">7.2.4</span> Setting Up SSH Authentication for GitHub</h3>
+<section id="setting-up-ssh-authentication-for-github" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="setting-up-ssh-authentication-for-github"><span class="header-section-number">5.2.4</span> Setting Up SSH Authentication for GitHub</h3>
 <p>Using SSH keys makes it more secure and convenient to interact with GitHub:</p>
-<section id="generating-ssh-keys" class="level4" data-number="7.2.4.1">
-<h4 data-number="7.2.4.1" class="anchored" data-anchor-id="generating-ssh-keys"><span class="header-section-number">7.2.4.1</span> Generating SSH Keys</h4>
+<section id="generating-ssh-keys" class="level4" data-number="5.2.4.1">
+<h4 data-number="5.2.4.1" class="anchored" data-anchor-id="generating-ssh-keys"><span class="header-section-number">5.2.4.1</span> Generating SSH Keys</h4>
 <p>On macOS, Linux, or Git Bash:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a new SSH key</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"your.email@example.com"</span></span>
@@ -576,8 +576,8 @@ Note
 <p>When <code>ssh-keygen</code> prompts you for a passphrase, <strong>set one</strong>. It’s tempting to press Enter for a blank passphrase, but an unprotected private key on a compromised laptop gives an attacker your full GitHub access. The SSH agent will remember the passphrase for your session so you only type it once after login.</p>
 <p>SSH keys are like a special lock and key system. Instead of typing your password every time you interact with GitHub, your computer uses these keys to prove it’s really you.</p>
 </section>
-<section id="adding-your-ssh-key-to-github" class="level4" data-number="7.2.4.2">
-<h4 data-number="7.2.4.2" class="anchored" data-anchor-id="adding-your-ssh-key-to-github"><span class="header-section-number">7.2.4.2</span> Adding Your SSH Key to GitHub</h4>
+<section id="adding-your-ssh-key-to-github" class="level4" data-number="5.2.4.2">
+<h4 data-number="5.2.4.2" class="anchored" data-anchor-id="adding-your-ssh-key-to-github"><span class="header-section-number">5.2.4.2</span> Adding Your SSH Key to GitHub</h4>
 <ol type="1">
 <li>Copy your public key to the clipboard:
 <ul>
@@ -590,8 +590,8 @@ Note
 </ol>
 </section>
 </section>
-<section id="basic-git-workflow" class="level3" data-number="7.2.5">
-<h3 data-number="7.2.5" class="anchored" data-anchor-id="basic-git-workflow"><span class="header-section-number">7.2.5</span> Basic Git Workflow</h3>
+<section id="basic-git-workflow" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="basic-git-workflow"><span class="header-section-number">5.2.5</span> Basic Git Workflow</h3>
 <p>Let’s create a repository and learn the essential Git commands:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new directory</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> my_first_repo</span>
@@ -631,13 +631,14 @@ Note
 </div>
 </div>
 </section>
-<section id="telling-git-what-to-ignore-.gitignore" class="level3" data-number="7.2.6">
-<h3 data-number="7.2.6" class="anchored" data-anchor-id="telling-git-what-to-ignore-.gitignore"><span class="header-section-number">7.2.6</span> Telling Git What to Ignore: <code>.gitignore</code></h3>
+<section id="telling-git-what-to-ignore-.gitignore" class="level3" data-number="5.2.6">
+<h3 data-number="5.2.6" class="anchored" data-anchor-id="telling-git-what-to-ignore-.gitignore"><span class="header-section-number">5.2.6</span> Telling Git What to Ignore: <code>.gitignore</code></h3>
 <p>Before you commit anything else, create a <code>.gitignore</code> file in the root of your repository. This tells Git which files and folders it should never track: things like local virtual environments, cached files, large data dumps, and, critically, secrets like API keys. Getting this right from day one prevents the classic beginner mistake: accidentally pushing credentials to a public repository.</p>
 <p>Create a file named <code>.gitignore</code> (note the leading dot) with content like this as a starting point for a data science project:</p>
 <pre class="gitignore"><code># Secrets: never commit these
 .env
 .env.local
+.Renviron
 *.pem
 credentials.json
 
@@ -672,8 +673,8 @@ Thumbs.db
 <p>If you find yourself wanting to commit something you’ve already ignored, you can force it with <code>git add -f &lt;file&gt;</code>.</p>
 <p>If you ever accidentally commit a secret, rotate the credential rather than trying to scrub Git history — <a href="../chapters/data_stores.html">Data Stores</a> explains why, and what to do.</p>
 </section>
-<section id="connecting-to-github" class="level3" data-number="7.2.7">
-<h3 data-number="7.2.7" class="anchored" data-anchor-id="connecting-to-github"><span class="header-section-number">7.2.7</span> Connecting to GitHub</h3>
+<section id="connecting-to-github" class="level3" data-number="5.2.7">
+<h3 data-number="5.2.7" class="anchored" data-anchor-id="connecting-to-github"><span class="header-section-number">5.2.7</span> Connecting to GitHub</h3>
 <p>Now let’s push this local repository to GitHub:</p>
 <ol type="1">
 <li>On GitHub, click “+” in the top-right corner and select “New repository”</li>
@@ -688,8 +689,8 @@ Thumbs.db
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This process connects your local repository to GitHub (like linking your local folder to a cloud storage service) and uploads your code.</p>
 </section>
-<section id="basic-git-commands-for-daily-use" class="level3" data-number="7.2.8">
-<h3 data-number="7.2.8" class="anchored" data-anchor-id="basic-git-commands-for-daily-use"><span class="header-section-number">7.2.8</span> Basic Git Commands for Daily Use</h3>
+<section id="basic-git-commands-for-daily-use" class="level3" data-number="5.2.8">
+<h3 data-number="5.2.8" class="anchored" data-anchor-id="basic-git-commands-for-daily-use"><span class="header-section-number">5.2.8</span> Basic Git Commands for Daily Use</h3>
 <p>These commands form the core of day-to-day Git usage:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check status of your repository</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span>
@@ -716,25 +717,25 @@ Thumbs.db
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Think of branches as parallel versions of your project. The main branch is like the trunk of a tree, and other branches are like branches growing out from it. You can work on different features in different branches without affecting the main branch, then combine them when they’re ready.</p>
 </section>
-<section id="using-git-in-ides" class="level3" data-number="7.2.9">
-<h3 data-number="7.2.9" class="anchored" data-anchor-id="using-git-in-ides"><span class="header-section-number">7.2.9</span> Using Git in IDEs</h3>
+<section id="using-git-in-ides" class="level3" data-number="5.2.9">
+<h3 data-number="5.2.9" class="anchored" data-anchor-id="using-git-in-ides"><span class="header-section-number">5.2.9</span> Using Git in IDEs</h3>
 <p>Most modern IDEs integrate with Git, making version control easier:</p>
-<section id="vs-code" class="level4" data-number="7.2.9.1">
-<h4 data-number="7.2.9.1" class="anchored" data-anchor-id="vs-code"><span class="header-section-number">7.2.9.1</span> VS Code</h4>
+<section id="vs-code" class="level4" data-number="5.2.9.1">
+<h4 data-number="5.2.9.1" class="anchored" data-anchor-id="vs-code"><span class="header-section-number">5.2.9.1</span> VS Code</h4>
 <ul>
 <li>Click the Source Control icon in the sidebar</li>
 <li>Use the interface to stage, commit, and push changes</li>
 </ul>
 </section>
-<section id="pycharm" class="level4" data-number="7.2.9.2">
-<h4 data-number="7.2.9.2" class="anchored" data-anchor-id="pycharm"><span class="header-section-number">7.2.9.2</span> PyCharm</h4>
+<section id="pycharm" class="level4" data-number="5.2.9.2">
+<h4 data-number="5.2.9.2" class="anchored" data-anchor-id="pycharm"><span class="header-section-number">5.2.9.2</span> PyCharm</h4>
 <ul>
 <li>Go to VCS → Git in the menu</li>
 <li>Use the interface for Git operations</li>
 </ul>
 </section>
-<section id="rstudio" class="level4" data-number="7.2.9.3">
-<h4 data-number="7.2.9.3" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">7.2.9.3</span> RStudio</h4>
+<section id="rstudio" class="level4" data-number="5.2.9.3">
+<h4 data-number="5.2.9.3" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">5.2.9.3</span> RStudio</h4>
 <ul>
 <li>Click the Git tab in the upper-right panel</li>
 <li>Use the interface for Git operations</li>
@@ -742,8 +743,8 @@ Thumbs.db
 <p>These integrations mean you don’t have to use the command line for every Git operation — you can manage version control without leaving your coding environment.</p>
 </section>
 </section>
-<section id="collaborating-with-others-on-github" class="level3" data-number="7.2.10">
-<h3 data-number="7.2.10" class="anchored" data-anchor-id="collaborating-with-others-on-github"><span class="header-section-number">7.2.10</span> Collaborating with Others on GitHub</h3>
+<section id="collaborating-with-others-on-github" class="level3" data-number="5.2.10">
+<h3 data-number="5.2.10" class="anchored" data-anchor-id="collaborating-with-others-on-github"><span class="header-section-number">5.2.10</span> Collaborating with Others on GitHub</h3>
 <p>GitHub facilitates collaboration through pull requests:</p>
 <ol type="1">
 <li><p>Fork someone’s repository by clicking the “Fork” button on GitHub</p></li>
@@ -759,8 +760,8 @@ Thumbs.db
 <p>The “fork and pull request” workflow is used by nearly all open-source projects, from small libraries to major platforms like TensorFlow and pandas. It’s considered a best practice for collaborative development.</p>
 </section>
 </section>
-<section id="git-for-analysts-what-actually-matters" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="git-for-analysts-what-actually-matters"><span class="header-section-number">7.3</span> Git for Analysts: What Actually Matters</h2>
+<section id="git-for-analysts-what-actually-matters" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="git-for-analysts-what-actually-matters"><span class="header-section-number">5.3</span> Git for Analysts: What Actually Matters</h2>
 <p>Git has a large surface area and most of it is irrelevant to analytical work. If you learn four things, you have covered the overwhelming majority of what you’ll do:</p>
 <ol type="1">
 <li><strong><code>git add</code> / <code>git commit</code> / <code>git push</code></strong> — the daily loop. Commit when you finish a coherent piece of work, which is rarely the same moment as the end of the day.</li>
@@ -788,8 +789,8 @@ Thumbs.db
 </div>
 </div>
 </section>
-<section id="commit-messages" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="commit-messages"><span class="header-section-number">7.4</span> Commit Messages</h2>
+<section id="commit-messages" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="commit-messages"><span class="header-section-number">5.4</span> Commit Messages</h2>
 <p>A commit message written for the person reading it in six months — usually you — should say <em>why</em>, since the diff already says <em>what</em>.</p>
 <pre><code>Bad:   updated script
 Bad:   fixes
@@ -799,8 +800,8 @@ Good:  Exclude Q4 outliers from revenue model
        confirmed with finance. They were skewing the regional averages.</code></pre>
 <p>The first line is a summary under about 50 characters. If there’s a reason worth recording, leave a blank line and write it underneath. Nobody will mind if you don’t do this on a personal project; everyone will be grateful when you do it on a shared one.</p>
 </section>
-<section id="conclusion" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.5</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">5.5</span> Conclusion</h2>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>An IDE installed and configured for your language — VS Code, PyCharm, or RStudio</li>
@@ -810,7 +811,7 @@ Good:  Exclude Q4 outliers from revenue model
 <li>A <code>.gitignore</code> in that project covering credentials, data, and environments — added <em>before</em> your first commit rather than after</li>
 </ul>
 <p>That last point is worth repeating because it’s the one people get wrong once and remember forever. A file that has never been committed is easy to exclude. A file that has been committed is in the history permanently, and if it was a credential, the only real fix is to rotate it.</p>
-<p>With version control in place, the foundations are done. The next section turns to producing output someone else can read.</p>
+<p>The next chapter covers where your data lives: SQL, the file formats worth knowing, the query engines that have changed what’s practical on a laptop, and where credentials belong — which is the first place the <code>.gitignore</code> you just wrote starts earning its keep.</p>
 
 
 </section>
@@ -1223,13 +1224,13 @@ Good:  Exclude Q4 outliers from revenue model
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/environments.html" class="pagination-link" aria-label="Reproducible Environments">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Reproducible Environments</span></span>
+      <a href="../chapters/languages.html" class="pagination-link" aria-label="Python and R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Python and R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/reporting.html" class="pagination-link" aria-label="Data Science Tools for Reporting">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Science Tools for Reporting</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/data_stores.html" class="pagination-link" aria-label="Data Stores: SQL and Beyond">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Stores: SQL and Beyond</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
