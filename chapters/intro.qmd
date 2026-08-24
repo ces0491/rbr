@@ -38,7 +38,7 @@ By the end you should have a working development environment for Python, R, and 
 
 Almost everything here is free. The command line, Python, R, Git, Docker, VS Code, and the entire reporting and visualisation stack cost nothing and have no usage limits.
 
-The exceptions are the cloud platforms and hosting services in the later chapters. Most have a free tier adequate for learning, but they bill for usage beyond it, and their terms change often. Where this book quotes a specific limit, treat it as indicative rather than current — check the provider's own pricing page before you rely on it. The [Cloud Platforms](cloud.qmd) chapter covers how to set a budget alert before you need one.
+The exceptions are the cloud platforms and hosting services in the later chapters. Most have a free tier adequate for learning, but they bill for usage beyond it, and their terms change often enough that this book doesn't print them — you'll find what each platform charges *for*, and a link to its pricing page for what that currently costs. The [Cloud Platforms](cloud.qmd) chapter covers how to set a budget alert before you need one.
 
 :::{.callout-tip}
 ## If you only read one chapter

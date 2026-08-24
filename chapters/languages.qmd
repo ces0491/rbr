@@ -19,7 +19,7 @@ There are two routes worth taking, and the book gives instructions for both thro
 
 The numerical stack itself works fine either way. NumPy, pandas, scikit-learn and matplotlib all publish prebuilt wheels for Windows, macOS and Linux, so uv installs them without needing a compiler on your machine. Conda's advantage shows up further out, where a package depends on system libraries that aren't Python at all and someone has to resolve those too.
 
-Two other options you'll see mentioned, for completeness. **Anaconda** is the batteries-included conda distribution; it works, but its Terms of Service have restricted free commercial use for organisations with 200 or more employees since 2020, and a 2024 update extended that to government bodies and non-profits of the same size. Miniforge is the community-maintained equivalent with no such restriction, which is why this book points at it. **System Python** from `python.org`, Homebrew or `apt` is fine as a base, but you'll still want per-project environments on top of it.
+Two other options you'll see mentioned, for completeness. **Anaconda** is the batteries-included conda distribution; it works, but its Terms of Service have restricted free commercial use above a size threshold since 2020 — 200 employees as of writing, extended by a 2024 update to government bodies and non-profits of the same size. As with any licence term, check [Anaconda's current terms](https://www.anaconda.com/pricing) rather than this paragraph. Miniforge is the community-maintained equivalent with no such restriction, which is why this book points at it. **System Python** from `python.org`, Homebrew or `apt` is fine as a base, but you'll still want per-project environments on top of it.
 
 #### Route 1: uv
 

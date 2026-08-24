@@ -21,7 +21,7 @@ Docker is the most widely used containerisation platform, and its command-line t
 :::{.callout-note}
 ## Docker Desktop licensing
 
-Since 2021, **Docker Desktop requires a paid subscription for commercial use at companies with more than 250 employees or over $10 million in annual revenue**. It remains free for personal use, education, small businesses, and open-source projects. If your workplace falls above that threshold, the free alternatives below all provide the same `docker` command:
+Since 2021, **Docker Desktop has required a paid subscription for commercial use above a size threshold** — as of writing, more than 250 employees or over $10 million in annual revenue. It remains free for personal use, education, smaller businesses, and open-source projects. Thresholds like this get revised, so check [Docker's current terms](https://www.docker.com/pricing/) rather than this paragraph before concluding you're under it. If your workplace falls above that threshold, the free alternatives below all provide the same `docker` command:
 
 - **[Rancher Desktop](https://rancherdesktop.io/)**: open source, works on Windows/macOS/Linux, bundles Kubernetes
 - **[Podman Desktop](https://podman-desktop.io/)**: open source, Red Hat–maintained, and the closest drop-in replacement for the Docker CLI. It runs without a background service (a *daemon*) holding root privileges, which some IT departments prefer
@@ -465,7 +465,7 @@ To get the most out of Docker for data science, follow these best practices:
 1. **Keep images lean**: Smaller images pull faster, deploy faster, and ship less software that could turn out to have a vulnerability in it. Use `-slim` (or `-alpine` for pure-Python workloads) base images when you can.
 
    ```dockerfile
-   FROM python:3.13-slim  # ~150 MB; the full python:3.13 image is ~1 GB
+   FROM python:3.13-slim  # roughly a tenth the size of the full python:3.13 image
    ```
 
    Note that Alpine-based images use `musl` instead of `glibc`, which occasionally breaks scientific Python packages that ship precompiled wheels for `glibc` only. When in doubt, start with `-slim`.

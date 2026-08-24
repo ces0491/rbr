@@ -39,6 +39,8 @@ Match the row to your project and the last column narrows the choice to two or t
 
 The options below are ordered roughly by how much you need to know to use them.
 
+Each entry says what a platform charges *for* rather than what it charges. Prices and free-tier allowances move too fast to print — Netlify and AWS both restructured theirs during 2025, and Heroku withdrew its free tier altogether — so each entry links to the provider's own pricing page instead. What a platform bills you for changes far less often, and it's the part that decides whether it suits your project: a service billed per always-on process is a poor fit for something used twice a week, whatever the number attached to it.
+
 ### Static Site Deployment Options
 
 #### GitHub Pages
@@ -47,8 +49,8 @@ GitHub Pages offers free hosting for static content directly from your GitHub re
 
 **Best for**: HTML reports, documentation, simple visualisations
 **Setup complexity**: Low
-**Cost**: Free
-**Limitations**: Only static content, 1GB repository limit
+**Cost**: Free for public repositories
+**Limitations**: Only static content, and GitHub applies a size limit to the published site — see [GitHub's own page](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages) for the current figure
 
 **Quick setup**:
 
@@ -83,15 +85,15 @@ Netlify provides more advanced features for static sites:
 
 **Best for**: Static sites that require a build process
 **Setup complexity**: Low to medium
-**Cost**: Free tier of 300 credits per month; paid plans from $9/month (Personal, 1,000 credits)
-**Limitations**: Everything consumes from one credit allowance, so a burst of traffic and a burst of rebuilds compete with each other
+**Cost**: Free tier, then paid plans — [current pricing](https://www.netlify.com/pricing/)
+**Limitations**: Deploys, bandwidth and compute all draw from one credit allowance, so a burst of traffic and a burst of rebuilds compete with each other
 
 :::{.callout-note}
 ## Netlify's credits, and why older tutorials describe something different
 
-In September 2025 Netlify replaced its separate bandwidth and build-minute allowances with a single credit balance. Deploys, bandwidth, compute, and requests all draw from the same pool at published rates — a production deploy costs 15 credits, bandwidth 20 credits per GB — so 300 free credits is a real but small budget rather than four generous separate ones.
+In September 2025 Netlify replaced its separate bandwidth and build-minute allowances with a single credit balance. Deploys, bandwidth, compute and requests now all draw from the same pool at published rates, which means a busy month of traffic eats into the same budget as a busy month of rebuilds.
 
-Tutorials written before that change describe "100GB bandwidth and 300 build minutes". Those terms still apply to accounts created before the cutover, which is why you'll see both stories in circulation. Any account you open now gets credits.
+Tutorials written before that change describe two separate allowances, one in gigabytes and one in build minutes. Those terms still apply to accounts created before the cutover, which is why you'll see both stories in circulation. Any account you open now gets credits.
 :::
 
 **Quick setup**:
@@ -110,7 +112,7 @@ Vercel, from the makers of Next.js, hosts static sites and serverless functions.
 
 **Best for**: Static sites with interactive elements, data visualisations with JavaScript, projects using modern web frameworks
 **Setup complexity**: Low to medium
-**Cost**: Free tier for personal projects; paid plans from $20/month per team member
+**Cost**: Free tier for personal projects; paid plans billed per team member — [current pricing](https://vercel.com/pricing)
 **Limitations**: Optimised for frontend applications; serverless functions have execution time limits, so this is not where long-running model training belongs
 
 **Quick setup**:
@@ -184,8 +186,8 @@ Render is the most direct successor to old-Heroku for data science workloads:
 
 **Best for**: Python and R web applications, Dockerised dashboards
 **Setup complexity**: Medium
-**Cost**: Free tier for experimentation (services sleep after inactivity); paid plans from $7/month
-**Limitations**: Free-tier services sleep when idle and have limited compute hours
+**Cost**: Free tier for experimentation; paid plans billed per always-on service — [current pricing](https://render.com/pricing)
+**Limitations**: Free-tier services sleep when idle, so the first request after a quiet period waits for the service to wake
 
 **Setup for a Python web application**:
 
@@ -238,7 +240,7 @@ Render builds and deploys your app on every push to the configured branch, so th
 Two other platforms worth knowing for small to mid-sized Python/R deployments:
 
 - **[Fly.io](https://fly.io/)**: Deploys Docker containers globally on a pay-as-you-go basis. Good fit once you're comfortable with Docker (covered in the [previous chapter](containers.qmd)); the `flyctl` command-line tool handles the build, push, and deploy steps with one command.
-- **[Railway](https://railway.com/)**: Similar developer experience to Render, with a one-time trial credit to try it out before committing. Good Postgres and cron support out of the box.
+- **[Railway](https://railway.com/)**: Similar developer experience to Render, with a trial credit to try it out before committing ([current pricing](https://railway.com/pricing)). Good Postgres and cron support out of the box.
 
 All three platforms use essentially the same mental model: connect a Git repo, describe how to build the app (either `requirements.txt` + a start command or a `Dockerfile`), and let the platform handle HTTPS, logging, and redeploys on push.
 
@@ -261,7 +263,7 @@ Everything below targets Connect Cloud. The `rsconnect` package still handles bo
 
 **Best for**: R Shiny apps, Quarto documents, Streamlit and Dash applications
 **Setup complexity**: Low
-**Cost**: Free tier available; interactive applications count against plan limits differently from static documents, so check current terms if you plan to host several
+**Cost**: Free tier available; interactive applications count against plan limits differently from static documents, so check [current pricing](https://posit.cloud/pricing) if you plan to host several
 **Limitations**: Tied to Posit's platform — for full control over the runtime, use a container on Render or Cloud Run instead
 
 **Deployment from Git (the recommended path)**:
@@ -337,7 +339,7 @@ Cloud Run is ideal for containerised applications:
 
 **Best for**: Containerised applications that need to scale
 **Setup complexity**: Medium to high
-**Cost**: Pay-per-use, with a monthly free allowance of requests and compute time
+**Cost**: Pay-per-use — you're billed for the time your container spends handling requests, with a monthly free allowance on top ([current pricing](https://cloud.google.com/run/pricing))
 **Limitations**: Requires Docker knowledge
 
 **Before you can deploy**: Cloud Run is driven by the Google Cloud CLI, which is a separate install. This is a one-off, and every `gcloud` command in this chapter assumes it:
@@ -391,7 +393,7 @@ App Runner takes a container image or a source repository and runs it as a scali
 
 **Best for**: Production web applications already committed to AWS
 **Setup complexity**: Medium
-**Cost**: Pay for provisioned and active compute
+**Cost**: Pay for provisioned and active compute separately, so an idle service still costs something ([current pricing](https://aws.amazon.com/apprunner/pricing/))
 **Limitations**: Fewer regions than the rest of AWS; no free tier
 
 Deployment is normally driven from the console or from an `apprunner.yaml` in your repository. If you are not already in the AWS ecosystem, Cloud Run and Render both reach a running container with less ceremony.
