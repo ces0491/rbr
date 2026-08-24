@@ -381,7 +381,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Since 2021, <strong>Docker Desktop requires a paid subscription for commercial use at companies with more than 250 employees or over $10 million in annual revenue</strong>. It remains free for personal use, education, small businesses, and open-source projects. If your workplace falls above that threshold, the free alternatives below all provide the same <code>docker</code> command:</p>
+<p>Since 2021, <strong>Docker Desktop has required a paid subscription for commercial use above a size threshold</strong> — as of writing, more than 250 employees or over $10 million in annual revenue. It remains free for personal use, education, smaller businesses, and open-source projects. Thresholds like this get revised, so check <a href="https://www.docker.com/pricing/">Docker’s current terms</a> rather than this paragraph before concluding you’re under it. If your workplace falls above that threshold, the free alternatives below all provide the same <code>docker</code> command:</p>
 <ul>
 <li><strong><a href="https://rancherdesktop.io/">Rancher Desktop</a></strong>: open source, works on Windows/macOS/Linux, bundles Kubernetes</li>
 <li><strong><a href="https://podman-desktop.io/">Podman Desktop</a></strong>: open source, Red Hat–maintained, and the closest drop-in replacement for the Docker CLI. It runs without a background service (a <em>daemon</em>) holding root privileges, which some IT departments prefer</li>
@@ -764,7 +764,7 @@ numpy</code></pre>
 <p>To get the most out of Docker for data science, follow these best practices:</p>
 <ol type="1">
 <li><p><strong>Keep images lean</strong>: Smaller images pull faster, deploy faster, and ship less software that could turn out to have a vulnerability in it. Use <code>-slim</code> (or <code>-alpine</code> for pure-Python workloads) base images when you can.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.13-slim  <span class="co"># ~150 MB; the full python:3.13 image is ~1 GB</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> python:3.13-slim  <span class="co"># roughly a tenth the size of the full python:3.13 image</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note that Alpine-based images use <code>musl</code> instead of <code>glibc</code>, which occasionally breaks scientific Python packages that ship precompiled wheels for <code>glibc</code> only. When in doubt, start with <code>-slim</code>.</p></li>
 <li><p><strong>Use multi-stage builds for production</strong>: Separate building dependencies from runtime</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode dockerfile code-with-copy"><code class="sourceCode dockerfile"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Build stage</span></span>
