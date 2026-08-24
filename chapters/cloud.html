@@ -513,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-2-load-and-explore-data" class="level4" data-number="10.1.9.2">
 <h4 data-number="10.1.9.2" class="anchored" data-anchor-id="step-2-load-and-explore-data"><span class="header-section-number">10.1.9.2</span> Step 2: Load and Explore Data</h4>
 <p>In the first cell, load a dataset directly from a URL:</p>
-<div id="da4c9e6b" class="cell" data-execution_count="1">
+<div id="315d5ade" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -532,11 +532,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-3-perform-analysis" class="level4" data-number="10.1.9.3">
 <h4 data-number="10.1.9.3" class="anchored" data-anchor-id="step-3-perform-analysis"><span class="header-section-number">10.1.9.3</span> Step 3: Perform Analysis</h4>
 <p>In subsequent cells, perform your analysis:</p>
-<div id="a57b3bbd" class="cell" data-execution_count="2">
+<div id="e5caf401" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d50b5356" class="cell" data-execution_count="3">
+<div id="f3977fb0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a visualisation</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>,</span>
@@ -558,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Click Save</li>
 </ol>
 <p>Then verify GPU availability:</p>
-<div id="75a55a2a" class="cell" data-execution_count="4">
+<div id="527a2028" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> torch.cuda.is_available():</span>
@@ -582,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="connecting-cloud-storage-to-your-analysis" class="level3" data-number="10.1.10">
 <h3 data-number="10.1.10" class="anchored" data-anchor-id="connecting-cloud-storage-to-your-analysis"><span class="header-section-number">10.1.10</span> Connecting Cloud Storage to Your Analysis</h3>
 <p>When working with larger datasets, you’ll want to connect cloud storage to your notebooks. Here’s how to mount Google Drive in Colab:</p>
-<div id="70515f64" class="cell" data-execution_count="5">
+<div id="9bd59cb4" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mount Google Drive</span></span>
@@ -593,7 +593,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'/content/drive/MyDrive/data/my_dataset.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For AWS S3 from a Colab notebook, use the boto3 library with credentials supplied through Colab’s secret manager rather than typing them into cells:</p>
-<div id="9ed558af" class="cell" data-execution_count="6">
+<div id="f746aad6" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In Colab: click the 🔑 key icon in the left sidebar and add two secrets</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># named AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Then:</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>

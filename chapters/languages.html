@@ -366,16 +366,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Python is the language most of the infrastructure in this book is written in and expects. NumPy, pandas and scikit-learn cover the numerical and modelling work; almost everything else — web frameworks, cloud SDKs, orchestration tools — has a Python client whether or not it has an R one. That reach is the practical argument for it, more than anything about the language itself.</p>
 <section id="installing-python" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">4.1.1</span> Installing Python</h3>
-<p>You have a few reasonable ways to install Python for data science. Each has trade-offs:</p>
-<ul>
-<li><strong>Miniforge</strong> (recommended for most readers): a minimal, community-maintained conda distribution that defaults to <code>conda-forge</code>, a free package repository — conda calls these “channels” — maintained by the community rather than by a company. Gives you <code>conda</code> for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.</li>
-<li><strong>Anaconda</strong>: the “batteries-included” distribution. Convenient, but its Terms of Service have restricted free commercial use for organisations with 200 or more employees since 2020, and a 2024 update extended that to government bodies and non-profits of the same size. Fine for learning and personal projects.</li>
-<li><strong><code>uv</code></strong> (the modern, fast option): a single binary that installs Python versions and manages virtual environments and packages. Much faster than conda or pip and rapidly becoming the default for pure-Python projects. A great choice once you’re comfortable, especially if you don’t need conda’s scientific package ecosystem.</li>
-<li><strong>System Python</strong> (<code>python.org</code> installer, <code>brew install python</code>, or <code>apt install python3</code>): simple, but you’ll still want to create isolated environments per project with <code>venv</code> or <code>uv venv</code>.</li>
-</ul>
-<p>For this book we’ll use conda-based instructions since they work uniformly across Windows, macOS, and Linux and handle tricky scientific packages well. Everything shown below works with either Miniforge or Anaconda.</p>
-<section id="installing-miniforge-or-anaconda" class="level4" data-number="4.1.1.1">
-<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="installing-miniforge-or-anaconda"><span class="header-section-number">4.1.1.1</span> Installing Miniforge (or Anaconda)</h4>
+<p>There are two routes worth taking, and the book gives instructions for both throughout. Pick one now; you can add the other later without undoing anything.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Route</th>
+<th>Take it when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>uv</strong></td>
+<td>Default for new work. A single binary that installs Python versions, creates environments, and installs packages, quickly</td>
+</tr>
+<tr class="even">
+<td><strong>Miniforge (conda)</strong></td>
+<td>You need packages that aren’t pure Python — GDAL and the geospatial stack, CUDA-enabled PyTorch, much of bioinformatics — or your team already standardises on conda</td>
+</tr>
+</tbody>
+</table>
+<p>The numerical stack itself works fine either way. NumPy, pandas, scikit-learn and matplotlib all publish prebuilt wheels for Windows, macOS and Linux, so uv installs them without needing a compiler on your machine. Conda’s advantage shows up further out, where a package depends on system libraries that aren’t Python at all and someone has to resolve those too.</p>
+<p>Two other options you’ll see mentioned, for completeness. <strong>Anaconda</strong> is the batteries-included conda distribution; it works, but its Terms of Service have restricted free commercial use for organisations with 200 or more employees since 2020, and a 2024 update extended that to government bodies and non-profits of the same size. Miniforge is the community-maintained equivalent with no such restriction, which is why this book points at it. <strong>System Python</strong> from <code>python.org</code>, Homebrew or <code>apt</code> is fine as a base, but you’ll still want per-project environments on top of it.</p>
+<section id="route-1-uv" class="level4" data-number="4.1.1.1">
+<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="route-1-uv"><span class="header-section-number">4.1.1.1</span> Route 1: uv</h4>
+<p>Install it once, from your terminal:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows PowerShell</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>powershell <span class="op">-</span>c <span class="st">"irm https://astral.sh/uv/install.ps1 | iex"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Both download a script and run it in one step, which is the method Astral documents. <a href="../chapters/command_line.html">The Command Line</a> explains what you’re agreeing to when you do that, and when to download and read the script first instead.</p>
+<p>Close and reopen your terminal so the new command is on your PATH, then check it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>uv doesn’t need a system Python. <code>uv venv --python 3.13</code> downloads that version if you don’t have it, which means the Python your project runs on is something you choose per project rather than something your operating system decided for you.</p>
+</section>
+<section id="route-2-miniforge-or-anaconda" class="level4" data-number="4.1.1.2">
+<h4 data-number="4.1.1.2" class="anchored" data-anchor-id="route-2-miniforge-or-anaconda"><span class="header-section-number">4.1.1.2</span> Route 2: Miniforge (or Anaconda)</h4>
 <ol type="1">
 <li>Visit the <a href="https://github.com/conda-forge/miniforge/releases/latest">Miniforge releases page</a> (or the <a href="https://www.anaconda.com/download">Anaconda download page</a> if you prefer)</li>
 <li>Download the appropriate installer for your operating system</li>
@@ -383,13 +412,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>During installation on Windows, you may be asked whether to add the installation to your PATH environment variable. Leave this unchecked and use the Miniforge Prompt (or Anaconda Prompt) from the Start menu, which avoids conflicts with other Python installations on your system.</p>
 <p>The “PATH” is like an address book that tells your computer where to find programs when you type their names. Adding your conda install to PATH means you can use Python from any command prompt, but it could cause conflicts with other versions of Python on your system.</p>
-</section>
-<section id="verifying-installation" class="level4" data-number="4.1.1.2">
-<h4 data-number="4.1.1.2" class="anchored" data-anchor-id="verifying-installation"><span class="header-section-number">4.1.1.2</span> Verifying Installation</h4>
-<p>Open a new terminal (or Miniforge/Anaconda Prompt on Windows) and type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see the Python version number. Also, check that conda is installed:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Miniforge defaults to <code>conda-forge</code> — conda calls package repositories “channels” — which is maintained by the community rather than by a company, and is the reason Miniforge carries none of Anaconda’s licensing conditions.</p>
+<p>Open a new terminal (or the Miniforge Prompt on Windows) and check both commands:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -401,10 +427,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container callout-body">
 <p>The next thing most people do is <code>pip install pandas</code> and carry on. Resist it. Packages installed globally accumulate, conflict, and eventually break each other in ways that are genuinely painful to unpick — and nothing records what you installed, so the analysis you write today may not run tomorrow.</p>
-<p>Create a per-project environment first. That is the whole subject of the <a href="../chapters/environments.html">Reproducible Environments</a> chapter, and it’s worth reading before you install your second package. The short version, using the conda you have just installed:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> myproject python=3.13</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate myproject</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Install into that, not into <code>base</code>.</p>
+<p>Create a per-project environment first. That is the whole subject of the <a href="../chapters/environments.html">Reproducible Environments</a> chapter, and it’s worth reading before you install your second package. The short version:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># uv - the environment lives in the project directory</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv <span class="at">--python</span> 3.13</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># conda - the environment lives in a central location, under a name</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> myproject python=3.13</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate myproject</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Install into that, not into the base installation or your system Python.</p>
 </div>
 </div>
 </section>
@@ -412,42 +442,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-jupyter-notebooks" class="level3" data-number="4.1.2">
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="using-jupyter-notebooks"><span class="header-section-number">4.1.2</span> Using Jupyter Notebooks</h3>
 <p>A Jupyter notebook interleaves code, its output, and your prose in one document — a lab notebook you can re-run. It’s where most exploratory Python work happens.</p>
-<p>Miniforge is deliberately minimal, so Jupyter is not installed yet. Create an environment for working through this book and install what the next few chapters need:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment named 'datasci' with the packages used below</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> datasci python=3.13 numpy pandas matplotlib jupyter</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate it. Do this in every new terminal session where you want these packages.</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch Jupyter Notebook</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The first command takes a few minutes — conda is resolving a consistent set of versions for everything you asked for and everything those packages depend on in turn. Later chapters refer back to this <code>datasci</code> environment; <a href="../chapters/environments.html">Reproducible Environments</a> explains why one environment per project beats one environment for everything.</p>
+<p>Neither uv nor Miniforge installs Jupyter for you. Make a directory to work through this book in, then create an environment there with what the next few chapters need.</p>
+<p>With uv, the environment is a <code>.venv</code> directory inside the project:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> rbr-work <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> rbr-work</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the environment. uv fetches Python 3.13 if you don't have it.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv <span class="at">--python</span> 3.13</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Activate it — you do this in every new terminal session, and the command differs by platform:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows PowerShell</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">venv</span>\Scripts\Activate<span class="op">.</span><span class="fu">ps1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Then install into it and start Jupyter:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install numpy pandas matplotlib jupyter</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With conda, it’s a named environment stored centrally instead:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> datasci python=3.13 numpy pandas matplotlib jupyter</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate it - again, in every new terminal session</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> notebook</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The conda version takes a few minutes, because conda is resolving a consistent set of versions across everything you asked for and everything those packages depend on in turn. uv does the same job in well under a minute the first time, and in a few seconds after that, once the packages are in its local cache.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Windows: “running scripts is disabled on this system”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <code>Activate.ps1</code> fails with that message, PowerShell is refusing to run local scripts. <a href="../chapters/environments.html">Reproducible Environments</a> has the one-line fix.</p>
+</div>
+</div>
+<p>Later chapters refer back to this environment as the one you made here — <code>.venv</code> under uv, <code>datasci</code> under conda. <a href="../chapters/environments.html">Reproducible Environments</a> explains why one environment per project beats one environment for everything, and why the shared scratchpad you’ve just built is a pattern to grow out of.</p>
 <p>This opens a web browser where you can create and work with notebooks. Let’s create a simple notebook to verify everything works:</p>
 <ol type="1">
 <li>Click “New” → “Python 3”</li>
 <li>In the first cell, type:</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create some sample data</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x'</span>: <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>),</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y'</span>: np.random.randn(<span class="dv">10</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple plot</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'x'</span>], data[<span class="st">'y'</span>], marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sample Plot'</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X-axis'</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Y-axis'</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Python environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create some sample data</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x'</span>: <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y'</span>: np.random.randn(<span class="dv">10</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple plot</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'x'</span>], data[<span class="st">'y'</span>], marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sample Plot'</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'X-axis'</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Y-axis'</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Python environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="3" type="1">
 <li>Press Shift+Enter to run the cell</li>
@@ -456,13 +513,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="installing-additional-packages" class="level3" data-number="4.1.3">
 <h3 data-number="4.1.3" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">4.1.3</span> Installing Additional Packages</h3>
-<p>You’ll need more packages as you go. Two ways to install them:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using conda (preferred when available)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install package_name</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pip (when packages aren't available in conda)</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install package_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Prefer conda where the package has compiled C or C++ underneath it — which covers most of the numerical stack. Conda ships prebuilt binaries and resolves the system libraries they depend on; pip is more likely to try compiling on your machine and fail for want of a toolchain.</p>
+<p>With the environment activated:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install package_name      <span class="co"># uv</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install package_name       <span class="co"># conda</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Inside a conda environment you can also use <code>pip</code> for anything not packaged for conda, though mixing the two in one environment is a known way to end up with a broken environment. Install what you can with conda first, then pip for the remainder, and avoid alternating.</p>
+<p>The case for reaching across to conda is narrower than it used to be. Most of the scientific stack now ships prebuilt wheels that uv installs without a compiler. Where conda still earns its place is packages wrapping non-Python system libraries — GDAL and PROJ for geospatial work, CUDA builds of PyTorch, much of bioinformatics — because something has to install those libraries too, and conda does.</p>
 </section>
 </section>
 <section id="setting-up-r" class="level2" data-number="4.2">
@@ -489,11 +544,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Think of R as the engine and RStudio as the dashboard that makes it easier to control that engine. You could use R without RStudio, but RStudio makes many tasks more convenient.</p>
 </section>
-<section id="verifying-installation-1" class="level4" data-number="4.2.1.3">
-<h4 data-number="4.2.1.3" class="anchored" data-anchor-id="verifying-installation-1"><span class="header-section-number">4.2.1.3</span> Verifying Installation</h4>
+<section id="verifying-installation" class="level4" data-number="4.2.1.3">
+<h4 data-number="4.2.1.3" class="anchored" data-anchor-id="verifying-installation"><span class="header-section-number">4.2.1.3</span> Verifying Installation</h4>
 <p>Open RStudio and enter this command in the console (lower-left pane):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>RStudio also prints the same information unprompted at the start of every new session, so you may already see it above your cursor. It should look something like this:</p>
 <p><code>R version 4.6.1 (2026-06-24 ucrt) -- "Happy Hop"</code> <code>Copyright (C) 2026 The R Foundation for Statistical Computing</code> <code>Platform: x86_64-w64-mingw32/x64</code></p>
@@ -504,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="4.2.2" class="anchored" data-anchor-id="the-r-packages-to-start-with"><span class="header-section-number">4.2.2</span> The R Packages to Start With</h3>
 <p>Five packages cover most of what the rest of this book does in R:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"shiny"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"shiny"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This installs:</p>
 <ul>
@@ -524,25 +579,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Enter the following code:</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sample data</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot with ggplot2</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sample Plot in R"</span>,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"X-axis"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Y-axis"</span>) <span class="sc">+</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"R environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load libraries</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sample data</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot with ggplot2</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sample Plot in R"</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"X-axis"</span>,</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Y-axis"</span>) <span class="sc">+</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"R environment is working correctly!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="3" type="1">
 <li>Click the “Run” button or press Ctrl+Enter (Cmd+Enter on Mac) to execute the code</li>
@@ -554,8 +609,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Unlike Python, where conda or pip manage packages, R has its own built-in package management system accessed through functions like <code>install.packages()</code> and <code>library()</code>.</p>
 <p>There are thousands of R packages available on CRAN, with more on Bioconductor (for bioinformatics) and GitHub. To install a package from GitHub, you first need the devtools package:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"username/package"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"username/package"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Think of CRAN as the official app store for R packages, while GitHub is like getting apps directly from developers. Both are useful, but packages on CRAN have gone through more quality checks.</p>
 </section>
@@ -575,8 +630,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4.4</span> Conclusion</h2>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
-<li>Python installed via Miniforge, with <code>python --version</code> and <code>conda --version</code> both working</li>
-<li>A conda environment named <code>datasci</code> containing numpy, pandas, matplotlib, and Jupyter, which later chapters assume</li>
+<li>Python installed, with <code>uv --version</code> working (or <code>python --version</code> and <code>conda --version</code> if you took the Miniforge route)</li>
+<li>A working environment containing numpy, pandas, matplotlib, and Jupyter, which later chapters assume — a <code>.venv</code> if you took the uv route, an environment named <code>datasci</code> if you took conda</li>
 <li>R and RStudio installed, with <code>R.version.string</code> reporting a current version</li>
 <li>A Jupyter notebook that runs a cell and produces a plot</li>
 <li>An R script that loads ggplot2 and produces a plot</li>

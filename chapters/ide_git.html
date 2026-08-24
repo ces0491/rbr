@@ -404,8 +404,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Open VS Code</li>
 <li>Press Ctrl+Shift+P (Cmd+Shift+P on Mac) to open the command palette</li>
 <li>Type “Python: Select Interpreter” and select it</li>
-<li>Choose your conda environment (e.g., datasci)</li>
+<li>Choose the environment you made in <a href="../chapters/languages.html">Python and R</a> — the <code>.venv</code> inside your project folder if you took the uv route, or the <code>datasci</code> entry if you took conda</li>
 </ol>
+<p>VS Code finds <code>.venv</code> directories inside the open folder on its own and lists them at the top, so the uv route usually needs one click. Conda environments live centrally and are listed by name.</p>
 <p>This tells VS Code which Python installation to run your code with. Get it wrong and you’ll be told a package isn’t installed when you can see that it is — <a href="../chapters/environments.html">Reproducible Environments</a> covers why.</p>
 </section>
 </section>
@@ -420,22 +421,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Run the installer and follow the prompts</li>
 </ol>
 </section>
-<section id="configuring-pycharm-for-your-conda-environment" class="level4" data-number="5.1.2.2">
-<h4 data-number="5.1.2.2" class="anchored" data-anchor-id="configuring-pycharm-for-your-conda-environment"><span class="header-section-number">5.1.2.2</span> Configuring PyCharm for Your Conda Environment</h4>
+<section id="pointing-pycharm-at-your-environment" class="level4" data-number="5.1.2.2">
+<h4 data-number="5.1.2.2" class="anchored" data-anchor-id="pointing-pycharm-at-your-environment"><span class="header-section-number">5.1.2.2</span> Pointing PyCharm at Your Environment</h4>
 <ol type="1">
 <li>Open PyCharm</li>
-<li>Create a new project</li>
+<li>Create a new project, or open the folder you made in <a href="../chapters/languages.html">Python and R</a></li>
 <li>Click on “Previously configured interpreter”</li>
-<li>Click on the gear icon and select “Add…”</li>
-<li>Choose “Conda Environment” → “Existing environment”</li>
-<li>Browse to your conda environment’s Python executable. If you followed the Miniforge instructions earlier, that is:
+<li>Click the gear icon and select “Add…”</li>
+</ol>
+<p>For a <strong>uv environment</strong>, choose “Virtualenv Environment” → “Existing” and point it at <code>.venv/Scripts/python.exe</code> inside your project on Windows, or <code>.venv/bin/python</code> on macOS and Linux. PyCharm often detects this without being asked.</p>
+<p>For a <strong>conda environment</strong>, choose “Conda Environment” → “Existing environment” and browse to its Python:</p>
 <ul>
 <li>On Windows: <code>C:\Users\&lt;username&gt;\miniforge3\envs\datasci\python.exe</code></li>
 <li>On macOS: <code>/Users/&lt;username&gt;/miniforge3/envs/datasci/bin/python</code></li>
 <li>On Linux: <code>/home/&lt;username&gt;/miniforge3/envs/datasci/bin/python</code></li>
 </ul>
-If you installed Anaconda rather than Miniforge, substitute <code>anaconda3</code> for <code>miniforge3</code>. When in doubt, activate the environment and run <code>python -c "import sys; print(sys.executable)"</code> — that prints the exact path PyCharm wants.</li>
-</ol>
+<p>Substitute <code>anaconda3</code> for <code>miniforge3</code> if you installed Anaconda. When in doubt, activate the environment and run <code>python -c "import sys; print(sys.executable)"</code> — that prints the exact path PyCharm wants, whichever kind it is.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -457,11 +458,11 @@ Note
 <section id="jupyterlab-the-next-generation-of-jupyter" class="level4" data-number="5.1.3.1">
 <h4 data-number="5.1.3.1" class="anchored" data-anchor-id="jupyterlab-the-next-generation-of-jupyter"><span class="header-section-number">5.1.3.1</span> JupyterLab: The Next Generation of Jupyter</h4>
 <p>JupyterLab is a web-based interactive development environment that extends the notebook interface with a file browser, consoles, terminals, and more.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install JupyterLab</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate datasci</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge jupyterlab</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install JupyterLab into your activated environment</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install jupyterlab                    <span class="co"># uv</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge jupyterlab      <span class="co"># conda</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch JupyterLab</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch it</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> lab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>JupyterLab gives you several notebooks open at once, a file browser, a terminal, and a data frame viewer, all in one browser tab. Classic Notebook gives you one document.</p>
 </section>

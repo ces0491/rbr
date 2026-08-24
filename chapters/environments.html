@@ -441,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="python-uv" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="python-uv"><span class="header-section-number">7.4</span> Python: uv</h2>
-<p><code>uv</code> is a single binary that replaces <code>pip</code>, <code>venv</code>, and <code>pyenv</code>. Install it once:</p>
+<p><code>uv</code> is a single binary that replaces <code>pip</code>, <code>venv</code>, and <code>pyenv</code>. If you took the uv route in <a href="../chapters/languages.html">Python and R</a> you already have it and can skip to the next block. Otherwise, install it once:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -495,7 +495,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install numpy pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The naming matters more than it looks. The <code>datasci</code> environment you created in <a href="../chapters/languages.html">Python and R</a> is a reasonable scratchpad for working through this book, but it is exactly the pattern this chapter argues against for real work: one shared environment that every project quietly depends on, so upgrading a package for one analysis breaks another. Give each project its own.</p>
+<p>The naming matters more than it looks. The environment you created in <a href="../chapters/languages.html">Python and R</a> — <code>datasci</code> under conda, or the <code>.venv</code> in your <code>rbr-work</code> folder under uv — is a reasonable scratchpad for working through this book, and it is exactly the pattern this chapter argues against for real work: one shared environment that several projects quietly depend on, so upgrading a package for one analysis breaks another. Give each project its own.</p>
 <p>Activate it whenever you work on that project. Unlike <code>venv</code>/<code>uv</code>, conda environments live in a central location rather than in the project directory, so there’s nothing to <code>.gitignore</code>.</p>
 <section id="recording-it-1" class="level3" data-number="7.5.1">
 <h3 data-number="7.5.1" class="anchored" data-anchor-id="recording-it-1"><span class="header-section-number">7.5.1</span> Recording It</h3>
