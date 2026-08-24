@@ -325,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#what-is-the-command-line" id="toc-what-is-the-command-line" class="nav-link" data-scroll-target="#what-is-the-command-line"><span class="header-section-number">3.1.1</span> What Is the Command Line?</a></li>
   <li><a href="#getting-started-with-the-command-line" id="toc-getting-started-with-the-command-line" class="nav-link" data-scroll-target="#getting-started-with-the-command-line"><span class="header-section-number">3.1.2</span> Getting Started with the Command Line</a></li>
-  <li><a href="#essential-command-line-operations" id="toc-essential-command-line-operations" class="nav-link" data-scroll-target="#essential-command-line-operations"><span class="header-section-number">3.1.3</span> Essential Command Line Operations</a></li>
+  <li><a href="#the-commands-worth-knowing" id="toc-the-commands-worth-knowing" class="nav-link" data-scroll-target="#the-commands-worth-knowing"><span class="header-section-number">3.1.3</span> The Commands Worth Knowing</a></li>
   <li><a href="#package-managers" id="toc-package-managers" class="nav-link" data-scroll-target="#package-managers"><span class="header-section-number">3.1.4</span> Package Managers</a></li>
   </ul></li>
   <li><a href="#three-constructs-youll-see-everywhere" id="toc-three-constructs-youll-see-everywhere" class="nav-link" data-scroll-target="#three-constructs-youll-see-everywhere"><span class="header-section-number">3.2</span> Three Constructs You’ll See Everywhere</a></li>
@@ -358,17 +358,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="understanding-the-command-line" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="understanding-the-command-line"><span class="header-section-number">3.1</span> Understanding the Command Line</h2>
-<p>Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface. Further, when we later discuss Integrated Development Environments (IDEs) such as Visual Studio Code, RStudio, and many others, you’ll find that they provide dedicated functionality to allow you to interact directly with the command line, so understanding its purpose is globally useful across workflows.</p>
+<p>Most of the tools in this book are installed, configured, and often driven from the command line. The editors in <a href="../chapters/ide_git.html">Editors and Version Control</a> each embed a terminal for the same reason. An afternoon here saves you guessing later.</p>
 <section id="what-is-the-command-line" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="what-is-the-command-line"><span class="header-section-number">3.1.1</span> What Is the Command Line?</h3>
-<p>The command line (also called terminal, shell, or console) is a text-based interface where you type commands for the computer to execute. While graphical user interfaces (GUIs) let you point and click, the command line gives you more precise control through text commands.</p>
-<p>Why use the command line when we have modern GUIs?</p>
-<ol type="1">
-<li><p><strong>Many data science tools are designed to be used this way</strong>: Tools like Git, Docker, and many Python and R package management utilities primarily use command-line interfaces.</p></li>
-<li><p><strong>It allows for reproducibility through scripts</strong>: Command-line operations can be saved in script files and run again later, ensuring that the exact same steps are followed each time. This reproducibility is essential for reliable data analysis.</p></li>
-<li><p><strong>It often provides more flexibility and power</strong>: Command-line tools typically offer more options and configurations than their graphical counterparts. For example, when installing Python packages, the command-line tool <code>pip</code> offers dozens of options to handle dependencies, versions, and installation locations that aren’t available in most graphical installers.</p></li>
-<li><p><strong>It’s faster for many operations once you learn the commands</strong>: After becoming familiar with the commands, many operations can be performed more quickly than navigating through multiple screens in a GUI. For instance, you can install multiple Python packages with a single command line rather than clicking through installation wizards for each one.</p></li>
-</ol>
+<p>The command line (also called terminal, shell, or console) is a text-based interface where you type commands for the computer to execute. Graphical interfaces let you point and click; the command line gives you more precise control through text commands.</p>
+<p>Why bother, when we have modern GUIs?</p>
+<p>Partly because you have no choice. Git, Docker, <code>pip</code>, <code>conda</code> and <code>uv</code> are command-line tools first, and their graphical wrappers cover a fraction of what they do — <code>pip</code> alone takes dozens of options for handling dependencies, versions, and install locations that no graphical installer exposes.</p>
+<p>The better reason is that a command can be written down. Anything you type here can be saved in a script and run again next month, on someone else’s machine, in exactly the same order. A sequence of clicks leaves no such record, which is why so much of the reproducibility material later in this book assumes a terminal. Speed comes along as a side effect: installing five packages is one line rather than five wizards.</p>
 </section>
 <section id="getting-started-with-the-command-line" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="getting-started-with-the-command-line"><span class="header-section-number">3.1.2</span> Getting Started with the Command Line</h3>
@@ -378,9 +374,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><strong>Command Prompt</strong>: Built into Windows, but limited in functionality</li>
 <li><strong>PowerShell</strong>: A more capable alternative, also built in, and the default in Windows Terminal</li>
-<li><strong>Windows Subsystem for Linux (WSL)</strong>: Provides a Linux environment within Windows (recommended)</li>
+<li><strong>Windows Subsystem for Linux (WSL)</strong>: A full Linux environment running inside Windows</li>
 </ol>
-<p>To install WSL, open PowerShell as administrator and run:</p>
+<p>Start with PowerShell, which is already there. Git Bash, installed with Git in <a href="../chapters/ide_git.html">Editors and Version Control</a>, is the one to use when you’re following a tutorial written for macOS or Linux — see the note at the end of this chapter. WSL is the heavier option, worth installing when you want a genuine Linux environment rather than a Unix-style shell. To install it, open PowerShell as administrator and run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wsl <span class="op">--</span>install</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This installs Ubuntu Linux by default. After installation, restart your computer and follow the setup prompts.</p>
 </section>
@@ -397,9 +393,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Most Linux distributions come with a terminal emulator. Look for “Terminal” in your applications menu.</p>
 </section>
 </section>
-<section id="essential-command-line-operations" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="essential-command-line-operations"><span class="header-section-number">3.1.3</span> Essential Command Line Operations</h3>
-<p>Let’s practise some basic commands. Open your terminal and try these:</p>
+<section id="the-commands-worth-knowing" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="the-commands-worth-knowing"><span class="header-section-number">3.1.3</span> The Commands Worth Knowing</h3>
+<p>Open your terminal and try these:</p>
 <section id="navigating-the-file-system" class="level4" data-number="3.1.3.1">
 <h4 data-number="3.1.3.1" class="anchored" data-anchor-id="navigating-the-file-system"><span class="header-section-number">3.1.3.1</span> Navigating the File System</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print working directory (shows where you are)</span></span>
@@ -408,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List files and directories</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Change directory [to Documents]</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Change directory - move into Documents</span></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Documents</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Go up one directory level (like clicking the back button in your browser)</span></span>
@@ -423,11 +419,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a directory (only works if the directory is empty)</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">rmdir</span> directory_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>rmdir</code> refusing to delete a non-empty directory is the first surprise most people hit. The command that removes a directory and everything in it is <code>rm -r directory_name</code>, and it deletes without confirmation and without a recycle bin — there is no undo. Read that line twice before you press Enter, particularly if you’re about to type <code>rm -rf</code>.</p>
-<p>These commands form the foundation of file navigation and manipulation. As you work with data science tools, you’ll find yourself using them frequently.</p>
+<p>Those cover most of what you’ll do in a terminal day to day.</p>
 </section>
 <section id="creating-and-editing-files" class="level4" data-number="3.1.3.2">
 <h4 data-number="3.1.3.2" class="anchored" data-anchor-id="creating-and-editing-files"><span class="header-section-number">3.1.3.2</span> Creating and Editing Files</h4>
-<p>While you can create files through the command line, it’s often easier to use a text editor. However, it’s good to know these commands:</p>
+<p>You’ll usually reach for an editor instead, but three commands are worth recognising:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty file</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> newfile.txt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -436,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple editor (press i to insert, Esc then :wq to save and quit)</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> filename.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Think of these commands as ways to create and look at the contents of notes or documents on your computer, all without opening a word processor or text editor application.</p>
+<p><code>touch</code> makes an empty file, <code>cat</code> prints one to the screen, and <code>vim</code> edits one in place. <code>vim</code> is worth knowing only because it is what a server drops you into when something needs editing and nothing else is installed.</p>
 </section>
 </section>
 <section id="package-managers" class="level3" data-number="3.1.4">
@@ -476,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the lines in a file</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> data.csv <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Each program does one job and knows nothing about the others. This composability is most of why the command line survives.</p>
+<p>Each program does one job and knows nothing about the others, which is why small tools you can chain have outlasted most of the large ones.</p>
 <p><strong>Environment variables hold settings the shell passes to programs.</strong> These are named values that live in your shell session, and any program you launch can read them. <code>PATH</code> — the list of directories searched when you type a command name — is one you have already met:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show one variable (macOS/Linux/Git Bash)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span>
@@ -509,7 +505,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Install software with your platform’s package manager</li>
 <li>Recognise <code>&gt;</code>, <code>|</code>, and <code>$VARIABLE</code> when a later chapter uses them without explanation</li>
 </ul>
-<p>None of this needs to be memorised. <code>cd</code>, <code>ls</code>, and <code>pwd</code> will become automatic within a week of use; everything else you can look up. What matters is that a terminal window no longer feels like a place where you might break something.</p>
+<p>None of this needs to be memorised. <code>cd</code>, <code>ls</code>, and <code>pwd</code> become automatic within a week of use, and the rest you can look up. You mainly want to reach the point where a terminal window stops feeling like somewhere you might break something.</p>
 <p>The next chapter installs the languages themselves.</p>
 
 

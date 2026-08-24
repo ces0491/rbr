@@ -388,11 +388,11 @@ div.csl-indent {
 
 <section id="documentation-and-reporting-tools" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="documentation-and-reporting-tools"><span class="header-section-number">8.1</span> Documentation and Reporting Tools</h2>
-<p>As a data scientist, sharing your findings clearly is just as important as the analysis itself. Now that we have our analytics platforms set up, let’s explore tools for creating reports, documentation, and presentations.</p>
+<p>An analysis nobody can read is an analysis nobody acts on. This chapter covers the tools for turning one into a document — and specifically into a document that rebuilds itself from the data, so a corrected figure costs a re-render rather than an afternoon.</p>
 <section id="markdown-the-foundation-of-documentation" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="markdown-the-foundation-of-documentation"><span class="header-section-number">8.1.1</span> Markdown: The Foundation of Documentation</h3>
 <p>Markdown is a lightweight markup language that’s easy to read and write. It forms the basis of many documentation systems.</p>
-<p>Markdown’s simplicity and widespread support have made it the de facto standard for documentation in data science projects.</p>
+<p>It is what GitHub renders, what Jupyter cells hold, and what Quarto and R Markdown are built on, so it’s worth ten minutes even if you learn nothing else here.</p>
 <section id="basic-markdown-syntax" class="level4" data-number="8.1.1.1">
 <h4 data-number="8.1.1.1" class="anchored" data-anchor-id="basic-markdown-syntax"><span class="header-section-number">8.1.1.1</span> Basic Markdown Syntax</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a># Heading 1</span>
@@ -426,14 +426,13 @@ div.csl-indent {
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>print("Hello, world!")</span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The language name after the opening backticks is optional and only controls syntax highlighting. Later in this chapter you’ll see fences written as <code>```{python}</code> with braces — that is Quarto and R Markdown’s own extension, marking a block as code to <em>execute</em> instead of merely display. Plain Markdown has no such concept.</p>
-<p>Markdown is designed to be readable even in its raw form. The syntax is intuitive — for example, surrounding text with asterisks makes it italic, and using hash symbols creates headings of different levels.</p>
-<p>Many platforms interpret Markdown, including GitHub, Jupyter notebooks, and the documentation tools we’ll discuss next.</p>
+<p>The point of the syntax is that the raw file still reads as text. Asterisks around a word make it italic and also look like emphasis; a row of hashes marks a heading and also looks like one.</p>
 </section>
 </section>
 <section id="r-markdown" class="level3" data-number="8.1.2">
 <h3 data-number="8.1.2" class="anchored" data-anchor-id="r-markdown"><span class="header-section-number">8.1.2</span> R Markdown</h3>
 <p>R Markdown combines R code, output, and narrative text in a single document that can be rendered to HTML, PDF, Word, and other formats.</p>
-<p>The concept of “literate programming” behind R Markdown was first proposed by Donald Knuth in 1984 <span class="citation" data-cites="knuth84">(<a href="references.html#ref-knuth84" role="doc-biblioref">Knuth 1984</a>)</span>, and it has become a cornerstone of reproducible research in data science.</p>
+<p>The idea behind it — “literate programming”, writing the explanation and the code as one document — was proposed by Donald Knuth in 1984 <span class="citation" data-cites="knuth84">(<a href="references.html#ref-knuth84" role="doc-biblioref">Knuth 1984</a>)</span>.</p>
 <section id="installing-and-using-r-markdown" class="level4" data-number="8.1.2.1">
 <h4 data-number="8.1.2.1" class="anchored" data-anchor-id="installing-and-using-r-markdown"><span class="header-section-number">8.1.2.1</span> Installing and Using R Markdown</h4>
 <p>If you’ve installed R and RStudio as described earlier, R Markdown is just a package installation away:</p>
@@ -516,12 +515,12 @@ Note
 </div>
 </div>
 <p>When you click the “Knit” button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. Code, results, and narrative live in one file, so there is no step where a number is copied from a console into a paragraph and then goes stale. If your data changes, re-knit the document and every figure and table updates.</p>
-<p>R Markdown has become a standard in reproducible research because it creates a direct connection between your data, analysis, and conclusions. This connection makes your work more transparent and reliable, as anyone can follow your exact steps and see how you reached your conclusions.</p>
+<p>That link between data, analysis and conclusion is what makes the document checkable. Someone who doubts a figure can read the chunk that produced it instead of asking you.</p>
 </section>
 </section>
 <section id="jupyter-notebooks-for-documentation" class="level3" data-number="8.1.3">
 <h3 data-number="8.1.3" class="anchored" data-anchor-id="jupyter-notebooks-for-documentation"><span class="header-section-number">8.1.3</span> Jupyter Notebooks for Documentation</h3>
-<p>We’ve already covered Jupyter notebooks for Python development, but they double as documentation tools. Like R Markdown, they combine code, output, and narrative text.</p>
+<p>Notebooks do the same job as R Markdown from the Python side: code, output and prose in one file. The difference is that a notebook stores its output alongside the code, so it can be read without being re-run — convenient for sharing, and the reason two notebooks that look identical can disagree.</p>
 <section id="exporting-jupyter-notebooks" class="level4" data-number="8.1.3.1">
 <h4 data-number="8.1.3.1" class="anchored" data-anchor-id="exporting-jupyter-notebooks"><span class="header-section-number">8.1.3.1</span> Exporting Jupyter Notebooks</h4>
 <p>Jupyter notebooks can be exported to various formats:</p>
@@ -531,7 +530,7 @@ Note
 </ol>
 <p>Alternatively, you can use <code>nbconvert</code> from the command line:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> nbconvert <span class="at">--to</span> html my_notebook.ipynb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The ability to export notebooks is particularly valuable because it allows you to write your analysis once and then distribute it in whatever format your audience needs. For example, you might use the PDF format for a formal report to stakeholders, HTML for sharing on a website, or Markdown for including in a GitHub repository.</p>
+<p>One notebook, several outputs: PDF for a formal report, HTML for a website, Markdown for a repository. Worth knowing because it stops you maintaining three versions of the same analysis.</p>
 </section>
 <section id="jupyter-book" class="level4" data-number="8.1.3.2">
 <h4 data-number="8.1.3.2" class="anchored" data-anchor-id="jupyter-book"><span class="header-section-number">8.1.3.2</span> Jupyter Book</h4>
@@ -570,8 +569,7 @@ Note
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a document to HTML (or PDF, docx, etc.)</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Quarto represents an evolution in documentation tools because it provides a unified system for creating computational documents with multiple programming languages. This is particularly valuable if you work with both Python and R, as you can maintain a consistent documentation approach across all your projects.</p>
-<p>The key advantage of Quarto is its language-agnostic design — you can mix Python, R, Julia, and other languages in a single document, which reflects the reality of many data science workflows where different tools are used for different tasks.</p>
+<p>Quarto is R Markdown’s successor and works the same way for R, but it doesn’t assume R. Python, Julia and Observable chunks all execute, and a single document can mix them. If you work in both Python and R, it means one document format rather than two.</p>
 <section id="quarto-dashboards" class="level4" data-number="8.1.4.1">
 <h4 data-number="8.1.4.1" class="anchored" data-anchor-id="quarto-dashboards"><span class="header-section-number">8.1.4.1</span> Quarto Dashboards</h4>
 <p>Since Quarto 1.4 (released in 2024), Quarto can render a document directly into a dashboard layout with rows, columns, value boxes, and tab sets, with no Shiny, Dash, or Streamlit required for the static case. If all you need is a periodic refresh of a dashboard view over your data, this is by far the lightest way to get there: you write a normal <code>.qmd</code> file with a <code>format: dashboard</code> YAML key, and Quarto handles the layout.</p>
@@ -618,7 +616,7 @@ Note
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>In the command line with Quarto</strong>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install tinytex</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>TinyTeX is designed specifically for R Markdown and Quarto users. It installs only the essential LaTeX packages (around 150MB) compared to full distributions (several GB), and it automatically installs additional packages as needed when you render documents.</p>
+<p>TinyTeX is built for R Markdown and Quarto users. It installs a minimal set of LaTeX packages rather than the several gigabytes a full distribution takes, and pulls down anything else it needs the first time a document calls for it.</p>
 </section>
 <section id="using-latex-with-quarto" class="level4" data-number="8.1.5.2">
 <h4 data-number="8.1.5.2" class="anchored" data-anchor-id="using-latex-with-quarto"><span class="header-section-number">8.1.5.2</span> Using LaTeX with Quarto</h4>
@@ -719,7 +717,7 @@ Note
 <h4 data-number="8.1.6.3" class="anchored" data-anchor-id="large-tables-spanning-multiple-pages"><span class="header-section-number">8.1.6.3</span> Large Tables Spanning Multiple Pages</h4>
 <p>For large tables that need to span pages:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">longtable</span>}{lrrr}</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Comprehensive Model Results}<span class="fu">\\</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\caption</span>{Model Results}<span class="fu">\\</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\toprule</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>Model <span class="op">&amp;</span> Accuracy <span class="op">&amp;</span> Precision <span class="op">&amp;</span> Recall <span class="fu">\\</span></span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\midrule</span></span>
@@ -742,8 +740,7 @@ Note
 <p>It also carries a real learning curve, and for most of what this book’s readers produce, there is now a second option.</p>
 <section id="typst" class="level4" data-number="8.1.7.1">
 <h4 data-number="8.1.7.1" class="anchored" data-anchor-id="typst"><span class="header-section-number">8.1.7.1</span> Typst</h4>
-<p><strong>Typst</strong> is a newer typesetting system aimed at the same output with less ceremony:</p>
-<p><strong>Simpler Syntax</strong>: Where LaTeX might require complex commands, Typst uses more intuitive markup:</p>
+<p><strong>Typst</strong> is a newer typesetting system aimed at the same output with less ceremony. Its markup is closer to Markdown than to LaTeX:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode typst code-with-copy"><code class="sourceCode typst"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Typst syntax</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">= Introduction</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">== Subsection</span></span>
@@ -765,27 +762,11 @@ Note
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">\includegraphics</span>{<span class="ex">plot.png</span>}</span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\caption</span>{Sample Plot}</span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Faster Compilation</strong>: Typst compiles documents significantly faster than LaTeX, making it more suitable for iterative document development.</p>
-<p><strong>Better Error Messages</strong>: When something goes wrong, Typst provides clearer, more actionable error messages compared to LaTeX’s often cryptic feedback.</p>
-<p><strong>Modern Design</strong>: Built from the ground up with modern document needs in mind, including better handling of digital-first workflows.</p>
+<p>It also compiles in a fraction of the time, which you notice when you’re rendering a document every few minutes, and its error messages name the line and say what’s wrong rather than leaving you to read a log.</p>
 </section>
 <section id="choosing-your-path-forward" class="level4" data-number="8.1.7.2">
 <h4 data-number="8.1.7.2" class="anchored" data-anchor-id="choosing-your-path-forward"><span class="header-section-number">8.1.7.2</span> Choosing Your Path Forward</h4>
-<p>For data scientists starting their journey, here’s how to think about these tools:</p>
-<p><strong>Choose LaTeX when:</strong></p>
-<ul>
-<li>Working in academic environments where LaTeX is expected</li>
-<li>Creating documents with complex mathematical notation</li>
-<li>Collaborating with teams already using LaTeX workflows</li>
-<li>You need the ecosystem of specialised packages LaTeX offers</li>
-</ul>
-<p><strong>Consider Typst when:</strong></p>
-<ul>
-<li>You want faster iteration cycles during document development</li>
-<li>You prefer more modern, readable syntax</li>
-<li>You’re starting fresh and don’t have legacy LaTeX requirements</li>
-<li>You want to avoid LaTeX’s steep learning curve</li>
-</ul>
+<p>Use LaTeX when something outside your control expects it: a journal template, a supervisor’s preamble, a package that exists nowhere else. Use Typst when nothing does. That covers most business and internal reporting, where nobody cares what produced the PDF.</p>
 <p><strong>You don’t have to choose up front.</strong> Quarto has shipped the Typst compiler since version 1.4, so switching engines is a one-line YAML change and your content stays as it is:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Sales Report"</span></span>
@@ -874,7 +855,7 @@ Note
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows</span></span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Using built-in datasets eliminates file path issues entirely, as these datasets are available to anyone who has the package installed. This is ideal for examples and tutorials where the specific data isn’t crucial.</p>
+<p>A dataset that ships with a package has no path to get wrong, and anyone with the package has it. That makes built-in data the right choice for examples and tutorials, where which data you use rarely matters.</p>
 </section>
 <section id="creating-sample-data-programmatically" class="level3" data-number="8.2.4">
 <h3 data-number="8.2.4" class="anchored" data-anchor-id="creating-sample-data-programmatically"><span class="header-section-number">8.2.4</span> Creating Sample Data Programmatically</h3>
@@ -911,20 +892,13 @@ Note
 </section>
 <section id="best-practices-for-documentation" class="level3" data-number="8.2.6">
 <h3 data-number="8.2.6" class="anchored" data-anchor-id="best-practices-for-documentation"><span class="header-section-number">8.2.6</span> Best Practices for Documentation</h3>
-<p>Effective documentation follows certain principles:</p>
-<ol type="1">
-<li><strong>Start early</strong>: Document as you go, instead of leaving it to the end</li>
-<li><strong>Be consistent</strong>: Use the same style and terminology throughout</li>
-<li><strong>Include examples</strong>: Show how to use your code or analysis</li>
-<li><strong>Consider your audience</strong>: Technical details for peers, higher-level explanations for stakeholders</li>
-<li><strong>Update regularly</strong>: Keep documentation in sync with your code</li>
-</ol>
-<p>Documenting your work also sharpens your own thinking. Explaining a modelling choice in prose is a reliable way to discover that you can’t justify it.</p>
+<p>Write it as you go. Documentation left until the end is documentation that doesn’t get written, and by then you’ve forgotten why you made half the choices you’re trying to describe.</p>
+<p>Explaining a modelling choice in prose is also a reliable way to discover that you can’t justify it, which is worth more than the document.</p>
 </section>
 </section>
 <section id="conclusion" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">8.3</span> Conclusion</h2>
-<p>This chapter has walked through the <em>document</em> side of data science output: Markdown and Quarto for literate programming, LaTeX (and newer alternatives like Typst) for publication-quality typesetting, parameterised reports for templating, and reproducible data-loading patterns so your reports can be rendered from any machine.</p>
+<p>This chapter covered the <em>document</em> side of data science output: Markdown and Quarto for literate programming, LaTeX and Typst for publication-quality typesetting, parameterised reports for templating, and data-loading patterns that survive being run on someone else’s machine.</p>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>One <code>.qmd</code> document that renders to HTML, containing both prose and a code chunk whose output appears in the result</li>
@@ -937,7 +911,7 @@ Note
 <li>The <a href="../chapters/visualisation.html">Data Visualisation</a> chapter covers the static and lightly-interactive plotting libraries you’ll embed in reports (matplotlib, seaborn, plotly, ggplot2), plus Mermaid for code-based diagrams.</li>
 <li>The <a href="../chapters/web_dev.html">Web Development for Data Scientists</a> chapter covers the tools for when “rerun the render” isn’t enough and stakeholders need to poke at the data themselves: Shiny, Dash, Streamlit, and Flask.</li>
 </ul>
-<p>Together these three chapters form a progression: from static documents that communicate findings, to visualisations that make those findings immediate, to interactive applications that invite exploration.</p>
+<p>Pick whichever matches what your reader actually needs. A rendered document is enough far more often than the request for a dashboard suggests.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">

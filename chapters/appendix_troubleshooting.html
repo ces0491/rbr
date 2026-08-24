@@ -358,7 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="common-installation-and-configuration-issues" class="level2" data-number="B.1">
 <h2 data-number="B.1" class="anchored" data-anchor-id="common-installation-and-configuration-issues"><span class="header-section-number">B.1</span> Common Installation and Configuration Issues</h2>
-<p>Setting up a data science environment can sometimes be challenging, especially when working across different operating systems and with tools that have complex dependencies. This appendix addresses common issues you might encounter and provides solutions based on platform-specific considerations.</p>
+<p>The errors below are the ones that come up most often when setting these tools up, grouped by what you were trying to do at the time. Each entry says what to try and why the problem happens, since the second part is usually what stops it recurring.</p>
 <section id="python-environment-issues" class="level3" data-number="B.1.1">
 <h3 data-number="B.1.1" class="anchored" data-anchor-id="python-environment-issues"><span class="header-section-number">B.1.1</span> Python Environment Issues</h3>
 <section id="conda-environment-activation-problems" class="level4" data-number="B.1.1.1">
@@ -469,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Linux</strong>: Ensure ssh-agent is running: <code>eval "$(ssh-agent -s)"</code></li>
 </ul></li>
 </ol>
-<p><strong>Why this happens</strong>: GitHub has enhanced security measures that require proper authentication setup.</p>
+<p><strong>Why this happens</strong>: GitHub stopped accepting account passwords over HTTPS in 2021, so every push now needs either an SSH key or a token, and the error messages don’t always say which one you’re missing.</p>
 </section>
 <section id="git-merge-conflicts" class="level4" data-number="B.1.3.2">
 <h4 data-number="B.1.3.2" class="anchored" data-anchor-id="git-merge-conflicts"><span class="header-section-number">B.1.3.2</span> Git Merge Conflicts</h4>
@@ -526,9 +526,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><strong>Optimise Docker images</strong>:
 <ul>
-<li>Use smaller base images (Alpine versions when possible)</li>
-<li>Clean up unnecessary files in your Dockerfile</li>
-<li>Properly layer your Docker instructions to leverage caching</li>
+<li>Use a <code>-slim</code> base image rather than the full one (<a href="../chapters/containers.html">Containerisation</a> explains why <code>-alpine</code> is usually the wrong call for scientific Python)</li>
+<li>Delete build tools and package caches in the same <code>RUN</code> layer that created them</li>
+<li>Order your Dockerfile from least to most frequently changing, so a code edit doesn’t reinstall every dependency</li>
 </ul></li>
 </ol>
 <p><strong>Why this happens</strong>: By default, Docker may not be allocated sufficient host resources, especially on development machines.</p>
@@ -550,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Create separate environments for each project</li>
 <li>Use clear naming conventions: <code>conda create -n project_name_env</code></li>
-<li>Document dependencies: <code>pip freeze &gt; requirements.txt</code> or <code>conda env export &gt; environment.yml</code></li>
+<li>Document dependencies: <code>pip freeze &gt; requirements.txt</code>, or <code>conda env export --from-history &gt; environment.yml</code> (the flag matters — see <a href="../chapters/environments.html">Reproducible Environments</a>)</li>
 </ul></li>
 <li><strong>When conflicts are unavoidable</strong>:
 <ul>
@@ -702,7 +702,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Use community resources</strong> - Stack Overflow, GitHub issues, and Reddit communities can help</li>
 <li><strong>Document your solution</strong> - Once solved, document it for future reference</li>
 </ol>
-<p>Remember that troubleshooting is a normal part of the data science workflow. Each problem solved increases your understanding of the tools and makes you more effective in the long run.</p>
+<p>Step 5 is the one people skip and the one that most often solves the problem on its own. Cutting a failure down to the smallest thing that still reproduces it usually tells you where it lives.</p>
 
 
 </section>

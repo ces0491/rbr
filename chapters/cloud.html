@@ -365,45 +365,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As your projects grow in size and complexity, you may need more computing power than your local machine can provide, or somewhere to keep data that isn’t one laptop’s hard drive. Cloud platforms rent both by the hour, along with a set of tools built specifically for this kind of work.</p>
 <section id="why-use-cloud-platforms" class="level3" data-number="10.1.1">
 <h3 data-number="10.1.1" class="anchored" data-anchor-id="why-use-cloud-platforms"><span class="header-section-number">10.1.1</span> Why Use Cloud Platforms?</h3>
-<p>Cloud platforms offer several advantages for data science:</p>
-<ol type="1">
-<li><strong>Scalability</strong>: Access to more storage and computing power when needed, without buying a machine</li>
-<li><strong>Collaboration</strong>: Easier sharing of resources and results with team members</li>
-<li><strong>Specialised Hardware</strong>: Access to GPUs and TPUs — processors designed for the kind of parallel arithmetic that training a neural network needs, and far faster at it than an ordinary CPU</li>
-<li><strong>Managed Services</strong>: Pre-configured tools and infrastructure</li>
-<li><strong>Cost Efficiency</strong>: Pay only for what you use</li>
-</ol>
-<p>The ability to scale compute resources is particularly valuable for data scientists working with large datasets or computationally intensive models. Cloud platforms let you rent a large machine for the afternoon you need it and shut it down afterwards, instead of buying hardware that sits idle most of the year.</p>
+<p>The case comes down to renting rather than owning. You can have a machine with 256 GB of memory for the afternoon you need one and stop paying for it at five, instead of buying hardware that then sits idle for most of the year. The same goes for GPUs and TPUs — processors built for the parallel arithmetic that training a neural network needs, and much faster at it than an ordinary CPU — which are expensive to own and easy to rent by the hour.</p>
+<p>Two things come along with that. Storage that isn’t one laptop’s disk, so a dataset survives the laptop and a colleague can reach it. And managed services, where the provider runs the database or the notebook server and you don’t.</p>
 </section>
 <section id="getting-started-with-google-colab" class="level3" data-number="10.1.2">
 <h3 data-number="10.1.2" class="anchored" data-anchor-id="getting-started-with-google-colab"><span class="header-section-number">10.1.2</span> Getting Started with Google Colab</h3>
-<p>Google Colab provides free access to Python notebooks with GPU and TPU acceleration, which makes it the cheapest place to start with cloud-based data science: there is nothing to pay and nothing to install.</p>
+<p>Colab gives you a Python notebook running on Google’s machines, with optional GPU and TPU access, free. It’s the cheapest place to start, since there’s nothing to install and no card to enter.</p>
 <ol type="1">
 <li>Visit <a href="https://colab.research.google.com/">Google Colab</a></li>
 <li>Sign in with your Google account</li>
 <li>Click “New Notebook” to create a new notebook</li>
 </ol>
-<p>Google Colab is essentially Jupyter notebooks running on Google’s servers, with a few additional features. You can run Python code, create visualisations, and even access GPU and TPU accelerators for free (with usage limits).</p>
-<p>The key advantages of Colab include:</p>
-<ul>
-<li>No setup required — just open your browser and start coding</li>
-<li>Free access to GPUs and TPUs for accelerated machine learning</li>
-<li>Easy sharing and collaboration through Google Drive</li>
-<li>Pre-installed data science libraries</li>
-<li>Integration with GitHub for loading and saving notebooks</li>
-</ul>
+<p>It is Jupyter with the common data science libraries already installed, a GPU behind a dropdown, and sharing that works like a Google Doc. The limits are real — sessions time out, and free GPU access is rationed when demand is high — but for learning, for a one-off training run, or for handing someone a notebook they can run without installing anything, it is hard to beat.</p>
 </section>
 <section id="basic-cloud-storage-options" class="level3" data-number="10.1.3">
 <h3 data-number="10.1.3" class="anchored" data-anchor-id="basic-cloud-storage-options"><span class="header-section-number">10.1.3</span> Basic Cloud Storage Options</h3>
-<p>Cloud storage services provide an easy way to store and share data:</p>
-<ol type="1">
-<li><strong>Google Drive</strong>: 15GB free storage, integrates well with Colab</li>
-<li><strong>Microsoft OneDrive</strong>: 5GB free storage, integrates with Office tools</li>
-<li><strong>Dropbox</strong>: 2GB free storage, good for file sharing</li>
-<li><strong>GitHub</strong>: Free storage for code and small datasets (files under 100MB)</li>
-</ol>
-<p>These services can be used to store datasets, notebooks, and results. They also facilitate collaboration, as you can easily share files with colleagues.</p>
-<p>For larger datasets or specialised needs, you’ll want to look at dedicated cloud storage solutions like Amazon S3, Google Cloud Storage, or Azure Blob Storage. These services are designed for scalability and can handle terabytes or even petabytes of data.</p>
+<p>For a few gigabytes, the consumer services you already have will do: Google Drive mounts directly into Colab, OneDrive and Dropbox sync to a folder, and GitHub takes code and small reference datasets provided no single file is over 100 MB. Free allowances differ and change; check the current one rather than a figure printed anywhere, including here.</p>
+<p>Past that, you want object storage built for the job — Amazon S3, Google Cloud Storage, Azure Blob Storage. These hold terabytes without complaint, are reachable from code rather than a sync folder, and charge by what you store and what you pull back out. The egress note below is the part that catches people.</p>
 </section>
 <section id="the-major-cloud-platforms" class="level3" data-number="10.1.4">
 <h3 data-number="10.1.4" class="anchored" data-anchor-id="the-major-cloud-platforms"><span class="header-section-number">10.1.4</span> The Major Cloud Platforms</h3>
@@ -446,15 +424,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="choosing-the-right-cloud-services" class="level3" data-number="10.1.5">
 <h3 data-number="10.1.5" class="anchored" data-anchor-id="choosing-the-right-cloud-services"><span class="header-section-number">10.1.5</span> Choosing the Right Cloud Services</h3>
-<p>When selecting cloud services for data science, consider these factors:</p>
-<ol type="1">
-<li><strong>Project requirements</strong>: Match services to your specific needs</li>
-<li><strong>Budget constraints</strong>: Compare pricing models across providers</li>
-<li><strong>Technical expertise</strong>: Some platforms have steeper learning curves</li>
-<li><strong>Integration needs</strong>: Consider existing tools in your workflow</li>
-<li><strong>Security requirements</strong>: Review compliance certifications and features</li>
-<li><strong>Data residency and regulation</strong>: Where your data physically lives matters legally. Personal data about EU residents falls under GDPR; South African personal data falls under POPIA; similar laws exist in most jurisdictions. Pick a region in the right country or economic area for your data subjects, and check whether your employer or client has contractual restrictions on where data can be stored or processed. All three major clouds (AWS, GCP, Azure) have regions in both South Africa and Europe.</li>
-</ol>
+<p>For most readers the choice is already made: use whatever your organisation pays for, because the account, the billing, and the person who can grant you permissions all exist there already. Where you do have a choice, the deciding factor is usually which provider’s documentation you can follow without getting stuck.</p>
+<p>One consideration overrides preference. <strong>Where your data physically lives matters legally.</strong> Personal data about EU residents falls under GDPR; South African personal data falls under POPIA; similar laws exist in most jurisdictions. Pick a region in the right country or economic area for your data subjects, and check whether your employer or client has contractual restrictions on where data can be stored or processed. AWS, GCP and Azure all have regions in both South Africa and Europe.</p>
 <p>Start with a small project on your chosen platform, so you learn the environment before committing a real workload to it.</p>
 </section>
 <section id="getting-started-with-a-cloud-platform" class="level3" data-number="10.1.6">
@@ -484,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="managing-cloud-costs" class="level3" data-number="10.1.7">
 <h3 data-number="10.1.7" class="anchored" data-anchor-id="managing-cloud-costs"><span class="header-section-number">10.1.7</span> Managing Cloud Costs</h3>
-<p>One of the most important aspects of using cloud platforms is managing costs effectively. A few traps catch almost every beginner:</p>
+<p>A handful of traps account for most surprise bills:</p>
 <ul>
 <li><strong>Idle notebook and VM instances</strong>: Cloud notebooks bill by wall-clock time, not usage. An instance left running overnight can cost more than a whole week of active work.</li>
 <li><strong>Data egress</strong>: Moving data <em>out</em> of a cloud provider (to your laptop, to another region, to another cloud) is almost always charged. Moving it <em>in</em> is usually free. Pulling a 500 GB dataset to your machine “just to look at it” is a classic expensive mistake.</li>
@@ -492,15 +463,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Storage classes</strong>: Object storage — the kind that holds whole files you address by name, like S3, rather than rows you query — has cheap long-term tiers (S3 Glacier, GCS Coldline, Azure Archive) for data you rarely read. Use them for raw archives.</li>
 <li><strong>Free tier expiry</strong>: Free tiers end, and the terms change often enough that any specific figure printed in a book will be wrong before you read it. AWS restructured its offer in July 2025, replacing the old 12-month allowance with a credit-based plan for new accounts. Check the provider’s current terms before assuming anything is free, and don’t rely on a tutorial’s description of them.</li>
 </ul>
-<p>Practical habits that help:</p>
-<ol type="1">
-<li><strong>Set up billing alerts</strong>: Configure notifications when spending reaches certain thresholds</li>
-<li><strong>Use spot / preemptible instances</strong>: Steep discounts for interruptible workloads such as batch training jobs</li>
-<li><strong>Right-size resources</strong>: Choose appropriate instance types for your workloads</li>
-<li><strong>Schedule shutdowns</strong>: Automatically stop instances when not in use</li>
-<li><strong>Clean up resources</strong>: Delete unused storage, instances, load balancers, and services when the project ends</li>
-</ol>
-<p>For example, in AWS you can create a budget with alerts:</p>
+<p>The habits that prevent all of this are dull and short. Set a billing alert before you launch anything. Stop instances when you finish for the day, or schedule the shutdown so you don’t have to remember. Delete storage, load balancers and services at the end of a project rather than leaving them running against a card. For batch work that can be interrupted and restarted, which covers most training jobs, use spot or preemptible instances — the same hardware at a steep discount.</p>
+<p>In AWS, a budget with alerts takes four steps:</p>
 <ol type="1">
 <li>Navigate to AWS Billing Dashboard</li>
 <li>Select “Budgets” from the left navigation</li>
@@ -511,14 +475,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="security-best-practices-in-the-cloud" class="level3" data-number="10.1.8">
 <h3 data-number="10.1.8" class="anchored" data-anchor-id="security-best-practices-in-the-cloud"><span class="header-section-number">10.1.8</span> Security Best Practices in the Cloud</h3>
-<p>Data security is critical when working in cloud environments:</p>
-<ol type="1">
-<li><strong>Follow the principle of least privilege</strong>: Grant only the permissions necessary</li>
-<li><strong>Encrypt sensitive data</strong>: Use encryption for data at rest and in transit</li>
-<li><strong>Implement multi-factor authentication</strong>: Add an extra layer of security</li>
-<li><strong>Use private networks</strong>: Isolate your resources when possible</li>
-<li><strong>Regular security audits</strong>: Review permissions and access regularly</li>
-</ol>
+<p>Two rules carry most of the weight. Turn on multi-factor authentication for the account, because a cloud login is a login to something that can spend money. And grant the narrowest permissions that let the job run — a notebook that reads one bucket shouldn’t hold credentials that can drop the account’s databases.</p>
+<p>Encryption is the third, and it is mostly a matter of switching it on in the right place rather than writing any code.</p>
 <p>AWS offers three ways to encrypt what’s in a bucket, distinguished by who holds the key: <strong>SSE-S3</strong> (AWS manages it entirely, nothing for you to do), <strong>SSE-KMS</strong> (a key you own in AWS’s Key Management Service, so you can control and audit its use), and <strong>SSE-C</strong> (you supply the key on every request). In practice, the cleanest approach for most data science work is to enable <strong>default encryption on the S3 bucket itself</strong> with one of the first two (AWS console → Bucket → Properties → Default encryption → SSE-S3 or SSE-KMS). Once that’s set, every object written to the bucket is encrypted at rest automatically, and your notebook code doesn’t need to pass keys at all:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> boto3</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> botocore.exceptions <span class="im">import</span> ClientError</span>
@@ -539,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Let the bucket policy enforce encryption</strong>, not the client. This avoids the trap of one script forgetting to encrypt.</li>
 <li><strong>Avoid SSE-C</strong> unless you have a specific compliance reason. Holding the key yourself means losing the key loses the data, permanently and with no recourse. SSE-KMS is almost always the better choice.</li>
 </ul>
-<p>Remember that security is a shared responsibility between you and the cloud provider. The provider secures the infrastructure, but you’re responsible for securing your data and applications.</p>
+<p>Providers call this shared responsibility: they secure the infrastructure, you secure what you put on it. The breaches that reach the news are nearly always the second half.</p>
 </section>
 <section id="hands-on-exercise-your-first-cloud-analysis-with-google-colab" class="level3" data-number="10.1.9">
 <h3 data-number="10.1.9" class="anchored" data-anchor-id="hands-on-exercise-your-first-cloud-analysis-with-google-colab"><span class="header-section-number">10.1.9</span> Hands-On Exercise: Your First Cloud Analysis with Google Colab</h3>
@@ -555,7 +513,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-2-load-and-explore-data" class="level4" data-number="10.1.9.2">
 <h4 data-number="10.1.9.2" class="anchored" data-anchor-id="step-2-load-and-explore-data"><span class="header-section-number">10.1.9.2</span> Step 2: Load and Explore Data</h4>
 <p>In the first cell, load a dataset directly from a URL:</p>
-<div id="75d2b05a" class="cell" data-execution_count="1">
+<div id="da4c9e6b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -574,11 +532,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="step-3-perform-analysis" class="level4" data-number="10.1.9.3">
 <h4 data-number="10.1.9.3" class="anchored" data-anchor-id="step-3-perform-analysis"><span class="header-section-number">10.1.9.3</span> Step 3: Perform Analysis</h4>
 <p>In subsequent cells, perform your analysis:</p>
-<div id="e0d1a771" class="cell" data-execution_count="2">
+<div id="a57b3bbd" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="1773c2b7" class="cell" data-execution_count="3">
+<div id="d50b5356" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a visualisation</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'bill_length_mm'</span>, y<span class="op">=</span><span class="st">'bill_depth_mm'</span>,</span>
@@ -600,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Click Save</li>
 </ol>
 <p>Then verify GPU availability:</p>
-<div id="a30abc02" class="cell" data-execution_count="4">
+<div id="75a55a2a" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> torch.cuda.is_available():</span>
@@ -618,13 +576,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Save to GitHub: File → Save a copy in GitHub</li>
 <li>Share with collaborators: Click the Share button in the top right</li>
 </ul>
-<p>This exercise demonstrates the core workflow of cloud-based data science: loading data, performing analysis, creating visualisations, and optionally leveraging specialised hardware — all without installing anything on your local machine.</p>
+<p>That is the whole shape of cloud-based analysis: read data in, work on it, draw something, optionally on hardware you don’t own, without installing anything locally.</p>
 </section>
 </section>
 <section id="connecting-cloud-storage-to-your-analysis" class="level3" data-number="10.1.10">
 <h3 data-number="10.1.10" class="anchored" data-anchor-id="connecting-cloud-storage-to-your-analysis"><span class="header-section-number">10.1.10</span> Connecting Cloud Storage to Your Analysis</h3>
 <p>When working with larger datasets, you’ll want to connect cloud storage to your notebooks. Here’s how to mount Google Drive in Colab:</p>
-<div id="a51c1f5f" class="cell" data-execution_count="5">
+<div id="70515f64" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Mount Google Drive</span></span>
@@ -635,7 +593,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'/content/drive/MyDrive/data/my_dataset.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For AWS S3 from a Colab notebook, use the boto3 library with credentials supplied through Colab’s secret manager rather than typing them into cells:</p>
-<div id="c8ac04c3" class="cell" data-execution_count="6">
+<div id="9ed558af" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In Colab: click the 🔑 key icon in the left sidebar and add two secrets</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># named AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Then:</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -650,12 +608,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Never paste access keys directly into notebook cells or commit them to a repository.</strong> Anything written in a cell gets saved to the <code>.ipynb</code> file and is trivially recoverable. Use Colab secrets, environment variables, or (better) IAM roles for service-to-service access.</p>
 <p>If a key does leak, rotate it in the AWS console immediately. Don’t try to scrub the notebook history.</p>
-<p>These patterns allow you to work with data stored in various cloud locations while leveraging the computational resources of your cloud notebook environment.</p>
+<p>Either way the data stays where it is and the notebook reaches for it, rather than you shipping files around by hand.</p>
 </section>
 </section>
 <section id="conclusion" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">10.2</span> Conclusion</h2>
-<p>The cloud buys you hardware you don’t own, storage that doesn’t live on a single disk, and a machine that keeps running when you close the lid.</p>
+<p>The cloud is worth reaching for when your laptop is the constraint — on memory, on time, or on the fact that it goes home with you.</p>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>A notebook running in Google Colab, with a GPU attached at least once so you’ve seen how to request one</li>

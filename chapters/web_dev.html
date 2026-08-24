@@ -359,14 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As a data scientist, you’ll often need to share your work through web applications, dashboards, or APIs. Understanding web development basics helps you create more effective and accessible data products while giving you more control of your projects. Quarto (covered in <a href="../chapters/reporting.html">Data Science Tools for Reporting</a>) and the dashboard frameworks in this chapter are all wrappers around the same lower-level web technologies: HTML, CSS, and JavaScript. They handle the heavy lifting for us, but what if we wanted our HTML Quarto report to have a custom theme? That becomes possible with a basic understanding of web development.</p>
 <section id="why-web-development-for-data-scientists" class="level3" data-number="11.1.1">
 <h3 data-number="11.1.1" class="anchored" data-anchor-id="why-web-development-for-data-scientists"><span class="header-section-number">11.1.1</span> Why Web Development for Data Scientists?</h3>
-<p>Web development skills are increasingly important for data scientists because:</p>
-<ol type="1">
-<li><strong>Sharing Results</strong>: Web interfaces make your analysis accessible to non-technical stakeholders</li>
-<li><strong>Interactive Visualisations</strong>: Web technologies enable rich, interactive data exploration</li>
-<li><strong>Model Deployment</strong>: Web APIs allow your models to be integrated into larger systems</li>
-<li><strong>Data Collection</strong>: Web applications can facilitate data gathering and annotation</li>
-<li><strong>Independence</strong>: You can deliver an end-to-end solution without waiting on an engineering team</li>
-</ol>
+<p>You need enough of it for two jobs. The first is delivery: a stakeholder who won’t install R will open a URL, and a model that other systems have to call needs an endpoint rather than a function. The second is repair — knowing where a Quarto report’s styling comes from, so that when the output looks wrong you can find the cause instead of working around it.</p>
+<p>That’s a low bar. You aren’t going to write the page from scratch; the frameworks later in this chapter do that. You want to be able to read one.</p>
 </section>
 <section id="html-css-and-javascript-basics" class="level3" data-number="11.1.2">
 <h3 data-number="11.1.2" class="anchored" data-anchor-id="html-css-and-javascript-basics"><span class="header-section-number">11.1.2</span> HTML, CSS, and JavaScript Basics</h3>
@@ -505,7 +499,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li>Open <code>index.html</code> in a web browser</li>
 </ol>
-<p>This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualisation library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart. As a data scientist you do not need to be able to write that page from scratch. Aim instead for familiarity with its structure and vocabulary, so that when you’re handed raw output you can find the parts that matter to you and change them with some confidence.</p>
+<p>Three files, three jobs: the HTML holds the structure, the CSS decides what it looks like, and the JavaScript draws the chart with Chart.js. That division is the thing worth taking away. When a rendered report looks wrong, knowing which of the three is responsible tells you which file to open.</p>
 </section>
 <section id="interactive-dashboards-and-web-frameworks" class="level3" data-number="11.1.3">
 <h3 data-number="11.1.3" class="anchored" data-anchor-id="interactive-dashboards-and-web-frameworks"><span class="header-section-number">11.1.3</span> Interactive Dashboards and Web Frameworks</h3>
@@ -605,7 +599,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application</span></span>
 <span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Shiny’s distinguishing feature is its reactivity system, which automatically updates outputs when inputs change. You specify <em>relationships</em> between inputs and outputs, and the framework figures out what to recompute when something changes. It’s similar to how a spreadsheet automatically recalculates formulas when a cell’s value changes: you don’t write “when the dropdown changes, rerun the plot”, you say “the plot depends on the filtered data, which depends on the dropdown”, and Shiny does the rest.</p>
+<p>Shiny’s distinguishing feature is reactivity. You declare relationships between inputs and outputs and the framework works out what needs recomputing, much as a spreadsheet does when you change a cell. You never write “when the dropdown changes, rerun the plot”; you write “the plot depends on the filtered data, which depends on the dropdown”, and Shiny handles the rest.</p>
 <p>Shiny is also now available for Python via <a href="https://shiny.posit.co/py/">Shiny for Python</a>, which offers the same reactive model with Python syntax. A useful option if you like the Shiny mental model but your team uses Python.</p>
 </section>
 <section id="dash-interactive-web-applications-with-python" class="level4" data-number="11.1.3.2">
@@ -889,7 +883,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="conclusion" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">11.2</span> Conclusion</h2>
-<p>Web development skills complement your data science toolkit by enabling you to share your work more effectively. A light understanding of HTML, CSS, and JavaScript lets you customise reports and debug rendering issues. The frameworks in this chapter (Shiny, Dash, Streamlit, and Flask) abstract away most of the rest, leaving you free to work on the analysis.</p>
+<p>A light reading knowledge of HTML, CSS and JavaScript is enough to customise a report and to work out why one renders wrongly. The frameworks in this chapter — Shiny, Dash, Streamlit, Flask — cover the rest, so you can stay in Python or R for the application itself.</p>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>One interactive application running on your own machine, in whichever of Shiny, Dash, or Streamlit fits your language — reachable in a browser at <code>localhost</code></li>
@@ -897,7 +891,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A working sense of which framework to reach for: Streamlit for the quickest route from script to app, Dash for control over layout, Shiny if you’re in R, Flask when what you need is an API rather than a page</li>
 <li>Understood why <code>debug=True</code> never belongs in anything reachable by someone else</li>
 </ul>
-<p>Putting an interactive application in front of a stakeholder is what turns a notebook into something the business uses. The next chapter covers containers — the packaging step that makes deploying any of these applications predictable — followed by deployment itself.</p>
+<p>The next chapter covers containers, the packaging step that makes deploying any of these applications predictable, followed by deployment itself.</p>
 
 
 </section>

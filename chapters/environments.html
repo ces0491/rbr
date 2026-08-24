@@ -378,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Isolation</strong> — each project gets its own set of packages, so installing something for project A can’t break project B.</li>
 <li><strong>Recording</strong> — the exact contents of that set are written to a file, committed alongside the code, and can be reconstructed later or elsewhere.</li>
 </ol>
-<p>Isolation on its own protects you from today’s conflicts but not from next year’s. Recording on its own just documents a mess. You want both.</p>
+<p>You need both. Isolation alone protects you from today’s conflicts and not from next year’s, and a record of an environment you never isolated just documents a mess.</p>
 </section>
 <section id="choosing-a-tool" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="choosing-a-tool"><span class="header-section-number">7.3</span> Choosing a Tool</h2>
@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There’s a distinction worth understanding, because it determines how reproducible your record actually is.</p>
 <p>A <strong>loose requirement</strong> says “pandas”. A <strong>pinned requirement</strong> says “pandas 3.0.5”. A <strong>lockfile</strong> says “pandas 3.0.5, and every package pandas itself depends on, at exactly these versions, with a checksum for each — a short fingerprint computed from the file’s contents, which won’t match if the file has been altered or replaced.”</p>
 <p><code>requirements.txt</code> from <code>pip freeze</code> sits in the middle: it pins direct and transitive dependencies to versions, but not to checksums, and it doesn’t distinguish between what you asked for and what came along. <code>renv.lock</code>, <code>uv.lock</code>, and <code>pixi.lock</code> are true lockfiles.</p>
-<p>For most analysis work, a pinned <code>requirements.txt</code> is enough. For anything whose result someone will act on months later, prefer a real lockfile. The difference shows up exactly when you need it most.</p>
+<p>For most analysis work, a pinned <code>requirements.txt</code> is enough. Prefer a real lockfile for anything whose result someone will act on months later.</p>
 </section>
 <section id="what-goes-in-git" class="level2" data-number="7.9">
 <h2 data-number="7.9" class="anchored" data-anchor-id="what-goes-in-git"><span class="header-section-number">7.9</span> What Goes in Git</h2>
@@ -583,7 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>The rule underneath: commit the <em>description</em> of the environment, and never the environment itself.</p>
+<p>The rule underneath is that you commit the description of the environment, never the environment itself.</p>
 </section>
 <section id="making-it-a-habit" class="level2" data-number="7.10">
 <h2 data-number="7.10" class="anchored" data-anchor-id="making-it-a-habit"><span class="header-section-number">7.10</span> Making It a Habit</h2>

@@ -323,18 +323,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#setting-up-python" id="toc-setting-up-python" class="nav-link active" data-scroll-target="#setting-up-python"><span class="header-section-number">4.1</span> Setting Up Python</a>
   <ul class="collapse">
-  <li><a href="#why-python-for-data-science" id="toc-why-python-for-data-science" class="nav-link" data-scroll-target="#why-python-for-data-science"><span class="header-section-number">4.1.1</span> Why Python for Data Science?</a></li>
-  <li><a href="#installing-python" id="toc-installing-python" class="nav-link" data-scroll-target="#installing-python"><span class="header-section-number">4.1.2</span> Installing Python</a></li>
-  <li><a href="#using-jupyter-notebooks" id="toc-using-jupyter-notebooks" class="nav-link" data-scroll-target="#using-jupyter-notebooks"><span class="header-section-number">4.1.3</span> Using Jupyter Notebooks</a></li>
-  <li><a href="#installing-additional-packages" id="toc-installing-additional-packages" class="nav-link" data-scroll-target="#installing-additional-packages"><span class="header-section-number">4.1.4</span> Installing Additional Packages</a></li>
+  <li><a href="#installing-python" id="toc-installing-python" class="nav-link" data-scroll-target="#installing-python"><span class="header-section-number">4.1.1</span> Installing Python</a></li>
+  <li><a href="#using-jupyter-notebooks" id="toc-using-jupyter-notebooks" class="nav-link" data-scroll-target="#using-jupyter-notebooks"><span class="header-section-number">4.1.2</span> Using Jupyter Notebooks</a></li>
+  <li><a href="#installing-additional-packages" id="toc-installing-additional-packages" class="nav-link" data-scroll-target="#installing-additional-packages"><span class="header-section-number">4.1.3</span> Installing Additional Packages</a></li>
   </ul></li>
   <li><a href="#setting-up-r" id="toc-setting-up-r" class="nav-link" data-scroll-target="#setting-up-r"><span class="header-section-number">4.2</span> Setting Up R</a>
   <ul class="collapse">
-  <li><a href="#why-r-for-data-science" id="toc-why-r-for-data-science" class="nav-link" data-scroll-target="#why-r-for-data-science"><span class="header-section-number">4.2.1</span> Why R for Data Science?</a></li>
-  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r"><span class="header-section-number">4.2.2</span> Installing R</a></li>
-  <li><a href="#essential-r-packages-for-data-science" id="toc-essential-r-packages-for-data-science" class="nav-link" data-scroll-target="#essential-r-packages-for-data-science"><span class="header-section-number">4.2.3</span> Essential R Packages for Data Science</a></li>
-  <li><a href="#creating-your-first-r-script" id="toc-creating-your-first-r-script" class="nav-link" data-scroll-target="#creating-your-first-r-script"><span class="header-section-number">4.2.4</span> Creating Your First R Script</a></li>
-  <li><a href="#understanding-r-packages" id="toc-understanding-r-packages" class="nav-link" data-scroll-target="#understanding-r-packages"><span class="header-section-number">4.2.5</span> Understanding R Packages</a></li>
+  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r"><span class="header-section-number">4.2.1</span> Installing R</a></li>
+  <li><a href="#the-r-packages-to-start-with" id="toc-the-r-packages-to-start-with" class="nav-link" data-scroll-target="#the-r-packages-to-start-with"><span class="header-section-number">4.2.2</span> The R Packages to Start With</a></li>
+  <li><a href="#creating-your-first-r-script" id="toc-creating-your-first-r-script" class="nav-link" data-scroll-target="#creating-your-first-r-script"><span class="header-section-number">4.2.3</span> Creating Your First R Script</a></li>
+  <li><a href="#understanding-r-packages" id="toc-understanding-r-packages" class="nav-link" data-scroll-target="#understanding-r-packages"><span class="header-section-number">4.2.4</span> Understanding R Packages</a></li>
   </ul></li>
   <li><a href="#python-or-r" id="toc-python-or-r" class="nav-link" data-scroll-target="#python-or-r"><span class="header-section-number">4.3</span> Python or R?</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4.4</span> Conclusion</a></li>
@@ -365,20 +363,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="setting-up-python" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="setting-up-python"><span class="header-section-number">4.1</span> Setting Up Python</h2>
-<p>Python has become a cornerstone language in data science due to its readability, extensive libraries, and versatile applications. Let’s set up a proper Python environment.</p>
-<section id="why-python-for-data-science" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="why-python-for-data-science"><span class="header-section-number">4.1.1</span> Why Python for Data Science?</h3>
-<p>Python offers several advantages for data science:</p>
-<ol type="1">
-<li>Rich ecosystem of specialised libraries (NumPy, pandas, scikit-learn, etc.)</li>
-<li>Readable syntax that makes complex analyses more accessible</li>
-<li>Strong community support and documentation</li>
-<li>Integration with various data sources and visualisation tools</li>
-</ol>
-<p>Python consistently ranks among the top programming languages for data science and is widely used across the industry.</p>
-</section>
-<section id="installing-python" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">4.1.2</span> Installing Python</h3>
+<p>Python is the language most of the infrastructure in this book is written in and expects. NumPy, pandas and scikit-learn cover the numerical and modelling work; almost everything else — web frameworks, cloud SDKs, orchestration tools — has a Python client whether or not it has an R one. That reach is the practical argument for it, more than anything about the language itself.</p>
+<section id="installing-python" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="installing-python"><span class="header-section-number">4.1.1</span> Installing Python</h3>
 <p>You have a few reasonable ways to install Python for data science. Each has trade-offs:</p>
 <ul>
 <li><strong>Miniforge</strong> (recommended for most readers): a minimal, community-maintained conda distribution that defaults to <code>conda-forge</code>, a free package repository — conda calls these “channels” — maintained by the community rather than by a company. Gives you <code>conda</code> for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.</li>
@@ -387,8 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>System Python</strong> (<code>python.org</code> installer, <code>brew install python</code>, or <code>apt install python3</code>): simple, but you’ll still want to create isolated environments per project with <code>venv</code> or <code>uv venv</code>.</li>
 </ul>
 <p>For this book we’ll use conda-based instructions since they work uniformly across Windows, macOS, and Linux and handle tricky scientific packages well. Everything shown below works with either Miniforge or Anaconda.</p>
-<section id="installing-miniforge-or-anaconda" class="level4" data-number="4.1.2.1">
-<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="installing-miniforge-or-anaconda"><span class="header-section-number">4.1.2.1</span> Installing Miniforge (or Anaconda)</h4>
+<section id="installing-miniforge-or-anaconda" class="level4" data-number="4.1.1.1">
+<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="installing-miniforge-or-anaconda"><span class="header-section-number">4.1.1.1</span> Installing Miniforge (or Anaconda)</h4>
 <ol type="1">
 <li>Visit the <a href="https://github.com/conda-forge/miniforge/releases/latest">Miniforge releases page</a> (or the <a href="https://www.anaconda.com/download">Anaconda download page</a> if you prefer)</li>
 <li>Download the appropriate installer for your operating system</li>
@@ -397,8 +384,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>During installation on Windows, you may be asked whether to add the installation to your PATH environment variable. Leave this unchecked and use the Miniforge Prompt (or Anaconda Prompt) from the Start menu, which avoids conflicts with other Python installations on your system.</p>
 <p>The “PATH” is like an address book that tells your computer where to find programs when you type their names. Adding your conda install to PATH means you can use Python from any command prompt, but it could cause conflicts with other versions of Python on your system.</p>
 </section>
-<section id="verifying-installation" class="level4" data-number="4.1.2.2">
-<h4 data-number="4.1.2.2" class="anchored" data-anchor-id="verifying-installation"><span class="header-section-number">4.1.2.2</span> Verifying Installation</h4>
+<section id="verifying-installation" class="level4" data-number="4.1.1.2">
+<h4 data-number="4.1.1.2" class="anchored" data-anchor-id="verifying-installation"><span class="header-section-number">4.1.1.2</span> Verifying Installation</h4>
 <p>Open a new terminal (or Miniforge/Anaconda Prompt on Windows) and type:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see the Python version number. Also, check that conda is installed:</p>
@@ -422,9 +409,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="using-jupyter-notebooks" class="level3" data-number="4.1.3">
-<h3 data-number="4.1.3" class="anchored" data-anchor-id="using-jupyter-notebooks"><span class="header-section-number">4.1.3</span> Using Jupyter Notebooks</h3>
-<p>Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualisations, and narrative text. They’re like digital lab notebooks where you can document your analysis process along with the code and results.</p>
+<section id="using-jupyter-notebooks" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="using-jupyter-notebooks"><span class="header-section-number">4.1.2</span> Using Jupyter Notebooks</h3>
+<p>A Jupyter notebook interleaves code, its output, and your prose in one document — a lab notebook you can re-run. It’s where most exploratory Python work happens.</p>
 <p>Miniforge is deliberately minimal, so Jupyter is not installed yet. Create an environment for working through this book and install what the next few chapters need:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment named 'datasci' with the packages used below</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> datasci python=3.13 numpy pandas matplotlib jupyter</span>
@@ -467,44 +454,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>If you see a plot and the success message, your Python setup is working.</p>
 </section>
-<section id="installing-additional-packages" class="level3" data-number="4.1.4">
-<h3 data-number="4.1.4" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">4.1.4</span> Installing Additional Packages</h3>
-<p>As your data science journey progresses, you’ll need additional packages. Use either:</p>
+<section id="installing-additional-packages" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">4.1.3</span> Installing Additional Packages</h3>
+<p>You’ll need more packages as you go. Two ways to install them:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using conda (preferred when available)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install package_name</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Using pip (when packages aren't available in conda)</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install package_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Conda is often preferred for data science packages because it handles complex dependencies better, especially for packages with C/C++ components. This is particularly important for libraries that have parts written in lower-level programming languages to make them run faster.</p>
+<p>Prefer conda where the package has compiled C or C++ underneath it — which covers most of the numerical stack. Conda ships prebuilt binaries and resolves the system libraries they depend on; pip is more likely to try compiling on your machine and fail for want of a toolchain.</p>
 </section>
 </section>
 <section id="setting-up-r" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="setting-up-r"><span class="header-section-number">4.2</span> Setting Up R</h2>
-<p>R is a language and environment designed specifically for statistical computing and graphics. Many statisticians and data scientists prefer it for statistical analysis and visualisation.</p>
-<section id="why-r-for-data-science" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="why-r-for-data-science"><span class="header-section-number">4.2.1</span> Why R for Data Science?</h3>
-<p>R offers several advantages:</p>
-<ol type="1">
-<li>Built specifically for statistical analysis</li>
-<li>Strong data visualisation through ggplot2</li>
-<li>A rich ecosystem of packages for specialised statistical methods</li>
-<li>Strong in reproducible research through R Markdown</li>
-</ol>
-<p>R has thousands of packages available on CRAN for various statistical and data analysis tasks, with active development from the statistics and research communities.</p>
-</section>
-<section id="installing-r" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">4.2.2</span> Installing R</h3>
+<p>R was built for statistical computing rather than adapted to it, and it shows in small places: model objects that print something useful without being asked, missing values handled as a first-class idea, and CRAN packages written by the statisticians who developed the methods in them. The “Python or R?” section at the end of this chapter goes into when to reach for which.</p>
+<section id="installing-r" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">4.2.1</span> Installing R</h3>
 <p>Let’s install both R itself and RStudio, a popular integrated development environment for R.</p>
-<section id="installing-base-r" class="level4" data-number="4.2.2.1">
-<h4 data-number="4.2.2.1" class="anchored" data-anchor-id="installing-base-r"><span class="header-section-number">4.2.2.1</span> Installing Base R</h4>
+<section id="installing-base-r" class="level4" data-number="4.2.1.1">
+<h4 data-number="4.2.1.1" class="anchored" data-anchor-id="installing-base-r"><span class="header-section-number">4.2.1.1</span> Installing Base R</h4>
 <ol type="1">
 <li>Visit the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN)</a></li>
 <li>Click on the link for your operating system</li>
 <li>Follow the installation instructions</li>
 </ol>
 </section>
-<section id="installing-rstudio-desktop" class="level4" data-number="4.2.2.2">
-<h4 data-number="4.2.2.2" class="anchored" data-anchor-id="installing-rstudio-desktop"><span class="header-section-number">4.2.2.2</span> Installing RStudio Desktop</h4>
+<section id="installing-rstudio-desktop" class="level4" data-number="4.2.1.2">
+<h4 data-number="4.2.1.2" class="anchored" data-anchor-id="installing-rstudio-desktop"><span class="header-section-number">4.2.1.2</span> Installing RStudio Desktop</h4>
 <p>RStudio provides a user-friendly interface for working with R.</p>
 <ol type="1">
 <li>Visit the <a href="https://posit.co/download/rstudio-desktop/">Posit RStudio download page</a> (RStudio’s parent company rebranded to Posit in 2022)</li>
@@ -513,8 +489,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Think of R as the engine and RStudio as the dashboard that makes it easier to control that engine. You could use R without RStudio, but RStudio makes many tasks more convenient.</p>
 </section>
-<section id="verifying-installation-1" class="level4" data-number="4.2.2.3">
-<h4 data-number="4.2.2.3" class="anchored" data-anchor-id="verifying-installation-1"><span class="header-section-number">4.2.2.3</span> Verifying Installation</h4>
+<section id="verifying-installation-1" class="level4" data-number="4.2.1.3">
+<h4 data-number="4.2.1.3" class="anchored" data-anchor-id="verifying-installation-1"><span class="header-section-number">4.2.1.3</span> Verifying Installation</h4>
 <p>Open RStudio and enter this command in the console (lower-left pane):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -524,12 +500,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Your version number and codename will differ — R releases a new minor version each April and patches through the year. The <code>ucrt</code> and <code>Platform</code> lines only appear on Windows.</p>
 </section>
 </section>
-<section id="essential-r-packages-for-data-science" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="essential-r-packages-for-data-science"><span class="header-section-number">4.2.3</span> Essential R Packages for Data Science</h3>
-<p>Let’s install some core packages that you’ll likely need:</p>
+<section id="the-r-packages-to-start-with" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="the-r-packages-to-start-with"><span class="header-section-number">4.2.2</span> The R Packages to Start With</h3>
+<p>Five packages cover most of what the rest of this book does in R:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install essential packages</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"shiny"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"shiny"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This installs:</p>
 <ul>
@@ -539,11 +514,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>knitr</strong>: For dynamic report generation</li>
 <li><strong>plotly</strong>: For interactive visualisations</li>
 </ul>
-<p>These packages are like specialised toolkits that expand what you can do with R. The tidyverse, for example, makes data manipulation much more intuitive than it would be using just base R.</p>
+<p>The tidyverse is the one to learn first. It replaces most of base R’s data manipulation with a consistent set of verbs, and the other four assume you have it.</p>
 </section>
-<section id="creating-your-first-r-script" class="level3" data-number="4.2.4">
-<h3 data-number="4.2.4" class="anchored" data-anchor-id="creating-your-first-r-script"><span class="header-section-number">4.2.4</span> Creating Your First R Script</h3>
-<p>Let’s verify our setup with a simple R script:</p>
+<section id="creating-your-first-r-script" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="creating-your-first-r-script"><span class="header-section-number">4.2.3</span> Creating Your First R Script</h3>
+<p>Verify the setup with a short script:</p>
 <ol type="1">
 <li>In RStudio, go to File → New File → R Script</li>
 <li>Enter the following code:</li>
@@ -574,8 +549,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>If you see a plot in the lower-right pane and the success message in the console, your R setup is working.</p>
 </section>
-<section id="understanding-r-packages" class="level3" data-number="4.2.5">
-<h3 data-number="4.2.5" class="anchored" data-anchor-id="understanding-r-packages"><span class="header-section-number">4.2.5</span> Understanding R Packages</h3>
+<section id="understanding-r-packages" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="understanding-r-packages"><span class="header-section-number">4.2.4</span> Understanding R Packages</h3>
 <p>Unlike Python, where conda or pip manage packages, R has its own built-in package management system accessed through functions like <code>install.packages()</code> and <code>library()</code>.</p>
 <p>There are thousands of R packages available on CRAN, with more on Bioconductor (for bioinformatics) and GitHub. To install a package from GitHub, you first need the devtools package:</p>
 <div class="cell">

@@ -385,19 +385,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="text-editors-and-ide-enhancements" class="level3" data-number="A.1.2">
 <h3 data-number="A.1.2" class="anchored" data-anchor-id="text-editors-and-ide-enhancements"><span class="header-section-number">A.1.2</span> Text Editors and IDE Enhancements</h3>
-<p><a href="../chapters/ide_git.html">Editors and Version Control</a> covers <strong>Visual Studio Code</strong> (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It’s free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in that chapter will cover 90% of your needs.</p>
+<p><a href="../chapters/ide_git.html">Editors and Version Control</a> covers <strong>Visual Studio Code</strong> (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It’s free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in that chapter is the whole answer.</p>
 <p>The editors below are lightweight alternatives for quick edits, very large files, or platform-specific situations.</p>
 <section id="notepad" class="level4" data-number="A.1.2.1">
 <h4 data-number="A.1.2.1" class="anchored" data-anchor-id="notepad"><span class="header-section-number">A.1.2.1</span> Notepad++</h4>
 <p>Notepad++ is a free, open-source text editor for Windows, and a substantial step up from the built-in Notepad.</p>
-<p><strong>Key features for data scientists:</strong></p>
-<ol type="1">
-<li><strong>Syntax highlighting</strong>: Supports many languages including Python, R, SQL, JSON, and more</li>
-<li><strong>Column editing</strong>: Edit multiple lines simultaneously (useful for cleaning data)</li>
-<li><strong>Regex search and replace</strong>: Search by pattern rather than by literal text — <em>regular expressions</em>, usually shortened to regex, are a compact notation for describing text shapes such as “a date” or “any line ending in a comma”</li>
-<li><strong>Macro recording</strong>: Automate repetitive text edits</li>
-<li><strong>Plugins</strong>: Extend functionality with viewers for JSON, HTML, Markdown, and other common data-science file formats.</li>
-</ol>
+<p>What earns it a place is column editing — hold Alt and drag to select a rectangle, then type into every selected line at once, which turns a tedious manual clean-up into one edit — and find-and-replace by <em>regular expression</em>, a compact notation for describing text shapes like “a date” or “any line ending in a comma”. Both are things you’d otherwise write a script for.</p>
 <p><strong>Installation:</strong></p>
 <ol type="1">
 <li>Download from <a href="https://notepad-plus-plus.org/downloads/">notepad-plus-plus.org</a></li>
@@ -415,18 +408,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="api-development-and-testing-tools" class="level3" data-number="A.1.3">
 <h3 data-number="A.1.3" class="anchored" data-anchor-id="api-development-and-testing-tools"><span class="header-section-number">A.1.3</span> API Development and Testing Tools</h3>
-<p>APIs (Application Programming Interfaces) are crucial for accessing web services and databases. These tools help you test, debug, and document APIs.</p>
+<p>Sooner or later you’ll be handed an API and a key and asked to get data out of it. These tools let you send a request and look at what comes back before you write any code.</p>
 <section id="postman" class="level4" data-number="A.1.3.1">
 <h4 data-number="A.1.3.1" class="anchored" data-anchor-id="postman"><span class="header-section-number">A.1.3.1</span> Postman</h4>
 <p>Postman is the most widely used tool for API development and testing, and the one whose interface most tutorials assume.</p>
-<p><strong>Key features for data scientists:</strong></p>
-<ol type="1">
-<li><strong>Request building</strong>: Create and save HTTP requests</li>
-<li><strong>Collections</strong>: Organise and share API requests</li>
-<li><strong>Environment variables</strong>: Manage different settings (dev/prod)</li>
-<li><strong>Automated testing</strong>: Create test scripts to validate responses</li>
-<li><strong>Mock servers</strong>: Simulate API responses without a backend</li>
-</ol>
+<p>You build a request in a form, send it, and read the response formatted rather than as a wall of JSON. Requests save into collections you can re-run, with environment variables swapping a dev URL for a production one without editing each request.</p>
 <p><strong>Installation:</strong></p>
 <ol type="1">
 <li>Download from <a href="https://www.postman.com/downloads/">postman.com</a></li>
@@ -456,18 +442,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="database-management-tools" class="level3" data-number="A.1.4">
 <h3 data-number="A.1.4" class="anchored" data-anchor-id="database-management-tools"><span class="header-section-number">A.1.4</span> Database Management Tools</h3>
-<p>These tools provide graphical interfaces for working with databases, making it easier to explore and manipulate data.</p>
+<p>A graphical client is worth having for exploring a database you didn’t design — browsing tables and relationships is much faster by clicking than by querying <code>information_schema</code>.</p>
 <section id="dbeaver" class="level4" data-number="A.1.4.1">
 <h4 data-number="A.1.4.1" class="anchored" data-anchor-id="dbeaver"><span class="header-section-number">A.1.4.1</span> DBeaver</h4>
 <p>DBeaver is a universal database tool that works with almost any database system.</p>
-<p><strong>Key features for data scientists:</strong></p>
-<ol type="1">
-<li><strong>Multi-database support</strong>: Works with PostgreSQL, MySQL, SQLite, Oracle, and more</li>
-<li><strong>Visual query builder</strong>: Create SQL queries without writing code</li>
-<li><strong>Data export/import</strong>: Move data between different formats and databases</li>
-<li><strong>ER diagrams</strong>: Visualise database structure</li>
-<li><strong>SQL editor</strong>: Write and execute queries with syntax highlighting</li>
-</ol>
+<p>One application for PostgreSQL, MySQL, SQLite, Oracle and most things you’ll be handed credentials to, which saves learning a different client per database. It’ll draw the ER diagram of a schema you’ve never seen before, which is usually the fastest way to work out how an unfamiliar database fits together, and export a result set straight to CSV.</p>
 <p><strong>Installation:</strong></p>
 <ol type="1">
 <li>Download from <a href="https://dbeaver.io/download/">dbeaver.io</a></li>
@@ -492,33 +471,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="pgadmin" class="level4" data-number="A.1.4.2">
 <h4 data-number="A.1.4.2" class="anchored" data-anchor-id="pgadmin"><span class="header-section-number">A.1.4.2</span> pgAdmin</h4>
 <p>pgAdmin is a specialised tool for PostgreSQL databases.</p>
-<p><strong>Key features:</strong></p>
-<ol type="1">
-<li><strong>PostgreSQL-specific features</strong>: Optimised for PostgreSQL</li>
-<li><strong>Server monitoring</strong>: View database performance</li>
-<li><strong>Backup and restore</strong>: Manage database backups</li>
-<li><strong>User management</strong>: Control access to databases</li>
-<li><strong>Procedural language debugging</strong>: Test stored procedures</li>
-</ol>
+<p>DBeaver covers most PostgreSQL work. pgAdmin is worth having when you need the parts that are specific to Postgres and that a generic client doesn’t expose: backup and restore, role and permission management, and the server activity view that shows you which query is holding a lock.</p>
 <p><strong>Installation:</strong></p>
 <ol type="1">
 <li>Download from <a href="https://www.pgadmin.org/download/">pgadmin.org</a></li>
 <li>Run the installer</li>
 </ol>
-<p>For data scientists working specifically with PostgreSQL databases, pgAdmin provides specialised features that generic tools may lack.</p>
 </section>
 </section>
 <section id="file-comparison" class="level3" data-number="A.1.5">
 <h3 data-number="A.1.5" class="anchored" data-anchor-id="file-comparison"><span class="header-section-number">A.1.5</span> File Comparison</h3>
 <p>Comparing two versions of a dataset or a config file is common enough to want a tool for it. Git handles this for anything under version control; for everything else there is <strong>WinMerge</strong>, free and open source, on Windows.</p>
-<p><strong>Key features:</strong></p>
-<ol type="1">
-<li><strong>Visual text comparison</strong>: Side-by-side differences with highlighting</li>
-<li><strong>Folder comparison</strong>: Compare directory structures</li>
-<li><strong>Image comparison</strong>: Visual diff for images</li>
-<li><strong>Plugins</strong>: Extend functionality for additional file types</li>
-<li><strong>Integration</strong>: Works with source control systems</li>
-</ol>
+<p>It shows two files side by side with the differing lines highlighted, and does the same for two directories, which is the quicker way to answer “what changed between these two extracts”.</p>
 <p><strong>Installation:</strong></p>
 <ol type="1">
 <li>Download from <a href="https://winmerge.org/downloads/">winmerge.org</a></li>
@@ -528,18 +492,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="terminal-enhancements" class="level3" data-number="A.1.6">
 <h3 data-number="A.1.6" class="anchored" data-anchor-id="terminal-enhancements"><span class="header-section-number">A.1.6</span> Terminal Enhancements</h3>
-<p>A better-configured shell pays for itself quickly once you’re in one every day.</p>
+<p>Once you’re in a terminal every day, the defaults start to grate. These fix the worst of it.</p>
 <section id="oh-my-zsh" class="level4" data-number="A.1.6.1">
 <h4 data-number="A.1.6.1" class="anchored" data-anchor-id="oh-my-zsh"><span class="header-section-number">A.1.6.1</span> Oh My Zsh</h4>
 <p>Oh My Zsh is a framework for managing your Zsh configuration, providing themes and plugins for the Z shell.</p>
-<p><strong>Key features for data scientists:</strong></p>
-<ol type="1">
-<li><strong>Tab completion</strong>: Intelligent completion for commands and paths</li>
-<li><strong>Git integration</strong>: Visual indicators of repository status</li>
-<li><strong>Syntax highlighting</strong>: Colour-coded command syntax</li>
-<li><strong>Command history</strong>: Improved search through previous commands</li>
-<li><strong>Customisable themes</strong>: Visual enhancements for the terminal</li>
-</ol>
+<p>The two things you notice on day one are the prompt telling you which Git branch you’re on and whether it’s dirty, and tab completion that knows the flags a command takes rather than just the files in the directory. Neither is dramatic; both stop small mistakes.</p>
 <p><strong>Installation (macOS or Linux):</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Zsh first if needed</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ubuntu/Debian:</span></span>
@@ -563,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="windows-terminal-and-powershell-7" class="level4" data-number="A.1.6.2">
 <h4 data-number="A.1.6.2" class="anchored" data-anchor-id="windows-terminal-and-powershell-7"><span class="header-section-number">A.1.6.2</span> Windows Terminal and PowerShell 7</h4>
-<p>On Windows, <strong>Windows Terminal</strong> (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) is a huge upgrade over the legacy <code>cmd.exe</code> and the old PowerShell window: tabs, split panes, GPU-accelerated rendering, and sensible keyboard shortcuts. Pair it with <strong>PowerShell 7</strong> (<code>winget install Microsoft.PowerShell</code>), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in <a href="../chapters/command_line.html">The Command Line</a>) from inside Windows Terminal, which handles both worlds side-by-side.</p>
+<p>On Windows, <strong>Windows Terminal</strong> (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) replaces the legacy <code>cmd.exe</code> window with tabs, split panes and keyboard shortcuts that behave the way you’d expect. Pair it with <strong>PowerShell 7</strong> (<code>winget install Microsoft.PowerShell</code>), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in <a href="../chapters/command_line.html">The Command Line</a>) from inside Windows Terminal, which handles both worlds side-by-side.</p>
 </section>
 <section id="modern-rust-based-cli-replacements" class="level4" data-number="A.1.6.3">
 <h4 data-number="A.1.6.3" class="anchored" data-anchor-id="modern-rust-based-cli-replacements"><span class="header-section-number">A.1.6.3</span> Modern Rust-based CLI replacements</h4>
@@ -620,23 +577,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong><a href="https://docs.astral.sh/ruff/">ruff</a></strong>: a Python linter and formatter, also from Astral, fast enough to run on every keystroke where the tools it replaces (flake8, isort, black) were not. Modern Python projects almost always use it.</li>
 <li><strong><a href="https://pixi.sh/">pixi</a></strong>: a project-based package manager built on the conda ecosystem. Think of it as “uv for conda”: fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.</li>
 </ul>
-<p>None of these are required to follow this book. The classic <code>pip</code>/<code>conda</code>/<code>grep</code>/<code>find</code> commands still work fine. But once you’ve tried them it’s hard to go back.</p>
+<p>None of these are required to follow this book, and the classic <code>pip</code>, <code>conda</code>, <code>grep</code> and <code>find</code> commands all still work. Install them when you get tired of waiting for the originals.</p>
 </section>
 </section>
 <section id="data-wrangling-tools" class="level3" data-number="A.1.7">
 <h3 data-number="A.1.7" class="anchored" data-anchor-id="data-wrangling-tools"><span class="header-section-number">A.1.7</span> Data Wrangling Tools</h3>
-<p>These specialised tools help with specific data manipulation tasks that complement programming languages.</p>
+<p>Two command-line tools for the jobs that don’t quite justify opening an editor.</p>
 <section id="csvkit" class="level4" data-number="A.1.7.1">
 <h4 data-number="A.1.7.1" class="anchored" data-anchor-id="csvkit"><span class="header-section-number">A.1.7.1</span> CSVKit</h4>
 <p>CSVKit is a suite of command-line tools for working with CSV files.</p>
-<p><strong>Key features for data scientists:</strong></p>
-<ol type="1">
-<li><strong>csvstat</strong>: Generate descriptive statistics on CSV files</li>
-<li><strong>csvcut</strong>: Extract specific columns</li>
-<li><strong>csvgrep</strong>: Filter rows based on patterns</li>
-<li><strong>csvsort</strong>: Sort CSV files</li>
-<li><strong>csvjoin</strong>: SQL-like join operations between CSV files</li>
-</ol>
+<p>It gives you <code>csvstat</code> for a quick summary of every column, <code>csvcut</code> to pull out named columns, <code>csvgrep</code> to filter rows, <code>csvsort</code>, and <code>csvjoin</code> for joining two files on a key. Each is a CSV-aware version of a standard Unix tool, so they understand quoted fields and headers where <code>grep</code> and <code>cut</code> don’t.</p>
 <p><strong>Installation:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install csvkit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Example commands:</strong></p>
@@ -656,14 +606,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="jq" class="level4" data-number="A.1.7.2">
 <h4 data-number="A.1.7.2" class="anchored" data-anchor-id="jq"><span class="header-section-number">A.1.7.2</span> jq</h4>
 <p>jq is a lightweight command-line JSON processor that helps manipulate JSON data.</p>
-<p><strong>Key features:</strong></p>
-<ol type="1">
-<li><strong>Filtering</strong>: Extract specific data from complex JSON</li>
-<li><strong>Transformation</strong>: Reshape JSON structures</li>
-<li><strong>Combination</strong>: Merge multiple JSON sources</li>
-<li><strong>Computation</strong>: Perform calculations on numeric values</li>
-<li><strong>Formatting</strong>: Pretty-print and compact JSON</li>
-</ol>
+<p>It filters, reshapes and does arithmetic on JSON from the command line, which is most useful when an API hands you a deeply nested response and you want to see its shape before writing any code against it.</p>
 <p><strong>Installation:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install jq</span>
@@ -685,23 +628,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate statistics</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> data.json <span class="kw">|</span> <span class="ex">jq</span> <span class="st">'[.results[].value] | {count: length, sum: add, average: add/length}'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>jq is invaluable when working with APIs that return JSON data or when preparing JSON data for visualisation or further analysis.</p>
+<p>Pair it with <code>curl</code> and you can explore an API’s responses without leaving the terminal.</p>
 </section>
 </section>
 <section id="diagramming-and-visualisation-tools" class="level3" data-number="A.1.8">
 <h3 data-number="A.1.8" class="anchored" data-anchor-id="diagramming-and-visualisation-tools"><span class="header-section-number">A.1.8</span> Diagramming and Visualisation Tools</h3>
-<p>Code-based diagrams version well, but sometimes a drawing tool is the faster route to a one-off architecture sketch.</p>
+<p>The Mermaid diagrams in <a href="../chapters/visualisation.html">Data Visualisation</a> cover most of what you’ll need. Two tools are worth knowing for the cases they don’t.</p>
 <section id="diagrams.net-formerly-draw.io" class="level4" data-number="A.1.8.1">
 <h4 data-number="A.1.8.1" class="anchored" data-anchor-id="diagrams.net-formerly-draw.io"><span class="header-section-number">A.1.8.1</span> diagrams.net (formerly draw.io)</h4>
 <p>diagrams.net is a free, open-source online diagramming tool that works with various diagram types.</p>
-<p><strong>Key features for data scientists:</strong></p>
-<ol type="1">
-<li><strong>Flowcharts</strong>: Document data pipelines and workflows</li>
-<li><strong>ER diagrams</strong>: Model database relationships</li>
-<li><strong>Network diagrams</strong>: Visualise system architecture</li>
-<li><strong>Multiple export formats</strong>: PNG, SVG, PDF, etc.</li>
-<li><strong>Integration</strong>: Works with Google Drive, Dropbox, etc.</li>
-</ol>
+<p>Free, runs in a browser, saves where you tell it, and covers flowcharts, ER diagrams and architecture sketches. Reach for it over Mermaid when you want control of the layout rather than a diagram generated from text.</p>
 <p><strong>Access:</strong></p>
 <ol type="1">
 <li>Go to <a href="https://app.diagrams.net/">app.diagrams.net</a> in your browser</li>
@@ -715,19 +651,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Add annotations explaining transformations</li>
 <li>Export as PNG for inclusion in documentation</li>
 </ol>
-<p>Clear diagrams are essential for communicating complex data processing workflows to stakeholders or documenting them for future reference.</p>
+<p>A pipeline diagram is usually the fastest way to explain to a stakeholder what happens to their data between the source system and the report.</p>
 </section>
 <section id="graphviz" class="level4" data-number="A.1.8.2">
 <h4 data-number="A.1.8.2" class="anchored" data-anchor-id="graphviz"><span class="header-section-number">A.1.8.2</span> Graphviz</h4>
 <p>Graphviz is a command-line tool for creating structured diagrams from text descriptions.</p>
-<p><strong>Key features:</strong></p>
-<ol type="1">
-<li><strong>Programmatic diagrams</strong>: Generate diagrams from code</li>
-<li><strong>Automatic layout</strong>: Optimal arrangement of elements</li>
-<li><strong>Various diagram types</strong>: Directed graphs, hierarchies, networks</li>
-<li><strong>Integration</strong>: Works with Python, R, and other languages</li>
-<li><strong>Scriptable</strong>: Automate diagram generation</li>
-</ol>
+<p>You describe the nodes and edges and Graphviz works out the layout, which is what makes it worth using for graphs generated from data — a dependency tree, a state machine, a network — where you don’t know in advance how many nodes there will be. Python and R both have bindings.</p>
 <p><strong>Installation:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install graphviz</span>
@@ -776,14 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="obsidian" class="level4" data-number="A.1.10.1">
 <h4 data-number="A.1.10.1" class="anchored" data-anchor-id="obsidian"><span class="header-section-number">A.1.10.1</span> Obsidian</h4>
 <p>Obsidian is a knowledge base and note-taking application that works on Markdown files.</p>
-<p><strong>Key features for data scientists:</strong></p>
-<ol type="1">
-<li><strong>Markdown format</strong>: Write notes with the same syntax used in Jupyter notebooks</li>
-<li><strong>Bidirectional linking</strong>: Connect related notes</li>
-<li><strong>Graph view</strong>: Visualise relationships between notes</li>
-<li><strong>Local storage</strong>: Files stored on your computer, not in the cloud</li>
-<li><strong>Extensible</strong>: Plugins for additional functionality</li>
-</ol>
+<p>Notes are plain Markdown files in a folder on your machine, which means they outlive the application, work with <code>ripgrep</code>, and can go in a Git repository. Links between notes go both ways, so opening a note shows you everything that referenced it.</p>
 <p><strong>Installation:</strong></p>
 <ol type="1">
 <li>Download from <a href="https://obsidian.md/download">obsidian.md</a></li>

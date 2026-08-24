@@ -404,8 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="installing-sqlite" class="level3" data-number="6.1.2">
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="installing-sqlite"><span class="header-section-number">6.1.2</span> Installing SQLite</h3>
-<p>SQLite is a lightweight, file-based database that requires no server setup, making it perfect for learning.</p>
-<p>Think of SQLite as a simple filing cabinet for your data that you can easily carry around, unlike larger database systems that require dedicated servers.</p>
+<p>SQLite is a whole database in a single file, with no server to install or keep running. That makes it the easiest place to learn SQL, and a reasonable choice for real work whenever one program at a time is doing the writing.</p>
 <section id="on-windows" class="level4" data-number="6.1.2.1">
 <h4 data-number="6.1.2.1" class="anchored" data-anchor-id="on-windows"><span class="header-section-number">6.1.2.1</span> On Windows</h4>
 <ol type="1">
@@ -465,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- sqlite3 program itself rather than SQL, and take no semicolon.</span></span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>.exit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note the comment syntax. SQL uses <code>--</code>, not the <code>#</code> that shells use; paste a <code>#</code> comment at the <code>sqlite&gt;</code> prompt and you’ll get a syntax error.</p>
-<p>This creates a spreadsheet-like table inside a file, adds some rows, and views them.</p>
+<p>That creates a table inside <code>sample.db</code>, adds three rows, and reads them back.</p>
 </section>
 <section id="sql-guis-for-easier-database-management" class="level3" data-number="6.1.4">
 <h3 data-number="6.1.4" class="anchored" data-anchor-id="sql-guis-for-easier-database-management"><span class="header-section-number">6.1.4</span> SQL GUIs for Easier Database Management</h3>
@@ -479,7 +478,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Install and open it</li>
 <li>Open the sample.db file you created earlier</li>
 </ol>
-<p>DB Browser for SQLite acts like a spreadsheet program for your database, making it easier to view and edit data without typing SQL commands.</p>
+<p>It gives you a spreadsheet-like view of the tables, which is the quickest way to see what’s in a database someone hands you.</p>
 </section>
 <section id="using-sql-from-python-and-r" class="level4" data-number="6.1.4.2">
 <h4 data-number="6.1.4.2" class="anchored" data-anchor-id="using-sql-from-python-and-r"><span class="header-section-number">6.1.4.2</span> Using SQL from Python and R</h4>
@@ -528,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Close the connection</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(conn)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyse it with Python or R — all within the same workflow.</p>
+<p>Both languages talk to the same file. You can store data in a database, filter and aggregate it in SQL where that’s the clearer way to say it, and pull the result into pandas or a data frame for the modelling.</p>
 </section>
 </section>
 </section>

@@ -335,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#mlops-machine-learning-operations" id="toc-mlops-machine-learning-operations" class="nav-link" data-scroll-target="#mlops-machine-learning-operations"><span class="header-section-number">14.2.1</span> MLOps (Machine Learning Operations)</a></li>
   <li><a href="#distributed-computing" id="toc-distributed-computing" class="nav-link" data-scroll-target="#distributed-computing"><span class="header-section-number">14.2.2</span> Distributed Computing</a></li>
-  <li><a href="#automl-and-model-development-tools" id="toc-automl-and-model-development-tools" class="nav-link" data-scroll-target="#automl-and-model-development-tools"><span class="header-section-number">14.2.3</span> AutoML and Model Development Tools</a></li>
+  <li><a href="#automl-and-model-interpretation" id="toc-automl-and-model-interpretation" class="nav-link" data-scroll-target="#automl-and-model-interpretation"><span class="header-section-number">14.2.3</span> AutoML and Model Interpretation</a></li>
   <li><a href="#staying-current" id="toc-staying-current" class="nav-link" data-scroll-target="#staying-current"><span class="header-section-number">14.2.4</span> Staying Current</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">14.3</span> Conclusion</a></li>
@@ -397,14 +397,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ├── pyproject.toml          # Project metadata and tool configuration
 ├── .gitignore              # Files to ignore in version control
 └── README.md               # Project description</code></pre>
-<p>This structure separates raw data (which should never be modified) from processed data and keeps code organised by purpose. It also makes it clear where to find notebooks for exploration versus production-ready code.</p>
-<p>Organising your projects this way provides several benefits:</p>
-<ol type="1">
-<li>Clear separation of concerns between data, code, and outputs</li>
-<li>Easier collaboration as team members know where to find things</li>
-<li>Better reproducibility through clearly defined workflows</li>
-<li>Simpler maintenance as the project grows</li>
-</ol>
+<p>The separation that matters most is <code>data/raw/</code> from everything else. Raw data is treated as read-only: every other dataset in the project is reproducible by re-running code, and that one isn’t.</p>
+<p>The payoff is that someone opening the project — including you in a year — can guess where things are without asking. <code>data/raw/</code> is never written to, so the original is always recoverable; <code>notebooks/</code> is where exploration happens and <code>project_name/</code> is where code that has to keep working lives.</p>
 </section>
 <section id="making-your-code-importable" class="level4" data-number="14.1.1.2">
 <h4 data-number="14.1.1.2" class="anchored" data-anchor-id="making-your-code-importable"><span class="header-section-number">14.1.1.2</span> Making Your Code Importable</h4>
@@ -480,13 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The two-file result is the whole mechanism. <code>large_dataset.csv.dvc</code> is a few lines of YAML containing a hash of the data, and it lives in Git like any other source file; the multi-gigabyte CSV lives in S3. A colleague clones the repository, gets the pointer, runs <code>dvc pull</code>, and receives exactly the version of the data that matches the code they checked out. Checking out an old commit and running <code>dvc pull</code> reconstructs the data as it was then.</p>
-<p>The benefits of using DVC include:</p>
-<ol type="1">
-<li>Tracking changes to data alongside code</li>
-<li>Reproducing exact data states for past experiments</li>
-<li>Sharing large datasets efficiently with teammates</li>
-<li>Creating pipelines that track dependencies between data processing stages</li>
-</ol>
+<p>It also builds pipelines: <code>dvc.yaml</code> records which stages depend on which files, so <code>dvc repro</code> re-runs only what a change actually affects. Much like Make, but with the data tracked too.</p>
 </section>
 <section id="automating-workflows-with-make" class="level3" data-number="14.1.3">
 <h3 data-number="14.1.3" class="anchored" data-anchor-id="automating-workflows-with-make"><span class="header-section-number">14.1.3</span> Automating Workflows with Make</h3>
@@ -545,7 +533,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean up generated files</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> clean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Make tracks dependencies between tasks and only runs the necessary steps. For example, if you’ve already downloaded the data but need to rebuild features, <code>make features</code> will skip the download step.</p>
-<p>Automation tools like Make help ensure consistency and save time by eliminating repetitive manual steps. They also serve as documentation of your workflow, making it easier for others (or your future self) to understand and reproduce your analysis.</p>
+<p>The Makefile also ends up being the most honest documentation of a project. A README describing the steps drifts; a Makefile that stops working gets fixed, because someone needs it to run.</p>
 </section>
 <section id="continuous-integration-for-data-science" class="level3" data-number="14.1.4">
 <h3 data-number="14.1.4" class="anchored" data-anchor-id="continuous-integration-for-data-science"><span class="header-section-number">14.1.4</span> Continuous Integration for Data Science</h3>
@@ -667,10 +655,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="advanced-topics-and-next-steps" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="advanced-topics-and-next-steps"><span class="header-section-number">14.2</span> Advanced Topics and Next Steps</h2>
-<p>As you grow more comfortable with the data science infrastructure we’ve covered, here are some advanced topics to explore:</p>
+<p>None of what follows is needed to work through this book. It’s a map of where the road continues, for when you hit the edge of what’s here.</p>
 <section id="mlops-machine-learning-operations" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="mlops-machine-learning-operations"><span class="header-section-number">14.2.1</span> MLOps (Machine Learning Operations)</h3>
-<p>MLOps combines DevOps practices with machine learning to streamline model deployment and maintenance:</p>
+<p>Once a model is making decisions on live data rather than sitting in a notebook, it needs the same operational care as any other running system, plus one problem software doesn’t have — the world changes and the model doesn’t notice. The tooling for that:</p>
 <ul>
 <li><strong>Model Serving</strong>: Tools like TensorFlow Serving, TorchServe, or MLflow for deploying models</li>
 <li><strong>Model Monitoring</strong>: Tracking performance and detecting drift — the gradual decay in accuracy as live data stops resembling the data the model was trained on</li>
@@ -688,15 +676,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Kubernetes</strong>: Container orchestration for scaling</li>
 </ul>
 </section>
-<section id="automl-and-model-development-tools" class="level3" data-number="14.2.3">
-<h3 data-number="14.2.3" class="anchored" data-anchor-id="automl-and-model-development-tools"><span class="header-section-number">14.2.3</span> AutoML and Model Development Tools</h3>
-<p>These tools help automate parts of the model development process:</p>
-<ul>
-<li><strong>AutoML</strong>: Automated model selection and hyperparameter tuning</li>
-<li><strong>Feature Engineering Tools</strong>: Automated feature discovery and selection</li>
-<li><strong>Model Interpretation</strong>: Understanding model decisions</li>
-<li><strong>Neural Architecture Search</strong>: Automatically discovering optimal neural network architectures</li>
-</ul>
+<section id="automl-and-model-interpretation" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="automl-and-model-interpretation"><span class="header-section-number">14.2.3</span> AutoML and Model Interpretation</h3>
+<p>AutoML tools search over model families and hyperparameters for you, which is worth reaching for as a baseline — if a fortnight of your feature engineering doesn’t beat what AutoML found in an hour, that’s useful information about the problem. Interpretation tools (SHAP being the common one) tell you which features drove a given prediction, which you’ll need the first time somebody asks why the model declined their application.</p>
 </section>
 <section id="staying-current" class="level3" data-number="14.2.4">
 <h3 data-number="14.2.4" class="anchored" data-anchor-id="staying-current"><span class="header-section-number">14.2.4</span> Staying Current</h3>
@@ -710,7 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="conclusion" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">14.3</span> Conclusion</h2>
-<p>The tools in this chapter share a purpose: making the second run of an analysis cheaper than the first.</p>
+<p>Everything in this chapter is aimed at making the second run of an analysis cheaper than the first.</p>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>A project directory whose structure someone else could navigate without asking you</li>

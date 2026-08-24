@@ -345,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#environment-management" id="toc-environment-management" class="nav-link" data-scroll-target="#environment-management"><span class="header-section-number">13.4.1</span> Environment Management</a></li>
   <li><a href="#security-considerations" id="toc-security-considerations" class="nav-link" data-scroll-target="#security-considerations"><span class="header-section-number">13.4.2</span> Security Considerations</a></li>
   <li><a href="#observability-logging-health-checks-and-monitoring" id="toc-observability-logging-health-checks-and-monitoring" class="nav-link" data-scroll-target="#observability-logging-health-checks-and-monitoring"><span class="header-section-number">13.4.3</span> Observability: Logging, Health Checks, and Monitoring</a></li>
-  <li><a href="#performance-optimisation" id="toc-performance-optimisation" class="nav-link" data-scroll-target="#performance-optimisation"><span class="header-section-number">13.4.4</span> Performance Optimisation</a></li>
+  <li><a href="#performance" id="toc-performance" class="nav-link" data-scroll-target="#performance"><span class="header-section-number">13.4.4</span> Performance</a></li>
   <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation"><span class="header-section-number">13.4.5</span> Documentation</a></li>
   </ul></li>
   <li><a href="#troubleshooting-common-deployment-issues" id="toc-troubleshooting-common-deployment-issues" class="nav-link" data-scroll-target="#troubleshooting-common-deployment-issues"><span class="header-section-number">13.5</span> Troubleshooting Common Deployment Issues</a>
@@ -381,52 +381,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="understanding-deployment-for-data-science" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="understanding-deployment-for-data-science"><span class="header-section-number">13.1</span> Understanding Deployment for Data Science</h2>
-<p>After developing your data science project, the next crucial step is deployment — making your work accessible to others. Deployment can mean different things depending on your project: publishing an analysis report (using the documentation tools from the Reporting chapter), sharing an interactive dashboard (like the Shiny and Dash applications we explored in previous chapters), or creating an API for a machine learning model.</p>
+<p>Deployment is getting the work somewhere other people can reach it. What that means depends on what you built: publishing an analysis report, putting a Shiny or Dash dashboard on a URL, or exposing a model at an endpoint another program can call. The platforms differ, and so does the amount of ceremony each one needs.</p>
 <section id="why-deployment-matters" class="level3" data-number="13.1.1">
 <h3 data-number="13.1.1" class="anchored" data-anchor-id="why-deployment-matters"><span class="header-section-number">13.1.1</span> Why Deployment Matters</h3>
-<p>Deployment gets little attention in data science training. It matters for four reasons:</p>
-<ol type="1">
-<li><strong>Impact</strong>: Even the most insightful analysis has no impact if it remains on your computer</li>
-<li><strong>Collaboration</strong>: Deployment enables others to interact with your work</li>
-<li><strong>Reproducibility</strong>: A deployed project is one whose environment and dependencies you were forced to write down</li>
-<li><strong>Independence</strong>: You can put work in front of stakeholders without an engineering team in between</li>
-</ol>
+<p>Deployment gets little attention in data science training, and it’s where a good analysis most often stops being useful. A result on your laptop is a result nobody can act on. There’s a side effect worth having, too: you cannot deploy a project without writing down what it depends on, so deploying something is the fastest way to find out your environment file was incomplete.</p>
 </section>
 <section id="static-vs.-dynamic-deployment" class="level3" data-number="13.1.2">
 <h3 data-number="13.1.2" class="anchored" data-anchor-id="static-vs.-dynamic-deployment"><span class="header-section-number">13.1.2</span> Static vs.&nbsp;Dynamic Deployment</h3>
-<p>Before selecting a deployment platform, it’s important to understand the fundamental difference between static and dynamic content:</p>
-<section id="static-content" class="level4" data-number="13.1.2.1">
-<h4 data-number="13.1.2.1" class="anchored" data-anchor-id="static-content"><span class="header-section-number">13.1.2.1</span> Static Content</h4>
-<p>Static content doesn’t change based on user input and is pre-generated:</p>
-<ul>
-<li>HTML reports from R Markdown, Jupyter notebooks, or Quarto</li>
-<li>Documentation sites</li>
-<li>Fixed visualisations and dashboards</li>
-</ul>
-<p><strong>Advantages</strong>:</p>
-<ul>
-<li>Simpler to deploy</li>
-<li>More secure</li>
-<li>Lower hosting costs</li>
-<li>Better performance</li>
-</ul>
-</section>
-<section id="dynamic-applications" class="level4" data-number="13.1.2.2">
-<h4 data-number="13.1.2.2" class="anchored" data-anchor-id="dynamic-applications"><span class="header-section-number">13.1.2.2</span> Dynamic Applications</h4>
-<p>Dynamic applications respond to user input and may perform calculations:</p>
-<ul>
-<li>Interactive Shiny or Dash dashboards</li>
-<li>Machine learning model APIs</li>
-<li>Data exploration tools</li>
-</ul>
-<p><strong>Advantages</strong>:</p>
-<ul>
-<li>Interactive user experience</li>
-<li>Real-time calculations</li>
-<li>Ability to handle user-specific data</li>
-<li>More flexible functionality</li>
-</ul>
-</section>
+<p>The first question about any project is whether it needs a server running when someone visits.</p>
+<p><strong>Static</strong> content is generated ahead of time and served as files — a rendered Quarto report, a documentation site, a chart that doesn’t respond to input. Nothing executes when a reader opens it. That makes static hosting cheap or free, fast, and close to impossible to attack, since there’s no code running for an attacker to reach.</p>
+<p><strong>Dynamic</strong> applications run code per request: a Shiny or Dash dashboard that filters on a dropdown, a model API that returns a prediction, anything that shows a user their own data. You need this when the output depends on the input, and it costs you a running process, a bill that scales with traffic, and a surface someone could attack.</p>
+<p>Reach for static whenever the answer is the same for every reader. Far more dashboard requests than you’d expect are satisfied by a report that rebuilds nightly.</p>
 </section>
 <section id="deployment-requirements-by-project-type" class="level3" data-number="13.1.3">
 <h3 data-number="13.1.3" class="anchored" data-anchor-id="deployment-requirements-by-project-type"><span class="header-section-number">13.1.3</span> Deployment Requirements by Project Type</h3>
@@ -479,12 +444,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Understanding these requirements helps you choose the most appropriate deployment strategy.</p>
+<p>Match the row to your project and the last column narrows the choice to two or three.</p>
 </section>
 </section>
 <section id="deployment-platforms-for-data-science" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="deployment-platforms-for-data-science"><span class="header-section-number">13.2</span> Deployment Platforms for Data Science</h2>
-<p>Let’s examine the most relevant deployment options for data scientists, focusing on ease of use, cost, and suitability for different project types.</p>
+<p>The options below are ordered roughly by how much you need to know to use them.</p>
 <section id="static-site-deployment-options" class="level3" data-number="13.2.1">
 <h3 data-number="13.2.1" class="anchored" data-anchor-id="static-site-deployment-options"><span class="header-section-number">13.2.1</span> Static Site Deployment Options</h3>
 <section id="github-pages" class="level4" data-number="13.2.1.1">
@@ -1285,25 +1250,14 @@ gunicorn==26.0.0</code></pre>
 <li><p><strong>Set budget alerts</strong>: On pay-per-use platforms (Cloud Run, AWS, GCP) configure a monthly budget with email alerts before you deploy anything that autoscales.</p></li>
 </ol>
 </section>
-<section id="performance-optimisation" class="level3" data-number="13.4.4">
-<h3 data-number="13.4.4" class="anchored" data-anchor-id="performance-optimisation"><span class="header-section-number">13.4.4</span> Performance Optimisation</h3>
-<ol type="1">
-<li><strong>Optimise data loading</strong>: Load data efficiently or use databases for large datasets</li>
-<li><strong>Implement caching</strong>: Cache results of expensive computations</li>
-<li><strong>Monitor resource usage</strong>: Keep track of memory and CPU utilisation</li>
-<li><strong>Implement pagination</strong>: For large datasets, display data in manageable chunks</li>
-<li><strong>Consider asynchronous processing</strong>: Use background tasks for long-running computations</li>
-</ol>
+<section id="performance" class="level3" data-number="13.4.4">
+<h3 data-number="13.4.4" class="anchored" data-anchor-id="performance"><span class="header-section-number">13.4.4</span> Performance</h3>
+<p>Most slow dashboards are slow for the same reason: they reload and recompute the whole dataset on every interaction. Load the data once when the process starts, cache anything expensive that doesn’t depend on user input (<code>@st.cache_data</code> in Streamlit, <code>shiny::bindCache()</code> in Shiny, <code>functools.lru_cache</code> in plain Python), and push filtering and aggregation into the database rather than pulling everything and doing it in memory.</p>
+<p>If a computation takes longer than a few seconds, it doesn’t belong in a request. Precompute it on a schedule and have the app read the result.</p>
 </section>
 <section id="documentation" class="level3" data-number="13.4.5">
 <h3 data-number="13.4.5" class="anchored" data-anchor-id="documentation"><span class="header-section-number">13.4.5</span> Documentation</h3>
-<ol type="1">
-<li><strong>Create a README</strong>: Document deployment steps and dependencies</li>
-<li><strong>Add usage examples</strong>: Show how to interact with your deployed application</li>
-<li><strong>Include contact information</strong>: Let users know who to contact for support</li>
-<li><strong>Provide version information</strong>: Display the current version of your application</li>
-<li><strong>Document API endpoints</strong>: If applicable, describe available API endpoints</li>
-</ol>
+<p>A README that says how to run the thing locally, what environment variables it needs, and who to ask when it breaks. For an API, the endpoints and an example request. FastAPI generates that last part for you, which is a decent argument for it over Flask on anything you’ll hand to another team.</p>
 </section>
 </section>
 <section id="troubleshooting-common-deployment-issues" class="level2" data-number="13.5">
@@ -1436,7 +1390,7 @@ gunicorn==26.0.0</code></pre>
 </section>
 <section id="conclusion" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">13.6</span> Conclusion</h2>
-<p>Deployment is ongoing. As projects evolve you will redeploy, read logs, and fix what breaks — which is why the platform choices in this chapter were weighted towards the ones that make redeploying cheap.</p>
+<p>Deployment isn’t a step you finish. You’ll redeploy, read logs, and fix what breaks, which is why the platforms recommended here are the ones that make redeploying cheap.</p>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>A Quarto report that rebuilds and republishes to GitHub Pages on every push</li>

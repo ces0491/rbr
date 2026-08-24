@@ -374,16 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="why-visualisation-matters-in-data-science" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="why-visualisation-matters-in-data-science"><span class="header-section-number">9.1</span> Why Visualisation Matters in Data Science</h2>
-<p>Effective visualisation is crucial for data science: it helps you communicate findings and enables pattern discovery. A well-designed chart can convey relationships instantly that would take paragraphs to explain in words. The reporting chapter covered the <em>document</em> that wraps your analysis; this chapter covers the charts and diagrams that go inside it.</p>
-<p>Data visualisation serves multiple purposes in the data science workflow:</p>
-<ol type="1">
-<li><strong>Exploratory Data Analysis (EDA)</strong>: Discovering patterns, outliers, and relationships</li>
-<li><strong>Communication</strong>: Sharing insights with stakeholders</li>
-<li><strong>Decision Support</strong>: Helping decision-makers understand complex data</li>
-<li><strong>Monitoring</strong>: Tracking metrics and performance over time</li>
-</ol>
-<p>A chart works because it hands the reader a shape to recognise instead of a column of numbers to compare one pair at a time. A good one earns its place by saving the reader that effort.</p>
-<p>This chapter focuses on three practical categories:</p>
+<p>A chart works because it hands the reader a shape to recognise instead of a column of numbers to compare one pair at a time. That applies as much when the reader is you — most outliers and most data-entry mistakes are found by plotting the column, not by summarising it — as when it’s a stakeholder who will act on the result.</p>
+<p>The reporting chapter covered the <em>document</em> that wraps your analysis. This chapter covers the charts and diagrams that go inside it, in three categories:</p>
 <ul>
 <li><strong>Python visualisation libraries</strong>: matplotlib, seaborn, plotly</li>
 <li><strong>R visualisation libraries</strong>: ggplot2 and interactive wrappers</li>
@@ -424,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'sine_wave.png'</span>, dpi<span class="op">=</span><span class="dv">300</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Matplotlib provides a blank canvas approach where you explicitly define every element. This gives you complete control but requires more code for complex visualisations. It’s the right tool when you need exact control over every line, tick, and label, for example when preparing a figure for a journal submission.</p>
+<p>Matplotlib hands you a blank canvas and expects you to place every element yourself. That’s more code than the alternatives for an ordinary chart, and the right trade when you need exact control over every line, tick and label — a figure for journal submission, say, where the specification is fixed.</p>
 </section>
 <section id="seaborn-statistical-visualisation" class="level3" data-number="9.2.2">
 <h3 data-number="9.2.2" class="anchored" data-anchor-id="seaborn-statistical-visualisation"><span class="header-section-number">9.2.2</span> Seaborn: Statistical Visualisation</h3>
@@ -449,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Seaborn simplifies the creation of statistical visualisations like box plots, violin plots, and regression plots. It also comes with built-in themes that improve the default appearance of plots. Reach for Seaborn when the chart you want is a standard statistical view of a pandas DataFrame: it will usually be a single function call, where the equivalent matplotlib code would be a dozen lines.</p>
+<p>Reach for Seaborn when the chart you want is a standard statistical view of a pandas DataFrame — box plot, violin plot, regression fit. It’s usually one function call where the matplotlib equivalent is a dozen lines, and its defaults look presentable without adjustment.</p>
 </section>
 <section id="plotly-interactive-visualisations" class="level3" data-number="9.2.3">
 <h3 data-number="9.2.3" class="anchored" data-anchor-id="plotly-interactive-visualisations"><span class="header-section-number">9.2.3</span> Plotly: Interactive Visualisations</h3>
@@ -479,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the figure</span></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Plotly’s interactive features include zooming, panning, hovering for details, and the ability to export plots as images. These features make exploration more intuitive and presentations more engaging. Plotly is available in both Python and R, so you can use the same underlying library across languages.</p>
+<p>Zoom, pan and hover-for-detail come free, which matters when a reader wants to interrogate a chart rather than just look at it. Plotly exists in both Python and R with much the same API, so it’s the one library here you don’t have to learn twice.</p>
 </section>
 <section id="choosing-between-python-libraries" class="level3" data-number="9.2.4">
 <h3 data-number="9.2.4" class="anchored" data-anchor-id="choosing-between-python-libraries"><span class="header-section-number">9.2.4</span> Choosing Between Python Libraries</h3>
@@ -494,7 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="r-visualisation-libraries" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="r-visualisation-libraries"><span class="header-section-number">9.3</span> R Visualisation Libraries</h2>
-<p>R has its own visualisation ecosystem, with ggplot2 the most widely used library by a wide margin.</p>
+<p>R’s visualisation ecosystem is built around ggplot2, which is what the tidyverse, most textbooks, and most Stack Overflow answers assume.</p>
 <section id="ggplot2-grammar-of-graphics" class="level3" data-number="9.3.1">
 <h3 data-number="9.3.1" class="anchored" data-anchor-id="ggplot2-grammar-of-graphics"><span class="header-section-number">9.3.1</span> ggplot2: Grammar of Graphics</h3>
 <p>ggplot2 is the default choice for data visualisation in R, built on the Grammar of Graphics.</p>
@@ -536,7 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the plot</span></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"diamond_price_carat.png"</span>, p, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The philosophy behind ggplot2 is that you build a visualisation layer by layer, which corresponds to how we think about visualisations conceptually. First, you define your data and aesthetic mappings (which variables map to which visual properties), then add geometric objects (points, lines, bars), then statistical transformations, scales, coordinate systems, and finally visual themes. This layered approach makes it possible to create complex visualisations by combining simple, understandable components.</p>
+<p>You build a ggplot2 chart in layers, joined with <code>+</code>. First the data and the aesthetic mappings — which variable becomes the x position, which becomes the colour — then geometric objects to draw them with, then any statistical transformation, scales, coordinate system and theme. Each layer is simple on its own, and a complicated chart is a longer stack of them rather than a different kind of code.</p>
 </section>
 <section id="interactive-r-visualisations" class="level3" data-number="9.3.2">
 <h3 data-number="9.3.2" class="anchored" data-anchor-id="interactive-r-visualisations"><span class="header-section-number">9.3.2</span> Interactive R Visualisations</h3>
@@ -592,23 +584,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert a ggplot to an interactive plotly visualisation</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Turning a static ggplot2 chart into an interactive one with a single function call means you can develop in familiar ggplot2 syntax and add interactivity at the end. That matters most when the same analysis has to ship as both a PDF and a web page: build the chart once, render it static for the PDF and interactive for the HTML.</p>
+<p>Because <code>ggplotly()</code> takes a finished ggplot, you can build the chart once in syntax you already know and decide about interactivity afterwards. That’s the escape hatch when the same analysis has to ship as both a PDF and a web page.</p>
 </section>
 </section>
 <section id="code-based-diagramming-with-mermaid" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="code-based-diagramming-with-mermaid"><span class="header-section-number">9.4</span> Code-Based Diagramming with Mermaid</h2>
-<p>Diagrams are essential for data science documentation, helping to explain workflows, architectures, and relationships. Rather than creating images with external tools, you can write diagrams as code directly in your Quarto documents using Mermaid.</p>
+<p>Workflows, architectures and schemas are much easier to show than to describe. Rather than drawing them in a separate tool and pasting in an image, you can write them as code in the Quarto document itself, using Mermaid.</p>
 <section id="why-use-mermaid-for-data-science" class="level3" data-number="9.4.1">
 <h3 data-number="9.4.1" class="anchored" data-anchor-id="why-use-mermaid-for-data-science"><span class="header-section-number">9.4.1</span> Why Use Mermaid for Data Science?</h3>
-<p>Code-based diagramming offers several advantages:</p>
-<ol type="1">
-<li><strong>Reproducibility</strong>: Diagrams are defined as code and rendered during document compilation</li>
-<li><strong>Version control</strong>: Diagram definitions can be tracked in git alongside your code</li>
-<li><strong>Consistency</strong>: Apply the same styling across all diagrams in your project</li>
-<li><strong>Editability</strong>: Easily update diagrams without specialised software</li>
-<li><strong>Integration</strong>: Diagrams are rendered directly within your documents</li>
-</ol>
-<p>For data scientists, this means your entire workflow (code, analysis, explanations, and diagrams) can all be maintained in the same reproducible environment.</p>
+<p>A diagram drawn in a drawing tool becomes a PNG somebody has to find, open, edit, re-export and re-insert. Six months later the original file is on a laptop that’s been replaced and the diagram is quietly wrong. A Mermaid diagram is a few lines of text in the document itself: it diffs in Git, it renders when the document renders, and correcting it means editing a line.</p>
 </section>
 <section id="creating-mermaid-diagrams-in-quarto" class="level3" data-number="9.4.2">
 <h3 data-number="9.4.2" class="anchored" data-anchor-id="creating-mermaid-diagrams-in-quarto"><span class="header-section-number">9.4.2</span> Creating Mermaid Diagrams in Quarto</h3>
@@ -1006,19 +990,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="best-practices-for-diagrams-in-data-science" class="level3" data-number="9.4.6">
 <h3 data-number="9.4.6" class="anchored" data-anchor-id="best-practices-for-diagrams-in-data-science"><span class="header-section-number">9.4.6</span> Best Practices for Diagrams in Data Science</h3>
-<ol type="1">
-<li><strong>Keep it simple</strong>: Focus on clarity over complexity</li>
-<li><strong>Maintain consistency</strong>: Use similar styles and conventions across diagrams</li>
-<li><strong>Align with text</strong>: Ensure your diagrams complement your written explanations</li>
-<li><strong>Consider the audience</strong>: Technical diagrams for peers, simplified ones for stakeholders</li>
-<li><strong>Update diagrams with code</strong>: Treat diagrams as living documents that evolve with your project</li>
-</ol>
-<p>A diagram should carry weight the prose would otherwise have to. If it needs its own explanation, it isn’t earning its place.</p>
+<p>A diagram should carry weight the prose would otherwise have to. The test is whether removing it would cost the reader anything — if the surrounding paragraphs already say the same thing, you have decoration.</p>
+<p>The examples above each have a sentence underneath explaining what they show, which is a teaching device for readers meeting Mermaid syntax for the first time. In your own documents, don’t. If a diagram needs a paragraph telling the reader how to read it, simplify the diagram.</p>
+<p>Beyond that: keep one diagram to one idea, use the same shapes and direction across a project so readers aren’t relearning your conventions each time, and edit the diagram in the same commit as the code it describes.</p>
 </section>
 </section>
 <section id="conclusion" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">9.5</span> Conclusion</h2>
-<p>Visualisation is the layer where your analysis meets its audience. The libraries covered here (matplotlib, seaborn, plotly, ggplot2) are the workhorses of static and lightly-interactive charts you embed in reports. Mermaid handles the architecture and workflow diagrams that explain <em>how</em> your system fits together rather than <em>what</em> the data looks like.</p>
+<p>The libraries covered here — matplotlib, seaborn, plotly, ggplot2 — are the workhorses for the static and lightly-interactive charts you embed in reports. Mermaid handles the architecture and workflow diagrams that explain how your system fits together rather than what the data looks like.</p>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>A plotting library installed and working in each language you use — matplotlib or plotly for Python, ggplot2 for R</li>
