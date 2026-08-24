@@ -6,18 +6,7 @@ description: >-
 
 ## Setting Up Python
 
-Python has become a cornerstone language in data science due to its readability, extensive libraries, and versatile applications. Let's set up a proper Python environment.
-
-### Why Python for Data Science?
-
-Python offers several advantages for data science:
-
-1. Rich ecosystem of specialised libraries (NumPy, pandas, scikit-learn, etc.)
-2. Readable syntax that makes complex analyses more accessible
-3. Strong community support and documentation
-4. Integration with various data sources and visualisation tools
-
-Python consistently ranks among the top programming languages for data science and is widely used across the industry.
+Python is the language most of the infrastructure in this book is written in and expects. NumPy, pandas and scikit-learn cover the numerical and modelling work; almost everything else — web frameworks, cloud SDKs, orchestration tools — has a Python client whether or not it has an R one. That reach is the practical argument for it, more than anything about the language itself.
 
 ### Installing Python
 
@@ -71,7 +60,7 @@ Install into that, not into `base`.
 
 ### Using Jupyter Notebooks
 
-Jupyter notebooks provide an interactive environment for Python development, popular in data science for combining code, visualisations, and narrative text. They're like digital lab notebooks where you can document your analysis process along with the code and results.
+A Jupyter notebook interleaves code, its output, and your prose in one document — a lab notebook you can re-run. It's where most exploratory Python work happens.
 
 Miniforge is deliberately minimal, so Jupyter is not installed yet. Create an environment for working through this book and install what the next few chapters need:
 
@@ -123,7 +112,7 @@ If you see a plot and the success message, your Python setup is working.
 
 ### Installing Additional Packages
 
-As your data science journey progresses, you'll need additional packages. Use either:
+You'll need more packages as you go. Two ways to install them:
 
 ```bash
 # Using conda (preferred when available)
@@ -133,22 +122,11 @@ conda install package_name
 pip install package_name
 ```
 
-Conda is often preferred for data science packages because it handles complex dependencies better, especially for packages with C/C++ components. This is particularly important for libraries that have parts written in lower-level programming languages to make them run faster.
+Prefer conda where the package has compiled C or C++ underneath it — which covers most of the numerical stack. Conda ships prebuilt binaries and resolves the system libraries they depend on; pip is more likely to try compiling on your machine and fail for want of a toolchain.
 
 ## Setting Up R
 
-R is a language and environment designed specifically for statistical computing and graphics. Many statisticians and data scientists prefer it for statistical analysis and visualisation.
-
-### Why R for Data Science?
-
-R offers several advantages:
-
-1. Built specifically for statistical analysis
-2. Strong data visualisation through ggplot2
-3. A rich ecosystem of packages for specialised statistical methods
-4. Strong in reproducible research through R Markdown
-
-R has thousands of packages available on CRAN for various statistical and data analysis tasks, with active development from the statistics and research communities.
+R was built for statistical computing rather than adapted to it, and it shows in small places: model objects that print something useful without being asked, missing values handled as a first-class idea, and CRAN packages written by the statisticians who developed the methods in them. The "Python or R?" section at the end of this chapter goes into when to reach for which.
 
 ### Installing R
 
@@ -187,13 +165,12 @@ RStudio also prints the same information unprompted at the start of every new se
 
 Your version number and codename will differ — R releases a new minor version each April and patches through the year. The `ucrt` and `Platform` lines only appear on Windows.
 
-### Essential R Packages for Data Science
+### The R Packages to Start With
 
-Let's install some core packages that you'll likely need:
+Five packages cover most of what the rest of this book does in R:
 
 ```{r}
 #| eval: false
-# Install essential packages
 install.packages(c("tidyverse", "rmarkdown", "shiny", "knitr", "plotly"))
 ```
 
@@ -205,11 +182,11 @@ This installs:
 - **knitr**: For dynamic report generation
 - **plotly**: For interactive visualisations
 
-These packages are like specialised toolkits that expand what you can do with R. The tidyverse, for example, makes data manipulation much more intuitive than it would be using just base R.
+The tidyverse is the one to learn first. It replaces most of base R's data manipulation with a consistent set of verbs, and the other four assume you have it.
 
 ### Creating Your First R Script
 
-Let's verify our setup with a simple R script:
+Verify the setup with a short script:
 
 1. In RStudio, go to File → New File → R Script
 2. Enter the following code:

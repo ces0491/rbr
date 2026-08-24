@@ -8,18 +8,7 @@ description: >-
 
 An Integrated Development Environment (IDE) combines the tools needed for software development into a single application: code editing, debugging, execution, and project management in one place, so you aren't switching between four programs to run one script.
 
-### Why IDEs Matter for Data Science
-
-IDEs help data scientists by:
-
-1. Providing syntax highlighting and code completion
-2. Catching errors before execution
-3. Offering integrated documentation
-4. Simplifying project organisation and version control
-
-Most professional developers work in a specialised IDE. The features above are why.
-
-Think of an IDE as a fully equipped workshop rather than just having a single tool. It has everything arranged conveniently in one place.
+The practical difference from a plain text editor is that an IDE knows what your code means. It completes function names, tells you a package isn't installed before you run anything, opens documentation without a browser, and puts a terminal and a Git panel next to the file you're editing. On a bad day that's the difference between finding a typo in a second and finding it in a stack trace.
 
 We've already installed RStudio for R development. Now let's look at options for Python and SQL.
 
@@ -33,7 +22,7 @@ Visual Studio Code (VS Code) is a free, open-source editor that supports multipl
 2. Download the appropriate version for your operating system
 3. Run the installer and follow the prompts
 
-#### Essential VS Code Extensions for Data Science
+#### VS Code Extensions Worth Installing
 
 After installing VS Code, add these extensions by clicking on the Extensions icon in the sidebar (or pressing Ctrl+Shift+X):
 
@@ -45,7 +34,7 @@ After installing VS Code, add these extensions by clicking on the Extensions ico
 - **GitLens**: Enhanced Git capabilities
 - **GitHub Copilot** or **Claude Code**: LLM-assisted code completion and chat, both available as VS Code extensions. Copilot has a free tier for individuals with a monthly completion allowance; Claude Code requires a paid Claude subscription or API credits. The [Utility Tools](utility_tools.qmd) appendix compares the options and the habits worth adopting with them.
 
-Extensions in VS Code are like add-ons or plugins that enhance its functionality for specific tasks or languages, similar to how you might install apps on your phone to give it new capabilities.
+Extensions are how VS Code learns a language. Without the Python extension it will happily open a `.py` file and understand nothing about it.
 
 #### Configuring VS Code for Python
 
@@ -54,7 +43,7 @@ Extensions in VS Code are like add-ons or plugins that enhance its functionality
 3. Type "Python: Select Interpreter" and select it
 4. Choose your conda environment (e.g., datasci)
 
-This step tells VS Code which Python installation to use when running your code. It's like telling a multilingual person which language to speak when communicating with you.
+This tells VS Code which Python installation to run your code with. Get it wrong and you'll be told a package isn't installed when you can see that it is — [Reproducible Environments](environments.qmd) covers why.
 
 ### PyCharm Community Edition
 
@@ -81,12 +70,12 @@ PyCharm is an IDE built specifically for Python, with data science support to ma
     If you installed Anaconda rather than Miniforge, substitute `anaconda3` for `miniforge3`. When in doubt, activate the environment and run `python -c "import sys; print(sys.executable)"` — that prints the exact path PyCharm wants.
 
 :::{.callout-note}
-Note: In file paths, forward slashes (/) are primarily used in Unix-like systems like Linux and macOS, while backslashes (\\) are commonly used in Windows.
+In file paths, forward slashes (/) are used on Linux and macOS, backslashes (\\) on Windows. Python accepts forward slashes on all three, which is the simplest way to sidestep the problem.
 :::
 
 ### Working with Jupyter Notebooks
 
-While we already mentioned Jupyter notebooks in the Python section, they deserve more attention as a popular IDE-like interface for data science.
+Notebooks came up in [Python and R](languages.qmd) as a place to write Python. They are also an editor in their own right, and JupyterLab is the version worth using.
 
 #### JupyterLab: The Next Generation of Jupyter
 
@@ -101,42 +90,28 @@ conda install -c conda-forge jupyterlab
 jupyter lab
 ```
 
-JupyterLab provides a more IDE-like experience than classic Jupyter notebooks, with the ability to open multiple notebooks, view data frames, and edit other file types in a single interface. It's the difference between a handful of separate tools and one workbench.
+JupyterLab gives you several notebooks open at once, a file browser, a terminal, and a data frame viewer, all in one browser tab. Classic Notebook gives you one document.
 
 ### Choosing the Right IDE
 
-Each IDE has strengths and weaknesses:
+| Reach for | When |
+|---|---|
+| **VS Code** | The default. One project mixing Python, R, SQL and notebooks, and you want Git in the same window |
+| **RStudio** | R work, especially anything involving renv, Shiny, or knitting a document |
+| **JupyterLab** | Exploration, where you want output under each cell and don't yet know what the script will be |
+| **PyCharm** | A Python codebase large enough that refactoring and type inference start paying for themselves |
 
-- **VS Code**: Versatile, lightweight, supports multiple languages
-- **PyCharm**: Deep Python-specific tooling — refactoring, type inference, an integrated debugger — which pays off most on large projects
-- **RStudio**: Optimised for R development
-- **JupyterLab**: Suited to exploratory data analysis and sharing results
-
-Many data scientists use multiple IDEs depending on the task. For example, you might use:
-
-- JupyterLab for exploration and visualisation
-- VS Code for script development and Git integration
-- RStudio for statistical analysis and report generation
-
-Choose the tools that best fit your workflow and preferences. It's perfectly fine to start with one and add others as you grow more comfortable.
+Most people end up with two: one for exploring and one for writing the code that survives. Start with whichever matches the language you use most, and add the second when you notice you want it.
 
 ## Version Control with Git and GitHub
 
 Version control is a system that records changes to files over time, allowing you to recall specific versions later. Git is the most widely used version control system, and GitHub is a popular platform for hosting Git repositories.
 
-### Why Version Control for Data Science?
+Think of Git as a time machine for your code. It saves snapshots of your project at chosen points and lets you go back to any of them.
 
-Version control is essential for data science because it:
+For analytical work that buys you three things. You can change something without first copying the file to `analysis_v2_final_FINAL.R`, because the old version is recoverable. You can point at the exact state of the code that produced a number, months after you wrote it. And you can hand the project to someone else, or work on it alongside them, without either of you overwriting the other's afternoon.
 
-1. Tracks changes to code and documentation
-2. Facilitates collaboration with others
-3. Provides a backup of your work
-4. Documents the evolution of your analysis
-5. Enables reproducibility by capturing the state of code at specific points
-
-Proper version control is essential for reproducibility and collaboration in data science work.
-
-Think of Git as a time machine for your code. It allows you to save snapshots of your project at different points in time and revisit or restore those snapshots if needed.
+The rest of the chapter is mechanics. If Git is new to you, the four commands in [Git for Analysts](#git-for-analysts-what-actually-matters) near the end are the ones to learn first.
 
 ### Installing Git
 
@@ -180,11 +155,11 @@ GitHub provides free hosting for Git repositories, making it easy to share code 
 2. Click "Sign up" and follow the instructions
 3. Verify your email address
 
-GitHub is to Git what social media is to your photos — a place to share your work with others and collaborate on projects.
+Git runs on your machine and GitHub is where a copy lives that other people — and other machines — can reach. You can use Git without GitHub; you'd have no backup and no way to collaborate.
 
 ### Setting Up SSH Authentication for GitHub
 
-Using SSH keys makes it more secure and convenient to interact with GitHub:
+SSH keys let you push and pull without typing a password each time, and without a token sitting in a file somewhere:
 
 #### Generating SSH Keys
 
@@ -229,7 +204,7 @@ SSH keys are like a special lock and key system. Instead of typing your password
 
 ### Basic Git Workflow
 
-Let's create a repository and learn the essential Git commands:
+Create a repository and run through the core commands:
 
 ```bash
 # Create a new directory
@@ -412,7 +387,7 @@ GitHub facilitates collaboration through pull requests:
 
 Pull requests allow project maintainers to review your changes before incorporating them. It's like submitting a draft for review before it gets published.
 
-The "fork and pull request" workflow is used by nearly all open-source projects, from small libraries to major platforms like TensorFlow and pandas. It's considered a best practice for collaborative development.
+Forking is how you contribute to a repository you don't have write access to, which covers most open-source projects. Within a team you usually have write access, so you skip the fork and push a branch to the shared repository directly.
 
 ## Git for Analysts: What Actually Matters
 

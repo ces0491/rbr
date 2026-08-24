@@ -21,7 +21,7 @@ Two things need to happen, and it's worth separating them because different tool
 1. **Isolation** — each project gets its own set of packages, so installing something for project A can't break project B.
 2. **Recording** — the exact contents of that set are written to a file, committed alongside the code, and can be reconstructed later or elsewhere.
 
-Isolation on its own protects you from today's conflicts but not from next year's. Recording on its own just documents a mess. You want both.
+You need both. Isolation alone protects you from today's conflicts and not from next year's, and a record of an environment you never isolated just documents a mess.
 
 ## Choosing a Tool
 
@@ -208,7 +208,7 @@ A **loose requirement** says "pandas". A **pinned requirement** says "pandas 3.0
 
 `requirements.txt` from `pip freeze` sits in the middle: it pins direct and transitive dependencies to versions, but not to checksums, and it doesn't distinguish between what you asked for and what came along. `renv.lock`, `uv.lock`, and `pixi.lock` are true lockfiles.
 
-For most analysis work, a pinned `requirements.txt` is enough. For anything whose result someone will act on months later, prefer a real lockfile. The difference shows up exactly when you need it most.
+For most analysis work, a pinned `requirements.txt` is enough. Prefer a real lockfile for anything whose result someone will act on months later.
 
 ## What Goes in Git
 
@@ -218,7 +218,7 @@ For most analysis work, a pinned `requirements.txt` is enough. For anything whos
 | `.python-version` | `renv/library/` |
 | `pyproject.toml` | `__pycache__/`, `.Rhistory`, `.RData` |
 
-The rule underneath: commit the *description* of the environment, and never the environment itself.
+The rule underneath is that you commit the description of the environment, never the environment itself.
 
 ## Making It a Habit
 

@@ -6,21 +6,17 @@ description: >-
 
 ## Understanding the Command Line
 
-Before starting with specific data science tools, we need to understand one of the most fundamental interfaces in computing: the command line. Many data science tools are best installed, configured, and sometimes even used through this text-based interface. Further, when we later discuss Integrated Development Environments (IDEs) such as Visual Studio Code, RStudio, and many others, you'll find that they provide dedicated functionality to allow you to interact directly with the command line, so understanding its purpose is globally useful across workflows.
+Most of the tools in this book are installed, configured, and often driven from the command line. The editors in [Editors and Version Control](ide_git.qmd) each embed a terminal for the same reason. An afternoon here saves you guessing later.
 
 ### What Is the Command Line?
 
-The command line (also called terminal, shell, or console) is a text-based interface where you type commands for the computer to execute. While graphical user interfaces (GUIs) let you point and click, the command line gives you more precise control through text commands.
+The command line (also called terminal, shell, or console) is a text-based interface where you type commands for the computer to execute. Graphical interfaces let you point and click; the command line gives you more precise control through text commands.
 
-Why use the command line when we have modern GUIs?
+Why bother, when we have modern GUIs?
 
-1. **Many data science tools are designed to be used this way**: Tools like Git, Docker, and many Python and R package management utilities primarily use command-line interfaces.
+Partly because you have no choice. Git, Docker, `pip`, `conda` and `uv` are command-line tools first, and their graphical wrappers cover a fraction of what they do — `pip` alone takes dozens of options for handling dependencies, versions, and install locations that no graphical installer exposes.
 
-2. **It allows for reproducibility through scripts**: Command-line operations can be saved in script files and run again later, ensuring that the exact same steps are followed each time. This reproducibility is essential for reliable data analysis.
-
-3. **It often provides more flexibility and power**: Command-line tools typically offer more options and configurations than their graphical counterparts. For example, when installing Python packages, the command-line tool `pip` offers dozens of options to handle dependencies, versions, and installation locations that aren't available in most graphical installers.
-
-4. **It's faster for many operations once you learn the commands**: After becoming familiar with the commands, many operations can be performed more quickly than navigating through multiple screens in a GUI. For instance, you can install multiple Python packages with a single command line rather than clicking through installation wizards for each one.
+The better reason is that a command can be written down. Anything you type here can be saved in a script and run again next month, on someone else's machine, in exactly the same order. A sequence of clicks leaves no such record, which is why so much of the reproducibility material later in this book assumes a terminal. Speed comes along as a side effect: installing five packages is one line rather than five wizards.
 
 ### Getting Started with the Command Line
 
@@ -30,9 +26,9 @@ Windows offers several options for command line interfaces:
 
 1. **Command Prompt**: Built into Windows, but limited in functionality
 2. **PowerShell**: A more capable alternative, also built in, and the default in Windows Terminal
-3. **Windows Subsystem for Linux (WSL)**: Provides a Linux environment within Windows (recommended)
+3. **Windows Subsystem for Linux (WSL)**: A full Linux environment running inside Windows
 
-To install WSL, open PowerShell as administrator and run:
+Start with PowerShell, which is already there. Git Bash, installed with Git in [Editors and Version Control](ide_git.qmd), is the one to use when you're following a tutorial written for macOS or Linux — see the note at the end of this chapter. WSL is the heavier option, worth installing when you want a genuine Linux environment rather than a Unix-style shell. To install it, open PowerShell as administrator and run:
 
 ```powershell
 wsl --install
@@ -51,9 +47,9 @@ The Terminal application comes pre-installed:
 
 Most Linux distributions come with a terminal emulator. Look for "Terminal" in your applications menu.
 
-### Essential Command Line Operations
+### The Commands Worth Knowing
 
-Let's practise some basic commands. Open your terminal and try these:
+Open your terminal and try these:
 
 #### Navigating the File System
 
@@ -64,7 +60,7 @@ pwd
 # List files and directories
 ls
 
-# Change directory [to Documents]
+# Change directory - move into Documents
 cd Documents
 
 # Go up one directory level (like clicking the back button in your browser)
@@ -82,11 +78,11 @@ rmdir directory_name
 
 `rmdir` refusing to delete a non-empty directory is the first surprise most people hit. The command that removes a directory and everything in it is `rm -r directory_name`, and it deletes without confirmation and without a recycle bin — there is no undo. Read that line twice before you press Enter, particularly if you're about to type `rm -rf`.
 
-These commands form the foundation of file navigation and manipulation. As you work with data science tools, you'll find yourself using them frequently.
+Those cover most of what you'll do in a terminal day to day.
 
 #### Creating and Editing Files
 
-While you can create files through the command line, it's often easier to use a text editor. However, it's good to know these commands:
+You'll usually reach for an editor instead, but three commands are worth recognising:
 
 ```bash
 # Create an empty file
@@ -99,7 +95,7 @@ cat filename.txt
 vim filename.txt
 ```
 
-Think of these commands as ways to create and look at the contents of notes or documents on your computer, all without opening a word processor or text editor application.
+`touch` makes an empty file, `cat` prints one to the screen, and `vim` edits one in place. `vim` is worth knowing only because it is what a server drops you into when something needs editing and nothing else is installed.
 
 ### Package Managers
 
@@ -156,7 +152,7 @@ ls | grep ".csv"
 cat data.csv | wc -l
 ```
 
-Each program does one job and knows nothing about the others. This composability is most of why the command line survives.
+Each program does one job and knows nothing about the others, which is why small tools you can chain have outlasted most of the large ones.
 
 **Environment variables hold settings the shell passes to programs.** These are named values that live in your shell session, and any program you launch can read them. `PATH` — the list of directories searched when you type a command name — is one you have already met:
 
@@ -198,6 +194,6 @@ PowerShell has one more trap worth knowing now: `&&` and `||` don't work in Wind
 - Install software with your platform's package manager
 - Recognise `>`, `|`, and `$VARIABLE` when a later chapter uses them without explanation
 
-None of this needs to be memorised. `cd`, `ls`, and `pwd` will become automatic within a week of use; everything else you can look up. What matters is that a terminal window no longer feels like a place where you might break something.
+None of this needs to be memorised. `cd`, `ls`, and `pwd` become automatic within a week of use, and the rest you can look up. You mainly want to reach the point where a terminal window stops feeling like somewhere you might break something.
 
 The next chapter installs the languages themselves.

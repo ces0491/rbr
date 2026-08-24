@@ -36,9 +36,7 @@ The `sample.db` SQLite database is the one exception — you create that yoursel
 
 ### Installing SQLite
 
-SQLite is a lightweight, file-based database that requires no server setup, making it perfect for learning.
-
-Think of SQLite as a simple filing cabinet for your data that you can easily carry around, unlike larger database systems that require dedicated servers.
+SQLite is a whole database in a single file, with no server to install or keep running. That makes it the easiest place to learn SQL, and a reasonable choice for real work whenever one program at a time is doing the writing.
 
 #### On Windows
 
@@ -113,7 +111,7 @@ SELECT * FROM people;
 
 Note the comment syntax. SQL uses `--`, not the `#` that shells use; paste a `#` comment at the `sqlite>` prompt and you'll get a syntax error.
 
-This creates a spreadsheet-like table inside a file, adds some rows, and views them.
+That creates a table inside `sample.db`, adds three rows, and reads them back.
 
 ### SQL GUIs for Easier Database Management
 
@@ -128,7 +126,7 @@ This free, open-source tool provides a user-friendly interface for SQLite databa
 3. Install and open it
 4. Open the sample.db file you created earlier
 
-DB Browser for SQLite acts like a spreadsheet program for your database, making it easier to view and edit data without typing SQL commands.
+It gives you a spreadsheet-like view of the tables, which is the quickest way to see what's in a database someone hands you.
 
 #### Using SQL from Python and R
 
@@ -187,7 +185,7 @@ print(df)
 dbDisconnect(conn)
 ```
 
-This interoperability between SQL, Python, and R is a fundamental skill for data scientists, allowing you to leverage the strengths of each tool. You can store data in a database, query it with SQL, then analyse it with Python or R — all within the same workflow.
+Both languages talk to the same file. You can store data in a database, filter and aggregate it in SQL where that's the clearer way to say it, and pull the result into pandas or a data frame for the modelling.
 
 ## File Formats: Stop Using CSV for Everything
 

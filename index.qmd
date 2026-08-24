@@ -10,7 +10,7 @@ Welcome to "Ready Before Run(): A Practical Guide to Gear Up for Data Science." 
 
 If you've found this resource, you likely already possess strong analytical skills from your domain. What you may lack is familiarity with the technical infrastructure that supports modern data science work. A chef needs a working kitchen before cooking anything; data scientists need configured tools before they can turn data into insight.
 
-This guide will walk you through setting up the essential components of a data science environment — from programming languages and version control to visualisation tools and cloud platforms. By the end of it you'll have a working technical foundation, and your infrastructure will stop competing with your ideas for attention.
+This guide walks you through setting up a data science environment — programming languages, version control, visualisation tools, cloud platforms. By the end of it you'll have a working technical foundation, and your infrastructure will stop competing with your ideas for attention.
 
 # Preface
 
@@ -18,7 +18,7 @@ The embers to write this book began to glow in a pre-AI era — an age when the 
 
 This book grew out of my experience as an analyst, and the recognition that many people who need advanced data processing are held up by the technical infrastructure rather than by the analytical concepts. While there are countless resources teaching statistical methods, machine learning algorithms, and data manipulation techniques, relatively few focus on the foundation setup that makes this work possible.
 
-"Ready Before Run()" fills this gap by providing clear, practical guidance for establishing your data science workspace. Rather than diving immediately into coding, we'll first ensure you have the proper environment configured — allowing you to build technical confidence before tackling analytical challenges.
+"Ready Before Run()" is my attempt at filling that gap: practical guidance for getting a data science workspace standing. We sort the environment out first, so you have somewhere solid to work from before you take on anything analytical.
 
 The book is structured as a step-by-step guide, beginning with basic command line operations and progressing through programming language setup, version control, visualisation tools, and more advanced topics like containerisation and cloud computing. While each chapter builds on the previous one, they are written to be referenced independently if needed.
 

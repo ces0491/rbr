@@ -6,18 +6,9 @@ description: >-
 
 ## Why Visualisation Matters in Data Science
 
-Effective visualisation is crucial for data science: it helps you communicate findings and enables pattern discovery. A well-designed chart can convey relationships instantly that would take paragraphs to explain in words. The reporting chapter covered the *document* that wraps your analysis; this chapter covers the charts and diagrams that go inside it.
+A chart works because it hands the reader a shape to recognise instead of a column of numbers to compare one pair at a time. That applies as much when the reader is you — most outliers and most data-entry mistakes are found by plotting the column, not by summarising it — as when it's a stakeholder who will act on the result.
 
-Data visualisation serves multiple purposes in the data science workflow:
-
-1. **Exploratory Data Analysis (EDA)**: Discovering patterns, outliers, and relationships
-2. **Communication**: Sharing insights with stakeholders
-3. **Decision Support**: Helping decision-makers understand complex data
-4. **Monitoring**: Tracking metrics and performance over time
-
-A chart works because it hands the reader a shape to recognise instead of a column of numbers to compare one pair at a time. A good one earns its place by saving the reader that effort.
-
-This chapter focuses on three practical categories:
+The reporting chapter covered the *document* that wraps your analysis. This chapter covers the charts and diagrams that go inside it, in three categories:
 
 - **Python visualisation libraries**: matplotlib, seaborn, plotly
 - **R visualisation libraries**: ggplot2 and interactive wrappers
@@ -62,7 +53,7 @@ plt.savefig('sine_wave.png', dpi=300, bbox_inches='tight')
 plt.show()
 ```
 
-Matplotlib provides a blank canvas approach where you explicitly define every element. This gives you complete control but requires more code for complex visualisations. It's the right tool when you need exact control over every line, tick, and label, for example when preparing a figure for a journal submission.
+Matplotlib hands you a blank canvas and expects you to place every element yourself. That's more code than the alternatives for an ordinary chart, and the right trade when you need exact control over every line, tick and label — a figure for journal submission, say, where the specification is fixed.
 
 ### Seaborn: Statistical Visualisation
 
@@ -90,7 +81,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-Seaborn simplifies the creation of statistical visualisations like box plots, violin plots, and regression plots. It also comes with built-in themes that improve the default appearance of plots. Reach for Seaborn when the chart you want is a standard statistical view of a pandas DataFrame: it will usually be a single function call, where the equivalent matplotlib code would be a dozen lines.
+Reach for Seaborn when the chart you want is a standard statistical view of a pandas DataFrame — box plot, violin plot, regression fit. It's usually one function call where the matplotlib equivalent is a dozen lines, and its defaults look presentable without adjustment.
 
 ### Plotly: Interactive Visualisations
 
@@ -123,7 +114,7 @@ fig.update_layout(
 fig.show()
 ```
 
-Plotly's interactive features include zooming, panning, hovering for details, and the ability to export plots as images. These features make exploration more intuitive and presentations more engaging. Plotly is available in both Python and R, so you can use the same underlying library across languages.
+Zoom, pan and hover-for-detail come free, which matters when a reader wants to interrogate a chart rather than just look at it. Plotly exists in both Python and R with much the same API, so it's the one library here you don't have to learn twice.
 
 ### Choosing Between Python Libraries
 
@@ -137,7 +128,7 @@ You'll usually end up with all three in your toolkit: seaborn for quick EDA, plo
 
 ## R Visualisation Libraries
 
-R has its own visualisation ecosystem, with ggplot2 the most widely used library by a wide margin.
+R's visualisation ecosystem is built around ggplot2, which is what the tidyverse, most textbooks, and most Stack Overflow answers assume.
 
 ### ggplot2: Grammar of Graphics
 
@@ -183,7 +174,7 @@ print(p)
 ggsave("diamond_price_carat.png", p, width = 10, height = 6, dpi = 300)
 ```
 
-The philosophy behind ggplot2 is that you build a visualisation layer by layer, which corresponds to how we think about visualisations conceptually. First, you define your data and aesthetic mappings (which variables map to which visual properties), then add geometric objects (points, lines, bars), then statistical transformations, scales, coordinate systems, and finally visual themes. This layered approach makes it possible to create complex visualisations by combining simple, understandable components.
+You build a ggplot2 chart in layers, joined with `+`. First the data and the aesthetic mappings — which variable becomes the x position, which becomes the colour — then geometric objects to draw them with, then any statistical transformation, scales, coordinate system and theme. Each layer is simple on its own, and a complicated chart is a longer stack of them rather than a different kind of code.
 
 ### Interactive R Visualisations
 
@@ -245,23 +236,15 @@ The R version of plotly can convert ggplot2 visualisations to interactive versio
 ggplotly(p)
 ```
 
-Turning a static ggplot2 chart into an interactive one with a single function call means you can develop in familiar ggplot2 syntax and add interactivity at the end. That matters most when the same analysis has to ship as both a PDF and a web page: build the chart once, render it static for the PDF and interactive for the HTML.
+Because `ggplotly()` takes a finished ggplot, you can build the chart once in syntax you already know and decide about interactivity afterwards. That's the escape hatch when the same analysis has to ship as both a PDF and a web page.
 
 ## Code-Based Diagramming with Mermaid
 
-Diagrams are essential for data science documentation, helping to explain workflows, architectures, and relationships. Rather than creating images with external tools, you can write diagrams as code directly in your Quarto documents using Mermaid.
+Workflows, architectures and schemas are much easier to show than to describe. Rather than drawing them in a separate tool and pasting in an image, you can write them as code in the Quarto document itself, using Mermaid.
 
 ### Why Use Mermaid for Data Science?
 
-Code-based diagramming offers several advantages:
-
-1. **Reproducibility**: Diagrams are defined as code and rendered during document compilation
-2. **Version control**: Diagram definitions can be tracked in git alongside your code
-3. **Consistency**: Apply the same styling across all diagrams in your project
-4. **Editability**: Easily update diagrams without specialised software
-5. **Integration**: Diagrams are rendered directly within your documents
-
-For data scientists, this means your entire workflow (code, analysis, explanations, and diagrams) can all be maintained in the same reproducible environment.
+A diagram drawn in a drawing tool becomes a PNG somebody has to find, open, edit, re-export and re-insert. Six months later the original file is on a laptop that's been replaced and the diagram is quietly wrong. A Mermaid diagram is a few lines of text in the document itself: it diffs in Git, it renders when the document renders, and correcting it means editing a line.
 
 ### Creating Mermaid Diagrams in Quarto
 
@@ -484,17 +467,15 @@ The diagram above was generated by that code when this book was rendered — cha
 
 ### Best Practices for Diagrams in Data Science
 
-1. **Keep it simple**: Focus on clarity over complexity
-2. **Maintain consistency**: Use similar styles and conventions across diagrams
-3. **Align with text**: Ensure your diagrams complement your written explanations
-4. **Consider the audience**: Technical diagrams for peers, simplified ones for stakeholders
-5. **Update diagrams with code**: Treat diagrams as living documents that evolve with your project
+A diagram should carry weight the prose would otherwise have to. The test is whether removing it would cost the reader anything — if the surrounding paragraphs already say the same thing, you have decoration.
 
-A diagram should carry weight the prose would otherwise have to. If it needs its own explanation, it isn't earning its place.
+The examples above each have a sentence underneath explaining what they show, which is a teaching device for readers meeting Mermaid syntax for the first time. In your own documents, don't. If a diagram needs a paragraph telling the reader how to read it, simplify the diagram.
+
+Beyond that: keep one diagram to one idea, use the same shapes and direction across a project so readers aren't relearning your conventions each time, and edit the diagram in the same commit as the code it describes.
 
 ## Conclusion
 
-Visualisation is the layer where your analysis meets its audience. The libraries covered here (matplotlib, seaborn, plotly, ggplot2) are the workhorses of static and lightly-interactive charts you embed in reports. Mermaid handles the architecture and workflow diagrams that explain *how* your system fits together rather than *what* the data looks like.
+The libraries covered here — matplotlib, seaborn, plotly, ggplot2 — are the workhorses for the static and lightly-interactive charts you embed in reports. Mermaid handles the architecture and workflow diagrams that explain how your system fits together rather than what the data looks like.
 
 **By the end of this chapter you should have:**
 

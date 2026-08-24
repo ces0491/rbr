@@ -43,14 +43,9 @@ project_name/
 └── README.md               # Project description
 ```
 
-This structure separates raw data (which should never be modified) from processed data and keeps code organised by purpose. It also makes it clear where to find notebooks for exploration versus production-ready code.
+The separation that matters most is `data/raw/` from everything else. Raw data is treated as read-only: every other dataset in the project is reproducible by re-running code, and that one isn't.
 
-Organising your projects this way provides several benefits:
-
-1. Clear separation of concerns between data, code, and outputs
-2. Easier collaboration as team members know where to find things
-3. Better reproducibility through clearly defined workflows
-4. Simpler maintenance as the project grows
+The payoff is that someone opening the project — including you in a year — can guess where things are without asking. `data/raw/` is never written to, so the original is always recoverable; `notebooks/` is where exploration happens and `project_name/` is where code that has to keep working lives.
 
 #### Making Your Code Importable
 
@@ -127,12 +122,7 @@ Remove the `data/` lines from your `.gitignore` when you adopt DVC and let DVC m
 
 The two-file result is the whole mechanism. `large_dataset.csv.dvc` is a few lines of YAML containing a hash of the data, and it lives in Git like any other source file; the multi-gigabyte CSV lives in S3. A colleague clones the repository, gets the pointer, runs `dvc pull`, and receives exactly the version of the data that matches the code they checked out. Checking out an old commit and running `dvc pull` reconstructs the data as it was then.
 
-The benefits of using DVC include:
-
-1. Tracking changes to data alongside code
-2. Reproducing exact data states for past experiments
-3. Sharing large datasets efficiently with teammates
-4. Creating pipelines that track dependencies between data processing stages
+It also builds pipelines: `dvc.yaml` records which stages depend on which files, so `dvc repro` re-runs only what a change actually affects. Much like Make, but with the data tracked too.
 
 ### Automating Workflows with Make
 
@@ -191,7 +181,7 @@ make clean
 
 Make tracks dependencies between tasks and only runs the necessary steps. For example, if you've already downloaded the data but need to rebuild features, `make features` will skip the download step.
 
-Automation tools like Make help ensure consistency and save time by eliminating repetitive manual steps. They also serve as documentation of your workflow, making it easier for others (or your future self) to understand and reproduce your analysis.
+The Makefile also ends up being the most honest documentation of a project. A README describing the steps drifts; a Makefile that stops working gets fixed, because someone needs it to run.
 
 ### Continuous Integration for Data Science
 
@@ -331,11 +321,11 @@ Don't reach for any of them early. A Makefile plus a scheduled GitHub Actions wo
 
 ## Advanced Topics and Next Steps
 
-As you grow more comfortable with the data science infrastructure we've covered, here are some advanced topics to explore:
+None of what follows is needed to work through this book. It's a map of where the road continues, for when you hit the edge of what's here.
 
 ### MLOps (Machine Learning Operations)
 
-MLOps combines DevOps practices with machine learning to streamline model deployment and maintenance:
+Once a model is making decisions on live data rather than sitting in a notebook, it needs the same operational care as any other running system, plus one problem software doesn't have — the world changes and the model doesn't notice. The tooling for that:
 
 - **Model Serving**: Tools like TensorFlow Serving, TorchServe, or MLflow for deploying models
 - **Model Monitoring**: Tracking performance and detecting drift — the gradual decay in accuracy as live data stops resembling the data the model was trained on
@@ -351,14 +341,9 @@ For processing very large datasets or training complex models:
 - **Ray**: Distributed machine learning
 - **Kubernetes**: Container orchestration for scaling
 
-### AutoML and Model Development Tools
+### AutoML and Model Interpretation
 
-These tools help automate parts of the model development process:
-
-- **AutoML**: Automated model selection and hyperparameter tuning
-- **Feature Engineering Tools**: Automated feature discovery and selection
-- **Model Interpretation**: Understanding model decisions
-- **Neural Architecture Search**: Automatically discovering optimal neural network architectures
+AutoML tools search over model families and hyperparameters for you, which is worth reaching for as a baseline — if a fortnight of your feature engineering doesn't beat what AutoML found in an hour, that's useful information about the problem. Interpretation tools (SHAP being the common one) tell you which features drove a given prediction, which you'll need the first time somebody asks why the model declined their application.
 
 ### Staying Current
 
@@ -371,7 +356,7 @@ For everything else, PyData conference talks (all on YouTube, free) and the Stac
 
 ## Conclusion
 
-The tools in this chapter share a purpose: making the second run of an analysis cheaper than the first.
+Everything in this chapter is aimed at making the second run of an analysis cheaper than the first.
 
 **By the end of this chapter you should have:**
 

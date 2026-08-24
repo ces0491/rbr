@@ -14,7 +14,7 @@ If you worked through the chapters rather than reading past them, you now have:
 
 **Shipping.** Cloud compute for the times your laptop isn't enough, with a budget alert you set before you needed it. Applications your stakeholders can open in a browser. Containers that settle "works on my machine" by letting someone else run it. Deployment that happens on push. Tests that run in CI, and a project structure the next person can navigate without asking you.
 
-None of it is the analysis. It is what makes the analysis count for something.
+None of it is the analysis. All of it is what stands between the analysis and someone being able to use it.
 
 ## The Three Ideas Underneath
 
@@ -50,12 +50,10 @@ The Preface argued that understanding this infrastructure matters more in an era
 
 An assistant will happily write you a Dockerfile, a GitHub Actions workflow, or a pandas pipeline, and it will usually be close to right. What it cannot do is tell you whether the result is correct — it cannot run your data through it and recognise that the answer is implausible. That judgement requires knowing what the pieces do, which is what you now have.
 
-The productive relationship is neither suspicion nor deference: let the machine draft, and check what it hands back. Checking is the skill that holds its value.
+Let the machine draft, and check what it hands back. Checking is the part that keeps its value.
 
 ## Ready
 
-Your environments are reproducible, your code is versioned, and the pipeline deploys when you push.
-
-That was the point. Everything from here is the actual work — the analysis you came to do, now with less between you and it.
+Your environments are reproducible, your code is versioned, and the pipeline deploys when you push. Everything from here is the analysis you came to do, with less in the way of it.
 
 Go and run something.

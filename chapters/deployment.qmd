@@ -6,50 +6,21 @@ description: >-
 
 ## Understanding Deployment for Data Science
 
-After developing your data science project, the next crucial step is deployment — making your work accessible to others. Deployment can mean different things depending on your project: publishing an analysis report (using the documentation tools from the Reporting chapter), sharing an interactive dashboard (like the Shiny and Dash applications we explored in previous chapters), or creating an API for a machine learning model.
+Deployment is getting the work somewhere other people can reach it. What that means depends on what you built: publishing an analysis report, putting a Shiny or Dash dashboard on a URL, or exposing a model at an endpoint another program can call. The platforms differ, and so does the amount of ceremony each one needs.
 
 ### Why Deployment Matters
 
-Deployment gets little attention in data science training. It matters for four reasons:
-
-1. **Impact**: Even the most insightful analysis has no impact if it remains on your computer
-2. **Collaboration**: Deployment enables others to interact with your work
-3. **Reproducibility**: A deployed project is one whose environment and dependencies you were forced to write down
-4. **Independence**: You can put work in front of stakeholders without an engineering team in between
+Deployment gets little attention in data science training, and it's where a good analysis most often stops being useful. A result on your laptop is a result nobody can act on. There's a side effect worth having, too: you cannot deploy a project without writing down what it depends on, so deploying something is the fastest way to find out your environment file was incomplete.
 
 ### Static vs. Dynamic Deployment
 
-Before selecting a deployment platform, it's important to understand the fundamental difference between static and dynamic content:
+The first question about any project is whether it needs a server running when someone visits.
 
-#### Static Content
+**Static** content is generated ahead of time and served as files — a rendered Quarto report, a documentation site, a chart that doesn't respond to input. Nothing executes when a reader opens it. That makes static hosting cheap or free, fast, and close to impossible to attack, since there's no code running for an attacker to reach.
 
-Static content doesn't change based on user input and is pre-generated:
+**Dynamic** applications run code per request: a Shiny or Dash dashboard that filters on a dropdown, a model API that returns a prediction, anything that shows a user their own data. You need this when the output depends on the input, and it costs you a running process, a bill that scales with traffic, and a surface someone could attack.
 
-- HTML reports from R Markdown, Jupyter notebooks, or Quarto
-- Documentation sites
-- Fixed visualisations and dashboards
-
-**Advantages**:
-
-- Simpler to deploy
-- More secure
-- Lower hosting costs
-- Better performance
-
-#### Dynamic Applications
-
-Dynamic applications respond to user input and may perform calculations:
-
-- Interactive Shiny or Dash dashboards
-- Machine learning model APIs
-- Data exploration tools
-
-**Advantages**:
-
-- Interactive user experience
-- Real-time calculations
-- Ability to handle user-specific data
-- More flexible functionality
+Reach for static whenever the answer is the same for every reader. Far more dashboard requests than you'd expect are satisfied by a report that rebuilds nightly.
 
 ### Deployment Requirements by Project Type
 
@@ -62,11 +33,11 @@ Different data science projects have specific deployment requirements:
 | Dashboards | High | Medium | Often dynamic | Render, Fly.io, Railway, Posit Connect Cloud |
 | ML model APIs | Low | High | May need database | Google Cloud Run, AWS App Runner, Azure Container Apps |
 
-Understanding these requirements helps you choose the most appropriate deployment strategy.
+Match the row to your project and the last column narrows the choice to two or three.
 
 ## Deployment Platforms for Data Science
 
-Let's examine the most relevant deployment options for data scientists, focusing on ease of use, cost, and suitability for different project types.
+The options below are ordered roughly by how much you need to know to use them.
 
 ### Static Site Deployment Options
 
@@ -940,21 +911,15 @@ Once your application is deployed, you need to know when it breaks:
 4. **Track errors separately**: Services like Sentry or Better Stack give you grouped stack traces and notifications when something goes wrong. Both have free tiers sized for small projects.
 5. **Set budget alerts**: On pay-per-use platforms (Cloud Run, AWS, GCP) configure a monthly budget with email alerts before you deploy anything that autoscales.
 
-### Performance Optimisation
+### Performance
 
-1. **Optimise data loading**: Load data efficiently or use databases for large datasets
-2. **Implement caching**: Cache results of expensive computations
-3. **Monitor resource usage**: Keep track of memory and CPU utilisation
-4. **Implement pagination**: For large datasets, display data in manageable chunks
-5. **Consider asynchronous processing**: Use background tasks for long-running computations
+Most slow dashboards are slow for the same reason: they reload and recompute the whole dataset on every interaction. Load the data once when the process starts, cache anything expensive that doesn't depend on user input (`@st.cache_data` in Streamlit, `shiny::bindCache()` in Shiny, `functools.lru_cache` in plain Python), and push filtering and aggregation into the database rather than pulling everything and doing it in memory.
+
+If a computation takes longer than a few seconds, it doesn't belong in a request. Precompute it on a schedule and have the app read the result.
 
 ### Documentation
 
-1. **Create a README**: Document deployment steps and dependencies
-2. **Add usage examples**: Show how to interact with your deployed application
-3. **Include contact information**: Let users know who to contact for support
-4. **Provide version information**: Display the current version of your application
-5. **Document API endpoints**: If applicable, describe available API endpoints
+A README that says how to run the thing locally, what environment variables it needs, and who to ask when it breaks. For an API, the endpoints and an example request. FastAPI generates that last part for you, which is a decent argument for it over Flask on anything you'll hand to another team.
 
 ## Troubleshooting Common Deployment Issues
 
@@ -1013,7 +978,7 @@ Once your application is deployed, you need to know when it breaks:
 
 ## Conclusion
 
-Deployment is ongoing. As projects evolve you will redeploy, read logs, and fix what breaks — which is why the platform choices in this chapter were weighted towards the ones that make redeploying cheap.
+Deployment isn't a step you finish. You'll redeploy, read logs, and fix what breaks, which is why the platforms recommended here are the ones that make redeploying cheap.
 
 **By the end of this chapter you should have:**
 

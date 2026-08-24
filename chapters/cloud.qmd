@@ -12,46 +12,25 @@ As your projects grow in size and complexity, you may need more computing power 
 
 ### Why Use Cloud Platforms?
 
-Cloud platforms offer several advantages for data science:
+The case comes down to renting rather than owning. You can have a machine with 256 GB of memory for the afternoon you need one and stop paying for it at five, instead of buying hardware that then sits idle for most of the year. The same goes for GPUs and TPUs — processors built for the parallel arithmetic that training a neural network needs, and much faster at it than an ordinary CPU — which are expensive to own and easy to rent by the hour.
 
-1. **Scalability**: Access to more storage and computing power when needed, without buying a machine
-2. **Collaboration**: Easier sharing of resources and results with team members
-3. **Specialised Hardware**: Access to GPUs and TPUs — processors designed for the kind of parallel arithmetic that training a neural network needs, and far faster at it than an ordinary CPU
-4. **Managed Services**: Pre-configured tools and infrastructure
-5. **Cost Efficiency**: Pay only for what you use
-
-The ability to scale compute resources is particularly valuable for data scientists working with large datasets or computationally intensive models. Cloud platforms let you rent a large machine for the afternoon you need it and shut it down afterwards, instead of buying hardware that sits idle most of the year.
+Two things come along with that. Storage that isn't one laptop's disk, so a dataset survives the laptop and a colleague can reach it. And managed services, where the provider runs the database or the notebook server and you don't.
 
 ### Getting Started with Google Colab
 
-Google Colab provides free access to Python notebooks with GPU and TPU acceleration, which makes it the cheapest place to start with cloud-based data science: there is nothing to pay and nothing to install.
+Colab gives you a Python notebook running on Google's machines, with optional GPU and TPU access, free. It's the cheapest place to start, since there's nothing to install and no card to enter.
 
 1. Visit [Google Colab](https://colab.research.google.com/)
 2. Sign in with your Google account
 3. Click "New Notebook" to create a new notebook
 
-Google Colab is essentially Jupyter notebooks running on Google's servers, with a few additional features. You can run Python code, create visualisations, and even access GPU and TPU accelerators for free (with usage limits).
-
-The key advantages of Colab include:
-
-- No setup required — just open your browser and start coding
-- Free access to GPUs and TPUs for accelerated machine learning
-- Easy sharing and collaboration through Google Drive
-- Pre-installed data science libraries
-- Integration with GitHub for loading and saving notebooks
+It is Jupyter with the common data science libraries already installed, a GPU behind a dropdown, and sharing that works like a Google Doc. The limits are real — sessions time out, and free GPU access is rationed when demand is high — but for learning, for a one-off training run, or for handing someone a notebook they can run without installing anything, it is hard to beat.
 
 ### Basic Cloud Storage Options
 
-Cloud storage services provide an easy way to store and share data:
+For a few gigabytes, the consumer services you already have will do: Google Drive mounts directly into Colab, OneDrive and Dropbox sync to a folder, and GitHub takes code and small reference datasets provided no single file is over 100 MB. Free allowances differ and change; check the current one rather than a figure printed anywhere, including here.
 
-1. **Google Drive**: 15GB free storage, integrates well with Colab
-2. **Microsoft OneDrive**: 5GB free storage, integrates with Office tools
-3. **Dropbox**: 2GB free storage, good for file sharing
-4. **GitHub**: Free storage for code and small datasets (files under 100MB)
-
-These services can be used to store datasets, notebooks, and results. They also facilitate collaboration, as you can easily share files with colleagues.
-
-For larger datasets or specialised needs, you'll want to look at dedicated cloud storage solutions like Amazon S3, Google Cloud Storage, or Azure Blob Storage. These services are designed for scalability and can handle terabytes or even petabytes of data.
+Past that, you want object storage built for the job — Amazon S3, Google Cloud Storage, Azure Blob Storage. These hold terabytes without complaint, are reachable from code rather than a sync folder, and charge by what you store and what you pull back out. The egress note below is the part that catches people.
 
 ### The Major Cloud Platforms
 
@@ -93,14 +72,9 @@ Each platform has its strengths, and many organisations use multiple clouds for 
 
 ### Choosing the Right Cloud Services
 
-When selecting cloud services for data science, consider these factors:
+For most readers the choice is already made: use whatever your organisation pays for, because the account, the billing, and the person who can grant you permissions all exist there already. Where you do have a choice, the deciding factor is usually which provider's documentation you can follow without getting stuck.
 
-1. **Project requirements**: Match services to your specific needs
-2. **Budget constraints**: Compare pricing models across providers
-3. **Technical expertise**: Some platforms have steeper learning curves
-4. **Integration needs**: Consider existing tools in your workflow
-5. **Security requirements**: Review compliance certifications and features
-6. **Data residency and regulation**: Where your data physically lives matters legally. Personal data about EU residents falls under GDPR; South African personal data falls under POPIA; similar laws exist in most jurisdictions. Pick a region in the right country or economic area for your data subjects, and check whether your employer or client has contractual restrictions on where data can be stored or processed. All three major clouds (AWS, GCP, Azure) have regions in both South Africa and Europe.
+One consideration overrides preference. **Where your data physically lives matters legally.** Personal data about EU residents falls under GDPR; South African personal data falls under POPIA; similar laws exist in most jurisdictions. Pick a region in the right country or economic area for your data subjects, and check whether your employer or client has contractual restrictions on where data can be stored or processed. AWS, GCP and Azure all have regions in both South Africa and Europe.
 
 Start with a small project on your chosen platform, so you learn the environment before committing a real workload to it.
 
@@ -124,7 +98,7 @@ Studio spaces and notebook instances bill by the minute they're running, not by 
 
 ### Managing Cloud Costs
 
-One of the most important aspects of using cloud platforms is managing costs effectively. A few traps catch almost every beginner:
+A handful of traps account for most surprise bills:
 
 - **Idle notebook and VM instances**: Cloud notebooks bill by wall-clock time, not usage. An instance left running overnight can cost more than a whole week of active work.
 - **Data egress**: Moving data *out* of a cloud provider (to your laptop, to another region, to another cloud) is almost always charged. Moving it *in* is usually free. Pulling a 500 GB dataset to your machine "just to look at it" is a classic expensive mistake.
@@ -132,15 +106,9 @@ One of the most important aspects of using cloud platforms is managing costs eff
 - **Storage classes**: Object storage — the kind that holds whole files you address by name, like S3, rather than rows you query — has cheap long-term tiers (S3 Glacier, GCS Coldline, Azure Archive) for data you rarely read. Use them for raw archives.
 - **Free tier expiry**: Free tiers end, and the terms change often enough that any specific figure printed in a book will be wrong before you read it. AWS restructured its offer in July 2025, replacing the old 12-month allowance with a credit-based plan for new accounts. Check the provider's current terms before assuming anything is free, and don't rely on a tutorial's description of them.
 
-Practical habits that help:
+The habits that prevent all of this are dull and short. Set a billing alert before you launch anything. Stop instances when you finish for the day, or schedule the shutdown so you don't have to remember. Delete storage, load balancers and services at the end of a project rather than leaving them running against a card. For batch work that can be interrupted and restarted, which covers most training jobs, use spot or preemptible instances — the same hardware at a steep discount.
 
-1. **Set up billing alerts**: Configure notifications when spending reaches certain thresholds
-2. **Use spot / preemptible instances**: Steep discounts for interruptible workloads such as batch training jobs
-3. **Right-size resources**: Choose appropriate instance types for your workloads
-4. **Schedule shutdowns**: Automatically stop instances when not in use
-5. **Clean up resources**: Delete unused storage, instances, load balancers, and services when the project ends
-
-For example, in AWS you can create a budget with alerts:
+In AWS, a budget with alerts takes four steps:
 
 1. Navigate to AWS Billing Dashboard
 2. Select "Budgets" from the left navigation
@@ -151,13 +119,9 @@ Do this before you launch anything, not after the first bill.
 
 ### Security Best Practices in the Cloud
 
-Data security is critical when working in cloud environments:
+Two rules carry most of the weight. Turn on multi-factor authentication for the account, because a cloud login is a login to something that can spend money. And grant the narrowest permissions that let the job run — a notebook that reads one bucket shouldn't hold credentials that can drop the account's databases.
 
-1. **Follow the principle of least privilege**: Grant only the permissions necessary
-2. **Encrypt sensitive data**: Use encryption for data at rest and in transit
-3. **Implement multi-factor authentication**: Add an extra layer of security
-4. **Use private networks**: Isolate your resources when possible
-5. **Regular security audits**: Review permissions and access regularly
+Encryption is the third, and it is mostly a matter of switching it on in the right place rather than writing any code.
 
 AWS offers three ways to encrypt what's in a bucket, distinguished by who holds the key: **SSE-S3** (AWS manages it entirely, nothing for you to do), **SSE-KMS** (a key you own in AWS's Key Management Service, so you can control and audit its use), and **SSE-C** (you supply the key on every request). In practice, the cleanest approach for most data science work is to enable **default encryption on the S3 bucket itself** with one of the first two (AWS console → Bucket → Properties → Default encryption → SSE-S3 or SSE-KMS). Once that's set, every object written to the bucket is encrypted at rest automatically, and your notebook code doesn't need to pass keys at all:
 
@@ -183,7 +147,7 @@ A few principles to notice:
 - **Let the bucket policy enforce encryption**, not the client. This avoids the trap of one script forgetting to encrypt.
 - **Avoid SSE-C** unless you have a specific compliance reason. Holding the key yourself means losing the key loses the data, permanently and with no recourse. SSE-KMS is almost always the better choice.
 
-Remember that security is a shared responsibility between you and the cloud provider. The provider secures the infrastructure, but you're responsible for securing your data and applications.
+Providers call this shared responsibility: they secure the infrastructure, you secure what you put on it. The breaches that reach the news are nearly always the second half.
 
 ### Hands-On Exercise: Your First Cloud Analysis with Google Colab
 
@@ -265,7 +229,7 @@ Colab notebooks are automatically saved to your Google Drive. You can also:
 - Save to GitHub: File → Save a copy in GitHub
 - Share with collaborators: Click the Share button in the top right
 
-This exercise demonstrates the core workflow of cloud-based data science: loading data, performing analysis, creating visualisations, and optionally leveraging specialised hardware — all without installing anything on your local machine.
+That is the whole shape of cloud-based analysis: read data in, work on it, draw something, optionally on hardware you don't own, without installing anything locally.
 
 ### Connecting Cloud Storage to Your Analysis
 
@@ -302,11 +266,11 @@ s3.download_file("your-bucket", "data.csv", "data.csv")
 
 If a key does leak, rotate it in the AWS console immediately. Don't try to scrub the notebook history.
 
-These patterns allow you to work with data stored in various cloud locations while leveraging the computational resources of your cloud notebook environment.
+Either way the data stays where it is and the notebook reaches for it, rather than you shipping files around by hand.
 
 ## Conclusion
 
-The cloud buys you hardware you don't own, storage that doesn't live on a single disk, and a machine that keeps running when you close the lid.
+The cloud is worth reaching for when your laptop is the constraint — on memory, on time, or on the fact that it goes home with you.
 
 **By the end of this chapter you should have:**
 

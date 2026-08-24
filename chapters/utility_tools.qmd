@@ -30,7 +30,7 @@ A few habits that make these tools more useful and less dangerous:
 
 ### Text Editors and IDE Enhancements
 
-[Editors and Version Control](ide_git.qmd) covers **Visual Studio Code** (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It's free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in that chapter will cover 90% of your needs.
+[Editors and Version Control](ide_git.qmd) covers **Visual Studio Code** (VS Code) as the primary recommended editor for data science across Python, R, SQL, and notebooks. It's free, cross-platform, scriptable, and has the largest extension ecosystem of any editor. For most readers, VS Code plus the extensions listed in that chapter is the whole answer.
 
 The editors below are lightweight alternatives for quick edits, very large files, or platform-specific situations.
 
@@ -38,13 +38,7 @@ The editors below are lightweight alternatives for quick edits, very large files
 
 Notepad++ is a free, open-source text editor for Windows, and a substantial step up from the built-in Notepad.
 
-**Key features for data scientists:**
-
-1. **Syntax highlighting**: Supports many languages including Python, R, SQL, JSON, and more
-2. **Column editing**: Edit multiple lines simultaneously (useful for cleaning data)
-3. **Regex search and replace**: Search by pattern rather than by literal text — *regular expressions*, usually shortened to regex, are a compact notation for describing text shapes such as "a date" or "any line ending in a comma"
-4. **Macro recording**: Automate repetitive text edits
-5. **Plugins**: Extend functionality with viewers for JSON, HTML, Markdown, and other common data-science file formats.
+What earns it a place is column editing — hold Alt and drag to select a rectangle, then type into every selected line at once, which turns a tedious manual clean-up into one edit — and find-and-replace by *regular expression*, a compact notation for describing text shapes like "a date" or "any line ending in a comma". Both are things you'd otherwise write a script for.
 
 **Installation:**
 
@@ -62,19 +56,13 @@ Notepad++ is useful for quickly viewing and editing text files, CSV extracts, or
 
 ### API Development and Testing Tools
 
-APIs (Application Programming Interfaces) are crucial for accessing web services and databases. These tools help you test, debug, and document APIs.
+Sooner or later you'll be handed an API and a key and asked to get data out of it. These tools let you send a request and look at what comes back before you write any code.
 
 #### Postman
 
 Postman is the most widely used tool for API development and testing, and the one whose interface most tutorials assume.
 
-**Key features for data scientists:**
-
-1. **Request building**: Create and save HTTP requests
-2. **Collections**: Organise and share API requests
-3. **Environment variables**: Manage different settings (dev/prod)
-4. **Automated testing**: Create test scripts to validate responses
-5. **Mock servers**: Simulate API responses without a backend
+You build a request in a form, send it, and read the response formatted rather than as a wall of JSON. Requests save into collections you can re-run, with environment variables swapping a dev URL for a production one without editing each request.
 
 **Installation:**
 
@@ -113,19 +101,13 @@ For occasional API work, any of the three is fine. The choice matters when colle
 
 ### Database Management Tools
 
-These tools provide graphical interfaces for working with databases, making it easier to explore and manipulate data.
+A graphical client is worth having for exploring a database you didn't design — browsing tables and relationships is much faster by clicking than by querying `information_schema`.
 
 #### DBeaver
 
 DBeaver is a universal database tool that works with almost any database system.
 
-**Key features for data scientists:**
-
-1. **Multi-database support**: Works with PostgreSQL, MySQL, SQLite, Oracle, and more
-2. **Visual query builder**: Create SQL queries without writing code
-3. **Data export/import**: Move data between different formats and databases
-4. **ER diagrams**: Visualise database structure
-5. **SQL editor**: Write and execute queries with syntax highlighting
+One application for PostgreSQL, MySQL, SQLite, Oracle and most things you'll be handed credentials to, which saves learning a different client per database. It'll draw the ER diagram of a schema you've never seen before, which is usually the fastest way to work out how an unfamiliar database fits together, and export a result set straight to CSV.
 
 **Installation:**
 
@@ -156,32 +138,18 @@ DBeaver streamlines database interactions, allowing you to explore data structur
 
 pgAdmin is a specialised tool for PostgreSQL databases.
 
-**Key features:**
-
-1. **PostgreSQL-specific features**: Optimised for PostgreSQL
-2. **Server monitoring**: View database performance
-3. **Backup and restore**: Manage database backups
-4. **User management**: Control access to databases
-5. **Procedural language debugging**: Test stored procedures
+DBeaver covers most PostgreSQL work. pgAdmin is worth having when you need the parts that are specific to Postgres and that a generic client doesn't expose: backup and restore, role and permission management, and the server activity view that shows you which query is holding a lock.
 
 **Installation:**
 
 1. Download from [pgadmin.org](https://www.pgadmin.org/download/)
 2. Run the installer
 
-For data scientists working specifically with PostgreSQL databases, pgAdmin provides specialised features that generic tools may lack.
-
 ### File Comparison
 
 Comparing two versions of a dataset or a config file is common enough to want a tool for it. Git handles this for anything under version control; for everything else there is **WinMerge**, free and open source, on Windows.
 
-**Key features:**
-
-1. **Visual text comparison**: Side-by-side differences with highlighting
-2. **Folder comparison**: Compare directory structures
-3. **Image comparison**: Visual diff for images
-4. **Plugins**: Extend functionality for additional file types
-5. **Integration**: Works with source control systems
+It shows two files side by side with the differing lines highlighted, and does the same for two directories, which is the quicker way to answer "what changed between these two extracts".
 
 **Installation:**
 
@@ -192,19 +160,13 @@ On macOS and Linux, `diff` is already installed and VS Code compares two open fi
 
 ### Terminal Enhancements
 
-A better-configured shell pays for itself quickly once you're in one every day.
+Once you're in a terminal every day, the defaults start to grate. These fix the worst of it.
 
 #### Oh My Zsh
 
 Oh My Zsh is a framework for managing your Zsh configuration, providing themes and plugins for the Z shell.
 
-**Key features for data scientists:**
-
-1. **Tab completion**: Intelligent completion for commands and paths
-2. **Git integration**: Visual indicators of repository status
-3. **Syntax highlighting**: Colour-coded command syntax
-4. **Command history**: Improved search through previous commands
-5. **Customisable themes**: Visual enhancements for the terminal
+The two things you notice on day one are the prompt telling you which Git branch you're on and whether it's dirty, and tab completion that knows the flags a command takes rather than just the files in the directory. Neither is dramatic; both stop small mistakes.
 
 **Installation (macOS or Linux):**
 
@@ -239,7 +201,7 @@ Oh My Zsh makes the command line more user-friendly and efficient, which is valu
 
 #### Windows Terminal and PowerShell 7
 
-On Windows, **Windows Terminal** (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) is a huge upgrade over the legacy `cmd.exe` and the old PowerShell window: tabs, split panes, GPU-accelerated rendering, and sensible keyboard shortcuts. Pair it with **PowerShell 7** (`winget install Microsoft.PowerShell`), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in [The Command Line](command_line.qmd)) from inside Windows Terminal, which handles both worlds side-by-side.
+On Windows, **Windows Terminal** (pre-installed on Windows 11 and free from the Microsoft Store on Windows 10) replaces the legacy `cmd.exe` window with tabs, split panes and keyboard shortcuts that behave the way you'd expect. Pair it with **PowerShell 7** (`winget install Microsoft.PowerShell`), which is cross-platform and much more pleasant to script than the built-in Windows PowerShell 5.1. If you want a Unix-like experience on Windows, use WSL (covered in [The Command Line](command_line.qmd)) from inside Windows Terminal, which handles both worlds side-by-side.
 
 #### Modern Rust-based CLI replacements
 
@@ -261,23 +223,17 @@ For Python and R tooling specifically, three newer tools are now standard enough
 - **[ruff](https://docs.astral.sh/ruff/)**: a Python linter and formatter, also from Astral, fast enough to run on every keystroke where the tools it replaces (flake8, isort, black) were not. Modern Python projects almost always use it.
 - **[pixi](https://pixi.sh/)**: a project-based package manager built on the conda ecosystem. Think of it as "uv for conda": fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.
 
-None of these are required to follow this book. The classic `pip`/`conda`/`grep`/`find` commands still work fine. But once you've tried them it's hard to go back.
+None of these are required to follow this book, and the classic `pip`, `conda`, `grep` and `find` commands all still work. Install them when you get tired of waiting for the originals.
 
 ### Data Wrangling Tools
 
-These specialised tools help with specific data manipulation tasks that complement programming languages.
+Two command-line tools for the jobs that don't quite justify opening an editor.
 
 #### CSVKit
 
 CSVKit is a suite of command-line tools for working with CSV files.
 
-**Key features for data scientists:**
-
-1. **csvstat**: Generate descriptive statistics on CSV files
-2. **csvcut**: Extract specific columns
-3. **csvgrep**: Filter rows based on patterns
-4. **csvsort**: Sort CSV files
-5. **csvjoin**: SQL-like join operations between CSV files
+It gives you `csvstat` for a quick summary of every column, `csvcut` to pull out named columns, `csvgrep` to filter rows, `csvsort`, and `csvjoin` for joining two files on a key. Each is a CSV-aware version of a standard Unix tool, so they understand quoted fields and headers where `grep` and `cut` don't.
 
 **Installation:**
 
@@ -307,13 +263,7 @@ CSVKit earns its place for quick exploration directly from the command line — 
 
 jq is a lightweight command-line JSON processor that helps manipulate JSON data.
 
-**Key features:**
-
-1. **Filtering**: Extract specific data from complex JSON
-2. **Transformation**: Reshape JSON structures
-3. **Combination**: Merge multiple JSON sources
-4. **Computation**: Perform calculations on numeric values
-5. **Formatting**: Pretty-print and compact JSON
+It filters, reshapes and does arithmetic on JSON from the command line, which is most useful when an API hands you a deeply nested response and you want to see its shape before writing any code against it.
 
 **Installation:**
 
@@ -344,23 +294,17 @@ cat data.json | jq '.results[] | select(.value > 100)'
 cat data.json | jq '[.results[].value] | {count: length, sum: add, average: add/length}'
 ```
 
-jq is invaluable when working with APIs that return JSON data or when preparing JSON data for visualisation or further analysis.
+Pair it with `curl` and you can explore an API's responses without leaving the terminal.
 
 ### Diagramming and Visualisation Tools
 
-Code-based diagrams version well, but sometimes a drawing tool is the faster route to a one-off architecture sketch.
+The Mermaid diagrams in [Data Visualisation](visualisation.qmd) cover most of what you'll need. Two tools are worth knowing for the cases they don't.
 
 #### diagrams.net (formerly draw.io)
 
 diagrams.net is a free, open-source online diagramming tool that works with various diagram types.
 
-**Key features for data scientists:**
-
-1. **Flowcharts**: Document data pipelines and workflows
-2. **ER diagrams**: Model database relationships
-3. **Network diagrams**: Visualise system architecture
-4. **Multiple export formats**: PNG, SVG, PDF, etc.
-5. **Integration**: Works with Google Drive, Dropbox, etc.
+Free, runs in a browser, saves where you tell it, and covers flowcharts, ER diagrams and architecture sketches. Reach for it over Mermaid when you want control of the layout rather than a diagram generated from text.
 
 **Access:**
 
@@ -376,19 +320,13 @@ Creating a data flow diagram to document an ETL process — extract, transform, 
 4. Add annotations explaining transformations
 5. Export as PNG for inclusion in documentation
 
-Clear diagrams are essential for communicating complex data processing workflows to stakeholders or documenting them for future reference.
+A pipeline diagram is usually the fastest way to explain to a stakeholder what happens to their data between the source system and the report.
 
 #### Graphviz
 
 Graphviz is a command-line tool for creating structured diagrams from text descriptions.
 
-**Key features:**
-
-1. **Programmatic diagrams**: Generate diagrams from code
-2. **Automatic layout**: Optimal arrangement of elements
-3. **Various diagram types**: Directed graphs, hierarchies, networks
-4. **Integration**: Works with Python, R, and other languages
-5. **Scriptable**: Automate diagram generation
+You describe the nodes and edges and Graphviz works out the layout, which is what makes it worth using for graphs generated from data — a dependency tree, a state machine, a network — where you don't know in advance how many nodes there will be. Python and R both have bindings.
 
 **Installation:**
 
@@ -451,13 +389,7 @@ For anything beyond a static image — a bug you can only demonstrate by reprodu
 
 Obsidian is a knowledge base and note-taking application that works on Markdown files.
 
-**Key features for data scientists:**
-
-1. **Markdown format**: Write notes with the same syntax used in Jupyter notebooks
-2. **Bidirectional linking**: Connect related notes
-3. **Graph view**: Visualise relationships between notes
-4. **Local storage**: Files stored on your computer, not in the cloud
-5. **Extensible**: Plugins for additional functionality
+Notes are plain Markdown files in a folder on your machine, which means they outlive the application, work with `ripgrep`, and can go in a Git repository. Links between notes go both ways, so opening a note shows you everything that referenced it.
 
 **Installation:**
 

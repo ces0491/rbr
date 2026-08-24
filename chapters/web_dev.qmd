@@ -10,13 +10,9 @@ As a data scientist, you'll often need to share your work through web applicatio
 
 ### Why Web Development for Data Scientists?
 
-Web development skills are increasingly important for data scientists because:
+You need enough of it for two jobs. The first is delivery: a stakeholder who won't install R will open a URL, and a model that other systems have to call needs an endpoint rather than a function. The second is repair — knowing where a Quarto report's styling comes from, so that when the output looks wrong you can find the cause instead of working around it.
 
-1. **Sharing Results**: Web interfaces make your analysis accessible to non-technical stakeholders
-2. **Interactive Visualisations**: Web technologies enable rich, interactive data exploration
-3. **Model Deployment**: Web APIs allow your models to be integrated into larger systems
-4. **Data Collection**: Web applications can facilitate data gathering and annotation
-5. **Independence**: You can deliver an end-to-end solution without waiting on an engineering team
+That's a low bar. You aren't going to write the page from scratch; the frameworks later in this chapter do that. You want to be able to read one.
 
 ### HTML, CSS, and JavaScript Basics
 
@@ -161,7 +157,7 @@ const salesChart = new Chart(ctx, {
 
 4. Open `index.html` in a web browser
 
-This example demonstrates how to create a web page with a chart using Chart.js, a popular JavaScript visualisation library. The HTML provides structure, CSS handles styling, and JavaScript creates the interactive chart. As a data scientist you do not need to be able to write that page from scratch. Aim instead for familiarity with its structure and vocabulary, so that when you're handed raw output you can find the parts that matter to you and change them with some confidence.
+Three files, three jobs: the HTML holds the structure, the CSS decides what it looks like, and the JavaScript draws the chart with Chart.js. That division is the thing worth taking away. When a rendered report looks wrong, knowing which of the three is responsible tells you which file to open.
 
 ### Interactive Dashboards and Web Frameworks
 
@@ -269,7 +265,7 @@ server <- function(input, output) {
 shinyApp(ui = ui, server = server)
 ```
 
-Shiny's distinguishing feature is its reactivity system, which automatically updates outputs when inputs change. You specify *relationships* between inputs and outputs, and the framework figures out what to recompute when something changes. It's similar to how a spreadsheet automatically recalculates formulas when a cell's value changes: you don't write "when the dropdown changes, rerun the plot", you say "the plot depends on the filtered data, which depends on the dropdown", and Shiny does the rest.
+Shiny's distinguishing feature is reactivity. You declare relationships between inputs and outputs and the framework works out what needs recomputing, much as a spreadsheet does when you change a cell. You never write "when the dropdown changes, rerun the plot"; you write "the plot depends on the filtered data, which depends on the dropdown", and Shiny handles the rest.
 
 Shiny is also now available for Python via [Shiny for Python](https://shiny.posit.co/py/), which offers the same reactive model with Python syntax. A useful option if you like the Shiny mental model but your team uses Python.
 
@@ -539,7 +535,7 @@ The short version: Flask apps are typically deployed by containerising them with
 
 ## Conclusion
 
-Web development skills complement your data science toolkit by enabling you to share your work more effectively. A light understanding of HTML, CSS, and JavaScript lets you customise reports and debug rendering issues. The frameworks in this chapter (Shiny, Dash, Streamlit, and Flask) abstract away most of the rest, leaving you free to work on the analysis.
+A light reading knowledge of HTML, CSS and JavaScript is enough to customise a report and to work out why one renders wrongly. The frameworks in this chapter — Shiny, Dash, Streamlit, Flask — cover the rest, so you can stay in Python or R for the application itself.
 
 **By the end of this chapter you should have:**
 
@@ -548,4 +544,4 @@ Web development skills complement your data science toolkit by enabling you to s
 - A working sense of which framework to reach for: Streamlit for the quickest route from script to app, Dash for control over layout, Shiny if you're in R, Flask when what you need is an API rather than a page
 - Understood why `debug=True` never belongs in anything reachable by someone else
 
-Putting an interactive application in front of a stakeholder is what turns a notebook into something the business uses. The next chapter covers containers — the packaging step that makes deploying any of these applications predictable — followed by deployment itself.
+The next chapter covers containers, the packaging step that makes deploying any of these applications predictable, followed by deployment itself.

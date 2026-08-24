@@ -8,15 +8,9 @@ description: >-
 
 As your data science projects grow more complex, you may encounter the "it works on my machine" problem — where code runs differently in different environments. Containerisation solves this by packaging your code and its dependencies into a standardised unit called a container. Building on the [Reproducible Environments](environments.qmd) chapter (conda and uv for Python, renv for R), containers extend that isolation to the whole runtime — the operating system libraries, the system tools, and the language version itself, not just the packages.
 
-### Why Containerisation for Data Science?
+### What a Container Buys You
 
-Containerisation offers several advantages for data science:
-
-1. **Reproducibility**: Ensures your analysis runs the same way everywhere
-2. **Portability**: Move your environment between computers or cloud platforms
-3. **Dependency Management**: Isolates project dependencies to avoid conflicts
-4. **Collaboration**: Easier sharing of complex environments with colleagues
-5. **Deployment**: Simplifies deploying models to production environments
+An environment file pins your packages. A container pins the machine around them, so the same image runs the same way on your laptop, a colleague's, and a server you've never logged into. That is what makes it the unit deployment platforms accept: you hand over the image rather than a list of things to install and hope for.
 
 Think of containers as lightweight, portable units that package everything your code needs to run. Unlike virtual machines, containers don't boot their own operating system; they share the host's kernel — the core of the operating system that manages memory, files, and processes — and isolate themselves using features that kernel already provides. That makes them much faster to start and much cheaper in memory than a VM, while still giving you a reproducible, isolated environment.
 

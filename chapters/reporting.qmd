@@ -6,13 +6,13 @@ description: >-
 
 ## Documentation and Reporting Tools
 
-As a data scientist, sharing your findings clearly is just as important as the analysis itself. Now that we have our analytics platforms set up, let's explore tools for creating reports, documentation, and presentations.
+An analysis nobody can read is an analysis nobody acts on. This chapter covers the tools for turning one into a document — and specifically into a document that rebuilds itself from the data, so a corrected figure costs a re-render rather than an afternoon.
 
 ### Markdown: The Foundation of Documentation
 
 Markdown is a lightweight markup language that's easy to read and write. It forms the basis of many documentation systems.
 
-Markdown's simplicity and widespread support have made it the de facto standard for documentation in data science projects.
+It is what GitHub renders, what Jupyter cells hold, and what Quarto and R Markdown are built on, so it's worth ten minutes even if you learn nothing else here.
 
 #### Basic Markdown Syntax
 
@@ -51,15 +51,13 @@ print("Hello, world!")
 
 The language name after the opening backticks is optional and only controls syntax highlighting. Later in this chapter you'll see fences written as `` ```{python} `` with braces — that is Quarto and R Markdown's own extension, marking a block as code to *execute* instead of merely display. Plain Markdown has no such concept.
 
-Markdown is designed to be readable even in its raw form. The syntax is intuitive — for example, surrounding text with asterisks makes it italic, and using hash symbols creates headings of different levels.
-
-Many platforms interpret Markdown, including GitHub, Jupyter notebooks, and the documentation tools we'll discuss next.
+The point of the syntax is that the raw file still reads as text. Asterisks around a word make it italic and also look like emphasis; a row of hashes marks a heading and also looks like one.
 
 ### R Markdown
 
 R Markdown combines R code, output, and narrative text in a single document that can be rendered to HTML, PDF, Word, and other formats.
 
-The concept of "literate programming" behind R Markdown was first proposed by Donald Knuth in 1984 [@knuth84], and it has become a cornerstone of reproducible research in data science.
+The idea behind it — "literate programming", writing the explanation and the code as one document — was proposed by Donald Knuth in 1984 [@knuth84].
 
 #### Installing and Using R Markdown
 
@@ -143,11 +141,11 @@ ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
 
 When you click the "Knit" button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. Code, results, and narrative live in one file, so there is no step where a number is copied from a console into a paragraph and then goes stale. If your data changes, re-knit the document and every figure and table updates.
 
-R Markdown has become a standard in reproducible research because it creates a direct connection between your data, analysis, and conclusions. This connection makes your work more transparent and reliable, as anyone can follow your exact steps and see how you reached your conclusions.
+That link between data, analysis and conclusion is what makes the document checkable. Someone who doubts a figure can read the chunk that produced it instead of asking you.
 
 ### Jupyter Notebooks for Documentation
 
-We've already covered Jupyter notebooks for Python development, but they double as documentation tools. Like R Markdown, they combine code, output, and narrative text.
+Notebooks do the same job as R Markdown from the Python side: code, output and prose in one file. The difference is that a notebook stores its output alongside the code, so it can be read without being re-run — convenient for sharing, and the reason two notebooks that look identical can disagree.
 
 #### Exporting Jupyter Notebooks
 
@@ -162,7 +160,7 @@ Alternatively, you can use `nbconvert` from the command line:
 jupyter nbconvert --to html my_notebook.ipynb
 ```
 
-The ability to export notebooks is particularly valuable because it allows you to write your analysis once and then distribute it in whatever format your audience needs. For example, you might use the PDF format for a formal report to stakeholders, HTML for sharing on a website, or Markdown for including in a GitHub repository.
+One notebook, several outputs: PDF for a formal report, HTML for a website, Markdown for a repository. Worth knowing because it stops you maintaining three versions of the same analysis.
 
 #### Jupyter Book
 
@@ -201,9 +199,7 @@ quarto create project default my-project
 quarto render document.qmd
 ```
 
-Quarto represents an evolution in documentation tools because it provides a unified system for creating computational documents with multiple programming languages. This is particularly valuable if you work with both Python and R, as you can maintain a consistent documentation approach across all your projects.
-
-The key advantage of Quarto is its language-agnostic design — you can mix Python, R, Julia, and other languages in a single document, which reflects the reality of many data science workflows where different tools are used for different tasks.
+Quarto is R Markdown's successor and works the same way for R, but it doesn't assume R. Python, Julia and Observable chunks all execute, and a single document can mix them. If you work in both Python and R, it means one document format rather than two.
 
 #### Quarto Dashboards
 
@@ -288,7 +284,7 @@ tinytex::install_tinytex()
 quarto install tinytex
 ```
 
-TinyTeX is designed specifically for R Markdown and Quarto users. It installs only the essential LaTeX packages (around 150MB) compared to full distributions (several GB), and it automatically installs additional packages as needed when you render documents.
+TinyTeX is built for R Markdown and Quarto users. It installs a minimal set of LaTeX packages rather than the several gigabytes a full distribution takes, and pulls down anything else it needs the first time a document calls for it.
 
 #### Using LaTeX with Quarto
 
@@ -433,7 +429,7 @@ For large tables that need to span pages:
 
 ```latex
 \begin{longtable}{lrrr}
-\caption{Comprehensive Model Results}\\
+\caption{Model Results}\\
 \toprule
 Model & Accuracy & Precision & Recall \\
 \midrule
@@ -462,9 +458,7 @@ It also carries a real learning curve, and for most of what this book's readers 
 
 #### Typst
 
-**Typst** is a newer typesetting system aimed at the same output with less ceremony:
-
-**Simpler Syntax**: Where LaTeX might require complex commands, Typst uses more intuitive markup:
+**Typst** is a newer typesetting system aimed at the same output with less ceremony. Its markup is closer to Markdown than to LaTeX:
 
 ```typst
 // Typst syntax
@@ -494,29 +488,11 @@ $x = \frac{a + b}{c}$
 \end{figure}
 ```
 
-**Faster Compilation**: Typst compiles documents significantly faster than LaTeX, making it more suitable for iterative document development.
-
-**Better Error Messages**: When something goes wrong, Typst provides clearer, more actionable error messages compared to LaTeX's often cryptic feedback.
-
-**Modern Design**: Built from the ground up with modern document needs in mind, including better handling of digital-first workflows.
+It also compiles in a fraction of the time, which you notice when you're rendering a document every few minutes, and its error messages name the line and say what's wrong rather than leaving you to read a log.
 
 #### Choosing Your Path Forward
 
-For data scientists starting their journey, here's how to think about these tools:
-
-**Choose LaTeX when:**
-
-- Working in academic environments where LaTeX is expected
-- Creating documents with complex mathematical notation
-- Collaborating with teams already using LaTeX workflows
-- You need the ecosystem of specialised packages LaTeX offers
-
-**Consider Typst when:**
-
-- You want faster iteration cycles during document development
-- You prefer more modern, readable syntax
-- You're starting fresh and don't have legacy LaTeX requirements
-- You want to avoid LaTeX's steep learning curve
+Use LaTeX when something outside your control expects it: a journal template, a supervisor's preamble, a package that exists nowhere else. Use Typst when nothing does. That covers most business and internal reporting, where nobody cares what produced the PDF.
 
 **You don't have to choose up front.** Quarto has shipped the Typst compiler since version 1.4, so switching engines is a one-line YAML change and your content stays as it is:
 
@@ -628,7 +604,7 @@ data(diamonds, package = "ggplot2")
 head(diamonds)
 ```
 
-Using built-in datasets eliminates file path issues entirely, as these datasets are available to anyone who has the package installed. This is ideal for examples and tutorials where the specific data isn't crucial.
+A dataset that ships with a package has no path to get wrong, and anyone with the package has it. That makes built-in data the right choice for examples and tutorials, where which data you use rarely matters.
 
 ### Creating Sample Data Programmatically
 
@@ -677,19 +653,13 @@ The `cache: true` option tells Quarto to save the results and only re-execute th
 
 ### Best Practices for Documentation
 
-Effective documentation follows certain principles:
+Write it as you go. Documentation left until the end is documentation that doesn't get written, and by then you've forgotten why you made half the choices you're trying to describe.
 
-1. **Start early**: Document as you go, instead of leaving it to the end
-2. **Be consistent**: Use the same style and terminology throughout
-3. **Include examples**: Show how to use your code or analysis
-4. **Consider your audience**: Technical details for peers, higher-level explanations for stakeholders
-5. **Update regularly**: Keep documentation in sync with your code
-
-Documenting your work also sharpens your own thinking. Explaining a modelling choice in prose is a reliable way to discover that you can't justify it.
+Explaining a modelling choice in prose is also a reliable way to discover that you can't justify it, which is worth more than the document.
 
 ## Conclusion
 
-This chapter has walked through the *document* side of data science output: Markdown and Quarto for literate programming, LaTeX (and newer alternatives like Typst) for publication-quality typesetting, parameterised reports for templating, and reproducible data-loading patterns so your reports can be rendered from any machine.
+This chapter covered the *document* side of data science output: Markdown and Quarto for literate programming, LaTeX and Typst for publication-quality typesetting, parameterised reports for templating, and data-loading patterns that survive being run on someone else's machine.
 
 **By the end of this chapter you should have:**
 
@@ -703,4 +673,4 @@ What we haven't covered yet are the **charts** that live inside these documents 
 - The [Data Visualisation](visualisation.qmd) chapter covers the static and lightly-interactive plotting libraries you'll embed in reports (matplotlib, seaborn, plotly, ggplot2), plus Mermaid for code-based diagrams.
 - The [Web Development for Data Scientists](web_dev.qmd) chapter covers the tools for when "rerun the render" isn't enough and stakeholders need to poke at the data themselves: Shiny, Dash, Streamlit, and Flask.
 
-Together these three chapters form a progression: from static documents that communicate findings, to visualisations that make those findings immediate, to interactive applications that invite exploration.
+Pick whichever matches what your reader actually needs. A rendered document is enough far more often than the request for a dashboard suggests.

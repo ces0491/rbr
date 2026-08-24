@@ -6,7 +6,7 @@ description: >-
 
 ## Common Installation and Configuration Issues
 
-Setting up a data science environment can sometimes be challenging, especially when working across different operating systems and with tools that have complex dependencies. This appendix addresses common issues you might encounter and provides solutions based on platform-specific considerations.
+The errors below are the ones that come up most often when setting these tools up, grouped by what you were trying to do at the time. Each entry says what to try and why the problem happens, since the second part is usually what stops it recurring.
 
 ### Python Environment Issues
 
@@ -114,7 +114,7 @@ Setting up a data science environment can sometimes be challenging, especially w
    - **macOS**: Add keys to the keychain: `ssh-add --apple-use-keychain ~/.ssh/id_ed25519`. Older guides use the short flag `-K`, which was deprecated in macOS Monterey
    - **Linux**: Ensure ssh-agent is running: `eval "$(ssh-agent -s)"`
 
-**Why this happens**: GitHub has enhanced security measures that require proper authentication setup.
+**Why this happens**: GitHub stopped accepting account passwords over HTTPS in 2021, so every push now needs either an SSH key or a token, and the error messages don't always say which one you're missing.
 
 #### Git Merge Conflicts
 
@@ -168,9 +168,9 @@ Setting up a data science environment can sometimes be challenging, especially w
    - Apply changes and restart Docker
 
 2. **Optimise Docker images**:
-   - Use smaller base images (Alpine versions when possible)
-   - Clean up unnecessary files in your Dockerfile
-   - Properly layer your Docker instructions to leverage caching
+   - Use a `-slim` base image rather than the full one ([Containerisation](containers.qmd) explains why `-alpine` is usually the wrong call for scientific Python)
+   - Delete build tools and package caches in the same `RUN` layer that created them
+   - Order your Dockerfile from least to most frequently changing, so a code edit doesn't reinstall every dependency
 
 **Why this happens**: By default, Docker may not be allocated sufficient host resources, especially on development machines.
 
@@ -189,7 +189,7 @@ Setting up a data science environment can sometimes be challenging, especially w
 2. **Isolate projects completely**:
    - Create separate environments for each project
    - Use clear naming conventions: `conda create -n project_name_env`
-   - Document dependencies: `pip freeze > requirements.txt` or `conda env export > environment.yml`
+   - Document dependencies: `pip freeze > requirements.txt`, or `conda env export --from-history > environment.yml` (the flag matters — see [Reproducible Environments](environments.qmd))
 
 3. **When conflicts are unavoidable**:
    - Use Docker containers to fully isolate environments
@@ -319,4 +319,4 @@ When facing issues, follow this general troubleshooting workflow:
 6. **Use community resources** - Stack Overflow, GitHub issues, and Reddit communities can help
 7. **Document your solution** - Once solved, document it for future reference
 
-Remember that troubleshooting is a normal part of the data science workflow. Each problem solved increases your understanding of the tools and makes you more effective in the long run.
+Step 5 is the one people skip and the one that most often solves the problem on its own. Cutting a failure down to the smallest thing that still reproduces it usually tells you where it lives.
