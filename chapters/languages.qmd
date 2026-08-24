@@ -10,16 +10,42 @@ Python is the language most of the infrastructure in this book is written in and
 
 ### Installing Python
 
-You have a few reasonable ways to install Python for data science. Each has trade-offs:
+There are two routes worth taking, and the book gives instructions for both throughout. Pick one now; you can add the other later without undoing anything.
 
-- **Miniforge** (recommended for most readers): a minimal, community-maintained conda distribution that defaults to `conda-forge`, a free package repository — conda calls these "channels" — maintained by the community rather than by a company. Gives you `conda` for environment management without the licensing concerns that now apply to the full Anaconda distribution for commercial users in larger organisations.
-- **Anaconda**: the "batteries-included" distribution. Convenient, but its Terms of Service have restricted free commercial use for organisations with 200 or more employees since 2020, and a 2024 update extended that to government bodies and non-profits of the same size. Fine for learning and personal projects.
-- **`uv`** (the modern, fast option): a single binary that installs Python versions and manages virtual environments and packages. Much faster than conda or pip and rapidly becoming the default for pure-Python projects. A great choice once you're comfortable, especially if you don't need conda's scientific package ecosystem.
-- **System Python** (`python.org` installer, `brew install python`, or `apt install python3`): simple, but you'll still want to create isolated environments per project with `venv` or `uv venv`.
+| Route | Take it when |
+|---|---|
+| **uv** | Default for new work. A single binary that installs Python versions, creates environments, and installs packages, quickly |
+| **Miniforge (conda)** | You need packages that aren't pure Python — GDAL and the geospatial stack, CUDA-enabled PyTorch, much of bioinformatics — or your team already standardises on conda |
 
-For this book we'll use conda-based instructions since they work uniformly across Windows, macOS, and Linux and handle tricky scientific packages well. Everything shown below works with either Miniforge or Anaconda.
+The numerical stack itself works fine either way. NumPy, pandas, scikit-learn and matplotlib all publish prebuilt wheels for Windows, macOS and Linux, so uv installs them without needing a compiler on your machine. Conda's advantage shows up further out, where a package depends on system libraries that aren't Python at all and someone has to resolve those too.
 
-#### Installing Miniforge (or Anaconda)
+Two other options you'll see mentioned, for completeness. **Anaconda** is the batteries-included conda distribution; it works, but its Terms of Service have restricted free commercial use for organisations with 200 or more employees since 2020, and a 2024 update extended that to government bodies and non-profits of the same size. Miniforge is the community-maintained equivalent with no such restriction, which is why this book points at it. **System Python** from `python.org`, Homebrew or `apt` is fine as a base, but you'll still want per-project environments on top of it.
+
+#### Route 1: uv
+
+Install it once, from your terminal:
+
+```bash
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+```powershell
+# Windows PowerShell
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Both download a script and run it in one step, which is the method Astral documents. [The Command Line](command_line.qmd) explains what you're agreeing to when you do that, and when to download and read the script first instead.
+
+Close and reopen your terminal so the new command is on your PATH, then check it:
+
+```bash
+uv --version
+```
+
+uv doesn't need a system Python. `uv venv --python 3.13` downloads that version if you don't have it, which means the Python your project runs on is something you choose per project rather than something your operating system decided for you.
+
+#### Route 2: Miniforge (or Anaconda)
 
 1. Visit the [Miniforge releases page](https://github.com/conda-forge/miniforge/releases/latest) (or the [Anaconda download page](https://www.anaconda.com/download) if you prefer)
 2. Download the appropriate installer for your operating system
@@ -29,17 +55,12 @@ During installation on Windows, you may be asked whether to add the installation
 
 The "PATH" is like an address book that tells your computer where to find programs when you type their names. Adding your conda install to PATH means you can use Python from any command prompt, but it could cause conflicts with other versions of Python on your system.
 
-#### Verifying Installation
+Miniforge defaults to `conda-forge` — conda calls package repositories "channels" — which is maintained by the community rather than by a company, and is the reason Miniforge carries none of Anaconda's licensing conditions.
 
-Open a new terminal (or Miniforge/Anaconda Prompt on Windows) and type:
+Open a new terminal (or the Miniforge Prompt on Windows) and check both commands:
 
 ```bash
 python --version
-```
-
-You should see the Python version number. Also, check that conda is installed:
-
-```bash
 conda --version
 ```
 
@@ -48,34 +69,75 @@ conda --version
 
 The next thing most people do is `pip install pandas` and carry on. Resist it. Packages installed globally accumulate, conflict, and eventually break each other in ways that are genuinely painful to unpick — and nothing records what you installed, so the analysis you write today may not run tomorrow.
 
-Create a per-project environment first. That is the whole subject of the [Reproducible Environments](environments.qmd) chapter, and it's worth reading before you install your second package. The short version, using the conda you have just installed:
+Create a per-project environment first. That is the whole subject of the [Reproducible Environments](environments.qmd) chapter, and it's worth reading before you install your second package. The short version:
 
 ```bash
+# uv - the environment lives in the project directory
+uv venv --python 3.13
+
+# conda - the environment lives in a central location, under a name
 conda create -n myproject python=3.13
 conda activate myproject
 ```
 
-Install into that, not into `base`.
+Install into that, not into the base installation or your system Python.
 :::
 
 ### Using Jupyter Notebooks
 
 A Jupyter notebook interleaves code, its output, and your prose in one document — a lab notebook you can re-run. It's where most exploratory Python work happens.
 
-Miniforge is deliberately minimal, so Jupyter is not installed yet. Create an environment for working through this book and install what the next few chapters need:
+Neither uv nor Miniforge installs Jupyter for you. Make a directory to work through this book in, then create an environment there with what the next few chapters need.
+
+With uv, the environment is a `.venv` directory inside the project:
 
 ```bash
-# Create an environment named 'datasci' with the packages used below
-conda create -n datasci python=3.13 numpy pandas matplotlib jupyter
+mkdir rbr-work && cd rbr-work
 
-# Activate it. Do this in every new terminal session where you want these packages.
-conda activate datasci
+# Create the environment. uv fetches Python 3.13 if you don't have it.
+uv venv --python 3.13
+```
 
-# Launch Jupyter Notebook
+Activate it — you do this in every new terminal session, and the command differs by platform:
+
+```bash
+# macOS / Linux
+source .venv/bin/activate
+```
+
+```powershell
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+```
+
+Then install into it and start Jupyter:
+
+```bash
+uv pip install numpy pandas matplotlib jupyter
+
 jupyter notebook
 ```
 
-The first command takes a few minutes — conda is resolving a consistent set of versions for everything you asked for and everything those packages depend on in turn. Later chapters refer back to this `datasci` environment; [Reproducible Environments](environments.qmd) explains why one environment per project beats one environment for everything.
+With conda, it's a named environment stored centrally instead:
+
+```bash
+conda create -n datasci python=3.13 numpy pandas matplotlib jupyter
+
+# Activate it - again, in every new terminal session
+conda activate datasci
+
+jupyter notebook
+```
+
+The conda version takes a few minutes, because conda is resolving a consistent set of versions across everything you asked for and everything those packages depend on in turn. uv does the same job in well under a minute the first time, and in a few seconds after that, once the packages are in its local cache.
+
+:::{.callout-note}
+## Windows: "running scripts is disabled on this system"
+
+If `Activate.ps1` fails with that message, PowerShell is refusing to run local scripts. [Reproducible Environments](environments.qmd) has the one-line fix.
+:::
+
+Later chapters refer back to this environment as the one you made here — `.venv` under uv, `datasci` under conda. [Reproducible Environments](environments.qmd) explains why one environment per project beats one environment for everything, and why the shared scratchpad you've just built is a pattern to grow out of.
 
 This opens a web browser where you can create and work with notebooks. Let's create a simple notebook to verify everything works:
 
@@ -112,17 +174,16 @@ If you see a plot and the success message, your Python setup is working.
 
 ### Installing Additional Packages
 
-You'll need more packages as you go. Two ways to install them:
+With the environment activated:
 
 ```bash
-# Using conda (preferred when available)
-conda install package_name
-
-# Using pip (when packages aren't available in conda)
-pip install package_name
+uv pip install package_name      # uv
+conda install package_name       # conda
 ```
 
-Prefer conda where the package has compiled C or C++ underneath it — which covers most of the numerical stack. Conda ships prebuilt binaries and resolves the system libraries they depend on; pip is more likely to try compiling on your machine and fail for want of a toolchain.
+Inside a conda environment you can also use `pip` for anything not packaged for conda, though mixing the two in one environment is a known way to end up with a broken environment. Install what you can with conda first, then pip for the remainder, and avoid alternating.
+
+The case for reaching across to conda is narrower than it used to be. Most of the scientific stack now ships prebuilt wheels that uv installs without a compiler. Where conda still earns its place is packages wrapping non-Python system libraries — GDAL and PROJ for geospatial work, CUDA builds of PyTorch, much of bioinformatics — because something has to install those libraries too, and conda does.
 
 ## Setting Up R
 
@@ -249,8 +310,8 @@ If you have no constraint and no preference: learn Python first, because more of
 
 **By the end of this chapter you should have:**
 
-- Python installed via Miniforge, with `python --version` and `conda --version` both working
-- A conda environment named `datasci` containing numpy, pandas, matplotlib, and Jupyter, which later chapters assume
+- Python installed, with `uv --version` working (or `python --version` and `conda --version` if you took the Miniforge route)
+- A working environment containing numpy, pandas, matplotlib, and Jupyter, which later chapters assume — a `.venv` if you took the uv route, an environment named `datasci` if you took conda
 - R and RStudio installed, with `R.version.string` reporting a current version
 - A Jupyter notebook that runs a cell and produces a plot
 - An R script that loads ggplot2 and produces a plot

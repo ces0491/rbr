@@ -10,6 +10,19 @@ The errors below are the ones that come up most often when setting these tools u
 
 ### Python Environment Issues
 
+#### Virtual Environment Won't Activate (uv / venv)
+
+**Issue**: `activate` does nothing, or the packages you installed aren't found afterwards.
+
+**Solution**:
+
+1. **Windows**: `Activate.ps1` fails with *"running scripts is disabled on this system"* until you allow local scripts once, with `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`. In `cmd.exe` the file to run is `.venv\Scripts\activate.bat`, not the `.ps1`
+2. **macOS/Linux**: the command is `source .venv/bin/activate`. Running `.venv/bin/activate` without `source` starts a subshell that exits immediately, which looks like nothing happening
+3. **Check which Python you actually got**: `python -c "import sys; print(sys.executable)"`. If the path isn't inside your `.venv`, the activation didn't take
+4. **After moving or renaming the project folder**, delete `.venv` and recreate it. A virtual environment records absolute paths and doesn't survive being moved
+
+**Why this happens**: activation is only a change to environment variables in the current shell — mostly `PATH`. Anything that starts a fresh shell, or any command that doesn't inherit those variables, gets the system Python instead.
+
 #### Conda Environment Activation Problems
 
 **Issue**: Unable to activate conda environments or "conda not recognised" errors.
@@ -39,10 +52,10 @@ The errors below are the ones that come up most often when setting these tools u
    - Update conda first: `conda update -n base conda`
    - Create a fresh environment if existing one is corrupted: `conda create -n fresh_env python=3.13`
 
-2. **For pip**:
+2. **For pip or uv**:
    - Ensure pip is updated: `python -m pip install --upgrade pip`
-   - Try installing wheels instead of source distributions: `pip install --only-binary :all: package_name`
-   - For packages with C extensions on Windows, you might need the Visual C++ Build Tools
+   - Refuse to build from source, so you find out immediately that no wheel exists for your platform: `pip install --only-binary :all: package_name`
+   - If a package does have to compile on Windows, you need the Visual C++ Build Tools. If that's the only reason you'd install them, check whether conda has the package instead
 
 **Why this happens**: Dependency conflicts, network issues, or missing compilers for packages that need to build from source.
 
@@ -183,13 +196,13 @@ The errors below are the ones that come up most often when setting these tools u
 **Solution**:
 
 1. **Use environment management tools consistently**:
-   - Stick with either conda OR venv/virtualenv for a project
-   - Don't mix pip and conda in the same environment when possible
+   - Pick one per project — uv or conda — and stay with it
+   - Inside a conda environment, install what you can with conda before falling back to pip, and don't alternate between them
 
 2. **Isolate projects completely**:
    - Create separate environments for each project
    - Use clear naming conventions: `conda create -n project_name_env`
-   - Document dependencies: `pip freeze > requirements.txt`, or `conda env export --from-history > environment.yml` (the flag matters — see [Reproducible Environments](environments.qmd))
+   - Document dependencies: `uv pip freeze > requirements.txt`, or `conda env export --from-history > environment.yml` (the flag matters — see [Reproducible Environments](environments.qmd))
 
 3. **When conflicts are unavoidable**:
    - Use Docker containers to fully isolate environments

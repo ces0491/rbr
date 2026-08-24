@@ -45,7 +45,7 @@ Both give you conda. Anaconda's Terms of Service restrict free use in organisati
 
 ## Python: uv
 
-`uv` is a single binary that replaces `pip`, `venv`, and `pyenv`. Install it once:
+`uv` is a single binary that replaces `pip`, `venv`, and `pyenv`. If you took the uv route in [Python and R](languages.qmd) you already have it and can skip to the next block. Otherwise, install it once:
 
 ```bash
 # macOS / Linux
@@ -129,7 +129,7 @@ conda activate sales-forecast
 conda install numpy pandas matplotlib scikit-learn jupyter
 ```
 
-The naming matters more than it looks. The `datasci` environment you created in [Python and R](languages.qmd) is a reasonable scratchpad for working through this book, but it is exactly the pattern this chapter argues against for real work: one shared environment that every project quietly depends on, so upgrading a package for one analysis breaks another. Give each project its own.
+The naming matters more than it looks. The environment you created in [Python and R](languages.qmd) — `datasci` under conda, or the `.venv` in your `rbr-work` folder under uv — is a reasonable scratchpad for working through this book, and it is exactly the pattern this chapter argues against for real work: one shared environment that several projects quietly depend on, so upgrading a package for one analysis breaks another. Give each project its own.
 
 Activate it whenever you work on that project. Unlike `venv`/`uv`, conda environments live in a central location rather than in the project directory, so there's nothing to `.gitignore`.
 

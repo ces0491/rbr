@@ -11,7 +11,7 @@ The book runs in three parts, in rough dependency order. Numbers match the rende
 ### Foundations
 
 3. **The Command Line**: shells, navigation, redirection and pipes, package managers
-4. **Python and R**: installing both, Miniforge, Jupyter, and choosing between them
+4. **Python and R**: installing both via uv or Miniforge, Jupyter, and choosing between them
 5. **Editors and Version Control**: VS Code, RStudio, Git, GitHub, and `.gitignore`
 6. **Data Stores: SQL and Beyond**: SQLite, Parquet, DuckDB, Polars, PostgreSQL, and where credentials belong
 7. **Reproducible Environments**: uv, conda, renv, lockfiles, and connecting an environment to your tools

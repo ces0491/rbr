@@ -41,7 +41,9 @@ Extensions are how VS Code learns a language. Without the Python extension it wi
 1. Open VS Code
 2. Press Ctrl+Shift+P (Cmd+Shift+P on Mac) to open the command palette
 3. Type "Python: Select Interpreter" and select it
-4. Choose your conda environment (e.g., datasci)
+4. Choose the environment you made in [Python and R](languages.qmd) — the `.venv` inside your project folder if you took the uv route, or the `datasci` entry if you took conda
+
+VS Code finds `.venv` directories inside the open folder on its own and lists them at the top, so the uv route usually needs one click. Conda environments live centrally and are listed by name.
 
 This tells VS Code which Python installation to run your code with. Get it wrong and you'll be told a package isn't installed when you can see that it is — [Reproducible Environments](environments.qmd) covers why.
 
@@ -55,19 +57,22 @@ PyCharm is an IDE built specifically for Python, with data science support to ma
 2. Download the free Community Edition
 3. Run the installer and follow the prompts
 
-#### Configuring PyCharm for Your Conda Environment
+#### Pointing PyCharm at Your Environment
 
 1. Open PyCharm
-2. Create a new project
+2. Create a new project, or open the folder you made in [Python and R](languages.qmd)
 3. Click on "Previously configured interpreter"
-4. Click on the gear icon and select "Add..."
-5. Choose "Conda Environment" → "Existing environment"
-6. Browse to your conda environment's Python executable. If you followed the Miniforge instructions earlier, that is:
-    - On Windows: `C:\Users\<username>\miniforge3\envs\datasci\python.exe`
-    - On macOS: `/Users/<username>/miniforge3/envs/datasci/bin/python`
-    - On Linux: `/home/<username>/miniforge3/envs/datasci/bin/python`
+4. Click the gear icon and select "Add..."
 
-    If you installed Anaconda rather than Miniforge, substitute `anaconda3` for `miniforge3`. When in doubt, activate the environment and run `python -c "import sys; print(sys.executable)"` — that prints the exact path PyCharm wants.
+For a **uv environment**, choose "Virtualenv Environment" → "Existing" and point it at `.venv/Scripts/python.exe` inside your project on Windows, or `.venv/bin/python` on macOS and Linux. PyCharm often detects this without being asked.
+
+For a **conda environment**, choose "Conda Environment" → "Existing environment" and browse to its Python:
+
+- On Windows: `C:\Users\<username>\miniforge3\envs\datasci\python.exe`
+- On macOS: `/Users/<username>/miniforge3/envs/datasci/bin/python`
+- On Linux: `/home/<username>/miniforge3/envs/datasci/bin/python`
+
+Substitute `anaconda3` for `miniforge3` if you installed Anaconda. When in doubt, activate the environment and run `python -c "import sys; print(sys.executable)"` — that prints the exact path PyCharm wants, whichever kind it is.
 
 :::{.callout-note}
 In file paths, forward slashes (/) are used on Linux and macOS, backslashes (\\) on Windows. Python accepts forward slashes on all three, which is the simplest way to sidestep the problem.
@@ -82,11 +87,11 @@ Notebooks came up in [Python and R](languages.qmd) as a place to write Python. T
 JupyterLab is a web-based interactive development environment that extends the notebook interface with a file browser, consoles, terminals, and more.
 
 ```bash
-# Install JupyterLab
-conda activate datasci
-conda install -c conda-forge jupyterlab
+# Install JupyterLab into your activated environment
+uv pip install jupyterlab                    # uv
+conda install -c conda-forge jupyterlab      # conda
 
-# Launch JupyterLab
+# Launch it
 jupyter lab
 ```
 

@@ -217,13 +217,13 @@ A family of newer command-line tools, mostly written in Rust, have become the de
 | `htop` | **[btop](https://github.com/aristocratos/btop)** | Prettier resource monitor |
 | Bash/Zsh prompt | **[starship](https://starship.rs/)** | Fast, configurable, works in any shell including PowerShell |
 
-For Python and R tooling specifically, three newer tools are now standard enough to mention:
+Three more from the same family, for Python tooling specifically:
 
-- **[uv](https://docs.astral.sh/uv/)**: a Python package manager and virtual-environment tool written in Rust, dramatically quicker than pip at resolving and installing. It's a drop-in replacement for `pip`, `pip-tools`, `virtualenv`, and `pyenv`. Create an environment with `uv venv`, install from a `requirements.txt` with `uv pip install -r requirements.txt`, and run project scripts with `uv run`.
+- **[uv](https://docs.astral.sh/uv/)**: covered properly in [Python and R](languages.qmd) and [Reproducible Environments](environments.qmd), since it's one of the two routes this book takes. Listed here for the parts those chapters don't use: `uv run script.py` executes a script in the project environment without activating anything, and `uv tool install` puts a command-line application in its own environment, the way `pipx` does.
 - **[ruff](https://docs.astral.sh/ruff/)**: a Python linter and formatter, also from Astral, fast enough to run on every keystroke where the tools it replaces (flake8, isort, black) were not. Modern Python projects almost always use it.
 - **[pixi](https://pixi.sh/)**: a project-based package manager built on the conda ecosystem. Think of it as "uv for conda": fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.
 
-None of these are required to follow this book, and the classic `pip`, `conda`, `grep` and `find` commands all still work. Install them when you get tired of waiting for the originals.
+Apart from uv, none of these are required to follow this book, and the classic `pip`, `conda`, `grep` and `find` commands all still work. Install them when you get tired of waiting for the originals.
 
 ### Data Wrangling Tools
 
