@@ -6,7 +6,7 @@ description: >-
 
 ## Resources for Further Learning
 
-These build on the infrastructure this book sets up. Each entry says what it is for, so you can pick rather than work through the list.
+Some teach the coding this book leaves to others; the rest build on the infrastructure it sets up. Each entry says what it is for, so you can pick rather than work through the list.
 
 ### Python for Data Science
 

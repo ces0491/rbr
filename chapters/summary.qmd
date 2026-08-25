@@ -6,7 +6,7 @@ description: >-
 
 ## What You Have Now
 
-If you worked through the chapters rather than reading past them, you now have:
+If you worked through the chapters, you should now have:
 
 **Foundations.** A terminal you're not afraid of. Python and R installed. Every project under Git, with a remote on GitHub and credentials that live in the environment rather than in the source. Data in formats that remember their own types, and a query engine that handles files larger than your memory. Each project in its own environment, with its dependencies recorded in a file committed beside the code.
 
@@ -30,11 +30,11 @@ Strip away the specific tools — most of which will be replaced within a decade
 
 The shelf life of what you've just read varies by layer:
 
-**Stable for a decade or more.** The command line, Git, SQL, and the concepts behind containerisation and continuous integration. These have changed remarkably little in twenty years and won't change much in the next twenty.
+**Stable for a decade or more.** The command line, Git, SQL, and the concepts behind containerisation and continuous integration. These have changed remarkably little in twenty years and I don't expect will change much in the next twenty.
 
 **Stable but evolving.** Python, R, Docker, and the major cloud providers. The syntax you learned will keep working; the ecosystem around it will move.
 
-**Expect churn.** Specific hosting platforms, package managers, free-tier terms, and AI coding assistants. Some tools recommended here will have been superseded by the time you need to replace one — that's a normal state, not a failure of the book. This edition already reflects one such move: shinyapps.io, the standard answer for Shiny hosting for a decade, is being consolidated into Posit Connect Cloud.
+**Expect churn.** Specific hosting platforms, package managers, free-tier terms, and AI coding assistants. Some tools recommended here will have been superseded by the time you need to replace one — and that's to be expected in this industry. This edition already reflects one such move: shinyapps.io, the standard answer for Shiny hosting for a decade, is being consolidated into Posit Connect Cloud.
 
 When a specific tool stops matching reality, the principle it illustrated almost certainly still holds. Find the current tool that serves the same purpose.
 
@@ -46,9 +46,9 @@ Whatever breaks is your real gap. Most people find at least one, and it is far b
 
 ## A Note on the Machines
 
-The Preface argued that understanding this infrastructure matters more in an era of capable AI assistants, not less. Having been through the material, the reason should now be concrete rather than rhetorical.
+The Preface argued that understanding this infrastructure matters more in an era of capable AI assistants, not less. Having been through the material, the reason should now be concrete.
 
-An assistant will happily write you a Dockerfile, a GitHub Actions workflow, or a pandas pipeline, and it will usually be close to right. What it cannot do is tell you whether the result is correct — it cannot run your data through it and recognise that the answer is implausible. That judgement requires knowing what the pieces do, which is what you now have.
+An assistant will happily write you a Dockerfile, a GitHub Actions workflow, or a pandas pipeline, and it will usually be close to right. It will run the thing on your data and report that it worked. What it can't do is tell you the answer is implausible — that the total is an order of magnitude too high, or that the join quietly dropped a third of the rows. That judgement requires knowing what the pieces do, which is what you now have.
 
 Let the machine draft, and check what it hands back. Checking is the part that keeps its value.
 
@@ -56,4 +56,4 @@ Let the machine draft, and check what it hands back. Checking is the part that k
 
 Your environments are reproducible, your code is versioned, and the pipeline deploys when you push. Everything from here is the analysis you came to do, with less in the way of it.
 
-Go and run something.
+Ready to run()

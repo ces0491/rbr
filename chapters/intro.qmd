@@ -6,19 +6,21 @@ description: >-
 
 ## What This Book Is For
 
-If you're coming from economics, statistics, engineering, or another quantitative field, you already have the analytical skills to make productive use of data. What you may not have is the layer underneath: the command line, environments, version control, deployment — the infrastructure that turns an analysis on your laptop into something reproducible, shareable, and durable.
+If you're coming from economics, statistics, engineering, science, or another quantitative field, you already have the analytical skills to make productive use of data. What you may not have is the layer underneath: the command line, environments, version control, deployment — the infrastructure that turns an analysis on your laptop into something reproducible, shareable, and durable.
 
 That layer is rarely taught. Statistics degrees cover inference; econometrics courses cover identification; almost none of them cover what to do when a colleague says "it doesn't run on my machine." This book covers that.
 
-This book is about setting up the tools that coding assumes you already have. For learning to code itself there are good resources, several listed in the [References](references.qmd) chapter. This one assumes you can already write the analysis and covers what has to be true before you can run it.
+This book is about setting up the tools that coding assumes you already have. What it assumes of you is the methods. You might understand logistic regression intimately and still have no way to run one, and if the tooling has never been in place you have probably never written the code either. Learning to code is a separate job with good resources of its own, several listed in the [References](references.qmd) chapter. This book covers what has to be true before any of that code can run.
 
 ## Does This Still Matter When a Model Can Write the Code?
 
-An AI assistant can draft your regression, explain an unfamiliar codebase, and suggest a fix for a stack trace. It cannot install Python on your laptop, repair your PATH, resolve a conflict between two package versions, or configure the machine its code will run on. Much of what this book covers is the part of the job that can't be done from inside a chat window.
+An AI assistant can draft your regression, explain an unfamiliar codebase, and suggest a fix for a stack trace. Give one access to your terminal and it will also install Python, repair your PATH, and resolve a conflict between two package versions. I handed an entire laptop migration to a coding agent — dozens of tools, hundreds of packages, the environment variables I always forget — and it sequenced the work better than I would have.
 
-The rest of it matters for a different reason. An assistant's output is only as useful as your ability to run it, test it, and tell whether it's right. If you can't reproduce a result, you can't check it. If you can't check it, you're taking a machine's word for a number you're about to put in front of someone who will act on it. The infrastructure in this book is what makes verification possible, and verification only grows more valuable as more of the drafting gets automated.
+You still sign off on what it does. An agent that installs a package system-wide instead of into the project's environment, or pins a version that quietly changes a number, has handed you something you'll be debugging weeks later on a machine you didn't build. Approving that plan means being able to read it, and reading it means knowing what the commands underneath are for. That's what this book covers.
 
-Use the assistants — they're genuinely good at the things this book doesn't cover. Treat them as a fast pair-programmer rather than an oracle, and know enough about what's underneath to catch them when they're confidently wrong.
+An assistant's output is only as useful as your ability to run it, test it, and tell whether it's right. If you can't reproduce a result, you can't check it. If you can't check it, you're taking a machine's word for a number you're about to put in front of someone who will act on it. The infrastructure in this book is what makes verification possible, and verification only grows more valuable as more of the drafting gets automated.
+
+Use the assistants. They're good at this work, including the parts of it this book covers. Treat them as a fast pair-programmer rather than an oracle, and know enough about what's underneath to catch them when they're confidently wrong.
 
 ## How the Book Is Organised
 
