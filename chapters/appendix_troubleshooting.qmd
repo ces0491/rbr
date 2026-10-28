@@ -18,8 +18,9 @@ The errors below are the ones that come up most often when setting these tools u
 
 1. **Windows**: `Activate.ps1` fails with *"running scripts is disabled on this system"* until you allow local scripts once, with `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`. In `cmd.exe` the file to run is `.venv\Scripts\activate.bat`, not the `.ps1`
 2. **macOS/Linux**: the command is `source .venv/bin/activate`. Running `.venv/bin/activate` without `source` starts a subshell that exits immediately, which looks like nothing happening
-3. **Check which Python you actually got**: `python -c "import sys; print(sys.executable)"`. If the path isn't inside your `.venv`, the activation didn't take
-4. **After moving or renaming the project folder**, delete `.venv` and recreate it. A virtual environment records absolute paths and doesn't survive being moved
+3. **Git Bash on Windows**: the command is `source .venv/Scripts/activate`, because environments created on Windows keep their scripts under `Scripts`
+4. **Check which Python you actually got**: `python -c "import sys; print(sys.executable)"`. If the path isn't inside your `.venv`, the activation didn't take
+5. **After moving or renaming the project folder**, delete `.venv` and recreate it. A virtual environment records absolute paths and doesn't survive being moved
 
 **Why this happens**: activation is only a change to environment variables in the current shell — mostly `PATH`. Anything that starts a fresh shell, or any command that doesn't inherit those variables, gets the system Python instead.
 
@@ -30,16 +31,15 @@ The errors below are the ones that come up most often when setting these tools u
 **Solution**:
 
 1. **Windows**:
-   - Ensure Conda is properly initialised by running `conda init` in the Miniforge (or Anaconda) Prompt
-   - If using PowerShell, you may need to run `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`. Scoping it to your own user account is enough to let conda's activation script run and avoids changing the policy machine-wide
-   - Verify the PATH variable includes the Conda directories: `C:\Users\<username>\miniforge3\Scripts` and `C:\Users\<username>\miniforge3` (substitute `anaconda3` if you installed Anaconda)
+   - Use the Miniforge Prompt (or Anaconda Prompt) from the Start menu, which has conda set up already
+   - To use conda from PowerShell as well, run `conda init powershell` once from the Miniforge Prompt, then open a new PowerShell window
+   - PowerShell may also need `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`. Scoping it to your own user account is enough to let conda's activation script run and avoids changing the policy machine-wide
 
 2. **macOS/Linux**:
-   - Run `source ~/miniforge3/bin/activate`, or the appropriate path to your Conda installation
-   - Add `export PATH="$HOME/miniforge3/bin:$PATH"` to your `.bashrc` or `.zshrc` file
+   - Run `~/miniforge3/bin/conda init bash` (or `zsh`) once, substituting the path to your installation if it differs
    - Restart your terminal or run `source ~/.bashrc` (or `.zshrc`)
 
-**Why this happens**: Conda needs to modify your system's PATH variable to make its commands available. Installation scripts sometimes fail to properly update configuration files, especially if you're using a non-default shell.
+**Why this happens**: conda's commands work only in a shell that has run conda's setup, which `conda init` adds to that shell's startup file. The installers leave this off unless you opt in, and each shell (bash, zsh, PowerShell) needs it separately.
 
 #### Package Installation Failures
 
@@ -52,10 +52,15 @@ The errors below are the ones that come up most often when setting these tools u
    - Update conda first: `conda update -n base conda`
    - Create a fresh environment if existing one is corrupted: `conda create -n fresh_env python=3.13`
 
-2. **For pip or uv**:
+2. **For uv**:
+   - A uv environment has no `pip` in it, so install through uv: `uv pip install package_name`
+   - Refuse to build from source, so you find out immediately that no wheel exists for your platform: `uv pip install --only-binary :all: package_name`
+
+3. **For pip** (environments made with `python -m venv`):
    - Ensure pip is updated: `python -m pip install --upgrade pip`
-   - Refuse to build from source, so you find out immediately that no wheel exists for your platform: `pip install --only-binary :all: package_name`
-   - If a package does have to compile on Windows, you need the Visual C++ Build Tools. If that's the only reason you'd install them, check whether conda has the package instead
+   - The same build-from-source check: `pip install --only-binary :all: package_name`
+
+4. **If a package has to compile on Windows**, you need the Visual C++ Build Tools. If that's the only reason you'd install them, check whether conda has the package instead.
 
 **Why this happens**: Dependency conflicts, network issues, or missing compilers for packages that need to build from source.
 
@@ -73,7 +78,7 @@ The errors below are the ones that come up most often when setting these tools u
    - Try `install.packages("package_name", dependencies=TRUE)`
 
 2. **macOS**:
-   - Install XCode Command Line Tools: `xcode-select --install`
+   - Install the Xcode Command Line Tools: `xcode-select --install`
    - Use homebrew to install dependencies: `brew install pkg-config`
    - For specific packages with external dependencies (like `rJava`), install the required system libraries first
 
@@ -206,7 +211,7 @@ The errors below are the ones that come up most often when setting these tools u
 
 3. **When conflicts are unavoidable**:
    - Use Docker containers to fully isolate environments
-   - Consider tools like `pyenv` to manage multiple Python versions
+   - Let uv manage Python versions: `uv python install 3.12` downloads one, and `uv venv --python 3.12` builds an environment on it
 
 **Why this happens**: Python's packaging system allows packages to be installed in multiple locations, and search paths can create precedence issues.
 
@@ -293,23 +298,18 @@ The errors below are the ones that come up most often when setting these tools u
 
 1. **Homebrew Conflicts**:
    - Keep Homebrew updated: `brew update && brew upgrade`
-   - If conflicts occur with Python/R: prefer conda/CRAN over Homebrew versions
+   - If conflicts occur with Python or R, prefer a uv- or conda-managed Python, and R from CRAN's installer, over Homebrew's versions
    - Use `brew doctor` to diagnose issues
 
-2. **XCode Requirements**:
-   - Many data science tools require the XCode Command Line Tools
+2. **Xcode Requirements**:
+   - Many data science tools require the Xcode Command Line Tools
    - Install with: `xcode-select --install`
    - Update with: `softwareupdate --all --install --force`
-
-3. **System Integrity Protection Limitations**:
-   - Some operations may be restricted by SIP
-   - For development-only machines, SIP can be disabled (not generally recommended)
 
 #### Linux-Specific Issues
 
 1. **Package Manager Conflicts**:
    - Avoid mixing distribution packages with conda/pip when possible
-   - Consider using `--user` flag with pip or isolated conda environments
    - For system-wide Python/R, use distro packages for system dependencies and virtual environments for project dependencies
 
 2. **Library Path Issues**:
@@ -332,4 +332,4 @@ When facing issues, follow this general troubleshooting workflow:
 6. **Use community resources** - Stack Overflow, GitHub issues, and Reddit communities can help
 7. **Document your solution** - Once solved, document it for future reference
 
-Step 5 is the one people skip and the one that most often solves the problem on its own. Cutting a failure down to the smallest thing that still reproduces it usually tells you where it lives.
+Cutting a failure down to the smallest example that still reproduces it (step 5) usually tells you where the problem lives.

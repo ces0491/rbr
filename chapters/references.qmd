@@ -16,11 +16,11 @@ Some teach the coding this book leaves to others; the rest build on the infrastr
 2. **[Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/)** by Jake VanderPlas  
    Covers NumPy, pandas, matplotlib, and scikit-learn end to end. Free online.
 
-3. **[Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd edition](https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/)** by Aurélien Géron  
-   Implementation-focused, with worked examples throughout.
+3. **[Hands-On Machine Learning with Scikit-Learn and PyTorch](https://www.oreilly.com/library/view/hands-on-machine-learning/9798341607972/)** by Aurélien Géron
+   Implementation-focused, with worked examples throughout. This 2025 edition moved from TensorFlow to PyTorch.
 
-4. **[Fluent Python, 2nd edition](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/)** by Luciano Ramalho  
-   For the Python language itself rather than the data stack. The 2nd edition covers type hints and async, both absent from the 1st.
+4. **[Fluent Python, 2nd edition](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/)** by Luciano Ramalho
+   For the Python language itself rather than the data stack. The 2nd edition adds type hints and rewrites the concurrency chapters around `async` and `await`.
 
 ### R for Data Science
 
@@ -33,8 +33,8 @@ Some teach the coding this book leaves to others; the rest build on the infrastr
 3. **[The Big Book of R](https://www.bigbookofr.com/)** by Oscar Baruffa  
    A curated collection of free R resources across various domains and specialties.
 
-4. **[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)** by Hadley Wickham  
-   The reference for ggplot2, from its author. Free online.
+4. **[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)** by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen
+   The reference for ggplot2, co-written by the package's original author. Free online.
 
 ### SQL and Databases
 
@@ -76,7 +76,7 @@ Some teach the coding this book leaves to others; the rest build on the infrastr
 
 ### Workflow, Testing, and Reproducibility
 
-1. **[The Turing Way](https://the-turing-way.netlify.app/)**  
+1. **[The Turing Way](https://book.the-turing-way.org/)**
    A community-written handbook on reproducible research. The reproducibility and project-design chapters are the closest thing to a canonical reference for the material in the Workflows chapter.
 
 2. **[Python Testing with pytest, 2nd edition](https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/)** by Brian Okken  

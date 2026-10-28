@@ -20,10 +20,11 @@ Four reasons SQL earns its place:
 :::{.callout-note}
 ## About the example data in this chapter
 
-The code below refers to files like `sales.parquet`, `sales_2026.csv`, and `data/sales_*.parquet`. These aren't shipped with the book — they stand in for your own data. When you follow along, point the code at a file of your own, or write a small one first:
+The code below refers to files like `sales.parquet`, `sales_2026.csv`, and `data/sales_*.parquet`. These aren't shipped with the book — they stand in for your own data. When you follow along, point the code at a file of your own, or write a small one first. Writing Parquet needs `pyarrow`, which the install step under [Using SQL from Python and R](#using-sql-from-python-and-r) adds:
 
 ```python
 import pandas as pd
+
 pd.DataFrame({
     "region": ["North", "South", "North", "South"],
     "quarter": ["Q4", "Q4", "Q3", "Q3"],
@@ -51,12 +52,13 @@ SQLite is a whole database in a single file, with no server to install or keep r
 
 #### On macOS
 
-SQLite comes pre-installed, but you can install a newer version with Homebrew:
+SQLite comes pre-installed, and that version is enough for this chapter. Homebrew has a newer one:
 
 ```bash
-# Install SQLite
 brew install sqlite
 ```
+
+Homebrew installs it *keg-only*, which leaves the macOS copy first on your PATH, so `sqlite3` still runs the system version. `brew info sqlite` prints the line to add to your shell profile if you want Homebrew's instead.
 
 #### On Linux
 
@@ -109,7 +111,7 @@ SELECT * FROM people;
 .exit
 ```
 
-Note the comment syntax. SQL uses `--`, not the `#` that shells use; paste a `#` comment at the `sqlite>` prompt and you'll get a syntax error.
+Comments in SQL start with `--`. The `sqlite3` program skips a line that starts with `#`, but a `#` after a statement on the same line is a parse error (`unrecognized token: "#"`).
 
 That creates a table inside `sample.db`, adds three rows, and reads them back.
 
@@ -130,26 +132,31 @@ It gives you a spreadsheet-like view of the tables, which is the quickest way to
 
 #### Using SQL from Python and R
 
-You can also interact with SQLite databases from Python and R. Python needs nothing extra — `sqlite3` is part of the standard library — but R needs two packages, and every other database in this chapter needs a driver of its own. Install them into your project environment now:
+You can also interact with SQLite databases from Python and R. Python needs nothing extra — `sqlite3` is part of the standard library — but R needs two packages, and every other database in this chapter needs a driver of its own. Install them into your project environment now, along with the file-format and data-frame libraries the later sections use:
 
 ```{r}
 #| eval: false
-# DBI is the common interface; the others are drivers for specific databases
-install.packages(c("DBI", "RSQLite", "duckdb", "RPostgres"))
+# DBI is the common interface; RSQLite, duckdb and RPostgres are drivers
+# for specific databases; arrow reads and writes Parquet
+install.packages(c("DBI", "RSQLite", "duckdb", "RPostgres", "arrow"))
 ```
 
 ```bash
-# Python: sqlite3 is built in, the rest are not
-pip install pandas pyarrow duckdb sqlalchemy "psycopg[binary]"
+# Python: sqlite3 is built in, the rest are not. With uv:
+uv pip install pandas pyarrow duckdb polars sqlalchemy "psycopg[binary]"
+
+# Or with conda:
+conda install pandas pyarrow python-duckdb polars sqlalchemy psycopg
 ```
 
-`DBI` in R and `sqlalchemy` in Python are the layers that let you write the same code against different databases; the rest are the per-database drivers underneath. You only need the driver for the database you're actually connecting to, so install the PostgreSQL ones when you reach that section if you prefer.
+`DBI` in R and `sqlalchemy` in Python let you write the same code against different databases, with a driver for each database underneath. You only need the driver for the database you're actually connecting to, so install the PostgreSQL ones (`RPostgres`, `psycopg`) when you reach that section if you prefer.
 
 ##### Python
 
 ```{python}
 #| eval: false
 import sqlite3
+
 import pandas as pd
 
 # Connect to the database
@@ -189,7 +196,7 @@ Both languages talk to the same file. You can store data in a database, filter a
 
 ## File Formats: Stop Using CSV for Everything
 
-CSV is the universal interchange format and it will never go away, but it is a poor working format. It has no types (every column is text until something guesses), no compression, no column selection (reading one column means parsing all of them), and no schema.
+CSV is the universal interchange format, but it is a poor working format. It has no types (every column is text until something guesses), no compression, no column selection (reading one column means parsing all of them), and no schema.
 
 **Parquet** fixes all four. It is a compressed, typed binary format, and it is *columnar*: where a CSV stores row after row, Parquet stores each column's values together, which is why it can hand you one column without reading the others. It is the default choice for any dataset you'll read more than once.
 
@@ -197,7 +204,8 @@ CSV is the universal interchange format and it will never go away, but it is a p
 #| eval: false
 import pandas as pd
 
-df = pd.read_csv("large_dataset.csv")
+# parse_dates reads the date column as dates; without it they stay text
+df = pd.read_csv("large_dataset.csv", parse_dates=["date"])
 
 # Write once
 df.to_parquet("large_dataset.parquet")
@@ -211,25 +219,26 @@ df = pd.read_parquet("large_dataset.parquet", columns=["date", "revenue"])
 
 In R, `arrow::write_parquet()` and `arrow::read_parquet()` do the same job.
 
-The file is usually a fraction of the CSV's size, loads far faster, and — the part that matters most for reproducibility — remembers that your date column was a date. Keep the CSV if you need to hand it to someone in Excel. Work from the Parquet.
+The file is usually a fraction of the CSV's size, loads far faster, and — the part that matters most for reproducibility — keeps the types it was written with, so once `parse_dates` has made the date column dates, later reads get dates back. Keep the CSV if you need to hand it to someone in Excel. Work from the Parquet.
 
 ## DuckDB: SQL Without a Database Server
 
-SQLite gave you a database in a file. **DuckDB** gives you an analytical query engine in a file — or in no file at all — and it has changed how a lot of analysis gets done in the few years since it appeared.
+SQLite gave you a database in a file. **DuckDB** gives you an analytical query engine in a file, or in no file at all.
 
-The pitch: DuckDB runs SQL directly against CSV and Parquet files on disk, fast enough that work you would once have sent to a cluster now finishes on a laptop, with no server to install, configure, or keep running.
+DuckDB runs SQL directly against CSV and Parquet files on disk, fast enough that work you would once have sent to a cluster now finishes on a laptop, with no server to install or keep running.
 
 ```bash
-pip install duckdb        # Python
+uv pip install duckdb           # Python, uv
+conda install python-duckdb     # Python, conda
 ```
 
 ```r
-install.packages("duckdb")   # R
+install.packages("duckdb")      # R
 ```
 
 ### Querying Files Directly
 
-No import step, no schema definition, no server:
+A query can name a file directly:
 
 ```{python}
 #| eval: false
@@ -286,7 +295,9 @@ duckdb_register(con, "sales", sales_df)
 
 result <- dbGetQuery(con, "
   SELECT region, AVG(revenue) AS avg_revenue
-  FROM sales GROUP BY region
+  FROM sales
+  WHERE quarter = 'Q4'
+  GROUP BY region
 ")
 
 dbDisconnect(con, shutdown = TRUE)
@@ -330,29 +341,37 @@ result = (
 )
 ```
 
-In the lazy version, Polars sees the filter before reading anything and pushes it down into the file scan — so rows for other quarters are never read off disk at all. On large files the difference is substantial.
+In the lazy version, Polars sees the filter before reading anything and pushes it down into the file scan, so Parquet row groups that can't contain Q4 rows are skipped rather than read. On large files the difference is substantial.
 
-Should you switch? Not urgently. pandas has had since 2008 to accumulate an ecosystem, and almost every tutorial, Stack Overflow answer, and library integration assumes it. Polars is worth learning when pandas becomes the bottleneck — jobs that take minutes, or datasets that don't fit comfortably in memory — and worth knowing about now so you recognise it when you meet it.
+Should you switch? Not urgently. pandas has had since 2008 to accumulate an ecosystem, and most tutorials, Stack Overflow answers and library integrations assume it. Polars is worth learning when pandas becomes the bottleneck — jobs that take minutes, or datasets that don't fit comfortably in memory — and worth knowing about now so you recognise it when you meet it.
 
 For most readers of this book, the ordering is: pandas by default, DuckDB when the query is more naturally SQL or the data is large, Polars when you've measured pandas being too slow.
 
 ## PostgreSQL: When You Need a Real Server
 
-SQLite and DuckDB are files. At some point you'll need a database that multiple people or applications can write to at once, with user accounts and permissions. That is almost always PostgreSQL.
+SQLite and DuckDB are files. At some point you'll need a database that multiple people or applications can write to at once, with user accounts and permissions. PostgreSQL is the usual open-source choice, and it's the one this section uses. If your organisation runs SQL Server, Oracle or MySQL instead, the code below keeps the same shape with a different driver.
 
 You are unlikely to install one from scratch as an analyst — more often you'll be given connection details to an existing one. Connecting is the same shape in both languages:
 
 ```{python}
 #| eval: false
 import os
-import pandas as pd
-from sqlalchemy import create_engine
 
-# Read credentials from the environment, never from the source file
-engine = create_engine(
-    f"postgresql+psycopg://{os.environ['DB_USER']}:{os.environ['DB_PASSWORD']}"
-    f"@{os.environ['DB_HOST']}:5432/{os.environ['DB_NAME']}"
+import pandas as pd
+from sqlalchemy import URL, create_engine
+
+# Read credentials from the environment, never from the source file.
+# URL.create keeps a password containing @, / or : intact; pasted into a
+# connection string, those characters are read as part of the address.
+url = URL.create(
+    "postgresql+psycopg",
+    username=os.environ["DB_USER"],
+    password=os.environ["DB_PASSWORD"],
+    host=os.environ["DB_HOST"],
+    port=5432,
+    database=os.environ["DB_NAME"],
 )
+engine = create_engine(url)
 
 df = pd.read_sql("SELECT * FROM transactions WHERE date >= '2026-01-01'", engine)
 ```
@@ -415,12 +434,13 @@ DB_PASSWORD=the-actual-password
 WEATHER_API_KEY=abc123
 ```
 
-Add `.env` to `.gitignore` **before** you put anything real in it. Then load it:
+Add `.env` to `.gitignore` **before** you put anything real in it. Then load it with the `python-dotenv` package (`uv pip install python-dotenv`, or `conda install python-dotenv`):
 
 ```{python}
 #| eval: false
-from dotenv import load_dotenv   # pip install python-dotenv
 import os
+
+from dotenv import load_dotenv
 
 load_dotenv()
 api_key = os.environ["WEATHER_API_KEY"]
@@ -442,7 +462,7 @@ api_key <- Sys.getenv("WEATHER_API_KEY")
 
 ### Deployed applications: the platform's secret store
 
-Every hosting platform has one, and it is always the right answer in production: Render's Environment tab, GitHub Actions secrets, Fly.io secrets, GCP Secret Manager, AWS Secrets Manager. Your code doesn't change — it still reads `os.environ[...]` — only the source of the value does. The [Deploying Data Science Projects](deployment.qmd) chapter covers the specifics per platform.
+Hosting platforms each have one, and in production that's where secrets belong: Render's Environment tab, GitHub Actions secrets, Fly.io secrets, GCP Secret Manager, AWS Secrets Manager. Your code doesn't change — it still reads `os.environ[...]` — only the source of the value does. The [Deploying Data Science Projects](deployment.qmd) chapter covers the specifics per platform.
 
 ### If a secret does leak
 

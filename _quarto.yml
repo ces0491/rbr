@@ -81,8 +81,12 @@ format:
     # Code is the content in a setup book - don't hide it behind a click
     code-fold: false
     code-copy: true
+    # Quarto converts tabs in code blocks to spaces by default, which breaks
+    # the Makefile in the Workflows chapter for anyone who copies it: make
+    # requires a literal tab before each recipe line.
+    preserve-tabs: true
 
-# PDF/EPUB disabled - Mermaid diagrams require Chromium which times out in CI
+# PDF/EPUB disabled - Mermaid diagrams need a headless browser, which times out in CI
 # To generate PDF/EPUB, run `quarto render` locally and upload manually
 #  pdf:
 #    documentclass: scrbook

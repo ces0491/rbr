@@ -30,7 +30,7 @@ jobs:
         with:
           path: ~/.cache/pip
           # The book has no requirements.txt, so the key is derived from the
-          # workflow itself - it changes when the pinned package list below does.
+          # workflow itself - it changes when the package list below does.
           key: ${{ runner.os }}-pip-${{ hashFiles('.github/workflows/publish.yml') }}
           restore-keys: |
             ${{ runner.os }}-pip-

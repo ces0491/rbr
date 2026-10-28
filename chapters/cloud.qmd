@@ -88,7 +88,7 @@ Let's create a basic starter project on AWS as an example:
 4. Open Studio and launch a JupyterLab space, choosing a small instance type such as `ml.t3.medium`. Check what your account's current free-tier terms cover before you start it — see the note on free tiers below
 5. Start the space, open JupyterLab, create a notebook, and start working
 
-This gives you a fully configured Jupyter environment with access to more computational resources than your local machine likely has. SageMaker comes pre-installed with popular data science libraries and integrates with other AWS services like S3 for storage.
+This gives you a configured Jupyter environment on Amazon's hardware. `ml.t3.medium` itself is small, with 2 vCPUs and 4 GiB of memory; what you gain is the option to stop the space and restart it on a larger instance type when a job needs more. SageMaker comes with popular data science libraries pre-installed and integrates with other AWS services like S3 for storage.
 
 :::{.callout-warning}
 ## Shut it down when you're done
@@ -100,7 +100,7 @@ Studio spaces and notebook instances bill by the minute they're running, not by 
 
 A handful of traps account for most surprise bills:
 
-- **Idle notebook and VM instances**: Cloud notebooks bill by wall-clock time, not usage. An instance left running overnight can cost more than a whole week of active work.
+- **Idle notebook and VM instances**: Cloud notebooks and VMs bill for the time they're running, whether or not you're using them. One left on overnight bills for more hours than the working day before it.
 - **Data egress**: Moving data *out* of a cloud provider (to your laptop, to another region, to another cloud) is almost always charged. Moving it *in* is usually free. Pulling a 500 GB dataset to your machine "just to look at it" is a classic expensive mistake.
 - **NAT gateways and load balancers**: Networking components that a tutorial may have had you create — one lets private machines reach the internet, the other spreads incoming traffic across several servers. On AWS especially, they run 24/7 and bill by the hour even when nothing is using them. Delete them when the project ends.
 - **Storage classes**: Object storage — the kind that holds whole files you address by name, like S3, rather than rows you query — has cheap long-term tiers (S3 Glacier, GCS Coldline, Azure Archive) for data you rarely read. Use them for raw archives.
@@ -121,17 +121,18 @@ Do this before you launch anything, not after the first bill.
 
 Two rules carry most of the weight. Turn on multi-factor authentication for the account, because a cloud login is a login to something that can spend money. And grant the narrowest permissions that let the job run — a notebook that reads one bucket shouldn't hold credentials that can drop the account's databases.
 
-Encryption is the third, and it is mostly a matter of switching it on in the right place rather than writing any code.
+Encryption is the third, and on S3 most of it is already done for you.
 
-AWS offers three ways to encrypt what's in a bucket, distinguished by who holds the key: **SSE-S3** (AWS manages it entirely, nothing for you to do), **SSE-KMS** (a key you own in AWS's Key Management Service, so you can control and audit its use), and **SSE-C** (you supply the key on every request). In practice, the cleanest approach for most data science work is to enable **default encryption on the S3 bucket itself** with one of the first two (AWS console → Bucket → Properties → Default encryption → SSE-S3 or SSE-KMS). Once that's set, every object written to the bucket is encrypted at rest automatically, and your notebook code doesn't need to pass keys at all:
+AWS offers three ways to encrypt what's in a bucket, distinguished by who holds the key: **SSE-S3** (AWS manages it entirely), **SSE-KMS** (a key you own in AWS's Key Management Service, so you can control and audit its use), and **SSE-C** (you supply the key on every request). Since 5 January 2023, S3 has applied SSE-S3 to every new object by default, and it can't be switched off, so anything you upload is encrypted at rest without you doing anything. The choice left to you is whether to change the bucket's default to **SSE-KMS** (AWS console → Bucket → Properties → Default encryption), which you'd do when you need to control or audit who can use the key. Either way, your notebook code doesn't pass keys at all:
 
 ```python
 import boto3
 from botocore.exceptions import ClientError
 
+
 def get_data(bucket, key):
     # Credentials come from the instance IAM role, not from code.
-    # Encryption is handled by the bucket's default policy.
+    # Encryption is handled by the bucket's default setting.
     s3 = boto3.client('s3')
     try:
         response = s3.get_object(Bucket=bucket, Key=key)
@@ -144,10 +145,10 @@ def get_data(bucket, key):
 A few principles to notice:
 
 - **No access keys in code**. When running on an EC2 instance, SageMaker notebook, or Lambda, attach an IAM role — a named set of permissions granted to the machine itself rather than to a person, so nothing has to carry a key around — with the minimum permissions the job needs; boto3 picks up credentials automatically. For local development, use `aws configure` to store credentials in `~/.aws/credentials` (which is already outside your git repository).
-- **Let the bucket policy enforce encryption**, not the client. This avoids the trap of one script forgetting to encrypt.
+- **Configure encryption on the bucket.** If you need SSE-KMS, make it the bucket's default encryption, so every upload gets it without the code having to ask.
 - **Avoid SSE-C** unless you have a specific compliance reason. Holding the key yourself means losing the key loses the data, permanently and with no recourse. SSE-KMS is almost always the better choice.
 
-Providers call this shared responsibility: they secure the infrastructure, you secure what you put on it. The breaches that reach the news are nearly always the second half.
+Providers call this shared responsibility: they secure the infrastructure, you secure what you put on it.
 
 ### Hands-On Exercise: Your First Cloud Analysis with Google Colab
 
@@ -164,8 +165,8 @@ Let's walk through a complete example of using Google Colab for a data science t
 In the first cell, load a dataset directly from a URL:
 
 ```{python}
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
 import seaborn as sns
 
 # Load a sample dataset directly from the web
@@ -175,7 +176,7 @@ df = pd.read_csv(url)
 # Display basic information
 print(f"Dataset shape: {df.shape}")
 print(f"\nColumn types:\n{df.dtypes}")
-print(f"\nFirst few rows:")
+print("\nFirst few rows:")
 df.head()
 ```
 
@@ -233,16 +234,16 @@ That is the whole shape of cloud-based analysis: read data in, work on it, draw 
 
 ### Connecting Cloud Storage to Your Analysis
 
-When working with larger datasets, you'll want to connect cloud storage to your notebooks. Here's how to mount Google Drive in Colab:
+When working with larger datasets, you'll want to connect cloud storage to your notebooks. In Colab, Google Drive mounts like this:
 
 ```{python}
+import pandas as pd
 from google.colab import drive
 
 # Mount Google Drive
 drive.mount('/content/drive')
 
 # Now you can access files in your Drive
-import pandas as pd
 df = pd.read_csv('/content/drive/MyDrive/data/my_dataset.csv')
 ```
 
@@ -252,8 +253,9 @@ For AWS S3 from a Colab notebook, use the boto3 library with credentials supplie
 # In Colab: click the 🔑 key icon in the left sidebar and add two secrets
 # named AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. Then:
 import os
-from google.colab import userdata
+
 import boto3
+from google.colab import userdata
 
 os.environ["AWS_ACCESS_KEY_ID"] = userdata.get("AWS_ACCESS_KEY_ID")
 os.environ["AWS_SECRET_ACCESS_KEY"] = userdata.get("AWS_SECRET_ACCESS_KEY")
@@ -264,7 +266,7 @@ s3.download_file("your-bucket", "data.csv", "data.csv")
 
 **Never paste access keys directly into notebook cells or commit them to a repository.** Anything written in a cell gets saved to the `.ipynb` file and is trivially recoverable. Use Colab secrets, environment variables, or (better) IAM roles for service-to-service access.
 
-If a key does leak, rotate it in the AWS console immediately. Don't try to scrub the notebook history.
+If a key does leak, rotate it in the AWS console straight away; [Data Stores](data_stores.qmd#if-a-secret-does-leak) covers why rotation beats scrubbing history.
 
 Either way the data stays where it is and the notebook reaches for it, rather than you shipping files around by hand.
 

@@ -6,7 +6,7 @@ description: >-
 
 ## Setting Up Python
 
-Python is the language most of the infrastructure in this book is written in and expects. NumPy, pandas and scikit-learn cover the numerical and modelling work; almost everything else — web frameworks, cloud SDKs, orchestration tools — has a Python client whether or not it has an R one. That reach is the practical argument for it, more than anything about the language itself.
+Most of the infrastructure in this book has a Python interface, even where the tool itself is written in something else. NumPy, pandas and scikit-learn cover the numerical and modelling work, and web frameworks, cloud SDKs and orchestration tools generally ship a Python client whether or not they ship an R one. That reach is the practical argument for it.
 
 ### Installing Python
 
@@ -32,10 +32,10 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ```powershell
 # Windows PowerShell
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-Both download a script and run it in one step, which is the method Astral documents. [The Command Line](command_line.qmd) explains what you're agreeing to when you do that, and when to download and read the script first instead.
+Both download a script and run it in one step, which is the method Astral documents. [The Command Line](command_line.qmd) explains what you're agreeing to when you do that, and when to download and read the script first instead. On Windows, `-ExecutionPolicy ByPass` lets that one command run the installer; a fresh Windows install refuses to run scripts otherwise.
 
 Close and reopen your terminal so the new command is on your PATH, then check it:
 
@@ -67,7 +67,7 @@ conda --version
 :::{.callout-important}
 ## Don't install packages into the base installation
 
-The next thing most people do is `pip install pandas` and carry on. Resist it. Packages installed globally accumulate, conflict, and eventually break each other in ways that are genuinely painful to unpick — and nothing records what you installed, so the analysis you write today may not run tomorrow.
+The next thing most people do is `pip install pandas` and carry on. Resist it. Packages installed globally accumulate, conflict, and eventually break each other in ways that are painful to unpick — and nothing records what you installed, so the analysis you write today may not run tomorrow.
 
 Create a per-project environment first. That is the whole subject of the [Reproducible Environments](environments.qmd) chapter, and it's worth reading before you install your second package. The short version:
 
@@ -92,7 +92,8 @@ Neither uv nor Miniforge installs Jupyter for you. Make a directory to work thro
 With uv, the environment is a `.venv` directory inside the project:
 
 ```bash
-mkdir rbr-work && cd rbr-work
+mkdir rbr-work
+cd rbr-work
 
 # Create the environment. uv fetches Python 3.13 if you don't have it.
 uv venv --python 3.13
@@ -103,12 +104,21 @@ Activate it — you do this in every new terminal session, and the command diffe
 ```bash
 # macOS / Linux
 source .venv/bin/activate
+
+# Git Bash on Windows
+source .venv/Scripts/activate
 ```
 
 ```powershell
 # Windows PowerShell
 .venv\Scripts\Activate.ps1
 ```
+
+:::{.callout-note}
+## Windows: "running scripts is disabled on this system"
+
+If `Activate.ps1` fails with that message, PowerShell is refusing to run local scripts. [Reproducible Environments](environments.qmd) has the one-line fix.
+:::
 
 Then install into it and start Jupyter:
 
@@ -129,26 +139,18 @@ conda activate datasci
 jupyter notebook
 ```
 
-The conda version takes a few minutes, because conda is resolving a consistent set of versions across everything you asked for and everything those packages depend on in turn. uv does the same job in well under a minute the first time, and in a few seconds after that, once the packages are in its local cache.
+The conda version takes noticeably longer, because conda is resolving a consistent set of versions across everything you asked for and everything those packages depend on in turn. uv does the same job faster, and faster again once the packages are in its local cache.
 
-:::{.callout-note}
-## Windows: "running scripts is disabled on this system"
-
-If `Activate.ps1` fails with that message, PowerShell is refusing to run local scripts. [Reproducible Environments](environments.qmd) has the one-line fix.
-:::
-
-Later chapters refer back to this environment as the one you made here — `.venv` under uv, `datasci` under conda. [Reproducible Environments](environments.qmd) explains why one environment per project beats one environment for everything, and why the shared scratchpad you've just built is a pattern to grow out of.
-
-This opens a web browser where you can create and work with notebooks. Let's create a simple notebook to verify everything works:
+Either way, `jupyter notebook` opens a browser tab where you create and run notebooks. To check everything works, create one:
 
 1. Click "New" → "Python 3"
 2. In the first cell, type:
 
 ```{python}
 #| eval: false
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # Create some sample data
 data = pd.DataFrame({
@@ -172,6 +174,8 @@ print("Python environment is working correctly!")
 
 If you see a plot and the success message, your Python setup is working.
 
+Later chapters refer back to this environment as the one you made here — `.venv` under uv, `datasci` under conda. [Reproducible Environments](environments.qmd) explains why one environment per project beats one environment for everything, and why the shared scratchpad you've just built is a pattern to grow out of.
+
 ### Installing Additional Packages
 
 With the environment activated:
@@ -182,8 +186,6 @@ conda install package_name       # conda
 ```
 
 Inside a conda environment you can also use `pip` for anything not packaged for conda, though mixing the two in one environment is a known way to end up with a broken environment. Install what you can with conda first, then pip for the remainder, and avoid alternating.
-
-The case for reaching across to conda is narrower than it used to be. Most of the scientific stack now ships prebuilt wheels that uv installs without a compiler. Where conda still earns its place is packages wrapping non-Python system libraries — GDAL and PROJ for geospatial work, CUDA builds of PyTorch, much of bioinformatics — because something has to install those libraries too, and conda does.
 
 ## Setting Up R
 
@@ -218,13 +220,13 @@ Open RStudio and enter this command in the console (lower-left pane):
 R.version.string
 ```
 
-RStudio also prints the same information unprompted at the start of every new session, so you may already see it above your cursor. It should look something like this:
+It prints a single line, something like this:
 
-`R version 4.6.1 (2026-06-24 ucrt) -- "Happy Hop"`
-`Copyright (C) 2026 The R Foundation for Statistical Computing`
-`Platform: x86_64-w64-mingw32/x64`
+```
+[1] "R version 4.6.1 (2026-06-24 ucrt)"
+```
 
-Your version number and codename will differ — R releases a new minor version each April and patches through the year. The `ucrt` and `Platform` lines only appear on Windows.
+Your version number will differ: R releases a new minor version, usually in April, and patches through the year. The ` ucrt` tag appears only on Windows. RStudio also prints a longer banner at the start of each session, with the release's codename and a `Platform:` line, so you may already see the version above your cursor.
 
 ### The R Packages to Start With
 
@@ -243,7 +245,7 @@ This installs:
 - **knitr**: For dynamic report generation
 - **plotly**: For interactive visualisations
 
-The tidyverse is the one to learn first. It replaces most of base R's data manipulation with a consistent set of verbs, and the other four assume you have it.
+The tidyverse is the one to learn first. It replaces most of base R's data manipulation with a consistent set of verbs.
 
 ### Creating Your First R Script
 
@@ -281,7 +283,7 @@ If you see a plot in the lower-right pane and the success message in the console
 
 ### Understanding R Packages
 
-Unlike Python, where conda or pip manage packages, R has its own built-in package management system accessed through functions like `install.packages()` and `library()`.
+Unlike Python, where uv, pip or conda install packages from outside the language, R manages its packages from inside R itself, through functions like `install.packages()` and `library()`.
 
 There are thousands of R packages available on CRAN, with more on Bioconductor (for bioinformatics) and GitHub. To install a package from GitHub, you first need the devtools package:
 
@@ -295,7 +297,7 @@ Think of CRAN as the official app store for R packages, while GitHub is like get
 
 ## Python or R?
 
-The question comes up constantly and has a boring answer: both are good, the differences that once mattered mostly don't any more, and the deciding factor is almost always what the people around you use.
+The question comes up constantly and has a boring answer: both are good, the differences that once mattered mostly don't any more, and the deciding factor is usually what the people around you use.
 
 Where genuine differences remain:
 

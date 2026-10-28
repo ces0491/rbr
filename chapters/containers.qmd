@@ -6,7 +6,7 @@ description: >-
 
 ## Containerisation with Docker
 
-As your data science projects grow more complex, you may encounter the "it works on my machine" problem — where code runs differently in different environments. Containerisation solves this by packaging your code and its dependencies into a standardised unit called a container. Building on the [Reproducible Environments](environments.qmd) chapter (conda and uv for Python, renv for R), containers extend that isolation to the whole runtime — the operating system libraries, the system tools, and the language version itself, not just the packages.
+As your data science projects grow more complex, you may encounter the "it works on my machine" problem — where code runs differently in different environments. Containerisation solves this by packaging your code and its dependencies into a standardised unit called a container. Building on the [Reproducible Environments](environments.qmd) chapter (uv and conda for Python, renv for R), containers extend that isolation to the whole runtime — the operating system libraries, the system tools, and the language version itself, not just the packages.
 
 ### What a Container Buys You
 
@@ -21,13 +21,13 @@ Docker is the most widely used containerisation platform, and its command-line t
 :::{.callout-note}
 ## Docker Desktop licensing
 
-Since 2021, **Docker Desktop has required a paid subscription for commercial use above a size threshold** — as of writing, more than 250 employees or over $10 million in annual revenue. It remains free for personal use, education, smaller businesses, and open-source projects. Thresholds like this get revised, so check [Docker's current terms](https://www.docker.com/pricing/) rather than this paragraph before concluding you're under it. If your workplace falls above that threshold, the free alternatives below all provide the same `docker` command:
+Since 2021, **Docker Desktop has required a paid subscription for commercial use above a size threshold** — as of writing, more than 250 employees or over $10 million in annual revenue. It remains free for personal use, education, smaller businesses, and open-source projects. Thresholds like this get revised, so check [Docker's current terms](https://www.docker.com/pricing/) rather than this paragraph before concluding you're under it. If your workplace falls above that threshold, the free alternatives below all run the same images and Dockerfiles:
 
 - **[Rancher Desktop](https://rancherdesktop.io/)**: open source, works on Windows/macOS/Linux, bundles Kubernetes
 - **[Podman Desktop](https://podman-desktop.io/)**: open source, Red Hat–maintained, and the closest drop-in replacement for the Docker CLI. It runs without a background service (a *daemon*) holding root privileges, which some IT departments prefer
 - **[OrbStack](https://orbstack.dev/)** (macOS only): very fast, polished; free for personal use, paid for commercial
 
-All the Dockerfiles and `docker` commands in this chapter work identically on each of these tools.
+The Dockerfiles in this chapter build on each of these tools, and most of the `docker` commands carry over. Compose and the ownership of files in mounted folders are where they differ, so check the tool's own documentation for those two.
 :::
 
 #### On Windows
@@ -44,9 +44,10 @@ All the Dockerfiles and `docker` commands in this chapter work identically on ea
 #### On Linux
 
 ```bash
-# For Ubuntu/Debian
+# Ubuntu. docker.io alone has no `docker compose`, which this chapter uses.
+# On Debian the Compose package is called docker-compose instead.
 sudo apt update
-sudo apt install docker.io
+sudo apt install docker.io docker-compose-v2 docker-buildx
 sudo systemctl enable --now docker
 
 # Add your user to the docker group to run Docker without sudo
@@ -94,11 +95,6 @@ cd docker-data-science
 # Use a base image with Python installed
 FROM python:3.13-slim
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
-
 # Set working directory
 WORKDIR /app
 
@@ -108,8 +104,8 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Create a non-root user (before copying files so we can set ownership)
-RUN useradd --create-home --shell /bin/bash jovyan
+# Create a non-root user and give it the working directory
+RUN useradd --create-home --shell /bin/bash jovyan && chown jovyan:jovyan /app
 
 # Copy the rest of the code, owned by the non-root user
 COPY --chown=jovyan:jovyan . .
@@ -143,7 +139,7 @@ This command tells Docker to build an image based on the instructions in the Doc
 5. Run a container from the image:
 
 ```bash
-docker run -p 8888:8888 -v $(pwd):/app data-science-env
+docker run -p 8888:8888 -v "$(pwd)":/app data-science-env
 ```
 
 This command does two important things:
@@ -152,15 +148,22 @@ This command does two important things:
 - Mounts your current directory to `/app` in the container, so changes to files are saved on your computer
 
 :::{.callout-note}
-## `$(pwd)` on Windows
+## The current directory on each shell
 
-`$(pwd)` is shell syntax for "the current directory". It works in Git Bash, WSL, and PowerShell. It does **not** work in the old `cmd.exe` prompt, where the equivalent is `%cd%`:
+`"$(pwd)"` is how macOS, Linux and WSL shells write "the current directory", and the quotes keep a path with spaces in one piece. The other Windows shells spell it differently:
 
+| Shell | Mount option |
+|---|---|
+| macOS, Linux, WSL | `-v "$(pwd)":/app` |
+| Git Bash | `-v "$(pwd)":/app`, with `MSYS_NO_PATHCONV=1` in front of `docker run` |
+| PowerShell | `-v "${PWD}:/app"` |
+| Command Prompt | `-v "%cd%":/app` |
+
+Git Bash rewrites anything that looks like a Unix path before Docker sees it, turning `/app` into a folder under `C:\Program Files\Git`. The container still starts, with none of your files in `/app`. `MSYS_NO_PATHCONV=1` switches that rewriting off for the one command:
+
+```bash
+MSYS_NO_PATHCONV=1 docker run -p 8888:8888 -v "$(pwd)":/app data-science-env
 ```
-docker run -p 8888:8888 -v %cd%:/app data-science-env
-```
-
-If the volume mount appears to do nothing — the container starts but your files aren't in `/app` — an unexpanded `$(pwd)` is the usual reason.
 :::
 
 6. Open the Jupyter Lab URL shown in the terminal output
@@ -179,49 +182,32 @@ FROM python:3.13-slim
 The `FROM` statement specifies the base image to use. We're starting with a lightweight Python 3.13 image. Always pick a currently-supported Python version; consult the [official release schedule](https://devguide.python.org/versions/) before pinning in production, since each version's support window eventually ends.
 
 ```dockerfile
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
-```
-
-The `RUN` statement executes commands during the build process. Here, we're updating the package list and installing gcc, which is required for building some Python packages.
-
-```dockerfile
 # Set working directory
 WORKDIR /app
-```
 
-The `WORKDIR` statement sets the working directory within the container.
-
-```dockerfile
 # Copy requirements file
 COPY requirements.txt .
-```
 
-The `COPY` statement copies files from the host to the container. We copy the requirements file separately to take advantage of Docker's caching mechanism.
-
-```dockerfile
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 ```
 
-Another `RUN` statement to install the Python dependencies listed in requirements.txt.
+`RUN` executes a command while the image is being built. The requirements file is copied and installed on its own, before the rest of the code, because Docker caches each step: when only your code changes, a rebuild reuses the layer with the packages already installed. No compiler is needed for this list, since every package on it publishes prebuilt wheels for Linux.
 
 ```dockerfile
-# Create a non-root user (before copying files so we can set ownership)
-RUN useradd --create-home --shell /bin/bash jovyan
+# Create a non-root user and give it the working directory
+RUN useradd --create-home --shell /bin/bash jovyan && chown jovyan:jovyan /app
 
 COPY --chown=jovyan:jovyan . .
 
 USER jovyan
 ```
 
-Three things happen here. `COPY . .` copies everything from the current directory on the host into the working directory in the container. The `--chown` flag sets the owner as it copies, and `USER jovyan` means every command after this line — including the `CMD` below — runs as that user rather than as root.
+`useradd` creates the user, and `chown` hands it `/app`, which `WORKDIR` created as root. `COPY . .` copies everything from the current directory on the host into the working directory, `--chown` sets the owner of each file as it copies, and `USER jovyan` means every command after this line, including the `CMD` below, runs as that user. Without the `chown`, Jupyter could open the copied notebooks but not create a new one.
 
-That last part is the one worth internalising. By default everything in a container runs as root, which is fine until the container is exposed to the network or mounts a host directory, at which point a process that escapes its intended boundary is doing so with root privileges. Creating an unprivileged user costs two lines. (`jovyan` is not a special name — it's the convention the official Jupyter images use, and following it keeps file ownership consistent if you later switch to one of those base images.)
+By default everything in a container runs as root, which is fine until the container is exposed to the network or mounts a host directory, at which point a process that escapes its intended boundary is doing so with root privileges. Creating an unprivileged user costs two lines. (`jovyan` is not a special name. It's the convention the official Jupyter images use, and following it keeps file ownership consistent if you later switch to one of those base images.)
 
-Note what `--chown` does *not* cover. It sets ownership on the files baked into the image at build time. The `-v $(pwd):/app` mount in the run command replaces `/app` with a directory from your host, so anything the image had at that path is hidden underneath it, and the ownership the container sees is the host's, not what the Dockerfile set.
+Ownership set in the Dockerfile applies only to what's baked into the image. The `-v` mount in the run command lays a directory from your host over `/app`, hiding whatever the image had at that path, and the container sees the host's ownership on everything there.
 
 :::{.callout-note}
 ## If Jupyter can't save notebooks into a mounted directory
@@ -231,10 +217,10 @@ On macOS and Windows, Docker Desktop translates ownership for you and this rarel
 Run the container as yourself instead of rebuilding the image:
 
 ```bash
-docker run -p 8888:8888 -u $(id -u):$(id -g) -v $(pwd):/app data-science-env
+docker run -p 8888:8888 -u $(id -u):$(id -g) -e HOME=/tmp -v "$(pwd)":/app data-science-env
 ```
 
-`id -u` and `id -g` are your own user and group numbers, so files the container writes come back owned by you.
+`id -u` and `id -g` are your own user and group numbers, so files the container writes come back owned by you. Your user number has no account inside the image, which leaves Jupyter with `/` as its home directory and nowhere to write its runtime files; `HOME=/tmp` gives it one.
 :::
 
 ```dockerfile
@@ -272,21 +258,22 @@ Two small but important habits:
 
 #### RStudio
 
-For R users, the Rocker project maintains RStudio Server images. Keep the password out of your shell history by reading it from an environment variable or `.env` file rather than typing it on the command line:
+For R users, the Rocker project maintains RStudio Server images. RStudio needs a password, and anything you type as part of a command is saved in your shell's history, so type the password at a prompt instead:
 
 ```bash
-# Bash, Git Bash, WSL, macOS. Set the password once for this shell session:
-export RSTUDIO_PASSWORD='a-strong-password-you-chose'
+# Bash, Git Bash, WSL, macOS. The password isn't shown as you type it
+printf 'RStudio password: '; read -rs RSTUDIO_PASSWORD; echo
+export RSTUDIO_PASSWORD
 
 docker run -p 8787:8787 \
   -e PASSWORD="$RSTUDIO_PASSWORD" \
   rocker/rstudio:4.5
 ```
 
-PowerShell has no `export`, and uses a backtick rather than a backslash to continue a line:
+PowerShell asks through a credential prompt instead, and uses a backtick rather than a backslash to continue a line:
 
 ```powershell
-$env:RSTUDIO_PASSWORD = 'a-strong-password-you-chose'
+$env:RSTUDIO_PASSWORD = (Get-Credential -UserName rstudio -Message "RStudio password").GetNetworkCredential().Password
 
 docker run -p 8787:8787 `
   -e PASSWORD="$env:RSTUDIO_PASSWORD" `
@@ -370,7 +357,8 @@ If you have no trained model to hand, write a throwaway one so the example build
 
 ```python
 # make_model.py
-import pickle, pathlib
+import pathlib
+import pickle
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
@@ -396,6 +384,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the model artefact and the application that serves it
 COPY models/ models/
 COPY app.py .
+
+# Serve as an unprivileged user (best practice 9 below)
+RUN useradd --create-home appuser
+USER appuser
 
 # Expose port for API
 EXPOSE 5000
@@ -423,7 +415,7 @@ numpy
 3. Create a simple model serving API (`app.py`):
 
 ```python
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 import pickle
 import numpy as np
 
@@ -465,10 +457,13 @@ To get the most out of Docker for data science, follow these best practices:
 1. **Keep images lean**: Smaller images pull faster, deploy faster, and ship less software that could turn out to have a vulnerability in it. Use `-slim` (or `-alpine` for pure-Python workloads) base images when you can.
 
    ```dockerfile
-   FROM python:3.13-slim  # roughly a tenth the size of the full python:3.13 image
+   # Roughly a tenth the size of the full python:3.13 image
+   FROM python:3.13-slim
    ```
 
-   Note that Alpine-based images use `musl` instead of `glibc`, which occasionally breaks scientific Python packages that ship precompiled wheels for `glibc` only. When in doubt, start with `-slim`.
+   A `#` starts a comment only at the beginning of a line in a Dockerfile. Put one after an instruction and Docker reads it as more arguments.
+
+   Alpine-based images use `musl` instead of `glibc`, which occasionally breaks scientific Python packages that ship precompiled wheels for `glibc` only. When in doubt, start with `-slim`.
 
 2. **Use multi-stage builds for production**: Separate building dependencies from runtime
 
@@ -488,7 +483,7 @@ To get the most out of Docker for data science, follow these best practices:
    CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
    ```
 
-   The benefit: your final image doesn't carry compilers, header files, or build tools, only the installed Python packages and your application code. That usually takes a substantial bite out of the image size, and every tool you leave out is one that can't be used against you if someone gets into the container.
+   The final image carries the installed packages and your code, and leaves the first stage's compilers, header files and build tools behind. That saves space when a package has to be compiled during the install. When every requirement ships a prebuilt wheel, as in this chapter's examples, a single-stage build on `-slim` comes out about the same size. Each tool left out is also one fewer thing to use against you if someone gets into the container.
 
    The second `COPY --from=builder` line is easy to leave out and the resulting failure is confusing. `site-packages` holds the importable library code, but packages that install a command — `gunicorn`, `jupyter`, `streamlit`, `dvc` — put an executable script in `/usr/local/bin`, which is a different directory. Copy only `site-packages` and `import gunicorn` works fine while `gunicorn` at the command line reports `not found`.
 
@@ -523,11 +518,15 @@ To get the most out of Docker for data science, follow these best practices:
    ```
    # .dockerignore
    .git
+   .env
+   .venv/
+   venv/
    __pycache__/
    *.pyc
-   venv/
    data/
    ```
+
+   `COPY . .` copies whatever is in the folder, including a `.env` file, and `.gitignore` has no effect on it. Anyone who can pull the image can read a password baked into one of its layers.
 
 7. **Use environment variables for configuration** (not secrets):
 
@@ -547,7 +546,7 @@ To get the most out of Docker for data science, follow these best practices:
 
    Two things have to line up here, and both are easy to get wrong. The port and path must match something your application actually serves — `5000` and `/health` above correspond to the Flask API earlier in this chapter; point a healthcheck at a route that doesn't exist and Docker will report a perfectly healthy container as unhealthy forever. And the command must exist inside the image: healthcheck examples online almost always use `curl`, which the `-slim` images this chapter recommends don't include, so the check errors every time it runs. Python is guaranteed to be there, so use Python.
 
-9. **Run as a non-root user** in production images. Most official base images provide one (e.g. the Jupyter stacks use `jovyan`, Rocker uses `rstudio`). For your own images, add a user near the end of the Dockerfile:
+9. **Run as a non-root user** in production images. Some images ship one, such as `jovyan` in the Jupyter stacks and `rstudio` in Rocker's RStudio images. The official `python` images don't, so add a user near the end of the Dockerfile:
 
    ```dockerfile
    RUN useradd --create-home appuser
@@ -558,7 +557,7 @@ To get the most out of Docker for data science, follow these best practices:
 
 ### Common Docker Commands for Data Scientists
 
-Here are some useful Docker commands for day-to-day work:
+The commands you'll use day to day:
 
 ```bash
 # List running containers
@@ -593,7 +592,7 @@ docker system prune
 
 ## Conclusion
 
-Packaging your code, dependencies, and configuration into a single unit gets you consistent behaviour across machines, and turns "it works on mine" into a claim anyone can test.
+A container packages your code, its dependencies and its configuration into one image that someone else can run without rebuilding your setup.
 
 **By the end of this chapter you should have:**
 
@@ -602,4 +601,4 @@ Packaging your code, dependencies, and configuration into a single unit gets you
 - A `compose.yaml` bringing up more than one service at once, with its passwords read from a `.gitignore`d `.env` file rather than written into the file
 - A rough sense of when a pre-built image (the Jupyter stacks, Rocker) is the better starting point than writing your own
 
-Docker is the default but not the only option: **Podman** runs the same images without a background daemon and without Docker Desktop's licensing terms, and its CLI is close enough that most commands in this chapter work unchanged. Kubernetes, the tool most often mentioned in the same breath as Docker, solves a problem — running many containers across many machines — that most individual data scientists never have.
+Kubernetes, the tool most often mentioned in the same breath as Docker, runs many containers across many machines. That's a problem you're unlikely to have working on your own.

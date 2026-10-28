@@ -14,23 +14,21 @@ If you worked through the chapters, you should now have:
 
 **Shipping.** Cloud compute for the times your laptop isn't enough, with a budget alert you set before you needed it. Applications your stakeholders can open in a browser. Containers that settle "works on my machine" by letting someone else run it. Deployment that happens on push. Tests that run in CI, and a project structure the next person can navigate without asking you.
 
-None of it is the analysis. All of it is what stands between the analysis and someone being able to use it.
-
 ## The Three Ideas Underneath
 
-Strip away the specific tools — most of which will be replaced within a decade — and three principles remain.
+Strip away the specific tools, many of which will be replaced, and three principles remain.
 
-**Write down what you depend on.** Environment files, lockfiles, Dockerfiles, `requirements.txt`. The recurring failure in analytical work is a result nobody can reproduce, and the cause is almost always a dependency that existed only in someone's working directory. It costs less than anything else here and returns more.
+**Write down what you depend on.** Environment files, lockfiles, Dockerfiles, `requirements.txt`. The recurring failure in analytical work is a result nobody can reproduce, and a common cause is a dependency that existed only in someone's working directory.
 
-**Automate the second run.** The first time you do something by hand is research; the fifth time is a Makefile you should have written. The main gain is not saved keystrokes. A manual process leaves no record, so nobody can check it, and it drifts a little every time a person performs it.
+**Automate the second run.** Once you've done something by hand a few times, script it. The gain is the record: a manual process leaves none, so nobody can check it, and it drifts a little every time someone performs it.
 
-**Make failure loud and early.** A test that fails in CI is a good outcome, and so is a missing dependency caught by a clean build. The alternative was never success — it was the same failure discovered later, by someone else, after they had acted on a wrong number. Most of the tooling in this book exists to move errors earlier in the process, where they're cheap.
+**Make failure loud and early.** A test that fails in CI is a good outcome, and so is a missing dependency caught by a clean build, because the alternative is the same failure found later by someone else, after they've acted on a wrong number. Most of the tooling in this book exists to move errors earlier in the process, where they're cheap.
 
 ## Where the Tools Will Change
 
 The shelf life of what you've just read varies by layer:
 
-**Stable for a decade or more.** The command line, Git, SQL, and the concepts behind containerisation and continuous integration. These have changed remarkably little in twenty years and I don't expect will change much in the next twenty.
+**Stable for a decade or more.** The command line, Git, SQL, and the concepts behind containerisation and continuous integration. These have changed little in twenty years, and I don't expect them to change much in the next twenty.
 
 **Stable but evolving.** Python, R, Docker, and the major cloud providers. The syntax you learned will keep working; the ecosystem around it will move.
 
@@ -42,18 +40,16 @@ When a specific tool stops matching reality, the principle it illustrated almost
 
 Take a project you finished more than six months ago. Clone it fresh into a new directory — not the one you worked in — and try to reproduce a result.
 
-Whatever breaks is your real gap. Most people find at least one, and it is far better to find it deliberately, on a project that no longer matters, than under deadline on one that does.
+Whatever breaks is your real gap, and it's better found deliberately, on a project that no longer matters, than under deadline on one that does.
 
 ## A Note on the Machines
 
-The Preface argued that understanding this infrastructure matters more in an era of capable AI assistants, not less. Having been through the material, the reason should now be concrete.
-
 An assistant will happily write you a Dockerfile, a GitHub Actions workflow, or a pandas pipeline, and it will usually be close to right. It will run the thing on your data and report that it worked. What it can't do is tell you the answer is implausible — that the total is an order of magnitude too high, or that the join quietly dropped a third of the rows. That judgement requires knowing what the pieces do, which is what you now have.
 
-Let the machine draft, and check what it hands back. Checking is the part that keeps its value.
+Let the machine draft, and check what it hands back.
 
 ## Ready
 
-Your environments are reproducible, your code is versioned, and the pipeline deploys when you push. Everything from here is the analysis you came to do, with less in the way of it.
+Everything from here is the analysis you came to do, with less in the way of it.
 
 Ready to run()

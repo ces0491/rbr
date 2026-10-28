@@ -6,11 +6,11 @@ description: >-
 
 ## Documentation and Reporting Tools
 
-An analysis nobody can read is an analysis nobody acts on. This chapter covers the tools for turning one into a document — and specifically into a document that rebuilds itself from the data, so a corrected figure costs a re-render rather than an afternoon.
+This chapter covers the tools for turning an analysis into a document that rebuilds itself from the data, so a corrected figure costs a re-render rather than an afternoon.
 
 ### Markdown: The Foundation of Documentation
 
-Markdown is a lightweight markup language that's easy to read and write. It forms the basis of many documentation systems.
+Markdown is a lightweight markup language that's easy to read and write.
 
 It is what GitHub renders, what Jupyter cells hold, and what Quarto and R Markdown are built on, so it's worth ten minutes even if you learn nothing else here.
 
@@ -34,7 +34,6 @@ It is what GitHub renders, what Jupyter cells hold, and what Quarto and R Markdo
 1. Numbered item 1
 2. Numbered item 2
 
-Table:
 | Column 1 | Column 2 |
 |----------|----------|
 | Cell 1   | Cell 2   |
@@ -99,7 +98,7 @@ This analysis explores the relationship between variables X (carat) and Y (price
 
 ## Data Import and Cleaning
 
-```{r setup, eval=FALSE}
+```{r data-import}
 # load the diamonds dataset from ggplot2
 data(diamonds, package = "ggplot2")
 
@@ -121,7 +120,7 @@ head(my_data)
 
 ## Data Visualisation
 
-```{r visualization, eval=FALSE}
+```{r visualisation}
 ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
   ggplot2::geom_point() +
   ggplot2::geom_smooth(method = "lm") +
@@ -130,13 +129,9 @@ ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +
 ````
 
 :::{.callout-note}
-*Note that we've used the namespace convention (`package::function()`) in the code above rather than loading each package with `library()`. This is a matter of preference, but benefits include:*
+The example calls functions as `package::function()` instead of attaching packages with `library()`. That's a matter of preference. It keeps same-named functions apart, such as `dplyr::filter()` and `stats::filter()`, and it shows beside each call which package the document depends on. `::` still loads the package; it only skips attaching it to the search path.
 
-- Avoids loading the full package with `library()`
-- Prevents naming conflicts (e.g. `dplyr::filter()` vs. `stats::filter()`)
-- Keeps dependencies explicit and localised right next to each call
-
-*For the same reason the pipe above is `|>`, R's native pipe, which is part of base R since version 4.1 and needs no package. The older `%>%` comes from magrittr and requires `library(dplyr)` or `library(magrittr)` first.*
+The pipe is `|>`, which has been part of base R since version 4.1. The older `%>%` comes from magrittr, so it needs `library(dplyr)` or `library(magrittr)` first.
 :::
 
 When you click the "Knit" button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. Code, results, and narrative live in one file, so there is no step where a number is copied from a console into a paragraph and then goes stale. If your data changes, re-knit the document and every figure and table updates.
@@ -160,17 +155,19 @@ Alternatively, you can use `nbconvert` from the command line:
 jupyter nbconvert --to html my_notebook.ipynb
 ```
 
-One notebook, several outputs: PDF for a formal report, HTML for a website, Markdown for a repository. Worth knowing because it stops you maintaining three versions of the same analysis.
+One notebook, several outputs: PDF for a formal report, HTML for a website, Markdown for a repository. That saves you maintaining three versions of the same analysis.
 
 #### Jupyter Book
 
 For larger documentation projects, Jupyter Book builds on the notebook format to create complete books:
 
 ```bash
-# Install Jupyter Book
-pip install jupyter-book
+# Install Jupyter Book (with conda: conda install jupyter-book)
+uv pip install jupyter-book
 
-# Create a project and start a live-reloading preview
+# In the folder holding your notebooks and Markdown files: write the
+# configuration file, then start a live-reloading preview
+jupyter book init
 jupyter book start
 ```
 
@@ -179,12 +176,12 @@ Jupyter Book organises multiple notebooks and markdown files into a book with na
 :::{.callout-warning}
 ## Version 2 changed the commands
 
-Jupyter Book 2, built on the MyST document engine, is what `pip install jupyter-book` now gives you, and the command you type — its command-line interface, or CLI — is `jupyter book`, two words. Version 1's commands were hyphenated and different: `jupyter-book create my-book` followed by `jupyter-book build my-book/`. Most tutorials you'll find still show the v1 form, which fails with a "command not found" error against a current install.
+Installing `jupyter-book` now gives you version 2, built on the MyST document engine, and its command is `jupyter book`, two words. Version 1 used hyphenated commands: `jupyter-book create my-book`, then `jupyter-book build my-book/`. Older tutorials still show that form, and version 2 rejects it with `Invalid command: create my-book`.
 :::
 
-### Quarto: The Next Generation of Literate Programming
+### Quarto
 
-Quarto is a newer system that works with both Python and R, unifying the best aspects of R Markdown and Jupyter notebooks.
+Quarto is a newer system that works with both Python and R, combining R Markdown's approach with Jupyter notebooks.
 
 ```bash
 # Install Quarto CLI from https://quarto.org/docs/get-started/
@@ -192,7 +189,7 @@ Quarto is a newer system that works with both Python and R, unifying the best as
 # Create a new Quarto project (website, book, manuscript, etc.)
 quarto create project default my-project
 
-# Or, for a standalone one-off document, simply create a file
+# Or, for a standalone document, create a file
 # named document.qmd in your editor (no command needed).
 
 # Render a document to HTML (or PDF, docx, etc.)
@@ -203,7 +200,7 @@ Quarto is R Markdown's successor and works the same way for R, but it doesn't as
 
 #### Quarto Dashboards
 
-Since Quarto 1.4 (released in 2024), Quarto can render a document directly into a dashboard layout with rows, columns, value boxes, and tab sets, with no Shiny, Dash, or Streamlit required for the static case. If all you need is a periodic refresh of a dashboard view over your data, this is by far the lightest way to get there: you write a normal `.qmd` file with a `format: dashboard` YAML key, and Quarto handles the layout.
+Since Quarto 1.4 (released in 2024), Quarto can render a document directly into a dashboard layout with rows, columns, value boxes, and tab sets, with no Shiny, Dash, or Streamlit required for the static case. If all you need is a periodic refresh of a dashboard view over your data, this is the lightest way to get there: you write a normal `.qmd` file with a `format: dashboard` YAML key, and Quarto handles the layout.
 
 ```{.yaml}
 ---
@@ -259,11 +256,13 @@ Either way, you render with `-P`:
 quarto render sales.qmd -P region:"EU" -P month:"2026-03"
 ```
 
-This single pattern replaces a surprising amount of the ad-hoc "one notebook per client" sprawl that plagues data science teams.
+For the Jupyter engine, `-P` hands the values to papermill, so install it in the environment first (`uv pip install papermill`, or `conda install papermill`). Without it the render stops with `The papermill package is required for processing --execute-params`. Quarto keeps its Python process running between renders, so if you install papermill after seeing that error, add `--execute-daemon-restart` to the next render.
+
+This pattern replaces the habit of keeping one copy of a notebook per client.
 
 ### LaTeX for Professional Document Creation
 
-When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX gives you precise page layout, mathematical notation to a standard nothing else matches, figures and tables that number and cross-reference themselves, and bibliographies through BibTeX — all from plain text, so it versions in Git like any other source file.
+When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX gives you precise page layout, mathematical notation, figures and tables that number and cross-reference themselves, and bibliographies through BibTeX — all from plain text, so it versions in Git like any other source file.
 
 LaTeX works differently from word processors: you write plain text with special commands, then compile it to a PDF. You don't need to learn those commands to get the benefit. Quarto and R Markdown generate them from your document and run the compiler for you, so what follows is how to install that compiler and configure Quarto to drive it, rather than a course in LaTeX itself. If you do end up writing raw LaTeX, [Quarto's PDF documentation](https://quarto.org/docs/output-formats/pdf-basics.html) and the [TeX Stack Exchange](https://tex.stackexchange.com/) are where to go.
 
@@ -288,7 +287,7 @@ TinyTeX is built for R Markdown and Quarto users. It installs a minimal set of L
 
 #### Using LaTeX with Quarto
 
-Quarto makes it easy to incorporate LaTeX features while keeping your document source readable. Here's how to configure Quarto for PDF output using LaTeX:
+LaTeX options for a PDF go in the document's YAML header, so the source itself stays readable.
 
 ##### YAML Configuration
 
@@ -389,9 +388,11 @@ bibliography: references.bib
 csl: ieee.csl  # Citation style
 ```
 
+The `.csl` file sets how citations and the reference list are formatted. Download it into your project folder from the [Zotero Style Repository](https://www.zotero.org/styles); IEEE's is at <https://www.zotero.org/styles/ieee>. Leave the `csl:` line out and Quarto uses its default author-date style.
+
 ### Troubleshooting LaTeX Issues
 
-LaTeX can sometimes produce cryptic error messages. Here are solutions to common issues:
+LaTeX's error messages can be cryptic. These are the ones you're most likely to meet.
 
 #### Missing Packages
 
@@ -494,7 +495,7 @@ It also compiles in a fraction of the time, which you notice when you're renderi
 
 Use LaTeX when something outside your control expects it: a journal template, a supervisor's preamble, a package that exists nowhere else. Use Typst when nothing does. That covers most business and internal reporting, where nobody cares what produced the PDF.
 
-**You don't have to choose up front.** Quarto has shipped the Typst compiler since version 1.4, so switching engines is a one-line YAML change and your content stays as it is:
+**You don't have to choose up front.** Quarto has shipped the Typst compiler since version 1.4, so switching engines is a one-line YAML change. Ordinary Markdown, code and figures carry over unchanged. Raw LaTeX blocks are left out of Typst output, and LaTeX code in options such as `include-in-header` has to be rewritten in Typst:
 
 ```{.yaml}
 ---
@@ -503,7 +504,7 @@ format: typst     # instead of: pdf
 ---
 ```
 
-There is a practical consequence worth stating plainly: `format: typst` produces a PDF without LaTeX installed at all. If PDF output is all you need, you can skip the TinyTeX installation and everything that follows from it.
+`format: typst` produces a PDF without LaTeX installed at all. If PDF output is all you need, you can skip the TinyTeX installation and everything that follows from it.
 
 ### Creating Technical Documentation
 
@@ -514,8 +515,8 @@ For more complex projects, specialised documentation tools may be needed:
 MkDocs creates a documentation website from Markdown files:
 
 ```bash
-# Install MkDocs
-pip install mkdocs
+# Install MkDocs (with conda: conda install mkdocs)
+uv pip install mkdocs
 
 # Create a new project
 mkdocs new my-documentation
@@ -532,15 +533,15 @@ MkDocs is focused on simplicity and readability. It generates a clean, responsiv
 Sphinx is the documentation tool the Python ecosystem standardised on:
 
 ```bash
-# Install Sphinx
-pip install sphinx
+# Install Sphinx (with conda: conda install sphinx)
+uv pip install sphinx
 
 # Create a new documentation project
 sphinx-quickstart docs
 
 # Build the documentation
 cd docs
-make html
+make html        # in Windows PowerShell: .\make html
 ```
 
 Sphinx offers advanced features like automatic API documentation generation, cross-referencing, and multiple output formats. It's the system behind the official documentation for Python itself and many major libraries like NumPy, pandas, and scikit-learn.
@@ -549,7 +550,7 @@ Sphinx became the standard for Python documentation largely because it generates
 
 ## Reproducible Reports — Working with Data
 
-When using external data files in Quarto projects, it's important to understand how to handle file paths properly to ensure reproducibility across different environments.
+A report that reads a data file has to find it on whichever machine renders it.
 
 ### Common Issues with File Paths
 
@@ -614,6 +615,8 @@ Another reproducible approach is to generate sample data within your code:
 #| label: synthetic-data
 #| eval: false
 
+library(tibble)
+
 # Create synthetic data
 set.seed(0491)  # For reproducibility
 synthetic_data <- tibble(
@@ -631,15 +634,14 @@ This approach works well for illustrative examples and ensures anyone can run yo
 
 ### Remote Data with Caching
 
-For real-world datasets that are too large to include in packages, you can fetch them from reliable URLs:
+For data that doesn't ship with a package, read it from a stable URL. The chunk below reads the copy of `diamonds` kept in ggplot2's GitHub repository, so you can compare it with the built-in version above. The `cache: true` line in its options saves the result, so the download doesn't repeat on every render:
 
+````{verbatim}
 ```{r}
 #| label: remote-data
-#| eval: false
 #| cache: true
 #| message: false
 
-# URL to a stable dataset (ggplot2's default branch is 'main', not 'master')
 url <- "https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/diamonds.csv"
 
 # Download and read the data
@@ -648,14 +650,15 @@ remote_data <- readr::read_csv(url)
 # Display the data
 head(remote_data)
 ```
+````
 
-The `cache: true` option tells Quarto to save the results and only re-execute this chunk when the code changes, which prevents unnecessary downloads.
+Quarto re-runs a cached chunk only when its code changes. If the file at the URL changes, delete the document's `_cache` folder to fetch it again.
 
 ### Best Practices for Documentation
 
-Write it as you go. Documentation left until the end is documentation that doesn't get written, and by then you've forgotten why you made half the choices you're trying to describe.
+Write it as you go. Left to the end, documentation tends not to get written, and by then you've forgotten why you made many of the choices you're trying to describe.
 
-Explaining a modelling choice in prose is also a reliable way to discover that you can't justify it, which is worth more than the document.
+Writing a modelling choice down in prose is also a good test of whether you can justify it.
 
 ## Conclusion
 
@@ -673,4 +676,4 @@ What we haven't covered yet are the **charts** that live inside these documents 
 - The [Data Visualisation](visualisation.qmd) chapter covers the static and lightly-interactive plotting libraries you'll embed in reports (matplotlib, seaborn, plotly, ggplot2), plus Mermaid for code-based diagrams.
 - The [Web Development for Data Scientists](web_dev.qmd) chapter covers the tools for when "rerun the render" isn't enough and stakeholders need to poke at the data themselves: Shiny, Dash, Streamlit, and Flask.
 
-Pick whichever matches what your reader actually needs. A rendered document is enough far more often than the request for a dashboard suggests.
+Pick whichever matches what your reader needs.

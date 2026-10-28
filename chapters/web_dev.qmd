@@ -34,7 +34,7 @@ Let's create a simple web page that displays a data visualisation:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Visualisation Example</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.6.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -157,11 +157,11 @@ const salesChart = new Chart(ctx, {
 
 4. Open `index.html` in a web browser
 
-Three files, three jobs: the HTML holds the structure, the CSS decides what it looks like, and the JavaScript draws the chart with Chart.js. That division is the thing worth taking away. When a rendered report looks wrong, knowing which of the three is responsible tells you which file to open.
+The HTML holds the structure, the CSS decides what it looks like, and the JavaScript draws the chart with Chart.js. When a rendered report looks wrong, knowing which of the three is responsible tells you which file to open.
 
 ### Interactive Dashboards and Web Frameworks
 
-Most data scientists don't build web apps from raw HTML/CSS/JavaScript. They use a framework that wraps the web machinery and lets them stay in Python or R. There are four tools worth knowing, each optimised for a different situation:
+Most data scientists don't build web apps from raw HTML/CSS/JavaScript. They use a framework that wraps the web machinery and lets them stay in Python or R. Four tools cover most of this, each suited to a different situation:
 
 - **Shiny** (R, also available for Python): reactive dashboards, strongest when you live in R and need server-side reactivity
 - **Dash** (Python): Plotly's callback-based framework, good when you want explicit wiring between inputs and outputs
@@ -274,8 +274,9 @@ Shiny is also now available for Python via [Shiny for Python](https://shiny.posi
 Dash is Python's equivalent to Shiny, created by the makers of Plotly:
 
 ```bash
-# Install Dash
-pip install dash
+# Install Dash, plus Dash AG Grid for the summary table
+uv pip install dash dash-ag-grid      # uv
+conda install dash dash-ag-grid       # conda
 ```
 
 A simple Dash app follows a similar structure to Shiny:
@@ -283,10 +284,9 @@ A simple Dash app follows a similar structure to Shiny:
 ```{python}
 #| eval: false
 import dash
-from dash import dcc, html, dash_table
-from dash.dependencies import Input, Output
+import dash_ag_grid as dag
 import plotly.express as px
-import pandas as pd
+from dash import Input, Output, dcc, html
 
 # Load data - using built-in dataset for reproducibility
 df = px.data.iris()
@@ -327,22 +327,15 @@ app.layout = html.Div([
 
     html.Div([
         html.H3("Data Summary"),
-        dash_table.DataTable(
-            id='summary-table',
-            style_cell={'textAlign': 'left'},
-            style_header={
-                'backgroundColor': 'lightgrey',
-                'fontWeight': 'bold'
-            }
-        )
+        dag.AgGrid(id='summary-table', columnSize='sizeToFit')
     ])
 ])
 
 # Define callbacks
 @app.callback(
     [Output('scatter-plot', 'figure'),
-     Output('summary-table', 'data'),
-     Output('summary-table', 'columns')],
+     Output('summary-table', 'rowData'),
+     Output('summary-table', 'columnDefs')],
     [Input('species-dropdown', 'value'),
      Input('y-axis', 'value')]
 )
@@ -374,10 +367,10 @@ def update_graph_and_table(selected_species, y_axis):
     summary_df.columns = ['_'.join(col).strip('_') for col in summary_df.columns.values]
 
     # Format table
-    table_data = summary_df.to_dict('records')
-    columns = [{"name": col.replace('_', ' ').title(), "id": col} for col in summary_df.columns]
+    row_data = summary_df.to_dict('records')
+    column_defs = [{"headerName": col.replace('_', ' ').title(), "field": col} for col in summary_df.columns]
 
-    return fig, table_data, columns
+    return fig, row_data, column_defs
 
 # Run app
 if __name__ == '__main__':
@@ -395,10 +388,9 @@ Streamlit simplifies interactive app creation even further with a minimal, strai
 
 ```{python}
 #| eval: false
-import streamlit as st
-import pandas as pd
 import plotly.express as px
 import seaborn as sns
+import streamlit as st
 
 # Set page title
 st.set_page_config(page_title="Data Explorer", page_icon="📊")
@@ -441,48 +433,63 @@ with tab2:
         x_var = st.selectbox("X variable", options=numeric_cols)
         y_var = st.selectbox("Y variable", options=numeric_cols, index=min(1, len(numeric_cols) - 1))
         fig = px.scatter(df, x=x_var, y=y_var, title=f"{x_var} vs {y_var}")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
 with tab3:
     st.subheader("Statistical Summary")
     st.dataframe(df.describe())
 ```
 
-Streamlit's appeal lies in its simplicity. Instead of defining callbacks between inputs and outputs (as in Dash and Shiny), the entire script runs from top to bottom whenever any input changes. You write a straightforward Python script that builds the UI linearly, and Streamlit reruns it on every interaction. This procedural approach suits beginners and rapid prototyping, though it becomes less efficient for complex applications where you don't want to recompute everything on every keystroke.
+Streamlit's appeal lies in its simplicity. You don't wire inputs to outputs at all: Streamlit reruns the whole script from top to bottom whenever an input changes, so the UI is built by an ordinary linear script. That suits beginners and rapid prototyping, though it becomes less efficient for complex applications where you don't want to recompute everything on every interaction.
 
 #### Flask: A Lightweight Framework for Custom Backends
 
-Shiny, Dash, and Streamlit are great for dashboards, but sometimes you need a plain web endpoint: for example, exposing a trained model as a JSON API that other applications can call, or serving a custom HTML page that mixes pandas-generated content with JavaScript on the front end. Flask is the most common lightweight choice for that role. ([FastAPI](https://fastapi.tiangolo.com/) is a modern alternative with built-in data validation via Pydantic and automatic OpenAPI documentation; worth considering for any new API project in 2026.)
+Shiny, Dash, and Streamlit are great for dashboards, but sometimes you need a plain web endpoint: for example, exposing a trained model as a JSON API that other applications can call, or serving a custom HTML page that mixes pandas-generated content with JavaScript on the front end. Flask is the most common lightweight choice for that role. ([FastAPI](https://fastapi.tiangolo.com/) is a modern alternative with built-in data validation via Pydantic and automatic OpenAPI documentation, worth considering for a new API project.)
+
+This version serves the Chart.js page from earlier in the chapter and the data it draws, from the same app. Put the three files in a `static/` folder beside `app.py`, with a `sales_data.csv` holding `quarter`, `product_a`, `product_b` and `product_c` columns:
+
+```text
+my_app/
+├── app.py
+├── sales_data.csv
+└── static/
+    ├── index.html
+    ├── styles.css
+    └── script.js
+```
 
 ```python
 import os
-from flask import Flask, jsonify
-import pandas as pd
 
-app = Flask(__name__)
+import pandas as pd
+from flask import Flask, jsonify
+
+# static_url_path='' serves the files in static/ from the site root, so the
+# page's relative links to styles.css and script.js keep working
+app = Flask(__name__, static_url_path='')
+
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
+
 
 @app.route('/api/sales')
 def sales():
-    # Load and process data
     df = pd.read_csv('sales_data.csv')
 
-    # Shape the data the way Chart.js expects it
+    # Shape the data the way Chart.js expects it: one dataset per product
     chart_data = {
         'labels': df['quarter'].tolist(),
         'datasets': [
-            {
-                'label': 'Product A',
-                'data': df['product_a'].tolist(),
-                'backgroundColor': 'rgba(54, 162, 235, 0.2)',
-                'borderColor': 'rgba(54, 162, 235, 1)',
-                'borderWidth': 1
-            },
-            # Other products...
-        ]
+            {'label': col.replace('_', ' ').title(), 'data': df[col].tolist()}
+            for col in ['product_a', 'product_b', 'product_c']
+        ],
     }
 
     # jsonify sets the Content-Type header and serialises for you
     return jsonify(chart_data)
+
 
 if __name__ == '__main__':
     # Only enable debug mode when a FLASK_DEBUG env var is set.
@@ -491,12 +498,34 @@ if __name__ == '__main__':
     app.run(debug=os.environ.get("FLASK_DEBUG") == "1")
 ```
 
-Run this and `http://127.0.0.1:5000/api/sales` returns JSON that the Chart.js page from earlier in this chapter can fetch, instead of having its numbers hardcoded.
+Then replace the hardcoded `salesData` in `static/script.js` with a request to the API:
+
+```javascript
+// Ask the Flask app for the data, then draw the chart with it
+fetch('/api/sales')
+    .then(response => response.json())
+    .then(salesData => {
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: salesData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Sales (millions)' } }
+                }
+            }
+        });
+    });
+```
+
+Run `python app.py` and open `http://127.0.0.1:5000`. The page and its data now come from the same server, which is what lets the browser allow the request: a page opened straight from disk is blocked from fetching from `127.0.0.1:5000`.
 
 :::{.callout-note}
-## Serving HTML from Flask
+## Templates live in `templates/`
 
-To return a full page rather than JSON, Flask uses `render_template('index.html')`. That call has one requirement people trip over constantly: the file must live in a directory named `templates/` next to your Python file. Flask looks nowhere else, and the error when it can't find the file (`TemplateNotFound`) doesn't say so.
+The page above is a static file that Flask sends unchanged. When Python has to fill values into the HTML before sending it, use a Jinja template and `render_template('index.html')` instead. Flask looks for templates in a directory named `templates/` next to your Python file, and the `TemplateNotFound` error doesn't say where it looked.
 
 ```text
 my_app/
@@ -525,13 +554,7 @@ Don't get paralysed by the choice. Any of the first three will produce a working
 
 Once you've built your application, you'll need to deploy it for others to access. [Deploying Data Science Projects](deployment.qmd) walks through full deployment workflows for Flask, Dash, and Shiny applications on Render, Google Cloud Run, and Posit Connect Cloud.
 
-The short version: Flask apps are typically deployed by containerising them with Docker and pushing the image to a platform-as-a-service provider; Shiny apps are most easily deployed to Posit Connect Cloud, either from a linked GitHub repository or straight from RStudio. The best choice depends on your specific needs, including factors like:
-
-- Expected traffic volume
-- Security requirements
-- Budget constraints
-- Integration with other systems
-- Need for custom domains or SSL
+Flask apps are typically deployed by containerising them with Docker and pushing the image to a platform-as-a-service provider. Shiny apps are most easily deployed to Posit Connect Cloud, either from a linked GitHub repository or straight from RStudio.
 
 ## Conclusion
 

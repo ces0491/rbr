@@ -1,6 +1,6 @@
 # Ready Before Run()
 
-A Practical Guide to Gear Up for Data Science, by [Cesaire Tobias](https://www.linkedin.com/in/cesaire-tobias-5555a274/)
+A Practical Guide to Gear Up for Data Science, by [Cesaire Tobias](https://www.linkedin.com/in/cesaire-tobias/)
 
 This book is for readers from diverse backgrounds (economists, statisticians, engineers, and beyond) who want to produce advanced analytics workflows but don't necessarily have computer science foundations. Rather than teaching you how to code, it focuses on setting up the technical infrastructure that supports modern data science work.
 
@@ -63,7 +63,7 @@ Output is written to the `output/` directory.
 
 ### PDF / EPUB
 
-PDF and EPUB require Chromium (for Mermaid diagrams) and TinyTeX. These formats are disabled in CI but can be generated locally by uncommenting the relevant sections in `_quarto.yml` and running:
+Both formats need a headless browser to draw the Mermaid diagrams (`quarto install chrome-headless-shell`), and PDF also needs TinyTeX (`quarto install tinytex`). They are disabled in CI but can be generated locally by uncommenting the relevant sections in `_quarto.yml` and running:
 
 ```bash
 quarto render --to pdf

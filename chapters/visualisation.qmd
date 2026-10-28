@@ -6,7 +6,7 @@ description: >-
 
 ## Why Visualisation Matters in Data Science
 
-A chart works because it hands the reader a shape to recognise instead of a column of numbers to compare one pair at a time. That applies as much when the reader is you — most outliers and most data-entry mistakes are found by plotting the column, not by summarising it — as when it's a stakeholder who will act on the result.
+A chart works because it hands the reader a shape to recognise instead of a column of numbers to compare one pair at a time. That applies when the reader is you, scanning a column for outliers and data-entry mistakes, as much as when it's a stakeholder who will act on the result.
 
 The reporting chapter covered the *document* that wraps your analysis. This chapter covers the charts and diagrams that go inside it, in three categories:
 
@@ -61,9 +61,8 @@ Seaborn builds on Matplotlib to provide high-level functions for common statisti
 
 ```{python}
 #| eval: false
-import seaborn as sns
-import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Set the theme
 sns.set_theme(style="whitegrid")
@@ -90,7 +89,6 @@ Plotly creates interactive visualisations that can be embedded in web applicatio
 ```{python}
 #| eval: false
 import plotly.express as px
-import pandas as pd
 
 # Load example data
 df = px.data.gapminder().query("year == 2007")
@@ -107,14 +105,14 @@ fig = px.scatter(
 fig.update_layout(
     width=900, height=600,
     legend_title="Continent",
-    font=dict(family="Arial", size=14)
+    font={"family": "Arial", "size": 14}
 )
 
 # Show the figure
 fig.show()
 ```
 
-Zoom, pan and hover-for-detail come free, which matters when a reader wants to interrogate a chart rather than just look at it. Plotly exists in both Python and R with much the same API, so it's the one library here you don't have to learn twice.
+Zoom, pan and hover-for-detail come free, which matters when a reader wants to interrogate a chart rather than just look at it. Plotly exists in Python and R. The calls differ — compare `px.scatter()` here with `plot_ly()` in the R section below — but both build the same plotly.js figure, so layout options such as a log axis or a legend title have the same names in either language.
 
 ### Choosing Between Python Libraries
 
@@ -148,7 +146,7 @@ diamonds_sample <- diamonds |>
   slice_sample(n = 1000)
 
 # Create basic plot
-p <- ggplot(diamonds_sample, aes(x = carat, y = price, color = cut)) +
+diamond_plot <- ggplot(diamonds_sample, aes(x = carat, y = price, color = cut)) +
   geom_point(alpha = 0.7) +
   geom_smooth(method = "lm", se = FALSE) +
   scale_color_brewer(palette = "Set1") +
@@ -168,10 +166,10 @@ p <- ggplot(diamonds_sample, aes(x = carat, y = price, color = cut)) +
   )
 
 # Display the plot
-print(p)
+print(diamond_plot)
 
 # Save the plot
-ggsave("diamond_price_carat.png", p, width = 10, height = 6, dpi = 300)
+ggsave("diamond_price_carat.png", diamond_plot, width = 10, height = 6, dpi = 300)
 ```
 
 You build a ggplot2 chart in layers, joined with `+`. First the data and the aesthetic mappings — which variable becomes the x position, which becomes the colour — then geometric objects to draw them with, then any statistical transformation, scales, coordinate system and theme. Each layer is simple on its own, and a complicated chart is a longer stack of them rather than a different kind of code.
@@ -228,12 +226,12 @@ p <- plot_ly(
 p
 ```
 
-The R version of plotly can convert ggplot2 visualisations to interactive versions with a single function call:
+The R version of plotly can convert a ggplot2 chart into an interactive one with a single function call. This converts the diamonds chart from the ggplot2 section:
 
 ```{r}
 #| eval: false
-# Convert a ggplot to an interactive plotly visualisation
-ggplotly(p)
+# Convert the ggplot built earlier into an interactive plotly chart
+ggplotly(diamond_plot)
 ```
 
 Because `ggplotly()` takes a finished ggplot, you can build the chart once in syntax you already know and decide about interactivity afterwards. That's the escape hatch when the same analysis has to ship as both a PDF and a web page.
@@ -285,7 +283,7 @@ flowchart TD
     J --> F
 ```
 
-This top-down (TD) flowchart illustrates a complete machine learning workflow with decision points. Notice how you can use different node shapes (rectangles, diamonds) and add text to connections.
+This top-down (TD) flowchart shows a machine learning workflow with decision points. `A[Raw Data]` draws a rectangle and `B{Missing Values?}` a diamond, and text between pipes on an arrow, as in `-->|Yes|`, labels the connection.
 
 #### Class Diagrams
 
@@ -370,7 +368,7 @@ gantt
     Production release    :milestone, after c2 c3, 0d
 ```
 
-This Gantt chart shows the timeline of a data science project, with tasks grouped into sections and dependencies between them clearly indicated.
+This Gantt chart shows the timeline of a data science project, with tasks grouped into sections. Mermaid draws no arrows between dependent tasks: `after a1` starts a task when `a1` ends, so the dependencies show only in where the bars sit.
 
 #### Entity-Relationship Diagrams
 
@@ -431,7 +429,7 @@ This diagram uses custom colours and border styles for each node to highlight di
 
 ### Generating Diagrams Programmatically
 
-For complex or dynamic diagrams, you can generate Mermaid code programmatically. The trick is `output: asis`, which tells Quarto to drop the chunk's output into the document as raw Markdown rather than as printed R output — so a Mermaid fence you build with `cat()` is processed exactly as if you'd typed it:
+For complex or dynamic diagrams, you can generate Mermaid code programmatically. The chunk option `output: asis` tells Quarto to drop the chunk's output into the document as raw Markdown rather than as printed R output, so a Mermaid fence you build with `cat()` is processed exactly as if you'd typed it:
 
 ```{r}
 #| label: dynamic-mermaid
@@ -463,7 +461,7 @@ mermaid_code <- c(mermaid_code, "```")
 cat(paste(mermaid_code, collapse = "\n"))
 ```
 
-The diagram above was generated by that code when this book was rendered — change the `steps` vector and the flowchart changes with it. That's the point: a diagram derived from data or configuration can't drift out of sync with the thing it documents, which is the usual fate of a hand-drawn one.
+The diagram above was generated by that code when this book was rendered; change the `steps` vector and the flowchart changes with it. A diagram derived from data or configuration can't drift out of sync with the thing it documents, which is the usual fate of a hand-drawn one.
 
 ### Best Practices for Diagrams in Data Science
 

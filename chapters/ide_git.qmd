@@ -47,32 +47,27 @@ VS Code finds `.venv` directories inside the open folder on its own and lists th
 
 This tells VS Code which Python installation to run your code with. Get it wrong and you'll be told a package isn't installed when you can see that it is — [Reproducible Environments](environments.qmd) covers why.
 
-### PyCharm Community Edition
+### PyCharm
 
-PyCharm is an IDE built specifically for Python, with data science support to match.
+PyCharm is an IDE built specifically for Python, with data science support to match. It's a single download: the core features are free, and a paid Pro subscription adds more. JetBrains folded the separate Community Edition into it during 2025, so guides that tell you to download "PyCharm Community" describe a product that no longer exists.
 
-#### Installing PyCharm Community Edition
+#### Installing PyCharm
 
 1. Visit the [PyCharm download page](https://www.jetbrains.com/pycharm/download/)
-2. Download the free Community Edition
+2. Download PyCharm for your operating system
 3. Run the installer and follow the prompts
 
 #### Pointing PyCharm at Your Environment
 
-1. Open PyCharm
-2. Create a new project, or open the folder you made in [Python and R](languages.qmd)
-3. Click on "Previously configured interpreter"
-4. Click the gear icon and select "Add..."
+1. Open the folder you made in [Python and R](languages.qmd) as a project
+2. Click the Python interpreter selector in the status bar, then **Add New Interpreter** → **Add Local Interpreter**. The same dialog is under Settings (Ctrl+Alt+S) → **Python** → **Interpreter** → **Add Interpreter**
+3. Choose to use an existing environment, then pick its type
 
-For a **uv environment**, choose "Virtualenv Environment" → "Existing" and point it at `.venv/Scripts/python.exe` inside your project on Windows, or `.venv/bin/python` on macOS and Linux. PyCharm often detects this without being asked.
+For a **uv environment**, choose **Python** as the type and select `.venv\Scripts\python.exe` inside your project on Windows, or `.venv/bin/python` on macOS and Linux. PyCharm usually detects a `.venv` in the project folder without being asked.
 
-For a **conda environment**, choose "Conda Environment" → "Existing environment" and browse to its Python:
+For a **conda environment**, choose **Conda**, check that PyCharm has found your conda installation, and pick `datasci` from the list.
 
-- On Windows: `C:\Users\<username>\miniforge3\envs\datasci\python.exe`
-- On macOS: `/Users/<username>/miniforge3/envs/datasci/bin/python`
-- On Linux: `/home/<username>/miniforge3/envs/datasci/bin/python`
-
-Substitute `anaconda3` for `miniforge3` if you installed Anaconda. When in doubt, activate the environment and run `python -c "import sys; print(sys.executable)"` — that prints the exact path PyCharm wants, whichever kind it is.
+If PyCharm doesn't find what you're looking for, activate the environment in a terminal and run `python -c "import sys; print(sys.executable)"`. That prints the exact path to give it, whichever kind of environment it is.
 
 :::{.callout-note}
 In file paths, forward slashes (/) are used on Linux and macOS, backslashes (\\) on Windows. Python accepts forward slashes on all three, which is the simplest way to sidestep the problem.
@@ -82,7 +77,7 @@ In file paths, forward slashes (/) are used on Linux and macOS, backslashes (\\)
 
 Notebooks came up in [Python and R](languages.qmd) as a place to write Python. They are also an editor in their own right, and JupyterLab is the version worth using.
 
-#### JupyterLab: The Next Generation of Jupyter
+#### JupyterLab
 
 JupyterLab is a web-based interactive development environment that extends the notebook interface with a file browser, consoles, terminals, and more.
 
@@ -114,9 +109,13 @@ Version control is a system that records changes to files over time, allowing yo
 
 Think of Git as a time machine for your code. It saves snapshots of your project at chosen points and lets you go back to any of them.
 
-For analytical work that buys you three things. You can change something without first copying the file to `analysis_v2_final_FINAL.R`, because the old version is recoverable. You can point at the exact state of the code that produced a number, months after you wrote it. And you can hand the project to someone else, or work on it alongside them, without either of you overwriting the other's afternoon.
+For analytical work it lets you:
 
-The rest of the chapter is mechanics. If Git is new to you, the four commands in [Git for Analysts](#git-for-analysts-what-actually-matters) near the end are the ones to learn first.
+- Change something without first copying the file to `analysis_v2_final_FINAL.R`, because the old version is recoverable.
+- Point at the exact state of the code that produced a number, months after you wrote it.
+- Hand the project to someone else, or work on it alongside them, without either of you overwriting the other's work.
+
+The rest of the chapter is mechanics. If Git is new to you, the four things in [Git for Analysts](#git-for-analysts-what-actually-matters) near the end are the ones to learn first.
 
 ### Installing Git
 
@@ -193,6 +192,12 @@ ssh-keygen -t ed25519 -C "your.email@example.com"
 ssh-add $env:USERPROFILE\.ssh\id_ed25519
 ```
 
+Git for Windows runs its own copy of `ssh`, which doesn't use the Windows agent you just started, so it would still ask for your passphrase on every push. Point Git at the Windows one:
+
+```powershell
+git config --global core.sshCommand C:/Windows/System32/OpenSSH/ssh.exe
+```
+
 When `ssh-keygen` prompts you for a passphrase, **set one**. It's tempting to press Enter for a blank passphrase, but an unprotected private key on a compromised laptop gives an attacker your full GitHub access. The SSH agent will remember the passphrase for your session so you only type it once after login.
 
 SSH keys are like a special lock and key system. Instead of typing your password every time you interact with GitHub, your computer uses these keys to prove it's really you.
@@ -264,6 +269,7 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+env/
 .ipynb_checkpoints/
 
 # R
@@ -271,6 +277,10 @@ venv/
 .RData
 .Rproj.user/
 renv/library/
+
+# Rendered output, rebuilt from the source on every render
+_site/
+*_files/
 
 # Data: keep bulky data out of Git. Options for versioning it properly are
 # in Optimising Workflows - see DVC there.
@@ -403,15 +413,15 @@ Git has a large surface area and most of it is irrelevant to analytical work. If
 3. **`.gitignore`** — what never goes in. Data, credentials, environments, rendered output.
 4. **How to undo the last thing you did** — `git restore <file>` to discard uncommitted changes, `git revert <commit>` to undo a commit that's already pushed.
 
-Rebasing, cherry-picking, reflog, and submodules are real tools you may eventually need. You do not need them to get value from Git, and reaching for them early is how people end up in states they can't get out of.
+Rebasing, cherry-picking and submodules are real tools you may eventually need. You do not need them to get value from Git, and reaching for them early is how people end up in states they can't get out of.
 
 :::{.callout-tip}
 ## When Git goes wrong
 
-Almost everyone eventually lands in a Git state they don't understand. Two things help:
+Sooner or later you'll land in a Git state you don't understand. Two things help:
 
 - **Your work is probably not lost.** Committed work is very hard to actually destroy — `git reflog` shows where every branch has been, including commits you think you deleted.
-- **The nuclear option is fine.** Clone the repository fresh into a new directory, copy your changed files across, and commit. It feels like cheating; it takes five minutes and always works. Do that rather than spending an afternoon on a merge you don't understand.
+- **The nuclear option is fine.** Clone the repository fresh into a new directory, copy your changed files across, and commit. Commits you never pushed exist only in the old clone, so keep it until you've copied everything you need. It feels like cheating, and it beats an afternoon on a merge you don't understand.
 
 [Happy Git and GitHub for the useR](https://happygitwithr.com/) covers exactly this situation, and the [References](references.qmd) chapter says more about it.
 :::
@@ -429,7 +439,7 @@ Good:  Exclude Q4 outliers from revenue model
        confirmed with finance. They were skewing the regional averages.
 ```
 
-The first line is a summary under about 50 characters. If there's a reason worth recording, leave a blank line and write it underneath. Nobody will mind if you don't do this on a personal project; everyone will be grateful when you do it on a shared one.
+The first line is a summary under about 50 characters. If there's a reason worth recording, leave a blank line and write it underneath. It matters most on a shared project, where the next reader can't ask you.
 
 ## Conclusion
 
@@ -439,8 +449,6 @@ The first line is a summary under about 50 characters. If there's a reason worth
 - Git installed, with `user.name` and `user.email` set
 - A GitHub account with SSH authentication working (`ssh -T git@github.com` succeeds)
 - At least one project initialised as a repository, committed, and pushed to a GitHub remote
-- A `.gitignore` in that project covering credentials, data, and environments — added *before* your first commit rather than after
-
-That last point is worth repeating because it's the one people get wrong once and remember forever. A file that has never been committed is easy to exclude. A file that has been committed is in the history permanently, and if it was a credential, the only real fix is to rotate it.
+- A `.gitignore` in that project covering credentials, data, environments and rendered output, committed before anything besides the README
 
 The next chapter covers where your data lives: SQL, the file formats worth knowing, the query engines that have changed what's practical on a laptop, and where credentials belong — which is the first place the `.gitignore` you just wrote starts earning its keep.

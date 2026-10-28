@@ -10,16 +10,16 @@ While programming languages, libraries, and frameworks form the core of your dat
 
 ### AI Coding Assistants
 
-Large-language-model-based coding assistants are probably the single biggest productivity change in data science tooling since this book was first drafted. For readers without a CS background they're especially useful: they can scaffold boilerplate, explain unfamiliar code, translate between Python and R, suggest fixes for cryptic error messages, and draft regex patterns or SQL queries on request. The caveat is universal: they confidently produce wrong answers too, so treat suggestions as a fast draft to be reviewed, not an oracle.
+Coding assistants built on large language models are especially useful for readers without a CS background: they can scaffold boilerplate, explain unfamiliar code, translate between Python and R, suggest fixes for cryptic error messages, and draft regex patterns or SQL queries on request. They also produce wrong answers confidently, so treat what they suggest as a draft to review.
 
 A few options worth knowing. Pricing differs between them, so the cost note matters as much as the description:
 
-- **[GitHub Copilot](https://github.com/features/copilot)**: In-editor completion and chat inside VS Code, JetBrains IDEs, Neovim, and the web. The most mature and widely used option. Has a genuine free tier with a monthly allowance of completions and chats, and is free outright for verified students, educators, and maintainers of popular open-source projects.
-- **[Claude for VS Code](https://docs.claude.com/en/docs/claude-code/ide-integrations) and [Claude Code](https://www.claude.com/product/claude-code)**: Anthropic's CLI and IDE integrations. Claude Code runs in a terminal and can read, edit, and run code in a project with your supervision. Particularly good for multi-file refactors. Requires a paid Claude subscription or API credits — there is no free tier.
+- **[GitHub Copilot](https://github.com/features/copilot)**: In-editor completion and chat inside VS Code, JetBrains IDEs, Neovim, and the web. The most mature and widely used option. Has a free tier with a monthly allowance of completions and chats, and is free outright for verified students, educators, and maintainers of popular open-source projects.
+- **[Claude for VS Code](https://code.claude.com/docs/en/ide-integrations) and [Claude Code](https://claude.com/product/claude-code)**: Anthropic's CLI and IDE integrations. Claude Code runs in a terminal and can read, edit, and run code in a project with your supervision. Particularly good for multi-file refactors. Requires a paid Claude subscription or API credits — there is no free tier.
 - **[Cursor](https://cursor.com/)**: A fork of VS Code with deep LLM integration throughout the editor. Popular with developers who want a single tool rather than an extension. Free hobby tier, paid beyond it.
 - **[Aider](https://aider.chat/)**: An open-source terminal-based pair-programmer that uses git commits as its unit of work. A great fit if you already live in the terminal. The tool itself is free; you supply an API key and pay the model provider for usage.
 
-For genuinely throwaway tasks, the web chat interfaces to [Claude](https://claude.ai/) and [ChatGPT](https://chatgpt.com/) are fine. For anything you'll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.
+For throwaway tasks, the web chat interfaces to [Claude](https://claude.ai/) and [ChatGPT](https://chatgpt.com/) are fine. For anything you'll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.
 
 A few habits that make these tools more useful and less dangerous:
 
@@ -52,7 +52,7 @@ What earns it a place is column editing — hold Alt and drag to select a rectan
 - `Ctrl+D`: Duplicate current line
 - `Ctrl+Shift+Up/Down`: Move current line up/down
 
-Notepad++ is useful for quickly viewing and editing text files, CSV extracts, or configuration files without launching a full IDE. It is not a large-file tool: it has a hard limit around 2 GB and becomes sluggish well before that. For a genuinely large CSV, read a sample in pandas or query it in place with DuckDB rather than trying to open it.
+Notepad++ is useful for quickly viewing and editing text files, CSV extracts, or configuration files without launching a full IDE. It is not a large-file tool: it has a hard limit around 2 GB and becomes sluggish well before that. For a large CSV, read a sample in pandas or query it in place with DuckDB rather than trying to open it.
 
 ### API Development and Testing Tools
 
@@ -88,14 +88,14 @@ You build a request in a form, send it, and read the response formatted rather t
 
 Postman earns its place when you're working with data APIs — financial markets, weather services, or an internal company endpoint — and want to poke at the response before writing any code against it.
 
-One caveat worth knowing before you commit: Postman now requires an account and syncs your collections to its cloud by default. For work under a client NDA, or anywhere requests carry credentials you'd rather not upload, check what your organisation's policy says about that.
+Postman requires an account and syncs your collections to its cloud by default. For work under a client NDA, or anywhere requests carry credentials you'd rather not upload, check what your organisation's policy says about that.
 
 #### Bruno and Insomnia
 
 Two alternatives, both a response to the same concern:
 
 - **[Bruno](https://www.usebruno.com/)** stores collections as plain text files in a folder you choose, which means they live in Git alongside the code that calls the API and diff like any other source file. Offline by default, no account required. If the cloud-sync caveat above matters to you, this is the one to look at.
-- **[Insomnia](https://insomnia.rest/)** is lighter than Postman with good GraphQL support. Note that since Kong's 2023 changes, using it without an account means working in Scratch Pad mode, which limits what you can save — check the current terms before assuming the free tier fits your workflow.
+- **[Insomnia](https://insomnia.rest/)** is lighter than Postman with good GraphQL support. Since Kong's 2023 changes, using it without an account means working in Scratch Pad mode, which limits what you can save — check the current terms before assuming the free tier fits your workflow.
 
 For occasional API work, any of the three is fine. The choice matters when collections need to be shared, version-controlled, or kept off someone else's servers.
 
@@ -186,7 +186,7 @@ less install-ohmyzsh.sh   # read it, check for anything suspicious
 sh install-ohmyzsh.sh
 ```
 
-Many sites still show a one-liner `sh -c "$(curl ... install.sh)"`, which downloads and immediately executes code from a third-party server. The two-step version above takes five extra seconds and lets you actually see what's about to run on your machine.
+Oh My Zsh's own instructions use a one-liner, `sh -c "$(curl -fsSL .../install.sh)"`. For an installer the project publishes itself, that's the documented method, as [The Command Line](command_line.qmd) explains. The two-step version above adds a look at the script before it runs.
 
 **Useful plugins for data scientists:**
 
@@ -205,7 +205,7 @@ On Windows, **Windows Terminal** (pre-installed on Windows 11 and free from the 
 
 #### Modern Rust-based CLI replacements
 
-A family of newer command-line tools, mostly written in Rust, have become the de-facto replacements for the standard Unix utilities. They're all faster than the originals and, more importantly for this book's audience, tend to have friendlier defaults and output. Every one is installable with Homebrew, apt, `winget`, `choco`, or `cargo`:
+A family of newer command-line tools, mostly written in Rust, cover the same jobs as the standard Unix utilities with friendlier defaults and output, and some are noticeably faster. Each one installs through Homebrew, apt, `winget` or `cargo`:
 
 | Instead of | Use | What you get |
 |---|---|---|
@@ -220,8 +220,8 @@ A family of newer command-line tools, mostly written in Rust, have become the de
 Three more from the same family, for Python tooling specifically:
 
 - **[uv](https://docs.astral.sh/uv/)**: covered properly in [Python and R](languages.qmd) and [Reproducible Environments](environments.qmd), since it's one of the two routes this book takes. Listed here for the parts those chapters don't use: `uv run script.py` executes a script in the project environment without activating anything, and `uv tool install` puts a command-line application in its own environment, the way `pipx` does.
-- **[ruff](https://docs.astral.sh/ruff/)**: a Python linter and formatter, also from Astral, fast enough to run on every keystroke where the tools it replaces (flake8, isort, black) were not. Modern Python projects almost always use it.
-- **[pixi](https://pixi.sh/)**: a project-based package manager built on the conda ecosystem. Think of it as "uv for conda": fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.
+- **[ruff](https://docs.astral.sh/ruff/)**: a Python linter and formatter, also from Astral, fast enough to run on every keystroke where the tools it replaces (flake8, isort, black) were not. Many current Python projects use it.
+- **[pixi](https://pixi.prefix.dev/)**: a project-based package manager built on the conda ecosystem. Think of it as "uv for conda": fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.
 
 Apart from uv, none of these are required to follow this book, and the classic `pip`, `conda`, `grep` and `find` commands all still work. Install them when you get tired of waiting for the originals.
 
@@ -238,7 +238,7 @@ It gives you `csvstat` for a quick summary of every column, `csvcut` to pull out
 **Installation:**
 
 ```bash
-pip install csvkit
+uv tool install csvkit
 ```
 
 **Example commands:**
@@ -274,8 +274,8 @@ brew install jq
 # Ubuntu/Debian
 sudo apt install jq
 
-# Windows (with Chocolatey)
-choco install jq
+# Windows
+winget install jqlang.jq
 ```
 
 **Example commands:**
@@ -337,8 +337,8 @@ brew install graphviz
 # Ubuntu/Debian
 sudo apt install graphviz
 
-# Windows (with Chocolatey)
-choco install graphviz
+# Windows
+winget install Graphviz.Graphviz
 ```
 
 **Example DOT file (graph.dot):**
@@ -379,7 +379,7 @@ Screenshot utilities were once worth installing separately. They mostly aren't a
 - **macOS**: `Cmd+Shift+4` for a region, `Cmd+Shift+5` for the capture-and-record panel. Markup opens from the thumbnail that appears after a capture.
 - **Linux**: varies by desktop — GNOME's Screenshot and KDE's Spectacle both cover region capture and annotation.
 
-You'll still see older guides recommending Greenshot for this on Windows. It works, but its last stable release was in 2017 and the built-in tool now does the same job.
+You'll still see guides recommending Greenshot for this on Windows. It's maintained and works, and the built-in tool does the same job without an install.
 
 For anything beyond a static image — a bug you can only demonstrate by reproducing it — record a short clip instead. Screenshots of error messages are a common source of confusion in bug reports: paste the text.
 
