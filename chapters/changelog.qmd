@@ -1,0 +1,18 @@
+---
+title: "Changelog"
+description: >-
+  What each edition of the book changed.
+---
+
+Editions are numbered by year and month, so 2026.10 is the October 2026 edition. Earlier versions of the book weren't numbered; their history is in the [repository's commit log](https://github.com/ces0491/rbr/commits/main).
+
+## 2026.10 — 28 October 2026
+
+The first numbered edition. It comes from running the book's examples in Windows PowerShell 5.1, Git Bash, R and Docker, and fixing the ones that failed or did something other than what the text said.
+
+- **Windows.** PowerShell equivalents for the command-line basics, including a warning that PowerShell's `rmdir` deletes a non-empty folder if you accept its default answer; the uv installer command that runs under Windows' default script policy; Git Bash activation lines; Docker volume mounts for each shell; and how to install `make`.
+- **Environments.** uv and conda commands in place of bare `pip install` lines, a new section on uv's lockfile, and corrected descriptions of what `conda env export --from-history` and `renv::snapshot()` record.
+- **Examples.** The GitHub Pages walkthrough, the Makefile, the DVC sequence, the Flask and Chart.js example, the `ggplotly()` conversion, the sample R Markdown document, parameterised Jupyter reports and several Dockerfiles now work as written. The Makefile also skips steps that are already done, and keeps its tabs when copied from this site.
+- **Platforms.** AWS App Runner, which closed to new customers; Quarto Pub, which Posit Connect Cloud is replacing; shinyapps.io's migration dates; PyCharm, which absorbed its Community Edition; TorchServe, now archived; S3's default encryption; and deprecated Streamlit and Dash calls.
+- **Security.** The example containers run as an unprivileged user, the `.dockerignore` excludes `.env`, and passwords are typed at a prompt rather than into commands.
+- **References.** Newer editions, corrected authors and moved links.

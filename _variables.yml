@@ -1,0 +1,4 @@
+# The edition shown on the Welcome page. Calendar versioning: year.month,
+# with a .1 suffix for a second release in the same month. Change it with
+# `date` in _quarto.yml, and tag the release commit v<version> (see README).
+version: "2026.10"

@@ -12,6 +12,8 @@ If you've found this resource, you likely already possess strong analytical skil
 
 This guide walks you through setting up a data science environment — programming languages, version control, visualisation tools, cloud platforms. By the end of it you'll have a working technical foundation.
 
+This is edition {{< var version >}}. The tools change, so the book is revised to keep up, and the [Changelog](chapters/changelog.qmd) lists what each edition changed.
+
 # Preface
 
 The idea for this book goes back to before AI assistants were part of the job, to when the Harvard Business Review called data scientist the "sexiest job of the 21st century" [@davenport2012]. Much has changed since, and it is fair to ask whether data scientists still matter. My view is that AI makes understanding the mechanics of data science more important. Machines may remove much of the grunt work that so many have been well paid for in and around the 2010s. But if we can't tell what the machines are doing, we can't use what they hand back or ask them precisely for what we need, and then we have no basis on which to stay useful in our fields.

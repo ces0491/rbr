@@ -23,7 +23,8 @@ book:
   title: "Ready Before Run()"
   subtitle: "A Practical Guide to Gear Up for Data Science"
   author: "Cesaire Tobias"
-  date: "2026-08-21"
+  # Release date of the current edition; bump with `version` in _variables.yml
+  date: "2026-10-28"
   chapters:
     - index.qmd
     - chapters/intro.qmd
@@ -52,6 +53,7 @@ book:
   appendices:
     - chapters/utility_tools.qmd
     - chapters/appendix_troubleshooting.qmd
+    - chapters/changelog.qmd
   cover-image: assets/cover_no_auth.png
   favicon: assets/cover_no_auth.png
   repo-url: "https://github.com/ces0491/rbr"

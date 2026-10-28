@@ -29,11 +29,24 @@ The book runs in three parts, in rough dependency order. Numbers match the rende
 13. **Deploying Data Science Projects**: Render, Cloud Run, Posit Connect Cloud, and CI-driven deploys
 14. **Optimising Workflows and Next Steps**: project layout, Make, testing, DVC, and CI
 
-Plus two appendices: utility tools worth knowing about, and a troubleshooting reference.
+Plus three appendices: utility tools worth knowing about, a troubleshooting reference, and the changelog.
 
 ## Read Online
 
 The book is published at [rbr.sheetsolved.com](https://rbr.sheetsolved.com/), served from GitHub Pages via the `CNAME` file in the repository root.
+
+## Editions
+
+The book is revised as the tools change. Each published edition is numbered by year and month (`2026.10`), with a `.1` suffix for a second release in the same month, and the Changelog appendix records what each edition changed. [SCOPE.md](SCOPE.md) lists the checks an edition has to pass.
+
+To publish an edition:
+
+1. Run the checks in `SCOPE.md`.
+2. Set `version` in `_variables.yml` and `date` in `_quarto.yml`.
+3. Add the edition's entry to `chapters/changelog.qmd`.
+4. Commit, tag the commit (`git tag -a v2026.10 -m "Edition 2026.10"`), and push the commit and the tag.
+
+CI publishes the site on every push to `main`; the tag marks which commit an edition was.
 
 ## Building Locally
 
@@ -75,6 +88,8 @@ quarto render --to epub
 ```
 .
 ├── _quarto.yml          # Book configuration
+├── _variables.yml       # Edition number shown in the book
+├── SCOPE.md             # Checks every edition has to pass
 ├── CNAME                # Custom domain; listed under project resources so
 │                        #   `quarto publish` copies it into the output
 ├── index.qmd            # Welcome & preface

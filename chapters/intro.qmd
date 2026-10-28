@@ -32,7 +32,7 @@ The chapters run roughly in dependency order — earlier ones set up what later 
 
 **Shipping** (10–14) covers getting work in front of people: cloud platforms for when your laptop isn't enough, web applications, containers, deployment, and the workflow tooling that makes the second run cheaper than the first.
 
-Two appendices follow: a catalogue of smaller utilities worth knowing about, and a troubleshooting reference for the errors you're most likely to hit.
+Three appendices follow: a catalogue of smaller utilities worth knowing about, a troubleshooting reference for the errors you're most likely to hit, and a changelog of what each edition changed.
 
 By the end you should have a working development environment for Python, R, and SQL; your projects under Git with a remote on GitHub; the ability to produce a report or dashboard and put it on the internet; and an environment file complete enough that someone else can reproduce your results.
 
