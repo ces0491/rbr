@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -81,10 +81,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a211eaff6c2a6ca6c0655bfca9518f7f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -309,6 +309,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/changelog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Changelog</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -334,7 +340,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#r-renv" id="toc-r-renv" class="nav-link" data-scroll-target="#r-renv"><span class="header-section-number">7.6</span> R: renv</a></li>
   <li><a href="#connecting-the-environment-to-your-tools" id="toc-connecting-the-environment-to-your-tools" class="nav-link" data-scroll-target="#connecting-the-environment-to-your-tools"><span class="header-section-number">7.7</span> Connecting the Environment to Your Tools</a></li>
-  <li><a href="#lockfiles-vs-loose-requirements" id="toc-lockfiles-vs-loose-requirements" class="nav-link" data-scroll-target="#lockfiles-vs-loose-requirements"><span class="header-section-number">7.8</span> Lockfiles vs Loose Requirements</a></li>
+  <li><a href="#lockfiles-vs-loose-requirements" id="toc-lockfiles-vs-loose-requirements" class="nav-link" data-scroll-target="#lockfiles-vs-loose-requirements"><span class="header-section-number">7.8</span> Lockfiles vs Loose Requirements</a>
+  <ul class="collapse">
+  <li><a href="#a-lockfile-with-uv" id="toc-a-lockfile-with-uv" class="nav-link" data-scroll-target="#a-lockfile-with-uv"><span class="header-section-number">7.8.1</span> A Lockfile with uv</a></li>
+  </ul></li>
   <li><a href="#what-goes-in-git" id="toc-what-goes-in-git" class="nav-link" data-scroll-target="#what-goes-in-git"><span class="header-section-number">7.9</span> What Goes in Git</a></li>
   <li><a href="#making-it-a-habit" id="toc-making-it-a-habit" class="nav-link" data-scroll-target="#making-it-a-habit"><span class="header-section-number">7.10</span> Making It a Habit</a></li>
   <li><a href="#environments-and-containers" id="toc-environments-and-containers" class="nav-link" data-scroll-target="#environments-and-containers"><span class="header-section-number">7.11</span> Environments and Containers</a></li>
@@ -369,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Six months after you finish a piece of analysis, someone asks you to rerun it. You clone your own repository, run the script, and it fails — a function that used to take three arguments now takes four, or a package you relied on has been renamed, or your machine has a newer Python than the one you wrote it on.</p>
 <p>The same problem in its more embarrassing form: you send a colleague your code and it doesn’t run on their machine. Neither of you can tell why, because neither of you can see what’s different.</p>
 <p>The cause in both cases is that your analysis had dependencies you never wrote down. The code was in Git. The <em>environment the code needed</em> was in your head, or nowhere.</p>
-<p>An environment is the complete set of software your analysis depends on: the language version, every package, and every version of every package. Making that reproducible is the highest-return habit in this book, and unlike most of the material here it is quick to learn.</p>
+<p>An environment is the complete set of software your analysis depends on: the language version and the version of every package.</p>
 </section>
 <section id="the-two-halves" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="the-two-halves"><span class="header-section-number">7.2</span> The Two Halves</h2>
@@ -446,14 +455,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LsSf</span> https://astral.sh/uv/install.sh <span class="kw">|</span> <span class="fu">sh</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows (PowerShell)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">powershell</span> <span class="at">-c</span> <span class="st">"irm https://astral.sh/uv/install.ps1 | iex"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Both of these download a script and run it immediately. That is how Astral distributes uv and it is the instruction from their own documentation, but it is worth knowing what you are agreeing to: you are executing whatever is at that address, sight unseen. For installers from a vendor you have reason to trust this is normal practice; for a script you found in a forum post, download it and read it first.</p>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">powershell</span> <span class="at">-ExecutionPolicy</span> ByPass <span class="at">-c</span> <span class="st">"irm https://astral.sh/uv/install.ps1 | iex"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Both download a script and run it straight away; <a href="../chapters/command_line.html">The Command Line</a> covers what that means and when to read the script first.</p>
 <p>Then, in a project directory:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment. uv downloads Python 3.13 if you don't have it.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv <span class="at">--python</span> 3.13</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Next, activate it. The command differs by platform — run only the one for yours.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># macOS / Linux</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Git Bash on Windows</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/Scripts/activate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows PowerShell</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">venv</span>\Scripts\Activate<span class="op">.</span><span class="fu">ps1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre class="text"><code>:: Windows cmd.exe
@@ -479,46 +491,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="recording-it" class="level3" data-number="7.4.1">
 <h3 data-number="7.4.1" class="anchored" data-anchor-id="recording-it"><span class="header-section-number">7.4.1</span> Recording It</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip freeze <span class="op">&gt;</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>&gt;</code> redirects the command’s output into a file instead of printing it to the screen. Commit <code>requirements.txt</code>. Anyone with it — including you, later — reconstructs the environment with:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>&gt;</code> redirects the command’s output into a file instead of printing it to the screen. In Windows PowerShell 5.1, <code>&gt;</code> writes the file as UTF-16, which Git stores as binary, so changes to it won’t show in a diff. Use this there instead:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>uv pip freeze <span class="op">|</span> <span class="fu">Out-File</span> <span class="op">-</span>Encoding utf8 requirements<span class="op">.</span><span class="fu">txt</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Commit <code>requirements.txt</code>. Anyone with it — including you, later — reconstructs the environment with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> venv <span class="at">--python</span> 3.13</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install <span class="at">-r</span> requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>requirements.txt</code> doesn’t record the Python version, so name it when you rebuild. The lockfile route in <a href="#lockfiles-vs-loose-requirements">Lockfiles vs Loose Requirements</a> records it for you.</p>
 </section>
 </section>
 <section id="python-conda" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="python-conda"><span class="header-section-number">7.5</span> Python: conda</h2>
 <p>If you need the conda ecosystem, the shape is the same:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One environment per project - name it after the project, not after the work</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> sales-forecast python=3.13</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate it</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate sales-forecast</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install numpy pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># One environment per project, named after the project</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> sales-forecast python=3.13</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate it</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate sales-forecast</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install numpy pandas matplotlib scikit-learn jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The naming matters more than it looks. The environment you created in <a href="../chapters/languages.html">Python and R</a> — <code>datasci</code> under conda, or the <code>.venv</code> in your <code>rbr-work</code> folder under uv — is a reasonable scratchpad for working through this book, and it is exactly the pattern this chapter argues against for real work: one shared environment that several projects quietly depend on, so upgrading a package for one analysis breaks another. Give each project its own.</p>
 <p>Activate it whenever you work on that project. Unlike <code>venv</code>/<code>uv</code>, conda environments live in a central location rather than in the project directory, so there’s nothing to <code>.gitignore</code>.</p>
 <section id="recording-it-1" class="level3" data-number="7.5.1">
 <h3 data-number="7.5.1" class="anchored" data-anchor-id="recording-it-1"><span class="header-section-number">7.5.1</span> Recording It</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>--from-history</code> flag matters. Without it, conda writes out every package that came along as a dependency of something you asked for — transitive dependencies — each pinned to an exact build string, including builds that only exist for your operating system. The resulting file often won’t install on a different platform at all. With it, you get the packages you actually asked for, which is both readable and portable.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env export <span class="at">--from-history</span> <span class="op">&gt;</span> environment.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>--from-history</code> writes only the packages you asked for, exactly as you asked for them. That keeps the file readable and portable. Without the flag, conda lists every package that came along as a dependency — transitive dependencies — each pinned to an exact build string, including builds that only exist for your operating system, and the file often won’t install on another platform.</p>
+<p>The cost is that nothing is pinned unless you pinned it when you installed. Give versions at install time if you want them recorded:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install pandas=3.0 scikit-learn=1.9</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For an exact record of what’s installed, <code>conda env export --no-builds &gt; environment.yml</code> pins every package’s version and drops the build strings, though it still lists packages that exist on only one operating system. Both commands end the file with a <code>prefix:</code> line giving the environment’s location on your machine. Delete it before you commit; it points at a folder that won’t exist on anyone else’s computer.</p>
 </section>
 </section>
 <section id="r-renv" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="r-renv"><span class="header-section-number">7.6</span> R: renv</h2>
 <p><code>renv</code> gives each R project its own package library and a lockfile recording exactly what’s in it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then, from within your project (an RStudio Project, ideally):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up renv for this project — creates a private library</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ... install packages as normal, work on your analysis ...</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Record the current state</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>renv::snapshot()</code> writes <code>renv.lock</code>, a JSON file — a plain text format of nested <code>"key": value</code> pairs, readable by both people and programs — listing every package, its version, and where it came from. Commit <code>renv.lock</code>. Do not commit the <code>renv/library/</code> directory — <code>renv::init()</code> adds the right <code>.gitignore</code> entries for you.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up renv for this project — creates a private library</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install packages as normal</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ... then use them in your scripts, e.g. library(ggplot2) in analysis.R ...</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Record the current state</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>renv::snapshot()</code> writes <code>renv.lock</code>, a JSON file — a plain text format of nested <code>"key": value</code> pairs, readable by both people and programs — listing the packages your project’s code uses, with each one’s version and where it came from. It finds them by scanning your scripts for <code>library()</code> calls and the like, so a package you’ve installed but haven’t used in a script yet isn’t recorded. <code>renv::snapshot(type = "all")</code> records everything in the project library instead. Commit <code>renv.lock</code>. The <code>renv/library/</code> directory stays out of Git; <code>renv::init()</code> writes the <code>.gitignore</code> entries for you.</p>
 <p>Anyone who clones the project runs:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>and gets exactly your package versions.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -536,17 +556,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="connecting-the-environment-to-your-tools" class="level2" data-number="7.7">
 <h2 data-number="7.7" class="anchored" data-anchor-id="connecting-the-environment-to-your-tools"><span class="header-section-number">7.7</span> Connecting the Environment to Your Tools</h2>
-<p>Creating an environment is half the job. Your editor and your notebooks each have their own idea of which Python to use, and neither picks up a new environment automatically. This is the most common reason people conclude that environments “don’t work”: the environment is fine, but the tool is still running a different one.</p>
+<p>Creating an environment is half the job. Your editor and your notebooks each have their own idea of which Python to use, and neither picks up a new environment automatically. It’s a common reason people conclude that environments “don’t work”: the environment is fine, but the tool is still running a different one.</p>
 <p><strong>Jupyter notebooks.</strong> A notebook runs against a <em>kernel</em>, and your new environment is not one until you register it. From inside the activated environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the machinery that lets Jupyter talk to this environment</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install ipykernel      <span class="co"># or: conda install ipykernel</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Register it under a name you'll recognise in the kernel menu</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span> sales-forecast</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The environment now appears in Jupyter’s <em>Kernel → Change kernel</em> menu. If a notebook reports that pandas isn’t installed when you know it is, this is almost always the cause — the notebook is running a kernel from a different environment.</p>
-<p><strong>VS Code.</strong> Press <code>Ctrl+Shift+P</code> (<code>Cmd+Shift+P</code> on macOS), run <strong>Python: Select Interpreter</strong>, and choose your environment from the list. VS Code detects <code>.venv</code> directories inside the project automatically and usually offers them at the top. The chosen interpreter shows in the status bar, which is worth glancing at when something behaves oddly.</p>
-<p><strong>RStudio.</strong> <code>renv::init()</code> writes a <code>.Rprofile</code> into the project, so simply opening the RStudio Project activates the private library. The console prints a line confirming it on startup. Nothing further to configure — but this only works if you open the project rather than the individual <code>.R</code> file.</p>
-<p><a href="../chapters/ide_git.html">Editors and Version Control</a> covers the editor side in more detail.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install the machinery that lets Jupyter talk to this environment</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install ipykernel      <span class="co"># or: conda install ipykernel</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Register it under a name you'll recognise in the kernel menu</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> ipykernel install <span class="at">--user</span> <span class="at">--name</span> sales-forecast</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The environment now appears in Jupyter’s <em>Kernel → Change kernel</em> menu. If a notebook reports that pandas isn’t installed when you know it is, this is the usual cause — the notebook is running a kernel from a different environment.</p>
+<p><strong>VS Code.</strong> Run <strong>Python: Select Interpreter</strong>, as described in <a href="../chapters/ide_git.html#configuring-vs-code-for-python">Editors and Version Control</a>.</p>
+<p><strong>RStudio.</strong> <code>renv::init()</code> writes a <code>.Rprofile</code> into the project, so opening the RStudio Project activates the private library. The console prints a line confirming it on startup. Nothing further to configure — but this only works if you open the project rather than the individual <code>.R</code> file.</p>
 </section>
 <section id="lockfiles-vs-loose-requirements" class="level2" data-number="7.8">
 <h2 data-number="7.8" class="anchored" data-anchor-id="lockfiles-vs-loose-requirements"><span class="header-section-number">7.8</span> Lockfiles vs Loose Requirements</h2>
@@ -554,6 +573,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A <strong>loose requirement</strong> says “pandas”. A <strong>pinned requirement</strong> says “pandas 3.0.5”. A <strong>lockfile</strong> says “pandas 3.0.5, and every package pandas itself depends on, at exactly these versions, with a checksum for each — a short fingerprint computed from the file’s contents, which won’t match if the file has been altered or replaced.”</p>
 <p><code>requirements.txt</code> from <code>pip freeze</code> sits in the middle: it pins direct and transitive dependencies to versions, but not to checksums, and it doesn’t distinguish between what you asked for and what came along. <code>renv.lock</code>, <code>uv.lock</code>, and <code>pixi.lock</code> are true lockfiles.</p>
 <p>For most analysis work, a pinned <code>requirements.txt</code> is enough. Prefer a real lockfile for anything whose result someone will act on months later.</p>
+<section id="a-lockfile-with-uv" class="level3" data-number="7.8.1">
+<h3 data-number="7.8.1" class="anchored" data-anchor-id="a-lockfile-with-uv"><span class="header-section-number">7.8.1</span> A Lockfile with uv</h3>
+<p>uv writes one when you manage the folder as a project instead of a bare environment. In a new project folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init <span class="at">--bare</span>              <span class="co"># writes pyproject.toml</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> python pin 3.13          <span class="co"># writes .python-version</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add pandas matplotlib    <span class="co"># adds them to pyproject.toml, writes uv.lock, creates .venv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Commit <code>pyproject.toml</code>, <code>.python-version</code> and <code>uv.lock</code>. Someone who clones the project runs <code>uv sync</code>, which builds <code>.venv</code> from the lockfile on the pinned Python version, and <code>uv run python analysis.py</code> runs a script in that environment without activating anything. From then on, add packages with <code>uv add</code> instead of <code>uv pip install</code>, so the lockfile stays current.</p>
+</section>
 </section>
 <section id="what-goes-in-git" class="level2" data-number="7.9">
 <h2 data-number="7.9" class="anchored" data-anchor-id="what-goes-in-git"><span class="header-section-number">7.9</span> What Goes in Git</h2>
@@ -589,7 +616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="7.10" class="anchored" data-anchor-id="making-it-a-habit"><span class="header-section-number">7.10</span> Making It a Habit</h2>
 <p>The usual failure mode is drift: you set up an environment, then install three more packages over the following weeks without re-recording. Two things prevent it:</p>
 <ul>
-<li><strong>Re-snapshot when you install.</strong> <code>uv pip freeze &gt; requirements.txt</code> or <code>renv::snapshot()</code> immediately after adding a package, in the same breath as the install. It takes a second.</li>
+<li><strong>Re-record when you add a package.</strong> Run <code>uv pip freeze &gt; requirements.txt</code> straight after installing, or use <code>uv add</code>, which updates the lockfile itself. With renv, run <code>renv::snapshot()</code> once your code uses the new package.</li>
 <li><strong>Let CI catch you.</strong> A continuous integration workflow (covered in <a href="../chapters/workflows.html">Optimising Workflows</a>) builds your project from nothing but the record file. If you forgot to record something, the build fails — in front of you, on a commit, rather than in front of a colleague six months later. For analysis work this is most of CI’s value.</li>
 </ul>
 </section>
@@ -597,19 +624,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="7.11" class="anchored" data-anchor-id="environments-and-containers"><span class="header-section-number">7.11</span> Environments and Containers</h2>
 <p>A reasonable question at this point: if containers (covered in <a href="../chapters/containers.html">Containerisation</a>) also make things reproducible, why bother with both?</p>
 <p>They solve overlapping but different problems. An environment file pins your <em>packages</em>. A container pins the packages <strong>and</strong> the operating system, the system libraries, the locale, and the compiler toolchain. That extra coverage matters when a package depends on a specific version of a C library, or when the analysis has to run on infrastructure you don’t control.</p>
-<p>Use an environment file always; it costs nothing. Reach for a container when the environment file isn’t enough — deployment, awkward system dependencies, or a colleague on a genuinely different platform. The two compose: a good container is usually a base image plus your <code>requirements.txt</code>.</p>
+<p>Use an environment file always; it costs nothing. Reach for a container when the environment file isn’t enough — deployment, awkward system dependencies, or a colleague on a different platform. The two compose: a good container is usually a base image plus your <code>requirements.txt</code>.</p>
 </section>
 <section id="conclusion" class="level2" data-number="7.12">
 <h2 data-number="7.12" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">7.12</span> Conclusion</h2>
 <p><strong>By the end of this chapter you should have:</strong></p>
 <ul>
 <li>Every active project in its own isolated environment</li>
-<li>A <code>requirements.txt</code>, <code>environment.yml</code>, or <code>renv.lock</code> committed alongside the code</li>
+<li>A <code>requirements.txt</code>, <code>uv.lock</code>, <code>environment.yml</code>, or <code>renv.lock</code> committed alongside the code</li>
 <li><code>.venv/</code> and <code>renv/library/</code> in your <code>.gitignore</code></li>
 <li>Your editor pointed at the right interpreter, and the environment registered as a Jupyter kernel if you use notebooks</li>
 <li>Successfully reconstructed one of your own environments from its record file — do this once deliberately, so you find out now whether the file is actually complete</li>
 </ul>
-<p>That last item is the one people skip. Until you have restored from a record file, you don’t know whether it works.</p>
 <p>With environments recorded, the foundations are done. The next section turns to producing output someone else can read.</p>
 
 

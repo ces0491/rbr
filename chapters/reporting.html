@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -100,10 +100,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a211eaff6c2a6ca6c0655bfca9518f7f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -328,6 +328,12 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/changelog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Changelog</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -345,7 +351,7 @@ div.csl-indent {
   <li><a href="#markdown-the-foundation-of-documentation" id="toc-markdown-the-foundation-of-documentation" class="nav-link" data-scroll-target="#markdown-the-foundation-of-documentation"><span class="header-section-number">8.1.1</span> Markdown: The Foundation of Documentation</a></li>
   <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"><span class="header-section-number">8.1.2</span> R Markdown</a></li>
   <li><a href="#jupyter-notebooks-for-documentation" id="toc-jupyter-notebooks-for-documentation" class="nav-link" data-scroll-target="#jupyter-notebooks-for-documentation"><span class="header-section-number">8.1.3</span> Jupyter Notebooks for Documentation</a></li>
-  <li><a href="#quarto-the-next-generation-of-literate-programming" id="toc-quarto-the-next-generation-of-literate-programming" class="nav-link" data-scroll-target="#quarto-the-next-generation-of-literate-programming"><span class="header-section-number">8.1.4</span> Quarto: The Next Generation of Literate Programming</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"><span class="header-section-number">8.1.4</span> Quarto</a></li>
   <li><a href="#latex-for-professional-document-creation" id="toc-latex-for-professional-document-creation" class="nav-link" data-scroll-target="#latex-for-professional-document-creation"><span class="header-section-number">8.1.5</span> LaTeX for Professional Document Creation</a></li>
   <li><a href="#troubleshooting-latex-issues" id="toc-troubleshooting-latex-issues" class="nav-link" data-scroll-target="#troubleshooting-latex-issues"><span class="header-section-number">8.1.6</span> Troubleshooting LaTeX Issues</a></li>
   <li><a href="#latex-or-typst" id="toc-latex-or-typst" class="nav-link" data-scroll-target="#latex-or-typst"><span class="header-section-number">8.1.7</span> LaTeX or Typst?</a></li>
@@ -388,10 +394,10 @@ div.csl-indent {
 
 <section id="documentation-and-reporting-tools" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="documentation-and-reporting-tools"><span class="header-section-number">8.1</span> Documentation and Reporting Tools</h2>
-<p>An analysis nobody can read is an analysis nobody acts on. This chapter covers the tools for turning one into a document — and specifically into a document that rebuilds itself from the data, so a corrected figure costs a re-render rather than an afternoon.</p>
+<p>This chapter covers the tools for turning an analysis into a document that rebuilds itself from the data, so a corrected figure costs a re-render rather than an afternoon.</p>
 <section id="markdown-the-foundation-of-documentation" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="markdown-the-foundation-of-documentation"><span class="header-section-number">8.1.1</span> Markdown: The Foundation of Documentation</h3>
-<p>Markdown is a lightweight markup language that’s easy to read and write. It forms the basis of many documentation systems.</p>
+<p>Markdown is a lightweight markup language that’s easy to read and write.</p>
 <p>It is what GitHub renders, what Jupyter cells hold, and what Quarto and R Markdown are built on, so it’s worth ten minutes even if you learn nothing else here.</p>
 <section id="basic-markdown-syntax" class="level4" data-number="8.1.1.1">
 <h4 data-number="8.1.1.1" class="anchored" data-anchor-id="basic-markdown-syntax"><span class="header-section-number">8.1.1.1</span> Basic Markdown Syntax</h4>
@@ -412,19 +418,18 @@ div.csl-indent {
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>1. Numbered item 1</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>2. Numbered item 2</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Table:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>| Column 1 | Column 2 |</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>|----------|----------|</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>| Cell 1   | Cell 2   |</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>&gt; This is a blockquote</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>`Inline code`</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>```python</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a># Code block</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>print("Hello, world!")</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>| Column 1 | Column 2 |</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>|----------|----------|</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>| Cell 1   | Cell 2   |</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>&gt; This is a blockquote</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>`Inline code`</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>```python</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a># Code block</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>print("Hello, world!")</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The language name after the opening backticks is optional and only controls syntax highlighting. Later in this chapter you’ll see fences written as <code>```{python}</code> with braces — that is Quarto and R Markdown’s own extension, marking a block as code to <em>execute</em> instead of merely display. Plain Markdown has no such concept.</p>
 <p>The point of the syntax is that the raw file still reads as text. Asterisks around a word make it italic and also look like emphasis; a row of hashes marks a heading and also looks like one.</p>
 </section>
@@ -467,7 +472,7 @@ div.csl-indent {
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>## Data Import and Cleaning</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>```{r setup, eval=FALSE}</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>```{r data-import}</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a># load the diamonds dataset from ggplot2</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>data(diamonds, package = "ggplot2")</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
@@ -489,7 +494,7 @@ div.csl-indent {
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>## Data Visualisation</span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>```{r visualization, eval=FALSE}</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>```{r visualisation}</span>
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>ggplot2::ggplot(my_data, ggplot2::aes(x = X, y = Y)) +</span>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  ggplot2::geom_point() +</span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  ggplot2::geom_smooth(method = "lm") +</span>
@@ -505,13 +510,8 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><em>Note that we’ve used the namespace convention (<code>package::function()</code>) in the code above rather than loading each package with <code>library()</code>. This is a matter of preference, but benefits include:</em></p>
-<ul>
-<li>Avoids loading the full package with <code>library()</code></li>
-<li>Prevents naming conflicts (e.g.&nbsp;<code>dplyr::filter()</code> vs.&nbsp;<code>stats::filter()</code>)</li>
-<li>Keeps dependencies explicit and localised right next to each call</li>
-</ul>
-<p><em>For the same reason the pipe above is <code>|&gt;</code>, R’s native pipe, which is part of base R since version 4.1 and needs no package. The older <code>%&gt;%</code> comes from magrittr and requires <code>library(dplyr)</code> or <code>library(magrittr)</code> first.</em></p>
+<p>The example calls functions as <code>package::function()</code> instead of attaching packages with <code>library()</code>. That’s a matter of preference. It keeps same-named functions apart, such as <code>dplyr::filter()</code> and <code>stats::filter()</code>, and it shows beside each call which package the document depends on. <code>::</code> still loads the package; it only skips attaching it to the search path.</p>
+<p>The pipe is <code>|&gt;</code>, which has been part of base R since version 4.1. The older <code>%&gt;%</code> comes from magrittr, so it needs <code>library(dplyr)</code> or <code>library(magrittr)</code> first.</p>
 </div>
 </div>
 <p>When you click the “Knit” button in RStudio, the R code in the chunks is executed, and the results (including plots and tables) are embedded in the output document. Code, results, and narrative live in one file, so there is no step where a number is copied from a console into a paragraph and then goes stale. If your data changes, re-knit the document and every figure and table updates.</p>
@@ -530,16 +530,18 @@ Note
 </ol>
 <p>Alternatively, you can use <code>nbconvert</code> from the command line:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> nbconvert <span class="at">--to</span> html my_notebook.ipynb</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>One notebook, several outputs: PDF for a formal report, HTML for a website, Markdown for a repository. Worth knowing because it stops you maintaining three versions of the same analysis.</p>
+<p>One notebook, several outputs: PDF for a formal report, HTML for a website, Markdown for a repository. That saves you maintaining three versions of the same analysis.</p>
 </section>
 <section id="jupyter-book" class="level4" data-number="8.1.3.2">
 <h4 data-number="8.1.3.2" class="anchored" data-anchor-id="jupyter-book"><span class="header-section-number">8.1.3.2</span> Jupyter Book</h4>
 <p>For larger documentation projects, Jupyter Book builds on the notebook format to create complete books:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Jupyter Book</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyter-book</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Jupyter Book (with conda: conda install jupyter-book)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install jupyter-book</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a project and start a live-reloading preview</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> book start</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In the folder holding your notebooks and Markdown files: write the</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># configuration file, then start a live-reloading preview</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> book init</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">jupyter</span> book start</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Jupyter Book organises multiple notebooks and markdown files into a book with navigation, search, and cross-references — useful for multi-page documentation, tutorials, or course materials.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -551,20 +553,20 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Jupyter Book 2, built on the MyST document engine, is what <code>pip install jupyter-book</code> now gives you, and the command you type — its command-line interface, or CLI — is <code>jupyter book</code>, two words. Version 1’s commands were hyphenated and different: <code>jupyter-book create my-book</code> followed by <code>jupyter-book build my-book/</code>. Most tutorials you’ll find still show the v1 form, which fails with a “command not found” error against a current install.</p>
+<p>Installing <code>jupyter-book</code> now gives you version 2, built on the MyST document engine, and its command is <code>jupyter book</code>, two words. Version 1 used hyphenated commands: <code>jupyter-book create my-book</code>, then <code>jupyter-book build my-book/</code>. Older tutorials still show that form, and version 2 rejects it with <code>Invalid command: create my-book</code>.</p>
 </div>
 </div>
 </section>
 </section>
-<section id="quarto-the-next-generation-of-literate-programming" class="level3" data-number="8.1.4">
-<h3 data-number="8.1.4" class="anchored" data-anchor-id="quarto-the-next-generation-of-literate-programming"><span class="header-section-number">8.1.4</span> Quarto: The Next Generation of Literate Programming</h3>
-<p>Quarto is a newer system that works with both Python and R, unifying the best aspects of R Markdown and Jupyter notebooks.</p>
+<section id="quarto" class="level3" data-number="8.1.4">
+<h3 data-number="8.1.4" class="anchored" data-anchor-id="quarto"><span class="header-section-number">8.1.4</span> Quarto</h3>
+<p>Quarto is a newer system that works with both Python and R, combining R Markdown’s approach with Jupyter notebooks.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Quarto CLI from https://quarto.org/docs/get-started/</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new Quarto project (website, book, manuscript, etc.)</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project default my-project</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Or, for a standalone one-off document, simply create a file</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Or, for a standalone document, create a file</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># named document.qmd in your editor (no command needed).</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Render a document to HTML (or PDF, docx, etc.)</span></span>
@@ -572,7 +574,7 @@ Note
 <p>Quarto is R Markdown’s successor and works the same way for R, but it doesn’t assume R. Python, Julia and Observable chunks all execute, and a single document can mix them. If you work in both Python and R, it means one document format rather than two.</p>
 <section id="quarto-dashboards" class="level4" data-number="8.1.4.1">
 <h4 data-number="8.1.4.1" class="anchored" data-anchor-id="quarto-dashboards"><span class="header-section-number">8.1.4.1</span> Quarto Dashboards</h4>
-<p>Since Quarto 1.4 (released in 2024), Quarto can render a document directly into a dashboard layout with rows, columns, value boxes, and tab sets, with no Shiny, Dash, or Streamlit required for the static case. If all you need is a periodic refresh of a dashboard view over your data, this is by far the lightest way to get there: you write a normal <code>.qmd</code> file with a <code>format: dashboard</code> YAML key, and Quarto handles the layout.</p>
+<p>Since Quarto 1.4 (released in 2024), Quarto can render a document directly into a dashboard layout with rows, columns, value boxes, and tab sets, with no Shiny, Dash, or Streamlit required for the static case. If all you need is a periodic refresh of a dashboard view over your data, this is the lightest way to get there: you write a normal <code>.qmd</code> file with a <code>format: dashboard</code> YAML key, and Quarto handles the layout.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Sales Overview"</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> dashboard</span></span>
@@ -601,12 +603,13 @@ Note
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Report for </span><span class="sc">{</span>region<span class="sc">}</span><span class="ss"> covering </span><span class="sc">{</span>month<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Either way, you render with <code>-P</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render sales.qmd <span class="at">-P</span> region:<span class="st">"EU"</span> <span class="at">-P</span> month:<span class="st">"2026-03"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This single pattern replaces a surprising amount of the ad-hoc “one notebook per client” sprawl that plagues data science teams.</p>
+<p>For the Jupyter engine, <code>-P</code> hands the values to papermill, so install it in the environment first (<code>uv pip install papermill</code>, or <code>conda install papermill</code>). Without it the render stops with <code>The papermill package is required for processing --execute-params</code>. Quarto keeps its Python process running between renders, so if you install papermill after seeing that error, add <code>--execute-daemon-restart</code> to the next render.</p>
+<p>This pattern replaces the habit of keeping one copy of a notebook per client.</p>
 </section>
 </section>
 <section id="latex-for-professional-document-creation" class="level3" data-number="8.1.5">
 <h3 data-number="8.1.5" class="anchored" data-anchor-id="latex-for-professional-document-creation"><span class="header-section-number">8.1.5</span> LaTeX for Professional Document Creation</h3>
-<p>When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX gives you precise page layout, mathematical notation to a standard nothing else matches, figures and tables that number and cross-reference themselves, and bibliographies through BibTeX — all from plain text, so it versions in Git like any other source file.</p>
+<p>When a report needs to look like a journal article or a formal business document, LaTeX is the typesetting system that gets it there. Markdown handles simple documents well; LaTeX gives you precise page layout, mathematical notation, figures and tables that number and cross-reference themselves, and bibliographies through BibTeX — all from plain text, so it versions in Git like any other source file.</p>
 <p>LaTeX works differently from word processors: you write plain text with special commands, then compile it to a PDF. You don’t need to learn those commands to get the benefit. Quarto and R Markdown generate them from your document and run the compiler for you, so what follows is how to install that compiler and configure Quarto to drive it, rather than a course in LaTeX itself. If you do end up writing raw LaTeX, <a href="https://quarto.org/docs/output-formats/pdf-basics.html">Quarto’s PDF documentation</a> and the <a href="https://tex.stackexchange.com/">TeX Stack Exchange</a> are where to go.</p>
 <section id="installing-latex-for-quarto-and-r-markdown" class="level4" data-number="8.1.5.1">
 <h4 data-number="8.1.5.1" class="anchored" data-anchor-id="installing-latex-for-quarto-and-r-markdown"><span class="header-section-number">8.1.5.1</span> Installing LaTeX for Quarto and R Markdown</h4>
@@ -620,7 +623,7 @@ Note
 </section>
 <section id="using-latex-with-quarto" class="level4" data-number="8.1.5.2">
 <h4 data-number="8.1.5.2" class="anchored" data-anchor-id="using-latex-with-quarto"><span class="header-section-number">8.1.5.2</span> Using LaTeX with Quarto</h4>
-<p>Quarto makes it easy to incorporate LaTeX features while keeping your document source readable. Here’s how to configure Quarto for PDF output using LaTeX:</p>
+<p>LaTeX options for a PDF go in the document’s YAML header, so the source itself stays readable.</p>
 <section id="yaml-configuration" class="level5" data-number="8.1.5.2.1">
 <h5 data-number="8.1.5.2.1" class="anchored" data-anchor-id="yaml-configuration"><span class="header-section-number">8.1.5.2.1</span> YAML Configuration</h5>
 <p>In your Quarto YAML header, specify PDF output with LaTeX options:</p>
@@ -692,12 +695,13 @@ Note
 <p>And configure in YAML:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> references.bib</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> ieee.csl</span><span class="co">  # Citation style</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>.csl</code> file sets how citations and the reference list are formatted. Download it into your project folder from the <a href="https://www.zotero.org/styles">Zotero Style Repository</a>; IEEE’s is at <a href="https://www.zotero.org/styles/ieee" class="uri">https://www.zotero.org/styles/ieee</a>. Leave the <code>csl:</code> line out and Quarto uses its default author-date style.</p>
 </section>
 </section>
 </section>
 <section id="troubleshooting-latex-issues" class="level3" data-number="8.1.6">
 <h3 data-number="8.1.6" class="anchored" data-anchor-id="troubleshooting-latex-issues"><span class="header-section-number">8.1.6</span> Troubleshooting LaTeX Issues</h3>
-<p>LaTeX can sometimes produce cryptic error messages. Here are solutions to common issues:</p>
+<p>LaTeX’s error messages can be cryptic. These are the ones you’re most likely to meet.</p>
 <section id="missing-packages" class="level4" data-number="8.1.6.1">
 <h4 data-number="8.1.6.1" class="anchored" data-anchor-id="missing-packages"><span class="header-section-number">8.1.6.1</span> Missing Packages</h4>
 <p>If you get an error about a missing package when rendering:</p>
@@ -767,12 +771,12 @@ Note
 <section id="choosing-your-path-forward" class="level4" data-number="8.1.7.2">
 <h4 data-number="8.1.7.2" class="anchored" data-anchor-id="choosing-your-path-forward"><span class="header-section-number">8.1.7.2</span> Choosing Your Path Forward</h4>
 <p>Use LaTeX when something outside your control expects it: a journal template, a supervisor’s preamble, a package that exists nowhere else. Use Typst when nothing does. That covers most business and internal reporting, where nobody cares what produced the PDF.</p>
-<p><strong>You don’t have to choose up front.</strong> Quarto has shipped the Typst compiler since version 1.4, so switching engines is a one-line YAML change and your content stays as it is:</p>
+<p><strong>You don’t have to choose up front.</strong> Quarto has shipped the Typst compiler since version 1.4, so switching engines is a one-line YAML change. Ordinary Markdown, code and figures carry over unchanged. Raw LaTeX blocks are left out of Typst output, and LaTeX code in options such as <code>include-in-header</code> has to be rewritten in Typst:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Sales Report"</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> typst</span><span class="co">     # instead of: pdf</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>There is a practical consequence worth stating plainly: <code>format: typst</code> produces a PDF without LaTeX installed at all. If PDF output is all you need, you can skip the TinyTeX installation and everything that follows from it.</p>
+<p><code>format: typst</code> produces a PDF without LaTeX installed at all. If PDF output is all you need, you can skip the TinyTeX installation and everything that follows from it.</p>
 </section>
 </section>
 <section id="creating-technical-documentation" class="level3" data-number="8.1.8">
@@ -781,8 +785,8 @@ Note
 <section id="mkdocs-simple-documentation-with-markdown" class="level4" data-number="8.1.8.1">
 <h4 data-number="8.1.8.1" class="anchored" data-anchor-id="mkdocs-simple-documentation-with-markdown"><span class="header-section-number">8.1.8.1</span> MkDocs: Simple Documentation with Markdown</h4>
 <p>MkDocs creates a documentation website from Markdown files:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install MkDocs</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install mkdocs</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install MkDocs (with conda: conda install mkdocs)</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install mkdocs</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new project</span></span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="ex">mkdocs</span> new my-documentation</span>
@@ -795,15 +799,15 @@ Note
 <section id="sphinx-documentation-generated-from-code" class="level4" data-number="8.1.8.2">
 <h4 data-number="8.1.8.2" class="anchored" data-anchor-id="sphinx-documentation-generated-from-code"><span class="header-section-number">8.1.8.2</span> Sphinx: Documentation Generated from Code</h4>
 <p>Sphinx is the documentation tool the Python ecosystem standardised on:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Sphinx</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install sphinx</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Sphinx (with conda: conda install sphinx)</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> pip install sphinx</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new documentation project</span></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sphinx-quickstart</span> docs</span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the documentation</span></span>
 <span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> docs</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> html        <span class="co"># in Windows PowerShell: .\make html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Sphinx offers advanced features like automatic API documentation generation, cross-referencing, and multiple output formats. It’s the system behind the official documentation for Python itself and many major libraries like NumPy, pandas, and scikit-learn.</p>
 <p>Sphinx became the standard for Python documentation largely because it generates reference documentation from <em>docstrings</em> — the descriptive text you write inside a function or class, which Python keeps attached to the object at runtime. You document each function where it lives, and Sphinx extracts and formats those descriptions into a browsable reference that can’t drift out of step with the code.</p>
 </section>
@@ -811,7 +815,7 @@ Note
 </section>
 <section id="reproducible-reports-working-with-data" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="reproducible-reports-working-with-data"><span class="header-section-number">8.2</span> Reproducible Reports — Working with Data</h2>
-<p>When using external data files in Quarto projects, it’s important to understand how to handle file paths properly to ensure reproducibility across different environments.</p>
+<p>A report that reads a data file has to find it on whichever machine renders it.</p>
 <section id="common-issues-with-file-paths" class="level3" data-number="8.2.1">
 <h3 data-number="8.2.1" class="anchored" data-anchor-id="common-issues-with-file-paths"><span class="header-section-number">8.2.1</span> Common Issues with File Paths</h3>
 <p>The error <code>'my_data.csv' does not exist in current working directory</code> is a common issue when transitioning between different editing environments like VS Code and RStudio. This happens because:</p>
@@ -861,39 +865,44 @@ Note
 <h3 data-number="8.2.4" class="anchored" data-anchor-id="creating-sample-data-programmatically"><span class="header-section-number">8.2.4</span> Creating Sample Data Programmatically</h3>
 <p>Another reproducible approach is to generate sample data within your code:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create synthetic data</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0491</span>)  <span class="co"># For reproducibility</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_x =</span> <span class="fu">rnorm</span>(<span class="dv">20</span>),</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_y =</span> value_x <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd =</span> <span class="fl">0.5</span>),</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">sample</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data</span></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(synthetic_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create synthetic data</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">0491</span>)  <span class="co"># For reproducibility</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>synthetic_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_x =</span> <span class="fu">rnorm</span>(<span class="dv">20</span>),</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_y =</span> value_x <span class="sc">*</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="at">sd =</span> <span class="fl">0.5</span>),</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">sample</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data</span></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(synthetic_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This approach works well for illustrative examples and ensures anyone can run your code without any external files.</p>
 </section>
 <section id="remote-data-with-caching" class="level3" data-number="8.2.5">
 <h3 data-number="8.2.5" class="anchored" data-anchor-id="remote-data-with-caching"><span class="header-section-number">8.2.5</span> Remote Data with Caching</h3>
-<p>For real-world datasets that are too large to include in packages, you can fetch them from reliable URLs:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># URL to a stable dataset (ggplot2's default branch is 'main', not 'master')</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/diamonds.csv"</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and read the data</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>remote_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the data</span></span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(remote_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The <code>cache: true</code> option tells Quarto to save the results and only re-execute this chunk when the code changes, which prevents unnecessary downloads.</p>
+<p>For data that doesn’t ship with a package, read it from a stable URL. The chunk below reads the copy of <code>diamonds</code> kept in ggplot2’s GitHub repository, so you can compare it with the built-in version above. The <code>cache: true</code> line in its options saves the result, so the download doesn’t repeat on every render:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>#| label: remote-data</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>#| cache: true</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>#| message: false</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>url &lt;- "https://raw.githubusercontent.com/tidyverse/ggplot2/main/data-raw/diamonds.csv"</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a># Download and read the data</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>remote_data &lt;- readr::read_csv(url)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a># Display the data</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>head(remote_data)</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Quarto re-runs a cached chunk only when its code changes. If the file at the URL changes, delete the document’s <code>_cache</code> folder to fetch it again.</p>
 </section>
 <section id="best-practices-for-documentation" class="level3" data-number="8.2.6">
 <h3 data-number="8.2.6" class="anchored" data-anchor-id="best-practices-for-documentation"><span class="header-section-number">8.2.6</span> Best Practices for Documentation</h3>
-<p>Write it as you go. Documentation left until the end is documentation that doesn’t get written, and by then you’ve forgotten why you made half the choices you’re trying to describe.</p>
-<p>Explaining a modelling choice in prose is also a reliable way to discover that you can’t justify it, which is worth more than the document.</p>
+<p>Write it as you go. Left to the end, documentation tends not to get written, and by then you’ve forgotten why you made many of the choices you’re trying to describe.</p>
+<p>Writing a modelling choice down in prose is also a good test of whether you can justify it.</p>
 </section>
 </section>
 <section id="conclusion" class="level2" data-number="8.3">
@@ -911,7 +920,7 @@ Note
 <li>The <a href="../chapters/visualisation.html">Data Visualisation</a> chapter covers the static and lightly-interactive plotting libraries you’ll embed in reports (matplotlib, seaborn, plotly, ggplot2), plus Mermaid for code-based diagrams.</li>
 <li>The <a href="../chapters/web_dev.html">Web Development for Data Scientists</a> chapter covers the tools for when “rerun the render” isn’t enough and stakeholders need to poke at the data themselves: Shiny, Dash, Streamlit, and Flask.</li>
 </ul>
-<p>Pick whichever matches what your reader actually needs. A rendered document is enough far more often than the request for a dashboard suggests.</p>
+<p>Pick whichever matches what your reader needs.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">

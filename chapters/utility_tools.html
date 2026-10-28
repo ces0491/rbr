@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -81,10 +81,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a211eaff6c2a6ca6c0655bfca9518f7f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -309,6 +309,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/changelog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Changelog</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -366,15 +372,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>While programming languages, libraries, and frameworks form the core of your data science toolkit, a handful of smaller utilities remove real friction from day-to-day work. This appendix is a catalogue rather than a curriculum: nothing in the main chapters depends on any of it, and you should adopt items from it when you notice a problem they solve, not because they’re listed here.</p>
 <section id="ai-coding-assistants" class="level3" data-number="A.1.1">
 <h3 data-number="A.1.1" class="anchored" data-anchor-id="ai-coding-assistants"><span class="header-section-number">A.1.1</span> AI Coding Assistants</h3>
-<p>Large-language-model-based coding assistants are probably the single biggest productivity change in data science tooling since this book was first drafted. For readers without a CS background they’re especially useful: they can scaffold boilerplate, explain unfamiliar code, translate between Python and R, suggest fixes for cryptic error messages, and draft regex patterns or SQL queries on request. The caveat is universal: they confidently produce wrong answers too, so treat suggestions as a fast draft to be reviewed, not an oracle.</p>
+<p>Coding assistants built on large language models are especially useful for readers without a CS background: they can scaffold boilerplate, explain unfamiliar code, translate between Python and R, suggest fixes for cryptic error messages, and draft regex patterns or SQL queries on request. They also produce wrong answers confidently, so treat what they suggest as a draft to review.</p>
 <p>A few options worth knowing. Pricing differs between them, so the cost note matters as much as the description:</p>
 <ul>
-<li><strong><a href="https://github.com/features/copilot">GitHub Copilot</a></strong>: In-editor completion and chat inside VS Code, JetBrains IDEs, Neovim, and the web. The most mature and widely used option. Has a genuine free tier with a monthly allowance of completions and chats, and is free outright for verified students, educators, and maintainers of popular open-source projects.</li>
-<li><strong><a href="https://docs.claude.com/en/docs/claude-code/ide-integrations">Claude for VS Code</a> and <a href="https://www.claude.com/product/claude-code">Claude Code</a></strong>: Anthropic’s CLI and IDE integrations. Claude Code runs in a terminal and can read, edit, and run code in a project with your supervision. Particularly good for multi-file refactors. Requires a paid Claude subscription or API credits — there is no free tier.</li>
+<li><strong><a href="https://github.com/features/copilot">GitHub Copilot</a></strong>: In-editor completion and chat inside VS Code, JetBrains IDEs, Neovim, and the web. The most mature and widely used option. Has a free tier with a monthly allowance of completions and chats, and is free outright for verified students, educators, and maintainers of popular open-source projects.</li>
+<li><strong><a href="https://code.claude.com/docs/en/ide-integrations">Claude for VS Code</a> and <a href="https://claude.com/product/claude-code">Claude Code</a></strong>: Anthropic’s CLI and IDE integrations. Claude Code runs in a terminal and can read, edit, and run code in a project with your supervision. Particularly good for multi-file refactors. Requires a paid Claude subscription or API credits — there is no free tier.</li>
 <li><strong><a href="https://cursor.com/">Cursor</a></strong>: A fork of VS Code with deep LLM integration throughout the editor. Popular with developers who want a single tool rather than an extension. Free hobby tier, paid beyond it.</li>
 <li><strong><a href="https://aider.chat/">Aider</a></strong>: An open-source terminal-based pair-programmer that uses git commits as its unit of work. A great fit if you already live in the terminal. The tool itself is free; you supply an API key and pay the model provider for usage.</li>
 </ul>
-<p>For genuinely throwaway tasks, the web chat interfaces to <a href="https://claude.ai/">Claude</a> and <a href="https://chatgpt.com/">ChatGPT</a> are fine. For anything you’ll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.</p>
+<p>For throwaway tasks, the web chat interfaces to <a href="https://claude.ai/">Claude</a> and <a href="https://chatgpt.com/">ChatGPT</a> are fine. For anything you’ll actually check into a repository, prefer an IDE integration so the suggestions have full context of your code.</p>
 <p>A few habits that make these tools more useful and less dangerous:</p>
 <ol type="1">
 <li><strong>Read the diff</strong>. Never accept an edit without skimming what changed.</li>
@@ -403,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>Ctrl+D</code>: Duplicate current line</li>
 <li><code>Ctrl+Shift+Up/Down</code>: Move current line up/down</li>
 </ul>
-<p>Notepad++ is useful for quickly viewing and editing text files, CSV extracts, or configuration files without launching a full IDE. It is not a large-file tool: it has a hard limit around 2 GB and becomes sluggish well before that. For a genuinely large CSV, read a sample in pandas or query it in place with DuckDB rather than trying to open it.</p>
+<p>Notepad++ is useful for quickly viewing and editing text files, CSV extracts, or configuration files without launching a full IDE. It is not a large-file tool: it has a hard limit around 2 GB and becomes sluggish well before that. For a large CSV, read a sample in pandas or query it in place with DuckDB rather than trying to open it.</p>
 </section>
 </section>
 <section id="api-development-and-testing-tools" class="level3" data-number="A.1.3">
@@ -428,14 +434,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Save the request to a collection for future use</p></li>
 </ol>
 <p>Postman earns its place when you’re working with data APIs — financial markets, weather services, or an internal company endpoint — and want to poke at the response before writing any code against it.</p>
-<p>One caveat worth knowing before you commit: Postman now requires an account and syncs your collections to its cloud by default. For work under a client NDA, or anywhere requests carry credentials you’d rather not upload, check what your organisation’s policy says about that.</p>
+<p>Postman requires an account and syncs your collections to its cloud by default. For work under a client NDA, or anywhere requests carry credentials you’d rather not upload, check what your organisation’s policy says about that.</p>
 </section>
 <section id="bruno-and-insomnia" class="level4" data-number="A.1.3.2">
 <h4 data-number="A.1.3.2" class="anchored" data-anchor-id="bruno-and-insomnia"><span class="header-section-number">A.1.3.2</span> Bruno and Insomnia</h4>
 <p>Two alternatives, both a response to the same concern:</p>
 <ul>
 <li><strong><a href="https://www.usebruno.com/">Bruno</a></strong> stores collections as plain text files in a folder you choose, which means they live in Git alongside the code that calls the API and diff like any other source file. Offline by default, no account required. If the cloud-sync caveat above matters to you, this is the one to look at.</li>
-<li><strong><a href="https://insomnia.rest/">Insomnia</a></strong> is lighter than Postman with good GraphQL support. Note that since Kong’s 2023 changes, using it without an account means working in Scratch Pad mode, which limits what you can save — check the current terms before assuming the free tier fits your workflow.</li>
+<li><strong><a href="https://insomnia.rest/">Insomnia</a></strong> is lighter than Postman with good GraphQL support. Since Kong’s 2023 changes, using it without an account means working in Scratch Pad mode, which limits what you can save — check the current terms before assuming the free tier fits your workflow.</li>
 </ul>
 <p>For occasional API work, any of the three is fine. The choice matters when collections need to be shared, version-controlled, or kept off someone else’s servers.</p>
 </section>
@@ -511,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh <span class="at">-o</span> install-ohmyzsh.sh</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> install-ohmyzsh.sh   <span class="co"># read it, check for anything suspicious</span></span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> install-ohmyzsh.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Many sites still show a one-liner <code>sh -c "$(curl ... install.sh)"</code>, which downloads and immediately executes code from a third-party server. The two-step version above takes five extra seconds and lets you actually see what’s about to run on your machine.</p>
+<p>Oh My Zsh’s own instructions use a one-liner, <code>sh -c "$(curl -fsSL .../install.sh)"</code>. For an installer the project publishes itself, that’s the documented method, as <a href="../chapters/command_line.html">The Command Line</a> explains. The two-step version above adds a look at the script before it runs.</p>
 <p><strong>Useful plugins for data scientists:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Edit ~/.zshrc to activate plugins</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">plugins</span><span class="op">=</span><span class="va">(</span>git python pip conda docker<span class="va">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -524,7 +530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="modern-rust-based-cli-replacements" class="level4" data-number="A.1.6.3">
 <h4 data-number="A.1.6.3" class="anchored" data-anchor-id="modern-rust-based-cli-replacements"><span class="header-section-number">A.1.6.3</span> Modern Rust-based CLI replacements</h4>
-<p>A family of newer command-line tools, mostly written in Rust, have become the de-facto replacements for the standard Unix utilities. They’re all faster than the originals and, more importantly for this book’s audience, tend to have friendlier defaults and output. Every one is installable with Homebrew, apt, <code>winget</code>, <code>choco</code>, or <code>cargo</code>:</p>
+<p>A family of newer command-line tools, mostly written in Rust, cover the same jobs as the standard Unix utilities with friendlier defaults and output, and some are noticeably faster. Each one installs through Homebrew, apt, <code>winget</code> or <code>cargo</code>:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -574,8 +580,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Three more from the same family, for Python tooling specifically:</p>
 <ul>
 <li><strong><a href="https://docs.astral.sh/uv/">uv</a></strong>: covered properly in <a href="../chapters/languages.html">Python and R</a> and <a href="../chapters/environments.html">Reproducible Environments</a>, since it’s one of the two routes this book takes. Listed here for the parts those chapters don’t use: <code>uv run script.py</code> executes a script in the project environment without activating anything, and <code>uv tool install</code> puts a command-line application in its own environment, the way <code>pipx</code> does.</li>
-<li><strong><a href="https://docs.astral.sh/ruff/">ruff</a></strong>: a Python linter and formatter, also from Astral, fast enough to run on every keystroke where the tools it replaces (flake8, isort, black) were not. Modern Python projects almost always use it.</li>
-<li><strong><a href="https://pixi.sh/">pixi</a></strong>: a project-based package manager built on the conda ecosystem. Think of it as “uv for conda”: fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.</li>
+<li><strong><a href="https://docs.astral.sh/ruff/">ruff</a></strong>: a Python linter and formatter, also from Astral, fast enough to run on every keystroke where the tools it replaces (flake8, isort, black) were not. Many current Python projects use it.</li>
+<li><strong><a href="https://pixi.prefix.dev/">pixi</a></strong>: a project-based package manager built on the conda ecosystem. Think of it as “uv for conda”: fast, lockfile-driven, cross-platform reproducible environments, especially useful for projects that mix Python with R, C++, CUDA, or system libraries.</li>
 </ul>
 <p>Apart from uv, none of these are required to follow this book, and the classic <code>pip</code>, <code>conda</code>, <code>grep</code> and <code>find</code> commands all still work. Install them when you get tired of waiting for the originals.</p>
 </section>
@@ -588,7 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>CSVKit is a suite of command-line tools for working with CSV files.</p>
 <p>It gives you <code>csvstat</code> for a quick summary of every column, <code>csvcut</code> to pull out named columns, <code>csvgrep</code> to filter rows, <code>csvsort</code>, and <code>csvjoin</code> for joining two files on a key. Each is a CSV-aware version of a standard Unix tool, so they understand quoted fields and headers where <code>grep</code> and <code>cut</code> don’t.</p>
 <p><strong>Installation:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install csvkit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> tool install csvkit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Example commands:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View basic statistics of a CSV file</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">csvstat</span> data.csv</span>
@@ -614,8 +620,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ubuntu/Debian</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install jq</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows (with Chocolatey)</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">choco</span> install jq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install jqlang.jq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Example commands:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pretty-print JSON</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> data.json <span class="kw">|</span> <span class="ex">jq</span> <span class="st">'.'</span></span>
@@ -664,8 +670,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ubuntu/Debian</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install graphviz</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows (with Chocolatey)</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">choco</span> install graphviz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Windows</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="ex">winget</span> install Graphviz.Graphviz</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Example DOT file (graph.dot):</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode dot code-with-copy"><code class="sourceCode dot"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">digraph</span> <span class="va">DataPipeline</span> <span class="ot">{</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">LR</span><span class="ot">;</span></span>
@@ -697,7 +703,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>macOS</strong>: <code>Cmd+Shift+4</code> for a region, <code>Cmd+Shift+5</code> for the capture-and-record panel. Markup opens from the thumbnail that appears after a capture.</li>
 <li><strong>Linux</strong>: varies by desktop — GNOME’s Screenshot and KDE’s Spectacle both cover region capture and annotation.</li>
 </ul>
-<p>You’ll still see older guides recommending Greenshot for this on Windows. It works, but its last stable release was in 2017 and the built-in tool now does the same job.</p>
+<p>You’ll still see guides recommending Greenshot for this on Windows. It’s maintained and works, and the built-in tool does the same job without an install.</p>
 <p>For anything beyond a static image — a bug you can only demonstrate by reproducing it — record a short clip instead. Screenshots of error messages are a common source of confusion in bug reports: paste the text.</p>
 </section>
 <section id="note-taking" class="level3" data-number="A.1.10">

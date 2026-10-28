@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -81,10 +81,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a211eaff6c2a6ca6c0655bfca9518f7f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -309,6 +309,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/changelog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Changelog</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -418,7 +424,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a directory (only works if the directory is empty)</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">rmdir</span> directory_name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>rmdir</code> refusing to delete a non-empty directory is the first surprise most people hit. The command that removes a directory and everything in it is <code>rm -r directory_name</code>, and it deletes without confirmation and without a recycle bin — there is no undo. Read that line twice before you press Enter, particularly if you’re about to type <code>rm -rf</code>.</p>
+<p>On macOS, Linux and Git Bash, <code>rmdir</code> refuses to delete a directory that still has files in it. The command that removes a directory and everything in it is <code>rm -r directory_name</code>. It doesn’t ask for confirmation and there’s no recycle bin, so there is no undo. Read that line twice before you press Enter, particularly if you’re about to type <code>rm -rf</code>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>The same commands in PowerShell
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PowerShell accepts <code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>rm</code> and <code>cat</code> as shortcuts for its own commands, so most of the block above works there too. The differences:</p>
+<ul>
+<li><code>touch</code> doesn’t exist. <code>New-Item newfile.txt</code> creates an empty file.</li>
+<li><code>vim</code> isn’t installed. Use <code>notepad filename.txt</code>, or <code>code filename.txt</code> once VS Code is installed.</li>
+<li><code>rm -r directory_name</code> works and deletes without asking. <code>rm -rf</code> fails with a parameter error.</li>
+<li><code>rmdir</code> on a directory that still has files in it asks for confirmation, with Yes as the default answer, so pressing Enter deletes everything inside. Type <code>N</code> if that isn’t what you meant.</li>
+</ul>
+<p>Nothing deleted from a terminal goes to the Recycle Bin.</p>
+</div>
+</div>
 <p>Those cover most of what you’ll do in a terminal day to day.</p>
 </section>
 <section id="creating-and-editing-files" class="level4" data-number="3.1.3.2">
@@ -432,7 +458,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple editor (press i to insert, Esc then :wq to save and quit)</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">vim</span> filename.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><code>touch</code> makes an empty file, <code>cat</code> prints one to the screen, and <code>vim</code> edits one in place. <code>vim</code> is worth knowing only because it is what a server drops you into when something needs editing and nothing else is installed.</p>
+<p><code>touch</code> makes an empty file, <code>cat</code> prints one to the screen, and <code>vim</code> edits one in place. You’ll meet <code>vim</code> on servers with no other editor installed, and when <code>git commit</code> opens it to ask for a message.</p>
 </section>
 </section>
 <section id="package-managers" class="level3" data-number="3.1.4">
@@ -453,15 +479,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then install Python</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install python</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>sudo</code> grants temporary administrator privileges, the terminal equivalent of Windows asking “Do you want to allow this app to make changes to your device?”</p>
-<p>That Homebrew line deserves a second look, because you will meet its shape often. <code>curl</code> downloads a file; the surrounding <code>/bin/bash -c "$(...)"</code> hands what came back straight to the shell and runs it. You are executing code from the internet without reading it first. For an installer published by the project itself — Homebrew here, <code>uv</code> and Docker later — this is the documented method and the risk is the same as running any installer you downloaded. For a one-liner you found in a forum answer, download it to a file, read it, then run it.</p>
+<p>That Homebrew line deserves a second look, because you will meet its shape often. <code>curl</code> downloads a file; the surrounding <code>/bin/bash -c "$(...)"</code> hands what came back straight to the shell and runs it. You are executing code from the internet without reading it first. For an installer published by the project itself — Homebrew here, <code>uv</code> in the next chapter — this is the documented method and the risk is the same as running any installer you downloaded. For a one-liner you found in a forum answer, download it to a file, read it, then run it.</p>
 </section>
 </section>
 <section id="three-constructs-youll-see-everywhere" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="three-constructs-youll-see-everywhere"><span class="header-section-number">3.2</span> Three Constructs You’ll See Everywhere</h2>
 <p>Beyond navigating and installing, three pieces of shell syntax appear throughout the rest of this book. They look cryptic and mean something simple.</p>
 <p><strong>Redirection: <code>&gt;</code> sends output to a file.</strong> By default a command prints its results to the screen. <code>&gt;</code> diverts that into a file instead, replacing whatever was there:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of printing the package list, write it to a file</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> freeze <span class="op">&gt;</span> requirements.txt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of printing the file list, write it to a file</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="op">&gt;</span> file_list.txt</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Two arrows appends rather than replacing</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"one more line"</span> <span class="op">&gt;&gt;</span> notes.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -472,7 +498,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the lines in a file</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> data.csv <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Each program does one job and knows nothing about the others, which is why small tools you can chain have outlasted most of the large ones.</p>
 <p><strong>Environment variables hold settings the shell passes to programs.</strong> These are named values that live in your shell session, and any program you launch can read them. <code>PATH</code> — the list of directories searched when you type a command name — is one you have already met:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show one variable (macOS/Linux/Git Bash)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$PATH</span></span>
@@ -482,14 +507,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The same two things in PowerShell</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">PATH</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="va">$env</span><span class="op">:</span><span class="va">API_KEY</span> <span class="op">=</span> <span class="st">'abc123'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Note the difference: Bash uses <code>$NAME</code> and <code>export</code>, PowerShell uses <code>$env:NAME</code> and plain assignment. Variables set this way last only until you close the terminal. This is the mechanism behind keeping passwords out of your code — <a href="../chapters/data_stores.html">Data Stores</a> uses it for exactly that — and behind hosting platforms telling your application which port to listen on.</p>
+<p>Bash reads a variable with <code>$NAME</code> and sets one with <code>export</code>. PowerShell uses <code>$env:NAME</code> for both. Variables set this way last only until you close the terminal. This is the mechanism behind keeping passwords out of your code — <a href="../chapters/data_stores.html">Data Stores</a> uses it for exactly that — and behind hosting platforms telling your application which port to listen on.</p>
 </section>
 <section id="a-note-on-windows-shells" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="a-note-on-windows-shells"><span class="header-section-number">3.3</span> A Note on Windows Shells</h2>
 <p>Windows gives you three shells and they are not interchangeable, which is the source of a great deal of confusion when following tutorials.</p>
 <ul>
 <li><strong>PowerShell</strong> is the modern default and what Windows Terminal opens. Most of this book’s commands work here.</li>
-<li><strong>Git Bash</strong> ships with Git for Windows and gives you a Unix-style shell. Anything in this book written for macOS or Linux works in Git Bash, which makes it the safest choice when following a tutorial that assumes Unix.</li>
+<li><strong>Git Bash</strong> ships with Git for Windows and gives you a Unix-style shell, which makes it the closest match when following a tutorial written for macOS or Linux. A few things still differ: <code>apt</code>, <code>brew</code> and <code>sudo</code> don’t exist, <code>make</code> isn’t included, a virtual environment’s activation script is at <code>.venv/Scripts/activate</code> instead of <code>.venv/bin/activate</code>, and Git Bash rewrites arguments that look like Unix paths, which can break commands such as <code>docker run -v $(pwd):/app</code>.</li>
 <li><strong>Command Prompt (<code>cmd.exe</code>)</strong> is the legacy shell. It’s still around, and a few things differ — <code>$(pwd)</code> doesn’t expand, for instance (use <code>%cd%</code>).</li>
 </ul>
 <p>If a command from a tutorial fails on Windows with a syntax error rather than a “not found” error, you are usually in the wrong shell rather than typing the wrong thing. Try it in Git Bash.</p>

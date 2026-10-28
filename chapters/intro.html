@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -46,10 +46,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9d48ed9de51e4db89a51ee292ab6623e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a211eaff6c2a6ca6c0655bfca9518f7f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -274,6 +274,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: Troubleshooting Guide</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/changelog.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Changelog</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -318,14 +324,14 @@ ul.task-list li input[type="checkbox"] {
 <section id="what-this-book-is-for" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="what-this-book-is-for"><span class="header-section-number">2.1</span> What This Book Is For</h2>
 <p>If you’re coming from economics, statistics, engineering, science, or another quantitative field, you already have the analytical skills to make productive use of data. What you may not have is the layer underneath: the command line, environments, version control, deployment — the infrastructure that turns an analysis on your laptop into something reproducible, shareable, and durable.</p>
-<p>That layer is rarely taught. Statistics degrees cover inference; econometrics courses cover identification; almost none of them cover what to do when a colleague says “it doesn’t run on my machine.” This book covers that.</p>
-<p>This book is about setting up the tools that coding assumes you already have. What it assumes of you is the methods. You might understand logistic regression intimately and still have no way to run one, and if the tooling has never been in place you have probably never written the code either. Learning to code is a separate job with good resources of its own, several listed in the <a href="../chapters/references.html">References</a> chapter. This book covers what has to be true before any of that code can run.</p>
+<p>That layer is rarely taught. Statistics and econometrics courses cover inference and identification, and few cover what to do when a colleague says “it doesn’t run on my machine.”</p>
+<p>This book is about setting up the tools that coding assumes you already have. What it assumes of you is the methods. You might understand logistic regression intimately and still have no way to run one, and if the tooling has never been in place you have probably never written the code either. Learning to code is a separate job with good resources of its own, several listed in the <a href="../chapters/references.html">References</a> chapter.</p>
 </section>
 <section id="does-this-still-matter-when-a-model-can-write-the-code" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="does-this-still-matter-when-a-model-can-write-the-code"><span class="header-section-number">2.2</span> Does This Still Matter When a Model Can Write the Code?</h2>
 <p>An AI assistant can draft your regression, explain an unfamiliar codebase, and suggest a fix for a stack trace. Give one access to your terminal and it will also install Python, repair your PATH, and resolve a conflict between two package versions. I handed an entire laptop migration to a coding agent — dozens of tools, hundreds of packages, the environment variables I always forget — and it sequenced the work better than I would have.</p>
-<p>You still sign off on what it does. An agent that installs a package system-wide instead of into the project’s environment, or pins a version that quietly changes a number, has handed you something you’ll be debugging weeks later on a machine you didn’t build. Approving that plan means being able to read it, and reading it means knowing what the commands underneath are for. That’s what this book covers.</p>
-<p>An assistant’s output is only as useful as your ability to run it, test it, and tell whether it’s right. If you can’t reproduce a result, you can’t check it. If you can’t check it, you’re taking a machine’s word for a number you’re about to put in front of someone who will act on it. The infrastructure in this book is what makes verification possible, and verification only grows more valuable as more of the drafting gets automated.</p>
+<p>You still sign off on what it does. An agent that installs a package system-wide instead of into the project’s environment, or pins a version that quietly changes a number, has handed you something you’ll be debugging weeks later on a machine you didn’t build. Approving that plan means being able to read it, and reading it means knowing what the commands underneath are for.</p>
+<p>An assistant’s output is only as useful as your ability to run it, test it, and tell whether it’s right. If you can’t reproduce a result you can’t check it, and you’re taking a machine’s word for a number someone is about to act on. The infrastructure in this book is what makes that checking possible, and it matters more as more of the drafting is automated.</p>
 <p>Use the assistants. They’re good at this work, including the parts of it this book covers. Treat them as a fast pair-programmer rather than an oracle, and know enough about what’s underneath to catch them when they’re confidently wrong.</p>
 </section>
 <section id="how-the-book-is-organised" class="level2" data-number="2.3">
@@ -334,13 +340,13 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Foundations</strong> (chapters 3–7) cover the machine itself: the command line, Python and R, version control, where data lives, and how to make an environment reproducible.</p>
 <p><strong>Communicating results</strong> (8–9) covers turning analysis into output someone else can read: documents and reports, and the charts and diagrams that go inside them.</p>
 <p><strong>Shipping</strong> (10–14) covers getting work in front of people: cloud platforms for when your laptop isn’t enough, web applications, containers, deployment, and the workflow tooling that makes the second run cheaper than the first.</p>
-<p>Two appendices follow: a catalogue of smaller utilities worth knowing about, and a troubleshooting reference for the errors you’re most likely to hit.</p>
+<p>Three appendices follow: a catalogue of smaller utilities worth knowing about, a troubleshooting reference for the errors you’re most likely to hit, and a changelog of what each edition changed.</p>
 <p>By the end you should have a working development environment for Python, R, and SQL; your projects under Git with a remote on GitHub; the ability to produce a report or dashboard and put it on the internet; and an environment file complete enough that someone else can reproduce your results.</p>
 </section>
 <section id="what-it-costs" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="what-it-costs"><span class="header-section-number">2.4</span> What It Costs</h2>
-<p>Almost everything here is free. The command line, Python, R, Git, Docker, VS Code, and the entire reporting and visualisation stack cost nothing and have no usage limits.</p>
-<p>The exceptions are the cloud platforms and hosting services in the later chapters. Most have a free tier adequate for learning, but they bill for usage beyond it, and their terms change often enough that this book doesn’t print them — you’ll find what each platform charges <em>for</em>, and a link to its pricing page for what that currently costs. The <a href="../chapters/cloud.html">Cloud Platforms</a> chapter covers how to set a budget alert before you need one.</p>
+<p>Almost everything here is free. The command line, Python, R, Git, VS Code, and the reporting and visualisation stack cost nothing. Docker Desktop is free for personal use, education and smaller organisations, and needs a paid subscription above a size threshold that <a href="../chapters/containers.html">Containerisation</a> covers.</p>
+<p>The other exceptions are the cloud platforms and hosting services in the later chapters. Most have a free tier adequate for learning, but they bill for usage beyond it, and their terms change often enough that this book doesn’t print them — you’ll find what each platform charges <em>for</em>, and a link to its pricing page for what that currently costs. The <a href="../chapters/cloud.html">Cloud Computing</a> chapter covers how to set a budget alert before you need one.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -351,7 +357,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><a href="../chapters/environments.html">Reproducible Environments</a>. Environment problems waste more of an analyst’s time than anything else in this book, and the fix takes an afternoon to learn.</p>
+<p><a href="../chapters/environments.html">Reproducible Environments</a>. In my experience, environment problems cost analysts more time than anything else in this book, and the fix takes an afternoon to learn.</p>
 </div>
 </div>
 
