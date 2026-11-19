@@ -66,6 +66,11 @@ book:
   open-graph: true
   twitter-card: true
   search: true
+  # The link back to the Sheet Solved hub, which links here from its home page
+  # and its project index. On every page, so a reader or crawler arriving on
+  # any chapter can reach it.
+  page-footer:
+    center: "A [Sheet Solved](https://sheetsolved.com) book"
   # downloads: [pdf, epub]  # Disabled - Mermaid rendering times out in CI
 
 bibliography: references.bib
